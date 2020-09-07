@@ -1,6 +1,6 @@
 from json import dumps
-from stalker.fileio import load_json
-from stalker.webio import request_publications
+from fileio import load_json
+from webio import request_publications
 
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ def request_publications(author_list):
     # initiate PubMed API
     pubmed = PubMed(tool="Stalker", email="christian.powell@uky.edu")
 
-    publication_dict = {author: [] for author in author_list}
+    publication_dict = dict()
 
     # loop through list of authors and request a list of their publications
     for author in author_list:
@@ -26,10 +26,17 @@ def request_publications(author_list):
                 pub_dict = pub.toDict()
                 del pub_dict["xml"]
                 pub_dict["publication_date"] = str(pub_dict["publication_date"])
-                publication_dict[author].append(pub_dict)
+
+                if not pub_dict.get("pubmed_id").split("\n")[0] in publication_dict.keys():
+                    publication_dict[pub_dict.get("pubmed_id").split("\n")[0]] = [{author}, pub_dict]
+                else:
+                    publication_dict[pub_dict.get("pubmed_id").split("\n")[0]][0].add(author)
 
         # don't piss off NCBI
         sleep(5)
+
+    for key in publication_dict.keys():
+        publication_dict[key][0] = list(publication_dict[key][0])
 
     return publication_dict
 
@@ -41,9 +48,11 @@ def create_email_message(to_name, publication_str):
     :param publication_str:
     :return:
     """
-    message = """{},
+    message = """Hey {},
     
-Here are a few new publications I was able to find:
+Here is your weekly dose of publications I've been able to find.
+
+
 
 {}
 Kind regards,

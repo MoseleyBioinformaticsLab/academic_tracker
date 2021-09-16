@@ -5,7 +5,7 @@ import ssl
 from time import sleep
 
 
-def request_publications(author_list):
+def request_publications(author_list, cutoff_date=2019):
     """Returns a dictionary of authors (key) and lists of their publications (values).
 
     :param author_list:
@@ -27,10 +27,12 @@ def request_publications(author_list):
                 del pub_dict["xml"]
                 pub_dict["publication_date"] = str(pub_dict["publication_date"])
 
-                if not pub_dict.get("pubmed_id").split("\n")[0] in publication_dict.keys():
-                    publication_dict[pub_dict.get("pubmed_id").split("\n")[0]] = [{author}, pub_dict]
-                else:
-                    publication_dict[pub_dict.get("pubmed_id").split("\n")[0]][0].add(author)
+                if int(pub_dict["publication_date"][:4]) >= cutoff_date:
+
+                    if not pub_dict.get("pubmed_id").split("\n")[0] in publication_dict.keys():
+                        publication_dict[pub_dict.get("pubmed_id").split("\n")[0]] = [{author}, pub_dict]
+                    else:
+                        publication_dict[pub_dict.get("pubmed_id").split("\n")[0]][0].add(author)
 
         # don't piss off NCBI
         sleep(5)
@@ -39,6 +41,11 @@ def request_publications(author_list):
         publication_dict[key][0] = list(publication_dict[key][0])
 
     return publication_dict
+
+
+def check_grant_number(publication, pubmed_url="https://pubmed.ncbi.nlm.nih.gov/",
+                       grant_numbers=("P42ES007380", "P42 ES007380"), doi_url="https://doi.org/"):
+    pass
 
 
 def create_email_message(to_name, publication_str):

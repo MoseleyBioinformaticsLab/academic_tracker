@@ -8,10 +8,13 @@ from time import sleep
 def request_publications(author_list, cutoff_date=2019):
     """Returns a dictionary of authors (key) and lists of their publications (values).
 
-    :param author_list:
-    :type author_list: list
-    :return: Dictionary of authors (key) and lists of their publications (values)
-    :rtype: dict
+    Args:
+        author_list (list): list of author names to search PubMed with.
+        cutoff_date (int): YYYY year before which publications will be discarded.
+    
+    Returns:
+        publication_dict (dict): author names are keys and publication ids are values
+
     """
     # initiate PubMed API
     pubmed = PubMed(tool="Stalker", email="christian.powell@uky.edu")
@@ -29,14 +32,17 @@ def request_publications(author_list, cutoff_date=2019):
 
                 if int(pub_dict["publication_date"][:4]) >= cutoff_date:
 
+                    # add publications to the publication_dict if not there, else add author to the publication.
+                    # author is a dict so that authors are not repeated.
                     if not pub_dict.get("pubmed_id").split("\n")[0] in publication_dict.keys():
                         publication_dict[pub_dict.get("pubmed_id").split("\n")[0]] = [{author}, pub_dict]
                     else:
                         publication_dict[pub_dict.get("pubmed_id").split("\n")[0]][0].add(author)
 
         # don't piss off NCBI
-        sleep(5)
+        sleep(1)
 
+    # convert author dict to list, it was only a dict to get unique names easily.
     for key in publication_dict.keys():
         publication_dict[key][0] = list(publication_dict[key][0])
 
@@ -49,11 +55,15 @@ def check_grant_number(publication, pubmed_url="https://pubmed.ncbi.nlm.nih.gov/
 
 
 def create_email_message(to_name, publication_str):
-    """
+    """Create a string for the body of an email to send to an author.
+    
+    Args:
+        to_name (str): author's name
+        publication_str (str): string that has all the publications to alert the author about
+        
+    Returns:
+        message (str): string with a formatted message meant to be the body of an email to the author
 
-    :param to_name:
-    :param publication_str:
-    :return:
     """
     message = """Hey {},
     
@@ -75,7 +85,7 @@ def send_email(subject,
                password=None,
                to_email=None,
                cc=None,
-               stmp_server_address="smtp.gmail.com",
+               smtp_server_address="smtp.gmail.com",
                port=587):
     """Sends an email via SMTP.
 
@@ -85,7 +95,7 @@ def send_email(subject,
     :param password:
     :param to_email:
     :param cc:
-    :param stmp_server_address:
+    :param smtp_server_address:
     :param port:
     :return:
     """
@@ -101,7 +111,7 @@ def send_email(subject,
 
     # Send the message via SMTP server.
     try:
-        with smtplib.SMTP(stmp_server_address, port) as server:
+        with smtplib.SMTP(smtp_server_address, port) as server:
             server.starttls(context=context)
             server.login(from_email, password)
             server.send_message(msg)

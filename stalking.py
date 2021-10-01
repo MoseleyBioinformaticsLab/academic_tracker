@@ -23,7 +23,6 @@ author_file_keys = ["name", "email"]
 email_word_replacements = {"<author>":"author", "<from_email>":"from_email"}
 
 ## TODO add Sphinx style comments to each function.
-## TODO check that cutoff_year is between 1900 and 3000.
 
 """
 Are all fields in config required?
@@ -122,6 +121,9 @@ def config_file_check(config_json):
             cutoff_year = config_json["cutoff_year"]
             try:
                 cutoff_year = int(cutoff_year)
+                if cutoff_year < 1900 or cutoff_year > 3000:
+                    print("Warning: \"cutoff_year\" in JSON configuration file is not between 1900 and 3000, it will be ignored.")
+                    cutoff_year = 0
             except:
                 cutoff_year = 0
                 print("Warning: \"cutoff_year\" in JSON configuration file is not an int, it will be ignored.")
@@ -253,34 +255,7 @@ def author_file_check(authors_dict):
 
 
 
-
-                
-
-def find_publications(args):
-    
-    
-    # dicts to store which publications had grant info on pubmed page and which need to be checked by hand.
-    # key is author and value is a list of publication ids
-    grant_dict = {}
-    no_grant_dict = {}
-    
-    # dict for email messages. keys are authors and values are the email message
-    email_messages = {}
-    
-    ## read in authors
-    authors_dict = load_json(args["<authors_json_file>"])
-    author_file_check(authors_dict)
-    
-    ## read in config file
-    config_file = load_json(args["<config_json_file"])
-    
-    ## Get inputs from config file and check them for errors.
-    grants, cutoff_year, affiliations, from_email, cc_email, email_template, email_subject = config_file_check(config_file)
-    
-    
-    ########################
-    ## Overwrite inputs if there are command line options
-    ########################
+def cli_inputs_overwrite(args, grants, cutoff_year, affiliations, from_email, cc_email):
     
     if args["--grants"]:
         grants = args["--grants"].split(",")
@@ -289,6 +264,9 @@ def find_publications(args):
         cutoff_year = args["--cutoff_year"]
         try:
             cutoff_year = int(cutoff_year)
+            if cutoff_year < 1900 or cutoff_year > 3000:
+                print("Warning: \"cutoff_year\" in JSON configuration file is not between 1900 and 3000, it will be ignored.")
+                cutoff_year = 0
         except:
             cutoff_year = 0
             print("Warning: \"cutoff_year\" option is not an int, it will be ignored.")
@@ -307,11 +285,16 @@ def find_publications(args):
         if any(not re.match(".*@.*\..*", email) for email in cc_email):
             print("Error: An email in the \"cc_email\" option does not look like an email.")
             sys.exit()
-        
+            
+            
+    return grants, cutoff_year, affiliations, from_email, cc_email
+
+
+
+
+
+def read_previous_publications(args):
     
-    ##########################
-    ## read in previous publications to ignore
-    #########################
     has_previous_pubs = False
     if args["--prev_pub"]:
         prev_pubs = load_json(args["--prev_pub"])
@@ -344,16 +327,32 @@ def find_publications(args):
                 except:
                     print("Error: Non-numerical value in previous publications list.")
                     sys.exit()
-            
-            
-            
-            
+                    
+                    
+        return has_previous_pubs, prev_pubs
     
+    else:
+        return has_previous_pubs, None
+    
+
+
+
+
+
+def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, affiliations, cutoff_year, grants):
     
     # initiate PubMed API
     pubmed = PubMed(tool="Publication_Tracker")
 
     publication_dict = dict()
+    
+    # dicts to store which publications had grant info on pubmed page and which need to be checked by hand.
+    # key is author and value is a list of publication ids
+    grant_dict = {}
+    no_grant_dict = {}
+    
+    # dict for email messages. keys are authors and values are the email message
+    email_messages = {}
 
     ########################
     # loop through list of authors and request a list of their publications
@@ -414,12 +413,10 @@ def find_publications(args):
         # don't piss off NCBI
         sleep(1)
         
+        
         ################################
         ## build email message for the author
         ###############################
-        
-        
-        
         
         if author_has_pubs:
             message = "Hey " + author + ",\n\nThese are the publications I was able to find on PubMed. Are any missing?"
@@ -445,27 +442,24 @@ def find_publications(args):
 
     publication_dict = OrderedDict(sorted(publication_dict.items(), key=lambda x: x[1][1]["publication_date"], reverse=True))
     
+    return publication_dict, email_messages
+
+
+
+
+def save_emails_to_file(args, email_messages, save_dir_name):
     
-    ######################
-    ## save email messages to file
-    ######################
-    if args["--test"]:
-        save_dir_name = "tracker-test-" + str(datetime.now())[2:10].replace("-","")
-        os.mkdir(save_dir_name)
-        email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.txt")
-    else:
-        save_dir_name = "tracker-" + str(datetime.now())[2:10].replace("-","")
-        os.mkdir(save_dir_name)
-        email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.txt")
+    email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.txt")
     
     with open(email_save_path, "w") as email_file:
         for author, message in email_messages.items():
             email_file.write(message + "\n\n")
-            
+
+                
+
+
+def send_emails(args, email_messages, cc_email, authors_dict):
     
-    #############
-    ## send emails
-    #############
     if not args["--test"]:
         # build and send each message by looping over the email_messages dict
         cc_string = ""
@@ -481,13 +475,11 @@ def find_publications(args):
             
             sendmail_location = "/usr/sbin/sendmail"
             subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
+            
+
+
+def save_publications_to_file(save_dir_name, publication_dict, has_previous_pubs, prev_pubs):
     
-    
-    
-    
-    ############
-    ## combine previous and new publications lists and save
-    ############
     publications_save_path = os.path.join(os.getcwd(), save_dir_name, "publications.json")
         
     if has_previous_pubs: 
@@ -496,6 +488,57 @@ def find_publications(args):
     else:
         with open(publications_save_path, 'w') as outFile:
             print(json.dumps(list(publication_dict.keys()), indent=2, sort_keys=True), file=outFile)
+
+
+
+
+
+def find_publications(args):
+    
+    
+    ## read in authors
+    authors_dict = load_json(args["<authors_json_file>"])
+    author_file_check(authors_dict)
+    
+    ## read in config file
+    config_file = load_json(args["<config_json_file"])
+    
+    ## Get inputs from config file and check them for errors.
+#    json_config_inputs = dict.fromkeys(config_file_keys)
+    grants, cutoff_year, affiliations, from_email, cc_email, email_template, email_subject = config_file_check(config_file)
+    
+    
+    ## Overwrite inputs if there are command line options
+    grants, cutoff_year, affiliations, from_email, cc_email = cli_inputs_overwrite(args, grants, cutoff_year, affiliations, from_email, cc_email)
+    
+        
+    ## read in previous publications to ignore
+    has_previous_pubs, prev_pubs = read_previous_publications(args)
+            
+            
+    ## Get publications from PubMed and build email messages
+    publication_dict, email_messages = request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, affiliations, cutoff_year, grants)
+    
+    ## Build the save directory name.
+    if args["--test"]:
+        save_dir_name = "tracker-test-" + str(datetime.now())[2:10].replace("-","")
+        os.mkdir(save_dir_name)
+    else:
+        save_dir_name = "tracker-" + str(datetime.now())[2:10].replace("-","")
+        os.mkdir(save_dir_name)
+        
+    
+    
+    ## save email messages to file
+    save_emails_to_file(args, email_messages, save_dir_name)
+            
+    
+    ## send emails
+    send_emails(args, email_messages, cc_email, authors_dict)
+    
+    
+    ## combine previous and new publications lists and save
+    save_publications_to_file(save_dir_name, publication_dict, has_previous_pubs, prev_pubs)
 
 
 

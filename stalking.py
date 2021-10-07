@@ -8,10 +8,10 @@ Options:
     --version                         Show version.
     --test                            Generate pubs and email texts, but do not send emails.
     --grants=<nums>...                Grant numbers to filter publications by. Must be a comma separated list with no spaces.
-    --cutoff-year=<num>               YYYY year before which to ignore publications.
+    --cutoff_year=<num>               YYYY year before which to ignore publications.
     --from_email=<email>              Send authors email from provided email address.
     --cc_email=<emails>...            Email addresses to cc on the sent emails. Must be a comma separated list with no spaces.
-    --prev-pub=<file-path>            Filepath to json or csv with publication ids to ignore.
+    --prev_pub=<file-path>            Filepath to json or csv with publication ids to ignore.
     --affiliations=<affiliations>...  An affiliation to filter publications by. Must be a comma separated list with no spaces.
     
     
@@ -19,40 +19,16 @@ Options:
 
 pub_med_url = "https://pubmed.ncbi.nlm.nih.gov/"
 config_file_keys = ["grants", "cutoff_year", "affiliations", "from_email", "cc_email", "email_template", "email_subject"]
-email_word_replacements = {"<author>":"author", "<from_email>":"from_email"}
+__version__ = "1.0.0"
 
-
-"""
-Are all fields in config required?
-How much error checking with values in config and CLI?
-If cutoff_year is not an int, ignore or exit?
-If from_email and cc_emails don't look like emails, error?
-
-What to do about publications with no grant info on PubMed? Christian was hand checking.
-
-Format of previous publications JSON? Is list okay?
-Format of the authors JSON file? Repeat name in values? How hard to check author's email? Possible regex .*@.*\..*?
-
-Strucutre of publication and email files in the directories?
-
-If there are multiple tracker dirs and the largest doesn't have a previous publications file, go to second largest or ignore?
-
-Any other variables in the email format string? <author> and <from_email> already.
-
-Is exiting with sys.exit() okay for invalid input?
-How big of a timestamp? Include hours and minutes? 
-Should default behavior be to combine previous publications and new publications when saving? Option to save only new?
-
-"""
 
 
 
 from collections import OrderedDict
 from urllib.request import urlopen
-from urllib.error import HTTPError
 from os.path import join
 import docopt
-from ._version import __version__
+#from . import __version__
 from fileio import load_json
 from time import sleep
 from pymed import PubMed
@@ -78,7 +54,7 @@ def create_citation(publication):
     """
     publication_str = ""
 
-    publication_str += ", ".join([auth["lastname"] + " " + auth["initials"] for auth in publication[1]["authors"]]) + "."
+    publication_str += ", ".join([auth["lastname"] + " " + auth["initials"] for auth in publication[1]["authors"] if auth["lastname"] and auth["initials"]]) + "."
     publication_str += " {}.".format(publication[1]["publication_date"][:4])
     publication_str += " {}.".format(publication[1]["title"])
     publication_str += " {}.".format(publication[1]["journal"])
@@ -88,7 +64,7 @@ def create_citation(publication):
     return publication_str
 
 
-def config_file_check(config_json):
+def config_file_check(args, config_json):
     """Check that the configuration JSON file is as expected.
     
     The configuration JSON file format is expected to be::
@@ -105,6 +81,7 @@ def config_file_check(config_json):
     Each attribute is checked for type and appropriate values.
     
     Args:
+        args (dict): args dict from DocOpt
         config_json (dict): dict with the same structure as the configuration JSON file
         
     Returns:
@@ -121,12 +98,15 @@ def config_file_check(config_json):
     ## Go through each possible key and handle them appropriately.
     ## See if it exists or not and that it is the right type, then do further handling or print an error.
     
+    if args["--grants"]:
+        grants = args["--grants"].split(",")
     ## If grants is not a list make it one.
-    if not "grants" in config_json:
-        grants = None
+    elif not "grants" in config_json:
+        print("Error: No \"grants\" detected in JSON configuration file or command line arguments.")
+        sys.exit()
     else:
         if type(config_json["grants"]) == list:
-            if any(type(value) != str for value in  config_json["grants"]):
+            if any(type(value) != str for value in config_json["grants"]):
                 print("Error: Non-string type value in \"grants\" list in JSON configuration file.")
                 sys.exit()
             
@@ -138,30 +118,40 @@ def config_file_check(config_json):
             print("Error: Non-string or list type value for \"grants\" in JSON configuration file.")
             sys.exit()
             
+    if len(grants) == 0:
+        print("Error: No values found for \"grants\" in JSON configuration file or command line.")
+        sys.exit()
+        
+    if all(len(grants_string) == 0 for grants_string in grants):
+        print("Error: All values in \"grants\" are empty strings.")
+        sys.exit()
+            
     
-    ## Make sure cutoff_year con be turned into an int.        
-    if not "cutoff_year" in config_json:
-        cutoff_year = 0
+    ## Make sure cutoff_year con be turned into an int.  
+    if args["--cutoff_year"]:
+        cutoff_year = args["--cutoff_year"]      
+    elif not "cutoff_year" in config_json:
+        print("Error: No \"cutoff_year\" detected in JSON configuration file or command line arguments.")
+        sys.exit()
     else:
-        if type(config_json["cutoff_year"]) != str:
-            print("Error: Non-string type value for \"cutoff_year\" in JSON configuration file.")
+        if type(config_json["cutoff_year"]) != int:
+            print("Error: Non-int type value for \"cutoff_year\" in JSON configuration file.")
             sys.exit()
         
         else:
             cutoff_year = config_json["cutoff_year"]
-            try:
-                cutoff_year = int(cutoff_year)
-                if cutoff_year > 3000:
-                    print("Warning: \"cutoff_year\" in JSON configuration file is greater than 3000, it will be ignored.")
-                    cutoff_year = 0
-            except:
-                cutoff_year = 0
-                print("Warning: \"cutoff_year\" in JSON configuration file is not an int, it will be ignored.")
+                
+        if cutoff_year > 3000:
+            print("Error: \"cutoff_year\" in JSON configuration file is greater than 3000.")
+            sys.exit()
+            
             
     
-    ## If affiliations is not a list make it one.        
-    if not "affiliations" in config_json:
-        affiliations = None
+    if args["--affiliations"]:
+        affiliations = args["--affiliations"].lower().split(",")
+    elif not "affiliations" in config_json:
+        print("Error: No \"affiliations\" detected in JSON configuration file or command line arguments.")
+        sys.exit()
     else:
         if type(config_json["affiliations"]) == list:
             if any(type(value) != str for value in  config_json["affiliations"]):
@@ -176,10 +166,20 @@ def config_file_check(config_json):
             print("Error: Non-string or list type value for \"affiliations\" in JSON configuration file.")
             sys.exit()
             
- ## TODO either require at least 1 string in affiliations or add code to skip the filter.           
-    
-    if not "from_email" in config_json:
-        from_email = None
+    if len(affiliations) == 0:
+        print("Error: No values found for \"affiliations\" in JSON configuration file or command line.")
+        sys.exit()
+        
+    if all(len(affiliation_string) == 0 for affiliation_string in affiliations):
+        print("Error: All values in \"affiliations\" are empty strings.")
+        sys.exit()
+            
+
+    if args["--from_email"]:
+        from_email = args["--from_email"]
+    elif not "from_email" in config_json:
+        print("Error: No \"from_email\" detected in JSON configuration file or command line arguments.")
+        sys.exit()
     else:
         if type(config_json["from_email"]) != str:
             print("Error: Non-string type value for \"from_email\" in JSON configuration file.")
@@ -187,15 +187,17 @@ def config_file_check(config_json):
         
         else:
             from_email = config_json["from_email"]
-            if not re.match(".*@.*\..*", from_email):
-                print("Error: The \"from_email\" email attribute in the JSON configuration file does not look like an email.")
-                sys.exit()
+
+    if not re.match(".+@.+\..+", from_email):
+        print("Error: The \"from_email\" email attribute in the JSON configuration file does not look like an email.")
+        sys.exit()
         
         
     
-    ## If cc_email is not a list make it one.        
-    if not "cc_email" in config_json:
-        cc_email = None
+    if args["--cc_email"]:
+        cc_email = args["--cc_email"].split(",")      
+    elif not "cc_email" in config_json:
+        cc_email = []
     else:
         if type(config_json["cc_email"]) == list:
             if any(type(value) != str for value in  config_json["cc_email"]):
@@ -211,14 +213,15 @@ def config_file_check(config_json):
             print("Error: Non-string or list type value for \"cc_email\" in JSON configuration file.")
             sys.exit()
             
-        if any(not re.match(".*@.*\..*", email) for email in cc_email):
-                print("Error: An email in the \"cc_email\" attribute in the JSON configuration file does not look like an email.")
-                sys.exit()
+    if any(not re.match(".+@.+\..+", email) for email in cc_email):
+            print("Error: An email in the \"cc_email\" attribute in the JSON configuration file does not look like an email.")
+            sys.exit()
             
             
     
     if not "email_template" in config_json:
-        email_template = None
+        print("Error: No \"email_template\" detected in JSON configuration file or command line arguments.")
+        sys.exit()
     else:
         if type(config_json["email_template"]) != str:
             print("Error: Non-string type value for \"email_template\" in JSON configuration file.")
@@ -226,11 +229,19 @@ def config_file_check(config_json):
         
         else:
             email_template = config_json["email_template"]
+            if len(email_template) == 0:
+                print("Error: Empty string detected for \"email_template\" in JSON configuration file.")
+                sys.exit()
+                
+            if not re.match(r".*<total_pubs>.*", email_template, flags=re.DOTALL):
+                print("Error: \"email_template\" in JSON configuration file does not indicate where to print the publications. \"<total_pubs>\" must be in the string.")
+                sys.exit()
         
         
     
     if not "email_subject" in config_json:
-        email_subject = None
+        print("Error: No \"email_subject\" detected in JSON configuration file or command line arguments.")
+        sys.exit()
     else:
         if type(config_json["email_subject"]) != str:
             print("Error: Non-string type value for \"email_subject\" in JSON configuration file.")
@@ -238,70 +249,15 @@ def config_file_check(config_json):
         
         else:
             email_subject = config_json["email_subject"]
+            if len(email_subject) == 0:
+                print("Error: Empty string detected for \"email_subject\" in JSON configuration file.")
+                sys.exit()
         
         
         
         
     return grants, cutoff_year, affiliations, from_email, cc_email, email_template, email_subject
             
-
-
-
-
-
-def cli_inputs_overwrite(args, grants, cutoff_year, affiliations, from_email, cc_email):
-    """If the user used options in the command line overwrite the values found in the configuration JSON.
-    
-    Args:
-        args (dict): args dict from DocOpt
-        grants (list): list of strings read in from the JSON configuration file to be overwrote if necessary
-        cutoff_year (int): read in from the JSON configuration file to be overwrote if necessary
-        affililations (list): list of strings read in from the JSON configuration file to be overwrote if necessary
-        from_email (str): read in from the JSON configuration file to be overwrote if necessary
-        cc_email (list): list of strings read in from the JSON configuration file to be overwrote if necessary
-        
-    Returns:
-        grants (list): list of strings to see if publications were cited for
-        cutoff_year (int): year before which to filter publications by
-        affililations (list): list of strings to filter authors by
-        from_email (str): email address for email messages to be sent from
-        cc_email (list): list of email addresses to cc each email to
-        
-    
-    
-    """
-    
-    if args["--grants"]:
-        grants = args["--grants"].split(",")
-        
-    if args["--cutoff_year"]:
-        cutoff_year = args["--cutoff_year"]
-        try:
-            cutoff_year = int(cutoff_year)
-            if cutoff_year > 3000:
-                print("Warning: \"cutoff_year\" in JSON configuration file is greater than 3000, it will be ignored.")
-                cutoff_year = 0
-        except:
-            cutoff_year = 0
-            print("Warning: \"cutoff_year\" option is not an int, it will be ignored.")
-        
-    if args["--affiliations"]:
-        affiliations = args["--affiliations"].lower().split(",")
-    
-    if args["--from_email"]:
-        from_email = args["--from_email"]
-        if not re.match(".*@.*\..*", from_email):
-            print("Error: The \"from_email\" option does not look like an email.")
-            sys.exit()
-        
-    if args["--cc_email"]:
-        cc_email = args["--cc_email"].split(",")
-        if any(not re.match(".*@.*\..*", email) for email in cc_email):
-            print("Error: An email in the \"cc_email\" option does not look like an email.")
-            sys.exit()
-            
-            
-    return grants, cutoff_year, affiliations, from_email, cc_email
 
 
 
@@ -316,16 +272,18 @@ def author_file_check(authors_dict):
     The authos_dict read in from the authors JSON file is expected to have the format::
         {
             "Author 1": {  
-                           "id" : "Author 1"
+                           "first_name" : "<first_name>",
+                           "last_name" : "<last_name>",
+                           "pubmed_name_search" : "<search-str>",
                            "email": "email@uky.edu",
-                           "name" : "Author 1",
                            "ORCID": "<orcid>" # optional           
                         },
             
             "Author 2": {  
-                           "id" : "Author 2"
-                           "email": "email@uky.edu",
-                           "name" : "Author 2",            
+                           "first_name" : "<first_name>",
+                           "last_name" : "<last_name>",
+                           "pubmed_name_search" : "<search-str>",
+                           "email": "email@uky.edu",       
                            "ORCID": "<orcid>" # optional 
                         },
         }
@@ -339,46 +297,53 @@ def author_file_check(authors_dict):
     
     
     """
-    author_file_keys = ["id", "name", "email"]
+    required_author_file_keys = ["first_name", "last_name", "pubmed_name_search", "email"]
+    optional_author_file_keys = ["ORCID"]
     
     if type(authors_dict) != dict:
         print("Error: Non-dict type value for authors JSON file.")
         sys.exit()
     
-    elif any(type(value) != dict for value in authors_dict.values()):
-            print("Error: Non-dict type value in authors dict.")
+            
+    for author, author_attributes  in authors_dict.items():
+        
+        if type(author_attributes) != dict :
+            print("Error: The author, " + author + ", is missing author attributes.")
             sys.exit()
-            
-            
-    for author, author_attributes  in authors_dict:
+        
         ## Make sure each author has the appropriate attributes.
-        if len(set(author_file_keys) - set(author_attributes.keys())) > 0:
-            print("Error: Author missing attribute in authors JSON file.")
+        if len(set(required_author_file_keys) - set(author_attributes.keys())) > 0:
+            print("Error: The author, " + author + ", is missing attribute(s) in authors JSON file.")
             sys.exit()
         
         ## Make sure each attribute we expect has the appropriate value.
         ## For now assuming each attribute just needs to be a string.
-        for attribute_name, attribute_value in author_attributes:
-            if attribute_name in author_file_keys:
+        for attribute_name, attribute_value in author_attributes.items():
+            if attribute_name in required_author_file_keys or attribute_name in optional_author_file_keys:
                 if type(attribute_value) != str:
-                    print("Error: Non-string type value in an author's attribute in the authors JSON file.")
+                    print("Error: Non-string type value in, " + attribute_name + " for, " + author)
+                    sys.exit()
+                    
+                if len(attribute_value.replace(" ", "")) == 0:
+                    print("Error: The " + attribute_name + " attribute for author, " + author + ", has no value.")
                     sys.exit()
                 
-                ## The id attribute should be the same as the author key.
-                if attribute_name == "id" and not attribute_value == author:
-                    print("Error: The author's, " + author + ", id attribute does not match the key value.")
-                    sys.exit()
                     
                 ## The email attribute needs to look like an email.
-                if attribute_name == "email" and not re.match(".*@.*\..*", attribute_value):
-                    print("Error: The author's, " + author + ", email attribute does not look like an email.")
+                if attribute_name == "email" and not re.match(".+@.+\..+", attribute_value):
+                    print("Error: The author, " + author + ", email attribute does not look like an email.")
                     sys.exit()
                     
+                    
+                ## ORCID must be a certain format.
+                if attribute_name == "ORCID" and not re.match(r"\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]", attribute_value):
+                    print("Error: The ORCID for author, " + author + ", is not a valid ORCID.")
+                    sys.exit()
 
 
 
 
-
+## TODO add checks for attributes after figuring out what attributes to keep.
 def read_previous_publications(args):
     """Read in the previous publication json file.
     
@@ -394,7 +359,7 @@ def read_previous_publications(args):
         
     Returns:
         has_previous_pubs (bool): True means that a previous publications file was found
-        prev_pus (list): list of publication ids as string type
+        prev_pubs (dict): dict where keys are publication ids and values are a dict of publication attributes
     
     """
     
@@ -406,17 +371,24 @@ def read_previous_publications(args):
     else:
         dir_contents = os.listdir()
         ## find all directories matching the tracker directory structure and convert the timestamps to ints to find the largest one.
-        tracker_dirs = [int(re.match(r"tracker-(\d{6})", folder).group(1)) for folder in dir_contents if re.match(r"tracker-(\d{6})", folder)]
+        tracker_dirs = [int(re.match(r"tracker-(\d{10})", folder).group(1)) for folder in dir_contents if re.match(r"tracker-(\d{10})", folder)]
         if len(tracker_dirs) > 0:
             latest_dir = max(tracker_dirs)
+            current_day = str(datetime.now())[2:10].replace("-","")
+            if current_day == str(latest_dir)[:6]:
+                print("Warning: The latest tracker directory was made earlier today.")
             prev_publication_filepath = os.path.join(os.getcwd(), "tracker-"+str(latest_dir), "publications", "publications.json")
-            prev_pubs = load_json(prev_publication_filepath)
-            has_previous_pubs = True
+            if os.path.exists(prev_publication_filepath):
+                prev_pubs = load_json(prev_publication_filepath)
+                has_previous_pubs = True
+            else:
+                print("Error: The latest tracker publications directory does not have a previous publications file.")
+                sys.exit()
     
     if has_previous_pubs:    
         ## Make sure the previous publication file is the format we expect.
-        if type(prev_pubs) != list:
-            print("Error: Non-list type value for the previous publications JSON.")
+        if type(prev_pubs) != dict:
+            print("Error: Non-dict type value for the previous publications JSON.")
             sys.exit()
         
         elif any(type(value) != str for value in prev_pubs):
@@ -424,7 +396,7 @@ def read_previous_publications(args):
             sys.exit()
             
         elif len(prev_pubs) == 0:
-            print("Error: Previous publications list is empty.")
+            print("Error: Previous publications dict is empty.")
             sys.exit()
         
         else:
@@ -446,7 +418,7 @@ def read_previous_publications(args):
 
 
 
-def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, affiliations, cutoff_year, grants):
+def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, affiliations, cutoff_year, grants, from_email, email_template, email_subject, cc_email):
     """Searhes PubMed for publications by each author and creates email messages to send to each author about the publications.
     
     For each author in authors_dict PubMed is queried for the publications. The list of publications is then filtered 
@@ -464,23 +436,25 @@ def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, af
         affililations (list): list of strings used to compare against the author's affiliations 
         cutoff_year (int): if the publication was published before this year it is skipped
         grants (list): list of strings used to see if the publication is cited for
+        from_email (str): used in the query to PubMed
+        email_template (str): formatted string that is used to build the body of the email to the author
+        email_subject (str): formatted string that is used to build the subject of the email of the author
+        cc_email (list): list of email addresses to cc each email to
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
-        email_messages (dict): keys are author names and values are the string email message to send to the author
+        email_messages (dict): keys are author names and values are a dict with the "subject", "body", "from", "to", and "cc" parts of the email
     
     
     """
-    
+       
     # initiate PubMed API
-    pubmed = PubMed(tool="Publication_Tracker")
+    pubmed = PubMed(tool="Publication_Tracker", email=from_email)
 
     publication_dict = dict()
     
-    # dicts to store which publications had grant info on pubmed page and which need to be checked by hand.
-    # key is author and value is a list of publication ids
-    grant_dict = {}
-    no_grant_dict = {}
+    # key is author and value is a dict of publication ids with a list of grants cited for them.
+    pubs_by_author_dict = {}
     
     # dict for email messages. keys are authors and values are the email message
     email_messages = {}
@@ -488,12 +462,22 @@ def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, af
     ########################
     # loop through list of authors and request a list of their publications
     ########################
-    for author in authors_dict:
+    for author, author_attributes in authors_dict.items():
+        
         author_has_pubs = False
-        publications = pubmed.query(author, max_results=500)
+        ##TODO test that ORCID works in query.
+        if "ORCID" in author_attributes:
+            publications = pubmed.query(author_attributes["ORCID"], max_results=500)
+        else:
+            publications = pubmed.query(author_attributes["pubmed_name_search"], max_results=500)
+        
+        ## Unpacking pub from publications appears to be the slowest part of the code.
+        ## publications is an iterator that is broken up into batches and there are noticeable slow downs each time a new batch is fetched.
         for pub in publications:
             
             ## Only proceed with publications that have at least one author with an affiliation that is in the given affiliations.
+            ## pub.authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
+            ## It might be better to find the author we are looking for and match an affiliation instead of matching to any author.
             publication_has_affiliated_author = False
             for author_items in pub.authors:
                 ## affiliations are sets of strings so the intersection should have at least 1 string for a match.
@@ -507,6 +491,7 @@ def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, af
                 pub_id = pub_dict.get("pubmed_id").split("\n")[0]
                     
                 ## if the publication id is in the list of previously found ones then skip
+                ## TODO check and see if prev_pub now has grant citation if it didn't before. Add key to publication_dict to keep track.
                 if has_previous_pubs and pub_id in prev_pubs:
                     continue
                 
@@ -526,21 +511,22 @@ def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, af
                     response = urlopen(join(pub_med_url, pub_id))
                     url_str = response.read().decode("utf-8")
                     response.close()
-            
-                    # sort publications by whether they have grant info on the pubmed page or not
-                    if any(grant_id in url_str for grant_id in grants):
-                        if author not in grant_dict:
-                            grant_dict[author] = [pub_id]
-                        else:
-                            grant_dict[author].append(pub_id)
-                            
-                            
+                    
+                    
+                    ## Add publication to dict under the author.
+                    if author not in pubs_by_author_dict:
+                        pubs_by_author_dict[author] = {pub_id:[]}
                     else:
-                        if author not in no_grant_dict:
-                            no_grant_dict[author] = [pub_id]
-                        else:
-                            no_grant_dict[author].append(pub_id)
-                        
+                        pubs_by_author_dict[author][pub_id] = []
+                    
+                    ## Look for each grant_id and if found add it to dict.
+                    for grant_id in grants:
+                        if grant_id in url_str:
+                            pubs_by_author_dict[author][pub_id].append(grant_id)
+                    
+                    
+                    
+            
         # don't piss off NCBI
         sleep(1)
         
@@ -548,22 +534,37 @@ def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, af
         ################################
         ## build email message for the author
         ###############################
-        
         if author_has_pubs:
-            message = "Hey " + author + ",\n\nThese are the publications I was able to find on PubMed. Are any missing?"
-            if author in grant_dict:
-                message += "\nWith Grant Info:\n\n"
-                for pub_id in grant_dict[author]:
-                    message += create_citation(publication_dict[pub_id]) + "\n"
             
-            if author in no_grant_dict:
-                message += "\nWithout Grant Info:\n\n"
-                for pub_id in no_grant_dict[author]:
-                    message += create_citation(publication_dict[pub_id]) + "\n"
+            pubs_string = ""
+            for pub_id in pubs_by_author_dict[author]:
+                pubs_string += create_citation(publication_dict[pub_id]) + "\n\n" + "Cited Grants:\n"
                 
-            message += "\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator (" + args["-e"] + ")."
+                if pubs_by_author_dict[author][pub_id]:
+                    for grant_id in pubs_by_author_dict[author][pub_id]:
+                        pubs_string += grant_id
+                        
+                else:
+                    pubs_string += "None"
+                    
+                pubs_string += "\n\n\n"
+                
+           
+            body = email_template    
+            body = body.replace("<total_pubs>", pubs_string)
+            body = body.replace("<author_first_name>", author_attributes["first_name"])
+            body = body.replace("<author_last_name>", author_attributes["last_name"])
             
-            email_messages[author] = message
+            subject = email_subject
+            subject = subject.replace("<author_first_name>", author_attributes["first_name"])
+            subject = subject.replace("<author_last_name>", author_attributes["last_name"])
+            
+            
+            
+            cc_string = ""
+            for email in cc_email:
+                cc_string += email + ","
+            email_messages[author] = {"body": body, "subject": subject, "from": from_email, "to": authors_dict[author]["email"], "cc":cc_string}
         
         
 
@@ -579,24 +580,23 @@ def request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, af
 
 
 def save_emails_to_file(email_messages, save_dir_name):
-    """Save email_messages to "emails.txt" in save_dir_name in the current working directory.
+    """Save email_messages to "emails.json" in save_dir_name in the current working directory.
     
     Args:
-        email_messages (dict): keys are author names and values are the message
-        save_dir_name (str): directory name to append to the current working directory to save the email.txt file in
+        email_messages (dict): keys are author names and values are the subject, body, from, to, and cc parts of the email
+        save_dir_name (str): directory name to append to the current working directory to save the emails.json file in
     
     """
     
-    email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.txt")
+    email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.json")
     
-    with open(email_save_path, "w") as email_file:
-        for author, message in email_messages.items():
-            email_file.write(message + "\n\n")
+    with open(email_save_path, 'w') as outFile:
+        print(json.dumps(email_messages, indent=2, sort_keys=True), file=outFile)
 
                 
 
 
-def send_emails(from_email, email_messages, cc_email, authors_dict):
+def send_emails(email_messages):
     """Uses sendmail to send email_messages to authors.
     
     Only works on systems with sendmail installed. Pulls the authors' email 
@@ -604,24 +604,18 @@ def send_emails(from_email, email_messages, cc_email, authors_dict):
     to the author. Every email will have the cc_emails cc'd.
     
     Args:
-        from_email (str): email address for the message to be sent from
         email_messages (dict): keys are author names and values are the message
-        cc_email (list): list of email addresses to cc each email to
-        authors_dict (dict): keys are author names and values should be a dict with at least one key for "email"
     
     """
     
     # build and send each message by looping over the email_messages dict
-    cc_string = ""
-    for email in cc_email:
-        cc_string += email + ","
-    for author, message in email_messages.items():
+    for author, email_parts in email_messages.items():
         msg = EmailMessage()
-        msg["Subject"] = "Latest PubMed Publications"
-        msg["From"] = from_email
-        msg["To"] = authors_dict[author]["email"]
-        msg["Cc"] = cc_string
-        msg.set_content(message)
+        msg["Subject"] = email_parts["subject"]
+        msg["From"] = email_parts["from"]
+        msg["To"] = email_parts["to"]
+        msg["Cc"] = email_parts["cc"]
+        msg.set_content(email_parts["body"])
         
         sendmail_location = "/usr/sbin/sendmail"
         subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
@@ -645,10 +639,10 @@ def save_publications_to_file(save_dir_name, publication_dict, has_previous_pubs
         
     if has_previous_pubs: 
         with open(publications_save_path, 'w') as outFile:
-            print(json.dumps(prev_pubs + list(publication_dict.keys()), indent=2, sort_keys=True), file=outFile)
+            print(json.dumps(prev_pubs.update(publication_dict), indent=2, sort_keys=True), file=outFile)
     else:
         with open(publications_save_path, 'w') as outFile:
-            print(json.dumps(list(publication_dict.keys()), indent=2, sort_keys=True), file=outFile)
+            print(json.dumps(publication_dict, indent=2, sort_keys=True), file=outFile)
 
 
 
@@ -671,30 +665,27 @@ def find_publications(args):
     author_file_check(authors_dict)
     
     ## read in config file
-    config_file = load_json(args["<config_json_file"])
+    config_file = load_json(args["<config_json_file>"])
     
     ## Get inputs from config file and check them for errors.
 #    json_config_inputs = dict.fromkeys(config_file_keys)
-    grants, cutoff_year, affiliations, from_email, cc_email, email_template, email_subject = config_file_check(config_file)
+    grants, cutoff_year, affiliations, from_email, cc_email, email_template, email_subject = config_file_check(args, config_file)
     
-    
-    ## Overwrite inputs if there are command line options
-    grants, cutoff_year, affiliations, from_email, cc_email = cli_inputs_overwrite(args, grants, cutoff_year, affiliations, from_email, cc_email)
-    
+   
         
     ## read in previous publications to ignore
     has_previous_pubs, prev_pubs = read_previous_publications(args)
             
             
     ## Get publications from PubMed and build email messages
-    publication_dict, email_messages = request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, affiliations, cutoff_year, grants)
+    publication_dict, email_messages = request_pubs_and_build_emails(has_previous_pubs, prev_pubs, authors_dict, affiliations, cutoff_year, grants, from_email, email_template, email_subject, cc_email)
     
     ## Build the save directory name.
     if args["--test"]:
-        save_dir_name = "tracker-test-" + str(datetime.now())[2:10].replace("-","")
+        save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.now())[2:16])
         os.mkdir(save_dir_name)
     else:
-        save_dir_name = "tracker-" + str(datetime.now())[2:10].replace("-","")
+        save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.now())[2:16])
         os.mkdir(save_dir_name)
         
     
@@ -705,7 +696,7 @@ def find_publications(args):
     
     ## send emails
     if not args["--test"]:
-        send_emails(from_email, email_messages, cc_email, authors_dict)
+        send_emails(email_messages)
     
     
     ## combine previous and new publications lists and save
@@ -718,12 +709,12 @@ def main(args):
         print(__doc__)
     elif args["--version"]:
         print(__version__)
-    elif args["<authors_file>"]:
+    elif args["<authors_json_file>"] and args["<config_json_file>"]:
         find_publications(args)
     else:
         print("Unrecognized command")               
                 
                 
 if __name__ == "__main__":
-    args = docopt.docopt(__doc__, version=str("PubMed Pub Grabber ") + __version__)
+    args = docopt.docopt(__doc__, version=str("Publication Tracker ") + __version__)
     main(args)

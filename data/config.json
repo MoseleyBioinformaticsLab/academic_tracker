@@ -1,0 +1,14 @@
+{
+  "affiliations": [
+    "kentucky"
+  ],
+  "cc_email": [],
+  "cutoff_year": 2019,
+  "email_subject": "New PubMed Publications",
+  "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+  "from_email": "ptth222@uky.edu",
+  "grants": [
+    "P42ES007380",
+    "P42 ES007380"
+  ]
+}

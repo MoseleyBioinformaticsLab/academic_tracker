@@ -1,41 +1,26 @@
-[
-    "Molly Frazar",
-    "Rollie Mills",
-    "Brittany Rice",
-    "Saiful Islam",
-    "Rishabh Shah",
-    "Kelly Pennell",
-    "Tom Dziubla",
-    "Robert Flight",
-    "Hollie Swanson",
-    "Sweta Ojha",
-    "Emily Koyagi",
-    "Bernhard Hennig",
-    "Yu Li",
-    "Jianzong Chen",
-    "Ann Koempel",
-    "Lindell Ormsbee",
-    "Jennifer Moore",
-    "Andrew Morris",
-    "Anna Hoover",
-    "Ariel Robinson",
-    "Yuxia Ji",
-    "Erin Haynes",
-    "Tahiya Tarannum",
-    "Spencer Schwab",
-    "Chunyan Wang",
-    "Zach Hilt",
-    "John Balk",
-    "Abdul M Mottaleb",
-    "Christian Powell",
-    "Gia Mudd-Martin",
-    "Pan Deng",
-    "Isabel Escobar",
-    "Kevin Pearson",
-    "Dawn Brewer",
-    "Ying Li",
-    "Dibakar Bhattacharyya",
-    "Angela Gutierez",
-    "Heather Bush",
-    "Hunter Moseley"
-]
+{
+  "Andrew Morris": {
+    "email": "a.j.morris@uky.edu",
+    "first_name": "Andrew",
+    "last_name": "Morris",
+    "pubmed_name_search": "Andrew Morris"
+  },
+  "Jianzhong Chen": {
+    "email": "chenjz1977@uky.edu",
+    "first_name": "Jianzhong",
+    "last_name": "Chen",
+    "pubmed_name_search": "Jianzhong Chen"
+  },
+  "M Abdul Mottaleb": {
+    "email": "m.a.mottaleb@uky.edu",
+    "first_name": "Abdul",
+    "last_name": "Mottaleb",
+    "pubmed_name_search": "M Abdul Mottaleb"
+  },
+  "Yu Li": {
+    "email": "yuli1120@uky.edu",
+    "first_name": "Yu",
+    "last_name": "Li",
+    "pubmed_name_search": "Yu Li"
+  }
+}

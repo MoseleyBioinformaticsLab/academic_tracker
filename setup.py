@@ -1,12 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+import sys
 import re
 from setuptools import setup, find_packages
 
 
+if sys.argv[-1] == 'publish':
+    os.system('python3 setup.py sdist')
+    os.system('twine upload dist/*')
+    sys.exit()
+
+
+def readme():
+    with open('README.rst') as readme_file:
+        return readme_file.read()
+
+
 def find_version():
-    with open('stalker/__init__.py', 'r') as fd:
+    with open('academic_tracker/__init__.py', 'r') as fd:
         version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                             fd.read(), re.MULTILINE).group(1)
     if not version:
@@ -15,27 +28,38 @@ def find_version():
 
 
 REQUIRES = [
-    "pymed"
+    "docopt >= 0.6.2",
+    "pymed >= 0.8.9"
 ]
 
 
 setup(
-    name='stalker',
+    name='academic_tracker',
     version=find_version(),
-    author='Christian Powell',
-    author_email='christian.david.powell@gamil.com',
-    description='Find papers PIs have yet to report.',
+    author='Travis Thompson',
+    author_email='ptth222@gmail.com',
+    description='Find publications on PubMed for given authors.',
+    keywords='PubMed publications citations',
     license='BSD',
+    url='https://github.com/MoseleyBioinformaticsLab/academic_tracker',
     packages=find_packages(),
-    platforms='any',
+    platforms=['any'],
+    long_description=readme(),
     install_requires=REQUIRES,
     classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
+        'Operating System :: Linux',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
-        'Topic :: Scientific/Engineering :: Bio-Informatics',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Software Development :: Libraries :: Python Modules',
-    ]
+    ],
+    entry_points={"console_scripts": ["academic_tracker = academic_tracker.__main__:main"]},
 )

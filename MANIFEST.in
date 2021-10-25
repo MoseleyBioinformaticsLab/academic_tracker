@@ -1,0 +1,5 @@
+include README.rst LICENSE CHANGELOG.rst
+include requirements.txt
+include docs/Makefile
+recursive-include docs *.rst *.txt *.py *.png *.svg
+recursive-include publication_tracker *.py *.pyx *.c

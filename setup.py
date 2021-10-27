@@ -29,7 +29,8 @@ def find_version():
 
 REQUIRES = [
     "docopt >= 0.6.2",
-    "pymed >= 0.8.9"
+    "pymed >= 0.8.9",
+    "jsonschema >= 3.0.1"
 ]
 
 

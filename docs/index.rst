@@ -18,6 +18,7 @@ Documentation index:
    guide
    tutorial
    license
+   todo
 
 
 Indices and tables

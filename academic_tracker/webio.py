@@ -35,8 +35,6 @@ def request_pubs_from_pubmed(prev_pubs, authors_dict, from_email, verbose):
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
         pubs_by_author_dict (dict): keys are author and values are a dict of publication ids with a set of grants cited for them
-    
-    
     """
        
     # initiate PubMed API
@@ -96,7 +94,6 @@ def request_pubs_from_pubmed(prev_pubs, authors_dict, from_email, verbose):
 #                if author_attributes["grants"] - pubs_by_author_dict[author][pub_id]:
 #                    pubs_by_author_dict[author][pub_id] | check_doi_for_grants(pub_dict["doi"], author_attributes["grants"], verbose)
                     
-                    
             
         # don't piss off NCBI
         sleep(1)
@@ -120,30 +117,21 @@ def create_emails_dict(pubs_by_author_dict, authors_dict, publication_dict):
     publication_dict is used to get information about publications. 
     
     Args:
-        pubs_by_author (dict): keys are author_ids that match keys in authors_dict, values are a set of pubmed_ids that match keys in publication_dict.
+        pubs_by_author_dict (dict): keys are author_ids that match keys in authors_dict, values are a dict of pubmed_ids that match keys in publication_dict, and values are a set of grant_ids for each pub.
         authors_dict (dict): keys and values match the authors JSON file.
         publication_dict (dict): keys and values match the publications JSON file.
         
     Returns:
         email_messages (dict): keys and values match the email JSON file.
-    
     """
     
     # dict for email messages.
     email_messages = {"creation_date" : str(datetime.now())[0:16], "emails" : []}
-    
+
     for author in pubs_by_author_dict:
-        pubs_string = ""
-        for pub_id in pubs_by_author_dict[author]:
-            pubs_string += create_citation(publication_dict[pub_id]) + "\n\n" + "Cited Grants:\n"
-            
-            for grant_id in pubs_by_author_dict[author][pub_id]:
-                pubs_string += grant_id
-                    
-            else:
-                pubs_string += "None"
-                
-            pubs_string += "\n\n\n"
+        pubs_string = "\n\n\n".join([create_citation(publication_dict[pub_id]) + "\n\nCited Grants:\n" + 
+                                     "\n".join([grant_id for grant_id in pubs_by_author_dict[author][pub_id]] if pubs_by_author_dict[author][pub_id] else ["None"]) 
+                                     for pub_id in pubs_by_author_dict[author]])
             
        
         body = authors_dict[author]["email_template"]
@@ -156,10 +144,7 @@ def create_emails_dict(pubs_by_author_dict, authors_dict, publication_dict):
         subject = subject.replace("<author_last_name>", authors_dict[author]["last_name"])
         
         
-        
-        cc_string = ""
-        for email in authors_dict[author]["cc_email"]:
-            cc_string += email + ","
+        cc_string = ",".join([email for email in authors_dict[author]["cc_email"]])
         email_messages["emails"].append({"body": body, "subject": subject, "from": authors_dict[author]["from_email"], "to": authors_dict[author]["email"], "cc":cc_string, "author":author})
         
     
@@ -183,9 +168,7 @@ def check_pubmed_for_grants(pub_id, grants):
         
     Returns:
         found_grants (list): list of str with each grant that was found on the page.
-    
     """
-    
     
     pub_med_url = "https://pubmed.ncbi.nlm.nih.gov/"
     
@@ -193,12 +176,7 @@ def check_pubmed_for_grants(pub_id, grants):
     url_str = response.read().decode("utf-8")
     response.close()
     
-    found_grants = set()
-    for grant in grants:
-        if grant in url_str:
-            found_grants.add(grant)
-            
-    return found_grants
+    return { grant for grant in grants if grant in url_str }
 
 
 
@@ -217,7 +195,6 @@ def check_doi_for_grants(doi, grants, verbose):
         
     Returns:
         found_grants (list): list of str with each grant that was found on the page.
-    
     """
     
     doi_url = "https://doi.org/"
@@ -234,13 +211,7 @@ def check_doi_for_grants(doi, grants, verbose):
             
         return set()
     
-    
-    found_grants = set()
-    for grant in grants:
-        if grant in url_str:
-            found_grants.add(grant)
-                
-    return found_grants
+    return { grant for grant in grants if grant in url_str }
 
 
 
@@ -265,7 +236,6 @@ def is_relevant_publication(pub, cutoff_year, author_first_name, author_last_nam
         
     Returns:
         pub_dict (dict): dict matching a single entry in the publications JSON file
-    
     """
     
     ## Setup for all the checks to see if we skip the publication.
@@ -276,7 +246,6 @@ def is_relevant_publication(pub, cutoff_year, author_first_name, author_last_nam
     ## TODO check and see if prev_pub now has grant citation if it didn't before. Add key to publication_dict to keep track.
     if pub_id in prev_pubs or publication_date < cutoff_year:
         return {}
-    
     
     
     ## pub.authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
@@ -293,8 +262,6 @@ def is_relevant_publication(pub, cutoff_year, author_first_name, author_last_nam
                 publication_has_affiliated_author = True
                 author_items["author_id"] = author_id
                 break
-    
-    
     
     
     ## If publication has the author we are looking for then add it to the publication_dict and look for grants.
@@ -317,8 +284,6 @@ def is_relevant_publication(pub, cutoff_year, author_first_name, author_last_nam
 
 
 
-
-
 def send_emails(email_messages):
     """Uses sendmail to send email_messages to authors.
     
@@ -328,7 +293,6 @@ def send_emails(email_messages):
     
     Args:
         email_messages (dict): keys are author names and values are the message
-    
     """
     
     # build and send each message by looping over the email_messages dict

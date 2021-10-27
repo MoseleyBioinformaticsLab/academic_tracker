@@ -103,6 +103,14 @@ run the following commands:
 
            python3 -m pip install pymed  # On Linux, Mac OS X
            py -3 -m pip install pymed    # On Windows
+           
+   * jsonschema_ for validating JSON.
+      * To install the jsonschema_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install jsonschema  # On Linux, Mac OS X
+           py -3 -m pip install jsonschema    # On Windows
 
 
 Basic usage
@@ -135,3 +143,4 @@ Options:
 .. _docopt: https://pypi.org/project/docopt/
 .. _schema: https://pypi.org/project/schema/
 .. _pymed: https://pypi.org/project/pymed/
+.. _jsonschema: https://pypi.org/project/jsonschema/

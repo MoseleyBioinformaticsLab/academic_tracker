@@ -20,7 +20,6 @@ def load_json(filepath):
         
     Returns:
         internal_data (dict): json read from file in a dictionary
-        
     """
     if exists(filepath):
         try:
@@ -49,7 +48,6 @@ def read_previous_publications(args):
     Returns:
         has_previous_pubs (bool): True means that a previous publications file was found
         prev_pubs (dict): dict where keys are publication ids and values are a dict of publication attributes
-    
     """
     
     has_previous_pubs = False
@@ -93,7 +91,6 @@ def save_emails_to_file(email_messages, save_dir_name):
     Args:
         email_messages (dict): keys are author names and values are the subject, body, from, to, and cc parts of the email
         save_dir_name (str): directory name to append to the current working directory to save the emails.json file in
-    
     """
     
     email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.json")
@@ -116,7 +113,6 @@ def save_publications_to_file(save_dir_name, publication_dict, prev_pubs):
         save_dir_name (str): directory name to append to the current working directory to save the publications.json file in
         publication_dict (dict): dictionary with publication ids as the keys to the dict
         prev_pubs (list): List of publication ids that are publications previously found.
-    
     """
     
     publications_save_path = os.path.join(os.getcwd(), save_dir_name, "publications.json")

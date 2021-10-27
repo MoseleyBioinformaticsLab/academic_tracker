@@ -6,8 +6,8 @@ This module contains the functions that check the user input for errors.
 
 import sys
 import re
-from jsonschema import validate, FormatChecker, ValidationError
-from .tracker_schema import config_schema, authors_schema, cli_schema, publications_schema
+import jsonschema
+from . import tracker_schema
 
 
 
@@ -20,14 +20,12 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
         instance (dict): JSON as a dict to validate
         schema (dict): JSON schema as a dict to validate instance against
         pattern_messages (dict): if the instance has a ValidationError of the pattern type then look up the attribute that failed the pattern in this dict and see if there is a custom message
-        
-    
     """
     
 
     try:
-        validate(instance=instance, schema=schema, cls=cls, *args, **kwargs)
-    except ValidationError as e:
+        jsonschema.validate(instance=instance, schema=schema, cls=cls, *args, **kwargs)
+    except jsonschema.ValidationError as e:
         ## code to easily see the contents of the error for building a better message.
 #        for key, value in e._contents().items():
 #            print(key, value)
@@ -82,8 +80,6 @@ def cli_inputs_check(args):
     
     Args:
         args (dict): dict from docopt.
-    
-    
     """
     
     list_args = ["--grants", "--affiliations", "--cc_email"]
@@ -101,7 +97,7 @@ def cli_inputs_check(args):
             except:
                 pass
     
-    tracker_validate(instance=args, schema=cli_schema, format_checker=FormatChecker())
+    tracker_validate(instance=args, schema=tracker_schema.cli_schema, format_checker=jsonschema.FormatChecker())
 
 
 
@@ -126,12 +122,10 @@ def config_file_check(config_json):
     
     Args:
         config_json (dict): dict with the same structure as the configuration JSON file
-        
-    
     """
     
     pattern_messages = {"email_template":" does not contain <total_pubs>."}
-    tracker_validate(instance=config_json, schema=config_schema, pattern_messages=pattern_messages, format_checker=FormatChecker())
+    tracker_validate(instance=config_json, schema=tracker_schema.config_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
     
             
 
@@ -165,12 +159,10 @@ def author_file_check(authors_dict):
     
     Args:
         authors_dict (dict): dict with the same structure as the authors JSON file.
-    
-    
     """
     
     pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
-    tracker_validate(instance=authors_dict, schema=authors_schema, pattern_messages=pattern_messages, format_checker=FormatChecker())
+    tracker_validate(instance=authors_dict, schema=tracker_schema.authors_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
 
 
 
@@ -209,10 +201,9 @@ def prev_pubs_file_check(prev_pubs):
     
     Args:
         prev_pubs (dict): dict with the same structure as the previous publications JSON file.
-    
     """
     
-    tracker_validate(instance=prev_pubs, schema=publications_schema, format_checker=FormatChecker())
+    tracker_validate(instance=prev_pubs, schema=tracker_schema.publications_schema, format_checker=jsonschema.FormatChecker())
     
 
 

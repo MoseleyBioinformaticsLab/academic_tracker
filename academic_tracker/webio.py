@@ -3,17 +3,17 @@
 This module contains the functions that interface with the internet.
 """
 
-from collections import OrderedDict
-from urllib.request import urlopen
-from urllib.error import HTTPError
-from os.path import join
-from time import sleep
-from pymed import PubMed
-from email.message import EmailMessage
+import collections
+import urllib.request
+import urllib.error
+import os.path
+import time
+import pymed
+import email.message
 import re
-from datetime import datetime
+import datetime
 import subprocess
-from .helper_functions import create_citation
+from . import helper_functions
 
 
 
@@ -38,7 +38,7 @@ def request_pubs_from_pubmed(prev_pubs, authors_dict, from_email, verbose):
     """
        
     # initiate PubMed API
-    pubmed = PubMed(tool="Publication_Tracker", email=from_email)
+    pubmed = pymed.PubMed(tool="Publication_Tracker", email=from_email)
     
     publication_dict = dict()
     
@@ -96,10 +96,10 @@ def request_pubs_from_pubmed(prev_pubs, authors_dict, from_email, verbose):
                     
             
         # don't piss off NCBI
-        sleep(1)
+        time.sleep(1)
         
 
-    publication_dict = OrderedDict(sorted(publication_dict.items(), key=lambda x: x[1]["publication_date"], reverse=True))
+    publication_dict = collections.OrderedDict(sorted(publication_dict.items(), key=lambda x: x[1]["publication_date"], reverse=True))
     
     return publication_dict, pubs_by_author_dict
 
@@ -126,27 +126,15 @@ def create_emails_dict(pubs_by_author_dict, authors_dict, publication_dict):
     """
     
     # dict for email messages.
-    email_messages = {"creation_date" : str(datetime.now())[0:16], "emails" : []}
-
-    for author in pubs_by_author_dict:
-        pubs_string = "\n\n\n".join([create_citation(publication_dict[pub_id]) + "\n\nCited Grants:\n" + 
-                                     "\n".join([grant_id for grant_id in pubs_by_author_dict[author][pub_id]] if pubs_by_author_dict[author][pub_id] else ["None"]) 
-                                     for pub_id in pubs_by_author_dict[author]])
-            
-       
-        body = authors_dict[author]["email_template"]
-        body = body.replace("<total_pubs>", pubs_string)
-        body = body.replace("<author_first_name>", authors_dict[author]["first_name"])
-        body = body.replace("<author_last_name>", authors_dict[author]["last_name"])
-        
-        subject = authors_dict[author]["email_subject"]
-        subject = subject.replace("<author_first_name>", authors_dict[author]["first_name"])
-        subject = subject.replace("<author_last_name>", authors_dict[author]["last_name"])
-        
-        
-        cc_string = ",".join([email for email in authors_dict[author]["cc_email"]])
-        email_messages["emails"].append({"body": body, "subject": subject, "from": authors_dict[author]["from_email"], "to": authors_dict[author]["email"], "cc":cc_string, "author":author})
-        
+    email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
+    
+    email_messages["emails"] = [{"body":helper_functions.replace_body_magic_words(pubs_by_author_dict[author], authors_dict[author], publication_dict),
+                                 "subject":helper_functions.replace_subject_magic_words(authors_dict[author]),
+                                 "from":authors_dict[author]["from_email"],
+                                 "to":authors_dict[author]["email"],
+                                 "cc":",".join([email for email in authors_dict[author]["cc_email"]]),
+                                 "author":author}
+                                 for author in pubs_by_author_dict]       
     
     return email_messages
 
@@ -172,7 +160,7 @@ def check_pubmed_for_grants(pub_id, grants):
     
     pub_med_url = "https://pubmed.ncbi.nlm.nih.gov/"
     
-    response = urlopen(join(pub_med_url, pub_id))
+    response = urllib.request.urlopen(os.path.join(pub_med_url, pub_id))
     url_str = response.read().decode("utf-8")
     response.close()
     
@@ -200,14 +188,14 @@ def check_doi_for_grants(doi, grants, verbose):
     doi_url = "https://doi.org/"
     
     try:
-        response = urlopen(join(doi_url, doi), timeout=5)
+        response = urllib.request.urlopen(os.path.join(doi_url, doi), timeout=5)
         url_str = response.read().decode("utf-8")
         response.close()
                 
-    except HTTPError as e:
+    except urllib.error.HTTPError as e:
         if verbose:
             print(e)
-            print(join(doi_url, doi))
+            print(os.path.join(doi_url, doi))
             
         return set()
     
@@ -297,7 +285,7 @@ def send_emails(email_messages):
     
     # build and send each message by looping over the email_messages dict
     for email_parts in email_messages["emails"]:
-        msg = EmailMessage()
+        msg = email.message.EmailMessage()
         msg["Subject"] = email_parts["subject"]
         msg["From"] = email_parts["from"]
         msg["To"] = email_parts["to"]

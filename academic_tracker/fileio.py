@@ -3,12 +3,11 @@ This module contains the functions that read and write files.
 """
 
 
-from os.path import exists
-from json import loads
+import os.path
 import json
 import re
 import os
-from datetime import datetime
+import datetime
 import sys
 
 
@@ -21,10 +20,10 @@ def load_json(filepath):
     Returns:
         internal_data (dict): json read from file in a dictionary
     """
-    if exists(filepath):
+    if os.path.exists(filepath):
         try:
             with open(filepath, "r") as f:
-                internal_data = loads(f.read())
+                internal_data = json.loads(f.read())
         except Exception as e:
             raise e
 
@@ -61,7 +60,7 @@ def read_previous_publications(args):
         tracker_dirs = [int(re.match(r"tracker-(\d{10})", folder).group(1)) for folder in dir_contents if re.match(r"tracker-(\d{10})", folder)]
         if len(tracker_dirs) > 0:
             latest_dir = max(tracker_dirs)
-            current_day = str(datetime.now())[2:10].replace("-","")
+            current_day = str(datetime.datetime.now())[2:10].replace("-","")
             if current_day == str(latest_dir)[:6]:
                 print("Warning: The latest tracker directory was made earlier today.")
             prev_publication_filepath = os.path.join(os.getcwd(), "tracker-"+str(latest_dir), "publications.json")

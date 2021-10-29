@@ -163,9 +163,6 @@ def test_create_emails_dict_creates_successfully(pubs_by_author_dict, authors_di
     
     del function_messages["creation_date"]
     del email_messages["creation_date"]
-    print(function_messages)
-    print()
-    print(email_messages)
     
     assert email_messages == function_messages
 

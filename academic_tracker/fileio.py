@@ -9,6 +9,8 @@ import re
 import os
 import datetime
 import sys
+import docx
+from . import helper_functions
 
 
 def load_json(filepath):
@@ -81,11 +83,9 @@ def read_previous_publications(args):
     
     
     
-    
-
 
 def save_emails_to_file(email_messages, save_dir_name):
-    """Save email_messages to "emails.json" in save_dir_name in the current working directory.
+    """Save email_messages to "emails.json" and "emails.txt" in save_dir_name in the current working directory.
     
     Args:
         email_messages (dict): keys are author names and values are the subject, body, from, to, and cc parts of the email
@@ -96,10 +96,18 @@ def save_emails_to_file(email_messages, save_dir_name):
     
     with open(email_save_path, 'w') as outFile:
         print(json.dumps(email_messages, indent=2, sort_keys=True), file=outFile)
+        
+    email_save_path = os.path.join(os.getcwd(), save_dir_name, "emails.txt")
+    
+    with open(email_save_path, 'wb') as outFile:
+        save_string = "\n\n\n".join(["Subject: " + email_parts["subject"] + "\n" + 
+                                   "To: " + email_parts["to"] + "\n" +
+                                   "From: " + email_parts["subject"] + "\n" + 
+                                   "CC: " + email_parts["cc"] + "\n" + 
+                                   "Body:\n" + email_parts["body"] for email_parts in email_messages["emails"]])
+        outFile.write(save_string.encode("utf-8"))
 
                 
-
-
             
 
 
@@ -120,6 +128,75 @@ def save_publications_to_file(save_dir_name, publication_dict, prev_pubs):
     prev_pubs.update(publication_dict)
     with open(publications_save_path, 'w') as outFile:
         print(json.dumps(prev_pubs, indent=2, sort_keys=True), file=outFile)
+
+
+
+
+def save_new_pubs_to_file(publication_dict, pubs_by_author_dict, save_dir_name):
+    """
+    """
+    
+    save_path = os.path.join(os.getcwd(), save_dir_name, "new_pubs_by_author.txt")
+    
+    text_to_save = "\n\n".join([author + ":\n" + helper_functions.create_citations_for_author(pubs_by_author_dict[author], publication_dict) for author in pubs_by_author_dict])
+    
+    with open(save_path, 'wb') as outFile:
+        outFile.write(text_to_save.encode("utf-8"))
+
+
+
+
+def read_text_from_docx(doc_path):
+    """Open docx file at doc_path and read contents into a string.
+    
+    Args:
+        doc_path (str): path to docx file.
+        
+    Returns:
+        (str): A string of the contents of the docx file. Each line concated with a newline character.
+    """
+    
+    ## https://stackoverflow.com/questions/25228106/how-to-extract-text-from-an-existing-docx-file-using-python-docx
+    if os.path.exists(doc_path):
+        try:
+            document = docx.Document(doc_path)
+            return u"\n".join([u"".join([r.text for r in paragraph._element.xpath(".//w:t")]) for paragraph in document.paragraphs])
+        except Exception as e:
+            raise e
+
+
+
+def read_text_from_txt(doc_path):
+    """Open txt or csv file at doc_path and read contents into a string.
+    
+    Args:
+        doc_path (str): path to txt or csv file.
+        
+    Returns:
+        (str): A string of the contents of the txt or csv file. Each line concated with a newline character. 
+    """
+    
+    if os.path.exists(doc_path):
+        try:
+            with open(doc_path) as document:
+                lines = document.readlines()
+        except Exception as e:
+            raise e
+        
+    return "".join(lines)
+
+    
+#def read_text_from_csv(doc_path):
+#    """
+#    """
+#    
+#    with open(doc_path) as csvfile:
+#        reader = csv.reader(csvfile)
+#        doc_string = "\n".join([row[0] for row in reader])
+#    
+#    return doc_string
+        
+
 
 
 

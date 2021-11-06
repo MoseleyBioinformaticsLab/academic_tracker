@@ -9,6 +9,7 @@ import re
 import shutil
 from academic_tracker.fileio import load_json, read_previous_publications, save_publications_to_file, save_emails_to_file
 import pytest
+from fixtures import email_messages
 
 
 TESTING_DIR = "test_dir"
@@ -139,7 +140,8 @@ def test_read_previous_publications_path_in_args(test_json):
 @pytest.fixture
 def test_email_dir():
     save_dir_name = TESTING_DIR
-    email_save_path = os.path.join(save_dir_name, "emails.json")
+    json_email_save_path = os.path.join(save_dir_name, "emails.json")
+    text_email_save_path = os.path.join(save_dir_name, "emails.txt")
     os.mkdir(save_dir_name)
     time_to_wait = 10
     time_counter = 0
@@ -150,15 +152,23 @@ def test_email_dir():
         if time_counter > time_to_wait:
             raise FileNotFoundError(save_dir_name + " was not created within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
     
-    yield save_dir_name, email_save_path
+    yield save_dir_name, json_email_save_path, text_email_save_path
     
-    os.remove(email_save_path)
+    os.remove(json_email_save_path)
     time_counter = 0
-    while os.path.exists(email_save_path):
+    while os.path.exists(json_email_save_path):
         time.sleep(1)
         time_counter += 1
         if time_counter > time_to_wait:
-            raise FileExistsError(email_save_path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+            raise FileExistsError(json_email_save_path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+            
+    os.remove(text_email_save_path)
+    time_counter = 0
+    while os.path.exists(text_email_save_path):
+        time.sleep(1)
+        time_counter += 1
+        if time_counter > time_to_wait:
+            raise FileExistsError(text_email_save_path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
     
     os.rmdir(save_dir_name)
     time_counter = 0
@@ -170,23 +180,62 @@ def test_email_dir():
 
 
 
+@pytest.fixture
+def email_text_file():
+    return ['Subject: New PubMed Publications\n',
+ 'To: a.j.morris@uky.edu\n',
+ 'From: New PubMed Publications\n',
+ 'CC: ptth222@uky.edu,ptth222@gmail.com\n',
+ 'Body:\n',
+ 'Hey Andrew,\n',
+ '\n',
+ 'These are the publications I was able to find on PubMed. Are any missing?\n',
+ '\n',
+ 'Mottaleb MA, Ding QX, Pennell KG, Haynes EN, Morris AJ. 2021. Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.. Journal of chromatography. A. 10.1016/j.chroma.2021.462426 PMID:34352431\n',
+ '\n',
+ 'Cited Grants:\n',
+ 'None\n',
+ '\n',
+ '\n',
+ 'Deng P, Valentino T, Flythe MD, Moseley HNB, Leachman JR, Morris AJ, Hennig B. 2021. Untargeted Stable Isotope Probing of the Gut Microbiota Metabolome Using . Journal of proteome research. 10.1021/acs.jproteome.1c00124 PMID:33830777\n',
+ '\n',
+ 'Cited Grants:\n',
+ 'P42 ES007380\n',
+ '\n',
+ 'Kind regards,\n',
+ '\n',
+ 'This email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu']
 
-def test_save_emails_to_file_successful_save(test_email_dir):
+
+
+def test_save_emails_to_file_successful_save(test_email_dir, email_messages, email_text_file):
     
-    save_dir_name, email_save_path = test_email_dir
-    save_emails_to_file({}, save_dir_name)
+    save_dir_name, json_email_save_path, text_email_save_path = test_email_dir
+    save_emails_to_file(email_messages, save_dir_name)
     
     time_to_wait = 10
     time_counter = 0
-    while not os.path.exists(email_save_path):
+    while not os.path.exists(json_email_save_path):
         time.sleep(1)
         time_counter += 1
         if time_counter > time_to_wait:
-            raise FileNotFoundError(email_save_path + " was not created within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+            raise FileNotFoundError(json_email_save_path + " was not created within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+            
+    time_counter = 0
+    while not os.path.exists(text_email_save_path):
+        time.sleep(1)
+        time_counter += 1
+        if time_counter > time_to_wait:
+            raise FileNotFoundError(text_email_save_path + " was not created within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
 
-    emails_json = load_json(email_save_path)
+    emails_json = load_json(json_email_save_path)
+    with open(text_email_save_path, "r") as infile:
+        email_text = infile.readlines()
+    
+    del emails_json["creation_date"]
+    del email_messages["creation_date"]
 
-    assert emails_json == {}
+    assert emails_json == email_messages and email_text == email_text_file
 
 
 
@@ -228,7 +277,7 @@ def test_pub_dir():
 
 
 
-def test_save_publicationss_to_file_successful_save(test_pub_dir):
+def test_save_publications_to_file_successful_save(test_pub_dir):
     
     save_dir_name, pub_save_path = test_pub_dir
     save_publications_to_file(save_dir_name, {}, {})

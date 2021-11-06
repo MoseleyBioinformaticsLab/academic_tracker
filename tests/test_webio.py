@@ -7,7 +7,8 @@ import os
 import pymed
 import pickle
 from collections import OrderedDict
-from academic_tracker.webio import is_relevant_publication, check_pubmed_for_grants, create_emails_dict, request_pubs_from_pubmed
+from academic_tracker.webio import is_relevant_publication, check_pubmed_for_grants, request_pubs_from_pubmed
+from fixtures import pub_with_no_matching_author, pub_with_grants, authors_dict, publication_dict, pubs_by_author_dict, pub_with_matching_author,
 
 
 
@@ -103,74 +104,6 @@ def test_check_pubmed_for_grants_no_grant():
 
 
 
-@pytest.fixture
-def pub_with_grants():
-    xml_path = os.path.join("testing_files", "has_pubmed_grants.xml")
-    tree = ET.parse(xml_path)
-    return pymed.article.PubMedArticle(xml_element=tree.getroot())
-
-
-@pytest.fixture
-def publication_dict(pub_with_grants, pub_with_matching_author):
-    publication_dict = {}
-    
-    pub_dict = pub_with_grants.toDict()
-    del pub_dict["xml"]
-    pub_dict["publication_date"] = str(pub_dict["publication_date"])
-    
-    publication_dict[pub_dict["pubmed_id"].split("\n")[0]] = pub_dict
-    
-    pub_dict = pub_with_matching_author.toDict()
-    del pub_dict["xml"]
-    pub_dict["publication_date"] = str(pub_dict["publication_date"])
-    
-    publication_dict[pub_dict["pubmed_id"].split("\n")[0]] = pub_dict
-    
-    return publication_dict
-
-
-@pytest.fixture
-def pubs_by_author_dict():
-    return {"Andrew Morris":{"34352431":set(), "33830777":set(["P42 ES007380"])}}
-
-@pytest.fixture
-def authors_dict():
-    return {'Andrew Morris': {'email': 'a.j.morris@uky.edu',
-                                  'first_name': 'Andrew',
-                                  'last_name': 'Morris',
-                                  'pubmed_name_search': 'Andrew Morris',
-                                  'affiliations': ['kentucky'],
-                                  'cc_email': ["ptth222@uky.edu", "ptth222@gmail.com"],
-                                  'cutoff_year': 2019,
-                                  'email_subject': 'New PubMed Publications',
-                                  'email_template': 'Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
-                                  'from_email': 'ptth222@uky.edu',
-                                  'grants': ['P42ES007380', 'P42 ES007380']}}
-
-@pytest.fixture
-def email_messages():
-    return {'creation_date': '2021-10-20 21:50',
-             'emails': [{'body': 'Hey Andrew,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\nMottaleb MA, Ding QX, Pennell KG, Haynes EN, Morris AJ. 2021. Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.. Journal of chromatography. A. 10.1016/j.chroma.2021.462426 PMID:34352431\n\nCited Grants:\nNone\n\n\nDeng P, Valentino T, Flythe MD, Moseley HNB, Leachman JR, Morris AJ, Hennig B. 2021. Untargeted Stable Isotope Probing of the Gut Microbiota Metabolome Using . Journal of proteome research. 10.1021/acs.jproteome.1c00124 PMID:33830777\n\nCited Grants:\nP42 ES007380\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
-               'subject': 'New PubMed Publications',
-               'from': 'ptth222@uky.edu',
-               'to': 'a.j.morris@uky.edu',
-               'cc': 'ptth222@uky.edu,ptth222@gmail.com',
-               'author': 'Andrew Morris'}]}
-
-
-def test_create_emails_dict_creates_successfully(pubs_by_author_dict, authors_dict, publication_dict, email_messages):
-    function_messages = create_emails_dict(pubs_by_author_dict, authors_dict, publication_dict)
-    
-    del function_messages["creation_date"]
-    del email_messages["creation_date"]
-    
-    assert email_messages == function_messages
-
-
-
-
-
-
 ## pymed's PubMed.query() actually returns an itertools.chain where the elements are actually the _getArticles method of PubMed, not the articles directly.
 ## Each call to the iterator does an http request. Here I simply put the articles in a list. 
 @pytest.fixture
@@ -226,10 +159,11 @@ def expected_pubs_by_author():
     return {"Andrew Morris": {"34352431": set()}}
 
 
-def test_request_pubs_from_pubmed_success(pymed_query, mocker, authors_dict):
+def test_request_pubs_from_pubmed_success(pymed_query, mocker, authors_dict, publication_dict, pubs_by_author_dict):
     mocker.patch("academic_tracker.webio.PubMed.query", return_value=pymed_query)
     mocker.patch("academic_tracker.webio.check_pubmed_for_grants", return_value=set())
-    publication_dict, pubs_by_author_dict = request_pubs_from_pubmed({}, authors_dict, "ptth222@uky.edu", False)
+    test_publication_dict, test_pubs_by_author_dict = request_pubs_from_pubmed({}, authors_dict, "ptth222@uky.edu", False)
+    assert test_publication_dict == publication_dict and test_pubs_by_author_dict == pubs_by_author_dict
 
 
 

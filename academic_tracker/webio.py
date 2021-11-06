@@ -11,9 +11,105 @@ import time
 import pymed
 import email.message
 import re
-import datetime
 import subprocess
+import io
 from . import helper_functions
+
+## Some helpful code to get the xml back as text. import xml.etree.ElementTree as ET    ET.tostring(Element)
+
+def build_pub_dict_from_PMID(PMID_list, from_email):
+    """Query PubMed for each PMID and build a dictionary of the returned data.
+    
+    Args:
+        PMID_list (list): A list of PMIDs as strings.
+        from_email (str): An email address to use when querying PubMed.
+        
+    Returns:
+        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes.
+    """
+    
+    pubmed = pymed.PubMed(tool="Publication_Tracker", email=from_email)
+    
+    publication_dict = dict()
+    
+    for PMID in PMID_list:
+        
+        publications = pubmed.query(PMID, max_results=10)
+        
+        for pub in publications:
+            
+            pub_id = pub.pubmed_id.split("\n")[0]
+            if pub_id == PMID:
+                publication_dict[pub_id] = helper_functions.modify_pub_dict_for_saving(pub)
+                break
+                
+        time.sleep(1)
+        
+
+    publication_dict = collections.OrderedDict(sorted(publication_dict.items(), key=lambda x: x[1]["publication_date"], reverse=True))
+    return publication_dict
+
+
+## TODO get with pymed and add grants and pmcid to PubMedArticle class.
+def search_DOIs_on_pubmed(DOI_list, from_email):
+    """Query PubMed for each DOI and return the ones with no PMCID.
+    
+    For each dictionary in DOI_list query PubMed and get more information about 
+    the publication if found. Returns a list of dictionaries like DOI_list, but 
+    adds a key for "Grants" and does not return publications that have a PMCID.
+    
+    Args:
+        DOI_list (list): A list of dictionaries. 
+        [{"DOI":"publication DOI", "PMID": "publication PMID", "line":"short description of the publication"}]
+        from_email (str): An email to use when querying PubMed.
+        
+    Returns:
+        publications_with_no_PMCID_list (list): A list of dictionaries.
+        [{"DOI":"publication DOI", "PMID": "publication PMID", "line":"short description of the publication", "Grants":"grants funding the publication"}]
+        
+    """
+    
+    publications_with_no_PMCID_list = []
+    
+    pubmed = pymed.PubMed(tool="Publication_Tracker", email=from_email)
+    
+    for dictionary in DOI_list:
+        if dictionary["PMID"]:
+            query_string = dictionary["PMID"]
+        else:
+            query_string = dictionary["DOI"]
+        
+        publications = pubmed.query(query_string, max_results=10)
+        
+        match_found_in_query = False
+        at_least_one_result_found = False
+        for pub in publications:
+            at_least_one_result_found = True
+            if dictionary["DOI"] == pub.doi:
+                match_found_in_query = True
+                PMC_id_elements = pub.xml.findall(".//ArticleId[@IdType='pmc']")
+                if PMC_id_elements:
+                    continue
+#                    PMC_id = PMC_id_elements[0].text
+                
+                dictionary["Grants"] = [grant.text for grant in pub.xml.findall(".//GrantID")]
+                dictionary["PMID"] = pub.pubmed_id.split("\n")[0]
+                publications_with_no_PMCID_list.append(dictionary)
+                break
+                
+            
+            else:
+                continue
+        
+        if not match_found_in_query or not at_least_one_result_found:
+            dictionary["Grants"] = []
+            dictionary["PMID"] = ""
+            publications_with_no_PMCID_list.append(dictionary)
+        
+    return publications_with_no_PMCID_list
+
+
+                
 
 
 
@@ -89,6 +185,7 @@ def request_pubs_from_pubmed(prev_pubs, authors_dict, from_email, verbose):
                 ## TODO look for grants in DOI if not on PubMed, and in pdf. Full text link might work as well. clicking that goes to full text. There is not a direct pdf link on pubmed page.
                 ## Simply do the union of the sets to add grants to the pubs_by_author_dict. Do a difference of sets to see if they were all found.
                 ## Should we keep looking after finding at least one grant? Will there be multiple grants cited?
+#                [grant.text for grant in pub.xml.findall(".//GrantID")]
                 pubs_by_author_dict[author][pub_id] | check_pubmed_for_grants(pub_id, author_attributes["grants"])
                 ## For now not going to check the DOI for grants.
 #                if author_attributes["grants"] - pubs_by_author_dict[author][pub_id]:
@@ -102,41 +199,6 @@ def request_pubs_from_pubmed(prev_pubs, authors_dict, from_email, verbose):
     publication_dict = collections.OrderedDict(sorted(publication_dict.items(), key=lambda x: x[1]["publication_date"], reverse=True))
     
     return publication_dict, pubs_by_author_dict
-
-
-
-
-
-
-
-def create_emails_dict(pubs_by_author_dict, authors_dict, publication_dict):
-    """Create emails for each author.
-    
-    For each author in pubs_by_author create an email with publication citations. 
-    Information in authors_dict is used to get information about the author, and 
-    publication_dict is used to get information about publications. 
-    
-    Args:
-        pubs_by_author_dict (dict): keys are author_ids that match keys in authors_dict, values are a dict of pubmed_ids that match keys in publication_dict, and values are a set of grant_ids for each pub.
-        authors_dict (dict): keys and values match the authors JSON file.
-        publication_dict (dict): keys and values match the publications JSON file.
-        
-    Returns:
-        email_messages (dict): keys and values match the email JSON file.
-    """
-    
-    # dict for email messages.
-    email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
-    
-    email_messages["emails"] = [{"body":helper_functions.replace_body_magic_words(pubs_by_author_dict[author], authors_dict[author], publication_dict),
-                                 "subject":helper_functions.replace_subject_magic_words(authors_dict[author]),
-                                 "from":authors_dict[author]["from_email"],
-                                 "to":authors_dict[author]["email"],
-                                 "cc":",".join([email for email in authors_dict[author]["cc_email"]]),
-                                 "author":author}
-                                 for author in pubs_by_author_dict]       
-    
-    return email_messages
 
 
 
@@ -188,7 +250,8 @@ def check_doi_for_grants(doi, grants, verbose):
     doi_url = "https://doi.org/"
     
     try:
-        response = urllib.request.urlopen(os.path.join(doi_url, doi), timeout=5)
+        req = urllib.request.Request(os.path.join(doi_url, doi), headers={"User-Agent": "Mozilla/5.0"})
+        response = urllib.request.urlopen(req, timeout=5)
         url_str = response.read().decode("utf-8")
         response.close()
                 
@@ -201,6 +264,27 @@ def check_doi_for_grants(doi, grants, verbose):
     
     return { grant for grant in grants if grant in url_str }
 
+
+
+
+def download_pdf(pdf_url, verbose):
+    """
+    """
+    ## test url https://realpython.com/python-tricks-sample-pdf
+    try:
+        req = urllib.request.Request(pdf_url, headers={"User-Agent": "Mozilla/5.0"})
+        response = urllib.request.urlopen(req)
+        pdf_bytes = io.BytesIO(response.read())
+        response.close()
+                
+    except urllib.error.HTTPError as e:
+        if verbose:
+            print(e)
+            print(pdf_url)
+        
+        return None
+            
+    return pdf_bytes
 
 
 
@@ -254,14 +338,7 @@ def is_relevant_publication(pub, cutoff_year, author_first_name, author_last_nam
     
     ## If publication has the author we are looking for then add it to the publication_dict and look for grants.
     if publication_has_affiliated_author:
-        pub_dict = pub.toDict()
-            
-        
-        del pub_dict["xml"]
-        pub_dict["publication_date"] = str(pub_dict["publication_date"])
-        
-        
-        return pub_dict
+        return helper_functions.modify_pub_dict_for_saving(pub)
     
     else:
         return {}
@@ -282,6 +359,7 @@ def send_emails(email_messages):
     Args:
         email_messages (dict): keys are author names and values are the message
     """
+    sendmail_location = "/usr/sbin/sendmail"
     
     # build and send each message by looping over the email_messages dict
     for email_parts in email_messages["emails"]:
@@ -292,5 +370,4 @@ def send_emails(email_messages):
         msg["Cc"] = email_parts["cc"]
         msg.set_content(email_parts["body"])
         
-        sendmail_location = "/usr/sbin/sendmail"
         subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())

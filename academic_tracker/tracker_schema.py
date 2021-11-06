@@ -15,7 +15,9 @@ cli_schema = {
          "--affiliations": {"type": ["array", "null"], "minItems":1, "items": {"type": "string", "minLength": 1}}, 
          "--from_email": {"type": ["string", "null"], "format": "email"},
          "--cc_email": {"type": ["array", "null"],  "items": {"type": "string", "format": "email"}},
-         "--prev_pub": {"type":["string", "null"], "minLength":1}
+         "--prev_pub": {"type":["string", "null"], "minLength":1},
+         "<to_email>": {"type": ["string", "null"], "format": "email"},
+         "<from_email>": {"type": ["string", "null"], "format": "email"},
          },
          
 }

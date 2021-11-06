@@ -5,6 +5,7 @@ import pytest
 from jsonschema import FormatChecker, ValidationError
 from contextlib import nullcontext as does_not_raise
 from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check, author_file_check, prev_pubs_file_check
+from fixtures import passing_config
 
 
 @pytest.fixture
@@ -116,24 +117,6 @@ def test_cli_inputs_check_no_error(empty_args):
         
         
 
-
-
-@pytest.fixture
-def passing_config():
-    return {
-              "affiliations": [
-                "kentucky"
-              ],
-              "cc_email": [],
-              "cutoff_year": 2019,
-              "email_subject": "New PubMed Publications",
-              "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-              "from_email": "ptth222@uky.edu",
-              "grants": [
-                "P42ES007380",
-                "P42 ES007380"
-              ]
-            }
     
 @pytest.mark.parametrize("config_errors", [
         ({"grants":""}),        ##type

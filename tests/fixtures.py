@@ -73,3 +73,32 @@ def authors_dict():
                                   'from_email': 'ptth222@uky.edu',
                                   'grants': ['P42ES007380', 'P42 ES007380']}}
 
+@pytest.fixture
+def email_messages():
+    return {'creation_date': '2021-10-20 21:50',
+             'emails': [{'body': 'Hey Andrew,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\nMottaleb MA, Ding QX, Pennell KG, Haynes EN, Morris AJ. 2021. Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.. Journal of chromatography. A. 10.1016/j.chroma.2021.462426 PMID:34352431\n\nCited Grants:\nNone\n\n\nDeng P, Valentino T, Flythe MD, Moseley HNB, Leachman JR, Morris AJ, Hennig B. 2021. Untargeted Stable Isotope Probing of the Gut Microbiota Metabolome Using . Journal of proteome research. 10.1021/acs.jproteome.1c00124 PMID:33830777\n\nCited Grants:\nP42 ES007380\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
+               'subject': 'New PubMed Publications',
+               'from': 'ptth222@uky.edu',
+               'to': 'a.j.morris@uky.edu',
+               'cc': 'ptth222@uky.edu,ptth222@gmail.com',
+               'author': 'Andrew Morris'}]}
+        
+
+@pytest.fixture
+def passing_config():
+    return {
+              "affiliations": [
+                "kentucky"
+              ],
+              "cc_email": [],
+              "cutoff_year": 2019,
+              "email_subject": "New PubMed Publications",
+              "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+              "from_email": "ptth222@uky.edu",
+              "grants": [
+                "P42ES007380",
+                "P42 ES007380"
+              ]
+            }
+        
+        

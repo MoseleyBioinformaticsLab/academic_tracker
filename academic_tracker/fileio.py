@@ -138,7 +138,7 @@ def save_new_pubs_to_file(publication_dict, pubs_by_author_dict, save_dir_name):
     
     save_path = os.path.join(os.getcwd(), save_dir_name, "new_pubs_by_author.txt")
     
-    text_to_save = "\n\n".join([author + ":\n" + helper_functions.create_citations_for_author(pubs_by_author_dict[author], publication_dict) for author in pubs_by_author_dict])
+    text_to_save = "\n\n".join([author + ":\n" + helper_functions.add_indention_to_string(helper_functions.create_citations_for_author(pubs_by_author_dict[author], publication_dict)) for author in pubs_by_author_dict])
     
     with open(save_path, 'wb') as outFile:
         outFile.write(text_to_save.encode("utf-8"))
@@ -178,12 +178,12 @@ def read_text_from_txt(doc_path):
     
     if os.path.exists(doc_path):
         try:
-            with open(doc_path) as document:
+            with open(doc_path, encoding = "utf-8") as document:
                 lines = document.readlines()
         except Exception as e:
             raise e
         
-    return "".join(lines)
+        return "".join(lines)
 
     
 #def read_text_from_csv(doc_path):

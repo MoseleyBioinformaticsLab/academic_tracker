@@ -23,7 +23,7 @@ cli_schema = {
 }
 
 
-
+## TODO change this to reflect what is in the wiki.
 config_schema = {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Configuration JSON",
@@ -113,6 +113,8 @@ publications_schema={
                 "pubmed_id": {"type": ["string", "null"]},
                 "results": {"type": ["string", "null"]},
                 "title": {"type": ["string", "null"]},
+                "grants": {"type": ["array", "null"], "items":{"type": ["string", "null"]}},
+                "PMCID": {"type": ["string", "null"]},
                 },
          "required" : ["abstract", "authors", "conclusions", "copyrights", "doi", "journal", "keywords", "methods", "publication_date", "pubmed_id", "results", "title"]
          }

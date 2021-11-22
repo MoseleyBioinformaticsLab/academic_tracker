@@ -132,10 +132,10 @@ def config_file_check(config_json):
 
 
 
-def author_file_check(authors_dict):
-    """Run input checking on the authors_dict.
+def author_file_check(authors_json_file):
+    """Run input checking on the authors_json_file.
     
-    The authors_dict read in from the authors JSON file is expected to have the format::
+    The authors_json_file read in from the authors JSON file is expected to have the format::
         {
             "Author 1": {  
                            "first_name" : "<first_name>",
@@ -158,11 +158,11 @@ def author_file_check(authors_dict):
             
     
     Args:
-        authors_dict (dict): dict with the same structure as the authors JSON file.
+        authors_json_file (dict): dict with the same structure as the authors JSON file.
     """
     
     pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
-    tracker_validate(instance=authors_dict, schema=tracker_schema.authors_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
+    tracker_validate(instance=authors_json_file, schema=tracker_schema.authors_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
 
 
 
@@ -195,6 +195,8 @@ def prev_pubs_file_check(prev_pubs):
                 "pubmed_id": "<pubmed id>",
                 "results": "<publication results>",
                 "title": "<publication title>"
+                "grants : ["grant1", "grant2"],
+                "PMCID" : "<PMCID>"
               },
         }
             

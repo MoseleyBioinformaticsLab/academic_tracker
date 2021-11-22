@@ -19,6 +19,11 @@ Options:
 
 
 ## TODO add master option to send an email or print file with all publications found.
+## TODO add pull from myncbi.
+## TODO add usage case for reading in a author csv or excel file and creating json.
+## TODO add use case for reading in an authors json and searching Google Scholar for their scholar id.
+## TODO add options to ignore google scholar and orcid
+## TODO add functionality to more easily handle verbose option, and add more messages when it is in use.
 
 
 from . import fileio
@@ -55,7 +60,8 @@ def create_publication_json(args):
         print("Nothing was read from the PMID file. Make sure the file is not empty or is a supported file type.")
         sys.exit()
         
-    PMID_list = document_string.split("\n")
+    PMID_list = [line for line in document_string.split("\n") if line]
+    print("Querying PubMed and building the publication list.")
     publication_dict = webio.build_pub_dict_from_PMID(PMID_list, args["<from_email>"])
     
     ## Build the save directory name.
@@ -68,6 +74,7 @@ def create_publication_json(args):
     
     ## combine previous and new publications lists and save
     fileio.save_publications_to_file(save_dir_name, publication_dict, {})
+    print("Success. Publications saved in " + save_dir_name)
 
 
 
@@ -81,15 +88,10 @@ def search_by_DOI(args):
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.config_file_check(config_file)
-    
-    ## TODO either add a to email to config here, or figure out better way to get it from user.
-    
+        
     ## Overwrite values in config_file if command line options were used.
     ## Note the replacement is after checking both inputs and config_file independnetly. If done before config_file_check then CLI errors will dispaly as config_file errors.
-    overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
-    for option in overwriting_options:
-        if args[option]:
-            config_file[option.replace("-","")] = args[option]
+    config_file = helper_functions.overwrite_config_with_CLI(config_file, args)
             
     ## Check the DOI file extension and call the correct read in function.
     extension = os.path.splitext(args["<DOI_file>"])[1][1:]
@@ -107,7 +109,8 @@ def search_by_DOI(args):
         
     DOI_list = helper_functions.parse_string_for_pub_info(document_string, r"(?i).*doi:\s*([^\s]+\w).*", r"(?i).*pmid:\s*(\d+).*", r"(?i).*pmcid:\s*(pmc\d+).*")
     
-    publications_with_no_PMCID_list = webio.search_DOIs_on_pubmed(DOI_list, config_file["from_email"])
+    print("Querying PubMed and building the publication list.")
+    publications_with_no_PMCID_list = webio.search_DOIs_on_pubmed(DOI_list, config_file["PubMed_search"]["PubMed_email"])
     
     email_messages = webio.create_email_dict_for_no_PMCID_pubs(publications_with_no_PMCID_list, config_file, args["<to_email>"])
     
@@ -118,7 +121,7 @@ def search_by_DOI(args):
 
 
 def search_by_author(args):
-    """Main function that links everything together and runs the program.
+    """Query PubMed for publications by author.
     
     Reads in the JSON config file, authors JSON file, previous publications JSON file, and checks for errors.
     Then requests publications from PubMed and builds the emails to go to each author. Then saves them emails
@@ -133,27 +136,35 @@ def search_by_author(args):
     user_input_checking.cli_inputs_check(args)
     
     ## read in authors
-    authors_dict = fileio.load_json(args["<authors_json_file>"])
-    user_input_checking.author_file_check(authors_dict)
+    authors_json_file = fileio.load_json(args["<authors_json_file>"])
+    user_input_checking.author_file_check(authors_json_file)
     
     ## read in config file
     config_file = fileio.load_json(args["<config_json_file>"])
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.config_file_check(config_file)
-    
+
     ## Overwrite values in config_file if command line options were used.
     ## Note the replacement is after checking both inputs and config_file independnetly. If done before config_file_check then CLI errors will dispaly as config_file errors.
-    overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
-    for option in overwriting_options:
-        if args[option]:
-            config_file[option.replace("-","")] = args[option]
+    config_file = helper_functions.overwrite_config_with_CLI(config_file, args)
     
-
-    ## Loop over the authors and add values from the config_file if not there.
-    for author_attr in authors_dict.values():
-        for key in config_file:
-            author_attr.setdefault(key, config_file[key])
+    
+    ## Create an authors_json_file for each project in the config_file and update those authors attributes with the project attributes.
+    authors_by_project_dict = {project:{} for project in config_file["project_descriptions"]}
+    for project, project_attributes in config_file["project_descriptions"].items():
+        if "authors" in project_attributes:
+            for author in project_attributes["authors"]:
+                if author in authors_json_file:
+                    authors_by_project_dict[project][author] = authors_json_file[author]
+                else:
+                    print("Warning: " + author + " in the " + project + " project of the project tracking configuration file could not be found in the authors' JSON file.")
+        else:
+            authors_by_project_dict[project] = authors_json_file
+    
+        for author_attr in authors_by_project_dict[project].values():
+            for key in project_attributes:
+                author_attr.setdefault(key, project_attributes[key])
     
     
         
@@ -163,14 +174,28 @@ def search_by_author(args):
         user_input_checking.prev_pubs_file_check(prev_pubs)
             
             
-    ## Get publications from PubMed and build email messages
+    ## Get publications from PubMed 
     print("Finding author's publications. This could take a while.")
-    publication_dict, pubs_by_author_dict = webio.request_pubs_from_pubmed(prev_pubs, authors_dict, config_file["from_email"], args["--verbose"])
+    PubMed_publication_dict = webio.search_PubMed_for_pubs(prev_pubs, authors_json_file, config_file["PubMed_search"]["PubMed_email"], args["--verbose"])
+    prev_pubs.update(PubMed_publication_dict)
+    ORCID_publication_dict = webio.search_ORCID_for_pubs(prev_pubs, config_file["ORCID_search"]["ORCID_key"], config_file["ORCID_search"]["ORCID_secret"], authors_json_file, args["--verbose"])
+    prev_pubs.update(ORCID_publication_dict)
+    Google_Scholar_publication_dict = webio.search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, args["--verbose"])
+    prev_pubs.update(Google_Scholar_publication_dict)
+    Crossref_publication_dict = webio.search_Crossref_for_pubs(prev_pubs, authors_json_file, config_file["Crossref"]["mailto_email"], args["--verbose"])
+    prev_pubs.update(Crossref_publication_dict)
+    
+    publication_dict = PubMed_publication_dict
+    publication_dict.update(ORCID_publication_dict)
+    publication_dict.update(Google_Scholar_publication_dict)
+    publication_dict.update(Crossref_publication_dict)
+        
+        
     if len(publication_dict) == 0:
         print("No new publications found.")
     
     
-    email_messages = webio.create_emails_dict(pubs_by_author_dict, authors_dict, publication_dict)
+    email_messages = helper_functions.create_emails_dict(authors_json_file, publication_dict)
     
     
     ## Build the save directory name.
@@ -205,7 +230,7 @@ def main():
     
     if len(sys.argv) > 1 and sys.argv[1] == "search_by_author":
         search_by_author(args)
-    elif len(sys.argv) > 1 and sys.agrv[1] == "search_by_DOI":
+    elif len(sys.argv) > 1 and sys.argv[1] == "search_by_DOI":
         search_by_DOI(args)
     elif len(sys.argv) > 1 and sys.argv[1] == "create_publication_json":
         create_publication_json(args)

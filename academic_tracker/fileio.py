@@ -145,6 +145,31 @@ def save_new_pubs_to_file(publication_dict, pubs_by_author_dict, save_dir_name):
 
 
 
+def save_project_reports_to_file(publication_dict, save_dir_name, project_dicts):
+    """Creates one text file with all projects and thier associated authors in it.
+    
+    Loops through the project_dicts and grabs publication information for each 
+    author from publication_dict. Ultimately saves a file named summary_report.txt 
+    into the save_dir_name of the current working directory.
+    
+    Args:
+        publication_dict (dict): dictionary with publication ids as the keys, schema matches the publications JSON file
+        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.
+        project_dicts(dict): dictionary where the keys are project names and the values are attributes for the projects such as the authors associated with the project.
+    """
+    
+    save_path = os.path.join(os.getcwd(), save_dir_name, "summary_report.txt")
+    
+    pubs_by_author_dict = helper_functions.create_pubs_by_author_dict(publication_dict)
+    
+    text_to_save = "\n\n\n\n".join([project + ":\n" + helper_functions.create_indented_project_report(project_dict, pubs_by_author_dict, publication_dict) for project, project_dict in project_dicts.items()])
+            
+    
+    with open(save_path, 'wb') as outFile:
+        outFile.write(text_to_save.encode("utf-8"))
+        
+        
+
 
 def read_text_from_docx(doc_path):
     """Open docx file at doc_path and read contents into a string.

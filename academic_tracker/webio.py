@@ -17,6 +17,7 @@ import orcid
 import scholarly
 import re
 import habanero
+import copy
 
 TOOL = "Academic Tracker"
 DOI_URL = "https://doi.org/"
@@ -119,10 +120,10 @@ def search_DOIs_on_pubmed(DOI_list, from_email):
 
 
 
-def search_PubMed_for_pubs(prev_pubs, authors_json_file, from_email, verbose):
+def search_PubMed_for_pubs(prev_pubs, authors_json_file, authors_by_project_dict, from_email, verbose):
     """Searhes PubMed for publications by each author.
     
-    For each author in authors_json_file PubMed is queried for the publications. The list of publications is then filtered 
+    For each author in the projects of authors_by_project_dict PubMed is queried for the publications. The list of publications is then filtered 
     by prev_pubs, affiliations, and cutoff_year. If the publication is in the list of prev_pubs then it is skipped. 
     If the author doesn't have at least one matching affiliation then the publication is skipped. If the publication 
     was published before the cutoff_year then it is skipped. Each publication is then determined to have citations 
@@ -130,13 +131,12 @@ def search_PubMed_for_pubs(prev_pubs, authors_json_file, from_email, verbose):
     
     Args:
         prev_pubs (list): List of publications ids as strings to filter publications found on PubMed
-        authors_json_file (dict): keys are author names and values should be a dict with attributes, but only the keys are used
+        authors_by_project_dict (dict): keys are project names and values should be a dict of author names with attributes
         from_email (str): used in the query to PubMed
         verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
-        pubs_by_author_dict (dict): keys are author and values are a dict of publication ids with a set of grants cited for them
     """
        
     # initiate PubMed API
@@ -148,45 +148,46 @@ def search_PubMed_for_pubs(prev_pubs, authors_json_file, from_email, verbose):
     ########################
     # loop through list of authors and request a list of their publications
     ########################
-    for author, author_attributes in authors_json_file.items():
-        
-        publications = pubmed.query(author_attributes["pubmed_name_search"], max_results=500)
-        
-        ## Unpacking pub from publications appears to be the slowest part of the code.
-        ## publications is an iterator that is broken up into batches and there are noticeable slow downs each time a new batch is fetched.
-        for pub in publications:
+    for project, author_dict in authors_by_project_dict.items():
+        for author, author_attributes in author_dict.items():
             
-            pub_id = DOI_URL + pub.doi if pub.doi else pub.pubmed_id.split("\n")[0]
-            publication_date = int(str(pub.publication_date)[:4])
+            publications = pubmed.query(author_attributes["pubmed_name_search"], max_results=500)
             
-            ## if the publication id is in prev_pubs or publication_dict or the publication date is before the curoff year then skip.
-            if helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, title_classifier) or \
-               helper_functions.is_pub_in_publication_dict(pub_id, publication_dict, helper_functions.classify_publication_dict_titles(publication_dict)) or \
-               publication_date < author_attributes["cutoff_year"]:
-                continue
-            
-            author_list = helper_functions.match_authors_in_pub_PubMed(authors_json_file, pub.authors)
-    
-            ## If no authors were matched then go to the next publication. Note that this is not uncommon because PubMed returns publications for authors who were just colloborators.
-            if not author_list:
-                continue
+            ## Unpacking pub from publications appears to be the slowest part of the code.
+            ## publications is an iterator that is broken up into batches and there are noticeable slow downs each time a new batch is fetched.
+            for pub in publications:
                 
-            pub.authors = author_list
-            pub_dict = helper_functions.modify_pub_dict_for_saving(pub)
-            
-            publication_dict[pub_id] = pub_dict
+                pub_id = DOI_URL + pub.doi if pub.doi else pub.pubmed_id.split("\n")[0]
+                publication_date = int(str(pub.publication_date)[:4])
+                
+                ## if the publication id is in prev_pubs or publication_dict or the publication date is before the curoff year then skip.
+                if publication_date < author_attributes["cutoff_year"] or \
+                   helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, title_classifier) or \
+                   helper_functions.is_pub_in_publication_dict(pub_id, publication_dict, helper_functions.classify_publication_dict_titles(publication_dict)):
+                    continue
+                
+                author_list = helper_functions.match_authors_in_pub_PubMed(authors_json_file, pub.authors)
+        
+                ## If no authors were matched then go to the next publication. Note that this is not uncommon because PubMed returns publications for authors who were just colloborators.
+                if not author_list:
+                    continue
                     
-                ## Look for each grant_id and if found add it to dict.
-                ## TODO look for grants in DOI if not on PubMed, and in pdf. Full text link might work as well. clicking that goes to full text. There is not a direct pdf link on pubmed page.
-                ## Simply do the union of the sets to add grants to the pubs_by_author_dict. Do a difference of sets to see if they were all found.
-                ## Should we keep looking after finding at least one grant? Will there be multiple grants cited?
-                ## For now not going to check the DOI for grants.
-#                if author_attributes["grants"] - pubs_by_author_dict[author][pub_id]:
-#                    pubs_by_author_dict[author][pub_id] | check_doi_for_grants(pub_dict["doi"], author_attributes["grants"], verbose)
-                    
-            
-        # don't piss off NCBI
-        time.sleep(1)
+                pub.authors = author_list
+                pub_dict = helper_functions.modify_pub_dict_for_saving(pub)
+                
+                publication_dict[pub_id] = pub_dict
+                        
+                    ## Look for each grant_id and if found add it to dict.
+                    ## TODO look for grants in DOI if not on PubMed, and in pdf. Full text link might work as well. clicking that goes to full text. There is not a direct pdf link on pubmed page.
+                    ## Simply do the union of the sets to add grants to the pubs_by_author_dict. Do a difference of sets to see if they were all found.
+                    ## Should we keep looking after finding at least one grant? Will there be multiple grants cited?
+                    ## For now not going to check the DOI for grants.
+    #                if author_attributes["grants"] - pubs_by_author_dict[author][pub_id]:
+    #                    pubs_by_author_dict[author][pub_id] | check_doi_for_grants(pub_dict["doi"], author_attributes["grants"], verbose)
+                        
+                
+            # don't piss off NCBI
+            time.sleep(1)
         
 
     #publication_dict = collections.OrderedDict(sorted(publication_dict.items(), key=lambda x: x[1]["publication_date"], reverse=True))
@@ -327,9 +328,24 @@ PUBLICATION_TEMPLATE = {
         
         
         
-def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json_file, verbose):
-    """
+def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_by_project_dict, verbose):
+    """Searhes ORCID for publications by each author.
     
+    For each author in the projects of authors_by_project_dict ORCID is queried for the publications. The list of publications is then filtered 
+    by prev_pubs, affiliations, and cutoff_year. If the publication is in the list of prev_pubs then it is skipped. 
+    If the author doesn't have at least one matching affiliation then the publication is skipped. If the publication 
+    was published before the cutoff_year then it is skipped. Each publication is then determined to have citations 
+    for any of the grants in the author's grants.
+    
+    Args:
+        prev_pubs (list): List of publications ids as strings to filter publications found on ORCID
+        ORCID_key (str): string of the app key ORCID gives when you register the app with them
+        ORCID_secret (str): string of the secret ORCID gives when you register the app with them
+        authors_by_project_dict (dict): keys are project names and values should be a dict of author names with attributes
+        verbose (bool): Determines whether errors are silenced or not.
+        
+    Returns:
+        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
     """
     
     api = orcid.PublicAPI("APP-JE4OT4MYTV4KNQXO", "5b747dc2-3d22-41f2-9807-695d17116431")
@@ -338,125 +354,157 @@ def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json_file,
     publication_dict = {}
     prev_pub_title_classifier = helper_functions.classify_publication_dict_titles(prev_pubs)
     title_classifier = {"DOI":[], "PMID":[], "URL":[]}
-    for author, authors_attributes in authors_json_file.items():
-        
-        if not "ORCID" in authors_attributes:
-            continue
-        
-        summary = api.read_record_public(authors_attributes["ORCID"], 'works',
-                                     search_token)
-        
-        for work in summary["group"]:
-            title = None
-            doi = None
-            external_url = None
-            publication_year = None
-            publication_month = None
-            publication_day = None
-            ## If the work is not a journal article then skip it.
-            work_is_a_journal_article = True
-            for work_summary in work["work-summary"]:
-                
-                if work_summary["type"] != "JOURNAL_ARTICLE":
-                    work_is_a_journal_article = False
-                    break
-                
-                work_before_relevant_year = False
-                if work_summary["publication-date"]:
-                    if not publication_year and work_summary["publication-date"]["year"]["value"]:
-                        publication_year = int(work_summary["publication-date"]["year"]["value"])
-                        
-                    if not publication_month and work_summary["publication-date"]["month"]["value"]:
-                        publication_month = int(work_summary["publication-date"]["month"]["value"])
-                        
-                    if not publication_day and work_summary["publication-date"]["day"]["value"]:
-                        publication_day = int(work_summary["publication-date"]["day"]["value"])
-
-                    if publication_year < authors_attributes["cutoff_year"]:
-                        work_before_relevant_year = True
+    for project, author_dict in authors_by_project_dict.items():
+        for author, authors_attributes in author_dict.items():
+            
+            if not "ORCID" in authors_attributes:
+                continue
+            
+            summary = api.read_record_public(authors_attributes["ORCID"], 'works',
+                                         search_token)
+            
+            for work in summary["group"]:
+                title = None
+                doi = None
+                external_url = None
+                publication_year = None
+                publication_month = None
+                publication_day = None
+                pmid = None
+                ## If the work is not a journal article then skip it.
+                work_is_a_journal_article = True
+                for work_summary in work["work-summary"]:
+                    
+                    if work_summary["type"] != "JOURNAL_ARTICLE":
+                        work_is_a_journal_article = False
+                        break
+                    
+                    work_before_relevant_year = False
+                    if work_summary["publication-date"]:
+                        if not publication_year and work_summary["publication-date"]["year"]:
+                            publication_year = int(work_summary["publication-date"]["year"]["value"])
+                            
+                        if not publication_month and work_summary["publication-date"]["month"]:
+                            publication_month = int(work_summary["publication-date"]["month"]["value"])
+                            
+                        if not publication_day and work_summary["publication-date"]["day"]:
+                            publication_day = int(work_summary["publication-date"]["day"]["value"])
+    
+                        if publication_year < authors_attributes["cutoff_year"]:
+                            work_before_relevant_year = True
+                            break
+                    
+                    
+                    if work_summary["title"] and not title:
+                        title = work_summary["title"]["title"]["value"]
+                    
+                    if not doi:
+                        for external_id in work_summary["external-ids"]["external-id"]:
+                            if external_id["external-id-type"] == "doi":
+                                doi = external_id["external-id-value"]
+                                break
+                            elif external_id["external-id-url"]:
+                                external_url = external_id["external-id-url"]["value"]
+                            elif external_id["external-id-type"] == "pmid":
+                                pmid = external_id["external-id-value"]
+                    
+                    if title and doi and publication_year and publication_month and publication_day:
                         break
                 
-                
-                if work_summary["title"] and not title:
-                    title = work_summary["title"]["title"]["value"]
-                
-                if not doi:
-                    for external_id in work_summary["external-ids"]["external-id"]:
-                        if external_id["external-id-type"] == "doi":
-                            doi = external_id["external-id-value"]
-                            break
-                        else:
-                            external_url = external_id["external-id-url"]
-                
-                if title and doi and publication_year and publication_month and publication_day:
-                    break
-            
-            if work_before_relevant_year or not work_is_a_journal_article:
-                continue
-                       
-            if (not title and not doi) or (not doi and not external_url) or not publication_year:
-                continue
-            else:
-                if doi:
-                    pub_id = DOI_URL + doi
-                else:
-                    pub_id = external_url
-                    
-                if helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, prev_pub_title_classifier):
+                if work_before_relevant_year or not work_is_a_journal_article:
                     continue
-                    
-                
-                pub_dict = PUBLICATION_TEMPLATE
-                if doi:
-                    pub_dict["doi"] = doi
-                if title:
-                    pub_dict["title"] = title
-                if publication_year:
-                    pub_dict["publication_date"]["year"] = publication_year
-                if publication_month:
-                    pub_dict["publication_date"]["month"] = publication_month
-                if publication_day:
-                    pub_dict["publication_date"]["day"] = publication_day
-                    
-                
-                if not helper_functions.is_pub_in_publication_dict(pub_id, publication_dict, title_classifier):
-                    pub_dict["authors"] = [{"affiliation": authors_attributes["affiliations"],
-                                            "firstname": authors_attributes["first_name"],
-                                            "initials": None,
-                                            "lastname": authors_attributes["last_name"],
-                                            "author_id" : author}]
-                    publication_dict[pub_id] = pub_dict
-                    title_classifier[helper_functions.classify_pub_id(pub_id)].append(title)
+                           
+                if (not title and not doi) or (not doi and not external_url) or not publication_year:
+                    continue
                 else:
-                    publication_dict[pub_id]["authors"].append({"affiliation": authors_attributes["affiliations"],
-                                             "firstname": authors_attributes["first_name"],
-                                             "initials": None,
-                                             "lastname": authors_attributes["last_name"],
-                                             "author_id" : author})
-                
-        time.sleep(1)
+                    if doi:
+                        pub_id = DOI_URL + doi
+                    elif external_url:
+                        pub_id = external_url
+                    elif pmid:
+                        pub_id = pmid
+                    else:
+                        print("Warning: Could not find a DOI, URL, or PMID for a publication when searching ORCID. It will not be in the publications")
+                        print("Title: " + title)
+                        continue
+                        
+                    if helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, prev_pub_title_classifier):
+                        continue
+                        
+                    
+                    pub_dict = copy.deepcopy(PUBLICATION_TEMPLATE)
+                    if doi:
+                        pub_dict["doi"] = doi
+                    if title:
+                        pub_dict["title"] = title
+                    if publication_year:
+                        pub_dict["publication_date"]["year"] = publication_year
+                    if publication_month:
+                        pub_dict["publication_date"]["month"] = publication_month
+                    if publication_day:
+                        pub_dict["publication_date"]["day"] = publication_day
+                    if pmid:
+                        pub_dict["pubmed_id"] = pmid
+                        
+                    
+                    if not helper_functions.is_pub_in_publication_dict(pub_id, publication_dict, title_classifier):
+                        pub_dict["authors"] = [{"affiliation": authors_attributes["affiliations"],
+                                                "firstname": authors_attributes["first_name"],
+                                                "initials": None,
+                                                "lastname": authors_attributes["last_name"],
+                                                "author_id" : author}]
+                        publication_dict[pub_id] = pub_dict
+                        title_classifier[helper_functions.classify_pub_id(pub_id)].append(title)
+                    else:
+                        author_ids = [pub_author["author_id"] for pub_author in publication_dict[pub_id]["authors"]]
+                        if not author in author_ids:
+                            publication_dict[pub_id]["authors"].append({"affiliation": authors_attributes["affiliations"],
+                                                                         "firstname": authors_attributes["first_name"],
+                                                                         "initials": None,
+                                                                         "lastname": authors_attributes["last_name"],
+                                                                         "author_id" : author})
+                    
+            time.sleep(1)
         
     return publication_dict
 
 
+            
 
-
-def search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, mailto_email, verbose):
-    """
+def search_Google_Scholar_for_pubs(prev_pubs, authors_by_project_dict, mailto_email, verbose):
+    """Searhes Google Scholar for publications by each author.
+    
+    For each author in the projects of authors_by_project_dict Google Scholar is queried for the publications. The list of publications is then filtered 
+    by prev_pubs, affiliations, and cutoff_year. If the publication is in the list of prev_pubs then it is skipped. 
+    If the author doesn't have at least one matching affiliation then the publication is skipped. If the publication 
+    was published before the cutoff_year then it is skipped. Each publication is then determined to have citations 
+    for any of the grants in the author's grants.
+    
+    Args:
+        prev_pubs (list): List of publications ids as strings to filter publications found on Google Scholar
+        authors_by_project_dict (dict): keys are project names and values should be a dict of author names with attributes
+        mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles
+        verbose (bool): Determines whether errors are silenced or not.
+        
+    Returns:
+        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
     """
     
     publication_dict = {}
     prev_pubs_title_classifier = helper_functions.classify_publication_dict_titles(prev_pubs)
     title_classifier = {"DOI":[], "PMID":[], "URL":[]}
-    for author, authors_attributes in authors_json_file.items():
-        
-        if not "scholar_id" in authors_attributes:
-            continue
-        
-        search_query = scholarly.scholarly.search_author_id(authors_attributes["scholar_id"])
-        
-        for queried_author in search_query:
-    
+    for project, author_dict in authors_by_project_dict.items():
+        for author, authors_attributes in author_dict.items():
+            
+            if not "scholar_id" in authors_attributes:
+                continue
+            
+            try:
+                queried_author = scholarly.scholarly.search_author_id(authors_attributes["scholar_id"])
+            except:
+                print("Error: The \"scholar_id\" for author " + author + " is probably incorrect, an error occured when trying to query Google Scholar.")    
+                continue
+            
             if not queried_author["scholar_id"] == authors_attributes["scholar_id"]:
                 continue
             
@@ -470,7 +518,7 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, mailto_email, v
                 else:
                     publication_year = None
             
-                if publication_year and publication_year < authors_attributes["cutoff_year"]:
+                if not publication_year or publication_year < authors_attributes["cutoff_year"]:
                     continue
                 
                 title = pub["bib"]["title"]
@@ -480,13 +528,19 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, mailto_email, v
                 if doi:
                     pub_id = DOI_URL + doi
                 else:
-                    pub_id = pub["pub_url"]
+                    scholarly.scholarly.fill(pub)
+                    if "pub_url" in pub:
+                        pub_id = pub["pub_url"]
+                    else:
+                        print("Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.")
+                        print("Title: " + title)
+                        continue
                 
                 if helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, prev_pubs_title_classifier):
                     continue
             
                 
-                pub_dict = PUBLICATION_TEMPLATE
+                pub_dict = copy.deepcopy(PUBLICATION_TEMPLATE)
                 if doi:
                     pub_dict["doi"] = doi
                 if title:
@@ -504,14 +558,17 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, mailto_email, v
                     publication_dict[pub_id] = pub_dict
                     title_classifier[helper_functions.classify_pub_id(pub_id)].append(title)
                 else:
-                    publication_dict[pub_id]["authors"].append({"affiliation": authors_attributes["affiliations"],
-                                             "firstname": authors_attributes["first_name"],
-                                             "initials": None,
-                                             "lastname": authors_attributes["last_name"],
-                                             "author_id" : author})
-                
-            ## There should only be one author that matches the scholar_id, so if execution got this far then it was found or not, so break.    
-            break
+                    author_ids = [pub_author["author_id"] for pub_author in publication_dict[pub_id]["authors"]]
+                    if not author in author_ids:
+                        publication_dict[pub_id]["authors"].append({"affiliation": authors_attributes["affiliations"],
+                                                 "firstname": authors_attributes["first_name"],
+                                                 "initials": None,
+                                                 "lastname": authors_attributes["last_name"],
+                                                 "author_id" : author})
+                    
+            time.sleep(1)
+            
+    return publication_dict
 
 
 
@@ -575,8 +632,17 @@ def scrape_url_for_DOI(url, verbose):
             
 
 def get_DOI_from_Crossref(title, mailto_email):
+    """Search title on Crossref and try to find a DOI for it.
+    
+    Args:
+        title (str): string of the title of the journal article to search for.
+        mailto_email (str): an email address needed to search Crossref more effectively.
+        
+    Returns:
+        doi (str): Either None or the DOI of the article title. The DOI will not be a URL.
     """
-    """
+    
+    doi = None
     
     cr = habanero.Crossref(ua_string = "Academic Tracker (mailto:" + mailto_email + ")")
     
@@ -584,14 +650,12 @@ def get_DOI_from_Crossref(title, mailto_email):
     
     for work in results["message"]["items"]:
         
-        if not helper_functions.is_fuzzy_match_to_list(title, work["title"]):
+        if not "title" in work or not helper_functions.is_fuzzy_match_to_list(title, work["title"]):
             continue
             
         ## Look for DOI
         if "DOI" in work:
             doi = work["DOI"]
-        else:
-            doi = None
         
         ## Crossref should only have one result that matches the title, so if it got past the check at the top break.
         break
@@ -601,8 +665,21 @@ def get_DOI_from_Crossref(title, mailto_email):
 
 
 def get_grants_from_Crossref(title, mailto_email, grants):
+    """Search title on Crossref and try to find the grants associated with it.
+    
+    Only the grants in the grants parameter are searched for because trying to find 
+    all grants associated with the article is too difficult.
+    
+    Args:
+        title (str): string of the title of the journal article to search for.
+        mailto_email (str): an email address needed to search Crossref more effectively.
+        grants (list): a list of the grants to try and find for the article.
+        
+    Returns:
+        found_grants (str): Either None or a list of grants found for the article.
     """
-    """
+    
+    found_grants = None
     
     cr = habanero.Crossref(ua_string = "Academic Tracker (mailto:" + mailto_email + ")")
     
@@ -610,7 +687,7 @@ def get_grants_from_Crossref(title, mailto_email, grants):
     
     for work in results["message"]["items"]:
         
-        if not helper_functions.is_fuzzy_match_to_list(title, work["title"]):
+        if not "title" in work or not helper_functions.is_fuzzy_match_to_list(title, work["title"]):
             continue
             
         if "funder" in work:
@@ -618,10 +695,6 @@ def get_grants_from_Crossref(title, mailto_email, grants):
             found_grants = {grant for funder in work["funder"] for value in funder.values() for grant in grants if grant in value}
             if found_grants:
                 found_grants = list(found_grants)
-            else:
-                found_grants = None
-        else:
-            found_grants = None
             
         ## Crossref should only have one result that matches the title, so if it got past the check at the top break.
         break
@@ -630,8 +703,23 @@ def get_grants_from_Crossref(title, mailto_email, grants):
 
 
 
-def search_Crossref_for_pubs(prev_pubs, authors_json_file, mailto_email, verbose):
-    """
+def search_Crossref_for_pubs(prev_pubs, authors_json_file, authors_by_project_dict, mailto_email, verbose):
+    """Searhes Crossref for publications by each author.
+    
+    For each author in the projects of authors_by_project_dict Crossref is queried for the publications. The list of publications is then filtered 
+    by prev_pubs, affiliations, and cutoff_year. If the publication is in the list of prev_pubs then it is skipped. 
+    If the author doesn't have at least one matching affiliation then the publication is skipped. If the publication 
+    was published before the cutoff_year then it is skipped. Each publication is then determined to have citations 
+    for any of the grants in the author's grants.
+    
+    Args:
+        prev_pubs (list): List of publications ids as strings to filter publications found on Crossref
+        authors_by_project_dict (dict): keys are project names and values should be a dict of author names with attributes
+        mailto_email (str): used in the query to Crossref
+        verbose (bool): Determines whether errors are silenced or not.
+        
+    Returns:
+        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
     """
     
     cr = habanero.Crossref(ua_string = "Academic Tracker (mailto:" + mailto_email + ")")
@@ -639,140 +727,163 @@ def search_Crossref_for_pubs(prev_pubs, authors_json_file, mailto_email, verbose
     publication_dict = {}
     prev_pub_title_classifier = helper_functions.classify_publication_dict_titles(prev_pubs)
     title_classifier = {"DOI":[], "PMID":[], "URL":[]}
-    for author, authors_attributes in authors_json_file.items():
-        
-        results = cr.works(query_author = author["pubmed_name_search"], filter = {"type":"journal-article", "from-pub-date":str(authors_attributes["cutoff_year"])}, limit = 300)
-        
-        for work in results["message"]["items"]:
+    for project, author_dict in authors_by_project_dict.items():
+        for author, authors_attributes in author_dict.items():
             
-            ## Find published date
-            if "published" in work:
-                publication_year = work["published"]["date-parts"][0][0]
-                publication_month = work["published"]["date-parts"][0][1]
-                publication_day = work["published"]["date-parts"][0][2]
-            elif "published-online" in work:
-                publication_year = work["published-online"]["date-parts"][0][0]
-                publication_month = work["published-online"]["date-parts"][0][1]
-                publication_day = work["published-online"]["date-parts"][0][2]
-            elif "published-print" in work:
-                publication_year = work["published-print"]["date-parts"][0][0]
-                publication_month = work["published-print"]["date-parts"][0][1]
-                publication_day = work["published-print"]["date-parts"][0][2]
-            elif "journal-issue" in work:
-                publication_year = work["journal-issue"]["published-print"]["date-parts"][0][0]
-                publication_month = work["journal-issue"]["published-print"]["date-parts"][0][1]
-                publication_day = work["journal-issue"]["published-print"]["date-parts"][0][2]
-            else:
-                publication_year = None
-                publication_month = None
-                publication_day = None
-                
-            if publication_year < authors_attributes["cutoff_year"]:
-                continue
+            results = cr.works(query_author = authors_attributes["pubmed_name_search"], filter = {"type":"journal-article", "from-pub-date":str(authors_attributes["cutoff_year"])}, limit = 300)
             
-            
-            author_list = helper_functions.match_authors_in_pub_Crossref(authors_json_file, work["author"])
-            ## If the author_list is empty then there were no matching authors, continue.
-            if not author_list:
-                continue
-            
-            ## Change the author list to a form like PubMed's
-            for author_dict in author_list:
+            for work in results["message"]["items"]:
                 
-                temp_dict = {"lastname":author_dict["family"], "initials":None,}
+                ## Find published date
+                date_found = False
+                if "published" in work:
+                    date_key = "published"
+                    date_found = True
+                elif "published-online" in work:
+                    date_key = "published-online"
+                    date_found = True
+                elif "published-print" in work:
+                    date_key = "published-print"
+                    date_found = True
                 
-                if "given" in author_dict:
-                    temp_dict["firstname"] = author_dict["given"]
-                else:
-                    temp_dict["firstname"] = ""
-                
-                if "name" in author_dict["affiliation"][0]:
-                    temp_dict["affiliation"] = author_dict["affiliation"][0]["name"]
-                else:
-                    temp_dict["affiliation"] = ""
+                if date_found:
+                    date_length = len(work[date_key]["date-parts"])
                     
-                if "author_id" in author_dict:
-                    temp_dict["author_id"] = author_dict["author_id"]
+                    if date_length > 2:
+                        publication_year = work[date_key]["date-parts"][0][0]
+                        publication_month = work[date_key]["date-parts"][0][1]
+                        publication_day = work[date_key]["date-parts"][0][2]
+                    elif date_length > 1:
+                        publication_year = work[date_key]["date-parts"][0][0]
+                        publication_month = work[date_key]["date-parts"][0][1]
+                        publication_day = None
+                    elif date_length > 0:
+                        publication_year = work[date_key]["date-parts"][0][0]
+                        publication_month = None
+                        publication_day = None
+                    else:
+                        publication_year = None
+                        publication_month = None
+                        publication_day = None
+                else:
+                    publication_year = None
+                    publication_month = None
+                    publication_day = None
                 
-                author_list.append(temp_dict)
-            
-            ## Look for DOI
-            if "DOI" in work:
-                doi = work["DOI"]
-            else:
-                doi = None
-            
-            ## Look for external URL
-            if "URL" in work:
-                external_url = work["URL"]
-            elif "link" in work:
-                external_url = [link["URL"] for link in work["link"] if "URL" in link and link["URL"]][0]
-                if not external_url:
+                
+                    
+                if publication_year < authors_attributes["cutoff_year"]:
+                    continue
+                
+                if "title" in work:
+                    title = work["title"][0]
+                else:
+                    continue
+                
+                author_list = helper_functions.match_authors_in_pub_Crossref(authors_json_file, work["author"])
+                ## If the author_list is empty then there were no matching authors, continue.
+                if not author_list:
+                    continue
+                
+                ## Change the author list to a form like PubMed's
+                new_author_list = []
+                for cr_author_dict in author_list:
+                    
+                    temp_dict = {"lastname":cr_author_dict["family"], "initials":None,}
+                    
+                    if "given" in cr_author_dict:
+                        temp_dict["firstname"] = cr_author_dict["given"]
+                    else:
+                        temp_dict["firstname"] = None
+                    
+                    if cr_author_dict["affiliation"] and "name" in cr_author_dict["affiliation"][0]:
+                        temp_dict["affiliation"] = cr_author_dict["affiliation"][0]["name"]
+                    else:
+                        temp_dict["affiliation"] = None
+                        
+                    if "author_id" in cr_author_dict:
+                        temp_dict["author_id"] = cr_author_dict["author_id"]
+                    
+                    new_author_list.append(temp_dict)
+                
+                ## Look for DOI
+                if "DOI" in work:
+                    doi = work["DOI"]
+                else:
+                    doi = None
+                
+                ## Look for external URL
+                if "URL" in work:
+                    external_url = work["URL"]
+                elif "link" in work:
+                    external_url = [link["URL"] for link in work["link"] if "URL" in link and link["URL"]][0]
+                    if not external_url:
+                        external_url = None
+                else:
                     external_url = None
-            else:
-                external_url = None
-            
-            
-            title = work["title"][0]
-            
-            if doi:
-                pub_id = DOI_URL + doi
-            elif external_url:
-                pub_id = external_url
-            else:
-                print("Could not find a DOI or external URL for " + title + " when searching Crossref.")
-                continue
-            
-            
-            
-            if helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, prev_pub_title_classifier) or \
-               helper_functions.is_pub_in_publication_dict(pub_id, publication_dict, title_classifier):
-                continue
-            
-            
-            
-            ## look for grants in results
-            if "funder" in work:
-                ## the grant string could be in any value of the funder dict so look for it in each one.
-                found_grants = {grant for funder in work["funder"] for value in funder.values() for grant in authors_attributes["grants"] if grant in value}
-                if found_grants:
-                    found_grants = list(found_grants)
+                                
+                
+                if doi:
+                    pub_id = DOI_URL + doi
+                elif external_url:
+                    pub_id = external_url
+                else:
+                    print("Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.")
+                    print("Title: " + title)
+                    continue
+                
+                
+                
+                if helper_functions.is_pub_in_publication_dict(pub_id, prev_pubs, prev_pub_title_classifier) or \
+                   helper_functions.is_pub_in_publication_dict(pub_id, publication_dict, title_classifier):
+                    continue
+                
+                
+                
+                ## look for grants in results
+                if "funder" in work:
+                    ## the grant string could be in any value of the funder dict so look for it in each one.
+                    found_grants = {grant for funder in work["funder"] for value in funder.values() for grant in authors_attributes["grants"] if grant in value}
+                    if found_grants:
+                        found_grants = list(found_grants)
+                    else:
+                        found_grants = None
                 else:
                     found_grants = None
-            else:
-                found_grants = None
-                
-            ## Look for journal
-            if "publisher" in work:
-                journal = work["publisher"]
-            else:
-                journal = None
-                
-            ## Crossref should only have one result that matches the title, so if it got past the check at the top break.
-            break
-        
-        
-        
-        pub_dict = PUBLICATION_TEMPLATE
-        if doi:
-            pub_dict["doi"] = doi
-        if publication_year:
-            pub_dict["publication_date"]["year"] = publication_year
-        if publication_month:
-            pub_dict["publication_date"]["month"] = publication_month
-        if publication_day:
-            pub_dict["publication_date"]["day"] = publication_day
-        if journal:
-            pub_dict["journal"] = journal
-        if found_grants:
-            pub_dict["grants"] = found_grants
+                    
+                ## Look for journal
+                if "publisher" in work:
+                    journal = work["publisher"]
+                else:
+                    journal = None
+                    
             
-        pub_dict["authors"] = author_list
-        pub_dict["title"] = title
-        
-        
-        publication_dict[pub_id] = pub_dict
-        title_classifier[helper_functions.classify_pub_id(pub_id)].append(title)
+            
+                pub_dict = copy.deepcopy(PUBLICATION_TEMPLATE)
+                if doi:
+                    pub_dict["doi"] = doi
+                if publication_year:
+                    pub_dict["publication_date"]["year"] = publication_year
+                if publication_month:
+                    pub_dict["publication_date"]["month"] = publication_month
+                if publication_day:
+                    pub_dict["publication_date"]["day"] = publication_day
+                if journal:
+                    pub_dict["journal"] = journal
+                if found_grants:
+                    pub_dict["grants"] = found_grants
+                    
+                pub_dict["authors"] = new_author_list
+                pub_dict["title"] = title
+                
+                
+                publication_dict[pub_id] = pub_dict
+                title_classifier[helper_functions.classify_pub_id(pub_id)].append(title)
+                
+            time.sleep(1)
+            
+            
+    return publication_dict
         
                 
         
@@ -799,6 +910,8 @@ for author, authors_attributes in authors_json_file.items():
         
 
 ## How to import from a full file path
+#import importlib
+#path_to_helper = 'C:/Users/Sparda/Desktop/Moseley Lab/Code/academic_tracker/academic_tracker/helper_functions.py'
 #spec = importlib.util.spec_from_file_location("module.name", path_to_helper)
 #foo = importlib.util.module_from_spec(spec)
 #helper_functions = importlib.util.module_from_spec(spec)

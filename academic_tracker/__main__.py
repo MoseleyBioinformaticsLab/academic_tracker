@@ -124,9 +124,10 @@ def search_by_author(args):
     """Query PubMed for publications by author.
     
     Reads in the JSON config file, authors JSON file, previous publications JSON file, and checks for errors.
-    Then requests publications from PubMed and builds the emails to go to each author. Then saves them emails
-    and publications to file and sends emails depending on the options entered by the user. See the program 
-    docstring for options details.
+    Then searches PubMed, ORCID, Google Scholar, and Crossref for publications for each author.
+    Emails are then created and sent to project leaders or individual authors. Emails and
+    publications are saved to file and emails are sent depending on the options entered by the user. 
+    See the program docstring for options details.
     
     Args:
         args (dict): args from DocOpt CLI
@@ -165,6 +166,17 @@ def search_by_author(args):
         for author_attr in authors_by_project_dict[project].values():
             for key in project_attributes:
                 author_attr.setdefault(key, project_attributes[key])
+                
+                
+    ## Look for authors not in any projects and warn user.
+    authors_in_projects = {author for project_attributes in config_file["project_descriptions"].values() for author in project_attributes["authors"] if "authors" in project_attributes }
+    authors_not_in_projects = set(authors_json_file.keys()) - authors_in_projects
+    projects_without_authors = [project for project, project_attributes in config_file["project_descriptions"].items() if not "authors" in project_attributes]
+    
+    if authors_not_in_projects and projects_without_authors:
+        print("Warning: The following authors in the Authors JSON file are not in any project.")
+        for author in authors_not_in_projects:
+            print(author)
     
     
         
@@ -176,13 +188,17 @@ def search_by_author(args):
             
     ## Get publications from PubMed 
     print("Finding author's publications. This could take a while.")
-    PubMed_publication_dict = webio.search_PubMed_for_pubs(prev_pubs, authors_json_file, config_file["PubMed_search"]["PubMed_email"], args["--verbose"])
+    print("Searching PubMed.")
+    PubMed_publication_dict = webio.search_PubMed_for_pubs(prev_pubs, authors_by_project_dict, config_file["PubMed_search"]["PubMed_email"], args["--verbose"])
     prev_pubs.update(PubMed_publication_dict)
-    ORCID_publication_dict = webio.search_ORCID_for_pubs(prev_pubs, config_file["ORCID_search"]["ORCID_key"], config_file["ORCID_search"]["ORCID_secret"], authors_json_file, args["--verbose"])
+    print("Searching ORCID.")
+    ORCID_publication_dict = webio.search_ORCID_for_pubs(prev_pubs, config_file["ORCID_search"]["ORCID_key"], config_file["ORCID_search"]["ORCID_secret"], authors_by_project_dict, args["--verbose"])
     prev_pubs.update(ORCID_publication_dict)
-    Google_Scholar_publication_dict = webio.search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, args["--verbose"])
+    print("Searching Google Scholar.")
+    Google_Scholar_publication_dict = webio.search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, authors_by_project_dict, args["--verbose"])
     prev_pubs.update(Google_Scholar_publication_dict)
-    Crossref_publication_dict = webio.search_Crossref_for_pubs(prev_pubs, authors_json_file, config_file["Crossref"]["mailto_email"], args["--verbose"])
+    print("Searching Crossref.")
+    Crossref_publication_dict = webio.search_Crossref_for_pubs(prev_pubs, authors_json_file, authors_by_project_dict, config_file["Crossref_search"]["mailto_email"], args["--verbose"])
     prev_pubs.update(Crossref_publication_dict)
     
     publication_dict = PubMed_publication_dict
@@ -195,7 +211,7 @@ def search_by_author(args):
         print("No new publications found.")
     
     
-    email_messages = helper_functions.create_emails_dict(authors_json_file, publication_dict)
+    email_messages = helper_functions.create_emails_dict(authors_by_project_dict, publication_dict, config_file)
     
     
     ## Build the save directory name.
@@ -216,6 +232,8 @@ def search_by_author(args):
     if not args["--test"]:
         webio.send_emails(email_messages)
     
+    ## Create project reports and save to file.
+    fileio.save_project_reports_to_file(publication_dict, save_dir_name, config_file["project_descriptions"])
     
     ## combine previous and new publications lists and save
     fileio.save_publications_to_file(save_dir_name, publication_dict, prev_pubs)

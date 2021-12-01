@@ -23,25 +23,46 @@ cli_schema = {
 }
 
 
-## TODO change this to reflect what is in the wiki.
 config_schema = {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Configuration JSON",
  "description": "Input file that contains information for how the program should run.",
- 
+
  "type": "object",
- "minProperties": 1,
  "properties": {
-         "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-         "cutoff_year": {"type": "integer"},
-         "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}}, 
-         "from_email": {"type": "string", "format": "email"},
-         "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-         "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
-         "email_subject": {"type": "string", "minLength":1}},
-         
- "required": ["grants", "cutoff_year", "affiliations", "from_email", "email_template", "email_subject"]
- 
+         "project_descriptions" : {
+             "type": "object",
+             "minProperties": 1,
+             "properties": {
+                     "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                     "cutoff_year": {"type": "integer"},
+                     "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}}, 
+                     "from_email": {"type": "string", "format": "email"},
+                     "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                     "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                     "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
+                     "email_subject": {"type": "string", "minLength":1}},
+                     "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                     
+             "required": ["grants", "cutoff_year", "affiliations", "from_email", "email_template", "email_subject"]
+            },
+             
+        "ORCID_search" : {"type":"object",
+                          "properties": {
+                                  "ORCID_key": {"type": "string", "minLength":1},
+                                  "ORCID_secret": {"type": "string", "minLength":1}},
+                          "required": ["ORCID_key", "ORCID_secret"]},
+        "PubMed_search" : {"type":"object",
+                          "properties": {
+                                  "PubMed_email": {"type": "string", "format":"email"}},
+                          "required":["PubMed_email"]},
+        "Crossref_search" : {"type":"object",
+                          "properties": {
+                                  "mailto_email": {"type": "string", "format":"email"}},
+                          "required":["mailto_email"]},
+                                  
+ "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search"]
+     }
 }
 
 
@@ -70,6 +91,7 @@ authors_schema = {
                  "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                  "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
                  "email_subject": {"type": "string", "minLength":1},
+                 "scholar_id": {"type": "string", "minLength":1},
                  },
          "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
          
@@ -109,7 +131,11 @@ publications_schema={
                 "journal": {"type": ["string", "null"]},
                 "keywords": {"type": ["array", "null"], "items":{"type": ["string", "null"]}},
                 "methods": {"type": ["string", "null"]},
-                "publication_date": {"type": ["string", "null"]},
+                "publication_date": {"type": "object", 
+                                     "properties":{"year": {"type": ["integer", "null"]},
+                                                                     "month": {"type": ["integer", "null"]},
+                                                                     "day": {"type": ["integer", "null"]}},
+                                     "required":["year", "month", "day"]},
                 "pubmed_id": {"type": ["string", "null"]},
                 "results": {"type": ["string", "null"]},
                 "title": {"type": ["string", "null"]},

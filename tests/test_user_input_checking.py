@@ -118,7 +118,7 @@ def test_cli_inputs_check_no_error(empty_args):
         
 
     
-@pytest.mark.parametrize("config_errors", [
+@pytest.mark.parametrize("config_project_errors", [
         ({"grants":""}),        ##type
         ({"grants":[]}),        ##minItems
         ({"grants":[123]}),     ##item type
@@ -140,8 +140,46 @@ def test_cli_inputs_check_no_error(empty_args):
         ])
  
  
-def test_config_file_check_errors(passing_config, config_errors):
-    passing_config.update(config_errors)
+def test_config_file_project_check_errors(passing_config, config_project_errors):
+    passing_config["project_descriptions"]["project 1"].update(config_project_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config)
+
+
+@pytest.mark.parametrize("config_ORCID_errors", [
+        ({"ORCID_key":123}),
+        ({"ORCID_key":""}),
+        ({"ORCID_secret":123}),
+        ({"ORCID_secret":""}),
+        ])
+ 
+ 
+def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors):
+    passing_config["ORCID_search"].update(config_ORCID_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config)
+
+
+@pytest.mark.parametrize("config_PubMed_errors", [
+        ({"PubMed_email":123}),
+        ({"PubMed_email":"asdf"}),
+        ])
+ 
+ 
+def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
+    passing_config["PubMed_search"].update(config_PubMed_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config)
+        
+
+@pytest.mark.parametrize("config_Crossref_errors", [
+        ({"mailto_email":123}),
+        ({"mailto_email":"asdf"}),
+        ])
+ 
+ 
+def test_config_file_Crossref_check_errors(passing_config, config_Crossref_errors):
+    passing_config["Crossref_search"].update(config_Crossref_errors)
     with pytest.raises(SystemExit):
         config_file_check(passing_config)
 
@@ -156,7 +194,7 @@ def test_config_file_check_empty_file_error():
         config_file_check({})
 
 def test_config_file_check_missing_required_error(passing_config):
-    del passing_config["grants"]
+    del passing_config["project_descriptions"]
     with pytest.raises(SystemExit):
         config_file_check(passing_config)
         
@@ -247,10 +285,12 @@ def passing_pubs():
              'journal': 'Molecular psychiatry',
              'keywords': [],
              'methods': None,
-             'publication_date': '2019-01-04',
+             'publication_date': {"year":2019, "month":1, "day":4},
              'pubmed_id': '30602735',
              'results': None,
-             'title': 'Correction: Synaptic phospholipids as a new target for cortical hyperexcitability and E/I balance in psychiatric disorders.'}
+             'title': 'Correction: Synaptic phospholipids as a new target for cortical hyperexcitability and E/I balance in psychiatric disorders.',
+             'grants':['P42 ES007380', 'P42 ES007381'],
+             'PMCID':'PMC7933073'}
  }
     
 @pytest.mark.parametrize("pub_errors", [
@@ -269,9 +309,18 @@ def passing_pubs():
         ({"keywords":[123]}),
         ({"methods":123}),
         ({"publication_date":123}),
+        ({"publication_date":{"year":"asdf", "month":1, "day":1}}),
+        ({"publication_date":{"year":1, "month":"asdf", "day":1}}),
+        ({"publication_date":{"year":1, "month":1, "day":"asdf"}}),
+        ({"publication_date":{"year":1, "month":1, }}),
+        ({"publication_date":{"year":1, "day":1}}),
+        ({"publication_date":{"month":1, "day":1}}),
         ({"pubmed_id":123}),
         ({"results":123}),
         ({"title":123}),
+        ({"grants":123}),
+        ({"grants":[123]}),
+        ({"PMCID":123}),
         ])
  
  

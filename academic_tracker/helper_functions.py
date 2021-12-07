@@ -6,255 +6,8 @@ This module contains helper functions.
 import pdfplumber
 import bs4
 import re
-import datetime
 import fuzzywuzzy.fuzz
-
-
-def create_citation(publication):
-    """Build a human readable string describing the publication.
-    
-    Args:
-        publication (dict): dictionary of a publication from PubMed's API
-        
-    Returns:
-        publication_str (str): human readable string with authors names, publication date, title, journal, DOI, and PubMed id
-    """
-    publication_str = ""
-
-    publication_str += ", ".join([auth["firstname"] + " " + auth["lastname"] for auth in publication["authors"]]) + "."
-    publication_str += " {}.".format(str(publication["publication_date"]["year"]))
-    publication_str += " {}.".format(publication["title"])
-    publication_str += " {}.".format(publication["journal"])
-    publication_str += " DOI:{}".format(publication["doi"])
-    publication_str += " PMID:{}".format(publication["pubmed_id"])
-    publication_str += " PMCID:{}".format(publication["PMCID"])
-    
-    return publication_str
-
-
-
-def add_indention_to_string(string_to_indent):
-    """Adds a \t character to the begining of every line in string_to_indent
-    Args:
-        string_to_indent (str): string to add tabs to
-    
-    Returns:
-        (str): string with tabs at the begining of each line
-    """
-    
-    return "\n".join(["\t" + line for line in string_to_indent.split("\n")])
-
-
-def create_pubs_by_author_dict(publication_dict):
-    """Create a dictionary with authors as the keys and values as the pub_ids and grants
-    
-    Organizes the publication information in an author focused way so other operations are easier.
-    
-    Args:
-        publication_dict (dict): keys and values match the publications JSON file.
-        
-    Returns:
-        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.
-    """
-    
-    pubs_by_author_dict = {}
-    for pub_id, pub_attributes in publication_dict.items():
-        for author_attributes in pub_attributes["authors"]:
-            if "author_id" in author_attributes:
-                author_id = author_attributes["author_id"]
-                if author_id in pubs_by_author_dict:
-                    pubs_by_author_dict[author_id][pub_id] = pub_attributes["grants"]
-                else:
-                    pubs_by_author_dict[author_id] = {pub_id : pub_attributes["grants"]}
-                    
-    return pubs_by_author_dict
-
-
-
-def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
-    """Create emails for each author.
-    
-    For each author in pubs_by_author create an email with publication citations. 
-    Information in authors_by_project_dict is used to get information about the author, and 
-    publication_dict is used to get information about publications. 
-    
-    Args:
-        authors_by_project_dict (dict): keys are prjoect names from the config file and values are pulled from the authors JSON file.
-        publication_dict (dict): keys and values match the publications JSON file.
-        
-    Returns:
-        email_messages (dict): keys and values match the email JSON file.
-    """
-    
-    # dict for email messages.
-    email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
-    email_messages["emails"] = []
-    
-    pubs_by_author_dict = create_pubs_by_author_dict(publication_dict)
-    
-    for project, project_attributes in config_file["project_descriptions"].items():
-        ## If to_email is in project then send one email with all authors for the project, or all authors depending on if authors is in project.
-        if "to_email" in project_attributes:
-            email_messages["emails"].append({"body":build_project_email_body(project_attributes, publication_dict, pubs_by_author_dict),
-                                             "subject":project_attributes["email_subject"],
-                                             "from":project_attributes["from_email"],
-                                             "to":",".join([email for email in project_attributes["to_email"]]),
-                                             "cc":",".join([email for email in project_attributes["cc_email"]])})
-        ## If authors is in project send an email to each author in the project.
-        elif "authors" in project_attributes:
-            email_messages["emails"] = email_messages["emails"] + \
-                                       [{"body":replace_body_magic_words(pubs_by_author_dict[author], authors_by_project_dict[project][author], publication_dict),
-                                       "subject":replace_subject_magic_words(authors_by_project_dict[project][author]),
-                                       "from":authors_by_project_dict[project][author]["from_email"],
-                                       "to":authors_by_project_dict[project][author]["email"],
-                                       "cc":",".join([email for email in authors_by_project_dict[project][author]["cc_email"]]),
-                                       "author":author}
-                                       for author in project_attributes["authors"] if author in pubs_by_author_dict]
-        ## If neither authors nor to_email is in the project then send emails to all authors that have publications.
-        else:
-            email_messages["emails"] = email_messages["emails"] + \
-                                       [{"body":replace_body_magic_words(pubs_by_author_dict[author], authors_by_project_dict[project][author], publication_dict),
-                                       "subject":replace_subject_magic_words(authors_by_project_dict[project][author]),
-                                       "from":authors_by_project_dict[project][author]["from_email"],
-                                       "to":authors_by_project_dict[project][author]["email"],
-                                       "cc":",".join([email for email in authors_by_project_dict[project][author]["cc_email"]]),
-                                       "author":author}
-                                       for author in pubs_by_author_dict]
-    
-    return email_messages
-
-
-
-
-def build_project_email_body(project_dict, publication_dict, pubs_by_author_dict):
-    """Build the body of the email to send to the project lead.
-    
-    The email_template key for each project is expected to have <total_pubs> somewhere in 
-    the string. This is replaced by the publications for each author and their cited grants.
-    
-    Args:
-        project_dict (dict): dictionary where the keys are project names and the values are attributes for the projects such as the authors associated with the project.
-        publication_dict (dict): dictionary with publication ids as the keys, schema matches the publications JSON file
-        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.
-    
-    Returns:
-        body (str): the body of the email to be sent
-    """
-    
-    if "authors" in project_dict:
-        pubs_string = "\n\n\n".join([author + ":\n" + create_citations_for_author(pubs_by_author_dict[author], publication_dict) for author in project_dict["authors"] if author in pubs_by_author_dict])
-    else:
-        pubs_string = "\n\n\n".join([author + ":\n" + create_citations_for_author(pubs_by_author_dict[author], publication_dict) for author in pubs_by_author_dict])
-       
-    body = project_dict["email_template"]
-    body = body.replace("<total_pubs>", pubs_string)
-    return body
-
-
-def create_indented_project_report(project_dict, pubs_by_author_dict, publication_dict):
-    """Create an indented project report for the project.
-    
-    If the project has authors then create a report of the publications found for only those authors.
-    Otherwise create a report of the publications found for all authors.
-    
-    Args:
-        project_dict (dict): dictionary where the keys are project names and the values are attributes for the projects such as the authors associated with the project.
-        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.
-        publication_dict (dict): dictionary with publication ids as the keys, schema matches the publications JSON file
-    
-    Returns:
-        text_to_save (str): the indented project report
-    """
-    
-    if "authors" in project_dict:
-        text_to_save = add_indention_to_string("\n\n\n".join([author + ":\n" + 
-                                                               add_indention_to_string(create_citations_for_author(pubs_by_author_dict[author], publication_dict)) 
-                                                               for author in project_dict["authors"] if author in pubs_by_author_dict]))
-    else:
-        text_to_save = add_indention_to_string("\n\n\n".join([author + ":\n" + 
-                                                               add_indention_to_string(create_citations_for_author(pubs_by_author_dict[author], publication_dict)) 
-                                                               for author in pubs_by_author_dict]))
-                                           
-    return text_to_save
-
-
-
-
-def create_email_dict_for_no_PMCID_pubs(publications_with_no_PMCID_list, config_file, to_email):
-    """Create an email with the publications information in it.
-    
-    For each publication in publications_with_no_PMCID_list add it's information 
-    to the body of an email. Pull the subject, from, and cc emails from the 
-    config_file, and to from to_email.
-    
-    Args:
-        publications_with_no_PMCID_list (list): A list of dictionaries.
-        [{"DOI":"publication DOI", "PMID": "publication PMID", "line":"short description of the publication", "Grants":"grants funding the publication"}]
-        config_file (dict): dict with the same structure as the configuration JSON file
-        
-    Returns:
-        email_messages (dict): keys and values match the email JSON file.
-        
-    """
-    
-    email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
-    
-    pubs_string = "\n\n\n".join([dictionary["line"] + "\n\n" + 
-                          "PMID: " + (dictionary["PMID"] if dictionary["PMID"] else "None") + "\n\n" + 
-                          "Cited Grants:\n" + ("\n".join(dictionary["Grants"]) if dictionary["Grants"] else "None") for dictionary in publications_with_no_PMCID_list])
-    
-    body = config_file["email_template"]
-    body = body.replace("<total_pubs>", pubs_string)
-    
-    email_messages["emails"] = [{"body":body,
-                                 "subject":config_file["email_subject"],
-                                 "from":config_file["from_email"],
-                                 "to":to_email,
-                                 "cc":",".join([email for email in config_file["cc_email"]])}]       
-    
-    return email_messages
-
-
-
-def replace_body_magic_words(authors_pubs, authors_attributes, publication_dict):
-    """Replace the magic words in email body with appropriate values.
-    
-    Args:
-        authors_pubs (dict): A dict where the keys are publication IDs associated with the author and the values are a set of any grants cited for the publication.
-        authors_attributes (dict): A dict where the keys are attributes associated with the author such as first and last name.
-        publication_dict (dict): A dict where the keys are publication IDs and the values are attributes of the publication such as the authors.
-        
-    Returns:
-        body (str): A string with the text for the body of the email to be sent to the author.
-    """
-    pubs_string = create_citations_for_author(authors_pubs, publication_dict)
-    
-    body = authors_attributes["email_template"]
-    body = body.replace("<total_pubs>", pubs_string)
-    body = body.replace("<author_first_name>", authors_attributes["first_name"])
-    body = body.replace("<author_last_name>", authors_attributes["last_name"])
-    
-    return body
-
-
-
-
-def replace_subject_magic_words(authors_attributes):
-    """Replace the magic words in email subject with appropriate values.
-    
-    Args:
-        authors_attributes (dict): A dict where the keys are attributes associated with the author such as first and last name.
-        
-    Returns:
-        subject (str): A string with the text for the subject of the email to be sent to the author.
-    """
-    subject = authors_attributes["email_subject"]
-    subject = subject.replace("<author_first_name>", authors_attributes["first_name"])
-    subject = subject.replace("<author_last_name>", authors_attributes["last_name"])
-    
-    return subject
-
-
+import copy
 
 
 def extract_pdf_text(path_to_pdf):
@@ -281,20 +34,87 @@ def parse_pubmed_full_text_links(pubmed_html):
 
 
 
-def create_citations_for_author(authors_pubs, publication_dict):
-    """Create a publication citation with cited grants for each publication in authors_pubs.
+def create_authors_by_project_dict(config_file, authors_json_file):
+    """Create the authors_by_project_dict dict from the config_file and authors_json_file.
+    
+    Creates a dict where the keys are the projects in the config_file and the values 
+    are the authors associated with that project from authors_json_file.
     
     Args:
-        authors_pubs (dict): A dict where the keys are publication IDs associated with the author and the values are a set of any grants cited for the publication.
-        publication_dict (dict): A dict where the keys are publication IDs and the values are attributes of the publication such as the authors.
+        config_file (dict): schema matches the JSON Project Tracking Configuration file.
+        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         
     Returns:
-        (str): A string of the citations and cited grants for each publication.
+        authors_by_project_dict (dict): keys are the projects in the config_file and the values are the authors associated with that project from authors_json_file.
     """
     
-    return "\n\n\n".join([create_citation(publication_dict[pub_id]) + "\n\nCited Grants:\n" + 
-                             "\n".join([grant_id for grant_id in authors_pubs[pub_id]] if authors_pubs[pub_id] else ["None"]) 
-                             for pub_id in authors_pubs])
+    authors_by_project_dict = {project:{} for project in config_file["project_descriptions"]}
+    for project, project_attributes in config_file["project_descriptions"].items():
+        if "authors" in project_attributes:
+            for author in project_attributes["authors"]:
+                if author in authors_json_file:
+                    authors_by_project_dict[project][author] = copy.deepcopy(authors_json_file[author])
+                else:
+                    print("Warning: The author, " + author + ", in the " + project + " project of the project tracking configuration file could not be found in the authors' JSON file.")
+        else:
+            authors_by_project_dict[project] = copy.deepcopy(authors_json_file)
+    
+        for author_attr in authors_by_project_dict[project].values():
+            for key in project_attributes:
+                author_attr.setdefault(key, project_attributes[key])
+                
+    return authors_by_project_dict
+
+
+def adjust_author_attributes(authors_by_project_dict, authors_json_file):
+    """Modifies authors_json_file with values from authors_by_project_dict
+    
+    Go through the authors in authors_by_project_dict and find the lowest cutoff_year.
+    Also find affiliations and grants and create a union of them across projects.
+    Update the authors in authors_json_file.
+    
+    Args:
+        authors_by_project_dict (dict): keys are the projects in the config_file and the values are the authors associated with that project from authors_json_file.
+        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        
+    Returns:
+        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+    """
+    
+    for author, author_attr in authors_json_file.items():
+        if "cutoff_year" in author_attr:
+            cutoff_year = author_attr["cutoff_year"]
+        else:
+            cutoff_year = 99999999
+        
+        if "affiliations" in author_attr:
+            affiliations = set(author_attr["affiliations"])
+        else:
+            affiliations = set()
+        
+        if "grants" in author_attr:
+            grants = set(author_attr["grants"])
+        else:
+            grants = set()
+        
+        for project, authors_dict in authors_by_project_dict.items():
+            if author in authors_dict:
+                if "cutoff_year" in authors_dict[author] and authors_dict[author]["cutoff_year"] < cutoff_year:
+                    cutoff_year = authors_dict[author]["cutoff_year"]
+                    
+                if "affiliations" in authors_dict[author]:
+                    affiliations |= set(authors_dict[author]["affiliations"])
+                    
+                if "grants" in authors_dict[author]:
+                    grants |= set(authors_dict[author]["grants"])
+                    
+        affiliations = list(affiliations)
+        grants = list(grants)
+        author_attr["cutoff_year"] = cutoff_year
+        author_attr["affiliations"] = affiliations
+        author_attr["grants"] = grants
+        
+    return authors_json_file
 
 
 
@@ -324,7 +144,8 @@ def parse_string_for_pub_info(document_string, DOI_regex, PMID_regex, PMCID_rege
 #    return [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:\s*([^\s]+\w).*", line) and not re.match(r"(?i).*pmcid:\s*(pmc\d+).*", line)]
 #    [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:.*", line) or re.match(r"(?i).*pmid:.*", line)]
     return [{"DOI": regex_group_return(regex_match_return(DOI_regex, line), 0), 
-             "PMID": regex_group_return(regex_match_return(PMID_regex, line), 0), "line":line} 
+             "PMID": regex_group_return(regex_match_return(PMID_regex, line), 0), 
+             "line":line} 
              for line in lines if re.match(DOI_regex, line) and not re.match(PMCID_regex, line)]
 
 
@@ -338,6 +159,9 @@ def regex_match_return(regex, string_to_match):
     Args:
         regex (str): A string with a regular expression to be delivered to re.match().
         string_to_match (str): The string to match with the regex.
+        
+    Returns:
+        (tuple): either the tuple of the matched groups in the regex or an empty tuple if a match wasn't found.
     """
     
     match = re.match(regex, string_to_match)
@@ -390,7 +214,17 @@ def regex_search_return(regex, string_to_search):
     
     
 def match_authors_in_pub_PubMed(authors_json_file, author_list):
-    """
+    """Look for matching authors in PubMed pub data.
+    
+    Goes through the author list from PubMed and tries matching to an author in 
+    authors_json_file using firstname, lastname, and affiliations.
+    
+    Args:
+        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        author_list (list): list of dicts where each dict is attributes of an author.
+        
+    Returns:
+        author_list (list): either the author list with matched authors containing an additional author_id attribute, or an empty list if no authors were matched.
     """
     
     ## pub.authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
@@ -423,7 +257,18 @@ def match_authors_in_pub_PubMed(authors_json_file, author_list):
 
 
 def match_authors_in_pub_Crossref(authors_json_file, author_list):
-    """
+    """Look for matching authors in Crossref pub data.
+    
+    Goes through the author list from Crossref and tries matching to an author in 
+    authors_json_file using firstname, lastname, and affiliations, or ORCID if ORCID
+    is present.
+    
+    Args:
+        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        author_list (list): list of dicts where each dict is attributes of an author.
+        
+    Returns:
+        author_list (list): either the author list with matched authors containing an additional author_id attribute, or an empty list if no authors were matched.
     """
     
     ## pub.authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
@@ -510,6 +355,13 @@ def modify_pub_dict_for_saving(pub):
 def overwrite_config_with_CLI(config_file, args):
     """Overwrite keys in config_file if command line options were used.
     
+    Args:
+        config_file (dict): schema matches the JSON Project Tracking Configuration file.
+        args (dict): input arguments from DocOpt.
+        
+    Returns:
+        config_file (dict): returns the config_file with any relevant command line arguments overwritten.
+    
     """
     
     overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
@@ -524,7 +376,14 @@ def overwrite_config_with_CLI(config_file, args):
 
 ## TODO are "Correction" publications unique ones? If so we need to add a special case to not filter them out.
 def is_fuzzy_match_to_list(str_to_match, list_to_match):
-    """
+    """True if string is a 90 or higher ratio match to any string in list, False otherwise.
+    
+    Args:
+        str_to_match (str): string to compare with list
+        list_to_match (list): list of strings to compare with str_to_match
+        
+    Returns:
+        (bool): True if str_to_match is a match to any string in list_tp_match, False otherwise.
     """
     str_to_match = str_to_match.lower()
     list_to_match = [list_string.lower() for list_string in list_to_match]
@@ -534,79 +393,153 @@ def is_fuzzy_match_to_list(str_to_match, list_to_match):
 
 
 
-def classify_pub_id(pub_id):
-    """
+def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
+    """True if pub_id is in publication_dict or title is a fuzzy match to titles in titles.
+    
+    Check whether the pub_id is in publication_dict. If it isn't then see if there is 
+    a fuzzy match in titles. If titles is not provided then get a list of titles 
+    from publication_dict.
+    
+    Args:
+        pub_id (str): pub_id to check against in publication_dict to see if it already exists.
+        title (str): title corresponding to pub_id to check against titles in publication_dict.
+        publication_dict (dict): keys are pub_ids and values are pub attributes.
+        titles (list): list of strings that should be titles to fuzzy match to title.
+        
+    Returns:
+        (bool): True if the pub_id is in publication_dict or title is fuzzy matched in titles, False otherwise
     """
     
-    if re.match(r".*doi.*", pub_id):
-        return "DOI"
-    elif re.match(r"\d+", pub_id):
-        return "PMID"
-    else:
-        return "URL"
-
-
-
-
-
-def classify_publication_dict_keys(publication_dict):
-    """
-    """
-    
-    key_classifier = {"DOI":[], "PMID":[], "URL":[]}
-    
-    for pub_id in publication_dict:
-        key_classifier[classify_pub_id(pub_id)].append(pub_id)
-            
-    return key_classifier
-
-
-
-def classify_publication_dict_titles(publication_dict):
-    """
-    """
-    
-    title_classifier = {"DOI":[], "PMID":[], "URL":[]}
-
-    for pub_id, pub_attributes in publication_dict.items():
-        title_classifier[classify_pub_id(pub_id)].append(pub_attributes["title"])
-            
-    return title_classifier
-
-
-
-
-def is_pub_in_publication_dict(pub_id, publication_dict, title_classifier):
-    """
-    """
-    
-    if pub_id in publication_dict:
+    if pub_id.lower() in publication_dict:
         return True
     
-    pub_id_class = classify_pub_id(pub_id)
-    
-    if pub_id_class == "DOI":
-        if is_fuzzy_match_to_list(pub_id, title_classifier["PMID"]) or is_fuzzy_match_to_list(pub_id, title_classifier["URL"]):
-            return True
-        else:
-            return False
-    
-    elif pub_id_class == "PMID":
-        if is_fuzzy_match_to_list(pub_id, title_classifier["DOI"]) or is_fuzzy_match_to_list(pub_id, title_classifier["URL"]):
-            return True
-        else:
-            return False
-    
-    ## DOI and PMID won't share titles or it is extremely unlikely, but URLs can so check against every title.
-    elif pub_id_class == "URL":
+    if not titles:
         titles = [pub_attr["title"] for pub_attr in publication_dict.values()]
-        if is_fuzzy_match_to_list(pub_id, titles):
-            return True
-        else:
-            return False
-        
+    
+    if is_fuzzy_match_to_list(title, titles):
+        return True
     else:
         return False
+
+
+
+
+
+
+
+
+
+## 2021-12-02
+## I thought the fuzzy matching was super slow so this code tried to mitigate that by classifying pub_ids and reducing the amount of titles to fuzzy match.
+#def classify_pub_id(pub_id):
+#    """Classify given pub_d as either DOI, PMID, or URL.
+#    
+#    To classify as DOI doi must be in the string. PMID must be only numbers.
+#    Everything else is considered a URL.
+#    
+#    Args:
+#        pub_id (str): pub_id to classify
+#        
+#    Returns:
+#        (str): one of DOI, PMID, or URL
+#    """
+#    
+#    if re.match(r".*doi.*", pub_id):
+#        return "DOI"
+#    elif re.match(r"\d+", pub_id):
+#        return "PMID"
+#    else:
+#        return "URL"
+#
+#
+#
+#
+#
+#def classify_publication_dict_keys(publication_dict):
+#    """Classify all of the keys of publication_dict as either DOI, PMID, or URL.
+#    
+#    Args:
+#        publication_dict (dict): keys are pub_ids and values are pub attributes
+#        
+#    Returns:
+#        key_classifier (dict): {"DOI":[], "PMID":[], "URL":[]} each key is added to the appropriate list.
+#    """
+#    
+#    key_classifier = {"DOI":[], "PMID":[], "URL":[]}
+#    
+#    for pub_id in publication_dict:
+#        key_classifier[classify_pub_id(pub_id)].append(pub_id)
+#            
+#    return key_classifier
+#
+#
+#
+#def classify_publication_dict_titles(publication_dict):
+#    """Classify all of the title of publication_dict as either DOI, PMID, or URL.
+#    
+#    Args:
+#        publication_dict (dict): keys are pub_ids and values are pub attributes
+#        
+#    Returns:
+#        title_classifier (dict): {"DOI":[], "PMID":[], "URL":[]} each title is added to the appropriate list.
+#    """
+#    
+#    title_classifier = {"DOI":[], "PMID":[], "URL":[]}
+#
+#    for pub_id, pub_attributes in publication_dict.items():
+#        title_classifier[classify_pub_id(pub_id)].append(pub_attributes["title"])
+#            
+#    return title_classifier
+#
+#
+#
+#
+#def is_pub_in_publication_dict(pub_id, title, publication_dict, title_classifier):
+#    """True if pub_id is in publication_dict or title is a fuzzy match to different class titles in title_classifier.
+#    
+#    pub_ids can be either a DOI, a PMID, or URL. Since a publication can have all three of 
+#    these and multiple DOIs and URLs simply checking that the pub_id already exists in publication_dict
+#    is not enough. The title needs to be fuzzy matched with all the titles to be more confident. 
+#    Since fuzzy matching is slow only titles of different classes are compared except for 
+#    URLs, which is compared with all titles.
+#    
+#    Args:
+#        pub_id (str): pub_id to check against in publication_dict to see if it already exists.
+#        title (str): title corresponding to pub_id to check against titles in publication_dict.
+#        publication_dict (dict): keys are pub_ids and values are pub attributes.
+#        title_classifier (dict): {"DOI":[], "PMID":[], "URL":[]} each title in publication_dict should already be in this dict.
+#        
+#    Returns:
+#        (bool): True if the pub_id is in publication_dict or title is in title_classifier, False otherwise
+#    """
+#    
+#    if pub_id in publication_dict:
+#        return True
+#    
+#    pub_id_class = classify_pub_id(pub_id)
+#    
+#    if pub_id_class == "DOI":
+#        if is_fuzzy_match_to_list(title, title_classifier["PMID"]) or is_fuzzy_match_to_list(title, title_classifier["URL"]):
+#            return True
+#        else:
+#            return False
+#    
+#    elif pub_id_class == "PMID":
+#        if is_fuzzy_match_to_list(title, title_classifier["DOI"]) or is_fuzzy_match_to_list(title, title_classifier["URL"]):
+#            return True
+#        else:
+#            return False
+#    
+#    ## DOI and PMID won't share titles or it is extremely unlikely, but URLs can so check against every title.
+#    elif pub_id_class == "URL":
+#        titles = [pub_attr["title"] for pub_attr in publication_dict.values()]
+#        if is_fuzzy_match_to_list(title, titles):
+#            return True
+#        else:
+#            return False
+#        
+#    else:
+#        return False
 
 
 

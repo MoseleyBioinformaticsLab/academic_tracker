@@ -1,0 +1,181 @@
+[
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:-DxkuPiZhfEC",
+    "bib": {
+      "abstract": "Phospholipases D (PLDs) catalyze hydrolysis of the diester bond of phospholipids to generate phosphatidic acid and the free lipid headgroup. In mammals, PLD enzymes comprise the intracellular enzymes PLD1 and PLD2 and possibly the proteins encoded by related genes, as well as a class of cell surface and secreted enzymes with structural homology to ectonucleotide phosphatases/phosphodiesterases as typified by autotaxin (ENPP2) that have lysoPLD activities. Genetic and pharmacological loss-of-function approaches implicate these enzymes in intra- and intercellular signaling mediated by the lipid products phosphatidic acid, lysophosphatidic acid, and their metabolites, while the possibility that the water-soluble product of their reactions is biologically relevant has received far less attention. PLD1 and PLD2 are highly selective for phosphatidylcholine (PC), whereas autotaxin has broader substrate \u2026",
+      "author": "Fredrick O Onono and Andrew J Morris",
+      "pages": "205-218",
+      "pub_year": 2019,
+      "publisher": "Springer, Cham",
+      "title": "Phospholipase D and choline metabolism"
+    },
+    "citedby_url": "/scholar?cites=6183627192278584271",
+    "cites_id": [
+      "6183627192278584271"
+    ],
+    "cites_per_year": {
+      "2021": 6
+    },
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 6,
+    "pub_url": "https://link.springer.com/chapter/10.1007/164_2019_320",
+    "source": "AUTHOR_PUBLICATION_ENTRY",
+    "url_related_articles": "/scholar?oi=bibs&hl=en&q=related:zws2Syuo0FUJ:scholar.google.com/"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:CYCckWUYoCcC",
+    "bib": {
+      "abstract": "Trio-based whole-exome sequence (WES) data have established confident genetic diagnoses in \u223c40% of previously undiagnosed individuals recruited to the Deciphering Developmental Disorders (DDD) study. Here we aim to use the breadth of phenotypic information recorded in DDD to augment diagnosis and disease variant discovery in probands. Median Euclidean distances (mEuD) were employed as a simple measure of similarity of quantitative phenotypic data within sets of \u226510 individuals with plausibly causative de novo mutations (DNM) in 28 different developmental disorder genes. 13/28 (46.4%) showed significant similarity for growth or developmental milestone metrics, 10/28 (35.7%) showed similarity in HPO term usage, and 12/28 (43%) showed no phenotypic similarity. Pairwise comparisons of individuals with high-impact inherited variants to the 32 individuals with causative DNM in ANKRD11 \u2026",
+      "author": "Stuart Aitken and Helen V Firth and Jeremy McRae and Mihail Halachev and Usha Kini and Michael J Parker and Melissa M Lees and Katherine Lachlan and Ajoy Sarkar and Shelagh Joss and Miranda Splitt and Shane McKee and Andrea H N\u00e9meth and Richard H Scott and Caroline F Wright and Joseph A Marsh and Matthew E Hurles and David R FitzPatrick and TW Fitzgerald and SS Gerety and WD Jones and M van Kogelenberg and DA King and J McRae and KI Morley and V Parthiban and S Al-Turki and K Ambridge and DM Barrett and T Bayzetinova and S Clayton and EL Coomber and S Gribble and P Jones and N Krishnappa and LE Mason and A Middleton and R Miller and E Prigmore and D Rajan and A Sifrim and AR Tivey and M Ahmed and N Akawi and R Andrews and U Anjum and H Archer and R Armstrong and M Balasubramanian and R Banerjee and D Barelle and P Batstone and D Baty and C Bennett and J Berg and B Bernhard and AP Bevan and E Blair and M Blyth and D Bohanna and L Bourdon and D Bourn and A Brady and E Bragin and C Brewer and L Brueton and K Brunstrom and SJ Bumpstead and DJ Bunyan and J Burn and J Burton and N Canham and B Castle and K Chandler and S Clasper and J Clayton-Smith and T Cole and A Collins and MN Collinson and F Connell and N Cooper and H Cox and L Cresswell and G Cross and Y Crow and PM D\u2019Alessandro and T Dabir and R Davidson and S Davies and J Dean and C Deshpande and G Devlin and A Dixit and A Dominiczak and C Donnelly and D Donnelly and A Douglas and A Duncan and J Eason and S Edkins and S Ellard and P Ellis and F Elmslie and K Evans and S Everest and T Fendick and R Fisher and F Flinter and N Foulds and A Fryer and B Fu and C Gardiner and L Gaunt and N Ghali and R Gibbons and SL Gomes Pereira and J Goodship and D Goudie and E Gray and P Greene and L Greenhalgh and L Harrison and R Hawkins and S Hellens and A Henderson and E Hobson and S Holden and S Holder and G Hollingsworth and T Homfray and M Humphreys and J Hurst and S Ingram and M Irving and J Jarvis and L Jenkins and D Johnson and D Jones and E Jones and D Josifova and S Joss and B Kaemba and S Kazembe and B Kerr and U Kini and E Kinning and G Kirby and C Kirk and E Kivuva and A Kraus",
+      "journal": "The American Journal of Human Genetics",
+      "number": "5",
+      "pages": "933-946",
+      "pub_year": 2019,
+      "publisher": "Cell Press",
+      "title": "Finding diagnostically useful patterns in quantitative phenotypic data",
+      "volume": "105"
+    },
+    "citedby_url": "/scholar?cites=629039448983274005",
+    "cites_id": [
+      "629039448983274005"
+    ],
+    "cites_per_year": {
+      "2020": 5
+    },
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 5,
+    "pub_url": "https://www.sciencedirect.com/science/article/pii/S0002929719303556",
+    "source": "AUTHOR_PUBLICATION_ENTRY",
+    "url_related_articles": "/scholar?oi=bibs&hl=en&q=related:FQJbygvMuggJ:scholar.google.com/"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:RuPIJ_LgqDgC",
+    "bib": {
+      "abstract": "Introduction: Infection is a serious complication in patients with cardiac implantable electronic devices (CIEDs). Infection of the generator pocket, systemic bacteremia and lead-related or suspected endocarditis are absolute indications for device removal. While previous studies have reported infection as a major risk factor for mortality, it is unclear what proportion is related to complications of infection or the CIED lead removal procedure itself.Objective: We have conducted a systematic review looking at all-cause in-hospital mortality, intraprocedural, and procedure-related mortality in CIED lead removals and have done a subanalysis specifically exploring removals for infectious indications.Methods: A search was performed of studies published between January 1, 2000-August 29, 2019 indexed on Medline, EMBASE and Cochrane. Inclusion criteria were: (a) transvenous removal of ICD, pacemaker or CRT device \u2026",
+      "author": "Josh E Herman and Deborah Somanader and Laith Ishaq and Ahmed Abdelaal and Vrati Mehra and Rayoun Ramendra and Andrew Morris",
+      "number": "Suppl_1",
+      "pages": "A11301-A11301",
+      "pub_year": 2021,
+      "publisher": "Lippincott Williams & Wilkins",
+      "title": "Comparing All-Cause to Procedure-Related Mortality in Cardiac Implantable Electronic Device (CIED) Lead Removals: A Systematic Review",
+      "volume": "144"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://www.ahajournals.org/doi/abs/10.1161/circ.144.suppl_1.11301",
+    "source": "AUTHOR_PUBLICATION_ENTRY"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:8dzOF9BpDQoC",
+    "bib": {
+      "abstract": "Introduction: Laser extraction sheaths are a valuable tool for complex CIED lead extractions. While there is evidence to suggest they have a higher complication rate than simple traction, there has been no systematic review of the literature regarding the success and complication rate associated with laser lead extractions.Objective: To conduct a systematic review investigating success and complication rates of CIED lead extractions using laser sheaths.Methods: A search was performed of studies published between January 1, 2000-August 29, 2019 indexed on Medline, EMBASE and Cochrane. Inclusion criteria were: (a) transvenous removal of ICD, pacemaker or CRT device leads, (b) Age\u226518, (c) n>100 patients. Exclusion criteria were: (a) generator only procedures, (b) planned surgical extractions, (c) data prior to 2000. From these studies, we further selected papers containing laser lead extractions only, or \u2026",
+      "author": "Josh E Herman and Deborah Somanader and Laith Ishaq and Ahmed Abdelaal and Rayoun Ramendra and Vrati Mehra and Andrew Morris",
+      "number": "Suppl_1",
+      "pages": "A11319-A11319",
+      "pub_year": 2021,
+      "publisher": "Lippincott Williams & Wilkins",
+      "title": "Success and Complication Rates in Cardiac Implantable Electronic Device (CIED) Laser Lead Extractions: A Systematic Review",
+      "volume": "144"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://www.ahajournals.org/doi/abs/10.1161/circ.144.suppl_1.11319",
+    "source": "AUTHOR_PUBLICATION_ENTRY"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:unp9ATQDT5gC",
+    "bib": {
+      "abstract": "BACKGROUND Obese children are at high risk of several morbidities, including hypertension, coronary artery disease, hyperlipidemia, and diabetes. Per-and polyfluoroalkyl chemicals (PFAS) are a recently recognized class of \u2018forever chemicals\u2019 that may contribute to disease risk. The aim of this study was to conduct a pilot investigation of a subset of available biospecimens from obese children with a focus on PFAS with respect to established measures of cardiometabolic disease risks. METHODS: Obese children were enrolled in two separate studies at Nationwide Children\u2019s Hospital (an urban population in Columbus, Ohio) and at Kentucky Children\u2019s Hospital (a rural population in Lexington, KY). Measurement of several markers of cardiometabolic disease risks were determined. Archived blood serum samples from these two groups (25 from each site) were processed for measurement of PFAS. Statistical \u2026",
+      "author": "Margaret Murphy and Hong Huang and Aric Schadler and Andrew Morris and Jody Clasey and Stefan G Kiessling and Aurelia Radulescu and Judith A Groner and John Bauer",
+      "number": "3_MeetingAbstract",
+      "pages": "180-180",
+      "pub_year": 2021,
+      "publisher": "American Academy of Pediatrics",
+      "title": "Perfluorinated Chemicals and Cardiometabolic Risk Markers in Obese Children: An Ancillary Pilot Investigation",
+      "volume": "147"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://publications.aap.org/pediatrics/article-abstract/147/3_MeetingAbstract/180/5079",
+    "source": "AUTHOR_PUBLICATION_ENTRY"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:mKu_rENv82IC",
+    "bib": {
+      "abstract": "Breast cancer remains the second leading cause of cancer-related death in women worldwide. Triple negative breast cancer TNBC carries a poorer prognosis compared to other subtypes of breast cancer, given its higher genomic instability, tendency toward early metastasis, and lack of effective targeted therapies. As obesity is a risk factor for TNBC, understanding the mechanistic linkage between TNBC and obesity is crucial for the development of novel prevention and treatment strategies. TNBC activates the epithelial-mesenchymal transition EMT program mediated by EMT transcription factors, including Twist. Twist is highly expressed in TNBC cells, and its expression is positively correlated with metastatic potential. Our preliminary data showed that Twist interacted with BRD4 to regulate its target gene transcription, and Autotaxin ATX and LPAR1 were dramatically increased in Twist-overexpressing breast cancer cells and adipocytes. Encoded by the ENPP2 gene, ATX is a secreted enzyme that produces most of the extracellular lysophosphatidic acid LPA, which signals through its receptors LPAR1-6 to mediate a wide range of inflammatory processes including wound healing, fibrosis and metastasis. Interestingly, both Twist and ATX were demonstrated to be involved in diet-induced obesity.Descriptors:Subject Categories:Distribution Statement:APPROVED FOR PUBLIC RELEASE",
+      "author": "Yiwei Lin",
+      "pub_year": 2020,
+      "publisher": "University of Kentucky Lexington United States",
+      "title": "Define the Twist-ATX-LPAR1 Signaling Axis in Promoting Obesity-Associated Triple Negative Breast Cancer"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://apps.dtic.mil/sti/citations/AD1119016",
+    "source": "AUTHOR_PUBLICATION_ENTRY"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:SIv7DqKytYAC",
+    "bib": {
+      "abstract": "Lysophosphatidic acids (LPA) are bioactive radyl hydrocarbon-substituted derivatives of glycerol 3-phosphate. LPA metabolism and signaling are implicated in heritable risk of coronary artery disease. Genetic and pharmacological inhibition of these processes attenuate experimental atherosclerosis. LPA accumulates in atheromas, which may be a consequence of association with low-density lipoproteins (LDL). The source, regulation, and biological activity of LDL-associated LPA are unknown. We examined effects of experimental hyperlipidemia on levels and distribution of circulating LPA in mice. The majority of plasma LPA was associated with albumin in plasma from wild-type mice fed normal chow. LDL-associated LPA was increased in plasma from high-fat western diet fed mice that are genetically prone to hyperlipidemia (LDL receptor knockout or activated PCSK9 overexpressing C57Bl6). Adipose-specific deficiency of the ENPP2 gene encoding the LPA-generating secreted lysophospholipase D autotaxin (ATX) attenuated these western diet-dependent increases in LPA. ATX-dependent increases in LDL-associated LPA were observed in isolated incubated plasma. ATX acted directly on LDL-associated lysophospholipid substrates in vitro. LDL from all human subjects examined contained LPA and was decreased by lipid lowering drug therapies. Human and mouse plasma therefore contains a diet-sensitive LDL-associated LPA pool that might contribute to the cardiovascular disease promoting effects of LPA.",
+      "author": "Maria Kraemer and Guogen Mao and Courtney Hammill and Yu Li and Susan S Smyth and Andrew J Morris",
+      "pub_year": 2019,
+      "publisher": "Health Research Alliance",
+      "title": "J. Lipid Res.-2019-Kraemer-jlr. M093096. pdf"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://hra.figshare.com/articles/journal_contribution/J_Lipid_Res_-2019-Kraemer-jlr_M093096_pdf/9999275",
+    "source": "AUTHOR_PUBLICATION_ENTRY",
+    "url_related_articles": "/scholar?oi=bibs&hl=en&q=related:Alqk-tgAleoJ:scholar.google.com/"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:UuEBAcK4md4C",
+    "bib": {
+      "author": "Peethambaran Arun and Andrew Batuure and Franco Rossetti and Donna Wilder and James DeMar and Ying Wnag and Irene Gist and Andrew Morris and Roger Sabbadini and Joseph Long",
+      "conference": "JOURNAL OF NEUROTRAUMA",
+      "number": "13",
+      "pages": "A44-A45",
+      "pub_year": 2019,
+      "publisher": "MARY ANN LIEBERT, INC",
+      "title": "ANTI-LYSOPHOSPHATIDIC ACID ANTIBODIES PROTECT AGAINST BLAST-INDUCED OCULAR DYSFUNCTIONS",
+      "volume": "36"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://scholar.google.com/scholar?cluster=16567886941633548737&hl=en&oi=scholarr",
+    "source": "AUTHOR_PUBLICATION_ENTRY"
+  },
+  {
+    "author_pub_id": "-j7fxnEAAAAJ:IsPWOBWtZBwC",
+    "bib": {
+      "abstract": "Lysophosphatidic acid (LPA) is a pleiotropic growth-factor lysophospholipid that promotes cancer cell survival, growth, migration, invasion, metastasis, and resistance to chemotherapy and radiotherapy. The main precursor for LPA, lysophosphatidylcholine (LPC) is derived majorly from the highly abundant phosphatidylcholine (PC). Hydrolysis of LPC to the circulating LPA is catalyzed by the enzyme autotaxin (ATX), a secreted lysophospholipase D. We investigated the effects of altering dietary intake of PC and pharmacological inhibition of ATX on breast cancer development in mice. To formulate diets with defined PC levels we used tandem mass spectrometry to measure the concentration of PC in various components of fat used to manufacture rodent diets. We determined that casein is the main source of PC when present in rodent diets. High fat diets (60% kcal fat) were formulated with casein (high PC) or amino \u2026",
+      "author": "Fredrick O Onono and Ebubechi Adindu and Baoxiang Yan and Sony Soman and Courtney Hammill and Andrew J Morris",
+      "number": "13 Supplement",
+      "pages": "3601-3601",
+      "pub_year": 2019,
+      "publisher": "American Association for Cancer Research",
+      "title": "Dietary phosphatidylcholine depletion reduces tumor development independent of autotaxin inhibition in hyperlipidemic mouse models of breast cancer",
+      "volume": "79"
+    },
+    "cites_per_year": {},
+    "container_type": "Publication",
+    "filled": true,
+    "num_citations": 0,
+    "pub_url": "https://cancerres.aacrjournals.org/content/79/13_Supplement/3601.short",
+    "source": "AUTHOR_PUBLICATION_ENTRY"
+  }
+]

@@ -33,18 +33,22 @@ config_schema = {
          "project_descriptions" : {
              "type": "object",
              "minProperties": 1,
-             "properties": {
-                     "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                     "cutoff_year": {"type": "integer"},
-                     "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}}, 
-                     "from_email": {"type": "string", "format": "email"},
-                     "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                     "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                     "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
-                     "email_subject": {"type": "string", "minLength":1}},
-                     "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                     
-             "required": ["grants", "cutoff_year", "affiliations", "from_email", "email_template", "email_subject"]
+             "additionalProperties": {
+                     "type":"object",
+                     "properties":{
+                             "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                             "cutoff_year": {"type": "integer"},
+                             "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}}, 
+                             "from_email": {"type": "string", "format": "email"},
+                             "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                             "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                             "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
+                             "email_subject": {"type": "string", "minLength":1},
+                             "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                             },
+                             
+                     "required": ["grants", "cutoff_year", "affiliations", "from_email", "email_template", "email_subject"]
+                     }
             },
              
         "ORCID_search" : {"type":"object",
@@ -61,8 +65,8 @@ config_schema = {
                                   "mailto_email": {"type": "string", "format":"email"}},
                           "required":["mailto_email"]},
                                   
+     },
  "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search"]
-     }
 }
 
 

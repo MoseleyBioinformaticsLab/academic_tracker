@@ -1,0 +1,116 @@
+{
+  "https://doi.org/10.1042/bsr20181883": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "Division of Cardiovascular Medicine, University of Kentucky College of Medicine and Lexington Veterans Affairs, Lexington, KY, U.S.A.",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew J.",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1042/bsr20181883",
+    "grants": null,
+    "journal": "Portland Press Ltd.",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2019
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Phospholipases D: making sense of redundancy and duplication"
+  },
+  "https://doi.org/10.1093/jat/bkz097": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "Division of Cardiovascular Medicine, The Gill Heart and Vascular Institute, Superfund Research Center and Center for Appalachian Research in Environmental Sciences, University of Kentucky College of Medicine, Lexington Veterans Affairs Medical Center, Lexington, KY 40536, USA",
+        "firstname": "M Abdul",
+        "initials": null,
+        "lastname": "Mottaleb"
+      },
+      {
+        "affiliation": "Division of Cardiovascular Medicine, The Gill Heart and Vascular Institute, Superfund Research Center and Center for Appalachian Research in Environmental Sciences, University of Kentucky College of Medicine, Lexington Veterans Affairs Medical Center, Lexington, KY 40536, USA",
+        "firstname": "Michael C",
+        "initials": null,
+        "lastname": "Petriello"
+      },
+      {
+        "affiliation": "Division of Cardiovascular Medicine, The Gill Heart and Vascular Institute, Superfund Research Center and Center for Appalachian Research in Environmental Sciences, University of Kentucky College of Medicine, Lexington Veterans Affairs Medical Center, Lexington, KY 40536, USA",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew J",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1093/jat/bkz097",
+    "grants": null,
+    "journal": "Oxford University Press (OUP)",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2020
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "High-Throughput UHPLC-MS/MS Measurement of Per- and Poly-Fluorinated Alkyl Substances in Human Serum"
+  },
+  "https://doi.org/10.1096/fasebj.2021.35.s1.03810": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "University of KentuckyLexingtonKY",
+        "firstname": "Cetewayo",
+        "initials": null,
+        "lastname": "Rashid"
+      },
+      {
+        "affiliation": "University of KentuckyLexingtonKY",
+        "firstname": "Sara",
+        "initials": null,
+        "lastname": "Tenlep"
+      },
+      {
+        "affiliation": "University of KentuckyLexingtonKY",
+        "firstname": "Jianzhong",
+        "initials": null,
+        "lastname": "Chen"
+      },
+      {
+        "affiliation": "University of KentuckyLexingtonKY",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1096/fasebj.2021.35.s1.03810",
+    "grants": null,
+    "journal": "Wiley",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2021
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Tris(1,3\u2010Dichloro\u20102\u2010Propyl)Phosphate Is an Endocrine Disrupting Compound Causing Sex\u2010Specific Changes in Body Composition and Insulin Sensitivity"
+  }
+}

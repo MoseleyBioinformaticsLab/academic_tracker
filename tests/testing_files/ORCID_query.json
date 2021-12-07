@@ -1,0 +1,448 @@
+{
+  "group": [
+    {
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-relationship": "SELF",
+            "external-id-type": "doi",
+            "external-id-url": {
+              "value": "https://doi.org/10.1016/j.celrep.2021.110013"
+            },
+            "external-id-value": "10.1016/j.celrep.2021.110013"
+          }
+        ]
+      },
+      "last-modified-date": {
+        "value": 1637464285827
+      },
+      "work-summary": [
+        {
+          "created-date": {
+            "value": 1637088617462
+          },
+          "display-index": "0",
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-relationship": "SELF",
+                "external-id-type": "doi",
+                "external-id-url": {
+                  "value": "https://doi.org/10.1016/j.celrep.2021.110013"
+                },
+                "external-id-value": "10.1016/j.celrep.2021.110013"
+              }
+            ]
+          },
+          "last-modified-date": {
+            "value": 1637464285827
+          },
+          "path": "/0000-0003-1910-4865/work/103274663",
+          "publication-date": {
+            "day": null,
+            "media-type": null,
+            "month": {
+              "value": "11"
+            },
+            "year": {
+              "value": "2021"
+            }
+          },
+          "put-code": 103274663,
+          "source": {
+            "source-client-id": {
+              "host": "orcid.org",
+              "path": "0000-0001-9884-1913",
+              "uri": "http://orcid.org/client/0000-0001-9884-1913"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "source-orcid": null
+          },
+          "title": {
+            "subtitle": null,
+            "title": {
+              "value": "Autotaxin impedes anti-tumor immunity by suppressing chemotaxis and tumor infiltration of CD8+ T\u00a0cells"
+            },
+            "translated-title": null
+          },
+          "type": "JOURNAL_ARTICLE",
+          "visibility": "PUBLIC"
+        }
+      ]
+    },
+    {
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-relationship": "SELF",
+            "external-id-type": "doi",
+            "external-id-url": {
+              "value": "https://doi.org/10.1016/j.chroma.2021.462426"
+            },
+            "external-id-value": "10.1016/j.chroma.2021.462426"
+          }
+        ]
+      },
+      "last-modified-date": {
+        "value": 1627940876991
+      },
+      "work-summary": [
+        {
+          "created-date": {
+            "value": 1626902467138
+          },
+          "display-index": "0",
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-relationship": "SELF",
+                "external-id-type": "doi",
+                "external-id-url": {
+                  "value": "https://doi.org/10.1016/j.chroma.2021.462426"
+                },
+                "external-id-value": "10.1016/j.chroma.2021.462426"
+              }
+            ]
+          },
+          "last-modified-date": {
+            "value": 1627940876991
+          },
+          "path": "/0000-0003-1910-4865/work/97311572",
+          "publication-date": {
+            "day": null,
+            "media-type": null,
+            "month": {
+              "value": "09"
+            },
+            "year": {
+              "value": "2021"
+            }
+          },
+          "put-code": 97311572,
+          "source": {
+            "source-client-id": {
+              "host": "orcid.org",
+              "path": "0000-0001-9884-1913",
+              "uri": "http://orcid.org/client/0000-0001-9884-1913"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "source-orcid": null
+          },
+          "title": {
+            "subtitle": null,
+            "title": {
+              "value": "Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry"
+            },
+            "translated-title": null
+          },
+          "type": "JOURNAL_ARTICLE",
+          "visibility": "PUBLIC"
+        }
+      ]
+    },
+    {
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-relationship": "SELF",
+            "external-id-type": "doi",
+            "external-id-url": {
+              "value": "https://doi.org/10.1172/jci.insight.143650"
+            },
+            "external-id-value": "10.1172/jci.insight.143650"
+          }
+        ]
+      },
+      "last-modified-date": {
+        "value": 1616350670298
+      },
+      "work-summary": [
+        {
+          "created-date": {
+            "value": 1613064711930
+          },
+          "display-index": "0",
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-relationship": "SELF",
+                "external-id-type": "doi",
+                "external-id-url": {
+                  "value": "https://doi.org/10.1172/jci.insight.143650"
+                },
+                "external-id-value": "10.1172/jci.insight.143650"
+              }
+            ]
+          },
+          "last-modified-date": {
+            "value": 1616350670298
+          },
+          "path": "/0000-0003-1910-4865/work/88590089",
+          "publication-date": {
+            "day": {
+              "value": "22"
+            },
+            "media-type": null,
+            "month": {
+              "value": "03"
+            },
+            "year": {
+              "value": "2021"
+            }
+          },
+          "put-code": 88590089,
+          "source": {
+            "source-client-id": {
+              "host": "orcid.org",
+              "path": "0000-0001-9884-1913",
+              "uri": "http://orcid.org/client/0000-0001-9884-1913"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "source-orcid": null
+          },
+          "title": {
+            "subtitle": null,
+            "title": {
+              "value": "Pioglitazone does not synergize with mirabegron to increase beige fat or further improve glucose metabolism"
+            },
+            "translated-title": null
+          },
+          "type": "JOURNAL_ARTICLE",
+          "visibility": "PUBLIC"
+        }
+      ]
+    },
+    {
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-relationship": "SELF",
+            "external-id-type": "doi",
+            "external-id-url": {
+              "value": "https://doi.org/10.1172/JCI134892"
+            },
+            "external-id-value": "10.1172/JCI134892"
+          }
+        ]
+      },
+      "last-modified-date": {
+        "value": 1588284863385
+      },
+      "work-summary": [
+        {
+          "created-date": {
+            "value": 1579626511269
+          },
+          "display-index": "0",
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-relationship": "SELF",
+                "external-id-type": "doi",
+                "external-id-url": {
+                  "value": "https://doi.org/10.1172/JCI134892"
+                },
+                "external-id-value": "10.1172/JCI134892"
+              }
+            ]
+          },
+          "last-modified-date": {
+            "value": 1588284863385
+          },
+          "path": "/0000-0003-1910-4865/work/67642178",
+          "publication-date": {
+            "day": {
+              "value": "23"
+            },
+            "media-type": null,
+            "month": {
+              "value": "03"
+            },
+            "year": {
+              "value": "2020"
+            }
+          },
+          "put-code": 67642178,
+          "source": {
+            "source-client-id": {
+              "host": "orcid.org",
+              "path": "0000-0001-9884-1913",
+              "uri": "http://orcid.org/client/0000-0001-9884-1913"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "source-orcid": null
+          },
+          "title": {
+            "subtitle": null,
+            "title": {
+              "value": "The \u03b23-adrenergic receptor agonist mirabegron improves glucose homeostasis in obese humans"
+            },
+            "translated-title": null
+          },
+          "type": "JOURNAL_ARTICLE",
+          "visibility": "PUBLIC"
+        }
+      ]
+    },
+    {
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-relationship": "SELF",
+            "external-id-type": "doi",
+            "external-id-url": {
+              "value": "https://doi.org/10.1194/jlr.M093096"
+            },
+            "external-id-value": "10.1194/jlr.M093096"
+          }
+        ]
+      },
+      "last-modified-date": {
+        "value": 1614298525111
+      },
+      "work-summary": [
+        {
+          "created-date": {
+            "value": 1572351691036
+          },
+          "display-index": "0",
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-relationship": "SELF",
+                "external-id-type": "doi",
+                "external-id-url": {
+                  "value": "https://doi.org/10.1194/jlr.M093096"
+                },
+                "external-id-value": "10.1194/jlr.M093096"
+              }
+            ]
+          },
+          "last-modified-date": {
+            "value": 1614298525111
+          },
+          "path": "/0000-0003-1910-4865/work/63815101",
+          "publication-date": {
+            "day": {
+              "value": "04"
+            },
+            "media-type": null,
+            "month": {
+              "value": "11"
+            },
+            "year": {
+              "value": "2019"
+            }
+          },
+          "put-code": 63815101,
+          "source": {
+            "source-client-id": {
+              "host": "orcid.org",
+              "path": "0000-0001-9884-1913",
+              "uri": "http://orcid.org/client/0000-0001-9884-1913"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "source-orcid": null
+          },
+          "title": {
+            "subtitle": null,
+            "title": {
+              "value": "Effects of diet and hyperlipidemia on levels and distribution of circulating lysophosphatidic acid"
+            },
+            "translated-title": null
+          },
+          "type": "JOURNAL_ARTICLE",
+          "visibility": "PUBLIC"
+        }
+      ]
+    },
+    {
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-relationship": "SELF",
+            "external-id-type": "doi",
+            "external-id-url": {
+              "value": "https://doi.org/10.1042/BSR20181883"
+            },
+            "external-id-value": "10.1042/BSR20181883"
+          }
+        ]
+      },
+      "last-modified-date": {
+        "value": 1572351690906
+      },
+      "work-summary": [
+        {
+          "created-date": {
+            "value": 1572351690906
+          },
+          "display-index": "0",
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-relationship": "SELF",
+                "external-id-type": "doi",
+                "external-id-url": {
+                  "value": "https://doi.org/10.1042/BSR20181883"
+                },
+                "external-id-value": "10.1042/BSR20181883"
+              }
+            ]
+          },
+          "last-modified-date": {
+            "value": 1572351690906
+          },
+          "path": "/0000-0003-1910-4865/work/63815100",
+          "publication-date": {
+            "day": {
+              "value": "28"
+            },
+            "media-type": null,
+            "month": {
+              "value": "06"
+            },
+            "year": {
+              "value": "2019"
+            }
+          },
+          "put-code": 63815100,
+          "source": {
+            "source-client-id": {
+              "host": "orcid.org",
+              "path": "0000-0001-9884-1913",
+              "uri": "http://orcid.org/client/0000-0001-9884-1913"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "source-orcid": null
+          },
+          "title": {
+            "subtitle": null,
+            "title": {
+              "value": "Phospholipases D: making sense of redundancy and duplication"
+            },
+            "translated-title": null
+          },
+          "type": "JOURNAL_ARTICLE",
+          "visibility": "PUBLIC"
+        }
+      ]
+    }
+  ],
+  "last-modified-date": {
+    "value": 1637464285827
+  },
+  "path": "/0000-0003-1910-4865/works"
+}

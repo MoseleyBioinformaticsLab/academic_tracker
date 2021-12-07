@@ -30,7 +30,12 @@ def find_version():
 REQUIRES = [
     "docopt >= 0.6.2",
     "pymed >= 0.8.9",
-    "jsonschema >= 3.0.1"
+    "jsonschema >= 3.0.1",
+    "habanero >= 1.0.0",
+    "orcid >= 1.0.3",
+    "scholarly >= 1.4.5",
+    "pdfplumber >= 0.5.28",
+    "beautifulsoup4 >= 4.9.3"
 ]
 
 

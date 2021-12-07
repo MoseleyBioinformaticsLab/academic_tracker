@@ -10,7 +10,7 @@ import os
 import datetime
 import sys
 import docx
-from . import helper_functions
+from . import emails_and_reports
 
 
 def load_json(filepath):
@@ -138,7 +138,7 @@ def save_new_pubs_to_file(publication_dict, pubs_by_author_dict, save_dir_name):
     
     save_path = os.path.join(os.getcwd(), save_dir_name, "new_pubs_by_author.txt")
     
-    text_to_save = "\n\n".join([author + ":\n" + helper_functions.add_indention_to_string(helper_functions.create_citations_for_author(pubs_by_author_dict[author], publication_dict)) for author in pubs_by_author_dict])
+    text_to_save = "\n\n".join([author + ":\n" + emails_and_reports.add_indention_to_string(emails_and_reports.create_citations_for_author(pubs_by_author_dict[author], publication_dict)) for author in pubs_by_author_dict])
     
     with open(save_path, 'wb') as outFile:
         outFile.write(text_to_save.encode("utf-8"))
@@ -160,9 +160,9 @@ def save_project_reports_to_file(publication_dict, save_dir_name, project_dicts)
     
     save_path = os.path.join(os.getcwd(), save_dir_name, "summary_report.txt")
     
-    pubs_by_author_dict = helper_functions.create_pubs_by_author_dict(publication_dict)
+    pubs_by_author_dict = emails_and_reports.create_pubs_by_author_dict(publication_dict)
     
-    text_to_save = "\n\n\n\n".join([project + ":\n" + helper_functions.create_indented_project_report(project_dict, pubs_by_author_dict, publication_dict) for project, project_dict in project_dicts.items()])
+    text_to_save = "\n\n\n\n".join([project + ":\n" + emails_and_reports.create_indented_project_report(project_dict, pubs_by_author_dict, publication_dict) for project, project_dict in project_dicts.items()])
             
     
     with open(save_path, 'wb') as outFile:
@@ -178,7 +178,7 @@ def read_text_from_docx(doc_path):
         doc_path (str): path to docx file.
         
     Returns:
-        (str): A string of the contents of the docx file. Each line concated with a newline character.
+        (str): A string of the contents of the docx file. Each line concatenated with a newline character.
     """
     
     ## https://stackoverflow.com/questions/25228106/how-to-extract-text-from-an-existing-docx-file-using-python-docx
@@ -198,7 +198,7 @@ def read_text_from_txt(doc_path):
         doc_path (str): path to txt or csv file.
         
     Returns:
-        (str): A string of the contents of the txt or csv file. Each line concated with a newline character. 
+        (str): A string of the contents of the txt or csv file. Each line concatenated with a newline character. 
     """
     
     if os.path.exists(doc_path):

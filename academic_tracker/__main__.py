@@ -24,12 +24,14 @@ Options:
 ## TODO add use case for reading in an authors json and searching Google Scholar for their scholar id.
 ## TODO add options to ignore google scholar and orcid
 ## TODO add functionality to more easily handle verbose option, and add more messages when it is in use.
+## DO command line options still make sense with projects?
 
 
 from . import fileio
 from . import user_input_checking
 from . import webio
 from . import helper_functions
+from . import emails_and_reports
 import re
 import os
 import datetime
@@ -152,22 +154,11 @@ def search_by_author(args):
     
     
     ## Create an authors_json_file for each project in the config_file and update those authors attributes with the project attributes.
-    authors_by_project_dict = {project:{} for project in config_file["project_descriptions"]}
-    for project, project_attributes in config_file["project_descriptions"].items():
-        if "authors" in project_attributes:
-            for author in project_attributes["authors"]:
-                if author in authors_json_file:
-                    authors_by_project_dict[project][author] = authors_json_file[author]
-                else:
-                    print("Warning: " + author + " in the " + project + " project of the project tracking configuration file could not be found in the authors' JSON file.")
-        else:
-            authors_by_project_dict[project] = authors_json_file
-    
-        for author_attr in authors_by_project_dict[project].values():
-            for key in project_attributes:
-                author_attr.setdefault(key, project_attributes[key])
+    authors_by_project_dict = helper_functions.create_authors_by_project_dict(config_file, authors_json_file)
                 
-                
+    ## Find minimum cutoff_year, and take the union of affiliations and grants for each author.
+    helper_functions.adjust_author_attributes(authors_by_project_dict, authors_json_file)
+                    
     ## Look for authors not in any projects and warn user.
     authors_in_projects = {author for project_attributes in config_file["project_descriptions"].values() for author in project_attributes["authors"] if "authors" in project_attributes }
     authors_not_in_projects = set(authors_json_file.keys()) - authors_in_projects
@@ -189,16 +180,16 @@ def search_by_author(args):
     ## Get publications from PubMed 
     print("Finding author's publications. This could take a while.")
     print("Searching PubMed.")
-    PubMed_publication_dict = webio.search_PubMed_for_pubs(prev_pubs, authors_by_project_dict, config_file["PubMed_search"]["PubMed_email"], args["--verbose"])
+    PubMed_publication_dict = webio.search_PubMed_for_pubs(prev_pubs, authors_json_file, config_file["PubMed_search"]["PubMed_email"], args["--verbose"])
     prev_pubs.update(PubMed_publication_dict)
     print("Searching ORCID.")
-    ORCID_publication_dict = webio.search_ORCID_for_pubs(prev_pubs, config_file["ORCID_search"]["ORCID_key"], config_file["ORCID_search"]["ORCID_secret"], authors_by_project_dict, args["--verbose"])
+    ORCID_publication_dict = webio.search_ORCID_for_pubs(prev_pubs, config_file["ORCID_search"]["ORCID_key"], config_file["ORCID_search"]["ORCID_secret"], authors_json_file, args["--verbose"])
     prev_pubs.update(ORCID_publication_dict)
     print("Searching Google Scholar.")
-    Google_Scholar_publication_dict = webio.search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, authors_by_project_dict, args["--verbose"])
+    Google_Scholar_publication_dict = webio.search_Google_Scholar_for_pubs(prev_pubs, authors_json_file, config_file["Crossref_search"]["mailto_email"], args["--verbose"])
     prev_pubs.update(Google_Scholar_publication_dict)
     print("Searching Crossref.")
-    Crossref_publication_dict = webio.search_Crossref_for_pubs(prev_pubs, authors_json_file, authors_by_project_dict, config_file["Crossref_search"]["mailto_email"], args["--verbose"])
+    Crossref_publication_dict = webio.search_Crossref_for_pubs(prev_pubs, authors_json_file, config_file["Crossref_search"]["mailto_email"], args["--verbose"])
     prev_pubs.update(Crossref_publication_dict)
     
     publication_dict = PubMed_publication_dict
@@ -211,7 +202,7 @@ def search_by_author(args):
         print("No new publications found.")
     
     
-    email_messages = helper_functions.create_emails_dict(authors_by_project_dict, publication_dict, config_file)
+    email_messages = emails_and_reports.create_emails_dict(authors_by_project_dict, publication_dict, config_file)
     
     
     ## Build the save directory name.

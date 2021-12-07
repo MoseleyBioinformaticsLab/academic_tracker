@@ -4,7 +4,13 @@ import pytest
 import xml.etree.ElementTree as ET
 import os
 import pymed
+from academic_tracker.helper_functions import modify_pub_dict_for_saving
+from academic_tracker.fileio import load_json
 
+
+@pytest.fixture
+def authors_json_file():
+    return load_json(os.path.join("testing_files", "authors.json"))
 
 @pytest.fixture
 def pub_with_no_matching_author():
@@ -40,17 +46,11 @@ def pub_with_grants():
 def publication_dict(pub_with_grants, pub_with_matching_author):
     publication_dict = {}
     
-    pub_dict = pub_with_grants.toDict()
-    del pub_dict["xml"]
-    pub_dict["publication_date"] = str(pub_dict["publication_date"])
+    pub_dict = modify_pub_dict_for_saving(pub_with_grants)
+    publication_dict["https://doi.org/" + pub_dict["doi"]] = pub_dict
     
-    publication_dict[pub_dict["pubmed_id"].split("\n")[0]] = pub_dict
-    
-    pub_dict = pub_with_matching_author.toDict()
-    del pub_dict["xml"]
-    pub_dict["publication_date"] = str(pub_dict["publication_date"])
-    
-    publication_dict[pub_dict["pubmed_id"].split("\n")[0]] = pub_dict
+    pub_dict = modify_pub_dict_for_saving(pub_with_matching_author)
+    publication_dict["https://doi.org/" + pub_dict["doi"]] = pub_dict
     
     return publication_dict
 
@@ -64,6 +64,8 @@ def authors_dict():
     return {'Andrew Morris': {'email': 'a.j.morris@uky.edu',
                                   'first_name': 'Andrew',
                                   'last_name': 'Morris',
+                                  'ORCID':'0000-0003-1910-4865',
+                                  'scholar_id': '-j7fxnEAAAAJ',
                                   'pubmed_name_search': 'Andrew Morris',
                                   'affiliations': ['kentucky'],
                                   'cc_email': ["ptth222@uky.edu", "ptth222@gmail.com"],
@@ -86,19 +88,130 @@ def email_messages():
 
 @pytest.fixture
 def passing_config():
-    return {
-              "affiliations": [
-                "kentucky"
-              ],
-              "cc_email": [],
-              "cutoff_year": 2019,
-              "email_subject": "New PubMed Publications",
-              "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-              "from_email": "ptth222@uky.edu",
-              "grants": [
-                "P42ES007380",
-                "P42 ES007380"
-              ]
-            }
+    return {"project_descriptions": {
+                "project 1":{
+                  "affiliations": [
+                    "kentucky"
+                  ],
+                  "cc_email": [],
+                  "cutoff_year": 2019,
+                  "email_subject": "New PubMed Publications",
+                  "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                  "from_email": "ptth222@uky.edu",
+                  "authors": ["Andrew Morris", "Hunter Moseley"],
+                  "grants": [
+                    "P42ES007380",
+                    "P42 ES007380"
+                  ]
+                },
+                "project 2":{
+                  "affiliations": [
+                    "kentucky"
+                  ],
+                  "cc_email": [],
+                  "cutoff_year": 2019,
+                  "email_subject": "New PubMed Publications",
+                  "email_template": "These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                  "from_email": "ptth222@uky.edu",
+                  "to_email": ["ptth222@uky.edu"],
+                  "grants": [
+                    "P42ES007380",
+                    "P42 ES007380"
+                  ]
+                },
+                "project 3":{
+                  "affiliations": [
+                    "kentucky"
+                  ],
+                  "cc_email": [],
+                  "cutoff_year": 2019,
+                  "email_subject": "New PubMed Publications",
+                  "email_template": "These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                  "from_email": "ptth222@uky.edu",
+                  "grants": [
+                    "P42ES007380",
+                    "P42 ES007380"
+                  ]
+                }
+                },
+            "ORCID_search":{
+                    "ORCID_key":"asdf",
+                    "ORCID_secret":"qwer"},
+            "PubMed_search":{
+                    "PubMed_email":"ptth222@uky.edu"},
+            "Crossref_search":{
+                    "mailto_email":"ptth222@uky.edu"}}
+            
+
+@pytest.fixture
+def authors_by_project_dict():
+    return {'project 1': {'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
+           'affiliations': ['kentucky'],
+           'cutoff_year': 2020,
+           'email': 'hunter.moseley@gmail.com',
+           'first_name': 'Hunter',
+           'last_name': 'Moseley',
+           'pubmed_name_search': 'Hunter Moseley',
+           'scholar_id': 'ctE_FZMAAAAJ',
+           'cc_email': [],
+           'email_subject': 'New PubMed Publications',
+           'email_template': 'Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
+           'from_email': 'ptth222@uky.edu',
+           'authors': ['Andrew Morris', 'Hunter Moseley'],
+           'grants': ['P42ES007380', 'P42 ES007380']}},
+         'project 2': {'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
+           'affiliations': ['kentucky'],
+           'cutoff_year': 2020,
+           'email': 'hunter.moseley@gmail.com',
+           'first_name': 'Hunter',
+           'last_name': 'Moseley',
+           'pubmed_name_search': 'Hunter Moseley',
+           'scholar_id': 'ctE_FZMAAAAJ',
+           'cc_email': [],
+           'email_subject': 'New PubMed Publications',
+           'email_template': 'These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
+           'from_email': 'ptth222@uky.edu',
+           'to_email': 'ptth222@uky.edu',
+           'grants': ['P42ES007380', 'P42 ES007380']},
+          'Isabel Escobar': {'ORCID': '0000-0001-9269-5927',
+           'affiliations': ['kentucky'],
+           'cutoff_year': 2020,
+           'email': 'isabel.escobar@uky.edu',
+           'first_name': 'Isabel',
+           'last_name': 'Escobar',
+           'pubmed_name_search': 'Isabel Escobar',
+           'scholar_id': 'RfB5L8kAAAAJ',
+           'cc_email': [],
+           'email_subject': 'New PubMed Publications',
+           'email_template': 'These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
+           'from_email': 'ptth222@uky.edu',
+           'to_email': 'ptth222@uky.edu',
+           'grants': ['P42ES007380', 'P42 ES007380']}},
+         'project 3': {'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
+           'affiliations': ['kentucky'],
+           'cutoff_year': 2020,
+           'email': 'hunter.moseley@gmail.com',
+           'first_name': 'Hunter',
+           'last_name': 'Moseley',
+           'pubmed_name_search': 'Hunter Moseley',
+           'scholar_id': 'ctE_FZMAAAAJ',
+           'cc_email': [],
+           'email_subject': 'New PubMed Publications',
+           'email_template': 'These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
+           'from_email': 'ptth222@uky.edu',
+           'grants': ['P42ES007380', 'P42 ES007380']},
+          'Isabel Escobar': {'ORCID': '0000-0001-9269-5927',
+           'affiliations': ['kentucky'],
+           'cutoff_year': 2020,
+           'email': 'isabel.escobar@uky.edu',
+           'first_name': 'Isabel',
+           'last_name': 'Escobar',
+           'pubmed_name_search': 'Isabel Escobar',
+           'scholar_id': 'RfB5L8kAAAAJ',
+           'cc_email': [],
+           'email_subject': 'New PubMed Publications',
+           'email_template': 'These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu',
+           'from_email': 'ptth222@uky.edu',
+           'grants': ['P42ES007380', 'P42 ES007380']}}}
         
         

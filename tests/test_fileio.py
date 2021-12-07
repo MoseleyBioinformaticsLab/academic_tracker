@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 import re
 import shutil
-from academic_tracker.fileio import load_json, read_previous_publications, save_publications_to_file, save_emails_to_file
+from academic_tracker.fileio import load_json, read_previous_publications, save_publications_to_file, save_emails_to_file, read_text_from_txt, save_project_reports_to_file, read_text_from_docx
 import pytest
 from fixtures import email_messages
 
@@ -48,6 +48,39 @@ def test_load_json_no_error(test_json):
     
     assert data == test_json
 
+
+
+def test_read_text_from_txt_error():
+    path = os.path.join(".", "testing_files", "load_json_error")
+    
+    with pytest.raises(Exception):
+        read_text_from_txt(path)
+
+
+def test_read_text_from_txt_no_error():
+    
+    path = os.path.join(".", "testing_files", "testing_text.txt")
+    
+    data = read_text_from_txt(path)
+    
+    assert data == 'line 1\nline 2'
+    
+
+
+def test_read_text_from_docx_error():
+    path = os.path.join(".", "testing_files", "load_json_error")
+    
+    with pytest.raises(Exception):
+        read_text_from_docx(path)
+
+
+def test_read_text_from_docx_no_error():
+    
+    path = os.path.join(".", "testing_files", "testing_docx.docx")
+    
+    data = read_text_from_docx(path)
+    
+    assert data == 'Line 1\nLine 2'
 
 
 
@@ -293,6 +326,86 @@ def test_save_publications_to_file_successful_save(test_pub_dir):
     publications_json = load_json(pub_save_path)
 
     assert publications_json == {}
+
+
+
+
+@pytest.fixture
+def test_report_dir():
+    save_dir_name = TESTING_DIR
+    report_save_path = os.path.join(save_dir_name, "summary_report.txt")
+    os.mkdir(save_dir_name)
+    time_to_wait = 10
+    time_counter = 0
+    
+    while not os.path.exists(save_dir_name):
+        time.sleep(1)
+        time_counter += 1
+        if time_counter > time_to_wait:
+            raise FileNotFoundError(save_dir_name + " was not created within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+    
+    yield save_dir_name, report_save_path
+    
+    os.remove(report_save_path)
+    time_counter = 0
+    while os.path.exists(report_save_path):
+        time.sleep(1)
+        time_counter += 1
+        if time_counter > time_to_wait:
+            raise FileExistsError(report_save_path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+    
+    os.rmdir(save_dir_name)
+    time_counter = 0
+    while os.path.exists(save_dir_name):
+        time.sleep(1)
+        time_counter += 1
+        if time_counter > time_to_wait:
+            raise FileExistsError(save_dir_name + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+
+
+def test_save_project_reports_to_file_successful_save(test_report_dir):
+    
+    save_dir_name, report_save_path = test_report_dir
+    save_project_reports_to_file({}, save_dir_name, {})
+    
+    time_to_wait = 10
+    time_counter = 0
+    while not os.path.exists(report_save_path):
+        time.sleep(1)
+        time_counter += 1
+        if time_counter > time_to_wait:
+            raise FileNotFoundError(report_save_path + " was not created within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+
+    report_txt = read_text_from_txt(report_save_path)
+
+    assert report_txt == ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

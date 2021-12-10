@@ -35,7 +35,9 @@ REQUIRES = [
     "orcid >= 1.0.3",
     "scholarly >= 1.4.5",
     "pdfplumber >= 0.5.28",
-    "beautifulsoup4 >= 4.9.3"
+    "beautifulsoup4 >= 4.9.3",
+    "fuzzywuzzy >= 0.18.0",
+    "docx >= 0.8.11"
 ]
 
 

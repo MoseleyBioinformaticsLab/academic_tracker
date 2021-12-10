@@ -124,11 +124,24 @@ def save_publications_to_file(save_dir_name, publication_dict, prev_pubs):
     
     publications_save_path = os.path.join(os.getcwd(), save_dir_name, "publications.json")
     
-        
     prev_pubs.update(publication_dict)
     with open(publications_save_path, 'w') as outFile:
         print(json.dumps(prev_pubs, indent=2, sort_keys=True), file=outFile)
 
+
+
+def save_authors_json_to_file(save_dir_name, authors_json_file):
+    """Saves the authors_json_file to "authors.json" in save_dir_name in the current working directory.
+    
+    Args:
+        save_dir_name (str): directory name to append to the current working directory to save the authors.json file in
+        authors_json_file (dict): dictionary with author ids as the keys to the dict
+    """
+    
+    authors_save_path = os.path.join(os.getcwd(), save_dir_name, "authors.json")
+    
+    with open(authors_save_path, 'w') as outFile:
+        print(json.dumps(authors_json_file, indent=2, sort_keys=True), file=outFile)
 
 
 

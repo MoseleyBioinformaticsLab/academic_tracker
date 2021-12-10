@@ -3,6 +3,9 @@
 JSON Schema for the cli, authors, and config JSON.
 """
 
+import copy
+
+
 cli_schema = {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Command Line Inputs",
@@ -12,7 +15,7 @@ cli_schema = {
  "properties": {
          "--grants": {"type": ["array", "null"], "minItems":1, "items": {"type": "string", "minLength": 1}},
          "--cutoff_year": {"type": ["integer", "null"]},
-         "--affiliations": {"type": ["array", "null"], "minItems":1, "items": {"type": "string", "minLength": 1}}, 
+         "--affiliations": {"type": ["array", "null"], "minItems":1, "items": {"type": "string", "minLength": 1}},
          "--from_email": {"type": ["string", "null"], "format": "email"},
          "--cc_email": {"type": ["array", "null"],  "items": {"type": "string", "format": "email"}},
          "--prev_pub": {"type":["string", "null"], "minLength":1},
@@ -69,6 +72,12 @@ config_schema = {
  "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search"]
 }
 
+
+
+
+ORCID_schema = copy.deepcopy(config_schema)
+ORCID_schema["properties"] = ORCID_schema["properties"]["ORCID_search"]
+ORCID_schema["required"] = ["ORCID_search"]
 
 
 

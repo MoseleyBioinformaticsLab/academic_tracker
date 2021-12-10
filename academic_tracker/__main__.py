@@ -3,6 +3,9 @@ Usage:
     academic_tracker search_by_author <config_json_file> <authors_json_file> [options]
     academic_tracker search_by_DOI <config_json_file> <to_email> <DOI_file> [options]
     academic_tracker create_publication_json <PMID_file> <from_email> [options]
+    academic_tracker search_for_ORCID_ids <config_json_file> <authors_json_file> [options]
+    academic_tracker search_for_Google_Scholar_ids <authors_json_file> [options]
+    academic_tracker create_author_JSON <author_file> [options]
     
 Options:
     -h --help                         Show this screen.
@@ -18,32 +21,133 @@ Options:
 """
 
 
-## TODO add master option to send an email or print file with all publications found.
 ## TODO add pull from myncbi.
 ## TODO add usage case for reading in a author csv or excel file and creating json.
-## TODO add use case for reading in an authors json and searching Google Scholar for their scholar id.
 ## TODO add options to ignore google scholar and orcid
 ## TODO add functionality to more easily handle verbose option, and add more messages when it is in use.
 ## DO command line options still make sense with projects?
 
+## FOr second use case, turn html into text and parse lines looking for common citation types (MLA, Chicago, etc.) special case for myncbi URL.
 
 from . import fileio
 from . import user_input_checking
 from . import webio
 from . import helper_functions
 from . import emails_and_reports
+from . import tracker_schema
 import re
 import os
 import datetime
 import docopt
 import sys
+import copy
 from . import __version__
 
 
 
-def create_publication_json(args):
-    """
+def create_author_JSON(args):
+    """"""
     
+    user_input_checking.cli_inputs_check(args)
+    
+    ## Check the file extension and call the correct read in function.
+    extension = os.path.splitext(args["<author_file>"])[1][1:]
+    if extension == "csv":
+        document_string = fileio.read_text_from_txt(args["<author_file>"])
+    else:
+        print("Unknown file type for author file.")
+        sys.exit()
+    
+    if not document_string:
+        print("Nothing was read from the author file. Make sure the file is not empty or is a supported file type.")
+        sys.exit()
+        
+    
+    lines = document_string.split("\n")
+    keys = lines.pop(0).split(",")
+    if not "author_id" in keys:
+        print("author_id is not a column in the author_file. It is required.")
+        sys.exit()
+        
+    
+    
+
+
+def search_for_ORCID_ids(args):
+    """"""
+    
+    user_input_checking.cli_inputs_check(args)
+    
+    ## read in authors
+    authors_json_file = fileio.load_json(args["<authors_json_file>"])
+    user_input_checking.author_file_check(authors_json_file)
+    
+    ## read in config file
+    config_file = fileio.load_json(args["<config_json_file>"])
+    
+    ## Get inputs from config file and check them for errors.
+    user_input_checking.tracker_validate(config_file, tracker_schema.ORCID_schema)
+        
+    ## Overwrite values in config_file if command line options were used.
+    ## Note the replacement is after checking both inputs and config_file independnetly. If done before config_file_check then CLI errors will dispaly as config_file errors.
+    config_file = helper_functions.overwrite_config_with_CLI(config_file, args)
+    
+    old_authors_json = copy.deepcopy(authors_json_file)
+    
+    print("Searching ORCID for author's ORCID ids.")
+    authors_json_file = webio.search_ORCID_for_ids(config_file["ORCID_search"]["ORCID_key"], config_file["ORCID_search"]["ORCID_secret"], authors_json_file)
+    
+    if old_authors_json != authors_json_file:
+        ## Build the save directory name.
+        if args["--test"]:
+            save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
+            os.mkdir(save_dir_name)
+        else:
+            save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
+            os.mkdir(save_dir_name)
+    
+        fileio.save_authors_json_to_file(save_dir_name, authors_json_file)
+        print("Success! authors.json saved in " + save_dir_name)
+    else:
+        print("No authors were matched from the ORCID results. No new file saved.")
+
+
+
+def search_for_Google_Scholar_ids(args):
+    """"""
+    
+    user_input_checking.cli_inputs_check(args)
+    
+    ## read in authors
+    authors_json_file = fileio.load_json(args["<authors_json_file>"])
+    user_input_checking.author_file_check(authors_json_file)
+        
+    old_authors_json = copy.deepcopy(authors_json_file)
+    
+    print("Searching Google Scholar for author's scholar ids.")
+    authors_json_file = webio.search_Google_Scholar_for_ids(authors_json_file)
+    
+    if old_authors_json != authors_json_file:
+        ## Build the save directory name.
+        if args["--test"]:
+            save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
+            os.mkdir(save_dir_name)
+        else:
+            save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
+            os.mkdir(save_dir_name)
+    
+        fileio.save_authors_json_to_file(save_dir_name, authors_json_file)
+        print("Success! authors.json saved in " + save_dir_name)
+    else:
+        print("No authors were matched from the Google Scholar results. No new file saved.")
+
+
+
+def create_publication_json(args):
+    """Create a publications JSON file from a list of PMIDs.
+    
+    Args:
+        args (dict): args from DocOpt CLI
     """
     
     user_input_checking.cli_inputs_check(args)
@@ -229,7 +333,7 @@ def search_by_author(args):
     ## combine previous and new publications lists and save
     fileio.save_publications_to_file(save_dir_name, publication_dict, prev_pubs)
     
-    print("Success. Publications and emails saved in " + save_dir_name)
+    print("Success. Publications, reports, and emails saved in " + save_dir_name)
 
 
 
@@ -243,6 +347,10 @@ def main():
         search_by_DOI(args)
     elif len(sys.argv) > 1 and sys.argv[1] == "create_publication_json":
         create_publication_json(args)
+    elif len(sys.argv) > 1 and sys.argv[1] == "search_for_ORCID_ids":
+        search_for_ORCID_ids(args)
+    elif len(sys.argv) > 1 and sys.argv[1] == "search_for_Google_Scholar_ids":
+        search_for_Google_Scholar_ids(args)
     else:
         print("Unrecognized command")               
                 

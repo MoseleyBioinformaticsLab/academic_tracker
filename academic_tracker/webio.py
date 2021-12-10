@@ -880,8 +880,92 @@ def search_Crossref_for_pubs(prev_pubs, authors_json_file, mailto_email, verbose
     return publication_dict
         
                 
+
+##TODO look into adding expanded search to orcid, would need to upgrade to 3.0.
+def search_ORCID_for_ids(ORCID_key, ORCID_secret, authors_json_file):
+    """"""
+    
+    import requests
+    SEARCH_VERSION = "/v3.0"
+    def search_replace(self, query, method, start, rows, headers,
+                endpoint):
+        url = endpoint + SEARCH_VERSION + \
+                "/expanded-search/?defType=" + method + "&q=" + query
+        if start:
+            url += "&start=%s" % start
+        if rows:
+            url += "&rows=%s" % rows
+
+        response = requests.get(url, headers=headers,
+                                timeout=self._timeout)
+        response.raise_for_status()
+        if self.do_store_raw_response:
+            self.raw_response = response
+        return response.json()
+    
+    orcid.PublicAPI._search = search_replace
+    
+    api = orcid.PublicAPI(ORCID_key, ORCID_secret)
+    
+    search_token = api.get_search_token_from_orcid()
+    
+    for author, author_attributes in authors_json_file.items():
         
+        if "ORCID" in author_attributes:
+            continue
         
+        search_results = api.search(author_attributes["pubmed_name_search"], access_token=search_token)
+        
+        for result in search_results["expanded-result"]:
+            if re.match(author_attributes["first_name"].lower() + ".*", result["given-names"]) and author_attributes["last_name"].lower() == result["family-names"]:
+                
+                if any([affiliation.lower() in institution.lower() for institution in result["institution-name"] for affiliation in author_attributes["affiliations"]]):
+                    author_attributes["ORCID"] = result["orcid-id"]
+                    break
+
+
+    return authors_json_file
+
+
+
+def search_Google_Scholar_for_ids(authors_json_file):
+    """"""
+    
+    for author, author_attributes in authors_json_file.items():
+        
+        if "scholar_id" in author_attributes:
+            continue
+    
+        search_query = scholarly.scholarly.search_author(author)
+        
+        for queried_author in search_query:
+        
+            if any([affiliation.lower() in queried_author["affiliation"].lower() for affiliation in author_attributes["affiliations"]]):
+                author_attributes["scholar_id"] = queried_author["scholar_id"]
+                break
+            
+    return authors_json_file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 
 ## How to import from a full file path

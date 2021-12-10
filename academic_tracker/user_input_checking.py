@@ -109,15 +109,31 @@ def config_file_check(config_json):
     """Check that the configuration JSON file is as expected.
     
     The configuration JSON file format is expected to be::
-        {
-             "grants" : [ "P42ES007380", "P42 ES007380" ],
-             "cutoff_year" : 2019,
-             "affiliations" : [ "kentucky" ],
-             "from_email" : "ptth222@uky.edu",
-             "cc_email" : [], # optional
-             "email_template" : "<formatted-string>",
-             "email_subject" : "<formatted-string>"
-        }
+         {
+           "project_descriptions" : {
+               "<project-name> : {
+                  "grants" : [ "P42ES007380", "P42 ES007380" ],
+                  "cutoff_year" : 2019,
+                  "affiliations" : [ "kentucky" ],
+                  "from_email" : "ptth222@uky.edu",
+                  "to_email" : [], # optional
+                  "cc_email" : [], # optional
+                  "email_template" : "<formatted-string>",
+                  "email_subject" : "<formatted-string>",
+                  "authors" : [], # optional
+                  },...
+           },
+               "ORCID_search" : {
+                  "ORCID_key": "<ORCID_key>",
+                  "ORCID_secret": "<ORCID_secret>"
+           }
+               "PubMed_search": {
+                  "PubMed_email": "<PubMed_email>" 
+           }
+               "Crossref_search": {
+                  "mailto_email": "<mailto_email>" 
+           }
+         }
     
     
     Args:

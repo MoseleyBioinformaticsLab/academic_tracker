@@ -67,9 +67,32 @@ config_schema = {
                           "properties": {
                                   "mailto_email": {"type": "string", "format":"email"}},
                           "required":["mailto_email"]},
+        "Authors" :  { "type": "object",
+                     "minProperties": 1,
+                     "additionalProperties": {
+                             "type": "object",
+                             "properties":{
+                                     "first_name": {"type": "string", "minLength":1},
+                                     "last_name":{"type": "string", "minLength":1},
+                                     "pubmed_name_search": {"type": "string", "minLength":1},
+                                     "email":{"type": "string", "format":"email"},
+                                     "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
+                                     "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                                     "cutoff_year": {"type": "integer"},
+                                     "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                                     "from_email": {"type": "string", "format": "email"},
+                                     "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                     "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
+                                     "email_subject": {"type": "string", "minLength":1},
+                                     "scholar_id": {"type": "string", "minLength":1},
+                                     },
+                             "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
+
+                             }
+                       }
                                   
      },
- "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search"]
+ "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search", "Authors"]
 }
 
 
@@ -80,37 +103,42 @@ ORCID_schema["properties"] = ORCID_schema["properties"]["ORCID_search"]
 ORCID_schema["required"] = ["ORCID_search"]
 
 
+PubMed_schema = copy.deepcopy(config_schema)
+PubMed_schema["properties"] = PubMed_schema["properties"]["PubMed_search"]
+PubMed_schema["required"] = ["PubMed_search"]
 
 
-authors_schema = {
- "$schema": "https://json-schema.org/draft/2020-12/schema",
- "title": "Authors JSON",
- "description": "Input file that contains information about the authors'.",
- 
- "type": "object",
- "minProperties": 1,
- "additionalProperties": {
-         "type": "object",
-         "properties":{
-                 "first_name": {"type": "string", "minLength":1},
-                 "last_name":{"type": "string", "minLength":1},
-                 "pubmed_name_search": {"type": "string", "minLength":1},
-                 "email":{"type": "string", "format":"email"},
-                 "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
-                 "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                 "cutoff_year": {"type": "integer"},
-                 "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}}, 
-                 "from_email": {"type": "string", "format": "email"},
-                 "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                 "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
-                 "email_subject": {"type": "string", "minLength":1},
-                 "scholar_id": {"type": "string", "minLength":1},
-                 },
-         "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
-         
-         }
-        
-}
+
+
+# authors_schema = {
+#  "$schema": "https://json-schema.org/draft/2020-12/schema",
+#  "title": "Authors JSON",
+#  "description": "Input file that contains information about the authors'.",
+#
+#  "type": "object",
+#  "minProperties": 1,
+#  "additionalProperties": {
+#          "type": "object",
+#          "properties":{
+#                  "first_name": {"type": "string", "minLength":1},
+#                  "last_name":{"type": "string", "minLength":1},
+#                  "pubmed_name_search": {"type": "string", "minLength":1},
+#                  "email":{"type": "string", "format":"email"},
+#                  "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
+#                  "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+#                  "cutoff_year": {"type": "integer"},
+#                  "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+#                  "from_email": {"type": "string", "format": "email"},
+#                  "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+#                  "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
+#                  "email_subject": {"type": "string", "minLength":1},
+#                  "scholar_id": {"type": "string", "minLength":1},
+#                  },
+#          "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
+#
+#          }
+#
+# }
          
          
 

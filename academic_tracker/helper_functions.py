@@ -34,30 +34,29 @@ def parse_pubmed_full_text_links(pubmed_html):
 
 
 
-def create_authors_by_project_dict(config_file, authors_json_file):
-    """Create the authors_by_project_dict dict from the config_file and authors_json_file.
+def create_authors_by_project_dict(config_dict):
+    """Create the authors_by_project_dict dict from the config_dict.
     
-    Creates a dict where the keys are the projects in the config_file and the values 
-    are the authors associated with that project from authors_json_file.
+    Creates a dict where the keys are the projects in the config_dict and the values
+    are the authors associated with that project from config_dict["Authors"].
     
     Args:
-        config_file (dict): schema matches the JSON Project Tracking Configuration file.
-        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
         
     Returns:
-        authors_by_project_dict (dict): keys are the projects in the config_file and the values are the authors associated with that project from authors_json_file.
+        authors_by_project_dict (dict): keys are the projects in the config_dict and the values are the authors associated with that project from config_dict["Authors"].
     """
     
-    authors_by_project_dict = {project:{} for project in config_file["project_descriptions"]}
-    for project, project_attributes in config_file["project_descriptions"].items():
+    authors_by_project_dict = {project:{} for project in config_dict["project_descriptions"]}
+    for project, project_attributes in config_dict["project_descriptions"].items():
         if "authors" in project_attributes:
             for author in project_attributes["authors"]:
-                if author in authors_json_file:
-                    authors_by_project_dict[project][author] = copy.deepcopy(authors_json_file[author])
+                if author in config_dict["Authors"]:
+                    authors_by_project_dict[project][author] = copy.deepcopy(config_dict["Authors"][author])
                 else:
                     print("Warning: The author, " + author + ", in the " + project + " project of the project tracking configuration file could not be found in the authors' JSON file.")
         else:
-            authors_by_project_dict[project] = copy.deepcopy(authors_json_file)
+            authors_by_project_dict[project] = copy.deepcopy(config_dict["Authors"])
     
         for author_attr in authors_by_project_dict[project].values():
             for key in project_attributes:
@@ -66,22 +65,22 @@ def create_authors_by_project_dict(config_file, authors_json_file):
     return authors_by_project_dict
 
 
-def adjust_author_attributes(authors_by_project_dict, authors_json_file):
-    """Modifies authors_json_file with values from authors_by_project_dict
+def adjust_author_attributes(authors_by_project_dict, config_dict):
+    """Modifies config_dict with values from authors_by_project_dict
     
     Go through the authors in authors_by_project_dict and find the lowest cutoff_year.
     Also find affiliations and grants and create a union of them across projects.
-    Update the authors in authors_json_file.
+    Update the authors in config_dict["Authors"].
     
     Args:
-        authors_by_project_dict (dict): keys are the projects in the config_file and the values are the authors associated with that project from authors_json_file.
-        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        authors_by_project_dict (dict): keys are the projects in the config_dict and the values are the authors associated with that project from config_dict["Authors"].
+        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
         
     Returns:
-        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
     """
     
-    for author, author_attr in authors_json_file.items():
+    for author, author_attr in config_dict["Authors"].items():
         if "cutoff_year" in author_attr:
             cutoff_year = author_attr["cutoff_year"]
         else:
@@ -114,7 +113,7 @@ def adjust_author_attributes(authors_by_project_dict, authors_json_file):
         author_attr["affiliations"] = affiliations
         author_attr["grants"] = grants
         
-    return authors_json_file
+    return config_dict["Authors"]
 
 
 
@@ -211,16 +210,37 @@ def regex_search_return(regex, string_to_search):
 
 
 
+def match_citation_authors_to_PubMed(citation_authors, pubmed_authors):
+    """
+    
+    Compares last names in each set of authors and if any last names match return True.
+    Trying to use initials is difficult because of the many ways they can be done. 
+    First names aren't always available from citations.
+    
+    Args:
+        citation_authors (list): list of dictionaries. The dictionary is either {"first", "middle", "last"} or {"first", "initials"}. Values can be an empty string.
+    """
+    
+    return any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pubmed_authors for author_attributes in citation_authors])
+    
+#    ## pubmed_authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
+#    for author_items in pubmed_authors:
+#        author_items_last_name = str(author_items.get("lastname")).lower()
+#        for author_attributes in citation_authors:
+#            if author_attributes["last_name"].lower() == author_items_last_name:
+#                return True
+#                
+#    return False
     
     
-def match_authors_in_pub_PubMed(authors_json_file, author_list):
+def match_authors_in_pub_PubMed(authors_json, author_list):
     """Look for matching authors in PubMed pub data.
     
     Goes through the author list from PubMed and tries matching to an author in 
-    authors_json_file using firstname, lastname, and affiliations.
+    authors_json using firstname, lastname, and affiliations.
     
     Args:
-        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         author_list (list): list of dicts where each dict is attributes of an author.
         
     Returns:
@@ -234,7 +254,7 @@ def match_authors_in_pub_PubMed(authors_json_file, author_list):
         author_items_first_name = str(author_items.get("firstname")).lower()
         author_items_last_name = str(author_items.get("lastname")).lower()
         
-        for author, author_attributes in authors_json_file.items():
+        for author, author_attributes in authors_json.items():
         
             ## Match the author's first and last name and then match affiliations.
             ## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. 
@@ -253,18 +273,18 @@ def match_authors_in_pub_PubMed(authors_json_file, author_list):
     else:
         return []
 
-
-
-
-def match_authors_in_pub_Crossref(authors_json_file, author_list):
+    
+    
+    
+def match_authors_in_pub_Crossref(authors_json, author_list):
     """Look for matching authors in Crossref pub data.
     
     Goes through the author list from Crossref and tries matching to an author in 
-    authors_json_file using firstname, lastname, and affiliations, or ORCID if ORCID
+    authors_json using firstname, lastname, and affiliations, or ORCID if ORCID
     is present.
     
     Args:
-        authors_json_file (dict): keys are authors and values are author attributes. Matches authors JSON schema.
+        authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         author_list (list): list of dicts where each dict is attributes of an author.
         
     Returns:
@@ -294,7 +314,7 @@ def match_authors_in_pub_Crossref(authors_json_file, author_list):
         else:
             ORCID_id = ""
         
-        for author, author_attributes in authors_json_file.items():
+        for author, author_attributes in authors_json.items():
         
             ## Match the author's first and last name and then match affiliations.
             ## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. 
@@ -352,25 +372,25 @@ def modify_pub_dict_for_saving(pub):
 
 
 
-def overwrite_config_with_CLI(config_file, args):
-    """Overwrite keys in config_file if command line options were used.
+def overwrite_config_with_CLI(config_dict, args):
+    """Overwrite keys in config_dict if command line options were used.
     
     Args:
-        config_file (dict): schema matches the JSON Project Tracking Configuration file.
+        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
         args (dict): input arguments from DocOpt.
         
     Returns:
-        config_file (dict): returns the config_file with any relevant command line arguments overwritten.
+        config_dict (dict): returns the config_dict with any relevant command line arguments overwritten.
     
     """
     
     overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
     for option in overwriting_options:
-        for project in config_file["project_descriptions"]:
+        for project in config_dict["project_descriptions"]:
             if args[option]:
-                config_file["project_descriptions"][project][option.replace("-","")] = args[option]
+                config_dict["project_descriptions"][project][option.replace("-","")] = args[option]
                 
-    return config_file
+    return config_dict
 
 
 
@@ -423,135 +443,89 @@ def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
 
 
 
-
+def find_duplicate_citations(tokenized_citations):
+    """"""
     
+    titles_list = [citation["title"] for citation in tokenized_citations if citation["title"]]
     
-    
+    pmids = {}
+    dois = {}
+    titles = {}
+    for count, citation in enumerate(tokenized_citations):
         
+        if citation["PMID"]:
+            if citation["PMID"] in pmids:
+                pmids[citation["PMID"]].append(count)
+            else:
+                pmids[citation["PMID"]] = [count]
+                
+        if citation["DOI"]:
+            if citation["DOI"] in dois:
+                dois[citation["DOI"]].append(count)
+            else:
+                dois[citation["DOI"]] = [count]
+                
+        if citation["title"]:
+            if is_fuzzy_match_to_list(citation["title"], titles_list):
+                titles[citation["title"]].append(count)
+            else:
+                titles[citation["title"]] = [count]
+                
+    
+    matching_pmids = {tuple(indexes) for pmid, indexes in pmids.items() if len(indexes) > 1}
+    matching_dois = {tuple(indexes) for doi, indexes in dois.items() if len(indexes) > 1}
+    matching_titles = {tuple(indexes) for title, indexes in titles.items() if len(indexes) > 1}
+    
+    all_matches = matching_pmids | matching_dois | matching_titles
+    
+    ## Matches need to be matched recursively to find true sets of matches.
+    ## For example if 1 and 2 are found to match on title and 2 and 3 are found to match 
+    ## on PMID then we need 1 set of (1,2,3) instead of 2 sets of (1,2) (2,3).
+    duplicates_dict = {}
+    for index_tuple in list(all_matches):
+        for index in index_tuple:
+            if index in duplicates_dict:
+                for index2 in index_tuple:
+                    if index2 != index:
+                        duplicates_dict[index].add(index2)
+            else:
+                duplicates_dict[index] = set()
+                for index2 in index_tuple:
+                    if index2 != index:
+                        duplicates_dict[index].add(index2)
+                        
+    for index, matches in duplicates_dict.items():
+        temp_set = matches
+        set_before_loop = matches
+        while(True):
+            for match in matches:
+                temp_set = temp_set | duplicates_dict[match]
+            
+            if set_before_loop == temp_set:
+                break
+            else:
+                set_before_loop = temp_set
+                
+        duplicates_dict[index] = temp_set
+        
+    unique_duplicate_sets = {tuple(duplicate_set) for duplicate_set in duplicates_dict.values()}
+    unique_duplicate_sets = [list(duplicate_set).sort for duplicate_set in unique_duplicate_sets]
+    
+    return unique_duplicate_sets
     
     
 
+def compare_citations_with_list(tokenized_citations, prev_pubs):
+    """"""
+    
+    prev_pubs_titles = [pub["title"] for pub in prev_pubs]
+    prev_pubs_dois = [pub["doi"].lower() for pub in prev_pubs]
+    prev_pubs_pmids = [pub["pubmed_id"] for pub in prev_pubs]
+    
+    return [True for citation in tokenized_citations if citation["PMID"] in prev_pubs_pmids or citation["DOI"] in prev_pubs_dois or is_fuzzy_match_to_list(citation["title"], prev_pubs_titles)]
 
 
-
-
-
-
-
-
-
-## 2021-12-02
-## I thought the fuzzy matching was super slow so this code tried to mitigate that by classifying pub_ids and reducing the amount of titles to fuzzy match.
-#def classify_pub_id(pub_id):
-#    """Classify given pub_d as either DOI, PMID, or URL.
-#    
-#    To classify as DOI doi must be in the string. PMID must be only numbers.
-#    Everything else is considered a URL.
-#    
-#    Args:
-#        pub_id (str): pub_id to classify
-#        
-#    Returns:
-#        (str): one of DOI, PMID, or URL
-#    """
-#    
-#    if re.match(r".*doi.*", pub_id):
-#        return "DOI"
-#    elif re.match(r"\d+", pub_id):
-#        return "PMID"
-#    else:
-#        return "URL"
-#
-#
-#
-#
-#
-#def classify_publication_dict_keys(publication_dict):
-#    """Classify all of the keys of publication_dict as either DOI, PMID, or URL.
-#    
-#    Args:
-#        publication_dict (dict): keys are pub_ids and values are pub attributes
-#        
-#    Returns:
-#        key_classifier (dict): {"DOI":[], "PMID":[], "URL":[]} each key is added to the appropriate list.
-#    """
-#    
-#    key_classifier = {"DOI":[], "PMID":[], "URL":[]}
-#    
-#    for pub_id in publication_dict:
-#        key_classifier[classify_pub_id(pub_id)].append(pub_id)
-#            
-#    return key_classifier
-#
-#
-#
-#def classify_publication_dict_titles(publication_dict):
-#    """Classify all of the title of publication_dict as either DOI, PMID, or URL.
-#    
-#    Args:
-#        publication_dict (dict): keys are pub_ids and values are pub attributes
-#        
-#    Returns:
-#        title_classifier (dict): {"DOI":[], "PMID":[], "URL":[]} each title is added to the appropriate list.
-#    """
-#    
-#    title_classifier = {"DOI":[], "PMID":[], "URL":[]}
-#
-#    for pub_id, pub_attributes in publication_dict.items():
-#        title_classifier[classify_pub_id(pub_id)].append(pub_attributes["title"])
-#            
-#    return title_classifier
-#
-#
-#
-#
-#def is_pub_in_publication_dict(pub_id, title, publication_dict, title_classifier):
-#    """True if pub_id is in publication_dict or title is a fuzzy match to different class titles in title_classifier.
-#    
-#    pub_ids can be either a DOI, a PMID, or URL. Since a publication can have all three of 
-#    these and multiple DOIs and URLs simply checking that the pub_id already exists in publication_dict
-#    is not enough. The title needs to be fuzzy matched with all the titles to be more confident. 
-#    Since fuzzy matching is slow only titles of different classes are compared except for 
-#    URLs, which is compared with all titles.
-#    
-#    Args:
-#        pub_id (str): pub_id to check against in publication_dict to see if it already exists.
-#        title (str): title corresponding to pub_id to check against titles in publication_dict.
-#        publication_dict (dict): keys are pub_ids and values are pub attributes.
-#        title_classifier (dict): {"DOI":[], "PMID":[], "URL":[]} each title in publication_dict should already be in this dict.
-#        
-#    Returns:
-#        (bool): True if the pub_id is in publication_dict or title is in title_classifier, False otherwise
-#    """
-#    
-#    if pub_id in publication_dict:
-#        return True
-#    
-#    pub_id_class = classify_pub_id(pub_id)
-#    
-#    if pub_id_class == "DOI":
-#        if is_fuzzy_match_to_list(title, title_classifier["PMID"]) or is_fuzzy_match_to_list(title, title_classifier["URL"]):
-#            return True
-#        else:
-#            return False
-#    
-#    elif pub_id_class == "PMID":
-#        if is_fuzzy_match_to_list(title, title_classifier["DOI"]) or is_fuzzy_match_to_list(title, title_classifier["URL"]):
-#            return True
-#        else:
-#            return False
-#    
-#    ## DOI and PMID won't share titles or it is extremely unlikely, but URLs can so check against every title.
-#    elif pub_id_class == "URL":
-#        titles = [pub_attr["title"] for pub_attr in publication_dict.values()]
-#        if is_fuzzy_match_to_list(title, titles):
-#            return True
-#        else:
-#            return False
-#        
-#    else:
-#        return False
-
+   
 
 
 

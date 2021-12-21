@@ -199,7 +199,7 @@ def create_email_dict_for_no_PMCID_pubs(publications_with_no_PMCID_list, config_
     
     For each publication in publications_with_no_PMCID_list add it's information 
     to the body of an email. Pull the subject, from, and cc emails from the 
-    config_file, and to from to_email.
+    config_dict, and to from to_email.
     
     Args:
         publications_with_no_PMCID_list (list): A list of dictionaries.
@@ -269,7 +269,64 @@ def replace_subject_magic_words(authors_attributes):
 
 
 
+def convert_tokenized_authors_to_str(authors):
+    """"""
+    
+    authors_string = ""
+    for author in authors:
+        if "first" in author:
+            if author["first"]:
+                authors_string += author["first"]
+                if author["last"]:
+                    authors_string += " " + author["last"] + ","
+                else:
+                    authors_string += ","
+            elif author["last"]:
+                authors_string += author["last"] + ","
+        else:
+            if author["last"]:
+                authors_string += author["last"]
+                if author["initials"]:
+                    authors_string += " " + author["initials"] + ","
+                else:
+                    authors_string += ","
+            else:
+                authors_string += author["initials"] + ","
+        if author["last"]:
+            authors_string += " " + author["last"] + ","
+            
+    return authors_string
 
+
+
+def create_reference_search_report(publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations):
+    """"""
+    
+    report_string = ""
+    for count, citation in enumerate(tokenized_citations):
+        if reference_lines:
+            report_string += "Reference Line: " + reference_lines[count] + "\n"
+        
+        report_string += "Tokenized Reference: Authors: " + convert_tokenized_authors_to_str(citation["authors"]) + " Title: " + citation["title"]
+        if citation["PMID"]:
+            report_string += " PMID: " + str(citation["PMID"])
+        if citation["DOI"]:
+            report_string += " DOI: " + citation["DOI"]
+        report_string += "\n"
+        
+        report_string += "Queried Information: DOI: " + str(publication_dict[matching_key_for_citation[count]]["doi"]) + \
+                         " PMID: " + str(publication_dict[matching_key_for_citation[count]]["pubmed_id"]) + \
+                         " PMCID: " + str(publication_dict[matching_key_for_citation[count]]["PMCID"])
+        if publication_dict[matching_key_for_citation[count]]["grants"]:
+            report_string +=  + " Grants: " + ", ".join(publication_dict[matching_key_for_citation[count]]["grants"])
+        else:
+            report_string +=  + " Grants: " + str(publication_dict[matching_key_for_citation[count]]["grants"])
+        report_string += " Is In Comparison File: " + str(is_citation_in_prev_pubs_list[count])
+        
+        report_string += "\n"
+        
+    return report_string
+    
 
 
 

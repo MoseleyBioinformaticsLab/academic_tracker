@@ -109,38 +109,58 @@ def config_file_check(config_json):
     """Check that the configuration JSON file is as expected.
     
     The configuration JSON file format is expected to be::
-         {
-           "project_descriptions" : {
-               "<project-name> : {
-                  "grants" : [ "P42ES007380", "P42 ES007380" ],
-                  "cutoff_year" : 2019,
-                  "affiliations" : [ "kentucky" ],
-                  "from_email" : "ptth222@uky.edu",
-                  "to_email" : [], # optional
-                  "cc_email" : [], # optional
-                  "email_template" : "<formatted-string>",
-                  "email_subject" : "<formatted-string>",
-                  "authors" : [], # optional
-                  },...
-           },
-               "ORCID_search" : {
-                  "ORCID_key": "<ORCID_key>",
-                  "ORCID_secret": "<ORCID_secret>"
-           }
-               "PubMed_search": {
-                  "PubMed_email": "<PubMed_email>" 
-           }
-               "Crossref_search": {
-                  "mailto_email": "<mailto_email>" 
-           }
-         }
+    {
+       "project_descriptions" : {
+           "<project-name> : {
+              "grants" : [ "P42ES007380", "P42 ES007380" ],
+              "cutoff_year" : 2019,
+              "affiliations" : [ "kentucky" ],
+              "from_email" : "ptth222@uky.edu",
+              "to_email" : [], # optional
+              "cc_email" : [], # optional
+              "email_template" : "<formatted-string>",
+              "email_subject" : "<formatted-string>",
+              "authors" : [], # optional
+              },...
+             },
+           "ORCID_search" : {
+              "ORCID_key": "<ORCID_key>",
+              "ORCID_secret": "<ORCID_secret>"
+            },
+           "PubMed_search": {
+              "PubMed_email": "<PubMed_email>"
+            },
+           "Crossref_search": {
+              "mailto_email": "<mailto_email>"
+            },
+           "Authors" : {
+              "Author 1": {
+                       "first_name" : "<first-name>",
+                       "last_name" : "<last-name>",
+                       "pubmed_name_search" : "<search-str>",
+                       "email": "email@uky.edu",
+                       "ORCID": "<orcid>" # optional
+                       "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
+                    },
+
+              "Author 2": {
+                       "first_name" : "<first-name>",
+                       "last_name" : "<last-name>",
+                       "pubmed_name_search" : "<search-str>", # optional
+                       "email": "email@uky.edu",
+                       "ORCID": "<orcid>" # optional
+                       "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
+                    },
+            }
+    }
     
     
     Args:
         config_json (dict): dict with the same structure as the configuration JSON file
     """
     
-    pattern_messages = {"email_template":" does not contain <total_pubs>."}
+    pattern_messages = {"email_template":" does not contain <total_pubs>.",
+                        "ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
     tracker_validate(instance=config_json, schema=tracker_schema.config_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
     
             
@@ -148,37 +168,37 @@ def config_file_check(config_json):
 
 
 
-def author_file_check(authors_json_file):
-    """Run input checking on the authors_json_file.
-    
-    The authors_json_file read in from the authors JSON file is expected to have the format::
-        {
-            "Author 1": {  
-                           "first_name" : "<first_name>",
-                           "last_name" : "<last_name>",
-                           "pubmed_name_search" : "<search-str>",
-                           "email": "email@uky.edu",
-                           "ORCID": "<orcid>" # optional      
-                           "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-                        },
-            
-            "Author 2": {  
-                           "first_name" : "<first_name>",
-                           "last_name" : "<last_name>",
-                           "pubmed_name_search" : "<search-str>",
-                           "email": "email@uky.edu",       
-                           "ORCID": "<orcid>" # optional 
-                           "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-                        },
-        }
-            
-    
-    Args:
-        authors_json_file (dict): dict with the same structure as the authors JSON file.
-    """
-    
-    pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
-    tracker_validate(instance=authors_json_file, schema=tracker_schema.authors_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
+# def author_file_check(authors_json):
+#     """Run input checking on the authors_json.
+#
+#     The authors_json read in from the authors JSON file is expected to have the format::
+#         {
+#             "Author 1": {
+#                            "first_name" : "<first_name>",
+#                            "last_name" : "<last_name>",
+#                            "pubmed_name_search" : "<search-str>",
+#                            "email": "email@uky.edu",
+#                            "ORCID": "<orcid>" # optional
+#                            "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
+#                         },
+#
+#             "Author 2": {
+#                            "first_name" : "<first_name>",
+#                            "last_name" : "<last_name>",
+#                            "pubmed_name_search" : "<search-str>",
+#                            "email": "email@uky.edu",
+#                            "ORCID": "<orcid>" # optional
+#                            "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
+#                         },
+#         }
+#
+#
+#     Args:
+#         authors_json (dict): dict with the same structure as the authors JSON file.
+#     """
+#
+#     pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
+#     tracker_validate(instance=authors_json, schema=tracker_schema.authors_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
 
 
 

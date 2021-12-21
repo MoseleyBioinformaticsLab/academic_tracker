@@ -130,18 +130,18 @@ def save_publications_to_file(save_dir_name, publication_dict, prev_pubs):
 
 
 
-def save_authors_json_to_file(save_dir_name, authors_json_file):
-    """Saves the authors_json_file to "authors.json" in save_dir_name in the current working directory.
+def save_config_to_file(save_dir_name, config_dict):
+    """Saves the config_dict to "configuration.json" in save_dir_name in the current working directory.
     
     Args:
         save_dir_name (str): directory name to append to the current working directory to save the authors.json file in
-        authors_json_file (dict): dictionary with author ids as the keys to the dict
+        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
     """
     
-    authors_save_path = os.path.join(os.getcwd(), save_dir_name, "authors.json")
+    authors_save_path = os.path.join(os.getcwd(), save_dir_name, "configuration.json")
     
     with open(authors_save_path, 'w') as outFile:
-        print(json.dumps(authors_json_file, indent=2, sort_keys=True), file=outFile)
+        print(json.dumps(config_dict, indent=2, sort_keys=True), file=outFile)
 
 
 
@@ -234,6 +234,36 @@ def read_text_from_txt(doc_path):
 #    
 #    return doc_string
         
+
+
+def save_reference_summary_report_to_file(publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, save_dir_name):
+    """"""
+    
+    save_path = os.path.join(os.getcwd(), save_dir_name, "summary_report.txt")
+    
+    text_to_save = emails_and_reports.create_reference_search_report(publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
+            
+    with open(save_path, 'wb') as outFile:
+        outFile.write(text_to_save.encode("utf-8"))
+                
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

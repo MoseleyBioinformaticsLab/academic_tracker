@@ -394,7 +394,6 @@ def overwrite_config_with_CLI(config_dict, args):
 
 
 
-## TODO are "Correction" publications unique ones? If so we need to add a special case to not filter them out.
 def is_fuzzy_match_to_list(str_to_match, list_to_match):
     """True if string is a 90 or higher ratio match to any string in list, False otherwise.
     
@@ -410,6 +409,22 @@ def is_fuzzy_match_to_list(str_to_match, list_to_match):
     
     return any([fuzzywuzzy.fuzz.ratio(str_to_match, list_string) >= 90 for list_string in list_to_match])
 
+
+
+def fuzzy_matches_to_list(str_to_match, list_to_match):
+    """Return strings and indexes for strings with match ratio that is 90 or higher.
+    
+    Args:
+        str_to_match (str): string to compare with list
+        list_to_match (list): list of strings to compare with str_to_match
+        
+    Returns:
+        (list): list of matches (tuples) with each element being the string and its index in list_to_match. [(9, "title 1"), ...]
+    """
+    str_to_match = str_to_match.lower()
+    list_to_match = [list_string.lower() for list_string in list_to_match]
+    
+    return [(index, list_string) for index, list_string in enumerate(list_to_match) if fuzzywuzzy.fuzz.ratio(str_to_match, list_string) >= 90]
 
 
 
@@ -466,8 +481,9 @@ def find_duplicate_citations(tokenized_citations):
                 dois[citation["DOI"]] = [count]
                 
         if citation["title"]:
-            if is_fuzzy_match_to_list(citation["title"], titles_list):
-                titles[citation["title"]].append(count)
+            fuzzy_matches = fuzzy_matches_to_list(citation["title"], titles_list)
+            if len(fuzzy_matches) > 1 and fuzzy_matches[0][1] in titles:
+                titles[fuzzy_matches[0][1]].append(count)
             else:
                 titles[citation["title"]] = [count]
                 
@@ -509,7 +525,9 @@ def find_duplicate_citations(tokenized_citations):
         duplicates_dict[index] = temp_set
         
     unique_duplicate_sets = {tuple(duplicate_set) for duplicate_set in duplicates_dict.values()}
-    unique_duplicate_sets = [list(duplicate_set).sort for duplicate_set in unique_duplicate_sets]
+    unique_duplicate_sets = [list(duplicate_set) for duplicate_set in unique_duplicate_sets]
+    for duplicate_set in unique_duplicate_sets:
+        duplicate_set.sort()
     
     return unique_duplicate_sets
     
@@ -522,10 +540,14 @@ def compare_citations_with_list(tokenized_citations, prev_pubs):
     prev_pubs_dois = [pub["doi"].lower() for pub in prev_pubs]
     prev_pubs_pmids = [pub["pubmed_id"] for pub in prev_pubs]
     
-    return [True for citation in tokenized_citations if citation["PMID"] in prev_pubs_pmids or citation["DOI"] in prev_pubs_dois or is_fuzzy_match_to_list(citation["title"], prev_pubs_titles)]
+    return [True if citation["PMID"] in prev_pubs_pmids or citation["DOI"] in prev_pubs_dois or is_fuzzy_match_to_list(citation["title"], prev_pubs_titles) else False for citation in tokenized_citations]
 
 
-   
+
+def nested_get(dic, keys):    
+    for key in keys:
+        dic = dic[key]
+    return dic   
 
 
 

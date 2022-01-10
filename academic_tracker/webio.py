@@ -21,6 +21,7 @@ import copy
 import bs4
 import sys
 import fuzzywuzzy.fuzz
+import json
 
 
 TOOL = "Academic Tracker"
@@ -75,7 +76,6 @@ def search_DOIs_on_pubmed(DOI_list, from_email):
     Returns:
         publications_with_no_PMCID_list (list): A list of dictionaries.
         [{"DOI":"publication DOI", "PMID": "publication PMID", "line":"short description of the publication", "Grants":"grants funding the publication"}]
-        
     """
     
     publications_with_no_PMCID_list = []
@@ -230,30 +230,29 @@ def search_references_on_PubMed(tokenized_citations, from_email, verbose):
             matching_key_for_citation.append(None)
             continue
         
-        publications = pubmed.query(query_string, max_results=50)
+        publications = pubmed.query(query_string, max_results=10)
         
+        citation_matched = False
         for pub in publications:
             
             pmid = pub.pubmed_id.split("\n")[0]
             pub_id = DOI_URL + pub.doi.lower() if pub.doi else pmid
             
             if helper_functions.is_pub_in_publication_dict(pub_id, pub.title, publication_dict, titles):
-                matching_key_for_citation.append(None)
                 continue
             
             ## Match publication to the citation.
             pub_matched = False
             if citation["PMID"] == pmid:
                 pub_matched = True
-            elif citation["DOI"] == pub.doi.lower():
+            elif pub.doi and citation["DOI"] == pub.doi.lower():
                 pub_matched = True
             else:
-                has_matching_author = any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pub.authors for author_attributes in citation["authors"]])
+                has_matching_author = any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pub.authors for author_attributes in citation["authors"] if author_items.get("lastname") and author_attributes["last"]])
                 if has_matching_author and fuzzywuzzy.fuzz.ratio(citation["title"], pub.title) >= 90:
                     pub_matched = True
                                
             if not pub_matched:
-                matching_key_for_citation.append(None)
                 continue
                         
             
@@ -262,9 +261,11 @@ def search_references_on_PubMed(tokenized_citations, from_email, verbose):
             publication_dict[pub_id] = pub_dict
             titles.append(pub_dict["title"])
             matching_key_for_citation.append(pub_id)
+            citation_matched = True
             break
                     
-            
+        if not citation_matched:
+            matching_key_for_citation.append(None)
         time.sleep(1)
         
     return publication_dict, matching_key_for_citation
@@ -296,6 +297,36 @@ def check_pubmed_for_grants(pub_id, grants):
 
 
 
+def get_redirect_url_from_doi(doi):
+    """"""
+    
+    doi = doi.lower()
+    
+    if re.match(r".*http.*", doi):
+        match = helper_functions.regex_match_return(r".*doi.org/(.*)", doi)
+        if match:
+            url = DOI_URL + "api/handles/" + match[0]
+        else:
+            return ""
+    else:
+        url = DOI_URL + "api/handles/" + doi
+        
+    try:
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        json_response = json.loads(response.read())
+        response.close()
+                
+    except urllib.error.HTTPError:
+        print("Error trying to resolve DOI: " + doi)
+        return ""
+        
+    for value in json_response["values"]:
+        if value["type"] == "URL":
+            return value["data"]["value"]
+        
+    return ""
+
 
 
 def check_doi_for_grants(doi, grants, verbose):
@@ -313,9 +344,9 @@ def check_doi_for_grants(doi, grants, verbose):
         found_grants (list): list of str with each grant that was found on the page.
     """
     
-    doi_url = "https://doi.org/"
-    
-    url = os.path.join(doi_url, doi)
+    url = get_redirect_url_from_doi(doi)
+    if not url:
+        return set()
     
     url_str = get_url_contents_as_str(url, verbose)
     if not url_str:
@@ -651,13 +682,16 @@ def search_references_on_Google_Scholar(tokenized_citations, mailto_email, verbo
     
     publication_dict = {}
     titles = []
+    matching_key_for_citation = []
     for citation in tokenized_citations:
         
         if citation["title"]:
             query = scholarly.scholarly.search_pubs(citation["title"])
         else:
+            matching_key_for_citation.append(None)
             continue
         
+        citation_matched = False
         for count, pub in enumerate(query):
             
             if count > 50:
@@ -712,15 +746,18 @@ def search_references_on_Google_Scholar(tokenized_citations, mailto_email, verbo
                                         "lastname": author["last"]} for author in citation["authors"]]
                 publication_dict[pub_id] = pub_dict
                 titles.append(title)
+                matching_key_for_citation.append(pub_id)
+                citation_matched = True
             
             break
         
-    return publication_dict
+        if not citation_matched:
+            matching_key_for_citation.append(None)
+        
+    return publication_dict, matching_key_for_citation
 
 
 
-## Leaving this function here because it might be useful someday, but the problem is that verifying DOI addresses is hard to do.
-## Currently trying to visit DOIs programmatically usually results in an HTTP Forbidden error.
 def scrape_url_for_DOI(url, verbose):
     """Searches url for DOI.
     
@@ -739,32 +776,15 @@ def scrape_url_for_DOI(url, verbose):
     if not url_str:
         return ""
             
-    DOI = helper_functions.regex_group_return(helper_functions.regex_search_return(r"(?i)doi:\s*(<[^>]*>)?([^\s<]+)", url_str), 1)
+    doi = helper_functions.regex_group_return(helper_functions.regex_search_return(r"(?i)doi:\s*(<[^>]*>)?([^\s<]+)", url_str), 1)
     
-    if DOI:
-        ## TODO figure out how to visit DOI addresses without getting Forbidden HTTPError.
-        if re.match(r".*http.*", DOI):
-            try:
-                req = urllib.request.Request(DOI, headers={"User-Agent": "Mozilla/5.0"})
-                response = urllib.request.urlopen(req, timeout=5)
-                response.close()
-                        
-            except urllib.error.HTTPError:
-                return ""
-            
-            ## try to pull out the DOI from the url. If it doesn't work then empty string is returned.
-            return helper_functions.regex_group_return(helper_functions.regex_match_return(r"https://doi.org/(.*)", DOI), 0)
+    if doi:
         
+        url = get_redirect_url_from_doi(doi)
+        if url:
+            return doi
         else:
-            try:
-                req = urllib.request.Request(DOI_URL + DOI, headers={"User-Agent": "Mozilla/5.0"})
-                response = urllib.request.urlopen(req, timeout=5)
-                response.close()
-                        
-            except urllib.error.HTTPError:
-                return ""
-            
-            return DOI
+            return ""
         
     else:
         return ""
@@ -1042,17 +1062,21 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
     
     publication_dict = {}
     titles = []
+    matching_key_for_citation = []
     for citation in tokenized_citations:
         
         if citation["DOI"]:
-            results = cr.works(ids = citation["DOI"], filter = {"type":"journal-article"}, limit = 50)
+            results = cr.works(ids = citation["DOI"])
+            works = [results["message"]]
         elif citation["title"]:
-            results = cr.works(query_bibliographic = citation["title"], filter = {"type":"journal-article"}, limit = 50)
+            results = cr.works(query_bibliographic = citation["title"], filter = {"type":"journal-article"}, limit = 10)
+            works = results["message"]["items"]
         else:
+            matching_key_for_citation.append(None)
             continue
         
-        
-        for work in results["message"]["items"]:
+        citation_matched = False
+        for work in works:
             
             ## Look for DOI
             if "DOI" in work:
@@ -1061,7 +1085,7 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
                 doi = None
              
             ## Look for title    
-            if "title" in work:
+            if "title" in work and work["title"]:
                 title = work["title"][0]
             else:
                 continue
@@ -1070,11 +1094,13 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
             if citation["DOI"] == doi:
                 pub_matched = True
             else:
-                has_matching_author = any([author_items.get("family").lower() == author_attributes["last"].lower() for author_items in work["author"] for author_attributes in citation["authors"]])
-                if has_matching_author and fuzzywuzzy.fuzz.ratio(citation["title"], title) >= 90:
-                    pub_matched = True
+                if "author" in work:
+                    has_matching_author = any([author_items.get("family").lower() == author_attributes["last"].lower() for author_items in work["author"] for author_attributes in citation["authors"] if "family" in author_items and author_items.get("family")])
+                    if has_matching_author and fuzzywuzzy.fuzz.ratio(citation["title"], title) >= 90:
+                        pub_matched = True
                                
             if not pub_matched:
+                matching_key_for_citation.append(None)
                 continue
             
             
@@ -1189,12 +1215,16 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
             
             publication_dict[pub_id] = pub_dict
             titles.append(title)
+            matching_key_for_citation.append(pub_id)
+            citation_matched = True
             break
-            
+        
+        if not citation_matched:
+            matching_key_for_citation.append(None)
         time.sleep(1)
             
             
-    return publication_dict
+    return publication_dict, matching_key_for_citation
         
                 
 

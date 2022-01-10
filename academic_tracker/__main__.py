@@ -17,12 +17,20 @@ Options:
 """
 
 
-## TODO add pull from myncbi.
 ## TODO add usage case for reading in a author csv or excel file and creating json.
 ## TODO add options to ignore google scholar and orcid
 ## TODO add functionality to more easily handle verbose option, and add more messages when it is in use.
 ## TODO add option to not look for previous publications JSON automatically.
 ## TODO improve reference search to see if every author on the pub has the pub associated with them on ORCID
+## TODO add journal to queried info in summary report. Make the summary report now a raw debug report.
+## Change config schema to reflect what is on wiki. Implement default project stuff.
+## Make all publication.json keys keywords for reports, make tokenized data available and reference line.
+## Make prev_pub option where if it is blank or IGNORE then don't look for prev_pub
+## Add a way for a user to test the report and email formatting.
+## Add option to tokenize a reference file and create JSON, add capability to read tokenized json to ref_search
+
+
+## Should second use case look for prev_pubs automatically? NO. Extend prev_pubs to be URL or reference file? Much harder than how it is done currently.
 
 
 from . import fileio
@@ -216,6 +224,8 @@ def reference_search(args):
     ## Get inputs from config file and check them for errors.
     ## TODO change this so it only checks the sections of the config actually used.
     user_input_checking.config_file_check(config_dict)
+    
+    has_previous_pubs, prev_pubs = fileio.read_previous_publications(args)
         
     ## Overwrite values in config_dict if command line options were used.
     ## Note the replacement is after checking both inputs and config_dict independently. If done before config_file_check then CLI errors will dispaly as config_dict errors.
@@ -223,7 +233,7 @@ def reference_search(args):
             
     ## Check the reference file input and see if it is a URL
     if re.match(r"http.*", args["<reference_file_or_URL>"]):
-        if re.match(r".*ncbi.nlm.nih.gov/mybncbi.*", args["<reference_file_or_URL>"]):
+        if re.match(r".*ncbi.nlm.nih.gov/myncbi.*", args["<reference_file_or_URL>"]):
             tokenized_citations, reference_lines = webio.parse_myncbi_citations(args["<reference_file_or_URL>"], args["--verbose"])
         else:
             document_string = webio.get_text_from_url(args["<reference_file_or_URL>"])
@@ -266,10 +276,13 @@ def reference_search(args):
         for index_list in duplicate_citations:
             for index in index_list:
                 if reference_lines:
-                    print(reference_lines[index])
+                    pretty_print = reference_lines[index].split("\n")
+                    pretty_print = " ".join([line.strip() for line in pretty_print])
+                    print(pretty_print)
                 else:
                     print(tokenized_citations[index]["title"])
-            print()
+                print()
+            print("\n")
         
         indexes_to_remove = [index for duplicate_set in duplicate_citations for index in duplicate_set[1:]]
         
@@ -277,11 +290,27 @@ def reference_search(args):
         reference_lines = [citation for count, citation in enumerate(reference_lines) if not count in indexes_to_remove]
         
     
-    print("Querying PubMed and building the publication list.")
-    PubMed_publication_dict, matching_key_for_citation = webio.search_references_on_PubMed(tokenized_citations, config_dict["PubMed_search"]["PubMed_email"], args["--verbose"])
+    print("Finding publications. This could take a while.")
+    print("Searching PubMed.")
+    PubMed_publication_dict, PubMed_matching_key_for_citation = webio.search_references_on_PubMed(tokenized_citations, config_dict["PubMed_search"]["PubMed_email"], args["--verbose"])
+#    print("Searching Google Scholar.")
+#    Google_Scholar_publication_dict, Google_Scholar_matching_key_for_citation = webio.search_references_on_Google_Scholar(tokenized_citations, config_dict["Crossref_search"]["Crossref_email"], args["--verbose"])
+    print("Searching Crossref.")
+    Crossref_publication_dict, Crossref_matching_key_for_citation = webio.search_references_on_Crossref(tokenized_citations, config_dict["Crossref_search"]["Crossref_email"], args["--verbose"])
     
+    publication_dict = PubMed_publication_dict
+#    for key, value in Google_Scholar_publication_dict.items():
+#        if not key in publication_dict:
+#            publication_dict[key] = value
+    for key, value in Crossref_publication_dict.items():
+        if not key in publication_dict:
+            publication_dict[key] = value
+            
+    matching_key_for_citation = PubMed_matching_key_for_citation
+#    matching_key_for_citation = [key if key else Google_Scholar_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
+    matching_key_for_citation = [key if key else Crossref_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
+            
     ## Compare citations to prev_pubs 
-    has_previous_pubs, prev_pubs = fileio.read_previous_publications(args)
     is_citation_in_prev_pubs_list = []
     if has_previous_pubs:
         user_input_checking.prev_pubs_file_check(prev_pubs)
@@ -332,7 +361,7 @@ def author_search(args):
 #    config_dict = helper_functions.overwrite_config_with_CLI(config_dict, args)
     
     ## Create an authors_json for each project in the config_dict and update those authors attributes with the project attributes.
-    authors_by_project_dict = helper_functions.create_authors_by_project_dict(config_dict, config_dict)
+    authors_by_project_dict = helper_functions.create_authors_by_project_dict(config_dict)
                 
     ## Find minimum cutoff_year, and take the union of affiliations and grants for each author.
     helper_functions.adjust_author_attributes(authors_by_project_dict, config_dict)

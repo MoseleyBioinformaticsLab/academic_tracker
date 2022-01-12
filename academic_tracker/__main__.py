@@ -28,6 +28,7 @@ Options:
 ## Make prev_pub option where if it is blank or IGNORE then don't look for prev_pub
 ## Add a way for a user to test the report and email formatting.
 ## Add option to tokenize a reference file and create JSON, add capability to read tokenized json to ref_search
+## Go through each project in config_dict and add cc_email key if not there (building emails will error if that isn't there.)
 
 
 ## Should second use case look for prev_pubs automatically? NO. Extend prev_pubs to be URL or reference file? Much harder than how it is done currently.
@@ -415,7 +416,7 @@ def author_search(args):
         sys.exit()
     
     
-    email_messages = emails_and_reports.create_emails_dict(authors_by_project_dict, publication_dict, config_dict)
+    email_messages = emails_and_reports.create_emails_dict_auth(authors_by_project_dict, publication_dict, config_dict)
     
     
     ## Build the save directory name.

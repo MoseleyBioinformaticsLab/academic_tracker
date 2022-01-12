@@ -86,7 +86,27 @@ def create_pubs_by_author_dict(publication_dict):
 
 
 
-def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
+def create_emails_dict_ref(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, project_attributes):
+    """"""
+    
+    email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
+
+    pub_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_loop>(.*)</pub_loop>.*", template_string), 0)
+    pub_info = create_report_from_template_ref(pub_template, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
+    
+    template_string = re.sub(r"(?s)<pub_loop>.*</pub_loop>", pub_info, template_string)
+    
+    email_messages["emails"] = [{"body":template_string,
+                                 "subject":project_attributes["email_subject"],
+                                 "from":project_attributes["from_email"],
+                                 "to":",".join([email for email in project_attributes["to_email"]]),
+                                 "cc":",".join([email for email in project_attributes["cc_email"]])}]
+    
+    return email_messages
+
+
+
+def create_emails_dict_auth(authors_by_project_dict, publication_dict, config_dict):
     """Create emails for each author.
     
     For each author in pubs_by_author create an email with publication citations. 
@@ -96,7 +116,7 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
     Args:
         authors_by_project_dict (dict): keys are project names from the config file and values are pulled from the authors JSON file.
         publication_dict (dict): keys and values match the publications JSON file.
-        config_file (dict):keys and values match the project tracking configuration JSON file.
+        config_dict (dict):keys and values match the project tracking configuration JSON file.
         
     Returns:
         email_messages (dict): keys and values match the email JSON file.
@@ -108,10 +128,10 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
     
     pubs_by_author_dict = create_pubs_by_author_dict(publication_dict)
     
-    for project, project_attributes in config_file["project_descriptions"].items():
+    for project, project_attributes in config_dict["project_descriptions"].items():
         ## If to_email is in project then send one email with all authors for the project, or all authors depending on if authors is in project.
         if "to_email" in project_attributes:
-            email_messages["emails"].append({"body":build_project_email_body(project_attributes, publication_dict, pubs_by_author_dict),
+            email_messages["emails"].append({"body":build_email_body_auth(publication_dict, config_dict, authors_by_project_dict, project, project_attributes["email_template"]),
                                              "subject":project_attributes["email_subject"],
                                              "from":project_attributes["from_email"],
                                              "to":",".join([email for email in project_attributes["to_email"]]),
@@ -119,7 +139,7 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
         ## If authors is in project send an email to each author in the project.
         elif "authors" in project_attributes:
             email_messages["emails"] = email_messages["emails"] + \
-                                       [{"body":replace_body_magic_words(pubs_by_author_dict[author], authors_by_project_dict[project][author], publication_dict),
+                                       [{"body":build_email_body_auth(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, project_attributes["email_template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"]),
                                        "subject":replace_subject_magic_words(authors_by_project_dict[project][author]),
                                        "from":authors_by_project_dict[project][author]["from_email"],
                                        "to":authors_by_project_dict[project][author]["email"],
@@ -129,7 +149,7 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
         ## If neither authors nor to_email is in the project then send emails to all authors that have publications.
         else:
             email_messages["emails"] = email_messages["emails"] + \
-                                       [{"body":replace_body_magic_words(pubs_by_author_dict[author], authors_by_project_dict[project][author], publication_dict),
+                                       [{"body":build_email_body_auth(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, project_attributes["email_template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"]),
                                        "subject":replace_subject_magic_words(authors_by_project_dict[project][author]),
                                        "from":authors_by_project_dict[project][author]["from_email"],
                                        "to":authors_by_project_dict[project][author]["email"],
@@ -139,6 +159,19 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_file):
     
     return email_messages
 
+
+
+def build_email_body_auth(publication_dict, config_dict, authors_by_project_dict, project_name, template_string, author_first = "", author_last = ""):
+    """"""
+    
+    project_authors = build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string)
+    
+    template_string = re.sub(r"(?s)<author_loop>.*</author_loop>", project_authors, template_string)
+    if author_first:
+        template_string = template_string.replace("<author_first>", author_first)
+        template_string = template_string.replace("<author_last>", author_last)
+    
+    return template_string
 
 
 
@@ -264,8 +297,8 @@ def replace_subject_magic_words(authors_attributes):
         subject (str): A string with the text for the subject of the email to be sent to the author.
     """
     subject = authors_attributes["email_subject"]
-    subject = subject.replace("<author_first_name>", authors_attributes["first_name"])
-    subject = subject.replace("<author_last_name>", authors_attributes["last_name"])
+    subject = subject.replace("<author_first>", authors_attributes["first_name"])
+    subject = subject.replace("<author_last>", authors_attributes["last_name"])
     
     return subject
 
@@ -417,6 +450,25 @@ def create_report_from_template_ref(template_string, publication_dict, matching_
 def create_report_from_template_auth(template_string, publication_dict, config_dict, authors_by_project_dict):
     """"""
     
+    report_string = ""
+    for project_name in config_dict["project_descriptions"]:
+        template_string_copy = template_string
+        
+        project_authors = build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string)
+        
+        template_string_copy = re.sub(r"(?s)<author_loop>.*</author_loop>", project_authors, template_string_copy)
+        template_string_copy = template_string_copy.replace("<project_name>", project_name)
+        
+        report_string += template_string_copy
+        
+    return report_string
+
+
+
+
+def build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string):
+    """"""
+    
     simple_publication_keywords_map = {"<abstract>":"abstract",
                                         "<conclusions>":"conclusions",
                                         "<copyrights>":"copyrights",
@@ -438,57 +490,46 @@ def create_report_from_template_auth(template_string, publication_dict, config_d
                             "<author_name_search>":"pubmed_name_search",
                             "<author_email>":"email"}
     
-    
     pubs_by_author_dict = create_pubs_by_author_dict(publication_dict)
     
     author_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<author_loop>(.*)</author_loop>.*", template_string), 0)
     pub_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_loop>(.*)</pub_loop>.*", template_string), 0)
     
-    report_string = ""
-    for project_name in config_dict["project_descriptions"]:
-        template_string_copy = template_string
-        project_authors = ""
-        for author in authors_by_project_dict[project_name]:
-            if not author in pubs_by_author_dict:
-                continue
-            author_template_copy = author_template
+    project_authors = ""
+    for author in authors_by_project_dict[project_name]:
+        if not author in pubs_by_author_dict:
+            continue
+        author_template_copy = author_template
+        
+        authors_pubs = ""
+        for pub in pubs_by_author_dict[author]:
+            pub_template_copy = pub_template
             
-            authors_pubs = ""
-            for pub in pubs_by_author_dict[author]:
-                pub_template_copy = pub_template
+            for keyword, pub_key in simple_publication_keywords_map.items():
+                pub_template_copy = pub_template_copy.replace(keyword, str(publication_dict[pub][pub_key]))
                 
-                for keyword, pub_key in simple_publication_keywords_map.items():
-                    pub_template_copy = pub_template_copy.replace(keyword, str(publication_dict[pub][pub_key]))
+            authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
+            pub_template_copy = pub_template_copy.replace("<authors>", authors)
+            
+            if publication_dict[pub]["grants"]:
+                grants = ", ".join(publication_dict[pub]["grants"])
+            else:
+                grants = "None Found"
+            pub_template_copy = pub_template_copy.replace("<grants>", grants)
+            
+            for keyword, key_list in publication_date_keywords_map.items():
+                pub_template_copy = pub_template_copy.replace(keyword, str(helper_functions.nested_get(publication_dict[pub], key_list)))
                     
-                authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
-                pub_template_copy = pub_template_copy.replace("<authors>", authors)
-                
-                if publication_dict[pub]["grants"]:
-                    grants = ", ".join(publication_dict[pub]["grants"])
-                else:
-                    grants = "None Found"
-                pub_template_copy = pub_template_copy.replace("<grants>", grants)
-                
-                for keyword, key_list in publication_date_keywords_map.items():
-                    pub_template_copy = pub_template_copy.replace(keyword, str(helper_functions.nested_get(publication_dict[pub], key_list)))
-                        
-                authors_pubs += pub_template_copy
-            
-            author_template_copy = re.sub(r"(?s)<pub_loop>.*</pub_loop>", authors_pubs, author_template_copy)
-            for keyword, auth_key in authors_keywords_map.items():
-                author_template_copy = author_template_copy.replace(keyword, str(config_dict["Authors"][author][auth_key]))
-                
-            project_authors += author_template_copy
-            
-        template_string_copy = re.sub(r"(?s)<author_loop>.*</author_loop>", project_authors, template_string_copy)
-        template_string_copy = template_string_copy.replace("<project_name>", project_name)
+            authors_pubs += pub_template_copy
         
-        report_string += template_string_copy
+        author_template_copy = re.sub(r"(?s)<pub_loop>.*</pub_loop>", authors_pubs, author_template_copy)
+        for keyword, auth_key in authors_keywords_map.items():
+            author_template_copy = author_template_copy.replace(keyword, str(config_dict["Authors"][author][auth_key]))
+            
+        project_authors += author_template_copy
         
-    return report_string
-
-
-
+    return project_authors
+    
 
 
 

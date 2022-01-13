@@ -9,13 +9,13 @@ import re
 from . import helper_functions
 
 
-def create_emails_dict_ref(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, project_attributes):
+def create_emails_dict(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, project_attributes):
     """"""
     
     email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
 
     pub_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_loop>(.*)</pub_loop>.*", template_string), 0)
-    pub_info = create_report_from_template_ref(pub_template, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
+    pub_info = create_report_from_template(pub_template, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
     
     template_string = re.sub(r"(?s)<pub_loop>.*</pub_loop>", pub_info, template_string)
     
@@ -106,7 +106,7 @@ def create_reference_search_diagnostic(publication_dict, matching_key_for_citati
     
 
 
-def create_report_from_template_ref(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations):
+def create_report_from_template(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations):
     """"""
     
     simple_publication_keywords_map = {"<abstract>":"abstract",

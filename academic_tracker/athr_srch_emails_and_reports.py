@@ -58,7 +58,7 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_dict):
     pubs_by_author_dict = create_pubs_by_author_dict(publication_dict)
     
     for project, project_attributes in config_dict["project_descriptions"].items():
-        ## If to_email is in project then send one email with all authors for the project, or all authors depending on if authors is in project.
+        ## If to_email is in project then send one email with all authors for the project.
         if "to_email" in project_attributes:
             email_messages["emails"].append({"body":build_email_body(publication_dict, config_dict, authors_by_project_dict, project, project_attributes["email_template"]),
                                              "subject":project_attributes["email_subject"],
@@ -121,7 +121,7 @@ def replace_subject_keywords(authors_attributes):
 
 
 
-def create_report_from_template_auth(template_string, publication_dict, config_dict, authors_by_project_dict):
+def create_report_from_template(template_string, publication_dict, config_dict, authors_by_project_dict):
     """"""
     
     report_string = ""

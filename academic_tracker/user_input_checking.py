@@ -105,7 +105,7 @@ def cli_inputs_check(args):
 
 
 
-def config_file_check(config_json):
+def config_file_check(config_json, args):
     """Check that the configuration JSON file is as expected.
     
     The configuration JSON file format is expected to be::
@@ -120,6 +120,7 @@ def config_file_check(config_json):
               "cc_email" : [], # optional
               "email_template" : "<formatted-string>",
               "email_subject" : "<formatted-string>",
+              "report_ref_template" : <formatted-string>, #optional
               "authors" : [], # optional
               },...
              },
@@ -157,14 +158,74 @@ def config_file_check(config_json):
     
     Args:
         config_json (dict): dict with the same structure as the configuration JSON file
+        args (dict): dict of the input args to the program
     """
     
-    pattern_messages = {"email_template":" does not contain <total_pubs>.",
-                        "ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
-    tracker_validate(instance=config_json, schema=tracker_schema.config_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
+    schema = tracker_schema.config_schema
+    if args["--no_ORCID"]:
+        del schema["properties"]["ORCID_search"]
+    if args["--no_Crossref"] and args["--no_GoogleScholar"]:
+        del schema["properties"]["Crossref_search"]
+    
+    pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
+    tracker_validate(instance=config_json, schema=schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
+    
+    for project, project_attributes in config_json["project_descriptions"].items():
+        if not "cc_email" in project_attributes:
+            project_attributes["cc_email"] = []
     
             
 
+def ref_config_file_check(config_json, args):
+    """Check that the configuration JSON file is as expected.
+    
+    The configuration JSON file format is expected to be::
+    {
+       "project_descriptions" : {
+           "<project-name> : {
+              "from_email" : "ptth222@uky.edu", #optional
+              "to_email" : [], # optional
+              "cc_email" : [], # optional
+              "email_template" : "<formatted-string>", #optional
+              "email_subject" : "<formatted-string>", #optional
+              "report_ref_template" : <formatted-string>, #optional
+              },...
+             },
+           "PubMed_search": {
+              "PubMed_email": "<PubMed_email>"
+            },
+           "Crossref_search": {
+              "mailto_email": "<mailto_email>"
+            },
+    }
+    
+    
+    Args:
+        config_json (dict): dict with a truncated structure of the configuration JSON file
+        args (dict): dict of the input args to the program
+        
+    Returns:
+        (bool): True if email keys are in the default project False otherwise.
+    """
+    
+    schema = tracker_schema.ref_config_schema
+    if args["--no_Crossref"]:
+        del schema["properties"]["Crossref_search"]
+    
+    tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())
+    email_dependence_keys = ["from_email", "email_template", "email_subject"]
+    if "default" in config_json["project_descriptions"]:
+        if not "cc_email" in config_json["project_descriptions"]["default"]:
+            config_json["project_descriptions"]["default"]["cc_email"] = []
+            
+        keys_in_config = [key for key in email_dependence_keys if key in config_json["project_descriptions"]["default"]]
+        if len(keys_in_config) > 0 and len(keys_in_config) < len(email_dependence_keys):
+            print("Warning: Only the " + " ".join(keys_in_config) + " key(s) are in the default project. In order to send emails all of the following keys are required: " + ", ".join(email_dependence_keys))
+            return True
+        
+    return False
+        
+ 
 
 
 

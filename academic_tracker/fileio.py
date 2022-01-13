@@ -4,13 +4,16 @@ This module contains the functions that read and write files.
 
 
 import os.path
-import json
 import re
 import os
 import datetime
 import sys
+
 import docx
-from . import emails_and_reports
+import json
+
+from . import ref_srch_emails_and_reports
+from . import athr_srch_emails_and_reports
 
 
 def load_json(filepath):
@@ -53,6 +56,10 @@ def read_previous_publications(args):
     
     has_previous_pubs = False
     if args["--prev_pub"]:
+        
+        if args["--prev_pubs"].lower() == "ignore":
+            return False, {}
+        
         prev_pubs = load_json(args["--prev_pub"])
         has_previous_pubs = True
                             
@@ -145,20 +152,8 @@ def save_config_to_file(save_dir_name, config_dict):
 
 
 
-def save_new_pubs_to_file(publication_dict, pubs_by_author_dict, save_dir_name):
-    """
-    """
-    
-    save_path = os.path.join(os.getcwd(), save_dir_name, "new_pubs_by_author.txt")
-    
-    text_to_save = "\n\n".join([author + ":\n" + emails_and_reports.add_indention_to_string(emails_and_reports.create_citations_for_author(pubs_by_author_dict[author], publication_dict)) for author in pubs_by_author_dict])
-    
-    with open(save_path, 'wb') as outFile:
-        outFile.write(text_to_save.encode("utf-8"))
 
-
-
-def save_project_reports_to_file(publication_dict, save_dir_name, project_dicts):
+def save_author_summary_report_to_file(template_string, publication_dict, config_dict, authors_by_project_dict, save_dir_name):
     """Creates one text file with all projects and thier associated authors in it.
     
     Loops through the project_dicts and grabs publication information for each 
@@ -173,16 +168,13 @@ def save_project_reports_to_file(publication_dict, save_dir_name, project_dicts)
     
     save_path = os.path.join(os.getcwd(), save_dir_name, "summary_report.txt")
     
-    pubs_by_author_dict = emails_and_reports.create_pubs_by_author_dict(publication_dict)
-    
-    text_to_save = "\n\n\n\n".join([project + ":\n" + emails_and_reports.create_indented_project_report(project_dict, pubs_by_author_dict, publication_dict) for project, project_dict in project_dicts.items()])
+    text_to_save = athr_srch_emails_and_reports.create_report_from_template(template_string, publication_dict, config_dict, authors_by_project_dict)
             
     
     with open(save_path, 'wb') as outFile:
         outFile.write(text_to_save.encode("utf-8"))
         
         
-
 
 def read_text_from_docx(doc_path):
     """Open docx file at doc_path and read contents into a string.
@@ -236,12 +228,12 @@ def read_text_from_txt(doc_path):
         
 
 
-def save_reference_summary_report_to_file(publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, save_dir_name):
+def save_reference_summary_report_to_file(report_ref_template, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, save_dir_name):
     """"""
     
     save_path = os.path.join(os.getcwd(), save_dir_name, "summary_report.txt")
     
-    text_to_save = emails_and_reports.create_reference_search_report(publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
+    text_to_save = ref_srch_emails_and_reports.create_report_from_template(report_ref_template, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
             
     with open(save_path, 'wb') as outFile:
         outFile.write(text_to_save.encode("utf-8"))

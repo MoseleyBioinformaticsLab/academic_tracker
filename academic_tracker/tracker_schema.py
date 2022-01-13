@@ -45,8 +45,9 @@ config_schema = {
                              "from_email": {"type": "string", "format": "email"},
                              "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                              "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                             "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
+                             "email_template": {"type": "string", "minLength":1},
                              "email_subject": {"type": "string", "minLength":1},
+                             "report_ref_template": {"type": "string", "minLength":1},
                              "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                              },
                              
@@ -108,6 +109,11 @@ PubMed_schema["properties"] = PubMed_schema["properties"]["PubMed_search"]
 PubMed_schema["required"] = ["PubMed_search"]
 
 
+ref_config_schema = copy.deepcopy(config_schema)
+del ref_config_schema["properties"]["ORCID_search"]
+del ref_config_schema["properties"]["Authors"]
+ref_config_schema["required"] = ["PubMed_search", "Crossref_search"]
+ref_config_schema["properties"]["project_descriptions"]["additionalProperties"]["required"] = []
 
 
 # authors_schema = {

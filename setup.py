@@ -38,6 +38,7 @@ REQUIRES = [
     "beautifulsoup4 >= 4.9.3",
     "fuzzywuzzy >= 0.18.0",
     "docx >= 0.8.11"
+    "pandas >= 0.24.2"
 ]
 
 

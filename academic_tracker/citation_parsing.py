@@ -30,7 +30,6 @@ def parse_text_for_citations(text):
                               "Vancouver":tokenize_Vancouver_authors}
         
     parsed_pubs = []
-    reference_lines = []
     
     lines = text.split("\n")
     for count, line in enumerate(lines):
@@ -59,11 +58,10 @@ def parse_text_for_citations(text):
                 else:
                     doi = None
                             
-                parsed_pubs.append({"authors":tokenized_authors, "title":title, "PMID":pmid, "DOI":doi})
-                reference_lines.append(line.strip())
+                parsed_pubs.append({"authors":tokenized_authors, "title":title, "PMID":pmid, "DOI":doi, "reference_line":line.strip(), "pub_dict_key":""})
                 break
             
-    return parsed_pubs, reference_lines
+    return parsed_pubs
 
 
 
@@ -179,7 +177,6 @@ def tokenize_myncbi_citations(html):
     soup = bs4.BeautifulSoup(html, "html.parser")
     
     parsed_pubs = []
-    reference_lines = []
     
     citations = soup.find_all("div", class_ = "ncbi-docsum")
     for citation in citations:
@@ -227,10 +224,9 @@ def tokenize_myncbi_citations(html):
         else:
             pmid = ""
         
-        parsed_pubs.append({"authors":authors, "title":title, "PMID":pmid, "DOI":doi})
-        reference_lines.append(citation.text.strip())
+        parsed_pubs.append({"authors":authors, "title":title, "PMID":pmid, "DOI":doi, "reference_line":citation.text.strip(), "pub_dict_key":""})
         
-    return parsed_pubs, reference_lines
+    return parsed_pubs
 
 
 
@@ -278,7 +274,7 @@ def parse_MEDLINE_format(text_string):
                 
         else:
             if pmid or doi or title or authors:
-                parsed_pubs.append({"authors":authors, "title":title, "PMID":pmid, "DOI":doi})
+                parsed_pubs.append({"authors":authors, "title":title, "PMID":pmid, "DOI":doi, "reference_line":"", "pub_dict_key":""})
             pmid = ""
             doi = ""
             title = ""

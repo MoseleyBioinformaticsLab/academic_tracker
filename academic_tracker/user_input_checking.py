@@ -108,52 +108,62 @@ def cli_inputs_check(args):
 def config_file_check(config_json, args):
     """Check that the configuration JSON file is as expected.
     
-    The configuration JSON file format is expected to be::
+    The configuration JSON file format is expected to be:
     {
-       "project_descriptions" : {
-           "<project-name> : {
-              "grants" : [ "P42ES007380", "P42 ES007380" ],
-              "cutoff_year" : 2019,
-              "affiliations" : [ "kentucky" ],
-              "from_email" : "ptth222@uky.edu",
-              "to_email" : [], # optional
-              "cc_email" : [], # optional
-              "email_template" : "<formatted-string>",
-              "email_subject" : "<formatted-string>",
-              "report_ref_template" : <formatted-string>, #optional
-              "authors" : [], # optional
-              },...
-             },
-           "ORCID_search" : {
-              "ORCID_key": "<ORCID_key>",
-              "ORCID_secret": "<ORCID_secret>"
-            },
-           "PubMed_search": {
-              "PubMed_email": "<PubMed_email>"
-            },
-           "Crossref_search": {
-              "mailto_email": "<mailto_email>"
-            },
-           "Authors" : {
-              "Author 1": {
-                       "first_name" : "<first-name>",
-                       "last_name" : "<last-name>",
-                       "pubmed_name_search" : "<search-str>",
-                       "email": "email@uky.edu",
-                       "ORCID": "<orcid>" # optional
-                       "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-                    },
-
-              "Author 2": {
-                       "first_name" : "<first-name>",
-                       "last_name" : "<last-name>",
-                       "pubmed_name_search" : "<search-str>", # optional
-                       "email": "email@uky.edu",
-                       "ORCID": "<orcid>" # optional
-                       "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-                    },
-            }
-    }
+           "project_descriptions" : {
+               "<project-name>" : {
+                  "grants" : [ "P42ES007380", "P42 ES007380" ],
+                  "cutoff_year" : 2019, # optional
+                  "affiliations" : [ "kentucky" ],
+                  "project_report" : { # optional 
+                          "template": "<formatted_string>",
+                          "to_email": [],    #optional
+                          "cc_email": []    #optional
+                          "from_email": "<email>",  #optional
+                          "email_body": "<body>",    #optional
+                          "email_subject": "<subject>",   #optional              
+                      },
+                  "authors" : [], # optional
+                  },...
+           },
+               "ORCID_search" : {
+                  "ORCID_key": "<ORCID_key>",
+                  "ORCID_secret": "<ORCID_secret>"
+           },
+               "PubMed_search": {
+                  "PubMed_email": "<PubMed_email>" 
+           },
+               "Crossref_search": {
+                  "mailto_email": "<mailto_email>" 
+           },
+               "summary_report" : { # optional 
+                   "template": "<formatted_string>",
+                   "to_email": [],    #optional
+                   "cc_email": []    #optional
+                   "from_email": "<email>",  #optional
+                   "email_body": "<body>",    #optional
+                   "email_subject": "<subject>",   #optional              
+           },
+               "Authors" : {
+                  "Author 1": {  
+                           "first_name" : "<first-name>",
+                           "last_name" : "<last-name>",
+                           "pubmed_name_search" : "<search-str>",
+                           "email": "email@uky.edu",
+                           "ORCID": "<orcid>" # optional       
+                           "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional    
+                        },
+            
+                  "Author 2": {  
+                           "first_name" : "<first-name>",
+                           "last_name" : "<last-name>",
+                           "pubmed_name_search" : "<search-str>", # optional
+                           "email": "email@uky.edu",
+                           "ORCID": "<orcid>" # optional 
+                           "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
+                        },
+           }
+         }
     
     
     Args:
@@ -173,13 +183,16 @@ def config_file_check(config_json, args):
     for project, project_attributes in config_json["project_descriptions"].items():
         if not "cc_email" in project_attributes:
             project_attributes["cc_email"] = []
+            
+    if "summary_report" in config_json and not "cc_email" in config_json["summary_report"]:
+            config_json["summary_report"]["cc_email"] = []
     
             
 
 def ref_config_file_check(config_json, args):
     """Check that the configuration JSON file is as expected.
     
-    The configuration JSON file format is expected to be::
+    The configuration JSON file format is expected to be:
     {
        "project_descriptions" : {
            "<project-name> : {
@@ -203,9 +216,6 @@ def ref_config_file_check(config_json, args):
     Args:
         config_json (dict): dict with a truncated structure of the configuration JSON file
         args (dict): dict of the input args to the program
-        
-    Returns:
-        (bool): True if email keys are in the default project False otherwise.
     """
     
     schema = tracker_schema.ref_config_schema
@@ -213,17 +223,10 @@ def ref_config_file_check(config_json, args):
         del schema["properties"]["Crossref_search"]
     
     tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())
-    email_dependence_keys = ["from_email", "email_template", "email_subject"]
-    if "default" in config_json["project_descriptions"]:
-        if not "cc_email" in config_json["project_descriptions"]["default"]:
-            config_json["project_descriptions"]["default"]["cc_email"] = []
+    
+    if "summary_report" in config_json and not "cc_email" in config_json["summary_report"]:
+            config_json["summary_report"]["cc_email"] = []
             
-        keys_in_config = [key for key in email_dependence_keys if key in config_json["project_descriptions"]["default"]]
-        if len(keys_in_config) > 0 and len(keys_in_config) < len(email_dependence_keys):
-            print("Warning: Only the " + " ".join(keys_in_config) + " key(s) are in the default project. In order to send emails all of the following keys are required: " + ", ".join(email_dependence_keys))
-            return True
-        
-    return False
         
  
 
@@ -268,7 +271,7 @@ def ref_config_file_check(config_json, args):
 def prev_pubs_file_check(prev_pubs):
     """Run input checking on prev_pubs dict.
     
-    The prev_pubs read in from the previous publications JSON file is expected to have the format::
+    The prev_pubs read in from the previous publications JSON file is expected to have the format:
         {
            "pub_id1": 
               {
@@ -306,6 +309,22 @@ def prev_pubs_file_check(prev_pubs):
     
 
 
+def tok_reference_check(tok_ref):
+    """Run input checking on tok_ref dict.
+    
+    The tok_ref read in from JSON is expected to have the format:
+        {
+           "authors": {"last": "<last>", "initials": "<initials>", "first": "<first>", "middle": "<middle>"},
+           "title": "<title>",
+           "PMID": "<PMID>",
+           "DOI": "<DOI>"
+        }
+            
+    Args:
+        tok_ref (dict): dict with the same structure as the tokenized reference JSON file.
+    """
+    
+    tracker_validate(instance=tok_ref, schema=tracker_schema.tok_schema, format_checker=jsonschema.FormatChecker())
 
 
 

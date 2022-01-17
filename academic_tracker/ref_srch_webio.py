@@ -6,6 +6,8 @@ Internet interfacing for reference_search
 import time
 import copy
 import sys
+import os
+import re
 
 import pymed
 import scholarly
@@ -16,6 +18,8 @@ import fuzzywuzzy.fuzz
 from . import helper_functions
 from . import citation_parsing
 from . import webio
+from . import fileio
+from . import user_input_checking
 
 
 TOOL = webio.TOOL
@@ -356,8 +360,9 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
             elif external_url:
                 pub_id = external_url
             else:
-                print("Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.")
-                print("Title: " + title)
+                if verbose:
+                    print("Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.")
+                    print("Title: " + title)
                 continue
             
             
@@ -421,7 +426,7 @@ def parse_myncbi_citations(url, verbose):
     soup = bs4.BeautifulSoup(url_str, "html.parser")
     number_of_pages = int(soup.find("span", class_ = "totalPages").text)
     
-    parsed_pubs, reference_lines = citation_parsing.tokenize_myncbi_citations(url_str)
+    parsed_pubs = citation_parsing.tokenize_myncbi_citations(url_str)
     
     ## Parse the rest of the pages.    
     if url[-1] == "/":
@@ -438,9 +443,77 @@ def parse_myncbi_citations(url, verbose):
         
         temp_pubs, temp_lines = citation_parsing.tokenize_myncbi_citations(url_str)
         parsed_pubs += temp_pubs
-        reference_lines += temp_lines
         
-    return parsed_pubs, reference_lines
+    return parsed_pubs
+
+
+
+def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
+    """"""
+    
+    ## Check the reference_input to see if it is json.
+    extension = os.path.splitext(reference_input)[1][1:]
+    if extension == "json":
+        tokenized_citations = fileio.load_json(reference_input)
+        user_input_checking.tok_reference_check(tokenized_citations)
+    
+    ## Check the reference file input and see if it is a URL
+    elif re.match(r"http.*", reference_input):
+        if re.match(r".*ncbi.nlm.nih.gov/myncbi.*", reference_input):
+            tokenized_citations = parse_myncbi_citations(reference_input, verbose)
+        else:
+            document_string = webio.get_text_from_url(reference_input)
+            
+            if not document_string:
+                print("Nothing was read from the URL. Make sure the address is correct.")
+                sys.exit()
+            
+            tokenized_citations = citation_parsing.parse_text_for_citations(document_string)
+    else:
+        # Check the file extension and call the correct read in function.
+        if extension == "docx":
+            document_string = fileio.read_text_from_docx(reference_input)
+        elif extension == "txt":
+            document_string = fileio.read_text_from_txt(reference_input)
+        else:
+            print("Unknown file type for reference file.")
+            sys.exit()
+    
+        if not document_string:
+            print("Nothing was read from the reference file. Make sure the file is not empty or is a supported file type.")
+            sys.exit()
+        
+        if MEDLINE_reference:
+            tokenized_citations = citation_parsing.parse_MEDLINE_format(document_string)
+        else:
+            tokenized_citations = citation_parsing.parse_text_for_citations(document_string)
+            
+    if not tokenized_citations:
+        print("Warning: Could not tokenize any citations in provided reference. Check setup and formatting and try again.")
+        sys.exit()
+    
+    ## Look for duplicates in citations.
+    duplicate_citations = helper_functions.find_duplicate_citations(tokenized_citations)
+    if duplicate_citations:
+        print("Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.")
+        print("Duplicates:")
+        for index_list in duplicate_citations:
+            for index in index_list:
+                if tokenized_citations[index]["reference_line"]:
+                    pretty_print = tokenized_citations[index]["reference_line"].split("\n")
+                    pretty_print = " ".join([line.strip() for line in pretty_print])
+                    print(pretty_print)
+                else:
+                    print(tokenized_citations[index]["title"])
+                print()
+            print("\n")
+        
+        indexes_to_remove = [index for duplicate_set in duplicate_citations for index in duplicate_set[1:]]
+        
+        tokenized_citations = [citation for count, citation in enumerate(tokenized_citations) if not count in indexes_to_remove]
+        
+    return tokenized_citations
+
 
 
 

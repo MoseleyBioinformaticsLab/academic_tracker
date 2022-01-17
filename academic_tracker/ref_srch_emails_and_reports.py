@@ -3,29 +3,7 @@
 Functions to create emails and reports for reference_search.
 """
 
-import datetime
-import re
-
 from . import helper_functions
-
-
-def create_emails_dict(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations, project_attributes):
-    """"""
-    
-    email_messages = {"creation_date" : str(datetime.datetime.now())[0:16]}
-
-    pub_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_loop>(.*)</pub_loop>.*", template_string), 0)
-    pub_info = create_report_from_template(pub_template, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations)
-    
-    template_string = re.sub(r"(?s)<pub_loop>.*</pub_loop>", pub_info, template_string)
-    
-    email_messages["emails"] = [{"body":template_string,
-                                 "subject":project_attributes["email_subject"],
-                                 "from":project_attributes["from_email"],
-                                 "to":",".join([email for email in project_attributes["to_email"]]),
-                                 "cc":",".join([email for email in project_attributes["cc_email"]])}]
-    
-    return email_messages
 
 
 
@@ -59,54 +37,8 @@ def convert_tokenized_authors_to_str(authors):
 
 
 
-def create_reference_search_diagnostic(publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations):
-    """"""
-    
-    report_string = ""
-    for count, citation in enumerate(tokenized_citations):
-        if reference_lines:
-            pretty_print = reference_lines[count].split("\n")
-            pretty_print = " ".join([line.strip() for line in pretty_print])
-            report_string += "Reference Line: " + pretty_print + "\n"
-        
-        report_string += "Tokenized Reference: \n\tAuthors: " + convert_tokenized_authors_to_str(citation["authors"]) + " \n\tTitle: " + citation["title"]
-        if citation["PMID"]:
-            report_string += " \n\tPMID: " + str(citation["PMID"])
-        if citation["DOI"]:
-            report_string += " \n\tDOI: " + citation["DOI"]
-        report_string += "\n"
-        
-        if matching_key_for_citation[count]:
-            doi = publication_dict[matching_key_for_citation[count]]["doi"]
-            pmid = publication_dict[matching_key_for_citation[count]]["pubmed_id"]
-            pmcid = publication_dict[matching_key_for_citation[count]]["PMCID"]
-            if publication_dict[matching_key_for_citation[count]]["grants"]:
-                grants = ", ".join(publication_dict[matching_key_for_citation[count]]["grants"])
-        
-                
-        if not doi:
-            doi = "Not Found"
-        if not pmid:
-            pmid = "Not Found"
-        if not pmcid:
-            pmcid = "Not Found"
-        if not grants:
-            grants = "None Found"
-        
-        report_string += "Queried Information: \n\tDOI: " + doi + \
-                         " \n\tPMID: " + pmid + \
-                         " \n\tPMCID: " + pmcid +\
-                         " \n\tGrants: " + grants
-        if is_citation_in_prev_pubs_list:
-            report_string += " \n\tIs In Comparison File: " + str(is_citation_in_prev_pubs_list[count])
-        
-        report_string += "\n\n\n"
-        
-    return report_string
-    
 
-
-def create_report_from_template(template_string, publication_dict, matching_key_for_citation, is_citation_in_prev_pubs_list, reference_lines, tokenized_citations):
+def create_report_from_template(template_string, publication_dict, is_citation_in_prev_pubs_list, tokenized_citations):
     """"""
     
     simple_publication_keywords_map = {"<abstract>":"abstract",
@@ -129,7 +61,7 @@ def create_report_from_template(template_string, publication_dict, matching_key_
                               "<tok_DOI>":"DOI", 
                               "<tok_PMID>":"PMID"}
     
-    
+    matching_key_for_citation = [citation["pub_dict_key"] for citation in tokenized_citations]
     
     report_string = ""
     for pub_id, pub_values in publication_dict.items():
@@ -157,8 +89,8 @@ def create_report_from_template(template_string, publication_dict, matching_key_
         tok_authors = convert_tokenized_authors_to_str(tokenized_citations[tok_index]["authors"])
         template_string_copy = template_string_copy.replace("<tok_authors>", tok_authors)
         
-        if reference_lines:
-            pretty_print = reference_lines[tok_index].split("\n")
+        if tokenized_citations[tok_index]["reference_line"]:
+            pretty_print = tokenized_citations[tok_index]["reference_line"].split("\n")
             pretty_print = " ".join([line.strip() for line in pretty_print])
             template_string_copy = template_string_copy.replace("<ref_line>", pretty_print)
         
@@ -172,5 +104,69 @@ def create_report_from_template(template_string, publication_dict, matching_key_
 
 
 
+def create_reference_search_diagnostic(publication_dict, is_citation_in_prev_pubs_list, tokenized_citations):
+    """"""
+    
+    report_string = ""
+    for count, citation in enumerate(tokenized_citations):
+        if tokenized_citations[count]["reference_line"]:
+            pretty_print = tokenized_citations[count]["reference_line"].split("\n")
+            pretty_print = " ".join([line.strip() for line in pretty_print])
+            report_string += "Reference Line: " + pretty_print + "\n"
+        
+        report_string += "Tokenized Reference: \n\tAuthors: " + convert_tokenized_authors_to_str(citation["authors"]) + " \n\tTitle: " + citation["title"]
+        if citation["PMID"]:
+            report_string += " \n\tPMID: " + str(citation["PMID"])
+        if citation["DOI"]:
+            report_string += " \n\tDOI: " + citation["DOI"]
+        report_string += "\n"
+        
+        if tokenized_citations[count]["pub_dict_key"]:
+            doi = publication_dict[tokenized_citations[count]["pub_dict_key"]]["doi"]
+            pmid = publication_dict[tokenized_citations[count]["pub_dict_key"]]["pubmed_id"]
+            pmcid = publication_dict[tokenized_citations[count]["pub_dict_key"]]["PMCID"]
+            if publication_dict[tokenized_citations[count]["pub_dict_key"]]["grants"]:
+                grants = ", ".join(publication_dict[tokenized_citations[count]["pub_dict_key"]]["grants"])
+        
+                
+        if not doi:
+            doi = "Not Found"
+        if not pmid:
+            pmid = "Not Found"
+        if not pmcid:
+            pmcid = "Not Found"
+        if not grants:
+            grants = "None Found"
+        
+        report_string += "Queried Information: \n\tDOI: " + doi + \
+                         " \n\tPMID: " + pmid + \
+                         " \n\tPMCID: " + pmcid +\
+                         " \n\tGrants: " + grants
+        if is_citation_in_prev_pubs_list:
+            report_string += " \n\tIs In Comparison File: " + str(is_citation_in_prev_pubs_list[count])
+        
+        report_string += "\n\n\n"
+        
+    return report_string
 
+
+
+def create_tokenization_report(tokenized_citations):
+    """"""
+    
+    report_string = ""
+    for count, citation in enumerate(tokenized_citations):
+        if tokenized_citations[count]["reference_line"]:
+            pretty_print = tokenized_citations[count]["reference_line"].split("\n")
+            pretty_print = " ".join([line.strip() for line in pretty_print])
+            report_string += "Reference Line: " + pretty_print + "\n"
+        
+        report_string += "Tokenized Reference: \n\tAuthors: " + convert_tokenized_authors_to_str(citation["authors"]) + " \n\tTitle: " + citation["title"]
+        if citation["PMID"]:
+            report_string += " \n\tPMID: " + str(citation["PMID"])
+        if citation["DOI"]:
+            report_string += " \n\tDOI: " + citation["DOI"]
+        report_string += "\n\n"
+        
+    return report_string
 

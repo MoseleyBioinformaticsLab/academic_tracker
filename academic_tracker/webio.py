@@ -73,7 +73,7 @@ def search_ORCID_for_ids(ORCID_key, ORCID_secret, authors_json):
     
     for author, author_attributes in authors_json.items():
         
-        if "ORCID" in author_attributes:
+        if "ORCID" in author_attributes or not "affiliations" in author_attributes:
             continue
         
         search_results = api.search(author_attributes["pubmed_name_search"], access_token=search_token)
@@ -95,10 +95,10 @@ def search_Google_Scholar_for_ids(authors_json):
     
     for author, author_attributes in authors_json.items():
         
-        if "scholar_id" in author_attributes:
+        if "scholar_id" in author_attributes or not "affiliations" in author_attributes:
             continue
     
-        search_query = scholarly.scholarly.search_author(author)
+        search_query = scholarly.scholarly.search_author(author_attributes["pubmed_name_search"])
         
         for queried_author in search_query:
         
@@ -275,44 +275,6 @@ def get_grants_from_Crossref(title, mailto_email, grants):
 
 
 
-def parse_myncbi_citations(url, verbose):
-    """
-    Note that authors and title can be missing or empty from the webpage.
-    """
-    
-    ## Get the first page, find out the total pages, and parse it.
-    url_str = get_url_contents_as_str(url, verbose)
-    if not url_str:
-        print("Error: Could not access the MYNCBI webpage. Make sure the address is correct.")
-        sys.exit()
-    
-    soup = bs4.BeautifulSoup(url_str, "html.parser")
-    number_of_pages = int(soup.find("span", class_ = "totalPages").text)
-    
-    parsed_pubs, reference_lines = citation_parsing.tokenize_myncbi_citations(url_str)
-    
-    ## Parse the rest of the pages.    
-    if url[-1] == "/":
-        new_url = url
-    else:
-        new_url = url + "/"
-    
-    for i in range(2,number_of_pages+1):
-        
-        url_str = get_url_contents_as_str(new_url + "?page=" + str(i), verbose)
-        if not url_str:
-            print("Error: Could not access page " + str(i) + " of the MYNCBI webpage. Aborting run.")
-            sys.exit()
-        
-        temp_pubs, temp_lines = citation_parsing.tokenize_myncbi_citations(url_str)
-        parsed_pubs += temp_pubs
-        reference_lines += temp_lines
-        
-    return parsed_pubs, reference_lines
-
-
-
-
 def get_url_contents_as_str(url, verbose):
     """"""
     
@@ -350,6 +312,7 @@ def send_emails(email_messages):
         msg["To"] = email_parts["to"]
         msg["Cc"] = email_parts["cc"]
         msg.set_content(email_parts["body"])
+        msg.add_attachment(email_parts["attachment"], filename=email_parts["attachment_filename"])
         
         subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
 

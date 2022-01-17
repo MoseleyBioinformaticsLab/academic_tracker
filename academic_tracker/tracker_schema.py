@@ -41,17 +41,23 @@ config_schema = {
                      "properties":{
                              "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                              "cutoff_year": {"type": "integer"},
-                             "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}}, 
-                             "from_email": {"type": "string", "format": "email"},
-                             "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                             "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                             "email_template": {"type": "string", "minLength":1},
-                             "email_subject": {"type": "string", "minLength":1},
-                             "report_ref_template": {"type": "string", "minLength":1},
+                             "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                             "project_report": {"type": "object",
+                                                "properties":{
+                                                        "template": {"type": "string", "minLength":1},
+                                                        "from_email": {"type": "string", "format": "email"},
+                                                        "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                        "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                        "email_body": {"type": "string", "minLength":1},
+                                                        "email_subject": {"type": "string", "minLength":1},},
+                                                "required": ["template"],
+                                                "dependencies":{
+                                                        "from_email": ["email_body", "email_subject"],
+                                                        "to_email": ["from_email", "email_body", "email_subject"]}},
                              "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                              },
                              
-                     "required": ["grants", "cutoff_year", "affiliations", "from_email", "email_template", "email_subject"]
+                     "required": ["grants", "affiliations"]
                      }
             },
              
@@ -68,6 +74,17 @@ config_schema = {
                           "properties": {
                                   "mailto_email": {"type": "string", "format":"email"}},
                           "required":["mailto_email"]},
+        "summary_report" : {"type": "object",
+                          "properties":{
+                                  "template": {"type": "string", "minLength":1},
+                                  "from_email": {"type": "string", "format": "email"},
+                                  "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                  "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                  "email_body": {"type": "string", "minLength":1},
+                                  "email_subject": {"type": "string", "minLength":1},},
+                          "required": ["template"],
+                          "dependencies":{
+                                  "from_email": ["email_body", "email_subject", "to_email"]}},
         "Authors" :  { "type": "object",
                      "minProperties": 1,
                      "additionalProperties": {
@@ -81,11 +98,19 @@ config_schema = {
                                      "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                                      "cutoff_year": {"type": "integer"},
                                      "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                     "from_email": {"type": "string", "format": "email"},
-                                     "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                     "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
-                                     "email_subject": {"type": "string", "minLength":1},
                                      "scholar_id": {"type": "string", "minLength":1},
+                                     "project_report": {"type": "object",
+                                                "properties":{
+                                                        "template": {"type": "string", "minLength":1},
+                                                        "from_email": {"type": "string", "format": "email"},
+                                                        "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                        "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                        "email_body": {"type": "string", "minLength":1},
+                                                        "email_subject": {"type": "string", "minLength":1},},
+                                                "required": ["template"],
+                                                "dependencies":{
+                                                        "from_email": ["email_body", "email_subject"],
+                                                        "to_email": ["from_email", "email_body", "email_subject"]}},
                                      },
                              "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
 
@@ -100,53 +125,27 @@ config_schema = {
 
 
 ORCID_schema = copy.deepcopy(config_schema)
-ORCID_schema["properties"] = ORCID_schema["properties"]["ORCID_search"]
-ORCID_schema["required"] = ["ORCID_search"]
+new_properties = {}
+new_properties["ORCID_search"] = ORCID_schema["properties"]["ORCID_search"]
+new_properties["Authors"] = ORCID_schema["properties"]["Authors"]
+ORCID_schema["properties"] = new_properties
+ORCID_schema["required"] = ["ORCID_search", "Authors"]
 
 
-PubMed_schema = copy.deepcopy(config_schema)
-PubMed_schema["properties"] = PubMed_schema["properties"]["PubMed_search"]
-PubMed_schema["required"] = ["PubMed_search"]
+Authors_schema = copy.deepcopy(config_schema)
+new_properties = {}
+new_properties["Authors"] = Authors_schema["properties"]["Authors"]
+Authors_schema["properties"] = new_properties
+Authors_schema["required"] = ["Authors"]
 
 
 ref_config_schema = copy.deepcopy(config_schema)
 del ref_config_schema["properties"]["ORCID_search"]
 del ref_config_schema["properties"]["Authors"]
+del ref_config_schema["properties"]["project_descriptions"]
 ref_config_schema["required"] = ["PubMed_search", "Crossref_search"]
-ref_config_schema["properties"]["project_descriptions"]["additionalProperties"]["required"] = []
 
 
-# authors_schema = {
-#  "$schema": "https://json-schema.org/draft/2020-12/schema",
-#  "title": "Authors JSON",
-#  "description": "Input file that contains information about the authors'.",
-#
-#  "type": "object",
-#  "minProperties": 1,
-#  "additionalProperties": {
-#          "type": "object",
-#          "properties":{
-#                  "first_name": {"type": "string", "minLength":1},
-#                  "last_name":{"type": "string", "minLength":1},
-#                  "pubmed_name_search": {"type": "string", "minLength":1},
-#                  "email":{"type": "string", "format":"email"},
-#                  "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
-#                  "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-#                  "cutoff_year": {"type": "integer"},
-#                  "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-#                  "from_email": {"type": "string", "format": "email"},
-#                  "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-#                  "email_template": {"type": "string", "minLength":1, "pattern": "(?s)^.*<total_pubs>.*$"},
-#                  "email_subject": {"type": "string", "minLength":1},
-#                  "scholar_id": {"type": "string", "minLength":1},
-#                  },
-#          "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
-#
-#          }
-#
-# }
-         
-         
 
 
 publications_schema={
@@ -195,8 +194,29 @@ publications_schema={
 
 
 
-
-
+tok_schema = {
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Tokenized Citations JSON",
+ "description": "Input file that contains the tokenized data of a reference file.",
+ 
+ "type": "array",
+ "items": {"type": "object",
+           "minItems":1,
+           "properties": {"authors": {"type": "array",
+                                      "minItems":1,
+                                      "items": {"type": "object",
+                                                "properties": {"last": {"type":["string", "null"]},
+                                                               "initials": {"type":["string", "null"]},
+                                                               "first": {"type":["string", "null"]},
+                                                               "middle": {"type":["string", "null"]}},
+                                                "required": ["last"]}},
+                          "title": {"type":"string", "minLength":1},
+                          "PMID": {"type":["string", "null"]},
+                          "DOI": {"type":["string", "null"]},
+                          "reference_line": {"type":["string", "null"]},
+                          "pub_dict_key": {"type":["string", "null"]}},
+           "required": ["authors", "title", "PMID", "DOI", "reference_line", "pub_dict_key"]}
+}
 
 
 

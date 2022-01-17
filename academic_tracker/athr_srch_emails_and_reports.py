@@ -7,6 +7,7 @@ import datetime
 import re
 
 from . import helper_functions
+from . import fileio
 
 
 def create_pubs_by_author_dict(publication_dict):
@@ -35,17 +36,17 @@ def create_pubs_by_author_dict(publication_dict):
 
 
 
-def create_emails_dict(authors_by_project_dict, publication_dict, config_dict):
-    """Create emails for each author.
+def create_project_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, save_dir_name):
+    """Create project reports and emails for each project.
     
-    For each author in pubs_by_author create an email with publication citations. 
-    Information in authors_by_project_dict is used to get information about the author, and 
-    publication_dict is used to get information about publications. 
+    For each project in config_dict create a report and optional email.
+    Reports are saved in save_dir_name as they are created.
     
     Args:
-        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from the authors JSON file.
+        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict["Authors"].
         publication_dict (dict): keys and values match the publications JSON file.
-        config_dict (dict):keys and values match the project tracking configuration JSON file.
+        config_dict (dict): keys and values match the project tracking configuration JSON file.
+        save_dir_name (str): directory to save the reports in.
         
     Returns:
         email_messages (dict): keys and values match the email JSON file.
@@ -58,39 +59,73 @@ def create_emails_dict(authors_by_project_dict, publication_dict, config_dict):
     pubs_by_author_dict = create_pubs_by_author_dict(publication_dict)
     
     for project, project_attributes in config_dict["project_descriptions"].items():
-        ## If to_email is in project then send one email with all authors for the project.
-        if "to_email" in project_attributes:
-            email_messages["emails"].append({"body":build_email_body(publication_dict, config_dict, authors_by_project_dict, project, project_attributes["email_template"]),
-                                             "subject":project_attributes["email_subject"],
-                                             "from":project_attributes["from_email"],
-                                             "to":",".join([email for email in project_attributes["to_email"]]),
-                                             "cc":",".join([email for email in project_attributes["cc_email"]])})
-        ## If authors is in project send an email to each author in the project.
-        elif "authors" in project_attributes:
-            email_messages["emails"] = email_messages["emails"] + \
-                                       [{"body":build_email_body(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, project_attributes["email_template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"]),
-                                       "subject":replace_subject_keywords(authors_by_project_dict[project][author]),
-                                       "from":authors_by_project_dict[project][author]["from_email"],
-                                       "to":authors_by_project_dict[project][author]["email"],
-                                       "cc":",".join([email for email in authors_by_project_dict[project][author]["cc_email"]]),
-                                       "author":author}
-                                       for author in project_attributes["authors"] if author in pubs_by_author_dict]
-        ## If neither authors nor to_email is in the project then send emails to all authors that have publications.
+        
+        if "project_report" in project_attributes:
+            report_attributes = project_attributes["project_report"]
         else:
-            email_messages["emails"] = email_messages["emails"] + \
-                                       [{"body":build_email_body(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, project_attributes["email_template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"]),
-                                       "subject":replace_subject_keywords(authors_by_project_dict[project][author]),
-                                       "from":authors_by_project_dict[project][author]["from_email"],
-                                       "to":authors_by_project_dict[project][author]["email"],
-                                       "cc":",".join([email for email in authors_by_project_dict[project][author]["cc_email"]]),
-                                       "author":author}
-                                       for author in pubs_by_author_dict]
+            continue
+        
+        if "from_email" in report_attributes:
+            ## If to_email is in project then send one email with all authors for the project.
+            if "to_email" in report_attributes:
+                
+                report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, report_attributes["template"])
+                filename = project + "_project_report.txt"
+                fileio.save_string_to_file(report, save_dir_name, filename)
+                
+                email_messages["emails"].append({"body":report_attributes["email_body"],
+                                                 "subject":report_attributes["email_subject"],
+                                                 "from":report_attributes["from_email"],
+                                                 "to":",".join([email for email in report_attributes["to_email"]]),
+                                                 "cc":",".join([email for email in report_attributes["cc_email"]]),
+                                                 "attachment":report,
+                                                 "attachment_filename": filename})
+                
+            ## If authors is in project send an email to each author in the project.
+            elif "authors" in report_attributes:
+                for author in project_attributes["authors"]:
+                    
+                    if not author in pubs_by_author_dict:
+                        continue
+                    
+                    report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, report_attributes["template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
+                    filename = project + "_" + author + "_project_report.txt"
+                    fileio.save_string_to_file(report, save_dir_name, filename)
+                    
+                    email_messages["emails"].append({"body":authors_by_project_dict[project][author]["project_report"]["email_body"],
+                                                     "subject":authors_by_project_dict[project][author]["project_report"]["email_subject"],
+                                                     "from":authors_by_project_dict[project][author]["project_report"]["from_email"],
+                                                     "to":authors_by_project_dict[project][author]["email"],
+                                                     "cc":",".join([email for email in authors_by_project_dict[project][author]["project_report"]["cc_email"]]),
+                                                     "attachment": report,
+                                                     "attachment_filename": filename,
+                                                     "author":author})
+            ## If neither authors nor to_email is in the project then send emails to all authors that have publications.
+            else:
+                for author in pubs_by_author_dict:
+                    report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, report_attributes["template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
+                    filename = project + "_" + author + "_project_report.txt"
+                    fileio.save_string_to_file(report, save_dir_name, filename)
+                    
+                    email_messages["emails"].append({"body":authors_by_project_dict[project][author]["project_report"]["email_body"],
+                                                     "subject":authors_by_project_dict[project][author]["project_report"]["email_subject"],
+                                                     "from":authors_by_project_dict[project][author]["project_report"]["from_email"],
+                                                     "to":authors_by_project_dict[project][author]["email"],
+                                                     "cc":",".join([email for email in authors_by_project_dict[project][author]["project_report"]["cc_email"]]),
+                                                     "attachment": report,
+                                                     "attachment_filename": filename,
+                                                     "author":author})
+        else:
+            
+            report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, report_attributes["template"])
+            filename = project + "_project_report.txt"
+            fileio.save_string_to_file(report, save_dir_name, filename)
     
     return email_messages
 
 
 
-def build_email_body(publication_dict, config_dict, authors_by_project_dict, project_name, template_string, author_first = "", author_last = ""):
+def create_project_report(publication_dict, config_dict, authors_by_project_dict, project_name, template_string, author_first = "", author_last = ""):
     """"""
     
     project_authors = build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string)
@@ -104,24 +139,8 @@ def build_email_body(publication_dict, config_dict, authors_by_project_dict, pro
 
 
 
-def replace_subject_keywords(authors_attributes):
-    """Replace the magic words in email subject with appropriate values.
-    
-    Args:
-        authors_attributes (dict): A dict where the keys are attributes associated with the author such as first and last name.
-        
-    Returns:
-        subject (str): A string with the text for the subject of the email to be sent to the author.
-    """
-    subject = authors_attributes["email_subject"]
-    subject = subject.replace("<author_first>", authors_attributes["first_name"])
-    subject = subject.replace("<author_last>", authors_attributes["last_name"])
-    
-    return subject
 
-
-
-def create_report_from_template(template_string, publication_dict, config_dict, authors_by_project_dict):
+def create_summary_report(template_string, publication_dict, config_dict, authors_by_project_dict):
     """"""
     
     report_string = ""

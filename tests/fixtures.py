@@ -83,6 +83,8 @@ def email_messages():
                'from': 'ptth222@uky.edu',
                'to': 'a.j.morris@uky.edu',
                'cc': 'ptth222@uky.edu,ptth222@gmail.com',
+               "attachment": "attachment content",
+               "attachment_filename": "attachment_name.txt",
                'author': 'Andrew Morris'}]}
         
 
@@ -93,11 +95,13 @@ def passing_config():
                   "affiliations": [
                     "kentucky"
                   ],
-                  "cc_email": [],
                   "cutoff_year": 2019,
-                  "email_subject": "New PubMed Publications",
-                  "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-                  "from_email": "ptth222@uky.edu",
+                  "project_report":{
+                          "email_subject": "New PubMed Publications",
+                          "email_body": "Attached is the report for publications found.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                          "template": "Hey <author_first>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+                          "from_email": "ptth222@uky.edu",
+                          "cc_email": [],},
                   "authors": ["Andrew Morris", "Hunter Moseley"],
                   "grants": [
                     "P42ES007380",
@@ -108,12 +112,14 @@ def passing_config():
                   "affiliations": [
                     "kentucky"
                   ],
-                  "cc_email": [],
                   "cutoff_year": 2019,
-                  "email_subject": "New PubMed Publications",
-                  "email_template": "These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-                  "from_email": "ptth222@uky.edu",
-                  "to_email": ["ptth222@uky.edu"],
+                  "project_report":{
+                          "email_subject": "New PubMed Publications",
+                          "email_body": "Attached is the report for publications found.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                          "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+                          "from_email": "ptth222@uky.edu",
+                          "cc_email": [],
+                          "to_email": ["ptth222@uky.edu"],},
                   "grants": [
                     "P42ES007380",
                     "P42 ES007380"
@@ -123,11 +129,14 @@ def passing_config():
                   "affiliations": [
                     "kentucky"
                   ],
-                  "cc_email": [],
-                  "cutoff_year": 2019,
-                  "email_subject": "New PubMed Publications",
-                  "email_template": "These are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-                  "from_email": "ptth222@uky.edu",
+                  "cutoff_year": 2018,
+                  "project_report":{
+                          "email_subject": "New PubMed Publications",
+                          "email_body": "Attached is the report for publications found.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                          "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+                          "from_email": "ptth222@uky.edu",
+                          "cc_email": [],
+                          "to_email": ["ptth222@uky.edu"],},
                   "grants": [
                     "P42ES007380",
                     "P42 ES007380"
@@ -140,7 +149,38 @@ def passing_config():
             "PubMed_search":{
                     "PubMed_email":"ptth222@uky.edu"},
             "Crossref_search":{
-                    "mailto_email":"ptth222@uky.edu"}}
+                    "mailto_email":"ptth222@uky.edu"},
+            "summary_report":{
+                    "email_subject": "New PubMed Publications",
+                    "email_body": "Attached is the report for publications found.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+                    "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+                    "from_email": "ptth222@uky.edu",
+                    "cc_email": [],
+                    "to_email": ["ptth222@uky.edu"],},
+            "Authors": {
+                    "Andrew Morris": {
+                          "ORCID": "0000-0003-1910-4865",
+                          "affiliations": [
+                            "kentucky"
+                          ],
+                          "cutoff_year": 2020,
+                          "email": "a.j.morris@uky.edu",
+                          "first_name": "Andrew",
+                          "last_name": "Morris",
+                          "pubmed_name_search": "Andrew Morris",
+                          "scholar_id": "-j7fxnEAAAAJ"},
+                    "Hunter Moseley": {
+                          "ORCID": "0000-0003-3995-5368",
+                          "affiliations": [
+                            "kentucky"
+                          ],
+                          "cutoff_year": 2020,
+                          "email": "hunter.moseley@gmail.com",
+                          "first_name": "Hunter",
+                          "last_name": "Moseley",
+                          "pubmed_name_search": "Hunter Moseley",
+                          "scholar_id": "ctE_FZMAAAAJ"},},
+            }
             
 
 @pytest.fixture

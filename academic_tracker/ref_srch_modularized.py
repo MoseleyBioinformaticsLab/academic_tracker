@@ -3,7 +3,6 @@
 Modularized pieces of reference_search.
 """
 
-import sys
 import re
 import datetime
 import os

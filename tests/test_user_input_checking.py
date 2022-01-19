@@ -4,22 +4,20 @@
 import pytest
 from jsonschema import FormatChecker, ValidationError
 from contextlib import nullcontext as does_not_raise
-from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check, author_file_check, prev_pubs_file_check
+from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check, prev_pubs_file_check, ref_config_file_check, tok_reference_check
 from fixtures import passing_config
 
 
 @pytest.fixture
 def empty_args():
-    return {"--help":None,
-            "--version":None,
-            "--verbose":None,
-            "--test":None,
-            "--grants":None,
-            "--cutoff_year":None,
-            "--from_email":None,
-            "--cc_email":None,
+    return {"--verbose":False,
+            "--test":False,
             "--prev_pub":None,
-            "--affiliations":None,}
+            '--MEDLINE_reference': False,
+            '--PMID_reference': False,
+            '--no_Crossref': False,
+            '--no_GoogleScholar': False,
+            '--no_ORCID': False,}
 
 
 ## Commenting $schema out because the jsonschema package produces warnings if left in. It is a known issue in their package. 10-18-2021
@@ -90,15 +88,6 @@ def test_tracker_validate_no_error(test_schema):
 
 
 @pytest.mark.parametrize("args", [
-        ({"--grants":""}),                  ##minItems
-        ({"--grants":"asdf,"}),             ##minLength  type inside array is not possible to check
-        ({"--cutoff_year":"asdf"}),
-        ({"--affiliations":""}),                 
-        ({"--affiliations":"asdf,"}),
-        ({"--from_email":""}),
-        ({"--cc_email":""}),                 
-        ({"--cc_email":"asdf,"}), 
-        ({"--cc_email":"asdf"}),            ##format
         ({"--prev_pub":""}),
         ])
 
@@ -117,7 +106,9 @@ def test_cli_inputs_check_no_error(empty_args):
         
         
 
-    
+#######################
+## Author Config
+#######################   
 @pytest.mark.parametrize("config_project_errors", [
         ({"grants":""}),        ##type
         ({"grants":[]}),        ##minItems
@@ -128,22 +119,116 @@ def test_cli_inputs_check_no_error(empty_args):
         ({"affiliations":[]}),        ##minItems
         ({"affiliations":[123]}),     ##item type
         ({"affiliations":[""]}),      ##item minLength
+        ({"project_report":123}),
+        ({"project_report":{}}),
+        ({"project_report":{"template":"asdf", ## dependency No email_subject
+                            "from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"project_report":{"template":"asdf",  ## dependency No email_body
+                            "from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ({"project_report":{"template":"asdf",   ## dependency No from_email
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",
+                            "email_body":"asdf"}}),
+        ({"project_report":{"template":"asdf",  ## dependency No email_subject
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"project_report":{"template":"asdf",  ## dependency No email_body
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ({"authors":""}),        ##type
+        ({"authors":[]}),        ##minItems
+        ({"authors":[123]}),     ##item type
+        ({"authors":[""]}),      ##item minLength
+        ])
+ 
+ 
+def test_config_file_project_check_errors(passing_config, config_project_errors, empty_args):
+    passing_config["project_descriptions"]["project 1"].update(config_project_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, empty_args)
+        
+
+
+
+@pytest.mark.parametrize("project_report_errors", [
         ({"from_email":123}),
         ({"from_email":"asdf"}),    ## format
         ({"cc_email":"asdf"}),
         ({"cc_email":["asdf", "email@email.com"]}),
-        ({"email_template":123}),
-        ({"email_template":""}),
-        ({"email_template":"asdf"}),
+        ({"to_email":"asdf"}),
+        ({"to_email":["asdf", "email@email.com"]}),
+        ({"template":123}),
+        ({"template":""}),
         ({"email_subject":123}),
         ({"email_subject":""}),
+        ({"email_body":123}),
+        ({"email_body":""}),
         ])
  
  
-def test_config_file_project_check_errors(passing_config, config_project_errors):
-    passing_config["project_descriptions"]["project 1"].update(config_project_errors)
+def test_config_file_project_report_attributes_check_errors(passing_config, project_report_errors, empty_args):
+    passing_config["project_descriptions"]["project 1"]["project_report"].update(project_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config)
+        config_file_check(passing_config, empty_args)
+        
+
+
+@pytest.mark.parametrize("summary_report_errors", [
+        ({"from_email":123}),
+        ({"from_email":"asdf"}),    ## format
+        ({"cc_email":"asdf"}),
+        ({"cc_email":["asdf", "email@email.com"]}),
+        ({"to_email":"asdf"}),
+        ({"to_email":["asdf", "email@email.com"]}),
+        ({"template":123}),
+        ({"template":""}),
+        ({"email_subject":123}),
+        ({"email_subject":""}),
+        ({"email_body":123}),
+        ({"email_body":""}),
+        ])
+    
+def test_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors, empty_args):
+    passing_config["summary_report"].update(summary_report_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, empty_args)
+
+
+
+@pytest.mark.parametrize("summary_report_errors", [
+        ({"summary_report":123}),
+        ({"summary_report":{}}),
+        ({"summary_report":{"template":"asdf",  ## dependency No to_email
+                            "from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",
+                            "email_body":"asdf"}}),
+        ({"summary_report":{"template":"asdf",  ## dependency No email_subject
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"summary_report":{"template":"asdf",  ## dependency No email_body
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ])
+    
+def test_config_file_summary_report_check_errors(passing_config, summary_report_errors, empty_args):
+    passing_config.update(summary_report_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, empty_args)
+
 
 
 @pytest.mark.parametrize("config_ORCID_errors", [
@@ -154,10 +239,11 @@ def test_config_file_project_check_errors(passing_config, config_project_errors)
         ])
  
  
-def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors):
+def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors, empty_args):
     passing_config["ORCID_search"].update(config_ORCID_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config)
+        config_file_check(passing_config, empty_args)
+
 
 
 @pytest.mark.parametrize("config_PubMed_errors", [
@@ -166,10 +252,10 @@ def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors):
         ])
  
  
-def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
+def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors, empty_args):
     passing_config["PubMed_search"].update(config_PubMed_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config)
+        config_file_check(passing_config, empty_args)
         
 
 @pytest.mark.parametrize("config_Crossref_errors", [
@@ -178,39 +264,27 @@ def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
         ])
  
  
-def test_config_file_Crossref_check_errors(passing_config, config_Crossref_errors):
+def test_config_file_Crossref_check_errors(passing_config, config_Crossref_errors, empty_args):
     passing_config["Crossref_search"].update(config_Crossref_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config)
+        config_file_check(passing_config, empty_args)
 
 
-def test_config_file_check_no_error(passing_config):
+def test_config_file_check_no_error(passing_config, empty_args):
     with does_not_raise():
-        config_file_check(passing_config)
+        config_file_check(passing_config, empty_args)
 
 
-def test_config_file_check_empty_file_error():
+def test_config_file_check_empty_file_error(empty_args):
     with pytest.raises(SystemExit):
-        config_file_check({})
+        config_file_check({}, empty_args)
 
-def test_config_file_check_missing_required_error(passing_config):
+def test_config_file_check_missing_required_error(passing_config, empty_args):
     del passing_config["project_descriptions"]
     with pytest.raises(SystemExit):
-        config_file_check(passing_config)
+        config_file_check(passing_config, empty_args)
         
         
-
-
-@pytest.fixture
-def passing_author():
-    return {
-              "Andrew Morris": {
-                "email": "a.j.morris@uky.edu",
-                "first_name": "Andrew",
-                "last_name": "Morris",
-                "pubmed_name_search": "Andrew Morris"
-              }
-            }
     
 @pytest.mark.parametrize("author_errors", [
         ({"grants":""}),        ##type
@@ -222,15 +296,31 @@ def passing_author():
         ({"affiliations":[]}),        ##minItems
         ({"affiliations":[123]}),     ##item type
         ({"affiliations":[""]}),      ##item minLength
-        ({"from_email":123}),
-        ({"from_email":"asdf"}),    ## format
-        ({"cc_email":"asdf"}),
-        ({"cc_email":["asdf", "email@email.com"]}),
-        ({"email_template":123}),
-        ({"email_template":""}),
-        ({"email_template":"asdf"}),
-        ({"email_subject":123}),
-        ({"email_subject":""}),
+        ({"project_report":123}),
+        ({"project_report":{}}),
+        ({"project_report":{"template":"asdf", ## dependency No email_subject
+                            "from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"project_report":{"template":"asdf",  ## dependency No email_body
+                            "from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ({"project_report":{"template":"asdf",   ## dependency No from_email
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",
+                            "email_body":"asdf"}}),
+        ({"project_report":{"template":"asdf",  ## dependency No email_subject
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"project_report":{"template":"asdf",  ## dependency No email_body
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
         
         ({"first_name":123}),
         ({"first_name":""}),
@@ -245,27 +335,135 @@ def passing_author():
         ])
  
  
-def test_author_file_check_errors(passing_author, author_errors):
-    passing_author.update(author_errors)
+def test_author_file_check_errors(passing_config, author_errors, empty_args):
+    passing_config["Authors"]["Andrew Morris"].update(author_errors)
     with pytest.raises(SystemExit):
-        author_file_check(passing_author)
+        config_file_check(passing_config, empty_args)
+        
 
 
-def test_author_file_check_no_error(passing_author):
+def test_config_file_check_schema_reduction(passing_config, empty_args):
+    empty_args["--no_ORCID"] = True
+    empty_args["--no_GoogleScholar"] = True
+    empty_args["--no_Crossref"] = True
+    del passing_config["ORCID_search"]["ORCID_key"]
+    del passing_config["Crossref_search"]
     with does_not_raise():
-        author_file_check(passing_author)
+        config_file_check(passing_config, empty_args)
 
 
-def test_author_file_check_empty():
+
+def test_config_file_check_cc_email_added(passing_config, empty_args):
+    del passing_config["project_descriptions"]["project 1"]["project_report"]["cc_email"]
+    del passing_config["summary_report"]["cc_email"]
+    
+    config_file_check(passing_config, empty_args)
+    assert passing_config["summary_report"]["cc_email"] == [] and passing_config["project_descriptions"]["project 1"]["project_report"]["cc_email"] == []
+
+
+#######################
+## Reference Config
+#######################
+@pytest.mark.parametrize("summary_report_errors", [
+        ({"from_email":123}),
+        ({"from_email":"asdf"}),    ## format
+        ({"cc_email":"asdf"}),
+        ({"cc_email":["asdf", "email@email.com"]}),
+        ({"to_email":"asdf"}),
+        ({"to_email":["asdf", "email@email.com"]}),
+        ({"template":123}),
+        ({"template":""}),
+        ({"email_subject":123}),
+        ({"email_subject":""}),
+        ({"email_body":123}),
+        ({"email_body":""}),
+        ])
+    
+def test_ref_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors, empty_args):
+    passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
-        author_file_check({})
+        ref_config_file_check(passing_config, empty_args)
 
-def test_author_file_check_missing_required_error(passing_author):
-    del passing_author["Andrew Morris"]["first_name"]
+
+
+@pytest.mark.parametrize("summary_report_errors", [
+        ({"summary_report":123}),
+        ({"summary_report":{}}),
+        ({"summary_report":{"template":"asdf",  ## dependency No to_email
+                            "from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",
+                            "email_body":"asdf"}}),
+        ({"summary_report":{"template":"asdf",  ## dependency No email_subject
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"summary_report":{"template":"asdf",  ## dependency No email_body
+                            "from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ])
+    
+def test_ref_config_file_summary_report_check_errors(passing_config, summary_report_errors, empty_args):
+    passing_config.update(summary_report_errors)
     with pytest.raises(SystemExit):
-        author_file_check(passing_author)
+        ref_config_file_check(passing_config, empty_args)
 
 
+
+@pytest.mark.parametrize("config_PubMed_errors", [
+        ({"PubMed_email":123}),
+        ({"PubMed_email":"asdf"}),
+        ])
+ 
+ 
+def test_ref_config_file_PubMed_check_errors(passing_config, config_PubMed_errors, empty_args):
+    passing_config["PubMed_search"].update(config_PubMed_errors)
+    with pytest.raises(SystemExit):
+        ref_config_file_check(passing_config, empty_args)
+        
+
+@pytest.mark.parametrize("config_Crossref_errors", [
+        ({"mailto_email":123}),
+        ({"mailto_email":"asdf"}),
+        ])
+ 
+ 
+def test_ref_config_file_Crossref_check_errors(passing_config, config_Crossref_errors, empty_args):
+    passing_config["Crossref_search"].update(config_Crossref_errors)
+    with pytest.raises(SystemExit):
+        ref_config_file_check(passing_config, empty_args)
+
+
+def test_ref_config_file_check_no_error(passing_config, empty_args):
+    with does_not_raise():
+        ref_config_file_check(passing_config, empty_args)
+
+
+def test_ref_config_file_check_empty_file_error(empty_args):
+    with pytest.raises(SystemExit):
+        ref_config_file_check({}, empty_args)
+
+def test_ref_config_file_check_missing_required_error(passing_config, empty_args):
+    del passing_config["PubMed_search"]
+    with pytest.raises(SystemExit):
+        ref_config_file_check(passing_config, empty_args)
+
+
+def test_ref_config_file_check_schema_reduction(passing_config, empty_args):
+    empty_args["--no_Crossref"] = True
+    del passing_config["Crossref_search"]
+    with does_not_raise():
+        ref_config_file_check(passing_config, empty_args)
+
+
+def test_ref_config_file_check_cc_email_added(passing_config, empty_args):
+    del passing_config["summary_report"]["cc_email"]
+    
+    ref_config_file_check(passing_config, empty_args)
+    assert passing_config["summary_report"]["cc_email"] == []
 
 
 
@@ -301,6 +499,10 @@ def passing_pubs():
         ({"authors":[{"affiliation":"asdf", "firstname":"asdf", "initials":123, "lastname":"asdf"}]}),
         ({"authors":[{"affiliation":"asdf", "firstname":123, "initials":"asdf", "lastname":"asdf"}]}),
         ({"authors":[{"affiliation":123, "firstname":"asdf", "initials":"asdf", "lastname":"asdf"}]}),
+        ({"authors":[{"firstname":"asdf", "initials":"asdf", "lastname":"asdf"}]}),
+        ({"authors":[{"affiliation":"asdf", "initials":"asdf", "lastname":"asdf"}]}),
+        ({"authors":[{"affiliation":"asdf", "firstname":"adf", "lastname":"asdf"}]}),
+        ({"authors":[{"affiliation":"asdf", "firstname":"asdf", "initials":"asdf"}]}),
         ({"conclusions":123}),
         ({"copyrights":123}),
         ({"doi":123}),
@@ -343,25 +545,47 @@ def test_prev_pubs_file_check_missing_required_error(passing_pubs):
 
 
 
+@pytest.fixture
+def passing_tok():
+    return [{"authors": [{"last": "Last", "initials": "", "first": "First", "middle": ""}],
+           "title": "Pub Title",
+           "PMID": "",
+           "DOI": "",
+           "reference_line": "", 
+           "pub_dict_key": ""}]
+
+@pytest.mark.parametrize("tok_errors", [
+        ({"authors":123}),
+        ({"authors":[]}),
+        ({"authors":[{"last":"asdf", "first":"asdf", "initials":"asdf", "middle":123}]}),
+        ({"authors":[{"last":"asdf", "first":"asdf", "initials":123, "middle":"asdf"}]}),
+        ({"authors":[{"last":"asdf", "first":123, "initials":"asdf", "middle":"asdf"}]}),
+        ({"authors":[{"last":123, "first":"asdf", "initials":"asdf", "middle":"asdf"}]}),
+        ({"authors":[{"first":"asdf", "initials":"asdf", "middle":"asdf"}]}),
+        ({"title":123}),
+        ({"title":""}),
+        ({"PMID":123}),
+        ({"DOI":123}),
+        ({"reference_line":123}),
+        ({"pub_dict_key":123}),
+        ])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def test_tok_reference_check_errors(passing_tok, tok_errors):
+    passing_tok[0].update(tok_errors)
+    with pytest.raises(SystemExit):
+        tok_reference_check(passing_tok)
+    
+    
+def test_tok_reference_check_no_error(passing_tok):
+    with does_not_raise():
+        tok_reference_check(passing_tok)
+    
+    
+def test_tok_reference_check_missing_required_error(passing_tok):
+    del passing_tok[0]["title"]
+    with pytest.raises(SystemExit):
+        tok_reference_check(passing_tok)
 
 
 

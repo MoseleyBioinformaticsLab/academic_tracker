@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+Functions for parsing citations.
+"""
 
-## How to import from a full file path
-#import importlib
-#path_to_helper = 'C:/Users/Sparda/Desktop/Moseley Lab/Code/academic_tracker/academic_tracker/citation_parsing.py'
-#spec = importlib.util.spec_from_file_location("module.name", path_to_helper)
-#foo = importlib.util.module_from_spec(spec)
-#citation_parsing = importlib.util.module_from_spec(spec)
-#spec.loader.exec_module(citation_parsing)
+import re
+
+import bs4
 
 from . import helper_functions
-import re
-import bs4
 
 
 def parse_text_for_citations(text):

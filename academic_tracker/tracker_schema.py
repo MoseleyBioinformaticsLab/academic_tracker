@@ -5,7 +5,7 @@ JSON Schema for the cli, authors, and config JSON.
 
 import copy
 
-
+## TODO add the file inputs and look into adding file existence checking in jsonschema format checker.
 cli_schema = {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Command Line Inputs",
@@ -13,14 +13,7 @@ cli_schema = {
  
  "type": "object",
  "properties": {
-         "--grants": {"type": ["array", "null"], "minItems":1, "items": {"type": "string", "minLength": 1}},
-         "--cutoff_year": {"type": ["integer", "null"]},
-         "--affiliations": {"type": ["array", "null"], "minItems":1, "items": {"type": "string", "minLength": 1}},
-         "--from_email": {"type": ["string", "null"], "format": "email"},
-         "--cc_email": {"type": ["array", "null"],  "items": {"type": "string", "format": "email"}},
          "--prev_pub": {"type":["string", "null"], "minLength":1},
-         "<to_email>": {"type": ["string", "null"], "format": "email"},
-         "<from_email>": {"type": ["string", "null"], "format": "email"},
          },
          
 }
@@ -157,7 +150,7 @@ publications_schema={
  "additionalProperties": {
          "type": "object",
          "properties": {
-                "abstract": {"type":"string"},
+                "abstract": {"type":["string", "null"]},
                 "authors": {"type":"array", 
                             "minItems":1, 
                             "items": {"type": "object", 

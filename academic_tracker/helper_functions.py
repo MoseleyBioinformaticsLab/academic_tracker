@@ -3,34 +3,12 @@
 This module contains helper functions.
 """
 
-import pdfplumber
-import bs4
 import re
-import fuzzywuzzy.fuzz
 import copy
 
-
-def extract_pdf_text(path_to_pdf):
-    """
-    """
-    
-    with pdfplumber.open(path_to_pdf) as pdf:
-        pdf_text = " ".join([pdf_page.extract_text() for pdf_page in pdf.pages if pdf_page.extract_text()])
-#        pdf_text = " ".join(["".join([char["text"] for char in pdf_page.chars]) for pdf_page in pdf.pages])
-        
-    return pdf_text
-
-
-
-
-def parse_pubmed_full_text_links(pubmed_html):
-    """
-    """
-    
-    ## Note that you have to change the headers so PubMed thinks you are a browser or you won't be sent the full page with full text links.
-    soup = bs4.BeautifulSoup(pubmed_html, "html.parser")
-    link_list = soup.find("div", class_ = "full-text-links-list")
-    return [link["href"] for link in link_list.find_all("a")]
+import pdfplumber
+import bs4
+import fuzzywuzzy.fuzz
 
 
 
@@ -117,37 +95,6 @@ def adjust_author_attributes(authors_by_project_dict, config_dict):
 
 
 
-def parse_string_for_pub_info(document_string, DOI_regex, PMID_regex, PMCID_regex):
-    """Pull out the DOIs and PMIDs from each line of a string.
-    
-    Split document_string on newline character and attempt to pull out the DOI and PMID from each line.
-    Each regex is delivered to re.match(). The DOI_regex and PMID_regex are expected to have 1 group 
-    that will contain the DOI and PMID when matched, respectively. If the DOI_regex is not matched 
-    on the line then the line is ignored. The PMCID_regex is used to ignore lines that have a PMCID in them.
-    
-    Returns a list of dictionaries. Each item in the list is a line in the document_string and contains the 
-    DOI and PMID found on the line.
-    [{"DOI":"found DOI", "PMID": "found PMID", "line":"full text of the line where each was found"}]
-    
-    Args:
-        document_string (str): A string that represents the contents of a document.
-        DOI_regex (str): A string with a regular expression to be delivered to re.match(). This will confirm that the line has a DOI and have a group to pull out the DOI.
-        PMID_regex (str): A string with a regular expression to be delivered to re.match(). Must have a group to pull out the PMID.
-        PMCID_regex (str): A string with a regular expression to be delivered to re.match(). Used to ignore lines that contain a PMCID.
-        
-    Returns:
-        (list): A list of dictionaries. A description of the keys and values are in the description of the function.
-    """
-    
-    lines = [line for line in document_string.split("\n") if line]
-#    return [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:\s*([^\s]+\w).*", line) and not re.match(r"(?i).*pmcid:\s*(pmc\d+).*", line)]
-#    [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:.*", line) or re.match(r"(?i).*pmid:.*", line)]
-    return [{"DOI": regex_group_return(regex_match_return(DOI_regex, line), 0), 
-             "PMID": regex_group_return(regex_match_return(PMID_regex, line), 0), 
-             "line":line} 
-             for line in lines if re.match(DOI_regex, line) and not re.match(PMCID_regex, line)]
-
-
     
 def regex_match_return(regex, string_to_match):
     """Return the groups matched in the regex if the regex matches.
@@ -210,28 +157,6 @@ def regex_search_return(regex, string_to_search):
 
 
 
-def match_citation_authors_to_PubMed(citation_authors, pubmed_authors):
-    """
-    
-    Compares last names in each set of authors and if any last names match return True.
-    Trying to use initials is difficult because of the many ways they can be done. 
-    First names aren't always available from citations.
-    
-    Args:
-        citation_authors (list): list of dictionaries. The dictionary is either {"first", "middle", "last"} or {"first", "initials"}. Values can be an empty string.
-    """
-    
-    return any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pubmed_authors for author_attributes in citation_authors])
-    
-#    ## pubmed_authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
-#    for author_items in pubmed_authors:
-#        author_items_last_name = str(author_items.get("lastname")).lower()
-#        for author_attributes in citation_authors:
-#            if author_attributes["last_name"].lower() == author_items_last_name:
-#                return True
-#                
-#    return False
-    
     
 def match_authors_in_pub_PubMed(authors_json, author_list):
     """Look for matching authors in PubMed pub data.
@@ -372,27 +297,6 @@ def modify_pub_dict_for_saving(pub):
 
 
 
-def overwrite_config_with_CLI(config_dict, args):
-    """Overwrite keys in config_dict if command line options were used.
-    
-    Args:
-        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
-        args (dict): input arguments from DocOpt.
-        
-    Returns:
-        config_dict (dict): returns the config_dict with any relevant command line arguments overwritten.
-    
-    """
-    
-    overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
-    for option in overwriting_options:
-        for project in config_dict["project_descriptions"]:
-            if args[option]:
-                config_dict["project_descriptions"][project][option.replace("-","")] = args[option]
-                
-    return config_dict
-
-
 
 def is_fuzzy_match_to_list(str_to_match, list_to_match):
     """True if string is a 90 or higher ratio match to any string in list, False otherwise.
@@ -475,10 +379,11 @@ def find_duplicate_citations(tokenized_citations):
                 pmids[citation["PMID"]] = [count]
                 
         if citation["DOI"]:
-            if citation["DOI"] in dois:
-                dois[citation["DOI"]].append(count)
+            doi = citation["DOI"].lower()
+            if doi in dois:
+                dois[doi].append(count)
             else:
-                dois[citation["DOI"]] = [count]
+                dois[doi] = [count]
                 
         if citation["title"]:
             fuzzy_matches = fuzzy_matches_to_list(citation["title"], titles_list)
@@ -540,7 +445,7 @@ def compare_citations_with_list(tokenized_citations, prev_pubs):
     prev_pubs_dois = [pub["doi"].lower() for pub in prev_pubs]
     prev_pubs_pmids = [pub["pubmed_id"] for pub in prev_pubs]
     
-    return [True if citation["PMID"] in prev_pubs_pmids or citation["DOI"] in prev_pubs_dois or is_fuzzy_match_to_list(citation["title"], prev_pubs_titles) else False for citation in tokenized_citations]
+    return [True if citation["PMID"] in prev_pubs_pmids or citation["DOI"].lower() in prev_pubs_dois or is_fuzzy_match_to_list(citation["title"], prev_pubs_titles) else False for citation in tokenized_citations]
 
 
 
@@ -548,6 +453,120 @@ def nested_get(dic, keys):
     for key in keys:
         dic = dic[key]
     return dic   
+
+
+
+
+
+
+###############
+## Unused functions
+###############
+
+def parse_string_for_pub_info(document_string, DOI_regex, PMID_regex, PMCID_regex):
+    """Pull out the DOIs and PMIDs from each line of a string.
+    
+    Split document_string on newline character and attempt to pull out the DOI and PMID from each line.
+    Each regex is delivered to re.match(). The DOI_regex and PMID_regex are expected to have 1 group 
+    that will contain the DOI and PMID when matched, respectively. If the DOI_regex is not matched 
+    on the line then the line is ignored. The PMCID_regex is used to ignore lines that have a PMCID in them.
+    
+    Returns a list of dictionaries. Each item in the list is a line in the document_string and contains the 
+    DOI and PMID found on the line.
+    [{"DOI":"found DOI", "PMID": "found PMID", "line":"full text of the line where each was found"}]
+    
+    Args:
+        document_string (str): A string that represents the contents of a document.
+        DOI_regex (str): A string with a regular expression to be delivered to re.match(). This will confirm that the line has a DOI and have a group to pull out the DOI.
+        PMID_regex (str): A string with a regular expression to be delivered to re.match(). Must have a group to pull out the PMID.
+        PMCID_regex (str): A string with a regular expression to be delivered to re.match(). Used to ignore lines that contain a PMCID.
+        
+    Returns:
+        (list): A list of dictionaries. A description of the keys and values are in the description of the function.
+    """
+    
+    lines = [line for line in document_string.split("\n") if line]
+#    return [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:\s*([^\s]+\w).*", line) and not re.match(r"(?i).*pmcid:\s*(pmc\d+).*", line)]
+#    [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:.*", line) or re.match(r"(?i).*pmid:.*", line)]
+    return [{"DOI": regex_group_return(regex_match_return(DOI_regex, line), 0), 
+             "PMID": regex_group_return(regex_match_return(PMID_regex, line), 0), 
+             "line":line} 
+             for line in lines if re.match(DOI_regex, line) and not re.match(PMCID_regex, line)]
+
+
+
+def extract_pdf_text(path_to_pdf):
+    """
+    """
+    
+    with pdfplumber.open(path_to_pdf) as pdf:
+        pdf_text = " ".join([pdf_page.extract_text() for pdf_page in pdf.pages if pdf_page.extract_text()])
+#        pdf_text = " ".join(["".join([char["text"] for char in pdf_page.chars]) for pdf_page in pdf.pages])
+        
+    return pdf_text
+
+
+
+
+def parse_pubmed_full_text_links(pubmed_html):
+    """
+    """
+    
+    ## Note that you have to change the headers so PubMed thinks you are a browser or you won't be sent the full page with full text links.
+    soup = bs4.BeautifulSoup(pubmed_html, "html.parser")
+    link_list = soup.find("div", class_ = "full-text-links-list")
+    return [link["href"] for link in link_list.find_all("a")]
+
+
+
+def match_citation_authors_to_PubMed(citation_authors, pubmed_authors):
+    """
+    
+    Compares last names in each set of authors and if any last names match return True.
+    Trying to use initials is difficult because of the many ways they can be done. 
+    First names aren't always available from citations.
+    
+    Args:
+        citation_authors (list): list of dictionaries. The dictionary is either {"first", "middle", "last"} or {"first", "initials"}. Values can be an empty string.
+    """
+    
+    return any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pubmed_authors for author_attributes in citation_authors])
+    
+#    ## pubmed_authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
+#    for author_items in pubmed_authors:
+#        author_items_last_name = str(author_items.get("lastname")).lower()
+#        for author_attributes in citation_authors:
+#            if author_attributes["last_name"].lower() == author_items_last_name:
+#                return True
+#                
+#    return False
+
+
+
+def overwrite_config_with_CLI(config_dict, args):
+    """Overwrite keys in config_dict if command line options were used.
+    
+    Args:
+        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
+        args (dict): input arguments from DocOpt.
+        
+    Returns:
+        config_dict (dict): returns the config_dict with any relevant command line arguments overwritten.
+    
+    """
+    
+    overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
+    for option in overwriting_options:
+        for project in config_dict["project_descriptions"]:
+            if args[option]:
+                config_dict["project_descriptions"][project][option.replace("-","")] = args[option]
+                
+    return config_dict
+
+
+
+
+
 
 
 

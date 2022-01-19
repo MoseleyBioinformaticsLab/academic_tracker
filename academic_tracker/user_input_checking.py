@@ -6,7 +6,9 @@ This module contains the functions that check the user input for errors.
 
 import sys
 import re
+
 import jsonschema
+
 from . import tracker_schema
 
 
@@ -42,6 +44,9 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
                 message += "The required property " + required_property + " is missing."
             else:
                 message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing the required property " + required_property + "."
+        elif e.validator == "dependencies":
+            message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing a dependent property.\n"
+            message += e.message
         elif e.validator == "minLength":
             custom_message = " cannot be an empty string."
         elif e.validator == "minItems":
@@ -74,28 +79,26 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
 def cli_inputs_check(args):
     """Run input checking on the CLI inputs.
     
-    First converts comma separated lists as strings into lists and then uses
-    jsonschema to validate the inputs.
+    Uses jsonschema to validate the inputs.
             
-    
     Args:
         args (dict): dict from docopt.
     """
     
-    list_args = ["--grants", "--affiliations", "--cc_email"]
-    
-    for arg in list_args:
-        if args[arg]:
-            args[arg] = args[arg].split(",")
-            
-    int_args = ["--cutoff_year"]
-    
-    for arg in int_args:
-        if args[arg]:
-            try:
-                args[arg] = int(args[arg])
-            except:
-                pass
+#    list_args = ["--grants", "--affiliations", "--cc_email"]
+#    
+#    for arg in list_args:
+#        if args[arg]:
+#            args[arg] = args[arg].split(",")
+#            
+#    int_args = ["--cutoff_year"]
+#    
+#    for arg in int_args:
+#        if args[arg]:
+#            try:
+#                args[arg] = int(args[arg])
+#            except:
+#                pass
     
     tracker_validate(instance=args, schema=tracker_schema.cli_schema, format_checker=jsonschema.FormatChecker())
 
@@ -174,15 +177,17 @@ def config_file_check(config_json, args):
     schema = tracker_schema.config_schema
     if args["--no_ORCID"]:
         del schema["properties"]["ORCID_search"]
+        schema["required"].remove("ORCID_search")
     if args["--no_Crossref"] and args["--no_GoogleScholar"]:
         del schema["properties"]["Crossref_search"]
+        schema["required"].remove("Crossref_search")
     
     pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
     tracker_validate(instance=config_json, schema=schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
     
     for project, project_attributes in config_json["project_descriptions"].items():
-        if not "cc_email" in project_attributes:
-            project_attributes["cc_email"] = []
+        if "project_report" in project_attributes and not "cc_email" in project_attributes["project_report"]:
+            config_json["project_descriptions"][project]["project_report"]["cc_email"] = []
             
     if "summary_report" in config_json and not "cc_email" in config_json["summary_report"]:
             config_json["summary_report"]["cc_email"] = []
@@ -221,6 +226,7 @@ def ref_config_file_check(config_json, args):
     schema = tracker_schema.ref_config_schema
     if args["--no_Crossref"]:
         del schema["properties"]["Crossref_search"]
+        schema["required"].remove("Crossref_search")
     
     tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())
     
@@ -314,10 +320,12 @@ def tok_reference_check(tok_ref):
     
     The tok_ref read in from JSON is expected to have the format:
         {
-           "authors": {"last": "<last>", "initials": "<initials>", "first": "<first>", "middle": "<middle>"},
+           "authors": [{"last": "<last>", "initials": "<initials>", "first": "<first>", "middle": "<middle>"}],
            "title": "<title>",
            "PMID": "<PMID>",
-           "DOI": "<DOI>"
+           "DOI": "<DOI>",
+           "reference_line": "<reference_line>", 
+           "pub_dict_key": "<matching_key_to_publication_json>"
         }
             
     Args:

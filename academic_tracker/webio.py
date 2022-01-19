@@ -9,7 +9,6 @@ import email.message
 import subprocess
 import io
 import re
-import sys
 
 import orcid
 import scholarly
@@ -18,7 +17,6 @@ import bs4
 import json
 
 from . import helper_functions
-from . import citation_parsing
 
 
 TOOL = "Academic Tracker"
@@ -357,15 +355,6 @@ def download_pdf(pdf_url, verbose):
     return pdf_bytes
 
 
-        
-
-## How to import from a full file path
-#import importlib
-#path_to_helper = 'C:/Users/Sparda/Desktop/Moseley Lab/Code/academic_tracker/academic_tracker/helper_functions.py'
-#spec = importlib.util.spec_from_file_location("module.name", path_to_helper)
-#foo = importlib.util.module_from_spec(spec)
-#helper_functions = importlib.util.module_from_spec(spec)
-#spec.loader.exec_module(helper_functions)
     
 
         

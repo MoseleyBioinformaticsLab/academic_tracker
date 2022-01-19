@@ -37,7 +37,7 @@ REQUIRES = [
     "pdfplumber >= 0.5.28",
     "beautifulsoup4 >= 4.9.3",
     "fuzzywuzzy >= 0.18.0",
-    "docx >= 0.8.11"
+    "docx >= 0.2.4",
     "pandas >= 0.24.2"
 ]
 

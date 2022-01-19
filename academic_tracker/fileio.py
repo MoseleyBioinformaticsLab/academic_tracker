@@ -54,7 +54,7 @@ def read_previous_publications(args):
     has_previous_pubs = False
     if args["--prev_pub"]:
         
-        if args["--prev_pubs"].lower() == "ignore":
+        if args["--prev_pub"].lower() == "ignore":
             return False, {}
         
         prev_pubs = load_json(args["--prev_pub"])
@@ -174,7 +174,7 @@ def read_csv(doc_path):
          
     
 
-def save_string_to_file(text_to_save, save_dir_name, file_name):
+def save_string_to_file(save_dir_name, file_name, text_to_save):
     """"""
     
     save_path = os.path.join(os.getcwd(), save_dir_name, file_name)

@@ -1,22 +1,26 @@
 """   
 Usage:
-    academic_tracker author_search <config_json_file> [--test,--prev_pub]
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test,--prev_pub,--PMID_reference,--MEDLINE_reference]
+    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref]
     academic_tracker find_ORCID <config_json_file> 
     academic_tracker find_Google_Scholar <config_json_file>  
     academic_tracker add_authors <config_json_file> <authors_file> 
     academic_tracker tokenize_reference <references_file_or_URL> 
     academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test]
-    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test,--prev_pub,--MEDLINE_reference]
+    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference]
     
 Options:
     -h --help                         Show this screen.
     --version                         Show version.
     --verbose                         Print hidden error messages.
     --test                            Generate pubs and email texts, but do not send emails.
+    --prev_pub=<file-path>            Filepath to json or csv with publication ids to ignore. Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
+    
+Reference Type Options:    
     --PMID_reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
     --MEDLINE_reference               Indicates that the reference_file is a MEDLINE file.
-    --prev_pub=<file-path>            Filepath to json or csv with publication ids to ignore. Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
+
+Search Options:
     --no_GoogleScholar                Don't search Google Scholar.
     --no_ORCID                        Don't search ORCID.
     --no_Crossref                     Don't search Crossref.

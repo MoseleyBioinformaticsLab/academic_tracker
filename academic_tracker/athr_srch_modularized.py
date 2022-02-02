@@ -16,7 +16,14 @@ from . import webio
 
 
 def input_reading_and_checking(args):
-    """"""
+    """Read in inputs from user and do error checking.
+    
+    Args:
+        args (dict): The dictionary output from DocOpt.
+        
+    Returns:
+        config_dict (dict): Matches the Configuration file JSON schema.
+    """
     
     user_input_checking.cli_inputs_check(args)
         
@@ -24,7 +31,7 @@ def input_reading_and_checking(args):
     config_dict = fileio.load_json(args["<config_json_file>"])
     
     ## Get inputs from config file and check them for errors.
-    user_input_checking.config_file_check(config_dict)
+    user_input_checking.config_file_check(config_dict, args)
     
     return config_dict
 
@@ -32,7 +39,16 @@ def input_reading_and_checking(args):
 
 
 def generate_internal_data_and_check_authors(args, config_dict):
-    """"""
+    """Create authors_by_project_dict and look for authors without projects.
+    
+    Args:
+        args (dict): The dictionary output from DocOpt.
+        config_dict (dict): Matches the Configuration file JSON schema.
+        
+    Returns:
+        authors_by_project_dict (dict): Keys are project names and values are a dictionary of authors and their attributes.
+        config_dict (dict): same as input but with author information updated based on project information.
+    """
     
     ## Create an authors_json for each project in the config_dict and update those authors attributes with the project attributes.
     authors_by_project_dict = helper_functions.create_authors_by_project_dict(config_dict)
@@ -41,7 +57,7 @@ def generate_internal_data_and_check_authors(args, config_dict):
     helper_functions.adjust_author_attributes(authors_by_project_dict, config_dict)
                     
     ## Look for authors not in any projects and warn user.
-    authors_in_projects = {author for project_attributes in config_dict["project_descriptions"].values() for author in project_attributes["authors"] if "authors" in project_attributes }
+    authors_in_projects = {author for project_attributes in config_dict["project_descriptions"].values() if "authors" in project_attributes for author in project_attributes["authors"]}
     authors_not_in_projects = set(config_dict["Authors"].keys()) - authors_in_projects
     projects_without_authors = [project for project, project_attributes in config_dict["project_descriptions"].items() if not "authors" in project_attributes]
     
@@ -55,7 +71,17 @@ def generate_internal_data_and_check_authors(args, config_dict):
 
 
 def build_publication_dict(args, config_dict, prev_pubs):
-    """"""
+    """Query PubMed, ORCID, Google Scholar, and Crossref for publications for the authors.
+    
+    Args:
+        args (dict): The dictionary output from DocOpt.
+        config_dict (dict): Matches the Configuration file JSON schema.
+        prev_pubs (dict): Matches the publication JSON schema. Used to ignore publications when querying.
+        
+    Returns:
+        publication_dict (dict): The dictionary matching the publication JSON schema.
+        prev_pubs (dict): Same as input, but updated with the new publications found.
+    """
     
     ## Get publications from PubMed 
     print("Finding author's publications. This could take a while.")
@@ -99,7 +125,17 @@ def build_publication_dict(args, config_dict, prev_pubs):
 
 
 def save_and_send_reports_and_emails(args, authors_by_project_dict, publication_dict, config_dict):
-    """"""
+    """Build the summary report and project reports and email them.
+    
+    Args:
+        args (dict): The dictionary output from DocOpt.
+        authors_by_project_dict (dict): Keys are project names and values are a dictionary of authors and their attributes.
+        publication_dict (dict): The dictionary matching the publication JSON schema.
+        config_dict (dict): Matches the Configuration file JSON schema.
+        
+    Returns:
+        save_dir_name (str): Name of the directory where the emails and reports were saved.
+    """
     
     ## Build the save directory name.
     if args["--test"]:
@@ -113,9 +149,15 @@ def save_and_send_reports_and_emails(args, authors_by_project_dict, publication_
     email_messages = athr_srch_emails_and_reports.create_project_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, save_dir_name)
             
     if "summary_report" in config_dict:
-        summary_report = athr_srch_emails_and_reports.create_summary_report(config_dict["summary_report"]["template"], publication_dict, config_dict, authors_by_project_dict)
+        
+        if "template" in config_dict["summary_report"]:
+            template = config_dict["summary_report"]["template"]
+        else:
+            template = athr_srch_emails_and_reports.DEFAULT_SUMMARY_TEMPLATE
+        
+        summary_report = athr_srch_emails_and_reports.create_summary_report(publication_dict, config_dict, authors_by_project_dict, template)
         summary_filename = "summary_report.txt"
-        fileio.save_string_to_file(summary_report, save_dir_name, summary_filename)
+        fileio.save_string_to_file(save_dir_name, summary_filename, summary_report)
         
         if "from_email" in config_dict["summary_report"]:
             email_messages["emails"].append({"to":",".join([email for email in config_dict["summary_report"]["to_email"]]),

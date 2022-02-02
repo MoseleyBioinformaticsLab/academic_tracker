@@ -1,0 +1,529 @@
+# -*- coding: utf-8 -*-
+
+import os
+import requests
+import copy
+import re
+
+import pytest
+import shutil
+
+from academic_tracker.__main__ import main, author_search, reference_search, PMID_reference
+from academic_tracker.__main__ import find_ORCID, find_Google_Scholar, add_authors
+from academic_tracker.__main__ import tokenize_reference, gen_reports_and_emails_auth, gen_reports_and_emails_ref
+from academic_tracker.fileio import load_json, read_text_from_txt
+
+
+@pytest.fixture(autouse=True)
+def disable_network_calls(monkeypatch):
+    def stunted_get():
+        raise RuntimeError("Network access not allowed during testing!")
+    monkeypatch.setattr(requests, "get", lambda *args, **kwargs: stunted_get())
+
+
+
+
+
+@pytest.mark.parametrize("func_name, options", [
+        
+        ("author_search", ["file_path"]),
+        ("reference_search", ["file_path1", "file_path2"]),
+        ("find_ORCID", ["file_path"]),
+        ("find_Google_Scholar", ["file_path"]),
+        ("add_authors", ["file_path1", "file_path2"]),
+        ("tokenize_reference", ["file_path"]),
+        ("gen_reports_and_emails_auth", ["file_path1", "file_path2"]),
+        ("gen_reports_and_emails_ref", ["file_path1", "file_path2", "file_path3"]),
+        ])
+
+
+
+def test_main(func_name, options, mocker, capsys):
+    mocker.patch("__main__.sys.argv", ["academic_tracker", func_name] + options)
+    
+    def mock_call(*args, **kwargs):
+        print("Call Successful")
+    mocker.patch("academic_tracker.__main__." + func_name, mock_call)
+    
+    main()
+    
+    captured = capsys.readouterr()
+    assert captured.out == "Call Successful" + "\n"
+    
+
+
+def test_main_PMID_reference(mocker, capsys):
+    mocker.patch("__main__.sys.argv", ["academic_tracker", "reference_search", "file_path1", "file_path2", "--PMID_reference"])
+    
+    def mock_call(*args, **kwargs):
+        print("Call Successful")
+    mocker.patch("academic_tracker.__main__.PMID_reference" , mock_call)
+    
+    main()
+    
+    captured = capsys.readouterr()
+    assert captured.out == "Call Successful" + "\n"
+
+
+
+
+def test_author_search(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        publication_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+        return publication_dict, publication_dict
+    mocker.patch("academic_tracker.__main__.athr_srch_modularized.build_publication_dict", mock_call)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    author_search(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert not os.path.exists(os.path.join(save_dir, "summary_report.txt"))
+    assert os.path.exists(os.path.join(save_dir, "emails.json"))
+    assert os.path.exists(os.path.join(save_dir, "publications.json"))
+
+
+
+def test_reference_search(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        publication_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        return publication_dict, tokenized_citations
+    mocker.patch("academic_tracker.__main__.ref_srch_modularized.build_publication_dict", mock_call)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_duplicates_removed.json"),
+            "--MEDLINE_reference":False,
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    reference_search(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert not os.path.exists(os.path.join(save_dir, "summary_report.txt"))
+    assert not os.path.exists(os.path.join(save_dir, "emails.json"))
+    assert os.path.exists(os.path.join(save_dir, "publications.json"))
+
+
+
+@pytest.mark.parametrize("reference_file", [
+        
+        ("PMID_reference.json"),
+        ("PMID_reference.docx"),
+        ("PMID_reference.txt"),
+        ])
+
+
+
+def test_PMID_reference(reference_file, mocker, capsys):
+    def mock_call(*args, **kwargs):
+        publication_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+        publication_dict["34811960"] = publication_dict["https://doi.org/10.1002/adhm.202101820"]
+        publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/advs.202101999"]
+        del publication_dict["https://doi.org/10.1002/adhm.202101820"]
+        del publication_dict["https://doi.org/10.1002/advs.202101999"]
+        return publication_dict
+    mocker.patch("academic_tracker.__main__.ref_srch_webio.build_pub_dict_from_PMID", mock_call)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", reference_file),
+            "--MEDLINE_reference":False,
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    PMID_reference(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert os.path.exists(os.path.join(save_dir, "publications.json"))
+    
+    
+
+
+@pytest.mark.parametrize("error_file, error_message", [
+        
+        ("PMID_reference.asdf", "Unknown file type for PMID file."),
+        ("empty_file.txt", "Nothing was read from the PMID file. Make sure the file is not empty or is a supported file type."),
+        ])
+
+
+def test_PMID_reference_errors(error_file, error_message, mocker, capsys):
+    def mock_call(*args, **kwargs):
+        publication_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+        publication_dict["34811960"] = publication_dict["https://doi.org/10.1002/adhm.202101820"]
+        publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/advs.202101999"]
+        del publication_dict["https://doi.org/10.1002/adhm.202101820"]
+        del publication_dict["https://doi.org/10.1002/advs.202101999"]
+        return publication_dict
+    mocker.patch("academic_tracker.__main__.ref_srch_webio.build_pub_dict_from_PMID", mock_call)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", error_file),
+            "--MEDLINE_reference":False,
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    with pytest.raises(SystemExit):
+        PMID_reference(args)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+
+
+def test_find_ORCID(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        return config_dict["Authors"]
+    mocker.patch("academic_tracker.__main__.webio.search_ORCID_for_ids", mock_call)
+    
+    def mock_config(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        del config_dict["Authors"]["Andrew Morris"]["ORCID"]
+        return config_dict
+    mocker.patch("academic_tracker.__main__.fileio.load_json", mock_config)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    find_ORCID(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert os.path.exists(os.path.join(save_dir, "configuration.json"))
+    
+
+
+def test_find_ORCID_no_new(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        return config_dict["Authors"]
+    mocker.patch("academic_tracker.__main__.webio.search_ORCID_for_ids", mock_call)
+        
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    find_ORCID(args)
+    
+    captured = capsys.readouterr()
+    
+    assert captured.out.split("\n")[-2] == "No authors were matched from the ORCID results. No new file saved."
+    
+   
+
+def test_find_Google_Scholar(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        return config_dict["Authors"]
+    mocker.patch("academic_tracker.__main__.webio.search_Google_Scholar_for_ids", mock_call)
+    
+    def mock_config(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        del config_dict["Authors"]["Andrew Morris"]["scholar_id"]
+        return config_dict
+    mocker.patch("academic_tracker.__main__.fileio.load_json", mock_config)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    find_Google_Scholar(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert os.path.exists(os.path.join(save_dir, "configuration.json"))
+    
+
+
+def test_find_Google_Scholar_no_new(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        return config_dict["Authors"]
+    mocker.patch("academic_tracker.__main__.webio.search_Google_Scholar_for_ids", mock_call)
+        
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    find_Google_Scholar(args)
+    
+    captured = capsys.readouterr()
+    
+    assert captured.out.split("\n")[-2] == "No authors were matched from the Google Scholar results. No new file saved."
+    
+    
+
+def test_add_authors(capsys):
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<author_file>":os.path.join("testing_files", "add_authors.csv"),
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    expected_config = load_json(os.path.join("testing_files", "config_truncated.json"))
+    expected_config["Authors"]["Name McNamerson"] = {"first_name":"Name",
+                                                     "last_name":"McNamerson",
+                                                     "pubmed_name_search":"Name McNamerson",
+                                                     "email":"ptth222@uky.edu",
+                                                     "affiliations":["kentucky","asdf","qwr"]}
+    
+    add_authors(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert expected_config == load_json(os.path.join(save_dir, "configuration.json"))
+    
+
+
+@pytest.mark.parametrize("error_file, error_message", [
+        
+        ("empty_file.txt", "Unknown file type for author file."),
+        ("add_authors_missing_column.csv", "Error: The following columns are required but are missing:\nlast_name"),
+        ("add_authors_missing_value.csv", "Error: The following columns have null values:\nlast_name"),
+        ])
+
+
+def test_add_authors_errors(error_file, error_message, capsys):
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<author_file>":os.path.join("testing_files", error_file),
+            "--verbose":True,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    expected_config = load_json(os.path.join("testing_files", "config_truncated.json"))
+    expected_config["Authors"]["Name McNamerson"] = {"first_name":"Name",
+                                                     "last_name":"McNamerson",
+                                                     "pubmed_name_search":"Name McNamerson",
+                                                     "email":"ptth222@uky.edu",
+                                                     "affiliations":["kentucky","asdf","qwr"]}
+    
+    with pytest.raises(SystemExit):
+        add_authors(args)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+
+
+
+
+def test_tokenize_reference(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        tokenized_citations.append({"authors":[], "title":"", "DOI":"", "PMID":"", "reference_line":""})
+        return tokenized_citations
+    mocker.patch("academic_tracker.__main__.ref_srch_webio.tokenize_reference_input", mock_call)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+            "--verbose":True,
+            "--MEDLINE_reference":False,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    expected_text = read_text_from_txt(os.path.join("testing_files", "tokenization_report.txt"))
+    
+    tokenize_reference(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert expected_text == read_text_from_txt(os.path.join(save_dir, "tokenization_report.txt"))
+
+
+
+
+def test_gen_reports_and_emails_auth(capsys):
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<publication_json_file>":os.path.join("testing_files", "publication_dict_truncated.json"),
+            "--verbose":True,
+            "--MEDLINE_reference":False,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    gen_reports_and_emails_auth(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert os.path.exists(os.path.join(save_dir, "emails.json"))
+    ## Should be emails.json and project reports.
+    assert len(os.listdir()) > 3
+    
+
+
+
+def test_gen_reports_and_emails_ref(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict["summary_report"] = {}
+        config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
+        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        return config_dict, tokenized_citations, False, {}
+    mocker.patch("academic_tracker.__main__.ref_srch_modularized.input_reading_and_checking", mock_call)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+            "--verbose":True,
+            "--MEDLINE_reference":False,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    gen_reports_and_emails_ref(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert not os.path.exists(os.path.join(save_dir, "emails.json"))
+    assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
+    
+    
+
+def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict["summary_report"] = {}
+        config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
+        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        for citation in tokenized_citations:
+            citation["pub_dict_key"] = ""
+        tokenized_citations[1]["DOI"] = ""
+        tokenized_citations.append(copy.deepcopy(tokenized_citations[1]))
+        tokenized_citations[1]["PMID"] = "1234"
+        return config_dict, tokenized_citations, False, {}
+    mocker.patch("academic_tracker.__main__.ref_srch_modularized.input_reading_and_checking", mock_call)
+    
+    def mock_call2(*args, **kwargs):
+        publications_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+        publications_dict["1234"] = publications_dict["https://doi.org/10.3390/metabo10090368"]
+        publications_dict["Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases."] = publications_dict["https://doi.org/10.3390/metabo10090368"]
+        del publications_dict["https://doi.org/10.3390/metabo10090368"]
+        return publications_dict
+    mocker.patch("academic_tracker.__main__.fileio.load_json", mock_call2)
+    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+            "--verbose":True,
+            "--MEDLINE_reference":False,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    expected_report = read_text_from_txt(os.path.join("testing_files", "gen_reports_ref_summary_report.txt"))
+    
+    gen_reports_and_emails_ref(args)
+    
+    captured = capsys.readouterr()
+    save_dir = captured.out.strip().split(" ")[-1]
+    
+    assert not os.path.exists(os.path.join(save_dir, "emails.json"))
+    assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
+    assert expected_report == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    
+    
+
+def test_gen_reports_and_emails_ref_no_matches(mocker, capsys):
+    def mock_call(*args, **kwargs):
+        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict["summary_report"] = {}
+        config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
+        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        for citation in tokenized_citations:
+            citation["pub_dict_key"] = ""
+            citation["DOI"] = ""
+            citation["PMID"] = ""
+            citation["title"] = ""
+        return config_dict, tokenized_citations, False, {}
+    mocker.patch("academic_tracker.__main__.ref_srch_modularized.input_reading_and_checking", mock_call)
+        
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+            "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+            "--verbose":True,
+            "--MEDLINE_reference":False,
+            "--prev_pub":"ignore",
+            "--no_ORCID":False,
+            "--no_Crossref":False,
+            "--no_GoogleScholar":False,
+            "--test":True}
+    
+    with pytest.raises(SystemExit):    
+        gen_reports_and_emails_ref(args)
+    
+    captured = capsys.readouterr()
+    assert captured.out == "Error: No entries in the publication JSON matched any reference in the provided reference." + "\n"
+    
+    
+
+
+
+
+@pytest.fixture(autouse=True)
+def cleanup(request):
+    """Cleanup a testing directory once we are finished."""
+    def remove_test_dir():
+        dir_contents = os.listdir()
+        tracker_dirs = [folder for folder in dir_contents if re.match(r"tracker-(\d{10})", folder) or re.match(r"tracker-test-(\d{10})", folder)]
+        for directory in tracker_dirs:
+            shutil.rmtree(directory)
+    request.addfinalizer(remove_test_dir)

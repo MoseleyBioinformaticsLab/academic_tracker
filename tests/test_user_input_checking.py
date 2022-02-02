@@ -4,7 +4,9 @@
 import pytest
 from jsonschema import FormatChecker, ValidationError
 from contextlib import nullcontext as does_not_raise
-from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check, prev_pubs_file_check, ref_config_file_check, tok_reference_check
+
+from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check
+from academic_tracker.user_input_checking import prev_pubs_file_check, ref_config_file_check, tok_reference_check
 from fixtures import passing_config
 
 
@@ -120,7 +122,6 @@ def test_cli_inputs_check_no_error(empty_args):
         ({"affiliations":[123]}),     ##item type
         ({"affiliations":[""]}),      ##item minLength
         ({"project_report":123}),
-        ({"project_report":{}}),
         ({"project_report":{"template":"asdf", ## dependency No email_subject
                             "from_email":"email@email.com", 
                             "cc_email":["email@email.com"],
@@ -206,7 +207,6 @@ def test_config_file_summary_report_attributes_check_errors(passing_config, summ
 
 @pytest.mark.parametrize("summary_report_errors", [
         ({"summary_report":123}),
-        ({"summary_report":{}}),
         ({"summary_report":{"template":"asdf",  ## dependency No to_email
                             "from_email":"email@email.com", 
                             "cc_email":["email@email.com"],
@@ -297,7 +297,6 @@ def test_config_file_check_missing_required_error(passing_config, empty_args):
         ({"affiliations":[123]}),     ##item type
         ({"affiliations":[""]}),      ##item minLength
         ({"project_report":123}),
-        ({"project_report":{}}),
         ({"project_report":{"template":"asdf", ## dependency No email_subject
                             "from_email":"email@email.com", 
                             "cc_email":["email@email.com"],
@@ -388,7 +387,6 @@ def test_ref_config_file_summary_report_attributes_check_errors(passing_config, 
 
 @pytest.mark.parametrize("summary_report_errors", [
         ({"summary_report":123}),
-        ({"summary_report":{}}),
         ({"summary_report":{"template":"asdf",  ## dependency No to_email
                             "from_email":"email@email.com", 
                             "cc_email":["email@email.com"],
@@ -556,14 +554,12 @@ def passing_tok():
 
 @pytest.mark.parametrize("tok_errors", [
         ({"authors":123}),
-        ({"authors":[]}),
         ({"authors":[{"last":"asdf", "first":"asdf", "initials":"asdf", "middle":123}]}),
         ({"authors":[{"last":"asdf", "first":"asdf", "initials":123, "middle":"asdf"}]}),
         ({"authors":[{"last":"asdf", "first":123, "initials":"asdf", "middle":"asdf"}]}),
         ({"authors":[{"last":123, "first":"asdf", "initials":"asdf", "middle":"asdf"}]}),
         ({"authors":[{"first":"asdf", "initials":"asdf", "middle":"asdf"}]}),
         ({"title":123}),
-        ({"title":""}),
         ({"PMID":123}),
         ({"DOI":123}),
         ({"reference_line":123}),

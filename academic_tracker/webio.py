@@ -15,6 +15,7 @@ import scholarly
 import habanero
 import bs4
 import json
+import requests
 
 from . import helper_functions
 
@@ -43,9 +44,19 @@ PUBLICATION_TEMPLATE = {
 
 ##TODO look into adding expanded search to orcid, would need to upgrade to 3.0.
 def search_ORCID_for_ids(ORCID_key, ORCID_secret, authors_json):
-    """"""
+    """Query ORCID with author names and get ORCID IDs.
     
-    import requests
+    If an author already has an ORCID, or doesn't have affiliations they are skipped.
+    
+    Args:
+        ORCID_key (str): key assigned to your registered application from ORCID.
+        ORCID_secret (str): secret given to you by ORCID.
+        authors_json (dict): JSON matching the Authors section of the Configuration file.
+        
+    Returns:
+        authors_json (dict): the authors_json modified with any ORCID IDs found.
+    """
+    
     SEARCH_VERSION = "/v3.0"
     def search_replace(self, query, method, start, rows, headers,
                 endpoint):
@@ -71,16 +82,16 @@ def search_ORCID_for_ids(ORCID_key, ORCID_secret, authors_json):
     
     for author, author_attributes in authors_json.items():
         
-        if "ORCID" in author_attributes or not "affiliations" in author_attributes:
+        if ("ORCID" in author_attributes and author_attributes["ORCID"]) or not "affiliations" in author_attributes:
             continue
         
         search_results = api.search(author_attributes["pubmed_name_search"], access_token=search_token)
         
         for result in search_results["expanded-result"]:
-            if re.match(author_attributes["first_name"].lower() + ".*", result["given-names"]) and author_attributes["last_name"].lower() == result["family-names"]:
+            if re.match(author_attributes["first_name"].lower() + ".*", result["given-names"].lower()) and author_attributes["last_name"].lower() == result["family-names"].lower():
                 
                 if any([affiliation.lower() in institution.lower() for institution in result["institution-name"] for affiliation in author_attributes["affiliations"]]):
-                    author_attributes["ORCID"] = result["orcid-id"]
+                    authors_json[author]["ORCID"] = result["orcid-id"]
                     break
 
 
@@ -89,116 +100,37 @@ def search_ORCID_for_ids(ORCID_key, ORCID_secret, authors_json):
 
 
 def search_Google_Scholar_for_ids(authors_json):
-    """"""
+    """Query Google Scholar with author names and get Scholar IDs.
+    
+    If an author already has a scholar_id, or doesn't have affiliations they are skipped.
+    
+    Args:
+        authors_json (dict): JSON matching the Authors section of the Configuration file.
+        
+    Returns:
+        authors_json (dict): the authors_json modified with any ORCID IDs found.
+    """
     
     for author, author_attributes in authors_json.items():
         
-        if "scholar_id" in author_attributes or not "affiliations" in author_attributes:
+        if ("scholar_id" in author_attributes and author_attributes["scholar_id"]) or not "affiliations" in author_attributes:
             continue
     
         search_query = scholarly.scholarly.search_author(author_attributes["pubmed_name_search"])
         
         for queried_author in search_query:
+            name = queried_author["name"].split(" ")
+            first_name = name[0].lower()
+            last_name = name[-1].lower()
+            if author_attributes["first_name"].lower() == first_name and author_attributes["last_name"].lower() == last_name:
         
-            if any([affiliation.lower() in queried_author["affiliation"].lower() for affiliation in author_attributes["affiliations"]]):
-                author_attributes["scholar_id"] = queried_author["scholar_id"]
-                break
+                if any([affiliation.lower() in queried_author["affiliation"].lower() for affiliation in author_attributes["affiliations"]]):
+                    authors_json[author]["scholar_id"] = queried_author["scholar_id"]
+                    break
             
     return authors_json
 
 
-
-def get_redirect_url_from_doi(doi):
-    """"""
-    
-    doi = doi.lower()
-    
-    if re.match(r".*http.*", doi):
-        match = helper_functions.regex_match_return(r".*doi.org/(.*)", doi)
-        if match:
-            url = DOI_URL + "api/handles/" + match[0]
-        else:
-            return ""
-    else:
-        url = DOI_URL + "api/handles/" + doi
-        
-    try:
-        req = urllib.request.Request(url)
-        response = urllib.request.urlopen(req)
-        json_response = json.loads(response.read())
-        response.close()
-                
-    except urllib.error.HTTPError:
-        print("Error trying to resolve DOI: " + doi)
-        return ""
-        
-    for value in json_response["values"]:
-        if value["type"] == "URL":
-            return value["data"]["value"]
-        
-    return ""
-
-
-
-def check_doi_for_grants(doi, grants, verbose):
-    """Searches DOI webpage for grants.
-    
-    Concatenates "https://doi.org/" with the doi, visits the 
-    page and looks for the given grants on that page.
-    
-    Args:
-        doi (str): DOI for the publication.
-        grants (list): list of str for each grant to look for.
-        verbose (bool): if True print HTTP errors.
-        
-    Returns:
-        found_grants (list): list of str with each grant that was found on the page.
-    """
-    
-    url = get_redirect_url_from_doi(doi)
-    if not url:
-        return set()
-    
-    url_str = get_url_contents_as_str(url, verbose)
-    if not url_str:
-        return set()
-        
-    return { grant for grant in grants if grant in url_str }
-
-
-
-
-def scrape_url_for_DOI(url, verbose):
-    """Searches url for DOI.
-    
-    Uses the regex "(?i).*doi:\s*([^\s]+\w).*" to look for a DOI on 
-    the provided url. The DOI is visited to confirm it is a proper DOI.
-    
-    Args:
-        url (str): url to search.
-        verbose (bool): if True print HTTP errors.
-        
-    Returns:
-        DOI (str): string of the DOI found on the webpage. Is empty string if DOI is not found.
-    """
-        
-    url_str = get_url_contents_as_str(url, verbose)
-    if not url_str:
-        return ""
-            
-    doi = helper_functions.regex_group_return(helper_functions.regex_search_return(r"(?i)doi:\s*(<[^>]*>)?([^\s<]+)", url_str), 1)
-    
-    if doi:
-        
-        url = get_redirect_url_from_doi(doi)
-        if url:
-            return doi
-        else:
-            return ""
-        
-    else:
-        return ""
-    
             
 
 def get_DOI_from_Crossref(title, mailto_email):
@@ -234,6 +166,63 @@ def get_DOI_from_Crossref(title, mailto_email):
 
 
 
+
+def get_url_contents_as_str(url, verbose):
+    """Query the url and return it's contents as a string.
+    
+    Args:
+        url (str): the URL to query.
+        verbose (bool): True to print HTTP errors, False not to.
+        
+    Returns:
+        (str): Either the website as a string or None if an error occurred.
+    """
+    
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        response = urllib.request.urlopen(req, timeout=5)
+        url_str = response.read().decode("utf-8")
+        response.close()
+        return url_str
+                
+    except urllib.error.HTTPError as e:
+        if verbose:
+            print(e)
+            print(url)
+        
+        return None
+
+
+
+def send_emails(email_messages):
+    """Uses sendmail to send email_messages to authors.
+    
+    Only works on systems with sendmail installed. 
+    
+    Args:
+        email_messages (dict): keys are author names and values are the message
+    """
+    sendmail_location = "/usr/sbin/sendmail"
+    
+    # build and send each message by looping over the email_messages dict
+    for email_parts in email_messages["emails"]:
+        msg = email.message.EmailMessage()
+        msg["Subject"] = email_parts["subject"]
+        msg["From"] = email_parts["from"]
+        msg["To"] = email_parts["to"]
+        msg["Cc"] = email_parts["cc"]
+        msg.set_content(email_parts["body"])
+        msg.add_attachment(email_parts["attachment"], filename=email_parts["attachment_filename"])
+        
+        subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
+
+
+
+
+###############
+## Unused Functions
+###############
+        
 def get_grants_from_Crossref(title, mailto_email, grants):
     """Search title on Crossref and try to find the grants associated with it.
     
@@ -273,46 +262,96 @@ def get_grants_from_Crossref(title, mailto_email, grants):
 
 
 
-def get_url_contents_as_str(url, verbose):
+def get_redirect_url_from_doi(doi):
     """"""
     
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        response = urllib.request.urlopen(req, timeout=5)
-        url_str = response.read().decode("utf-8")
-        response.close()
-        return url_str
-                
-    except urllib.error.HTTPError as e:
-        if verbose:
-            print(e)
-            print(url)
-        
-        return None
-
-
-
-def send_emails(email_messages):
-    """Uses sendmail to send email_messages to authors.
+    doi = doi.lower()
     
-    Only works on systems with sendmail installed. 
+    if re.match(r".*http.*", doi):
+        match = helper_functions.regex_match_return(r".*doi.org/(.*)", doi)
+        if match:
+            url = DOI_URL + "api/handles/" + match[0]
+        else:
+            return ""
+    else:
+        url = DOI_URL + "api/handles/" + doi
+        
+    try:
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        json_response = json.loads(response.read())
+        response.close()
+                
+    except urllib.error.HTTPError:
+        print("Error trying to resolve DOI: " + doi)
+        return ""
+        
+    for value in json_response["values"]:
+        if value["type"] == "URL":
+            return value["data"]["value"]
+        
+    return ""
+
+
+
+def scrape_url_for_DOI(url, verbose):
+    """Searches url for DOI.
+    
+    Uses the regex "(?i).*doi:\s*([^\s]+\w).*" to look for a DOI on 
+    the provided url. The DOI is visited to confirm it is a proper DOI.
     
     Args:
-        email_messages (dict): keys are author names and values are the message
-    """
-    sendmail_location = "/usr/sbin/sendmail"
-    
-    # build and send each message by looping over the email_messages dict
-    for email_parts in email_messages["emails"]:
-        msg = email.message.EmailMessage()
-        msg["Subject"] = email_parts["subject"]
-        msg["From"] = email_parts["from"]
-        msg["To"] = email_parts["to"]
-        msg["Cc"] = email_parts["cc"]
-        msg.set_content(email_parts["body"])
-        msg.add_attachment(email_parts["attachment"], filename=email_parts["attachment_filename"])
+        url (str): url to search.
+        verbose (bool): if True print HTTP errors.
         
-        subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
+    Returns:
+        DOI (str): string of the DOI found on the webpage. Is empty string if DOI is not found.
+    """
+        
+    url_str = get_url_contents_as_str(url, verbose)
+    if not url_str:
+        return ""
+            
+    doi = helper_functions.regex_group_return(helper_functions.regex_search_return(r"(?i)doi:\s*(<[^>]*>)?([^\s<]+)", url_str), 1)
+    
+    if doi:
+        
+        url = get_redirect_url_from_doi(doi)
+        if url:
+            return doi
+        else:
+            return ""
+        
+    else:
+        return ""
+    
+
+
+def check_doi_for_grants(doi, grants, verbose):
+    """Searches DOI webpage for grants.
+    
+    Concatenates "https://doi.org/" with the doi, visits the 
+    page and looks for the given grants on that page.
+    
+    Args:
+        doi (str): DOI for the publication.
+        grants (list): list of str for each grant to look for.
+        verbose (bool): if True print HTTP errors.
+        
+    Returns:
+        found_grants (list): list of str with each grant that was found on the page.
+    """
+    
+    url = get_redirect_url_from_doi(doi)
+    if not url:
+        return set()
+    
+    url_str = get_url_contents_as_str(url, verbose)
+    if not url_str:
+        return set()
+        
+    return { grant for grant in grants if grant in url_str }
+    
 
 
 

@@ -1,0 +1,170 @@
+{
+  "https://doi.org/10.1016/j.celrep.2021.110013": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "kentucky",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1016/j.celrep.2021.110013",
+    "grants": null,
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": 11,
+      "year": 2021
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Autotaxin impedes anti-tumor immunity by suppressing chemotaxis and tumor infiltration of CD8+ T cells"
+  },
+  "https://doi.org/10.1016/j.chroma.2021.462426": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "kentucky",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1016/j.chroma.2021.462426",
+    "grants": null,
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": 9,
+      "year": 2021
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry"
+  },
+  "https://doi.org/10.1042/bsr20181883": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "kentucky",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1042/bsr20181883",
+    "grants": null,
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 28,
+      "month": 6,
+      "year": 2019
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Phospholipases D: making sense of redundancy and duplication"
+  },
+  "https://doi.org/10.1172/jci.insight.143650": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "kentucky",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1172/jci.insight.143650",
+    "grants": null,
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 22,
+      "month": 3,
+      "year": 2021
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Pioglitazone does not synergize with mirabegron to increase beige fat or further improve glucose metabolism"
+  },
+  "https://doi.org/10.1172/jci134892": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "kentucky",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1172/jci134892",
+    "grants": null,
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 23,
+      "month": 3,
+      "year": 2020
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "The \u03b23-adrenergic receptor agonist mirabegron improves glucose homeostasis in obese humans"
+  },
+  "https://doi.org/10.1194/jlr.m093096": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "kentucky",
+        "author_id": "Andrew Morris",
+        "firstname": "Andrew",
+        "initials": null,
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1194/jlr.m093096",
+    "grants": null,
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 4,
+      "month": 11,
+      "year": 2019
+    },
+    "pubmed_id": null,
+    "results": null,
+    "title": "Effects of diet and hyperlipidemia on levels and distribution of circulating lysophosphatidic acid"
+  }
+}

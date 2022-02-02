@@ -1,13 +1,13 @@
 """   
 Usage:
-    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref]
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref]
-    academic_tracker find_ORCID <config_json_file> 
-    academic_tracker find_Google_Scholar <config_json_file>  
-    academic_tracker add_authors <config_json_file> <authors_file> 
-    academic_tracker tokenize_reference <references_file_or_URL> 
-    academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test]
-    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference]
+    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose]
+    academic_tracker find_ORCID <config_json_file> [--verbose]
+    academic_tracker find_Google_Scholar <config_json_file> [--verbose]
+    academic_tracker add_authors <config_json_file> <authors_file> [--verbose]
+    academic_tracker tokenize_reference <references_file_or_URL> [--verbose]
+    academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose]
+    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose]
     
 Options:
     -h --help                         Show this screen.
@@ -29,8 +29,8 @@ Search Options:
 
 ## In documentation add a section about how citations are matched, ie one author with matching last name and fuzzy title match > 90.
 ## In documentation make sure to mention that gen_reports for ref tries to match pub_dict keys in reference if not in reference.
-## Should email be required for authors? Should project report still have option to make one for each author and emailed? If no then change the code that generates reports so author_first and author_last aren't available outside of author_loop.
-## Still want default report template? If we do default then user can't turn off generating them.
+## Consider detecting the operating system and not doing the email part.
+## Put a note in documentation about starting on page 1 for myncbi pages.
 
 ## Less important or far future things:
 ## TODO improve reference search to see if every author on the pub has the pub associated with them on ORCID
@@ -87,9 +87,9 @@ def main():
 
 
 def author_search(args):
-    """Query PubMed for publications by author.
+    """Query sources for publications by author.
     
-    Reads in the JSON config file, authors JSON file, previous publications JSON file, and checks for errors.
+    Reads in the JSON config file, previous publications JSON file, and checks for errors.
     Then searches PubMed, ORCID, Google Scholar, and Crossref for publications for each author.
     Emails are then created and sent to project leaders or individual authors. Emails and
     publications are saved to file and emails are sent depending on the options entered by the user. 
@@ -122,7 +122,13 @@ def author_search(args):
 
 
 def reference_search(args):
-    """
+    """Query PubMed and Crossref for publications matching a reference.
+    
+    Read in user inputs and check for error, query sources based on inputs, build 
+    emails and reports, save emails, reports, and publications.
+    
+    Args:
+        args (dict): args from DocOpt CLI
     """
     
     config_dict, tokenized_citations, has_previous_pubs, prev_pubs = ref_srch_modularized.input_reading_and_checking(args)       
@@ -138,7 +144,7 @@ def reference_search(args):
 
 
 def PMID_reference(args):
-    """Create a publications JSON file from a list of PMIDs.
+    """Query PubMed to create a publications JSON file from a list of PMIDs.
     
     Args:
         args (dict): args from DocOpt CLI
@@ -150,23 +156,30 @@ def PMID_reference(args):
     config_dict = fileio.load_json(args["<config_json_file>"])
     
     ## Get inputs from config file and check them for errors.
-    user_input_checking.config_file_check(config_dict)
+    user_input_checking.config_file_check(config_dict, args)
     
     ## Check the DOI file extension and call the correct read in function.
-    extension = os.path.splitext(args["<references_file>"])[1][1:]
+    extension = os.path.splitext(args["<references_file_or_URL>"])[1][1:].lower()
     if extension == "docx":
-        document_string = fileio.read_text_from_docx(args["<references_file>"])
-    elif extension == "txt" or extension == "csv":
-        document_string = fileio.read_text_from_txt(args["<references_file>"])
+        file_contents = fileio.read_text_from_docx(args["<references_file_or_URL>"])
+    elif extension == "txt":
+        file_contents = fileio.read_text_from_txt(args["<references_file_or_URL>"])
+    elif extension == "json":
+        file_contents = fileio.load_json(args["<references_file_or_URL>"])
     else:
         print("Unknown file type for PMID file.")
         sys.exit()
     
-    if not document_string:
+    if not file_contents:
         print("Nothing was read from the PMID file. Make sure the file is not empty or is a supported file type.")
         sys.exit()
-        
-    PMID_list = [line for line in document_string.split("\n") if line]
+    
+    if type(file_contents) == str:
+        PMID_list = [line for line in file_contents.split("\n") if line]
+    else:
+        PMID_list = file_contents
+    user_input_checking.tracker_validate(PMID_list, tracker_schema.PMID_reference_schema)
+    
     print("Querying PubMed and building the publication list.")
     publication_dict = ref_srch_webio.build_pub_dict_from_PMID(PMID_list, config_dict["PubMed_search"]["PubMed_email"])
     
@@ -185,7 +198,11 @@ def PMID_reference(args):
 
 
 def find_ORCID(args):
-    """"""
+    """Query ORCID to find ORCID IDs for authors.
+    
+    Args:
+        args (dict): args from DocOpt CLI
+    """
     
     user_input_checking.cli_inputs_check(args)
 
@@ -213,7 +230,11 @@ def find_ORCID(args):
 
 
 def find_Google_Scholar(args):
-    """"""
+    """Query Google Scholar to find Scholar IDs for authors.
+    
+    Args:
+        args (dict): args from DocOpt CLI
+    """
     
     user_input_checking.cli_inputs_check(args)
     
@@ -241,7 +262,11 @@ def find_Google_Scholar(args):
 
 
 def add_authors(args):
-    """"""
+    """Add authors from csv to config JSON.
+    
+    Args:
+        args (dict): args from DocOpt CLI
+    """
     
     user_input_checking.cli_inputs_check(args)
     
@@ -262,12 +287,12 @@ def add_authors(args):
     
     required_columns = tracker_schema.config_schema["properties"]["Authors"]["additionalProperties"]["required"] + ["author_id"]
     missing_required = [column for column in required_columns if column not in df.columns]
-    if not missing_required:
+    if missing_required:
         print("Error: The following columns are required but are missing:\n" + "\n".join(missing_required))
         sys.exit()
         
     missing_values = [column for column in required_columns if df.loc[:, column].isnull().values.any()]
-    if not missing_values:
+    if missing_values:
         print("Error: The following columns have null values:\n" + "\n".join(missing_values))
         sys.exit()
     
@@ -282,7 +307,8 @@ def add_authors(args):
             df.loc[:, key] = df.loc[:, key].astype(str)
             df.loc[:, key] = df.loc[:, key].apply(lambda x: x.split(","))
     
-    df.index = df.loc[:, "author_id"]    
+    df.index = df.loc[:, "author_id"]
+    df = df.drop(["author_id"], axis=1)
     authors_dict = df.to_dict("index")
     config_dict["Authors"].update(authors_dict)
     
@@ -295,18 +321,22 @@ def add_authors(args):
   
     
 def tokenize_reference(args):
-    """"""
+    """Tokenize input reference file.
+    
+    Args:
+        args (dict): args from DocOpt CLI
+    """
     
     user_input_checking.cli_inputs_check(args)
     
-    tokenized_citations = ref_srch_webio.tokenize_reference_input(args["<reference_file_or_URL>"], args["--MEDLINE_reference"], args["--verbose"])
+    tokenized_citations = ref_srch_webio.tokenize_reference_input(args["<references_file_or_URL>"], args["--MEDLINE_reference"], args["--verbose"])
     
     report_string = ref_srch_emails_and_reports.create_tokenization_report(tokenized_citations)
     
     save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
     os.mkdir(save_dir_name)
         
-    fileio.save_string_to_file(report_string, save_dir_name, "tokenization_report.txt")
+    fileio.save_string_to_file(save_dir_name, "tokenization_report.txt", report_string)
             
     fileio.save_json_to_file(save_dir_name, "tokenized_reference.json", tokenized_citations)
     
@@ -315,7 +345,11 @@ def tokenize_reference(args):
 
 
 def gen_reports_and_emails_auth(args):
-    """"""
+    """Generate reports and emails for input publications as if author_search was ran.
+    
+    Args:
+        args (dict): args from DocOpt CLI
+    """
     
     config_dict = athr_srch_modularized.input_reading_and_checking(args)
     
@@ -335,7 +369,11 @@ def gen_reports_and_emails_auth(args):
 
 
 def gen_reports_and_emails_ref(args):
-    """"""
+    """Generate reports and emails for input publications and reference as if reference_search was ran.
+    
+    Args:
+        args (dict): args from DocOpt CLI
+    """
     
     config_dict, tokenized_citations, has_previous_pubs, prev_pubs = ref_srch_modularized.input_reading_and_checking(args)       
 
@@ -346,9 +384,9 @@ def gen_reports_and_emails_ref(args):
     matching_key_for_citation = []
     for citation in tokenized_citations:
         if not citation["pub_dict_key"]:
-            if citation["DOI"] and citation["DOI"] in publication_dict:
-                citation["pub_dict_key"] = citation["DOI"]
-                matching_key_for_citation.append(citation["DOI"])
+            if citation["DOI"] and webio.DOI_URL + citation["DOI"] in publication_dict:
+                citation["pub_dict_key"] = webio.DOI_URL + citation["DOI"]
+                matching_key_for_citation.append(webio.DOI_URL + citation["DOI"])
             elif citation["PMID"] and citation["PMID"] in publication_dict:
                 citation["pub_dict_key"] = citation["PMID"]
                 matching_key_for_citation.append(citation["PMID"])

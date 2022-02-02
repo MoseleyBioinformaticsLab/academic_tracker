@@ -11,14 +11,26 @@ from . import helper_functions
 
 
 def parse_text_for_citations(text):
-    """"""
+    """Parse text line by line and tokenize it.
+    
+    The function is aware of MLA, APA, Chicago, Harvard, and Vancouver style citations.
+    Although the citation styles the function is aware of have standards for citations 
+    in reality these standards are not strictly adhered to by the public. Therefore
+    the function uses a more heuristic approach.
+    
+    Args:
+        text (str): The text to parse.
+        
+    Returns:
+        parsed_pubs (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema.  
+    """
  
 ## A known issue with these regexes is that authors with 2nd, 3rd, etc in thier name won't get picked up, but allowing numbers in causes too many false positives.      
     regex_dict = {"MLA":r"([^0-9!@#$%^*()[\]_+=\\|<>:;'\"{}`~/?]+)\s+\"(.*)\"\s+(.*)",
                   "APA":r"([^0-9!@#$%^*()[\]_+=\\|<>:;'\"{}`~/?]+)\s+\(\d\d\d\d\)\.\s+([^\.]+)\.\s+(.*)",
                   "Chicago":r"([^0-9!@#$%^*()[\]_+=\\|<>:;'\"{}`~/?]+)\s+\"(.*)\"\s+(.*)",
                   "Harvard":r"([^0-9!@#$%^*()[\]_+=\\|<>:;'\"{}`~/?]+)\s+\d\d\d\d\.\s+([^\.]+)\.\s+(.*)",
-                  "Vancouver":r"([^0-9!@#$%^*()[\]_+=\\|<>:;'\"{}`~/?]+)\.\s+([^\.]+)\.\s+(.*)"}
+                  "Vancouver":r"([^0-9!@#$%^*()[\]_+=\\|<>:;'\"{}`~/?.]+)\.\s+([^\.]+)\.\s+(.*)"}
     
     tokenize_function_dict = {"MLA":tokenize_MLA_or_Chicago_authors,
                               "APA":tokenize_APA_or_Harvard_authors,
@@ -34,6 +46,12 @@ def parse_text_for_citations(text):
             groups = helper_functions.regex_match_return(regex, line)
             if groups:
                 authors = groups[0].strip()
+                ## Sanity check to make sure we are looking at author names separated by commas and not a sentence with a comman in it.
+                ## Assuming names won't be more than 4 words.
+                temp_authors = authors.replace(" and ", ",")
+                sanity_check = any([len(author.strip().split(" ")) > 4 for author in temp_authors.split(",")])
+                if sanity_check:
+                    continue
                 title = groups[1].strip()
                 tail = groups[2].strip()
                 
@@ -63,14 +81,23 @@ def parse_text_for_citations(text):
 
 
 def tokenize_Vancouver_authors(authors_string):
-    """"""
+    """Tokenize authors based on Vancouver citation style.
     
-    authors_string = authors_string.replace("&", "")
-    authors_string = authors_string.replace("and", "")
+    Args:
+        authors_string (str): string with the authors to tokenize.
+        
+    Returns:
+        (list): list of dictionaries with the authors last names and initials. [{"last":lastname, "initials":initials}, ...]
+    """
+    
+    authors_string = authors_string.replace("...", "")
+    authors_string = authors_string.replace("&", ",")
+    authors_string = authors_string.replace(" and ", ",")
     authors_string = authors_string.replace("et al", "")
     
     names = authors_string.split(",")
-    names = [name.strip().split(" ") for name in names]
+    names = [name.strip() for name in names if name.strip()]
+    names = [name.split(" ") for name in names]
     
     return [{"last":name[0], "initials":name[1]} if len(name) >1 else {"last":name[0], "initials":""} for name in names]
 
@@ -78,22 +105,29 @@ def tokenize_Vancouver_authors(authors_string):
 
 
 def tokenize_MLA_or_Chicago_authors(authors_string):
-    """"""
+    """Tokenize authors based on MLA or Chicago citation style.
+    
+    Args:
+        authors_string (str): string with the authors to tokenize.
+        
+    Returns:
+        (list): list of dictionaries with the authors first, middle, and last names. [{"first":firstname, "middle":middlename, "last":lastname}, ...]
+    """
     
     authors_string = authors_string.replace("...", "")
-    authors_string = authors_string.replace("and", "")
-    authors_string = authors_string.replace("&", "")
+    authors_string = authors_string.replace(" and ", ",")
+    authors_string = authors_string.replace("&", ",")
     authors_string = authors_string.replace("et al.", "")
     
     authors_string = authors_string.strip()
     
     names = authors_string.split(",")
-    names = [name for name in names if name]
+    names = [name.strip() for name in names if name.strip()]
     
     ## The authors_string could have a period at the end that is not part of an initial.
     last_name = names[-1]
     last_name = last_name.split(" ")[-1]
-    if len(last_name) > 2 and not re.match(r"([a-zA-Z]\.)+", last_name):
+    if len(last_name) > 2 and not re.match(r"([a-zA-Z]\.)+", last_name) and "." in last_name:
         names[-1] = names[-1][:-1]
     
     authors = []
@@ -138,15 +172,23 @@ def tokenize_MLA_or_Chicago_authors(authors_string):
 
 
 def tokenize_APA_or_Harvard_authors(authors_string):
-    """"""
+    """Tokenize authors based on APA or Harvard citation style.
     
-    authors_string = authors_string.replace("&", "")
-    authors_string = authors_string.replace("and", "")
+    Args:
+        authors_string (str): string with the authors to tokenize.
+        
+    Returns:
+        (list): list of dictionaries with the authors last names and initials. [{"last":lastname, "initials":initials}, ...]
+    """
+    
+    authors_string = authors_string.replace("&", ",")
+    authors_string = authors_string.replace(" and ", ",")
     authors_string = authors_string.replace("et al.", "")
     authors_string = authors_string.replace(" ", "")
     authors_string = authors_string.replace("...", "")
     
     names_and_initials = authors_string.split(",")
+    names_and_initials = [token.strip() for token in names_and_initials if token.strip()]
 
     authors = []
     previous_token_type = ""
@@ -167,8 +209,15 @@ def tokenize_APA_or_Harvard_authors(authors_string):
 
 
 def tokenize_myncbi_citations(html):
-    """
-    Note that authors and title can be empty or missing.
+    """Tokenize the citations on a MyNCBI HTML page.
+    
+    Note that authors and title can be missing or empty from the webpage.
+    
+    Args:
+        html (str): the html of the MyNCBI page.
+        
+    Returns:
+        parsed_pubs (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema. 
     """
     
     soup = bs4.BeautifulSoup(html, "html.parser")
@@ -178,13 +227,20 @@ def tokenize_myncbi_citations(html):
     citations = soup.find_all("div", class_ = "ncbi-docsum")
     for citation in citations:
         
-        authors = citation.find("span", class_ = "authors")
-        if authors:
-            authors = authors.text
+        authors_str = citation.find("span", class_ = "authors")
+        if authors_str:
+            authors_str = authors_str.text
         else:
-            authors = list(citation.children)[1].text
-            
-        authors = tokenize_Vancouver_authors(authors)
+            authors_str = list(citation.children)[1].text
+        
+        authors_str = authors_str.strip()
+        if authors_str and authors_str[-1] == ".":
+            authors_str = authors_str[:-1]
+        authors = tokenize_Vancouver_authors(authors_str)
+        
+        ## Some citations don't use Vancouver, so check to see if all initials are blank and if so try Harvard/APA.
+        if all([not author["initials"] for author in authors]):
+            authors = tokenize_APA_or_Harvard_authors(authors_str)
         
         ## Look for blank authors and remove them.
         authors = [author for author in authors if any([author_attribute for author_attribute in author.values()])]
@@ -228,7 +284,14 @@ def tokenize_myncbi_citations(html):
 
 
 def parse_MEDLINE_format(text_string):
-    """"""
+    """Tokenize text_string based on it being of the MEDLINE format.
+    
+    Args:
+        text_string (str): The string to tokenize.
+        
+    Returns:
+        parsed_pubs (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema. 
+    """
     
     parsed_pubs = []
     pmid = ""

@@ -1,0 +1,22 @@
+<author_loop><pub_loop>
+Authors: <authors>
+Grants: <grants>
+Abstract: <abstract>
+Conclusions: <conclusions>
+Copyrights: <copyrights>
+DOI: <DOI>
+Journal: <journal>
+Keywords: <keywords>
+Methods: <methods>
+PMID: <PMID>
+Results: <results>
+Title: <title>
+PMCID: <PMCID>
+Publication Year: <publication_year>
+Publication Month: <publication_month>
+Publication Day: <publication_day>
+Author First: <author_first>
+Author Last: <author_last>
+Name Search: <author_name_search>
+Email: <author_email>
+</pub_loop></author_loop>

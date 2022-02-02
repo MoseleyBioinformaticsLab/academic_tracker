@@ -1,0 +1,23 @@
+Authors: <authors>
+Grants: <grants>
+Abstract: <abstract>
+Conclusions: <conclusions>
+Copyrights: <copyrights>
+DOI: <DOI>
+Journal: <journal>
+Keywords: <keywords>
+Methods: <methods>
+PMID: <PMID>
+Results: <results>
+Title: <title>
+PMCID: <PMCID>
+Publication Year: <publication_year>
+Publication Month: <publication_month>
+Publication Day: <publication_day>
+Tok Title: <tok_title>
+Tok DOI: <tok_DOI>
+Tok PMID: <tok_PMID>
+Tok Authors: <tok_authors>
+Ref Line: <ref_line>
+Comparison: <is_in_comparison_file>
+

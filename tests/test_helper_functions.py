@@ -1,32 +1,20 @@
 # -*- coding: utf-8 -*-
 
-import pytest
+
 import re
 import os
+
 import pymed
+import pytest
 import xml.etree.ElementTree as ET 
-from academic_tracker.helper_functions import parse_string_for_pub_info, regex_match_return, regex_group_return, regex_search_return
+
+from academic_tracker.fileio import load_json
+from academic_tracker.helper_functions import regex_match_return, regex_group_return, regex_search_return
 from academic_tracker.helper_functions import match_authors_in_pub_PubMed, match_authors_in_pub_Crossref
-from academic_tracker.helper_functions import modify_pub_dict_for_saving, overwrite_config_with_CLI, is_fuzzy_match_to_list, is_pub_in_publication_dict 
-from academic_tracker.helper_functions import create_authors_by_project_dict, adjust_author_attributes
+from academic_tracker.helper_functions import modify_pub_dict_for_saving, is_fuzzy_match_to_list, fuzzy_matches_to_list, is_pub_in_publication_dict 
+from academic_tracker.helper_functions import create_authors_by_project_dict, adjust_author_attributes, find_duplicate_citations, are_citations_in_pub_dict
 from fixtures import publication_dict, pub_with_grants, pub_with_matching_author, passing_config, authors_by_project_dict
 
-
-def test_parse_string_for_pub_info():
-    
-    document_string = "doi:10.1515/reveh-2020-0092 PMID:33001857 PMCID:PMC7933073\n" +\
-                         "doi:10.1111/gwmr.12449 \n" +\
-                         "doi:10.3390/membranes11010018 PMID:33375603 \n" +\
-                         "asdfasdfasdfadsf"
-    DOI_regex = r"(?i).*doi:\s*([^\s]+\w).*"
-    PMID_regex = r"(?i).*pmid:\s*(\d+).*"
-    PMCID_regex = r"(?i).*pmcid:\s*(pmc\d+).*"
-    
-    output_list = [{"DOI": "10.1111/gwmr.12449", "PMID": "", "line": "doi:10.1111/gwmr.12449 "},
-                   {"DOI": "10.3390/membranes11010018", "PMID": "33375603", "line": "doi:10.3390/membranes11010018 PMID:33375603 "}]
-    
-    assert parse_string_for_pub_info(document_string, DOI_regex, PMID_regex, PMCID_regex) == output_list
-    
 
 
 @pytest.mark.parametrize("regex, string_to_match, return_value", [
@@ -229,49 +217,6 @@ def test_modify_pub_dict_for_saving_with_PMCID(pub_with_PMCID):
 
 
 
-def test_overwrite_config_with_CLI():
-    config_file = {"project_descriptions":{
-                  "Core A Administrative Core": {
-                    "affiliations": [
-                      "kentucky"
-                    ],
-                    "authors": [
-                      "Kelly Pennell",
-                      "Bernhard Hennig",
-                      "Angela Gutierrez"
-                    ],
-                    "cc_email": [],
-                    "cutoff_year": 2020,
-                    "email_subject": "New PubMed Publications",
-                    "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-                    "from_email": "ptth222@uky.edu",
-                    "grants": [
-                      "P42ES007380",
-                      "P42 ES007380"
-                    ]
-                  }}}
-    
-    args = {"--grants":["asdf"], "--cutoff_year":2018, "--from_email":"email@email.com", "--cc_email":["asdf@email.com"], "--affiliations":["qwer"]}
-    
-    modified_config = {"project_descriptions":{
-                      "Core A Administrative Core": {
-                        "affiliations": ["qwer"],
-                        "authors": [
-                          "Kelly Pennell",
-                          "Bernhard Hennig",
-                          "Angela Gutierrez"
-                        ],
-                        "cc_email": ["asdf@email.com"],
-                        "cutoff_year": 2018,
-                        "email_subject": "New PubMed Publications",
-                        "email_template": "Hey <author_first_name>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<total_pubs>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-                        "from_email": "email@email.com",
-                        "grants": ["asdf"]
-                      }}}
-    
-    assert overwrite_config_with_CLI(config_file, args) == modified_config
-    
-
 
 @pytest.mark.parametrize("str_to_match, list_to_matched, is_match", [
         
@@ -281,6 +226,16 @@ def test_overwrite_config_with_CLI():
 
 def test_is_fuzzy_match_to_list(str_to_match, list_to_matched, is_match):
     assert is_fuzzy_match_to_list(str_to_match, list_to_matched) == is_match
+    
+
+@pytest.mark.parametrize("str_to_match, list_to_matched, matches", [
+        
+        ("asdf", ["qwer", "asdf", "zxcv"], [(1,"asdf")]),
+        ("asdf", ["qwer", "zxcv"], [])
+        ]) 
+
+def test_fuzzy_matches_to_list(str_to_match, list_to_matched, matches):
+    assert fuzzy_matches_to_list(str_to_match, list_to_matched) == matches
 
 
 
@@ -300,54 +255,93 @@ def test_is_pub_in_publication_dict(pub_id, title, publication_dict, titles, is_
 
 def test_create_authors_by_project_dict(passing_config, authors_json_file, authors_by_project_dict, capsys):
     
-    authors_by_project_dict_check = create_authors_by_project_dict(passing_config, authors_json_file) 
+    authors_by_project_dict_check = create_authors_by_project_dict(passing_config) 
     captured = capsys.readouterr()
     
-    assert authors_by_project_dict_check == authors_by_project_dict and captured.out == "Warning: The author, Andrew Morris, in the project 1 project of the project tracking configuration file could not be found in the authors' JSON file.\n"
+    assert authors_by_project_dict_check == authors_by_project_dict and captured.out == "Warning: The author, Isabel Escobar, in the project 1 project of the project tracking configuration file could not be found in the Authors section of the Configuration JSON file.\n"
     
     
     
-def test_adjust_author_attributes(authors_by_project_dict, authors_json_file):
+def test_adjust_author_attributes(authors_by_project_dict, passing_config):
     
     authors_by_project_dict["project 1"]["Hunter Moseley"]["affiliations"] = ["asdf"]
     authors_by_project_dict["project 1"]["Hunter Moseley"]["grants"] = ["asdf", "qwer"]
     authors_by_project_dict["project 1"]["Hunter Moseley"]["cutoff_year"] = 2000
     
-    del authors_by_project_dict["project 2"]["Hunter Moseley"]["affiliations"]
-    del authors_by_project_dict["project 2"]["Hunter Moseley"]["grants"]
-    del authors_by_project_dict["project 2"]["Hunter Moseley"]["cutoff_year"]
+#    del authors_by_project_dict["project 2"]["Hunter Moseley"]["affiliations"]
+#    del authors_by_project_dict["project 2"]["Hunter Moseley"]["grants"]
+#    del authors_by_project_dict["project 2"]["Hunter Moseley"]["cutoff_year"]
     
-    modified_authors_json_file = {'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
-                                  'affiliations': set(['asdf', 'kentucky']),
-                                  'cutoff_year': 2000,
-                                  'email': 'hunter.moseley@gmail.com',
-                                  'first_name': 'Hunter',
-                                  'last_name': 'Moseley',
-                                  'pubmed_name_search': 'Hunter Moseley',
-                                  'scholar_id': 'ctE_FZMAAAAJ',
-                                  'grants': set(['asdf', 'P42ES007380', 'qwer', 'P42 ES007380'])},
-                                 'Isabel Escobar': {'ORCID': '0000-0001-9269-5927',
-                                  'affiliations': set(['kentucky']),
-                                  'cutoff_year': 2020,
-                                  'email': 'isabel.escobar@uky.edu',
-                                  'first_name': 'Isabel',
-                                  'last_name': 'Escobar',
-                                  'pubmed_name_search': 'Isabel Escobar',
-                                  'scholar_id': 'RfB5L8kAAAAJ',
-                                  'grants': set(['P42ES007380', 'P42 ES007380'])}}
+    modified_authors_json_file = {'Andrew Morris': {'ORCID': '0000-0003-1910-4865',
+                                      'affiliations': ['kentucky'],
+                                      'cutoff_year': 2020,
+                                      'email': 'a.j.morris@uky.edu',
+                                      'first_name': 'Andrew',
+                                      'last_name': 'Morris',
+                                      'pubmed_name_search': 'Andrew Morris',
+                                      'scholar_id': '-j7fxnEAAAAJ',
+                                      'grants': ['P42 ES007380', 'P42ES007380']},
+                                  'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
+                                      'affiliations': ['asdf', 'kentucky'],
+                                      'cutoff_year': 2000,
+                                      'email': 'hunter.moseley@gmail.com',
+                                      'first_name': 'Hunter',
+                                      'last_name': 'Moseley',
+                                      'pubmed_name_search': 'Hunter Moseley',
+                                      'scholar_id': 'ctE_FZMAAAAJ',
+                                      'grants': ['P42 ES007380', 'P42ES007380', 'asdf', 'qwer']}}
         
-    adjust_author_attributes(authors_by_project_dict, authors_json_file)
+    adjust_author_attributes(authors_by_project_dict, passing_config)
     
-    for author_attr in authors_json_file.values():
-        author_attr["affiliations"] = set(author_attr["affiliations"])
-        author_attr["grants"] = set(author_attr["grants"])
-    
-    assert authors_json_file == modified_authors_json_file
+    assert passing_config["Authors"] == modified_authors_json_file
     
     
+
+
+@pytest.fixture
+def tokenized_citations():
+    return [{"PMID":"1234", "DOI":"ASDF", "title":"made up title"},
+            {"PMID":"", "DOI":"ASDF", "title":""},
+            {"PMID":"1234", "DOI":"ASDF", "title":""},
+            
+            {"PMID":"", "DOI":"QWER", "title":""},
+            {"PMID":"", "DOI":"qwer", "title":""},
+            
+            {"PMID":"4567", "DOI":"", "title":""},
+            {"PMID":"4567", "DOI":"", "title":""},
+            
+            {"PMID":"", "DOI":"", "title":"new title"},
+            {"PMID":"", "DOI":"", "title":"new titles"},]
+    
+def test_find_duplicate_citations(tokenized_citations):
+    
+    duplicate_citations_check = set([(0,1,2), (3,4), (5,6), (7,8)])
+    
+    duplicate_citations = find_duplicate_citations(tokenized_citations)
+    
+    duplicate_citations = {tuple(duplicates) for duplicates in duplicate_citations}
+    
+    assert duplicate_citations == duplicate_citations_check
     
     
     
+@pytest.fixture
+def publication_json():
+    return load_json(os.path.join("testing_files", "publication_dict.json"))
+
+
+def test_are_citations_in_pub_dict(publication_json):
+    
+    tokenized_citations = [{"PMID":"32095784", "DOI":"", "title":""},
+                           {"PMID":"", "DOI":"10.1002/adhm.202101820", "title":""},
+                           {"PMID":"", "DOI":"", "title":"Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy."},
+                           {"PMID":"1234", "DOI":"", "title":""}]
+    
+    is_citation_in_pubs_check = [True, True, True, False]
+    
+    is_citation_in_pubs = are_citations_in_pub_dict(tokenized_citations, publication_json)
+    
+    assert is_citation_in_pubs == is_citation_in_pubs_check
     
     
     

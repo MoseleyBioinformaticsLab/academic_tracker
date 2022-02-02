@@ -1,0 +1,3471 @@
+[
+  {
+    "DOI": "10.3390/metabo11110740",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Flight R, Moseley H.\n      \n              Untargeted Lipidomics of Non-Small Cell Lung Carcinoma Demonstrates Differentially Abundant Lipid Classes in Cancer vs. Non-Cancer Tissue.\n          Metabolites. 2021 October; 11(11):740-. doi: 10.3390/metabo11110740.",
+    "title": "Untargeted Lipidomics of Non-Small Cell Lung Carcinoma Demonstrates Differentially Abundant Lipid Classes in Cancer vs. Non-Cancer Tissue."
+  },
+  {
+    "DOI": "10.3390/metabo11070431",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Moseley H.\n      \n              Hierarchical Harmonization of Atom-Resolved Metabolic Reactions across Metabolic Databases.\n          Metabolites. 2021 June; 11(7):431-. doi: 10.3390/metabo11070431.",
+    "title": "Hierarchical Harmonization of Atom-Resolved Metabolic Reactions across Metabolic Databases."
+  },
+  {
+    "DOI": "10.1101/2021.06.01.446673",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Moseley H.\n      Hierarchical Harmonization of Atom-Resolved Metabolic Reactions Across Metabolic Databases.  [preprint]. 2021 June. doi: 10.1101/2021.06.01.446673.",
+    "title": "Hierarchical Harmonization of Atom-Resolved Metabolic Reactions Across Metabolic Databases."
+  },
+  {
+    "DOI": "10.1093/bioinformatics/btaa957",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Liu"
+      },
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "Y",
+        "last": "Xie"
+      },
+      {
+        "initials": "T",
+        "last": "Zhai"
+      },
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "A",
+        "last": "Stromberg"
+      },
+      {
+        "initials": "N",
+        "last": "Vanderford"
+      },
+      {
+        "initials": "J",
+        "last": "Kolesar"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "L",
+        "last": "Chen"
+      },
+      {
+        "initials": "C",
+        "last": "Liu"
+      },
+      {
+        "initials": "C",
+        "last": "Wang"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Liu S, Liu J, Xie Y, Zhai T, Hinderer E, Stromberg A, Vanderford N, Kolesar J, Moseley H, Chen L, Liu C, Wang C.\n      \n              MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations.\n          Bioinformatics. 2021 May; 37(9):1189-1197. doi: 10.1093/bioinformatics/btaa957.",
+    "title": "MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations."
+  },
+  {
+    "DOI": "10.1101/2021.03.16.21253733",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Flight R, Lane A, Moseley H.\n      Untargeted lipidomics of non-small cell lung carcinoma shows differentially abundant lipid classes in cancer vs non-cancer tissue.  [preprint]. 2021 March. doi: 10.1101/2021.03.16.21253733.",
+    "title": "Untargeted lipidomics of non-small cell lung carcinoma shows differentially abundant lipid classes in cancer vs non-cancer tissue."
+  },
+  {
+    "DOI": "10.3390/metabo11030163",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "C",
+        "last": "Powell"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Powell C, Moseley H.\n      \n              The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository.\n          Metabolites. 2021 March; 11(3):163-. doi: 10.3390/metabo11030163.",
+    "title": "The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository."
+  },
+  {
+    "DOI": "10.3390/metabo11030163",
+    "PMID": "33808985",
+    "authors": [
+      {
+        "initials": "CD",
+        "last": "Powell"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Powell CD, Moseley HNB.\n        \n                The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository.\n            Metabolites.\n        \n        \n            2021 Mar 12;11(3). doi: 10.3390/metabo11030163. PubMed PMID:\n            33808985; PubMed Central PMCID:\n                PMC8000456.",
+    "title": "The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository."
+  },
+  {
+    "DOI": "10.1016/j.bbadis.2020.165883",
+    "PMID": "32592935",
+    "authors": [
+      {
+        "initials": "Y",
+        "last": "Zhong"
+      },
+      {
+        "initials": "K",
+        "last": "Mohan"
+      },
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "A",
+        "last": "Al-Attar"
+      },
+      {
+        "initials": "P",
+        "last": "Lin"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "Q",
+        "last": "Sun"
+      },
+      {
+        "initials": "MO",
+        "last": "Warmoes"
+      },
+      {
+        "initials": "RR",
+        "last": "Deshpande"
+      },
+      {
+        "initials": "H",
+        "last": "Liu"
+      },
+      {
+        "initials": "KS",
+        "last": "Jung"
+      },
+      {
+        "initials": "MI",
+        "last": "Mitov"
+      },
+      {
+        "initials": "N",
+        "last": "Lin"
+      },
+      {
+        "initials": "DA",
+        "last": "Butterfield"
+      },
+      {
+        "initials": "S",
+        "last": "Lu"
+      },
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      },
+      {
+        "initials": "TWM",
+        "last": "Fan"
+      },
+      {
+        "initials": "ME",
+        "last": "Kleinman"
+      },
+      {
+        "initials": "QJ",
+        "last": "Wang"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Zhong Y, Mohan K, Liu J, Al-Attar A, Lin P, Flight RM, Sun Q, Warmoes MO, Deshpande RR, Liu H, Jung KS, Mitov MI, Lin N, Butterfield DA, Lu S, Liu J, Moseley HNB, Fan TWM, Kleinman ME, Wang QJ.\n        \n                Loss of CLN3, the gene mutated in juvenile neuronal ceroid lipofuscinosis, leads to metabolic impairment and autophagy induction in retinal pigment epithelium.\n            Biochim Biophys Acta Mol Basis Dis.\n        \n        \n            2020 Oct 1;1866(10):165883. doi: 10.1016/j.bbadis.2020.165883. Epub 2020 Jun 25. PubMed PMID:\n            32592935; NIHMSID:NIHMS1607350.",
+    "title": "Loss of CLN3, the gene mutated in juvenile neuronal ceroid lipofuscinosis, leads to metabolic impairment and autophagy induction in retinal pigment epithelium."
+  },
+  {
+    "DOI": "10.3390/metabo10090368",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Mitchell J, Moseley H.\n      \n              Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases.\n          Metabolites. 2020 September; 10(9):368-. doi: 10.3390/metabo10090368.",
+    "title": "Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases."
+  },
+  {
+    "DOI": "10.1371/journal.pone.0236894",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Moseley H.\n      \n              A chemical interpretation of protein electron density maps in the worldwide protein data bank.\n          PLOS ONE. 2020-8-; 15(8):e0236894-. doi: 10.1371/journal.pone.0236894.",
+    "title": "A chemical interpretation of protein electron density maps in the worldwide protein data bank."
+  },
+  {
+    "DOI": "10.1101/2020.06.19.161877",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Mitchell J, Moseley H.\n      Atom Identifiers Generated by a Graph Coloring Method Enable Compound Harmonization Across Metabolic Databases.  [preprint]. 2020 June. doi: 10.1101/2020.06.19.161877.",
+    "title": "Atom Identifiers Generated by a Graph Coloring Method Enable Compound Harmonization Across Metabolic Databases."
+  },
+  {
+    "DOI": "10.1371/journal.pone.0233311",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Hinderer E, Moseley H.\n      \n              GOcats: A tool for categorizing Gene Ontology into subgraphs of user-defined concepts.\n          PLOS ONE. 2020-6-; 15(6):e0233311-. doi: 10.1371/journal.pone.0233311.",
+    "title": "GOcats: A tool for categorizing Gene Ontology into subgraphs of user-defined concepts."
+  },
+  {
+    "DOI": "10.1093/bioinformatics/btaa106",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "R",
+        "last": "Abeysinghe"
+      },
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "L",
+        "last": "Cui"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Abeysinghe R, Hinderer E, Moseley H, Cui L.\n      \n              SSIF: Subsumption-based Sub-term Inference Framework to audit Gene Ontology.\n          Bioinformatics. 2020 May; 36(10):3207-3214. doi: 10.1093/bioinformatics/btaa106.",
+    "title": "SSIF: Subsumption-based Sub-term Inference Framework to audit Gene Ontology."
+  },
+  {
+    "DOI": "10.31219/osf.io/z8wvq",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H.\n      Current Evidence Supporting the Use of Orally Administered Zinc in the Treatment of COVID-19.  [preprint]. 2020 April. doi: 10.31219/osf.io/z8wvq.",
+    "title": "Current Evidence Supporting the Use of Orally Administered Zinc in the Treatment of COVID-19."
+  },
+  {
+    "DOI": "10.1186/s12864-020-6681-2",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "C",
+        "last": "Powell"
+      },
+      {
+        "initials": "D",
+        "last": "Kirchoff"
+      },
+      {
+        "initials": "J",
+        "last": "DeRouchey"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Powell C, Kirchoff D, DeRouchey J, Moseley H.\n      \n              Entropy based analysis of vertebrate sperm protamines sequences: evidence of potential dityrosine and cysteine-tyrosine cross-linking in sperm protamines.\n          BMC Genomics. 2020 April; 21(1):-. doi: 10.1186/s12864-020-6681-2.",
+    "title": "Entropy based analysis of vertebrate sperm protamines sequences: evidence of potential dityrosine and cysteine-tyrosine cross-linking in sperm protamines."
+  },
+  {
+    "DOI": "10.3390/metabo10030122",
+    "PMID": "32214009",
+    "authors": [
+      {
+        "initials": "JM",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell JM, Flight RM, Moseley HNB.\n        \n                Deriving Lipid Classification Based on Molecular Formulas.\n            Metabolites.\n        \n        \n            2020 Mar 24;10(3). doi: 10.3390/metabo10030122. PubMed PMID:\n            32214009; PubMed Central PMCID:\n                PMC7143220.",
+    "title": "Deriving Lipid Classification Based on Molecular Formulas."
+  },
+  {
+    "DOI": "10.3390/metabo10030122",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Flight R, Moseley H.\n      \n              Deriving Lipid Classification Based on Molecular Formulas.\n          Metabolites. 2020 March; 10(3):122-. doi: 10.3390/metabo10030122.",
+    "title": "Deriving Lipid Classification Based on Molecular Formulas."
+  },
+  {
+    "DOI": "10.3390/metabo10030118",
+    "PMID": "32245221",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Moseley HNB.\n        \n                Robust Moiety Model Selection Using Mass Spectrometry Measured Isotopologues.\n            Metabolites.\n        \n        \n            2020 Mar 21;10(3). doi: 10.3390/metabo10030118. PubMed PMID:\n            32245221; PubMed Central PMCID:\n                PMC7143054.",
+    "title": "Robust Moiety Model Selection Using Mass Spectrometry Measured Isotopologues."
+  },
+  {
+    "DOI": "10.3390/metabo10030118",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Moseley H.\n      \n              Robust Moiety Model Selection Using Mass Spectrometry Measured Isotopologues.\n          Metabolites. 2020 March; 10(3):118-. doi: 10.3390/metabo10030118.",
+    "title": "Robust Moiety Model Selection Using Mass Spectrometry Measured Isotopologues."
+  },
+  {
+    "DOI": "10.1101/845180",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "C",
+        "last": "Powell"
+      },
+      {
+        "initials": "D",
+        "last": "Kirchhoff"
+      },
+      {
+        "initials": "J",
+        "last": "DeRouchey"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Powell C, Kirchhoff D, DeRouchey J, Moseley H.\n      Entropy-Based Analysis of Vertebrate Sperm Protamine Sequences: Evidence of Dityrosine and Cysteine-Tyrosine Cross-Linking in Sperm Protamines.  [preprint]. 2019 November. doi: 10.1101/845180.",
+    "title": "Entropy-Based Analysis of Vertebrate Sperm Protamine Sequences: Evidence of Dityrosine and Cysteine-Tyrosine Cross-Linking in Sperm Protamines."
+  },
+  {
+    "DOI": "10.1186/s12859-019-3096-7",
+    "PMID": "31660850",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Moseley HNB.\n        \n                Moiety modeling framework for deriving moiety abundances from mass spectrometry measured isotopologues.\n            BMC Bioinformatics.\n        \n        \n            2019 Oct 28;20(1):524. doi: 10.1186/s12859-019-3096-7. PubMed PMID:\n            31660850; PubMed Central PMCID:\n                PMC6816163.",
+    "title": "Moiety modeling framework for deriving moiety abundances from mass spectrometry measured isotopologues."
+  },
+  {
+    "DOI": "10.1186/s12859-019-3096-7",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Jin"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jin H, Moseley H.\n      \n              Moiety modeling framework for deriving moiety abundances from mass spectrometry measured isotopologues.\n          BMC Bioinformatics. 2019 October; 20(1):-. doi: 10.1186/s12859-019-3096-7.",
+    "title": "Moiety modeling framework for deriving moiety abundances from mass spectrometry measured isotopologues."
+  },
+  {
+    "DOI": "10.3390/molecules24173179",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Moseley H.\n      \n              Finding High-Quality Metal Ion-Centric Regions Across the Worldwide Protein Data Bank.\n          Molecules. 2019 September; 24(17):3179-. doi: 10.3390/molecules24173179.",
+    "title": "Finding High-Quality Metal Ion-Centric Regions Across the Worldwide Protein Data Bank."
+  },
+  {
+    "DOI": "10.1371/journal.pone.0220728",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "R",
+        "last": "Dubey"
+      },
+      {
+        "initials": "J",
+        "last": "MacLeod"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Hinderer E, Flight R, Dubey R, MacLeod J, Moseley H.\n      \n              Advances in gene ontology utilization improve statistical power of annotation enrichment.\n          PLOS ONE. 2019-8-; 14(8):e0220728-. doi: 10.1371/journal.pone.0220728.",
+    "title": "Advances in gene ontology utilization improve statistical power of annotation enrichment."
+  },
+  {
+    "DOI": "10.1021/acs.analchem.9b00748",
+    "PMID": "31260262",
+    "authors": [
+      {
+        "initials": "JM",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell JM, Flight RM, Moseley HNB.\n        \n                Small Molecule Isotope Resolved Formula Enumeration: A Methodology for Assigning Isotopologues and Metabolite Formulas in Fourier Transform Mass Spectra.\n            Anal Chem.\n        \n        \n            2019 Jul 16;91(14):8933-8940. doi: 10.1021/acs.analchem.9b00748. Epub 2019 Jul 1. PubMed PMID:\n            31260262.",
+    "title": "Small Molecule Isotope Resolved Formula Enumeration: A Methodology for Assigning Isotopologues and Metabolite Formulas in Fourier Transform Mass Spectra."
+  },
+  {
+    "DOI": "10.1021/acs.analchem.9b00748",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Flight R, Moseley H.\n      \n              Small Molecule Isotope Resolved Formula Enumeration: A Methodology for Assigning Isotopologues and Metabolite Formulas in Fourier Transform Mass Spectra.\n          Analytical Chemistry. 2019 June; 91(14):8933-8940. doi: 10.1021/acs.analchem.9b00748.",
+    "title": "Small Molecule Isotope Resolved Formula Enumeration: A Methodology for Assigning Isotopologues and Metabolite Formulas in Fourier Transform Mass Spectra."
+  },
+  {
+    "DOI": "10.1177/1934578x19849142",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "X",
+        "last": "Chen"
+      },
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Chen X, Smelter A, Moseley HN.\n      \n              BaMORC: A Software Package for Accurate and Robust 13C Reference Correction of Protein NMR Spectra.\n          Natural Products Communication. 2019 May; 14. doi: 10.1177/1934578X19849142.",
+    "title": "BaMORC: A Software Package for Accurate and Robust 13C Reference Correction of Protein NMR Spectra."
+  },
+  {
+    "DOI": "10.26434/chemrxiv.7609205",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Mitchell J, Flight R.\n      Small Molecule Isotope Resolved Formula Enumeration: a Methodology for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra.  [preprint]. 2019-5-. doi: 10.26434/chemrxiv.7609205.",
+    "title": "Small Molecule Isotope Resolved Formula Enumeration: a Methodology for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra."
+  },
+  {
+    "DOI": "10.26434/chemrxiv.7609205.v3",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Mitchell J, Flight R.\n      Small Molecule Isotope Resolved Formula Enumeration: a Methodology for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra.  [preprint]. 2019 May. doi: 10.26434/chemrxiv.7609205.v3.",
+    "title": "Small Molecule Isotope Resolved Formula Enumeration: a Methodology for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra."
+  },
+  {
+    "DOI": "10.26434/chemrxiv.7609205.v2",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Mitchell J, Flight R.\n      Small Molecule Isotope Resolved Formula Enumeration: a Methodology for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra.  [preprint]. 2019 May. doi: 10.26434/chemrxiv.7609205.v2.",
+    "title": "Small Molecule Isotope Resolved Formula Enumeration: a Methodology for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra."
+  },
+  {
+    "DOI": "10.1177/1176935119843507",
+    "PMID": "31105425",
+    "authors": [
+      {
+        "initials": "MK",
+        "last": "Gober"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "J",
+        "last": "Lambert"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "A",
+        "last": "Stromberg"
+      },
+      {
+        "initials": "EP",
+        "last": "Black"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Gober MK, Flight RM, Lambert J, Moseley H, Stromberg A, Black EP.\n        \n                Deregulation of a Network of mRNA and miRNA Genes Reveals That CK2 and MEK Inhibitors May Synergize to Induce Apoptosis KRAS-Active NSCLC.\n            Cancer Inform.\n        \n        \n            2019;18:1176935119843507. doi: 10.1177/1176935119843507. eCollection 2019. PubMed PMID:\n            31105425; PubMed Central PMCID:\n                PMC6509975.",
+    "title": "Deregulation of a Network of mRNA and miRNA Genes Reveals That CK2 and MEK Inhibitors May Synergize to Induce Apoptosis KRAS-Active NSCLC."
+  },
+  {
+    "DOI": "10.1177/1176935119843507",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "M",
+        "last": "Gober"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "J",
+        "last": "Lambert"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "A",
+        "last": "Stromberg"
+      },
+      {
+        "initials": "E",
+        "last": "Black"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Gober M, Flight R, Lambert J, Moseley H, Stromberg A, Black E.\n      \n              Deregulation of a Network of mRNA and miRNA Genes Reveals That CK2 and MEK Inhibitors May Synergize to Induce Apoptosis KRAS-Active NSCLC.\n          Cancer Informatics. 2019 May; 18:117693511984350-. doi: 10.1177/1176935119843507.",
+    "title": "Deregulation of a Network of mRNA and miRNA Genes Reveals That CK2 and MEK Inhibitors May Synergize to Induce Apoptosis KRAS-Active NSCLC."
+  },
+  {
+    "DOI": "10.1101/619809",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Moseley H.\n      Finding high-quality metal ion-centric regions across the worldwide Protein Data Bank.  [preprint]. 2019 April. doi: 10.1101/619809.",
+    "title": "Finding high-quality metal ion-centric regions across the worldwide Protein Data Bank."
+  },
+  {
+    "DOI": "10.1101/613109",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Moseley H.\n      A chemical interpretation of protein electron density maps in the worldwide protein data bank.  [preprint]. 2019 April. doi: 10.1101/613109.",
+    "title": "A chemical interpretation of protein electron density maps in the worldwide protein data bank."
+  },
+  {
+    "DOI": "10.21203/rs.2.525/v1",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Hinderer E, Moseley H.\n      GOcats: A tool for categorizing Gene Ontology into subgraphs of user-defined concepts.  [preprint]. 2019 March. doi: 10.21203/rs.2.525/v1.",
+    "title": "GOcats: A tool for categorizing Gene Ontology into subgraphs of user-defined concepts."
+  },
+  {
+    "DOI": "10.1101/572883",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Moseley H.\n      Deriving Accurate Lipid Classification based on Molecular Formula.  [preprint]. 2019 March. doi: 10.1101/572883.",
+    "title": "Deriving Accurate Lipid Classification based on Molecular Formula."
+  },
+  {
+    "DOI": "10.1158/1055-9965.epi-17-0984",
+    "PMID": "30377206",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "T",
+        "last": "Murali"
+      },
+      {
+        "initials": "T",
+        "last": "Yu"
+      },
+      {
+        "initials": "C",
+        "last": "Liu"
+      },
+      {
+        "initials": "TA",
+        "last": "Sivakumaran"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      },
+      {
+        "initials": "IB",
+        "last": "Zhulin"
+      },
+      {
+        "initials": "HL",
+        "last": "Weiss"
+      },
+      {
+        "initials": "EB",
+        "last": "Durbin"
+      },
+      {
+        "initials": "SR",
+        "last": "Ellingson"
+      },
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "B",
+        "last": "Huang"
+      },
+      {
+        "initials": "BJ",
+        "last": "Hallahan"
+      },
+      {
+        "initials": "CM",
+        "last": "Horbinski"
+      },
+      {
+        "initials": "K",
+        "last": "Hodges"
+      },
+      {
+        "initials": "DL",
+        "last": "Napier"
+      },
+      {
+        "initials": "T",
+        "last": "Bocklage"
+      },
+      {
+        "initials": "J",
+        "last": "Mueller"
+      },
+      {
+        "initials": "NL",
+        "last": "Vanderford"
+      },
+      {
+        "initials": "DW",
+        "last": "Fardo"
+      },
+      {
+        "initials": "C",
+        "last": "Wang"
+      },
+      {
+        "initials": "SM",
+        "last": "Arnold"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Liu J, Murali T, Yu T, Liu C, Sivakumaran TA, Moseley HNB, Zhulin IB, Weiss HL, Durbin EB, Ellingson SR, Liu J, Huang B, Hallahan BJ, Horbinski CM, Hodges K, Napier DL, Bocklage T, Mueller J, Vanderford NL, Fardo DW, Wang C, Arnold SM.\n        \n                Characterization of Squamous Cell Lung Cancers from Appalachian Kentucky.\n            Cancer Epidemiol Biomarkers Prev.\n        \n        \n            2019 Feb;28(2):348-356. doi: 10.1158/1055-9965.EPI-17-0984. Epub 2018 Oct 30. PubMed PMID:\n            30377206; PubMed Central PMCID:\n                PMC6363884.",
+    "title": "Characterization of Squamous Cell Lung Cancers from Appalachian Kentucky."
+  },
+  {
+    "DOI": "10.1158/1055-9965.epi-17-0984",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "T",
+        "last": "Murali"
+      },
+      {
+        "initials": "T",
+        "last": "Yu"
+      },
+      {
+        "initials": "C",
+        "last": "Liu"
+      },
+      {
+        "initials": "T",
+        "last": "Sivakumaran"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "I",
+        "last": "Zhulin"
+      },
+      {
+        "initials": "H",
+        "last": "Weiss"
+      },
+      {
+        "initials": "E",
+        "last": "Durbin"
+      },
+      {
+        "initials": "S",
+        "last": "Ellingson"
+      },
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "B",
+        "last": "Huang"
+      },
+      {
+        "initials": "B",
+        "last": "Hallahan"
+      },
+      {
+        "initials": "C",
+        "last": "Horbinski"
+      },
+      {
+        "initials": "K",
+        "last": "Hodges"
+      },
+      {
+        "initials": "D",
+        "last": "Napier"
+      },
+      {
+        "initials": "T",
+        "last": "Bocklage"
+      },
+      {
+        "initials": "J",
+        "last": "Mueller"
+      },
+      {
+        "initials": "N",
+        "last": "Vanderford"
+      },
+      {
+        "initials": "D",
+        "last": "Fardo"
+      },
+      {
+        "initials": "C",
+        "last": "Wang"
+      },
+      {
+        "initials": "S",
+        "last": "Arnold"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Liu J, Murali T, Yu T, Liu C, Sivakumaran T, Moseley H, Zhulin I, Weiss H, Durbin E, Ellingson S, Liu J, Huang B, Hallahan B, Horbinski C, Hodges K, Napier D, Bocklage T, Mueller J, Vanderford N, Fardo D, Wang C, Arnold S.\n      \n              Characterization of Squamous Cell Lung Cancers from Appalachian Kentucky.\n          Cancer Epidemiology Biomarkers & Prevention. 2019 February; 28(2):348-356. doi: 10.1158/1055-9965.EPI-17-0984.",
+    "title": "Characterization of Squamous Cell Lung Cancers from Appalachian Kentucky."
+  },
+  {
+    "DOI": "10.26434/chemrxiv.7609205.v1",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Mitchell J, Flight R.\n      Small Molecule Isotope Resolved Formula Enumerator: a Tool for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra.  [preprint]. 2019 January. doi: 10.26434/chemrxiv.7609205.v1.",
+    "title": "Small Molecule Isotope Resolved Formula Enumerator: a Tool for Assigning Isotopologues and Metabolites in Fourier Transform Mass Spectra."
+  },
+  {
+    "DOI": "10.1007/s10858-018-0202-5",
+    "PMID": "30097912",
+    "authors": [
+      {
+        "initials": "X",
+        "last": "Chen"
+      },
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Chen X, Smelter A, Moseley HNB.\n        \n                Automatic 13C chemical shift reference correction for unassigned protein NMR spectra.\n            J Biomol NMR.\n        \n        \n            2018 Oct;72(1-2):11-28. doi: 10.1007/s10858-018-0202-5. Epub 2018 Aug 10. PubMed PMID:\n            30097912; PubMed Central PMCID:\n                PMC6209040.",
+    "title": "Automatic 13C chemical shift reference correction for unassigned protein NMR spectra."
+  },
+  {
+    "DOI": "10.1101/419085",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "R",
+        "last": "Dubey"
+      },
+      {
+        "initials": "J",
+        "last": "MacLeod"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Hinderer E, Flight R, Dubey R, MacLeod J, Moseley H.\n      Advances in Gene Ontology Utilization Improve Statistical Power of Annotation Enrichment.  [preprint]. 2018 September. doi: 10.1101/419085.",
+    "title": "Advances in Gene Ontology Utilization Improve Statistical Power of Annotation Enrichment."
+  },
+  {
+    "DOI": "10.1007/s11306-018-1426-9",
+    "PMID": "30830442",
+    "authors": [
+      {
+        "initials": "JM",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "QJ",
+        "last": "Wang"
+      },
+      {
+        "initials": "RM",
+        "last": "Higashi"
+      },
+      {
+        "initials": "TW",
+        "last": "Fan"
+      },
+      {
+        "initials": "AN",
+        "last": "Lane"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell JM, Flight RM, Wang QJ, Higashi RM, Fan TW, Lane AN, Moseley HNB.\n        \n                New methods to identify high peak density artifacts in Fourier transform mass spectra and to mitigate their effects on high-throughput metabolomic data analysis.\n            Metabolomics.\n        \n        \n            2018 Sep 17;14(10):125. doi: 10.1007/s11306-018-1426-9. PubMed PMID:\n            30830442; PubMed Central PMCID:\n                PMC6153687.",
+    "title": "New methods to identify high peak density artifacts in Fourier transform mass spectra and to mitigate their effects on high-throughput metabolomic data analysis."
+  },
+  {
+    "DOI": "10.1007/s11306-018-1426-9",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "Q",
+        "last": "Wang"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Flight R, Wang Q, Higashi R, Fan T, Lane A, Moseley H.\n      \n              New methods to identify high peak density artifacts in Fourier transform mass spectra and to mitigate their effects on high-throughput metabolomic data analysis.\n          Metabolomics. 2018-9-; 14(10):-. doi: 10.1007/s11306-018-1426-9.",
+    "title": "New methods to identify high peak density artifacts in Fourier transform mass spectra and to mitigate their effects on high-throughput metabolomic data analysis."
+  },
+  {
+    "DOI": "10.1007/s10858-018-0202-5",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "X",
+        "last": "Chen"
+      },
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Chen X, Smelter A, Moseley H.\n      \n              Automatic 13C chemical shift reference correction for unassigned protein NMR spectra.\n          Journal of Biomolecular NMR. 2018-8-; 72(1-2):11-28. doi: 10.1007/s10858-018-0202-5.",
+    "title": "Automatic 13C chemical shift reference correction for unassigned protein NMR spectra."
+  },
+  {
+    "DOI": "10.18632/oncotarget.25361",
+    "PMID": "29872506",
+    "authors": [
+      {
+        "initials": "YY",
+        "last": "Zaytseva"
+      },
+      {
+        "initials": "PG",
+        "last": "Rychahou"
+      },
+      {
+        "initials": "AT",
+        "last": "Le"
+      },
+      {
+        "initials": "TL",
+        "last": "Scott"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "JT",
+        "last": "Kim"
+      },
+      {
+        "initials": "J",
+        "last": "Harris"
+      },
+      {
+        "initials": "J",
+        "last": "Liu"
+      },
+      {
+        "initials": "C",
+        "last": "Wang"
+      },
+      {
+        "initials": "AJ",
+        "last": "Morris"
+      },
+      {
+        "initials": "TA",
+        "last": "Sivakumaran"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "T",
+        "last": "Gao"
+      },
+      {
+        "initials": "EY",
+        "last": "Lee"
+      },
+      {
+        "initials": "HL",
+        "last": "Weiss"
+      },
+      {
+        "initials": "TS",
+        "last": "Heuer"
+      },
+      {
+        "initials": "G",
+        "last": "Kemble"
+      },
+      {
+        "initials": "M",
+        "last": "Evers"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Zaytseva YY, Rychahou PG, Le AT, Scott TL, Flight RM, Kim JT, Harris J, Liu J, Wang C, Morris AJ, Sivakumaran TA, Fan T, Moseley H, Gao T, Lee EY, Weiss HL, Heuer TS, Kemble G, Evers M.\n        \n                Preclinical evaluation of novel fatty acid synthase inhibitors in primary colorectal cancer cells and a patient-derived xenograft model of colorectal cancer.\n            Oncotarget.\n        \n        \n            2018 May 15;9(37):24787-24800. doi: 10.18632/oncotarget.25361. eCollection 2018 May 15. PubMed PMID:\n            29872506; PubMed Central PMCID:\n                PMC5973868.",
+    "title": "Preclinical evaluation of novel fatty acid synthase inhibitors in primary colorectal cancer cells and a patient-derived xenograft model of colorectal cancer."
+  },
+  {
+    "DOI": "10.1101/306936",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "E",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Hinderer E, Moseley H.\n      GOcats: A tool for categorizing Gene Ontology into subgraphs of user-defined concepts.  [preprint]. 2018 April. doi: 10.1101/306936.",
+    "title": "GOcats: A tool for categorizing Gene Ontology into subgraphs of user-defined concepts."
+  },
+  {
+    "DOI": "10.1007/s11306-018-1356-6",
+    "PMID": "29706851",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Smelter A, Moseley HNB.\n        \n                A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository.\n            Metabolomics.\n        \n        \n            2018;14(5):64. doi: 10.1007/s11306-018-1356-6. Epub 2018 Apr 20. PubMed PMID:\n            29706851; PubMed Central PMCID:\n                PMC5910482.",
+    "title": "A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository."
+  },
+  {
+    "DOI": "10.1007/s11306-018-1356-6",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Smelter A, Moseley H.\n      \n              A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository.\n          Metabolomics. 2018-4-; 14(5):-. doi: 10.1007/s11306-018-1356-6.",
+    "title": "A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository."
+  },
+  {
+    "DOI": "10.1109/bibm.2018.8621511",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "R",
+        "last": "Abeysinghe"
+      },
+      {
+        "initials": "F",
+        "last": "Zheng"
+      },
+      {
+        "initials": "III",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "L",
+        "last": "Cui"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Abeysinghe R, Zheng F, Hinderer III EW, Moseley HN, Cui L.\n      \n              A Lexical Approach to Identifying Subtype Inconsistencies in Biomedical Terminologies.\n          Quality Assurance of Biological and Biomedical Ontologies and Terminologies Workshop -- Bioinformatics and Biomedicine (BIBM), 2018 IEEE International Conference. 2018; :1982. doi: 10.1109/BIBM.2018.8621511.",
+    "title": "A Lexical Approach to Identifying Subtype Inconsistencies in Biomedical Terminologies."
+  },
+  {
+    "DOI": "10.1101/191205",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "Q",
+        "last": "Wang"
+      },
+      {
+        "initials": "W",
+        "last": "Kang"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Flight R, Wang Q, Kang W, Higashi R, Fan T, Lane A, Moseley H.\n      High Peak Density Artifacts in Fourier Transform Mass Spectra and their Effects on Data Analysis.  [preprint]. 2017 September. doi: 10.1101/191205.",
+    "title": "High Peak Density Artifacts in Fourier Transform Mass Spectra and their Effects on Data Analysis."
+  },
+  {
+    "DOI": "10.1007/s10858-017-0126-5",
+    "PMID": "28815397",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "HNB",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Smelter A, Rouchka EC, Moseley HNB.\n        \n                Detecting and accounting for multiple sources of positional variance in peak list registration analysis and spin system grouping.\n            J Biomol NMR.\n        \n        \n            2017 Aug;68(4):281-296. doi: 10.1007/s10858-017-0126-5. Epub 2017 Aug 16. PubMed PMID:\n            28815397; PubMed Central PMCID:\n                PMC5587626.",
+    "title": "Detecting and accounting for multiple sources of positional variance in peak list registration analysis and spin system grouping."
+  },
+  {
+    "DOI": "10.1007/s10858-017-0126-5",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Smelter A, Rouchka E, Moseley H.\n      \n              Detecting and accounting for multiple sources of positional variance in peak list registration analysis and spin system grouping.\n          Journal of Biomolecular NMR. 2017-8-; 68(4):281-296. doi: 10.1007/s10858-017-0126-5.",
+    "title": "Detecting and accounting for multiple sources of positional variance in peak list registration analysis and spin system grouping."
+  },
+  {
+    "DOI": "10.1002/prot.25263",
+    "PMID": "28168746",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight RM, Rouchka EC, Moseley HN.\n        \n                Perspectives and expectations in structural bioinformatics of metalloproteins.\n            Proteins.\n        \n        \n            2017 May;85(5):938-944. doi: 10.1002/prot.25263. Epub 2017 Mar 15. PubMed PMID:\n            28168746; PubMed Central PMCID:\n                PMC5389925.",
+    "title": "Perspectives and expectations in structural bioinformatics of metalloproteins."
+  },
+  {
+    "DOI": "10.1002/prot.25257",
+    "PMID": "28142195",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight RM, Rouchka EC, Moseley HN.\n        \n                Aberrant coordination geometries discovered in the most abundant metalloproteins.\n            Proteins.\n        \n        \n            2017 May;85(5):885-907. doi: 10.1002/prot.25257. Epub 2017 Mar 7. PubMed PMID:\n            28142195; PubMed Central PMCID:\n                PMC5389913.",
+    "title": "Aberrant coordination geometries discovered in the most abundant metalloproteins."
+  },
+  {
+    "DOI": "10.1002/prot.25126",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight R, Rouchka E, Moseley H.\n      \n              Cover Image, Volume 85, Issue 5.\n          Proteins: Structure, Function, and Bioinformatics. 2017 May; 85(5):C1-C1. doi: 10.1002/prot.25126.",
+    "title": "Cover Image, Volume 85, Issue 5."
+  },
+  {
+    "DOI": "10.1074/jbc.m117.777235",
+    "PMID": "28213515",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Webb"
+      },
+      {
+        "initials": "T",
+        "last": "Nagy"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "M",
+        "last": "Fried"
+      },
+      {
+        "initials": "R",
+        "last": "Dutch"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Webb S, Nagy T, Moseley H, Fried M, Dutch R.\n        \n                Hendra virus fusion protein transmembrane domain contributes to pre-fusion protein stability.\n            J Biol Chem.\n        \n        \n            2017 Apr 7;292(14):5685-5694. doi: 10.1074/jbc.M117.777235. Epub 2017 Feb 17. PubMed PMID:\n            28213515; PubMed Central PMCID:\n                PMC5392564.",
+    "title": "Hendra virus fusion protein transmembrane domain contributes to pre-fusion protein stability."
+  },
+  {
+    "DOI": "10.1186/s12859-017-1580-5",
+    "PMID": "28302053",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "M",
+        "last": "Astra"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Smelter A, Astra M, Moseley HN.\n        \n                A fast and efficient python library for interfacing with the Biological Magnetic Resonance Data Bank.\n            BMC Bioinformatics.\n        \n        \n            2017 Mar 17;18(1):175. doi: 10.1186/s12859-017-1580-5. PubMed PMID:\n            28302053; PubMed Central PMCID:\n                PMC5356280.",
+    "title": "A fast and efficient python library for interfacing with the Biological Magnetic Resonance Data Bank."
+  },
+  {
+    "DOI": "10.1186/s12859-017-1580-5",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Smelter"
+      },
+      {
+        "initials": "M",
+        "last": "Astra"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Smelter A, Astra M, Moseley H.\n      \n              A fast and efficient python library for interfacing with the Biological Magnetic Resonance Data Bank.\n          BMC Bioinformatics. 2017-3-; 18(1):-. doi: 10.1186/s12859-017-1580-5.",
+    "title": "A fast and efficient python library for interfacing with the Biological Magnetic Resonance Data Bank."
+  },
+  {
+    "DOI": "10.1002/prot.25263",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight R, Rouchka E, Moseley H.\n      \n              Perspectives and expectations in structural bioinformatics of metalloproteins.\n          Proteins: Structure, Function, and Bioinformatics. 2017 March; 85(5):938-944. doi: 10.1002/prot.25263.",
+    "title": "Perspectives and expectations in structural bioinformatics of metalloproteins."
+  },
+  {
+    "DOI": "10.1002/prot.25257",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight R, Rouchka E, Moseley H.\n      \n              Aberrant coordination geometries discovered in the most abundant metalloproteins.\n          Proteins: Structure, Function, and Bioinformatics. 2017 March; 85(5):885-907. doi: 10.1002/prot.25257.",
+    "title": "Aberrant coordination geometries discovered in the most abundant metalloproteins."
+  },
+  {
+    "DOI": "10.1109/bibm.2017.8217835",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "R",
+        "last": "Abeysinghe"
+      },
+      {
+        "initials": "III",
+        "last": "Hinderer"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "L",
+        "last": "Cui"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Abeysinghe R, Hinderer III EW, Moseley HN, Cui L.\n      \n              Auditing Subtype Inconsistencies among Gene Ontology Concepts.\n          The 2nd International Workshop on Semantics-Powered Data Analytics (SEPDA 2017) -- Bioinformatics and Biomedicine (BIBM), 2017 IEEE International Conference. 2017; :1242. doi: 10.1109/BIBM.2017.8217835.",
+    "title": "Auditing Subtype Inconsistencies among Gene Ontology Concepts."
+  },
+  {
+    "DOI": "10.1007/s11306-017-1250-7",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "D",
+        "last": "Verdegem"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "W",
+        "last": "Vemaelen"
+      },
+      {
+        "initials": "AA",
+        "last": "Sanchez"
+      },
+      {
+        "initials": "B",
+        "last": "Ghesqui\u00e8re"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Verdegem D, Moseley HN, Vemaelen W, Sanchez AA, Ghesqui\u00e8re B.\n      \n              MAIMS: A software tool for sensitive metabolic tracer analysis through the deconvolution of 13C mass isotopologue profiles of large composite metabolites.\n          Metabolomics. 2017; 13:123. doi: 10.1007/s11306-017-1250-7.",
+    "title": "MAIMS: A software tool for sensitive metabolic tracer analysis through the deconvolution of 13C mass isotopologue profiles of large composite metabolites."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN.\n      MoseleyBioinformaticsLab GitHub Repositories. In: GitHub. GitHub: GitHub; 2016. Available from: https://github.com/MoseleyBioinformaticsLab.",
+    "title": "MoseleyBioinformaticsLab GitHub Repositories."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight R, Rouchka E, Moseley H.\n      \n              A less biased analysis of metalloproteins' coordination geometries.\n          Proceedings of the 6th ACM Conference on Bioinformatics, Computational Biology and Health Informatics. BCB '15: ACM International Conference on Bioinformatics, Computational Biology and Biomedicine; 09 09 2015 12 09 2015; Atlanta Georgia. New York, NY, USA: ACM; c2015.",
+    "title": "A less biased analysis of metalloproteins' coordination geometries."
+  },
+  {
+    "DOI": "10.1371/journal.pone.0135410",
+    "PMID": "26305327",
+    "authors": [
+      {
+        "initials": "N",
+        "last": "Nalabothula"
+      },
+      {
+        "initials": "T",
+        "last": "Al-jumaily"
+      },
+      {
+        "initials": "AM",
+        "last": "Eteleeb"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "S",
+        "last": "Xiaorong"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "YN",
+        "last": "Fondufe-Mittendorf"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Nalabothula N, Al-jumaily T, Eteleeb AM, Flight RM, Xiaorong S, Moseley H, Rouchka EC, Fondufe-Mittendorf YN.\n        \n                Genome-Wide Profiling of PARP1 Reveals an Interplay with Gene Regulatory Regions and DNA Methylation.\n            PLoS One.\n        \n        \n            2015;10(8):e0135410. doi: 10.1371/journal.pone.0135410. eCollection 2015. PubMed PMID:\n            26305327; PubMed Central PMCID:\n                PMC4549251.",
+    "title": "Genome-Wide Profiling of PARP1 Reveals an Interplay with Gene Regulatory Regions and DNA Methylation."
+  },
+  {
+    "DOI": "10.1371/journal.pone.0135410",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "N",
+        "last": "Nalabothula"
+      },
+      {
+        "initials": "T",
+        "last": "Al-jumaily"
+      },
+      {
+        "initials": "A",
+        "last": "Eteleeb"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "S",
+        "last": "Xiaorong"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "Y",
+        "last": "Fondufe-Mittendorf"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Nalabothula N, Al-jumaily T, Eteleeb A, Flight R, Xiaorong S, Moseley H, Rouchka E, Fondufe-Mittendorf Y.\n      \n              Genome-Wide Profiling of PARP1 Reveals an Interplay with Gene Regulatory Regions and DNA Methylation.\n          PLOS ONE. 2015-8-; 10(8):e0135410-. doi: 10.1371/journal.pone.0135410.",
+    "title": "Genome-Wide Profiling of PARP1 Reveals an Interplay with Gene Regulatory Regions and DNA Methylation."
+  },
+  {
+    "DOI": "10.1002/prot.24834",
+    "PMID": "26009987",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight RM, Rouchka EC, Moseley HN.\n        \n                A less-biased analysis of metalloproteins reveals novel zinc coordination geometries.\n            Proteins.\n        \n        \n            2015 Aug;83(8):1470-87. doi: 10.1002/prot.24834. Epub 2015 Jun 13. PubMed PMID:\n            26009987; PubMed Central PMCID:\n                PMC4539273.",
+    "title": "A less-biased analysis of metalloproteins reveals novel zinc coordination geometries."
+  },
+  {
+    "DOI": "10.1002/prot.24834",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight R, Rouchka E, Moseley H.\n      \n              A less&#x2010;biased analysis of metalloproteins reveals novel zinc coordination geometries.\n          Proteins: Structure, Function, and Bioinformatics. 2015 June; 83(8):1470-1487. doi: 10.1002/prot.24834.",
+    "title": "A less&#x2010;biased analysis of metalloproteins reveals novel zinc coordination geometries."
+  },
+  {
+    "DOI": "10.1002/mrc.4199",
+    "PMID": "25616249",
+    "authors": [
+      {
+        "initials": "AN",
+        "last": "Lane"
+      },
+      {
+        "initials": "S",
+        "last": "Arumugam"
+      },
+      {
+        "initials": "PK",
+        "last": "Lorkiewicz"
+      },
+      {
+        "initials": "RM",
+        "last": "Higashi"
+      },
+      {
+        "initials": "S",
+        "last": "Laulh\u00e9"
+      },
+      {
+        "initials": "MH",
+        "last": "Nantz"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "TW",
+        "last": "Fan"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Lane AN, Arumugam S, Lorkiewicz PK, Higashi RM, Laulh\u00e9 S, Nantz MH, Moseley HN, Fan TW.\n        \n                Chemoselective detection and discrimination of carbonyl-containing compounds in metabolite mixtures by 1H-detected 15N nuclear magnetic resonance.\n            Magn Reson Chem.\n        \n        \n            2015 May;53(5):337-43. doi: 10.1002/mrc.4199. Epub 2015 Jan 23. PubMed PMID:\n            25616249; PubMed Central PMCID:\n                PMC4409496.",
+    "title": "Chemoselective detection and discrimination of carbonyl-containing compounds in metabolite mixtures by 1H-detected 15N nuclear magnetic resonance."
+  },
+  {
+    "DOI": "10.1002/mrc.4199",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "S",
+        "last": "Arumugam"
+      },
+      {
+        "initials": "P",
+        "last": "Lorkiewicz"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "S",
+        "last": "Laulh\u00e9"
+      },
+      {
+        "initials": "M",
+        "last": "Nantz"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Lane A, Arumugam S, Lorkiewicz P, Higashi R, Laulh\u00e9 S, Nantz M, Moseley H, Fan T.\n      \n              Chemoselective detection and discrimination of carbonyl-containing compounds in metabolite mixtures by <sup>1</sup> H-detected <sup>15</sup> N nuclear magnetic resonance.\n          Magnetic Resonance in Chemistry. 2015 May; 53(5):337-343. doi: 10.1002/mrc.4199.",
+    "title": "Chemoselective detection and discrimination of carbonyl-containing compounds in metabolite mixtures by <sup>1</sup> H-detected <sup>15</sup> N nuclear magnetic resonance."
+  },
+  {
+    "DOI": "10.1145/2808719.2811424",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight RM, Rouchka EC, Moseley HN.\n      \n              A less biased analysis of metalloproteins reveals novel zinc coordination geometries.\n          BCB '15 Proceedings of the 6th ACM Conference on Bioinformatics, Computational Biology and Health Informatics. 2015; :493. doi: 10.1145/2808719.2811424.",
+    "title": "A less biased analysis of metalloproteins reveals novel zinc coordination geometries."
+  },
+  {
+    "DOI": "10.1186/1471-2105-15-s10-p31",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "S",
+        "last": "Yao"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Yao S, Flight R, Moseley H.\n      \n              Coordination characterization of zinc metalloproteins.\n          BMC Bioinformatics. 2014 September; 15(S10):-. doi: 10.1186/1471-2105-15-S10-P31.",
+    "title": "Coordination characterization of zinc metalloproteins."
+  },
+  {
+    "DOI": "10.1186/1471-2105-15-s10-p36",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Fan T, Lane A, Moseley H.\n      \n              Development of large-scale metabolite identification methods for metabolomics.\n          BMC Bioinformatics. 2014 September; 15(S10):-. doi: 10.1186/1471-2105-15-S10-P36.",
+    "title": "Development of large-scale metabolite identification methods for metabolomics."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Eteleeb"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Eteleeb A, Moseley H, Rouchka E.\n      \n              A comparison of combined p-value methods for gene differential expression using RNA-seq data.\n          Proceedings of the 5th ACM Conference on Bioinformatics, Computational Biology, and Health Informatics. BCB '14: ACM-BCB '14; 20 09 2014 23 09 2014; Newport Beach California. New York, NY, USA: ACM; c2014.",
+    "title": "A comparison of combined p-value methods for gene differential expression using RNA-seq data."
+  },
+  {
+    "DOI": "10.3389/fgene.2014.00237",
+    "PMID": "25120557",
+    "authors": [
+      {
+        "initials": "JM",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "TW",
+        "last": "Fan"
+      },
+      {
+        "initials": "AN",
+        "last": "Lane"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell JM, Fan TW, Lane AN, Moseley HN.\n        \n                Development and in silico evaluation of large-scale metabolite identification methods using functional group detection for metabolomics.\n            Front Genet.\n        \n        \n            2014;5:237. doi: 10.3389/fgene.2014.00237. eCollection 2014. PubMed PMID:\n            25120557; PubMed Central PMCID:\n                PMC4112935.",
+    "title": "Development and in silico evaluation of large-scale metabolite identification methods using functional group detection for metabolomics."
+  },
+  {
+    "DOI": "10.3389/fgene.2014.00237",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "J",
+        "last": "Mitchell"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Mitchell J, Fan T, Lane A, Moseley H.\n      \n              Development and in silico evaluation of large-scale metabolite identification methods using functional group detection for metabolomics.\n          Frontiers in Genetics. 2014 July; 5:-. doi: 10.3389/fgene.2014.00237.",
+    "title": "Development and in silico evaluation of large-scale metabolite identification methods using functional group detection for metabolomics."
+  },
+  {
+    "DOI": "10.1007/978-1-4939-1258-2_11",
+    "PMID": "25270929",
+    "authors": [
+      {
+        "initials": "RM",
+        "last": "Higashi"
+      },
+      {
+        "initials": "TW",
+        "last": "Fan"
+      },
+      {
+        "initials": "PK",
+        "last": "Lorkiewicz"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "AN",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Higashi RM, Fan TW, Lorkiewicz PK, Moseley HN, Lane AN.\n        \n                Stable isotope-labeled tracers for metabolic pathway elucidation by GC-MS and FT-MS.\n            Methods Mol Biol.\n        \n        \n            2014;1198:147-67. doi: 10.1007/978-1-4939-1258-2_11. PubMed PMID:\n            25270929; PubMed Central PMCID:\n                PMC4337027.",
+    "title": "Stable isotope-labeled tracers for metabolic pathway elucidation by GC-MS and FT-MS."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "P",
+        "last": "Lorkiewicz"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Higashi R, Fan T, Lorkiewicz P, Moseley H, Lane A.\n      \n              Stable Isotope-Labeled Tracers for Metabolic Pathway Elucidation by GC-MS and FT-MS.\n          \n          In:\n      \n      \n              Methods in Molecular Biology\n              \n                [Internet]\n              \n          New York, NY: Springer New York; 2014. Chapter Chapter 11; 147-167p.\n      \n      \n        Available from: http://link.springer.com/10.1007/978-1-4939-1258-2_11.",
+    "title": "Methods in Molecular Biology\n              \n                [Internet]"
+  },
+  {
+    "DOI": "10.3390/metabo3040853",
+    "PMID": "24404440",
+    "authors": [
+      {
+        "initials": "WJ",
+        "last": "Carreer"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Carreer WJ, Flight RM, Moseley HN.\n        \n                A Computational Framework for High-Throughput Isotopic Natural Abundance Correction of Omics-Level Ultra-High Resolution FT-MS Datasets.\n            Metabolites.\n        \n        \n            2013 Sep 25;3(4). doi: 10.3390/metabo3040853. PubMed PMID:\n            24404440; PubMed Central PMCID:\n                PMC3882318.",
+    "title": "A Computational Framework for High-Throughput Isotopic Natural Abundance Correction of Omics-Level Ultra-High Resolution FT-MS Datasets."
+  },
+  {
+    "DOI": "10.5936/csbj.201301006",
+    "PMID": "23667718",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN.\n        \n                Error Analysis and Propagation in Metabolomics Data Analysis.\n            Comput Struct Biotechnol J.\n        \n        \n            2013 Jan 1;4(5). doi: 10.5936/csbj.201301006. PubMed PMID:\n            23667718; PubMed Central PMCID:\n                PMC3647477.",
+    "title": "Error Analysis and Propagation in Metabolomics Data Analysis."
+  },
+  {
+    "DOI": "10.5936/csbj.201301006",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H.\n      \n              ERROR ANALYSIS AND PROPAGATION IN METABOLOMICS DATA ANALYSIS.\n          Computational and Structural Biotechnology Journal. 2013 January; 4(5):e201301006-. doi: 10.5936/csbj.201301006.",
+    "title": "ERROR ANALYSIS AND PROPAGATION IN METABOLOMICS DATA ANALYSIS."
+  },
+  {
+    "DOI": "10.1186/1741-7007-10-74",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "A",
+        "last": "Belshoff"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Lane A, Belshoff A, Higashi R, Fan T.\n      \n              Erratum to: A novel deconvolution method for modeling UDP-N-acetyl-D-glucosaminebiosynthetic pathways based on 13C mass isotopologue profiles undernon-steady-state conditions.\n          BMC Biology. 2012 August; 10(1):-. doi: 10.1186/1741-7007-10-74.",
+    "title": "Erratum to: A novel deconvolution method for modeling UDP-N-acetyl-D-glucosaminebiosynthetic pathways based on 13C mass isotopologue profiles undernon-steady-state conditions."
+  },
+  {
+    "DOI": "10.1186/1471-2105-13-s12-a1",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "E",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "R",
+        "last": "Flight"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Rouchka E, Flight R, Moseley H.\n      \n              Proceedings of the Eleventh Annual UT-ORNL-KBRIN Bioinformatics Summit 2012.\n          BMC Bioinformatics. 2012-7-; 13(S12):-. doi: 10.1186/1471-2105-13-S12-A1.",
+    "title": "Proceedings of the Eleventh Annual UT-ORNL-KBRIN Bioinformatics Summit 2012."
+  },
+  {
+    "DOI": "10.1016/j.pharmthera.2011.12.007",
+    "PMID": "22212615",
+    "authors": [
+      {
+        "initials": "TW",
+        "last": "Fan"
+      },
+      {
+        "initials": "PK",
+        "last": "Lorkiewicz"
+      },
+      {
+        "initials": "K",
+        "last": "Sellers"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "RM",
+        "last": "Higashi"
+      },
+      {
+        "initials": "AN",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Fan TW, Lorkiewicz PK, Sellers K, Moseley HN, Higashi RM, Lane AN.\n        \n                Stable isotope-resolved metabolomics and applications for drug development.\n            Pharmacol Ther.\n        \n        \n            2012 Mar;133(3):366-91. doi: 10.1016/j.pharmthera.2011.12.007. Epub 2011 Dec 23. Review. PubMed PMID:\n            22212615; PubMed Central PMCID:\n                PMC3471671.",
+    "title": "Stable isotope-resolved metabolomics and applications for drug development."
+  },
+  {
+    "DOI": "10.1016/j.pharmthera.2011.12.007",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "P",
+        "last": "Lorkiewicz"
+      },
+      {
+        "initials": "K",
+        "last": "Sellers"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Fan T, Lorkiewicz P, Sellers K, Moseley H, Higashi R, Lane A.\n      \n              Stable isotope-resolved metabolomics and applications for drug development.\n          Pharmacology & Therapeutics. 2012 March; 133(3):366-391. doi: 10.1016/j.pharmthera.2011.12.007.",
+    "title": "Stable isotope-resolved metabolomics and applications for drug development."
+  },
+  {
+    "DOI": "10.1186/1471-2105-13-s12-a1",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "EC",
+        "last": "Rouchka"
+      },
+      {
+        "initials": "RM",
+        "last": "Flight"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Rouchka EC, Flight RM, Moseley HN.\n      \n              Proceedings of the Eleventh Annual UT-ORNL-KBRIN Bioinformatics Summit 2012.\n          BMC Bioinformatics. 2012; 13:A1. doi: doi:10.1186/1471-2105-13-S12-A1.",
+    "title": "Proceedings of the Eleventh Annual UT-ORNL-KBRIN Bioinformatics Summit 2012."
+  },
+  {
+    "DOI": "10.1186/1741-7007-9-37",
+    "PMID": "21627825",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "AN",
+        "last": "Lane"
+      },
+      {
+        "initials": "AC",
+        "last": "Belshoff"
+      },
+      {
+        "initials": "RM",
+        "last": "Higashi"
+      },
+      {
+        "initials": "TW",
+        "last": "Fan"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Lane AN, Belshoff AC, Higashi RM, Fan TW.\n        \n                A novel deconvolution method for modeling UDP-N-acetyl-D-glucosamine biosynthetic pathways based on (13)C mass isotopologue profiles under non-steady-state conditions.\n            BMC Biol.\n        \n        \n            2011 May 31;9:37. doi: 10.1186/1741-7007-9-37. PubMed PMID:\n            21627825; PubMed Central PMCID:\n                PMC3126751.",
+    "title": "A novel deconvolution method for modeling UDP-N-acetyl-D-glucosamine biosynthetic pathways based on (13)C mass isotopologue profiles under non-steady-state conditions."
+  },
+  {
+    "DOI": "10.1186/1741-7007-9-37",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "A",
+        "last": "Belshoff"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Lane A, Belshoff A, Higashi R, Fan T.\n      \n              A novel deconvolution method for modeling UDP-N-acetyl-D-glucosamine biosynthetic pathways based on 13C mass isotopologue profiles under non-steady-state conditions.\n          BMC Biology. 2011 May; 9(1):-. doi: 10.1186/1741-7007-9-37.",
+    "title": "A novel deconvolution method for modeling UDP-N-acetyl-D-glucosamine biosynthetic pathways based on 13C mass isotopologue profiles under non-steady-state conditions."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "RM",
+        "last": "Higashi"
+      },
+      {
+        "initials": "TW",
+        "last": "Fan"
+      },
+      {
+        "initials": "AN",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Higashi RM, Fan TW, Lane AN.\n      \n              Metabolic Modeling of Converging Metabolic Pathways: Analysis of Non-Steady State Stable Isotope-Resolve Metabolism of UDP-GlcNAc and UDP-GalNAc.\n          \n          In:\n      \n      \n          Pellegrini M, Fred A, Filipe J, Gamboa H, editors.\n      \n              BIOINFORMATICS 2011\n              \n          Portugal: SciTePress; 2011. p.108-115.",
+    "title": "BIOINFORMATICS 2011"
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H.N.B.",
+        "last": "Moseley"
+      },
+      {
+        "initials": "R.M.",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T.W.-M.",
+        "last": "Fan"
+      },
+      {
+        "initials": "A.N.",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley, H.N.B., Higashi, R.M., Fan, T.W.-M., Lane, A.N..\n      \n              Metabolic modeling of converging metabolic pathways: Analysis of non-steady state stable isotope-resolve metabolism of UDP-GlcNAc and UDP-GalNAc.\n          BIOINFORMATICS 2011 - Proceedings of the International Conference on Bioinformatics Models, Methods and Algorithms. 2011; :108-115.",
+    "title": "Metabolic modeling of converging metabolic pathways: Analysis of non-steady state stable isotope-resolve metabolism of UDP-GlcNAc and UDP-GalNAc."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H.N.B.",
+        "last": "Moseley"
+      },
+      {
+        "initials": "R.M.",
+        "last": "Higashi"
+      },
+      {
+        "initials": "T.W.-M.",
+        "last": "Fan"
+      },
+      {
+        "initials": "A.N.",
+        "last": "Lane"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley, H.N.B., Higashi, R.M., Fan, T.W.-M., Lane, A.N..\n      \n              Metabolic modeling of converging metabolic pathways: Analysis of non-steady state stable isotope-resolve metabolism of UDP-GlcNAc and UDP-GalNAc.\n          BIOINFORMATICS 2011 - Proceedings of the International Conference on Bioinformatics Models, Methods and Algorithms. BIOINFORMATICS 2011 - Proceedings of the International Conference on Bioinformatics Models, Methods and Algorithms; 2011; c2011.",
+    "title": "Metabolic modeling of converging metabolic pathways: Analysis of non-steady state stable isotope-resolve metabolism of UDP-GlcNAc and UDP-GalNAc."
+  },
+  {
+    "DOI": "10.1007/s10858-010-9448-2",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "L",
+        "last": "Sperling"
+      },
+      {
+        "initials": "C",
+        "last": "Rienstra"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Sperling L, Rienstra C.\n      \n              Automated protein resonance assignments of magic angle spinning solid-state NMR spectra of &#x3B2;1 immunoglobulin binding domain of protein G (GB1).\n          Journal of Biomolecular NMR. 2010 October; 48(3):123-128. doi: 10.1007/s10858-010-9448-2.",
+    "title": "Automated protein resonance assignments of magic angle spinning solid-state NMR spectra of &#x3B2;1 immunoglobulin binding domain of protein G (GB1)."
+  },
+  {
+    "DOI": "10.1186/1471-2105-11-139",
+    "PMID": "20236542",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN.\n        \n                Correcting for the effects of natural abundance in stable isotope resolved metabolomics experiments involving ultra-high resolution mass spectrometry.\n            BMC Bioinformatics.\n        \n        \n            2010 Mar 17;11:139. doi: 10.1186/1471-2105-11-139. PubMed PMID:\n            20236542; PubMed Central PMCID:\n                PMC2848236.",
+    "title": "Correcting for the effects of natural abundance in stable isotope resolved metabolomics experiments involving ultra-high resolution mass spectrometry."
+  },
+  {
+    "DOI": "10.1186/1471-2105-11-139",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H.\n      \n              Correcting for the effects of natural abundance in stable isotope resolved metabolomics experiments involving ultra-high resolution mass spectrometry.\n          BMC Bioinformatics. 2010-3-; 11(1):-. doi: 10.1186/1471-2105-11-139.",
+    "title": "Correcting for the effects of natural abundance in stable isotope resolved metabolomics experiments involving ultra-high resolution mass spectrometry."
+  },
+  {
+    "DOI": "10.1016/j.aca.2009.08.032",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "A",
+        "last": "Lane"
+      },
+      {
+        "initials": "T",
+        "last": "Fan"
+      },
+      {
+        "initials": "Z",
+        "last": "Xie"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "R",
+        "last": "Higashi"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Lane A, Fan T, Xie Z, Moseley H, Higashi R.\n      \n              Isotopomer analysis of lipid biosynthesis by high resolution mass spectrometry and NMR.\n          Analytica Chimica Acta. 2009 October; 651(2):201-208. doi: 10.1016/j.aca.2009.08.032.",
+    "title": "Isotopomer analysis of lipid biosynthesis by high resolution mass spectrometry and NMR."
+  },
+  {
+    "DOI": "10.1007/s10858-006-0027-5",
+    "PMID": "16645816",
+    "authors": [
+      {
+        "initials": "GJ",
+        "last": "Kornhaber"
+      },
+      {
+        "initials": "D",
+        "last": "Snyder"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Kornhaber GJ, Snyder D, Moseley HN, Montelione GT.\n        \n                Identification of zinc-ligated cysteine residues based on 13Calpha and 13Cbeta chemical shift data.\n            J Biomol NMR.\n        \n        \n            2006 Apr;34(4):259-69. doi: 10.1007/s10858-006-0027-5. PubMed PMID:\n            16645816.",
+    "title": "Identification of zinc-ligated cysteine residues based on 13Calpha and 13Cbeta chemical shift data."
+  },
+  {
+    "DOI": "10.1007/s10858-006-0027-5",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "G",
+        "last": "Kornhaber"
+      },
+      {
+        "initials": "D",
+        "last": "Snyder"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Kornhaber G, Snyder D, Moseley H, Montelione G.\n      \n              Identification of Zinc-ligated Cysteine Residues Based on 13C&#x3B1; and 13C&#x3B2; Chemical Shift Data.\n          Journal of Biomolecular NMR. 2006 April; 34(4):259-269. doi: 10.1007/s10858-006-0027-5.",
+    "title": "Identification of Zinc-ligated Cysteine Residues Based on 13C&#x3B1; and 13C&#x3B2; Chemical Shift Data."
+  },
+  {
+    "DOI": "10.1002/prot.20840",
+    "PMID": "16395675",
+    "authors": [
+      {
+        "initials": "MC",
+        "last": "Baran"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "JM",
+        "last": "Aramini"
+      },
+      {
+        "initials": "MJ",
+        "last": "Bayro"
+      },
+      {
+        "initials": "D",
+        "last": "Monleon"
+      },
+      {
+        "initials": "JY",
+        "last": "Locke"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Baran MC, Moseley HN, Aramini JM, Bayro MJ, Monleon D, Locke JY, Montelione GT.\n        \n                SPINS: a laboratory information management system for organizing and archiving intermediate and final results from NMR protein structure determinations.\n            Proteins.\n        \n        \n            2006 Mar 1;62(4):843-51. doi: 10.1002/prot.20840. PubMed PMID:\n            16395675.",
+    "title": "SPINS: a laboratory information management system for organizing and archiving intermediate and final results from NMR protein structure determinations."
+  },
+  {
+    "DOI": "10.1002/prot.20840",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "M",
+        "last": "Baran"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "J",
+        "last": "Aramini"
+      },
+      {
+        "initials": "M",
+        "last": "Bayro"
+      },
+      {
+        "initials": "D",
+        "last": "Monleon"
+      },
+      {
+        "initials": "J",
+        "last": "Locke"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Baran M, Moseley H, Aramini J, Bayro M, Monleon D, Locke J, Montelione G.\n      \n              SPINS: A laboratory information management system for organizing and archiving intermediate and final results from NMR protein structure determinations.\n          Proteins: Structure, Function, and Bioinformatics. 2006 January; 62(4):843-851. doi: 10.1002/prot.20840.",
+    "title": "SPINS: A laboratory information management system for organizing and archiving intermediate and final results from NMR protein structure determinations."
+  },
+  {
+    "DOI": "10.1016/s0076-6879(05)94005-6",
+    "PMID": "15808219",
+    "authors": [
+      {
+        "initials": "YJ",
+        "last": "Huang"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "MC",
+        "last": "Baran"
+      },
+      {
+        "initials": "C",
+        "last": "Arrowsmith"
+      },
+      {
+        "initials": "R",
+        "last": "Powers"
+      },
+      {
+        "initials": "R",
+        "last": "Tejero"
+      },
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Huang YJ, Moseley HN, Baran MC, Arrowsmith C, Powers R, Tejero R, Szyperski T, Montelione GT.\n        \n                An integrated platform for automated analysis of protein NMR structures.\n            Methods Enzymol.\n        \n        \n            2005;394:111-41. doi: 10.1016/S0076-6879(05)94005-6. PubMed PMID:\n            15808219.",
+    "title": "An integrated platform for automated analysis of protein NMR structures."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "Y",
+        "last": "Huang"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "M",
+        "last": "Baran"
+      },
+      {
+        "initials": "C",
+        "last": "Arrowsmith"
+      },
+      {
+        "initials": "R",
+        "last": "Powers"
+      },
+      {
+        "initials": "R",
+        "last": "Tejero"
+      },
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Huang Y, Moseley H, Baran M, Arrowsmith C, Powers R, Tejero R, Szyperski T, Montelione G.\n      \n              An Integrated Platform for Automated Analysis of Protein NMR Structures.\n          \n          In:\n      \n      \n              Methods in Enzymology\n              \n                [Internet]\n              \n          Elsevier; 2005. 111-141p.\n      \n      \n        Available from: https://linkinghub.elsevier.com/retrieve/pii/S0076687905940056.",
+    "title": "Methods in Enzymology\n              \n                [Internet]"
+  },
+  {
+    "DOI": "10.1002/chin.200445293",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "M",
+        "last": "Baran"
+      },
+      {
+        "initials": "Y",
+        "last": "Huang"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Baran M, Huang Y, Moseley H, Montelione G.\n      \n              Automated Analysis of Protein NMR Assignments and Structures.\n          ChemInform. 2004 November; 35(45):-. doi: 10.1002/chin.200445293.",
+    "title": "Automated Analysis of Protein NMR Assignments and Structures."
+  },
+  {
+    "DOI": "10.1016/j.jmr.2004.06.015",
+    "PMID": "15388090",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "N",
+        "last": "Riaz"
+      },
+      {
+        "initials": "JM",
+        "last": "Aramini"
+      },
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Riaz N, Aramini JM, Szyperski T, Montelione GT.\n        \n                A generalized approach to automated NMR peak list editing: application to reduced dimensionality triple resonance spectra.\n            J Magn Reson.\n        \n        \n            2004 Oct;170(2):263-77. doi: 10.1016/j.jmr.2004.06.015. PubMed PMID:\n            15388090.",
+    "title": "A generalized approach to automated NMR peak list editing: application to reduced dimensionality triple resonance spectra."
+  },
+  {
+    "DOI": "10.1016/j.jmr.2004.06.015",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "N",
+        "last": "Riaz"
+      },
+      {
+        "initials": "J",
+        "last": "Aramini"
+      },
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Riaz N, Aramini J, Szyperski T, Montelione G.\n      \n              A generalized approach to automated NMR peak list editing: application to reduced dimensionality triple resonance spectra.\n          Journal of Magnetic Resonance. 2004 October; 170(2):263-277. doi: 10.1016/j.jmr.2004.06.015.",
+    "title": "A generalized approach to automated NMR peak list editing: application to reduced dimensionality triple resonance spectra."
+  },
+  {
+    "DOI": "10.1021/cr030408p",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "M",
+        "last": "Baran"
+      },
+      {
+        "initials": "Y",
+        "last": "Huang"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Baran M, Huang Y, Moseley H, Montelione G.\n      \n              Automated Analysis of Protein NMR Assignments and Structures.\n          Chemical Reviews. 2004 July; 104(8):3541-3556. doi: 10.1021/cr030408p.",
+    "title": "Automated Analysis of Protein NMR Assignments and Structures."
+  },
+  {
+    "DOI": "10.1023/b:jnmr.0000015420.44364.06",
+    "PMID": "14872126",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Sahota"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Sahota G, Montelione GT.\n        \n                Assignment validation software suite for the evaluation and presentation of protein resonance assignment data.\n            J Biomol NMR.\n        \n        \n            2004 Apr;28(4):341-55. doi: 10.1023/B:JNMR.0000015420.44364.06. PubMed PMID:\n            14872126.",
+    "title": "Assignment validation software suite for the evaluation and presentation of protein resonance assignment data."
+  },
+  {
+    "DOI": "10.1023/b:jnmr.0000015420.44364.06",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Sahota"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Sahota G, Montelione G.\n      \n              Assignment validation software suite for the evaluation and presentation of protein resonance assignment data.\n          Journal of Biomolecular NMR. 2004 April; 28(4):341-355. doi: 10.1023/B:JNMR.0000015420.44364.06.",
+    "title": "Assignment validation software suite for the evaluation and presentation of protein resonance assignment data."
+  },
+  {
+    "DOI": "10.1110/ps.0300203",
+    "PMID": "12761394",
+    "authors": [
+      {
+        "initials": "D",
+        "last": "Zheng"
+      },
+      {
+        "initials": "YJ",
+        "last": "Huang"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "R",
+        "last": "Xiao"
+      },
+      {
+        "initials": "J",
+        "last": "Aramini"
+      },
+      {
+        "initials": "GV",
+        "last": "Swapna"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Zheng D, Huang YJ, Moseley HN, Xiao R, Aramini J, Swapna GV, Montelione GT.\n        \n                Automated protein fold determination using a minimal NMR constraint strategy.\n            Protein Sci.\n        \n        \n            2003 Jun;12(6):1232-46. doi: 10.1110/ps.0300203. PubMed PMID:\n            12761394; PubMed Central PMCID:\n                PMC2323888.",
+    "title": "Automated protein fold determination using a minimal NMR constraint strategy."
+  },
+  {
+    "DOI": "10.1110/ps.0300203",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "D",
+        "last": "Zheng"
+      },
+      {
+        "initials": "Y",
+        "last": "Huang"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "R",
+        "last": "Xiao"
+      },
+      {
+        "initials": "J",
+        "last": "Aramini"
+      },
+      {
+        "initials": "G",
+        "last": "Swapna"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Zheng D, Huang Y, Moseley H, Xiao R, Aramini J, Swapna G, Montelione G.\n      \n              Automated protein fold determination using a minimal NMR constraint strategy.\n          Protein Science. 2003 June; 12(6):1232-1246. doi: 10.1110/ps.0300203.",
+    "title": "Automated protein fold determination using a minimal NMR constraint strategy."
+  },
+  {
+    "DOI": "10.1073/pnas.122224599",
+    "PMID": "12060747",
+    "authors": [
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "DC",
+        "last": "Yeh"
+      },
+      {
+        "initials": "DK",
+        "last": "Sukumaran"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Szyperski T, Yeh DC, Sukumaran DK, Moseley HN, Montelione GT.\n        \n                Reduced-dimensionality NMR spectroscopy for high-throughput protein resonance assignment.\n            Proc Natl Acad Sci U S A.\n        \n        \n            2002 Jun 11;99(12):8009-14. doi: 10.1073/pnas.122224599. PubMed PMID:\n            12060747; PubMed Central PMCID:\n                PMC123011.",
+    "title": "Reduced-dimensionality NMR spectroscopy for high-throughput protein resonance assignment."
+  },
+  {
+    "DOI": "10.1073/pnas.122224599",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "D",
+        "last": "Yeh"
+      },
+      {
+        "initials": "D",
+        "last": "Sukumaran"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Szyperski T, Yeh D, Sukumaran D, Moseley H, Montelione G.\n      \n              Reduced-dimensionality NMR spectroscopy for high-throughput protein resonance assignment.\n          Proceedings of the National Academy of Sciences. 2002 June; 99(12):8009-8014. doi: 10.1073/pnas.122224599.",
+    "title": "Reduced-dimensionality NMR spectroscopy for high-throughput protein resonance assignment."
+  },
+  {
+    "DOI": "10.1023/a:1020499629298",
+    "PMID": "12836666",
+    "authors": [
+      {
+        "initials": "D",
+        "last": "Monle\u00f3n"
+      },
+      {
+        "initials": "K",
+        "last": "Colson"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "C",
+        "last": "Anklin"
+      },
+      {
+        "initials": "R",
+        "last": "Oswald"
+      },
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Monle\u00f3n D, Colson K, Moseley HN, Anklin C, Oswald R, Szyperski T, Montelione GT.\n        \n                Rapid analysis of protein backbone resonance assignments using cryogenic probes, a distributed Linux-based computing architecture, and an integrated set of spectral analysis tools.\n            J Struct Funct Genomics.\n        \n        \n            2002;2(2):93-101. doi: 10.1023/a:1020499629298. PubMed PMID:\n            12836666.",
+    "title": "Rapid analysis of protein backbone resonance assignments using cryogenic probes, a distributed Linux-based computing architecture, and an integrated set of spectral analysis tools."
+  },
+  {
+    "DOI": "10.1023/a:1020499629298",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "D",
+        "last": "Monle\u00f3n"
+      },
+      {
+        "initials": "K",
+        "last": "Colson"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "C",
+        "last": "Anklin"
+      },
+      {
+        "initials": "R",
+        "last": "Oswald"
+      },
+      {
+        "initials": "T",
+        "last": "Szyperski"
+      },
+      {
+        "initials": "T.",
+        "last": "Gaetano"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Monle\u00f3n D, Colson K, Moseley H, Anklin C, Oswald R, Szyperski T, Gaetano T. Montelione.\n      Journal of Structural and Functional Genomics. 2002; 2(2):93-101. doi: 10.1023/A:1020499629298.",
+    "title": ""
+  },
+  {
+    "DOI": "10.1023/a:1020940806745",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "M",
+        "last": "Baran"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Sahota"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Baran M, Moseley H, Sahota G, Montelione G.\n      Journal of Biomolecular NMR. 2002; 24(2):113-121. doi: 10.1023/A:1020940806745.",
+    "title": ""
+  },
+  {
+    "DOI": "10.1100/tsw.2002.16",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "G",
+        "last": "Montelione"
+      },
+      {
+        "initials": "S",
+        "last": "Anderson"
+      },
+      {
+        "initials": "T",
+        "last": "Acton"
+      },
+      {
+        "initials": "B",
+        "last": "Dixon"
+      },
+      {
+        "initials": "Y",
+        "last": "Huang"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "D",
+        "last": "Monleon"
+      },
+      {
+        "initials": "K",
+        "last": "Shukla"
+      },
+      {
+        "initials": "G",
+        "last": "Swapna"
+      },
+      {
+        "initials": "R",
+        "last": "Tejero"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Montelione G, Anderson S, Acton T, Dixon B, Huang Y, Moseley H, Monleon D, Shukla K, Swapna G, Tejero R.\n      \n              Structural Proteomics of Eukaryotic Gene Families.\n          The Scientific World JOURNAL. 2002; 2:32-32. doi: 10.1100/tsw.2002.16.",
+    "title": "Structural Proteomics of Eukaryotic Gene Families."
+  },
+  {
+    "DOI": "10.1016/s0076-6879(01)39311-4",
+    "PMID": "11462827",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "D",
+        "last": "Monleon"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Monleon D, Montelione GT.\n        \n                Automatic determination of protein backbone resonance assignments from triple resonance nuclear magnetic resonance data.\n            Methods Enzymol.\n        \n        \n            2001;339:91-108. doi: 10.1016/s0076-6879(01)39311-4. PubMed PMID:\n            11462827.",
+    "title": "Automatic determination of protein backbone resonance assignments from triple resonance nuclear magnetic resonance data."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "D",
+        "last": "Monleon"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Monleon D, Montelione G.\n      \n              Automatic Determination of Protein Backbone Resonance Assignments from Triple Resonance Nuclear Magnetic Resonance Data.\n          \n          In:\n      \n      \n              Methods in Enzymology\n              \n                [Internet]\n              \n          Elsevier; 2001. 91-108p.\n      \n      \n        Available from: https://linkinghub.elsevier.com/retrieve/pii/S0076687901393114.",
+    "title": "Methods in Enzymology\n              \n                [Internet]"
+  },
+  {
+    "DOI": "10.1016/s0959-440x(99)00019-6",
+    "PMID": "10508776",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "GT",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Montelione GT.\n        \n                Automated analysis of NMR assignments and structures for proteins.\n            Curr Opin Struct Biol.\n        \n        \n            1999 Oct;9(5):635-42. doi: 10.1016/s0959-440x(99)00019-6. Review. PubMed PMID:\n            10508776.",
+    "title": "Automated analysis of NMR assignments and structures for proteins."
+  },
+  {
+    "DOI": "10.1016/s0959-440x(99)00019-6",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "G",
+        "last": "Montelione"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Montelione G.\n      \n              Automated analysis of NMR assignments and structures for proteins.\n          Current Opinion in Structural Biology. 1999 October; 9(5):635-642. doi: 10.1016/S0959-440X(99)00019-6.",
+    "title": "Automated analysis of NMR assignments and structures for proteins."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "NR",
+        "last": "Krishna"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Krishna NR, Moseley HN.\n      \n              Complete Relaxation and Conformational Exchange Matrix Analysis of NOESY Spectra of Reversibly Forming Ligand Receptor Complexes:  Application to Transferred NOESY.\n          \n          In:\n      \n      \n          Krishna NR, Berliner LJ, editors.\n      \n              Biological Magnetic Resonance\n              \n          Vol 17 ed. New York: Plenum Press; 1999.",
+    "title": "Biological Magnetic Resonance"
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN.\n      Implementation and Application of Complete Relaxation and Conformational Exchange Matrix Analysis of NOESY Spectra. 1998.",
+    "title": "Implementation and Application of Complete Relaxation and Conformational Exchange Matrix Analysis of NOESY Spectra."
+  },
+  {
+    "DOI": "10.1021/bi970242k",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "W",
+        "last": "Lee"
+      },
+      {
+        "initials": "C",
+        "last": "Arrowsmith"
+      },
+      {
+        "initials": "N",
+        "last": "Krishna"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Lee W, Arrowsmith C, Krishna N.\n      \n              Quantitative Determination of Conformational, Dynamic, and Kinetic Parameters of a Ligand-Protein/DNA Complex from a Complete Relaxation and Conformational Exchange Matrix Analysis of Intermolecular Transferred NOESY.\n          Biochemistry. 1997 May; 36(18):5293-5299. doi: 10.1021/bi970242k.",
+    "title": "Quantitative Determination of Conformational, Dynamic, and Kinetic Parameters of a Ligand-Protein/DNA Complex from a Complete Relaxation and Conformational Exchange Matrix Analysis of Intermolecular Transferred NOESY."
+  },
+  {
+    "DOI": "10.1007/bf00124470",
+    "PMID": "8951648",
+    "authors": [
+      {
+        "initials": "EV",
+        "last": "Curto"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "NR",
+        "last": "Krishna"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Curto EV, Moseley HN, Krishna NR.\n        \n                CORCEMA evaluation of the potential role of intermolecular transferred NOESY in the characterization of ligand-receptor complexes.\n            J Comput Aided Mol Des.\n        \n        \n            1996 Oct;10(5):361-71. doi: 10.1007/BF00124470. PubMed PMID:\n            8951648.",
+    "title": "CORCEMA evaluation of the potential role of intermolecular transferred NOESY in the characterization of ligand-receptor complexes."
+  },
+  {
+    "DOI": "10.1006/jmrb.1995.1129",
+    "PMID": "7670757",
+    "authors": [
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "EV",
+        "last": "Curto"
+      },
+      {
+        "initials": "NR",
+        "last": "Krishna"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley HN, Curto EV, Krishna NR.\n        \n                Complete relaxation and conformational exchange matrix (CORCEMA) analysis of NOESY spectra of interacting systems; two-dimensional transferred NOESY.\n            J Magn Reson B.\n        \n        \n            1995 Sep;108(3):243-61. doi: 10.1006/jmrb.1995.1129. PubMed PMID:\n            7670757.",
+    "title": "Complete relaxation and conformational exchange matrix (CORCEMA) analysis of NOESY spectra of interacting systems; two-dimensional transferred NOESY."
+  },
+  {
+    "DOI": "10.1006/jmrb.1995.1129",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "E",
+        "last": "Curto"
+      },
+      {
+        "initials": "N",
+        "last": "Krishna"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Moseley H, Curto E, Krishna N.\n      \n              Complete Relaxation and Conformational Exchange Matrix (CORCEMA) Analysis of NOESY Spectra of Interacting Systems; Two-Dimensional Transferred NOESY.\n          Journal of Magnetic Resonance, Series B. 1995 September; 108(3):243-261. doi: 10.1006/jmrb.1995.1129.",
+    "title": "Complete Relaxation and Conformational Exchange Matrix (CORCEMA) Analysis of NOESY Spectra of Interacting Systems; Two-Dimensional Transferred NOESY."
+  },
+  {
+    "DOI": "10.1006/jmrb.1995.1092",
+    "PMID": "7788101",
+    "authors": [
+      {
+        "initials": "PL",
+        "last": "Jackson"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      },
+      {
+        "initials": "NR",
+        "last": "Krishna"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jackson PL, Moseley HN, Krishna NR.\n        \n                Relative effects of protein-mediated and ligand-mediated spin-diffusion pathways on transferred NOESY, and implications on the accuracy of the bound ligand conformation.\n            J Magn Reson B.\n        \n        \n            1995 Jun;107(3):289-92. doi: 10.1006/jmrb.1995.1092. PubMed PMID:\n            7788101.",
+    "title": "Relative effects of protein-mediated and ligand-mediated spin-diffusion pathways on transferred NOESY, and implications on the accuracy of the bound ligand conformation."
+  },
+  {
+    "DOI": "10.1006/jmrb.1995.1092",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "P",
+        "last": "Jackson"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "N",
+        "last": "Krishna"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Jackson P, Moseley H, Krishna N.\n      \n              Relative Effects of Protein-Mediated and Ligand-Mediated Spin-Diffusion Pathways on Transferred NOESY, and Implications on the Accuracy of the Bound Ligand Conformation.\n          Journal of Magnetic Resonance, Series B. 1995 June; 107(3):289-292. doi: 10.1006/jmrb.1995.1092.",
+    "title": "Relative Effects of Protein-Mediated and Ligand-Mediated Spin-Diffusion Pathways on Transferred NOESY, and Implications on the Accuracy of the Bound Ligand Conformation."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [],
+    "pub_dict_key": "",
+    "reference_line": "The UAB Research Foundation, assignee. \n              Method for analyzing 2D transferred noesy spectra of molecules undergoing multistate conformational exchange.\n          USA US5668734 A. 1995.",
+    "title": "Method for analyzing 2D transferred noesy spectra of molecules undergoing multistate conformational exchange."
+  },
+  {
+    "DOI": "10.1006/immu.1994.1044",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "C",
+        "last": "Maier"
+      },
+      {
+        "initials": "H",
+        "last": "Moseley"
+      },
+      {
+        "initials": "S",
+        "last": "Zhou"
+      },
+      {
+        "initials": "J",
+        "last": "Whitaker"
+      },
+      {
+        "initials": "J",
+        "last": "Blalock"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Maier C, Moseley H, Zhou S, Whitaker J, Blalock J.\n      \n              Identification of Interactive Determinants on Idiotypic-Anti-idiotypic Antibodies through Comparison of Their Hydropathic Profiles.\n          ImmunoMethods. 1994 October; 5(2):107-113. doi: 10.1006/immu.1994.1044.",
+    "title": "Identification of Interactive Determinants on Idiotypic-Anti-idiotypic Antibodies through Comparison of Their Hydropathic Profiles."
+  },
+  {
+    "DOI": "",
+    "PMID": "",
+    "authors": [
+      {
+        "initials": "RL",
+        "last": "Davies"
+      },
+      {
+        "initials": "HN",
+        "last": "Moseley"
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Davies RL, Moseley HN.\n      \n              Student Roots: Square root algorithm in Forth.\n          Forth Dimensions. 1987; 8:8.",
+    "title": "Student Roots: Square root algorithm in Forth."
+  }
+]

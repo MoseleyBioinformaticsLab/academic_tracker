@@ -51,6 +51,13 @@ def test_load_json_no_error(test_json):
     data = load_json(path)
     
     assert data == test_json
+    
+    
+def test_load_json_no_path():
+    path = os.path.join(".", "testing_files", "asdf.asdf")
+    
+    with pytest.raises(SystemExit):
+        load_json(path)
 
 
 
@@ -70,6 +77,13 @@ def test_read_text_from_txt_no_error():
     assert data == 'line 1\nline 2'
     
 
+def test_read_text_from_txt_no_path():
+    path = os.path.join(".", "testing_files", "asdf.asdf")
+    
+    with pytest.raises(SystemExit):
+        read_text_from_txt(path)
+    
+
 
 def test_read_text_from_docx_error():
     path = os.path.join(".", "testing_files", "load_json_error")
@@ -85,6 +99,13 @@ def test_read_text_from_docx_no_error():
     data = read_text_from_docx(path)
     
     assert data == 'Line 1\nLine 2'
+    
+    
+def test_read_text_from_docx_no_path():
+    path = os.path.join(".", "testing_files", "asdf.asdf")
+    
+    with pytest.raises(SystemExit):
+        read_text_from_docx(path)
     
 
 
@@ -102,6 +123,13 @@ def test_read_csv_no_error():
     data = read_csv(path)
     
     assert data.equals(pandas.DataFrame({"col1":["data1"], "col2":["data2"]}))
+    
+
+def test_read_csv_no_path():
+    path = os.path.join(".", "testing_files", "asdf.asdf")
+    
+    with pytest.raises(SystemExit):
+        read_csv(path)
 
 
 

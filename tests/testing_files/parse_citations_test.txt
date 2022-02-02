@@ -1,0 +1,9 @@
+Carreer, William J., Robert M. Flight, and Hunter NB Moseley. "A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets." Metabolites 3.4 (2013): 853-866. PMID: 24404440
+
+Carreer, W. J., Flight, R. M., & Moseley, H. N. (2013). A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets. Metabolites, 3(4), 853-866. DOI: 10.3390/metabo3040853
+
+Carreer, William J., Robert M. Flight, and Hunter NB Moseley. "A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets." Metabolites 3, no. 4 (2013): 853-866. DOI: https://doi.org/10.3390/metabo3040853
+
+Carreer, W.J., Flight, R.M. and Moseley, H.N., 2013. A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets. Metabolites, 3(4), pp.853-866. PMID: 24404440, DOI: 10.3390/metabo3040853
+
+Carreer WJ, Flight RM, Moseley HN. A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets. Metabolites. 2013 Dec;3(4):853-66.

@@ -1,0 +1,89 @@
+[
+  {
+    "DOI": null,
+    "PMID": null,
+    "authors": [
+      {
+        "first": "William",
+        "last": "Carreer",
+        "middle": "J."
+      },
+      {
+        "first": "Robert",
+        "last": "Flight",
+        "middle": "M."
+      },
+      {
+        "first": "Hunter",
+        "last": "Moseley",
+        "middle": "N.B."
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "William J. Carreer, Robert M. Flight, and Hunter N.B. Moseley. \"A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets\" Metabolites , v.3 , 2013 , p.853",
+    "title": "A computational framework for high-throughput isotopic natural abundance correction of omics-level ultra-high resolution FT-MS datasets"
+  },
+  {
+    "DOI": null,
+    "PMID": null,
+    "authors": [
+      {
+        "first": "Joshua",
+        "last": "Mitchell",
+        "middle": "M."
+      },
+      {
+        "first": "Teresa",
+        "last": "Fan",
+        "middle": "W-.M."
+      },
+      {
+        "first": "Andrew",
+        "last": "Lane",
+        "middle": "N."
+      },
+      {
+        "first": "Hunter",
+        "last": "Moseley",
+        "middle": "N.B."
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Joshua M. Mitchell, Teresa W-.M. Fan, Andrew N. Lane, and Hunter N.B. Moseley \"Development of Large-Scale Metabolite Identification Methods for Metabolomics\" Frontiers in Genetics - Systems Biology , v.5 , 2014 , p.237  10.3389/fgene.2014.00237",
+    "title": "Development of Large-Scale Metabolite Identification Methods for Metabolomics"
+  },
+  {
+    "DOI": null,
+    "PMID": null,
+    "authors": [
+      {
+        "first": "Richard",
+        "last": "Higashi",
+        "middle": "M."
+      },
+      {
+        "first": "Teresa",
+        "last": "Fan",
+        "middle": "W-M."
+      },
+      {
+        "first": "Pawel",
+        "last": "Lorkiewicz",
+        "middle": "K."
+      },
+      {
+        "first": "Hunter",
+        "last": "Moseley",
+        "middle": "N.B."
+      },
+      {
+        "first": "Andrew",
+        "last": "Lane",
+        "middle": "N."
+      }
+    ],
+    "pub_dict_key": "",
+    "reference_line": "Richard M. Higashi, Teresa W-M. Fan, Pawel K. Lorkiewicz, Hunter N.B. Moseley, Andrew N. Lane \"Stable Isotope Labeled Tracers for Metabolic Pathway Elucidation by GC-MS and FT-MS\" Mass Spectrometry Methods in Metabolomics , v.53 , 2015 , p.337  10.1002/mrc.4199",
+    "title": "Stable Isotope Labeled Tracers for Metabolic Pathway Elucidation by GC-MS and FT-MS"
+  }
+]

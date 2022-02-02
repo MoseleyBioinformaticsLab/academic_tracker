@@ -43,14 +43,15 @@ def build_pub_dict_from_PMID(PMID_list, from_email):
     
     publication_dict = dict()
     
-    for PMID in PMID_list:
+    for PMID_to_search in PMID_list:
         
-        publications = pubmed.query(PMID, max_results=10)
+        publications = pubmed.query(PMID_to_search, max_results=10)
         
         for pub in publications:
             
-            pub_id = pub.pubmed_id.split("\n")[0]
-            if pub_id == PMID:
+            pmid = pub.pubmed_id.split("\n")[0]
+            pub_id = DOI_URL + pub.doi.lower() if pub.doi else pmid
+            if pmid == PMID_to_search:
                 publication_dict[pub_id] = helper_functions.modify_pub_dict_for_saving(pub)
                 break
                 
@@ -66,7 +67,7 @@ def search_references_on_PubMed(tokenized_citations, from_email, verbose):
     For each citation in tokenized_citations PubMed is queried for the publication. 
     
     Args:
-        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID"}.
+        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         from_email (str): used in the query to PubMed
         verbose (bool): Determines whether errors are silenced or not.
         
@@ -140,7 +141,7 @@ def search_references_on_Google_Scholar(tokenized_citations, mailto_email, verbo
     """Searhes Google Scholar for publications that match the citations.
         
     Args:
-        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID"}.
+        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles
         verbose (bool): Determines whether errors are silenced or not.
         
@@ -231,7 +232,7 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
     """Searhes Crossref for publications matching the citations.
     
     Args:
-        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID"}.
+        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         mailto_email (str): used in the query to Crossref
         verbose (bool): Determines whether errors are silenced or not.
         
@@ -281,7 +282,6 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
                         pub_matched = True
                                
             if not pub_matched:
-                matching_key_for_citation.append(None)
                 continue
             
             
@@ -413,8 +413,19 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
 
 
 def parse_myncbi_citations(url, verbose):
-    """
+    """Tokenize the citations on a MyNCBI URL.
+    
     Note that authors and title can be missing or empty from the webpage.
+    This function assumes the url is the first page of the MyNCBI citations.
+    The first page is tokenized and then each subsequent page is visited and 
+    tokenized.
+    
+    Args:
+        url (str): the url of the MyNCBI page.
+        verbose (bool): if True print HTML errors.
+        
+    Returns:
+        parsed_pubs (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema.    
     """
     
     ## Get the first page, find out the total pages, and parse it.
@@ -441,7 +452,7 @@ def parse_myncbi_citations(url, verbose):
             print("Error: Could not access page " + str(i) + " of the MYNCBI webpage. Aborting run.")
             sys.exit()
         
-        temp_pubs, temp_lines = citation_parsing.tokenize_myncbi_citations(url_str)
+        temp_pubs = citation_parsing.tokenize_myncbi_citations(url_str)
         parsed_pubs += temp_pubs
         
     return parsed_pubs
@@ -449,7 +460,22 @@ def parse_myncbi_citations(url, verbose):
 
 
 def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
-    """"""
+    """Tokenize the citations in reference_input.
+    
+    reference_input can be a URL or filepath. MyNCBI URLs are handled special, 
+    but all other URLs are read as a text document and parsed line by line as 
+    if they were a test document. If the format of the reference is MEDLINE then 
+    set MEDLINE_reference to True and it will be parsed as such instead of line 
+    by line. Citations are expected to be 1 per line otherwise.
+    
+    Args:
+        reference_input (str): URL or filepath
+        MEDLINE_reference (bool): True if reference_input is in MEDLINE format
+        verbose (bool): If True print HTML errors
+        
+    Returns:
+        tokenized_citations (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema. 
+    """
     
     ## Check the reference_input to see if it is json.
     extension = os.path.splitext(reference_input)[1][1:]
@@ -462,7 +488,7 @@ def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
         if re.match(r".*ncbi.nlm.nih.gov/myncbi.*", reference_input):
             tokenized_citations = parse_myncbi_citations(reference_input, verbose)
         else:
-            document_string = webio.get_text_from_url(reference_input)
+            document_string = webio.clean_tags_from_url(reference_input, verbose)
             
             if not document_string:
                 print("Nothing was read from the URL. Make sure the address is correct.")

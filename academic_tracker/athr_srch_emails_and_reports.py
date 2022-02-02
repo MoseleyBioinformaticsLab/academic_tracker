@@ -9,6 +9,10 @@ import re
 from . import helper_functions
 from . import fileio
 
+DEFAULT_SUMMARY_TEMPLATE = "<project_name>\n<author_loop>\t<author_first> <author_last>:<pub_loop>\n\t\tTitle: <title> \n\t\tAuthors: <authors> \n\t\tJournal: <journal> \n\t\tDOI: <DOI> \n\t\tPMID: <PMID> \n\t\tPMCID: <PMCID> \n\t\tGrants: <grants>\n</pub_loop>\n</author_loop>"
+DEFAULT_PROJECT_TEMPLATE = "<author_loop><author_first> <author_last>:<pub_loop>\n\tTitle: <title> \n\tAuthors: <authors> \n\tJournal: <journal> \n\tDOI: <DOI> \n\tPMID: <PMID> \n\tPMCID: <PMCID> \n\tGrants: <grants>\n</pub_loop>\n</author_loop>"
+DEFAULT_AUTHOR_TEMPLATE = "<author_loop><author_first> <author_last>:<pub_loop>\n\tTitle: <title> \n\tAuthors: <authors> \n\tJournal: <journal> \n\tDOI: <DOI> \n\tPMID: <PMID> \n\tPMCID: <PMCID> \n\tGrants: <grants>\n</pub_loop>\n</author_loop>"
+
 
 def create_pubs_by_author_dict(publication_dict):
     """Create a dictionary with authors as the keys and values as the pub_ids and grants
@@ -69,9 +73,14 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
             ## If to_email is in project then send one email with all authors for the project.
             if "to_email" in report_attributes:
                 
-                report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, report_attributes["template"])
+                if "template" in project_attributes["project_report"]:
+                    template = report_attributes["template"]
+                else:
+                    template = DEFAULT_PROJECT_TEMPLATE
+                
+                report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, template)
                 filename = project + "_project_report.txt"
-                fileio.save_string_to_file(report, save_dir_name, filename)
+                fileio.save_string_to_file(save_dir_name, filename, report)
                 
                 email_messages["emails"].append({"body":report_attributes["email_body"],
                                                  "subject":report_attributes["email_subject"],
@@ -82,15 +91,20 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
                                                  "attachment_filename": filename})
                 
             ## If authors is in project send an email to each author in the project.
-            elif "authors" in report_attributes:
+            elif "authors" in project_attributes:
                 for author in project_attributes["authors"]:
                     
                     if not author in pubs_by_author_dict:
                         continue
                     
-                    report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, report_attributes["template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
+                    if "template" in report_attributes:
+                        template = report_attributes["template"]
+                    else:
+                        template = DEFAULT_AUTHOR_TEMPLATE
+                    
+                    report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, template, config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
                     filename = project + "_" + author + "_project_report.txt"
-                    fileio.save_string_to_file(report, save_dir_name, filename)
+                    fileio.save_string_to_file(save_dir_name, filename, report)
                     
                     email_messages["emails"].append({"body":authors_by_project_dict[project][author]["project_report"]["email_body"],
                                                      "subject":authors_by_project_dict[project][author]["project_report"]["email_subject"],
@@ -103,9 +117,15 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
             ## If neither authors nor to_email is in the project then send emails to all authors that have publications.
             else:
                 for author in pubs_by_author_dict:
-                    report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, report_attributes["template"], config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
+                    
+                    if "template" in report_attributes:
+                        template = report_attributes["template"]
+                    else:
+                        template = DEFAULT_AUTHOR_TEMPLATE
+                    
+                    report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, template, config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
                     filename = project + "_" + author + "_project_report.txt"
-                    fileio.save_string_to_file(report, save_dir_name, filename)
+                    fileio.save_string_to_file(save_dir_name, filename, report)
                     
                     email_messages["emails"].append({"body":authors_by_project_dict[project][author]["project_report"]["email_body"],
                                                      "subject":authors_by_project_dict[project][author]["project_report"]["email_subject"],
@@ -117,16 +137,39 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
                                                      "author":author})
         else:
             
-            report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, report_attributes["template"])
+            if "template" in report_attributes:
+                template = report_attributes["template"]
+            else:
+                template = DEFAULT_PROJECT_TEMPLATE
+            
+            report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, template)
             filename = project + "_project_report.txt"
-            fileio.save_string_to_file(report, save_dir_name, filename)
+            fileio.save_string_to_file(save_dir_name, filename, report)
     
     return email_messages
 
 
 
-def create_project_report(publication_dict, config_dict, authors_by_project_dict, project_name, template_string, author_first = "", author_last = ""):
-    """"""
+def create_project_report(publication_dict, config_dict, authors_by_project_dict, project_name, template_string=DEFAULT_PROJECT_TEMPLATE, author_first = "", author_last = ""):
+    """Create the project report for the project.
+    
+    The details of creating project reports are outlined in the documentation.
+    Use the information in the config_dict, publication_dict, and authors_by_project_dict 
+    to fill in the information in the template_string. If author_first is given then 
+    it is assumed the report is actually for a single author and not a whole project.
+    
+    Args:
+        publication_dict (dict): keys and values match the publications JSON file.
+        config_dict (dict): keys and values match the project tracking configuration JSON file.
+        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict["Authors"].
+        project_name (str): The name of the project.
+        template_string (str): Template used to create the project report.
+        author_first (str): First name of the author. If not "" the report is assumed to be for 1 author.
+        author_last (str): Last name of the author.
+    
+    Returns:
+        template_string (str): The template_string with the appropriate tags replaced with relevant information.        
+    """
     
     project_authors = build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string)
     
@@ -140,8 +183,22 @@ def create_project_report(publication_dict, config_dict, authors_by_project_dict
 
 
 
-def create_summary_report(template_string, publication_dict, config_dict, authors_by_project_dict):
-    """"""
+def create_summary_report(publication_dict, config_dict, authors_by_project_dict, template_string=DEFAULT_SUMMARY_TEMPLATE):
+    """Create the summary report for the run.
+    
+    The details of creating summary reports are outlined in the documentation.
+    Use the information in the config_dict, publication_dict, and authors_by_project_dict 
+    to fill in the information in the template_string.
+    
+    Args:
+        publication_dict (dict): keys and values match the publications JSON file.
+        config_dict (dict): keys and values match the project tracking configuration JSON file.
+        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict["Authors"].
+        template_string (str): Template used to create the project report.
+    
+    Returns:
+        report_string (str): The report built by replacing the appropriate tags in template_string with relevant information.
+    """
     
     report_string = ""
     for project_name in config_dict["project_descriptions"]:
@@ -160,7 +217,18 @@ def create_summary_report(template_string, publication_dict, config_dict, author
 
 
 def build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string):
-    """"""
+    """Replace tags in template_string with the appropriate information.
+    
+    Args:
+        publication_dict (dict): keys and values match the publications JSON file.
+        config_dict (dict): keys and values match the project tracking configuration JSON file.
+        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict["Authors"].
+        project_name (str): The name of the project.
+        template_string (str): Template used to create the project report.
+        
+    Returns:
+        project_authors (str): The string built by looping over the authors in authors_by_project_dict and using the template_string to build a report.
+    """
     
     simple_publication_keywords_map = {"<abstract>":"abstract",
                                         "<conclusions>":"conclusions",
@@ -174,9 +242,9 @@ def build_author_loop(publication_dict, config_dict, authors_by_project_dict, pr
                                         "<title>":"title",
                                         "<PMCID>":"PMCID",}
     
-    publication_date_keywords_map = {"<publication_year>":["publication_date", "year"],
-                                     "<publication_month>":["publication_date", "month"],
-                                     "<publication_day>":["publication_date", "day"],}
+    publication_date_keywords_map = {"<publication_year>":"year",
+                                     "<publication_month>":"month",
+                                     "<publication_day>":"day"}
     
     authors_keywords_map = {"<author_first>":"first_name",
                             "<author_last>":"last_name",
@@ -210,8 +278,8 @@ def build_author_loop(publication_dict, config_dict, authors_by_project_dict, pr
                 grants = "None Found"
             pub_template_copy = pub_template_copy.replace("<grants>", grants)
             
-            for keyword, key_list in publication_date_keywords_map.items():
-                pub_template_copy = pub_template_copy.replace(keyword, str(helper_functions.nested_get(publication_dict[pub], key_list)))
+            for keyword, date_key in publication_date_keywords_map.items():
+                pub_template_copy = pub_template_copy.replace(keyword, str(publication_dict[pub]["publication_date"][date_key]))
                     
             authors_pubs += pub_template_copy
         

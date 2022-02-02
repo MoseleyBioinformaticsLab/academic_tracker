@@ -43,7 +43,6 @@ config_schema = {
                                                         "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                                         "email_body": {"type": "string", "minLength":1},
                                                         "email_subject": {"type": "string", "minLength":1},},
-                                                "required": ["template"],
                                                 "dependencies":{
                                                         "from_email": ["email_body", "email_subject"],
                                                         "to_email": ["from_email", "email_body", "email_subject"]}},
@@ -75,7 +74,6 @@ config_schema = {
                                   "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                   "email_body": {"type": "string", "minLength":1},
                                   "email_subject": {"type": "string", "minLength":1},},
-                          "required": ["template"],
                           "dependencies":{
                                   "from_email": ["email_body", "email_subject", "to_email"]}},
         "Authors" :  { "type": "object",
@@ -100,7 +98,6 @@ config_schema = {
                                                         "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                                         "email_body": {"type": "string", "minLength":1},
                                                         "email_subject": {"type": "string", "minLength":1},},
-                                                "required": ["template"],
                                                 "dependencies":{
                                                         "from_email": ["email_body", "email_subject"],
                                                         "to_email": ["from_email", "email_body", "email_subject"]}},
@@ -196,14 +193,13 @@ tok_schema = {
  "items": {"type": "object",
            "minItems":1,
            "properties": {"authors": {"type": "array",
-                                      "minItems":1,
                                       "items": {"type": "object",
                                                 "properties": {"last": {"type":["string", "null"]},
                                                                "initials": {"type":["string", "null"]},
                                                                "first": {"type":["string", "null"]},
                                                                "middle": {"type":["string", "null"]}},
                                                 "required": ["last"]}},
-                          "title": {"type":"string", "minLength":1},
+                          "title": {"type":["string", "null"]},
                           "PMID": {"type":["string", "null"]},
                           "DOI": {"type":["string", "null"]},
                           "reference_line": {"type":["string", "null"]},
@@ -214,7 +210,16 @@ tok_schema = {
 
 
 
-
+PMID_reference_schema = {
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "PMID Reference JSON",
+ "description": "Input file that contains a list of PMIDs.",
+ 
+ "type": "array",
+ "items": {"type": "string",
+           "minItems":1,
+           }
+}
 
 
 

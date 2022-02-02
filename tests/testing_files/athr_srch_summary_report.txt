@@ -1,0 +1,221 @@
+Core A Administrative Core
+	Kelly Pennell:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Angela Gutierrez:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+Project 1
+	Kelly Pennell:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Angela Gutierrez:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+No Project Report
+	Kelly Pennell:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Angela Gutierrez:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+No Authors
+	Angela Gutierrez:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+	Ann Koempel:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Anna Hoover:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Dawn Brewer:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Hunter Moseley:
+		Title: Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy. 
+		Authors: Fan Chen, Jinpeng Liu, Robert M Flight, Kassandra J Naughton, Alexsandr Lukyanchuk, Abigail R Edgin, Xiulong Song, Haikuo Zhang, Kwok-Kin Wong, Hunter N B Moseley, Chi Wang, Christine F Brainson 
+		Journal: Advanced science (Weinheim, Baden-Wurttemberg, Germany) 
+		DOI: 10.1002/advs.202101999 
+		PMID: 34622577 
+		PMCID: None 
+		Grants: NCI K22 CA201036, IRG-85-001-25, NCI R01 CA237643, 133123-RSG-19-081-01-TBG, NIGMS P20 GM121327-03, P30CA177558, NIGMS P20 GM121327-03
+
+	Kelly Pennell:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Lindell Ormsbee:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Pranto Paul:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+	Victoria Klaus:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+No from_email
+	Angela Gutierrez:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+	Ann Koempel:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Anna Hoover:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Dawn Brewer:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Hunter Moseley:
+		Title: Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy. 
+		Authors: Fan Chen, Jinpeng Liu, Robert M Flight, Kassandra J Naughton, Alexsandr Lukyanchuk, Abigail R Edgin, Xiulong Song, Haikuo Zhang, Kwok-Kin Wong, Hunter N B Moseley, Chi Wang, Christine F Brainson 
+		Journal: Advanced science (Weinheim, Baden-Wurttemberg, Germany) 
+		DOI: 10.1002/advs.202101999 
+		PMID: 34622577 
+		PMCID: None 
+		Grants: NCI K22 CA201036, IRG-85-001-25, NCI R01 CA237643, 133123-RSG-19-081-01-TBG, NIGMS P20 GM121327-03, P30CA177558, NIGMS P20 GM121327-03
+
+	Kelly Pennell:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Lindell Ormsbee:
+		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
+		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
+		Journal: Journal of Appalachian health 
+		DOI: None 
+		PMID: 32095784 
+		PMCID: PMC7039621 
+		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
+
+	Pranto Paul:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+
+	Victoria Klaus:
+		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
+		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
+		Journal: Advanced healthcare materials 
+		DOI: 10.1002/adhm.202101820 
+		PMID: 34811960 
+		PMCID: None 
+		Grants: None Found
+

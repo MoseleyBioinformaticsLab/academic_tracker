@@ -3,9 +3,9 @@ This module contains the functions that read and write files.
 """
 
 
-import os.path
 import re
 import os
+import sys
 
 import docx
 import json
@@ -30,6 +30,9 @@ def load_json(filepath):
             raise e
 
         return internal_data
+    else:
+        print("No such file: " + filepath)
+        sys.exit()
 
 
 
@@ -137,6 +140,9 @@ def read_text_from_docx(doc_path):
             return u"\n".join([u"".join([r.text for r in paragraph._element.xpath(".//w:t")]) for paragraph in document.paragraphs])
         except Exception as e:
             raise e
+    else:
+        print("No such file: " + doc_path)
+        sys.exit()
 
 
 
@@ -158,10 +164,20 @@ def read_text_from_txt(doc_path):
             raise e
         
         return "".join(lines)
+    else:
+        print("No such file: " + doc_path)
+        sys.exit()
     
 
 def read_csv(doc_path):
-    """"""
+    """Read csv into a pandas dataframe.
+    
+    Args:
+        doc_path (str): path to the csv file to read in.
+        
+    Returns:
+        df (DataFrame): Pandas dataframe of the csv contents.
+    """
     
     if os.path.exists(doc_path):
         try:
@@ -170,12 +186,21 @@ def read_csv(doc_path):
             raise e
         
         return df
+    else:
+        print("No such file: " + doc_path)
+        sys.exit()
 
          
     
 
 def save_string_to_file(save_dir_name, file_name, text_to_save):
-    """"""
+    """Save a string to file.
+    
+    Args:
+        save_dir_name (str): directory in the current working directory to save the string to.
+        file_name (str): string to name the file.
+        text_to_save (str): the string to put in the file contents.
+    """
     
     save_path = os.path.join(os.getcwd(), save_dir_name, file_name)
     

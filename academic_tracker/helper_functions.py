@@ -6,8 +6,6 @@ This module contains helper functions.
 import re
 import copy
 
-import pdfplumber
-import bs4
 import fuzzywuzzy.fuzz
 
 
@@ -32,7 +30,7 @@ def create_authors_by_project_dict(config_dict):
                 if author in config_dict["Authors"]:
                     authors_by_project_dict[project][author] = copy.deepcopy(config_dict["Authors"][author])
                 else:
-                    print("Warning: The author, " + author + ", in the " + project + " project of the project tracking configuration file could not be found in the authors' JSON file.")
+                    print("Warning: The author, " + author + ", in the " + project + " project of the project tracking configuration file could not be found in the Authors section of the Configuration JSON file.")
         else:
             authors_by_project_dict[project] = copy.deepcopy(config_dict["Authors"])
     
@@ -87,9 +85,11 @@ def adjust_author_attributes(authors_by_project_dict, config_dict):
                     
         affiliations = list(affiliations)
         grants = list(grants)
-        author_attr["cutoff_year"] = cutoff_year
-        author_attr["affiliations"] = affiliations
-        author_attr["grants"] = grants
+        grants.sort()
+        affiliations.sort()
+        config_dict["Authors"][author]["cutoff_year"] = cutoff_year
+        config_dict["Authors"][author]["affiliations"] = affiliations
+        config_dict["Authors"][author]["grants"] = grants
         
     return config_dict["Authors"]
 
@@ -147,6 +147,9 @@ def regex_search_return(regex, string_to_search):
     Args:
         regex (str): A string with a regular expression to be delivered to re.search().
         string_to_search (str): The string to match with the regex.
+    
+    Returns:
+        (tuple): either the tuple of the matched groups in the regex or an empty tuple if a match wasn't found.
     """
     
     match = re.search(regex, string_to_search)
@@ -353,7 +356,7 @@ def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
         return True
     
     if not titles:
-        titles = [pub_attr["title"] for pub_attr in publication_dict.values()]
+        titles = [pub_attr["title"] for pub_attr in publication_dict.values() if pub_attr["title"]]
     
     if is_fuzzy_match_to_list(title, titles):
         return True
@@ -363,7 +366,21 @@ def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
 
 
 def find_duplicate_citations(tokenized_citations):
-    """"""
+    """Find citations that are duplicates of each other in tokenized_citations.
+    
+    Citations can be duplicates in 3 ways. Same PMID, same DOI, or similar enough titles.
+    The function goes through each citation and looks for matches on these criteria.
+    Then the matches are compared to create unique sets. For instance if citation 1
+    matches the PMID in citation 2, and citation 2 matches the DOI in citation 3, but 
+    citation 1 and 3 don't match a duplicate set containing all 3 is created. The 
+    unique duplicate sets are returned as a list of sorted lists.
+    
+    Args:
+        tokenized_citation (list): list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.
+        
+    Returns:
+        unique_duplicate_sets (list): list of lists where each element is a list of indexes in tokenized_citations that match each other. The list of indexes is sorted in ascending order.
+    """
     
     titles_list = [citation["title"] for citation in tokenized_citations if citation["title"]]
     
@@ -438,130 +455,26 @@ def find_duplicate_citations(tokenized_citations):
     
     
 
-def compare_citations_with_list(tokenized_citations, prev_pubs):
-    """"""
+def are_citations_in_pub_dict(tokenized_citations, pub_dict):
+    """Determine which citations in tokenized_citations are in pub_dict.
     
-    prev_pubs_titles = [pub["title"] for pub in prev_pubs]
-    prev_pubs_dois = [pub["doi"].lower() for pub in prev_pubs]
-    prev_pubs_pmids = [pub["pubmed_id"] for pub in prev_pubs]
-    
-    return [True if citation["PMID"] in prev_pubs_pmids or citation["DOI"].lower() in prev_pubs_dois or is_fuzzy_match_to_list(citation["title"], prev_pubs_titles) else False for citation in tokenized_citations]
-
-
-
-def nested_get(dic, keys):    
-    for key in keys:
-        dic = dic[key]
-    return dic   
-
-
-
-
-
-
-###############
-## Unused functions
-###############
-
-def parse_string_for_pub_info(document_string, DOI_regex, PMID_regex, PMCID_regex):
-    """Pull out the DOIs and PMIDs from each line of a string.
-    
-    Split document_string on newline character and attempt to pull out the DOI and PMID from each line.
-    Each regex is delivered to re.match(). The DOI_regex and PMID_regex are expected to have 1 group 
-    that will contain the DOI and PMID when matched, respectively. If the DOI_regex is not matched 
-    on the line then the line is ignored. The PMCID_regex is used to ignore lines that have a PMCID in them.
-    
-    Returns a list of dictionaries. Each item in the list is a line in the document_string and contains the 
-    DOI and PMID found on the line.
-    [{"DOI":"found DOI", "PMID": "found PMID", "line":"full text of the line where each was found"}]
+    For each citation in tokenized_citations see if it is in pub_dict. Will be 
+    True for a citation if the PMID matches, DOI matches, or the title is similar 
+    enough.
     
     Args:
-        document_string (str): A string that represents the contents of a document.
-        DOI_regex (str): A string with a regular expression to be delivered to re.match(). This will confirm that the line has a DOI and have a group to pull out the DOI.
-        PMID_regex (str): A string with a regular expression to be delivered to re.match(). Must have a group to pull out the PMID.
-        PMCID_regex (str): A string with a regular expression to be delivered to re.match(). Used to ignore lines that contain a PMCID.
-        
+        tokenized_citation (list): list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.
+        pub_dict (dict): schema matches the publication.json schema.
+    
     Returns:
-        (list): A list of dictionaries. A description of the keys and values are in the description of the function.
+        (list): list of bools, True if the citation at that index is in pub_dict, False otherwise.
     """
     
-    lines = [line for line in document_string.split("\n") if line]
-#    return [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:\s*([^\s]+\w).*", line) and not re.match(r"(?i).*pmcid:\s*(pmc\d+).*", line)]
-#    [{"DOI": regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", line), "PMID": regex_match_return(r"(?i).*pmid:\s*(\d+).*", line), "line":line} for line in lines if re.match(r"(?i).*doi:.*", line) or re.match(r"(?i).*pmid:.*", line)]
-    return [{"DOI": regex_group_return(regex_match_return(DOI_regex, line), 0), 
-             "PMID": regex_group_return(regex_match_return(PMID_regex, line), 0), 
-             "line":line} 
-             for line in lines if re.match(DOI_regex, line) and not re.match(PMCID_regex, line)]
-
-
-
-def extract_pdf_text(path_to_pdf):
-    """
-    """
+    pub_titles = [pub["title"] for pub in pub_dict.values() if pub["title"]]
+    pub_dois = [pub["doi"].lower() for pub in pub_dict.values() if pub["doi"]]
+    pub_pmids = [pub["pubmed_id"] for pub in pub_dict.values() if pub["pubmed_id"]]
     
-    with pdfplumber.open(path_to_pdf) as pdf:
-        pdf_text = " ".join([pdf_page.extract_text() for pdf_page in pdf.pages if pdf_page.extract_text()])
-#        pdf_text = " ".join(["".join([char["text"] for char in pdf_page.chars]) for pdf_page in pdf.pages])
-        
-    return pdf_text
-
-
-
-
-def parse_pubmed_full_text_links(pubmed_html):
-    """
-    """
-    
-    ## Note that you have to change the headers so PubMed thinks you are a browser or you won't be sent the full page with full text links.
-    soup = bs4.BeautifulSoup(pubmed_html, "html.parser")
-    link_list = soup.find("div", class_ = "full-text-links-list")
-    return [link["href"] for link in link_list.find_all("a")]
-
-
-
-def match_citation_authors_to_PubMed(citation_authors, pubmed_authors):
-    """
-    
-    Compares last names in each set of authors and if any last names match return True.
-    Trying to use initials is difficult because of the many ways they can be done. 
-    First names aren't always available from citations.
-    
-    Args:
-        citation_authors (list): list of dictionaries. The dictionary is either {"first", "middle", "last"} or {"first", "initials"}. Values can be an empty string.
-    """
-    
-    return any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pubmed_authors for author_attributes in citation_authors])
-    
-#    ## pubmed_authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex "Andrew P"
-#    for author_items in pubmed_authors:
-#        author_items_last_name = str(author_items.get("lastname")).lower()
-#        for author_attributes in citation_authors:
-#            if author_attributes["last_name"].lower() == author_items_last_name:
-#                return True
-#                
-#    return False
-
-
-
-def overwrite_config_with_CLI(config_dict, args):
-    """Overwrite keys in config_dict if command line options were used.
-    
-    Args:
-        config_dict (dict): schema matches the JSON Project Tracking Configuration file.
-        args (dict): input arguments from DocOpt.
-        
-    Returns:
-        config_dict (dict): returns the config_dict with any relevant command line arguments overwritten.
-    
-    """
-    
-    overwriting_options = ["--grants", "--cutoff_year", "--from_email", "--cc_email", "--affiliations"]
-    for option in overwriting_options:
-        for project in config_dict["project_descriptions"]:
-            if args[option]:
-                config_dict["project_descriptions"][project][option.replace("-","")] = args[option]
-                
-    return config_dict
+    return [True if citation["PMID"] in pub_pmids or citation["DOI"].lower() in pub_dois or is_fuzzy_match_to_list(citation["title"], pub_titles) else False for citation in tokenized_citations]
 
 
 

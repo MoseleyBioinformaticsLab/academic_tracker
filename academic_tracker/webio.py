@@ -191,6 +191,37 @@ def get_url_contents_as_str(url, verbose):
             print(url)
         
         return None
+    
+    
+
+def clean_tags_from_url(url, verbose):
+    """Remove tags from webpage.
+    
+    Remove tags from a webpage so it looks more like what a user would see in a 
+    browser.
+    
+    Args:
+        url (str): the URL to query.
+        verbose (bool): True to print HTTP errors, False not to.
+        
+    Returns:
+        clean_url (str): webpage contents cleaned of tags.    
+    """
+    
+    url_str = get_url_contents_as_str(url, verbose)
+    if not url_str:
+        return None
+    
+    ## All of the python libraries return the html with newlines in seemingly 
+    ## arbitrary locations, so remove them and add in some for tags that make sense.
+    clean_url = url_str.replace("\n", "")
+    clean_url = clean_url.replace("<br>", "\n")
+    clean_url = clean_url.replace("</div>", "</div>\n")
+    clean_url = clean_url.replace("</p>", "</p>\n")
+    clean_url = bs4.BeautifulSoup(clean_url, "lxml").text
+#    clean_url = lxml.html.fromstring(url_str).text_content()
+    
+    return clean_url
 
 
 
@@ -353,25 +384,6 @@ def check_doi_for_grants(doi, grants, verbose):
     return { grant for grant in grants if grant in url_str }
     
 
-
-
-def clean_tags_from_url(url, verbose):
-    """"""
-    
-    url_str = get_url_contents_as_str(url, verbose)
-    if not url_str:
-        return None
-    
-    ## All of the python libraries return the html with newlines in seemingly 
-    ## arbitrary locations, so remove them and add in some for tags that make sense.
-    clean_url = url_str.replace("\n", "")
-    clean_url = clean_url.replace("<br>", "\n")
-    clean_url = clean_url.replace("</div>", "</div>\n")
-    clean_url = clean_url.replace("</p>", "</p>\n")
-    clean_url = bs4.BeautifulSoup(clean_url, "lxml").text
-#    clean_url = lxml.html.fromstring(url_str).text_content()
-    
-    return clean_url
 
 
 def download_pdf(pdf_url, verbose):

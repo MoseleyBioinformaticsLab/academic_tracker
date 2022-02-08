@@ -297,7 +297,7 @@ def test_find_Google_Scholar_no_new(mocker, capsys):
 
 def test_add_authors(capsys):
     args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<author_file>":os.path.join("testing_files", "add_authors.csv"),
+            "<authors_file>":os.path.join("testing_files", "add_authors.csv"),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -331,7 +331,7 @@ def test_add_authors(capsys):
 
 def test_add_authors_errors(error_file, error_message, capsys):
     args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<author_file>":os.path.join("testing_files", error_file),
+            "<authors_file>":os.path.join("testing_files", error_file),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,

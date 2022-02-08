@@ -160,7 +160,7 @@ def create_tokenization_report(tokenized_citations):
         
         report_string += "Tokenized Reference: \n\tAuthors: " + convert_tokenized_authors_to_str(citation["authors"])
         if citation["title"]:
-            "\n\tTitle: " + citation["title"]
+            report_string += "\n\tTitle: " + citation["title"]
         else:
             report_string += "\n\tTitle: None"
         if citation["PMID"]:

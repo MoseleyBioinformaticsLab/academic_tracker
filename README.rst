@@ -35,16 +35,19 @@ Academic Tracker
 
 |
 
-
 Academic Tracker was created to automate the process of making sure that NIH 
 funded publications get listed on PubMed and that the grant funding source for 
 them is cited. 
 
-The Academic Tracker package is a simple program to search PubMed for a given 
-list of authors and find their publications. Each publication is checked to see 
-if it has a citation for any of the given grants. An email is then sent to each 
-author with the given email message and a list of the publications found. 
+Academic Tracker is a command line tool to search PubMed, ORCID, Google Scholar, 
+and Crossref for publications. The program can either be given a list of authors 
+to look for publications for, or references/citations to publications themselves. 
+The program will then will look for publications on the aforementioned sources 
+and return what relevant information is available from those sources.
 
+The primary use case is to give the program a list of authors to find publications 
+for. From this list of publications it can then be determined which ones need 
+further action to be in compliance with NIH.
 
 
 
@@ -58,7 +61,6 @@ Links
 
 Installation
 ~~~~~~~~~~~~
-
 The Academic Tracker package runs under Python 3.7+. Use pip_ to install.
 Starting with Python 3.4, pip_ is included by default. Academic Tracker relies 
 on sendmail which is built into Linux to send emails, so it is only available for 
@@ -84,47 +86,39 @@ Upgrade on Linux, Mac OS X
 
 
 
-
-
 Quickstart
 ~~~~~~~~~~
+Academic Tracker has several commands and options. The simplest most common use 
+case is simply:
 
-Academic Tracker expects 2 JSON files as input and has several options. The 
-simplest most common use case is simply:
 .. code:: bash
     
-    academic_tracker config_file.json authors.json
+    academic_tracker author_search config_file.json
 
-There are some things to know about Academic Tracker's default behavior though. 
-Academic Tracker will search the current directory for directories with the 
-name "tracker-yymmddhhmm", where yymmddhhmm is a timestamp. It will find the latest 
-timestamp and look for a "publications.json" file in  the tracker-yymmddhhmm directory. 
-If one is not present Academic Tracker will exit with an error. If one is found then 
-it will read the file in and use it as a list of publications to ignore in the current 
-run since they were found last time. To start fresh simply run Academic Tracker in 
-a directory with no tracker directories. The path to the publications.json file can 
-be overwritten with the --prev_pub option. 
-
-The default output behavior of Academic Tracker is to create a new directory 
-in the current directory named "tracker-yymmddhhmm", where yymmddhhmm is a timestamp. 
-Inside this directory is where the "emails.json" and "publications.json" output files will be saved. 
-By default if a previous publications.json was given or detected it will be merged 
-with the newly found publications, so that each new publications.json file is cummulative 
-between runs. If the --test option is used then a "tracker-test-yymmddhhmm" directory 
-will be created instead. Note that test directories are ignored when looking for publications.json files.
-
-Options take precedent over what is in the configuration JSON file, so if the --cutoff_year 
-option is used for instance, whatever is entered on the command line will be used 
-and the value in the configuration file will be ignored.
+Academic Tracker's behavior can be quite complex though, so it is highly encouraged 
+to read the :doc:`guide` and :doc:`tutorial`.
 
 
-.. note:: Read the User Guide and the Academic Tracker Tutorial on ReadTheDocs_
-          to learn more and to see examples on using Academic Tracker as a command-line tool.
-          
+Creating The Configuration JSON
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A configuration JSON file is required to run Academic Tracker, but initially creating 
+it the first time can be burdensome. Unfortunately, there is no easy solution for 
+this. It is encouraged to read the configuration JSON section in :doc:`jsonschema` 
+and use the example there to create it initially. The add_authors command can help 
+with building the Authors section if you already have a csv file with author 
+information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`_.
+
+
+Registering With ORCID
+~~~~~~~~~~~~~~~~~~~~~~
+In order to have this program search ORCID you must register with ORCID and obtain 
+a key and secret. Details on how to do that are `here <https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/>`_. 
+If you do not want to do that then the --no_ORCID option can be used to skip searching 
+ORCID.
+
           
 Mac OS Note
 ~~~~~~~~~~~
-
 When you try to run the program on Mac OS you may get an SSL error.
 
     certificate verify failed: unable to get local issuer certificate
@@ -134,170 +128,38 @@ folder in Applications and run the Install Certificates.command shell command.
 This should fix the issue.
 
 
-JSON Schema
-~~~~~~~~~~~
-
-Configuration JSON
-------------------
-The configuration JSON contains information about what grants publications could 
-have citations for, what year to go back to when looking for publications, and 
-how to format the emails to the authors.
-    
-    {
-     "grants" : [ "grant1", "grant2" ],
-     "cutoff_year" : YYYY,
-     "affiliations" : [ "affiliation1", "affiliation2" ],
-     "from_email" : "email@email.com",
-     "cc_email" : ["email1@wmail.com", "email2@email.com"], # optional
-     "email_template" : "<formatted-string>",
-     "email_subject" : "<formatted-string>"
-    }
-    
-email_template and email_subject have special reserved words that can be used 
-which will be replaced by the program before creating the emails.
-
-Special Words:
-    
-    <total_pubs> (Required, template only) Where in the email_template you want the list of publications placed.
-    <author_first_name> (Optional) Will be replaced with author's first name.
-    <author_last_name> (Optional) Will be replaced with author's last name.
-    
-Example JSON:
-    
-    {
-     "grants" : [ "P42ES007380", "P42 ES007380" ],
-     "cutoff_year" : 2019,
-     "affiliations" : [ "kentucky" ],
-     "from_email" : "ptth222@uky.edu",
-     "cc_email" : [], 
-     "email_template" : "Dear <author_first_name>,
-
-                        The following are the publications I was able to find on PubMed. Please look through the list and determine if any new publications are absent from the list. Also check the list of cited grants under each publication and determine if any citations are missing.
-                        
-                        <total pubs>
-                        
-                        Kind Regards,
-                        This email was sent by an automated service. For questions or concerns contact Travis Thompson (ptth222@uky.edu).",
-     "email_subject" : "Newest PubMed Publications"
-    }
-
-
-Authors JSON
-------------
-The authors JSON contains information specific to each author, and gives the 
-program the best chance of confirming the author listed for the publication is 
-indeed the one you looking for. Any of the attributes in the config JSON can 
-optionally be added for an author as well, so that settings can be customized 
-per author.
-    
-    {
-        "Author 1": {  
-                       "first_name" : "<first-name>",
-                       "last_name" : "<last-name>",
-                       "pubmed_name_search" : "<search-str>",
-                       "email": "email@email.com",
-                       "ORCID": "<orcid>" # optional           
-                    },
-        
-        "Author 2": {  
-                       "first_name" : "<first-name>",
-                       "last_name" : "<last-name>",
-                       "pubmed_name_search" : "<search-str>",
-                       "email": "email@email.com",
-                       "ORCID": "<orcid>" # optional 
-                    },
-    }
-    
-Example JSON:
-    
-    {
-        "Travis Thompson": {  
-                       "first_name" : "Travis",
-                       "last_name" : "Thompson",
-                       "pubmed_name_search" : "Patrick T Thompson", # optional
-                       "email": "ptth222@uky.edu",
-                       "ORCID": "0000-0002-8198-1327" # optional           
-                    },
-        
-    }
-
-
-Publications JSON
------------------
-The publications JSON is one of the outputs of the program and is not intended 
-to be created or modified by users. The schema is shown here, but an example entry 
-would be overly large.
-    
-    {
-       "pub_id1": 
-          {
-            "abstract": "<publication abstract>",
-            "authors": [
-               {
-                  "affiliation": "<comma separated list of affiliations>",
-                  "firstname": "<author first name>",
-                  "initials": "<author initials>",
-                  "lastname": "<author last name>",
-                  "author_id": "<author-id>"  # optional, only put in if author detected and validated
-               },
-            ],
-            "conclusions": "<publication conclusions>",
-            "copyrights": "<copyrights>",
-            "doi": "DOI string",
-            "journal": "<journal name>",
-            "keywords": ["keyword 1", "keyword 2"],
-            "methods": "<publication methods>",
-            "publication_date": "yyyy-mm-dd",
-            "pubmed_id": "<pubmed id>",
-            "results": "<publication results>",
-            "title": "<publication title>"
-          },
-    }
-
-
-Email JSON
-----------
-The email JSON is the other output of the program and is given as a record and 
-so that additional programs can use it later if needed. Academic Tracker does 
-not use it in later runs.
-    
-    {
-    "creation_date" : "<date-time-stamp>",
-    "emails" : [
-                   {  
-                   "body" : "<email body>",
-                   "cc" : "<comma separated list of email addresses>",
-                   "from" : "<from email address>",
-                   "subject": "<email subject>",
-                   "to": "<author email address>",
-                   "author" : "<author name>"
-                   },
-    
-               {  
-                   "body" : "<email body>",
-                   "cc" : "<comma separated list of email addresses>",
-                   "from" : "<from email address>",
-                   "subject": "<email subject>",
-                   "to": "<author email address>",
-                   "author" : "<author name>"
-                },
-                
-               ]
-
-    }
-
+Email Sending Note
+~~~~~~~~~~~~~~~~~~
+Academic Tracker uses sendmail to send emails, so any system it is going to be 
+used on needs to have sendmail installed in /usr/sbin/sendmail. If you try to 
+send emails without this the program will error. This can be avoided by using 
+the --test option though. The --test option blocks email sending so the program 
+can be ran just fine on systems without sendmail if that option is used. Email 
+sending can also be avoided by leaving the from_email attribute out of the report 
+sections of the configuration JSON file.
 
 
 How Authors Are Identified
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
+When searching by authors it is necessary to confirm that the author given to 
+Academic Tracker matches the author returned in the query. In general this matching 
+is done by matching the first and last names and at least one affiliation given 
+for the author in the configuration JSON file. Note that affiliations can change 
+over time as authors move, so they may need many affiliations to accurately match 
+them to their publications depending on how far back you want to search in time.
 
-PubMed is queried with the pubmed_name_search. For each publication returned by 
-PubMed, Academic Tracker looks for a matching author on the publication by matching 
-thier first and last name and at least one affiliation.
+
+How Publications Are Matched
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When searching by publications it is necessary to confirm that the publication 
+in the given reference matches the publicaiton returned in the query. This is done 
+by either matching the DOIs, PMIDs, or the title and at least one author. Titles 
+are fuzzy matched using fuzzywuzzy which is why at least one author must also be 
+matched. Author's are matched using last name and at least one affiliation.
+
 
 License
 ~~~~~~~
-
 This package is distributed under the BSD_ `license`.
 
 

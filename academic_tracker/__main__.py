@@ -4,8 +4,8 @@ Usage:
     academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose]
     academic_tracker find_ORCID <config_json_file> [--verbose]
     academic_tracker find_Google_Scholar <config_json_file> [--verbose]
-    academic_tracker add_authors <config_json_file> <authors_file> [--verbose]
-    academic_tracker tokenize_reference <references_file_or_URL> [--verbose]
+    academic_tracker add_authors <config_json_file> <authors_file>
+    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE_reference --verbose]
     academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose]
     academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose]
     
@@ -27,14 +27,13 @@ Search Options:
 """
 
 
-## In documentation add a section about how citations are matched, ie one author with matching last name and fuzzy title match > 90.
-## In documentation make sure to mention that gen_reports for ref tries to match pub_dict keys in reference if not in reference.
-## Consider detecting the operating system and not doing the email part.
-## Put a note in documentation about starting on page 1 for myncbi pages.
 
 ## Less important or far future things:
 ## TODO improve reference search to see if every author on the pub has the pub associated with them on ORCID
 ## TODO add functionality to more easily handle verbose option, and add more messages when it is in use.
+## Let the authors_file for add_authors be an excel file.
+## Collaborator tracking. Generate a list of authors you have published with and get thier affiliations. Make a new command generate_collaborators.
+## Recipes for common use cases such as a trainee project.
 
 
 
@@ -55,6 +54,7 @@ from . import ref_srch_emails_and_reports
 from . import tracker_schema
 from . import athr_srch_modularized
 from . import ref_srch_modularized
+from . import helper_functions
 
 
 
@@ -138,6 +138,7 @@ def reference_search(args):
     save_dir_name = ref_srch_modularized.save_and_send_reports_and_emails(args, config_dict, tokenized_citations, publication_dict, prev_pubs, has_previous_pubs)
             
     fileio.save_publications_to_file(save_dir_name, publication_dict, {})
+    fileio.save_json_to_file(save_dir_name, "tokenized_reference.json", tokenized_citations)
     
     print("Success. Publications and reports saved in " + save_dir_name)
 
@@ -277,9 +278,9 @@ def add_authors(args):
     user_input_checking.tracker_validate(config_dict, tracker_schema.Authors_schema)
     
     ## Check the file extension and call the correct read in function.
-    extension = os.path.splitext(args["<author_file>"])[1][1:]
+    extension = os.path.splitext(args["<authors_file>"])[1][1:]
     if extension == "csv":
-        df = fileio.read_csv(args["<author_file>"])
+        df = fileio.read_csv(args["<authors_file>"])
     else:
         print("Unknown file type for author file.")
         sys.exit()
@@ -381,18 +382,23 @@ def gen_reports_and_emails_ref(args):
     publication_dict = fileio.load_json(args["<publication_json_file>"])
     user_input_checking.prev_pubs_file_check(publication_dict)
     
+    pub_titles_to_keys = {pub["title"]:pub_id  for pub_id, pub in publication_dict.items() if pub["title"]}
+    pub_titles = list(pub_titles_to_keys.keys())
+    
     matching_key_for_citation = []
     for citation in tokenized_citations:
-        if not citation["pub_dict_key"]:
+        if not citation["pub_dict_key"] or not citation["pub_dict_key"] in publication_dict:
             if citation["DOI"] and webio.DOI_URL + citation["DOI"] in publication_dict:
                 citation["pub_dict_key"] = webio.DOI_URL + citation["DOI"]
                 matching_key_for_citation.append(webio.DOI_URL + citation["DOI"])
             elif citation["PMID"] and citation["PMID"] in publication_dict:
                 citation["pub_dict_key"] = citation["PMID"]
                 matching_key_for_citation.append(citation["PMID"])
-            elif citation["title"] and citation["title"] in publication_dict:
-                citation["pub_dict_key"] = citation["title"]
-                matching_key_for_citation.append(citation["title"])
+            elif citation["title"]:
+                matches = helper_functions.fuzzy_matches_to_list(citation["title"], pub_titles)
+                if matches:    
+                    citation["pub_dict_key"] = pub_titles_to_keys[pub_titles[matches[0][0]]]
+                    matching_key_for_citation.append(pub_titles_to_keys[pub_titles[matches[0][0]]])
         else:
             matching_key_for_citation.append(citation["pub_dict_key"])
             
@@ -406,6 +412,8 @@ def gen_reports_and_emails_ref(args):
             
     
     save_dir_name = ref_srch_modularized.save_and_send_reports_and_emails(args, config_dict, tokenized_citations, publication_dict, prev_pubs, has_previous_pubs)
+    
+    fileio.save_json_to_file(save_dir_name, "tokenized_reference.json", tokenized_citations)
     
     print("Success! Reports and emails saved in " + save_dir_name)
 

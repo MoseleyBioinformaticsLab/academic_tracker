@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Publication Tracker's documentation!
-===============================================
+Welcome to Academic Tracker's Documentation!
+============================================
 
 .. include:: ../README.rst
 
@@ -17,6 +17,9 @@ Documentation index:
 
    guide
    tutorial
+   jsonschema
+   reporting
+   tokenization
    license
    todo
 

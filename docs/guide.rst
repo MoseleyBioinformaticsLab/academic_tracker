@@ -8,10 +8,11 @@ Academic Tracker was created to automate the process of making sure that NIH
 funded publications get listed on PubMed and that the grant funding source for 
 them is cited. 
 
-The Academic Tracker package is a simple program to search PubMed for a given 
-list of authors and find their publications. Each publication is checked to see 
-if it has a citation for any of the given grants. An email is then sent to each 
-author with the given email message and a list of the publications founds.
+Academic Tracker searches PubMed, ORCID, Crossref, and Google Scholar to look 
+for publications. The 2 main use cases allows users to search by author names or 
+a publication citation/reference. The output is customizable by the user, but in 
+general will be a JSON file of publication information, a JSON file of email 
+information if emails were sent, and text files of summary information.
 
 Installation
 ~~~~~~~~~~~~
@@ -111,31 +112,104 @@ run the following commands:
 
            python3 -m pip install jsonschema  # On Linux, Mac OS X
            py -3 -m pip install jsonschema    # On Windows
+           
+   * habanero_ for querying Crossref.
+      * To install the habanero_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install habanero  # On Linux, Mac OS X
+           py -3 -m pip install habanero    # On Windows
+           
+   * orcid_ for quering ORCID.
+      * To install the orcid_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install orcid  # On Linux, Mac OS X
+           py -3 -m pip install orcid    # On Windows
+           
+   * scholarly_ for querying Google Scholar.
+      * To install the scholarly_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install scholarly  # On Linux, Mac OS X
+           py -3 -m pip install scholarly    # On Windows
+           
+   * beautifulsoup4_ for parsing webpages.
+      * To install the beautifulsoup4_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install beautifulsoup4  # On Linux, Mac OS X
+           py -3 -m pip install beautifulsoup4    # On Windows
+           
+   * fuzzywuzzy_ for fuzzy matching publication titles.
+      * To install the fuzzywuzzy_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install fuzzywuzzy  # On Linux, Mac OS X
+           py -3 -m pip install fuzzywuzzy    # On Windows
+           
+   * docx_ for reading docx files.
+      * To install the docx_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install docx  # On Linux, Mac OS X
+           py -3 -m pip install docx    # On Windows
+           
+   * pandas_ for easy data manipulation.
+      * To install the pandas_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install pandas  # On Linux, Mac OS X
+           py -3 -m pip install pandas    # On Windows
 
 
 Basic usage
 ~~~~~~~~~~~
 
-Academic Tracker expects a configuration JSON file and an authors JSON file. 
-The configuration file contains information about the grants to look for, the 
-email template to use, etc. The authors file contains information about each 
-author. The details of the JSON files are in the README.
+Academic Tracker expects at least a configuration JSON file, and possibly more 
+depending on the usage. The 2 main use cases are author_search and reference_search,
+with the other usages mostly included to support those. author_search searches 
+by the authors given in the configuration JSON file while reference_search searches
+by the publication references given in the reference file or URL. Details about 
+the JSON files are in the :doc:`jsonschema` section, and more information about 
+the use cases with examples are in the :doc:`tutorial` section.
 
-academic_tracker <config_json_file> <authors_json_file> [options]
+.. code-block:: console
+
+    Usage:
+        academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose]
+        academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose]
+        academic_tracker find_ORCID <config_json_file> [--verbose]
+        academic_tracker find_Google_Scholar <config_json_file> [--verbose]
+        academic_tracker add_authors <config_json_file> <authors_file>
+        academic_tracker tokenize_reference <references_file_or_URL> [--verbose]
+        academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose]
+        academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose]
+        
+    Options:
+        -h --help                         Show this screen.
+        --version                         Show version.
+        --verbose                         Print hidden error messages.
+        --test                            Generate pubs and email texts, but do not send emails.
+        --prev_pub=<file-path>            Filepath to json or csv with publication ids to ignore. Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
+        
+    Reference Type Options:    
+        --PMID_reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
+        --MEDLINE_reference               Indicates that the reference_file is a MEDLINE file.
     
-Options:
-    -h --help                       Show this screen.
-    --version                       Show version.
-    --test                          Generate pubs and email texts, but do not send emails.
-    --grants=<nums>...              Grant numbers to filter publications by.
-    --cutoff_year=<num>             YYYY year before which to ignore publications.
-    --email=<email>                 Send authors email from provided email address.
-    --prev_pub=<file-path>          Filepath to json or csv with publication ids to ignore.
-    --affiliation=<affiliation>...  An affiliation to filter publications by.
+    Search Options:
+        --no_GoogleScholar                Don't search Google Scholar.
+        --no_ORCID                        Don't search ORCID.
+        --no_Crossref                     Don't search Crossref.
 
 
-
-.. note:: Read :doc:`tutorial` to learn more and see examples on using Academic Tracker.
 
 
 .. _pip: https://pip.pypa.io/
@@ -144,3 +218,10 @@ Options:
 .. _schema: https://pypi.org/project/schema/
 .. _pymed: https://pypi.org/project/pymed/
 .. _jsonschema: https://pypi.org/project/jsonschema/
+.. _habanero: https://pypi.org/project/habanero/
+.. _orcid: https://pypi.org/project/orcid/
+.. _scholarly: https://pypi.org/project/scholarly/
+.. _beautifulsoup4: https://pypi.org/project/beautifulsoup4/
+.. _fuzzywuzzy: https://pypi.org/project/fuzzywuzzy/
+.. _docx: https://pypi.org/project/docx/
+.. _pandas: https://pypi.org/project/pandas/

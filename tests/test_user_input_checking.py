@@ -145,6 +145,25 @@ def test_cli_inputs_check_no_error(empty_args):
                             "to_email":["email@email.com"], 
                             "cc_email":["email@email.com"],
                             "email_subject":"asdf",}}),
+        ({"collaborator_report":123}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ({"collaborator_report":{"to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",
+                            "email_body":"asdf"}}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
         ({"authors":""}),        ##type
         ({"authors":[]}),        ##minItems
         ({"authors":[123]}),     ##item type
@@ -152,10 +171,10 @@ def test_cli_inputs_check_no_error(empty_args):
         ])
  
  
-def test_config_file_project_check_errors(passing_config, config_project_errors, empty_args):
+def test_config_file_project_check_errors(passing_config, config_project_errors):
     passing_config["project_descriptions"]["project 1"].update(config_project_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
         
 
 
@@ -176,10 +195,63 @@ def test_config_file_project_check_errors(passing_config, config_project_errors,
         ])
  
  
-def test_config_file_project_report_attributes_check_errors(passing_config, project_report_errors, empty_args):
+def test_config_file_project_report_attributes_check_errors(passing_config, project_report_errors):
     passing_config["project_descriptions"]["project 1"]["project_report"].update(project_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
+        
+
+
+@pytest.mark.parametrize("collaborator_report_errors", [
+        ({"from_email":123}),
+        ({"from_email":"asdf"}),    ## format
+        ({"cc_email":"asdf"}),
+        ({"cc_email":["asdf", "email@email.com"]}),
+        ({"to_email":"asdf"}),
+        ({"to_email":["asdf", "email@email.com"]}),
+        ({"columns":123}),
+        ({"columns":{}}),
+        ({"columns":{"asdf":""}}),
+        ({"sort":123}),
+        ({"sort":[]}),
+        ({"separator":123}),
+        ({"separator":""}),
+        ({"separator":"asdf"}),
+        ({"email_subject":123}),
+        ({"email_subject":""}),
+        ({"email_body":123}),
+        ({"email_body":""}),
+        ])
+ 
+ 
+def test_config_file_collaborator_report_attributes_check_errors(passing_config, collaborator_report_errors):
+    passing_config["project_descriptions"]["project 1"]["collaborator_report"].update(collaborator_report_errors)
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+        
+        
+def test_config_file_collaborator_report_sort_error_project(passing_config, capsys):
+    passing_config["project_descriptions"]["project 1"]["collaborator_report"] = {"columns":{"Name":"asdf"},
+                                                                                  "sort":["asdf"]}
+    error_message = "ValidationError: The \"sort\" attribute for the collaborator_report in project project 1 " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+    
+def test_config_file_collaborator_report_sort_error_author(passing_config, capsys):
+    passing_config["Authors"]["Andrew Morris"]["collaborator_report"] = {"columns":{"Name":"asdf"},
+                                                                                                 "sort":["asdf"]}
+    error_message = "ValidationError: The \"sort\" attribute for the collaborator_report for author Andrew Morris " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
         
 
 
@@ -198,10 +270,10 @@ def test_config_file_project_report_attributes_check_errors(passing_config, proj
         ({"email_body":""}),
         ])
     
-def test_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors, empty_args):
+def test_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors):
     passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
 
 
 
@@ -224,10 +296,10 @@ def test_config_file_summary_report_attributes_check_errors(passing_config, summ
                             "email_subject":"asdf",}}),
         ])
     
-def test_config_file_summary_report_check_errors(passing_config, summary_report_errors, empty_args):
+def test_config_file_summary_report_check_errors(passing_config, summary_report_errors):
     passing_config.update(summary_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
 
 
 
@@ -239,10 +311,10 @@ def test_config_file_summary_report_check_errors(passing_config, summary_report_
         ])
  
  
-def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors, empty_args):
+def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors):
     passing_config["ORCID_search"].update(config_ORCID_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
 
 
 
@@ -252,10 +324,10 @@ def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors, emp
         ])
  
  
-def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors, empty_args):
+def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
     passing_config["PubMed_search"].update(config_PubMed_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
         
 
 @pytest.mark.parametrize("config_Crossref_errors", [
@@ -264,25 +336,25 @@ def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors, e
         ])
  
  
-def test_config_file_Crossref_check_errors(passing_config, config_Crossref_errors, empty_args):
+def test_config_file_Crossref_check_errors(passing_config, config_Crossref_errors):
     passing_config["Crossref_search"].update(config_Crossref_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
 
 
-def test_config_file_check_no_error(passing_config, empty_args):
+def test_config_file_check_no_error(passing_config):
     with does_not_raise():
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
 
 
-def test_config_file_check_empty_file_error(empty_args):
+def test_config_file_check_empty_file_error():
     with pytest.raises(SystemExit):
-        config_file_check({}, empty_args)
+        config_file_check({}, False, False, False)
 
-def test_config_file_check_missing_required_error(passing_config, empty_args):
+def test_config_file_check_missing_required_error(passing_config):
     del passing_config["project_descriptions"]
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
         
         
     
@@ -320,7 +392,25 @@ def test_config_file_check_missing_required_error(passing_config, empty_args):
                             "to_email":["email@email.com"], 
                             "cc_email":["email@email.com"],
                             "email_subject":"asdf",}}),
-        
+        ({"collaborator_report":123}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
+        ({"collaborator_report":{"to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",
+                            "email_body":"asdf"}}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_body":"asdf"}}),
+        ({"collaborator_report":{"from_email":"email@email.com", 
+                            "to_email":["email@email.com"], 
+                            "cc_email":["email@email.com"],
+                            "email_subject":"asdf",}}),
         ({"first_name":123}),
         ({"first_name":""}),
         ({"last_name":123}),
@@ -334,30 +424,20 @@ def test_config_file_check_missing_required_error(passing_config, empty_args):
         ])
  
  
-def test_author_file_check_errors(passing_config, author_errors, empty_args):
+def test_author_file_check_errors(passing_config, author_errors):
     passing_config["Authors"]["Andrew Morris"].update(author_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, False, False, False)
         
 
 
-def test_config_file_check_schema_reduction(passing_config, empty_args):
-    empty_args["--no_ORCID"] = True
-    empty_args["--no_GoogleScholar"] = True
-    empty_args["--no_Crossref"] = True
+def test_config_file_check_schema_reduction(passing_config):
     del passing_config["ORCID_search"]["ORCID_key"]
     del passing_config["Crossref_search"]
     with does_not_raise():
-        config_file_check(passing_config, empty_args)
+        config_file_check(passing_config, True, True, True)
 
 
-
-def test_config_file_check_cc_email_added(passing_config, empty_args):
-    del passing_config["project_descriptions"]["project 1"]["project_report"]["cc_email"]
-    del passing_config["summary_report"]["cc_email"]
-    
-    config_file_check(passing_config, empty_args)
-    assert passing_config["summary_report"]["cc_email"] == [] and passing_config["project_descriptions"]["project 1"]["project_report"]["cc_email"] == []
 
 
 #######################
@@ -378,10 +458,10 @@ def test_config_file_check_cc_email_added(passing_config, empty_args):
         ({"email_body":""}),
         ])
     
-def test_ref_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors, empty_args):
+def test_ref_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors):
     passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, empty_args)
+        ref_config_file_check(passing_config, False)
 
 
 
@@ -404,10 +484,10 @@ def test_ref_config_file_summary_report_attributes_check_errors(passing_config, 
                             "email_subject":"asdf",}}),
         ])
     
-def test_ref_config_file_summary_report_check_errors(passing_config, summary_report_errors, empty_args):
+def test_ref_config_file_summary_report_check_errors(passing_config, summary_report_errors):
     passing_config.update(summary_report_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, empty_args)
+        ref_config_file_check(passing_config, False)
 
 
 
@@ -417,10 +497,10 @@ def test_ref_config_file_summary_report_check_errors(passing_config, summary_rep
         ])
  
  
-def test_ref_config_file_PubMed_check_errors(passing_config, config_PubMed_errors, empty_args):
+def test_ref_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
     passing_config["PubMed_search"].update(config_PubMed_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, empty_args)
+        ref_config_file_check(passing_config, False)
         
 
 @pytest.mark.parametrize("config_Crossref_errors", [
@@ -429,39 +509,31 @@ def test_ref_config_file_PubMed_check_errors(passing_config, config_PubMed_error
         ])
  
  
-def test_ref_config_file_Crossref_check_errors(passing_config, config_Crossref_errors, empty_args):
+def test_ref_config_file_Crossref_check_errors(passing_config, config_Crossref_errors):
     passing_config["Crossref_search"].update(config_Crossref_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, empty_args)
+        ref_config_file_check(passing_config, False)
 
 
-def test_ref_config_file_check_no_error(passing_config, empty_args):
+def test_ref_config_file_check_no_error(passing_config):
     with does_not_raise():
-        ref_config_file_check(passing_config, empty_args)
+        ref_config_file_check(passing_config, False)
 
 
-def test_ref_config_file_check_empty_file_error(empty_args):
+def test_ref_config_file_check_empty_file_error():
     with pytest.raises(SystemExit):
-        ref_config_file_check({}, empty_args)
+        ref_config_file_check({}, False)
 
-def test_ref_config_file_check_missing_required_error(passing_config, empty_args):
+def test_ref_config_file_check_missing_required_error(passing_config):
     del passing_config["PubMed_search"]
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, empty_args)
+        ref_config_file_check(passing_config, False)
 
 
-def test_ref_config_file_check_schema_reduction(passing_config, empty_args):
-    empty_args["--no_Crossref"] = True
+def test_ref_config_file_check_schema_reduction(passing_config):
     del passing_config["Crossref_search"]
     with does_not_raise():
-        ref_config_file_check(passing_config, empty_args)
-
-
-def test_ref_config_file_check_cc_email_added(passing_config, empty_args):
-    del passing_config["summary_report"]["cc_email"]
-    
-    ref_config_file_check(passing_config, empty_args)
-    assert passing_config["summary_report"]["cc_email"] == []
+        ref_config_file_check(passing_config, True)
 
 
 

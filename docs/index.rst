@@ -20,6 +20,7 @@ Documentation index:
    jsonschema
    reporting
    tokenization
+   api
    license
    todo
 

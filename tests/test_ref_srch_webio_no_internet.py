@@ -104,7 +104,7 @@ def test_search_references_on_PubMed(tokenized_citations, ref_pymed_query, mocke
     expected_publication_dict = load_json(os.path.join("testing_files", "ref_srch_publication_dict.json"))
     expected_citation_keys = load_json(os.path.join("testing_files", "ref_srch_keys_for_citations.json"))
     
-    actual_publication_dict, actual_citation_keys = search_references_on_PubMed(tokenized_citations, "ptth222@uky.edu", True)
+    actual_publication_dict, actual_citation_keys = search_references_on_PubMed(tokenized_citations, "ptth222@uky.edu")
     
     assert expected_publication_dict == actual_publication_dict
     assert expected_citation_keys == actual_citation_keys
@@ -127,7 +127,7 @@ def test_search_references_on_Crossref(tokenized_citations, mocker):
     expected_pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
     expected_citation_keys = load_json(os.path.join("testing_files", "ref_srch_Crossref_keys_for_citations.json"))
     
-    actual_pub_dict, actual_citation_keys = search_references_on_Crossref(tokenized_citations, "ptth222@uky.edu", False)
+    actual_pub_dict, actual_citation_keys = search_references_on_Crossref(tokenized_citations, "ptth222@uky.edu")
         
     assert actual_pub_dict == expected_pub_dict
     assert actual_citation_keys == expected_citation_keys
@@ -149,7 +149,7 @@ def test_parse_myncbi_citations(mocker):
     
     expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations.json"))
     
-    actual_tokenized_citations = parse_myncbi_citations("asdf", True)
+    actual_tokenized_citations = parse_myncbi_citations("asdf")
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -160,7 +160,7 @@ def test_tokenize_reference_input_JSON(capsys):
     
     expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_duplicates_removed.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "tokenized_citations.json"), False, True)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "tokenized_citations.json"), False)
     captured = capsys.readouterr()
     
     assert expected_tokenized_citations == actual_tokenized_citations
@@ -176,7 +176,7 @@ def test_tokenize_reference_input_html(mocker):
     
     expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_nsf_award_page.json"))
     
-    actual_tokenized_citations = tokenize_reference_input("https://www.nsf.gov/awardsearch/showAward?AWD_ID=1419282", False, True)
+    actual_tokenized_citations = tokenize_reference_input("https://www.nsf.gov/awardsearch/showAward?AWD_ID=1419282", False)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -188,7 +188,7 @@ def test_tokenize_reference_input_no_html_content(capsys, mocker):
     mocker.patch("academic_tracker.ref_srch_webio.webio.clean_tags_from_url", mock_query)
     
     with pytest.raises(SystemExit):
-        tokenize_reference_input("https://www.nsf.gov/awardsearch/showAward?AWD_ID=1419282", False, True)
+        tokenize_reference_input("https://www.nsf.gov/awardsearch/showAward?AWD_ID=1419282", False)
     captured = capsys.readouterr()
     
     assert captured.out == "Nothing was read from the URL. Make sure the address is correct.\n"
@@ -199,7 +199,7 @@ def test_tokenize_reference_input_docx():
     
     expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_ref_test.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "reference_test.docx"), False, True)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "reference_test.docx"), False)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -209,7 +209,7 @@ def test_tokenize_reference_input_txt():
     
     expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_ref_test.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "reference_test.txt"), False, True)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "reference_test.txt"), False)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -218,7 +218,7 @@ def test_tokenize_reference_input_txt():
 def test_tokenize_reference_input_wrong_file_extension(capsys):
     
     with pytest.raises(SystemExit):
-        tokenize_reference_input("asdf.asdf", False, True)
+        tokenize_reference_input("asdf.asdf", False)
     captured = capsys.readouterr()
     
     assert captured.out == "Unknown file type for reference file.\n"
@@ -228,7 +228,7 @@ def test_tokenize_reference_input_wrong_file_extension(capsys):
 def test_tokenize_reference_input_empty_file(capsys):
     
     with pytest.raises(SystemExit):
-        tokenize_reference_input(os.path.join("testing_files", "empty_file.txt"), False, True)
+        tokenize_reference_input(os.path.join("testing_files", "empty_file.txt"), False)
     captured = capsys.readouterr()
     
     assert captured.out == "Nothing was read from the reference file. Make sure the file is not empty or is a supported file type.\n"
@@ -239,7 +239,7 @@ def test_tokenize_reference_input_MEDLINE():
     
     expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_MEDLINE.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "medline.txt"), True, True)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "medline.txt"), True)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -248,7 +248,7 @@ def test_tokenize_reference_input_MEDLINE():
 def test_tokenize_reference_input_no_references(capsys):
     
     with pytest.raises(SystemExit):
-        tokenize_reference_input(os.path.join("testing_files", "testing_text.txt"), False, True)
+        tokenize_reference_input(os.path.join("testing_files", "testing_text.txt"), False)
     captured = capsys.readouterr()
     
     assert captured.out == "Warning: Could not tokenize any citations in provided reference. Check setup and formatting and try again.\n"

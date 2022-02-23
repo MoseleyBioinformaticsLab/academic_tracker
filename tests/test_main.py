@@ -81,7 +81,9 @@ def test_author_search(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    author_search(args)
+    author_search(args["<config_json_file>"], args["--no_ORCID"], 
+                      args["--no_GoogleScholar"], args["--no_Crossref"], 
+                      args["--test"], args["--prev_pub"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -109,7 +111,9 @@ def test_reference_search(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    reference_search(args)
+    reference_search(args["<config_json_file>"], args["<references_file_or_URL>"], 
+                             args["--MEDLINE_reference"], args["--no_Crossref"], 
+                             args["--test"], args["--prev_pub"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -149,7 +153,7 @@ def test_PMID_reference(reference_file, mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    PMID_reference(args)
+    PMID_reference(args["<config_json_file>"], args["<references_file_or_URL>"], args["--test"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -187,7 +191,7 @@ def test_PMID_reference_errors(error_file, error_message, mocker, capsys):
             "--test":True}
     
     with pytest.raises(SystemExit):
-        PMID_reference(args)
+        PMID_reference(args["<config_json_file>"], args["<references_file_or_URL>"], args["--test"])
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -213,7 +217,7 @@ def test_find_ORCID(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    find_ORCID(args)
+    find_ORCID(args["<config_json_file>"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -236,7 +240,7 @@ def test_find_ORCID_no_new(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    find_ORCID(args)
+    find_ORCID(args["<config_json_file>"])
     
     captured = capsys.readouterr()
     
@@ -264,7 +268,7 @@ def test_find_Google_Scholar(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    find_Google_Scholar(args)
+    find_Google_Scholar(args["<config_json_file>"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -287,7 +291,7 @@ def test_find_Google_Scholar_no_new(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    find_Google_Scholar(args)
+    find_Google_Scholar(args["<config_json_file>"])
     
     captured = capsys.readouterr()
     
@@ -312,7 +316,7 @@ def test_add_authors(capsys):
                                                      "email":"ptth222@uky.edu",
                                                      "affiliations":["kentucky","asdf","qwr"]}
     
-    add_authors(args)
+    add_authors(args["<config_json_file>"], args["<authors_file>"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -347,7 +351,7 @@ def test_add_authors_errors(error_file, error_message, capsys):
                                                      "affiliations":["kentucky","asdf","qwr"]}
     
     with pytest.raises(SystemExit):
-        add_authors(args)
+        add_authors(args["<config_json_file>"], args["<authors_file>"])
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
 
@@ -373,7 +377,7 @@ def test_tokenize_reference(mocker, capsys):
     
     expected_text = read_text_from_txt(os.path.join("testing_files", "tokenization_report.txt"))
     
-    tokenize_reference(args)
+    tokenize_reference(args["<references_file_or_URL>"], args["--MEDLINE_reference"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -394,7 +398,7 @@ def test_gen_reports_and_emails_auth(capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    gen_reports_and_emails_auth(args)
+    gen_reports_and_emails_auth(args["<config_json_file>"], args["<publication_json_file>"], args["--test"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -407,15 +411,7 @@ def test_gen_reports_and_emails_auth(capsys):
 
 
 def test_gen_reports_and_emails_ref(mocker, capsys):
-    def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
-        config_dict["summary_report"] = {}
-        config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
-        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-        return config_dict, tokenized_citations, False, {}
-    mocker.patch("academic_tracker.__main__.ref_srch_modularized.input_reading_and_checking", mock_call)
-    
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated_ref_srch_summary_report.json"),
             "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
             "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
             "--verbose":True,
@@ -426,7 +422,9 @@ def test_gen_reports_and_emails_ref(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    gen_reports_and_emails_ref(args)
+    gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
+                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
+                                   args["--test"], args["--prev_pub"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -436,31 +434,10 @@ def test_gen_reports_and_emails_ref(mocker, capsys):
     
     
 
-def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
-    def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
-        config_dict["summary_report"] = {}
-        config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
-        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-        for citation in tokenized_citations:
-            citation["pub_dict_key"] = ""
-        tokenized_citations[1]["DOI"] = ""
-        tokenized_citations.append(copy.deepcopy(tokenized_citations[1]))
-        tokenized_citations[1]["PMID"] = "1234"
-        return config_dict, tokenized_citations, False, {}
-    mocker.patch("academic_tracker.__main__.ref_srch_modularized.input_reading_and_checking", mock_call)
-    
-    def mock_call2(*args, **kwargs):
-        publications_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
-        publications_dict["1234"] = publications_dict["https://doi.org/10.3390/metabo10090368"]
-        publications_dict["Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases."] = publications_dict["https://doi.org/10.3390/metabo10090368"]
-        del publications_dict["https://doi.org/10.3390/metabo10090368"]
-        return publications_dict
-    mocker.patch("academic_tracker.__main__.fileio.load_json", mock_call2)
-    
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):    
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated_ref_srch_summary_report.json"),
+            "<publication_json_file>":os.path.join("testing_files", "ref_srch_gen_reports_test_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test2.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",
@@ -471,7 +448,9 @@ def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
     
     expected_report = read_text_from_txt(os.path.join("testing_files", "gen_reports_ref_summary_report.txt"))
     
-    gen_reports_and_emails_ref(args)
+    gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
+                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
+                                   args["--test"], args["--prev_pub"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -482,23 +461,10 @@ def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
     
     
 
-def test_gen_reports_and_emails_ref_no_matches(mocker, capsys):
-    def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
-        config_dict["summary_report"] = {}
-        config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
-        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-        for citation in tokenized_citations:
-            citation["pub_dict_key"] = ""
-            citation["DOI"] = ""
-            citation["PMID"] = ""
-            citation["title"] = ""
-        return config_dict, tokenized_citations, False, {}
-    mocker.patch("academic_tracker.__main__.ref_srch_modularized.input_reading_and_checking", mock_call)
-        
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+def test_gen_reports_and_emails_ref_no_matches(mocker, capsys):       
+    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated_ref_srch_summary_report.json"),
             "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test_empty.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",
@@ -508,7 +474,9 @@ def test_gen_reports_and_emails_ref_no_matches(mocker, capsys):
             "--test":True}
     
     with pytest.raises(SystemExit):    
-        gen_reports_and_emails_ref(args)
+        gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
+                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
+                                   args["--test"], args["--prev_pub"])
     
     captured = capsys.readouterr()
     assert captured.out == "Error: No entries in the publication JSON matched any reference in the provided reference." + "\n"

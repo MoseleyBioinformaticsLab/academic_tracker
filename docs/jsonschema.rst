@@ -51,6 +51,27 @@ to cc the report to. email_body is used to specify what should be in the body of
 the email, and email_subject is used to specify what should be in the subject of 
 the email.
 
+collaborator_report is used to specify that creating a collaborator report is 
+desired and how to construct and email it. If collaborator_report is missing 
+then no report is created for the authors of that project. Additional attributes 
+within the collaborator_report attribute specify how to construct the report 
+and whether to email it.
+
+The columns, separator, and sort attributes within collaborator_report are used to 
+specify how to build the report. If columns is missing then the defaults for columns 
+and sort will be used. If separator is missing then the default comma separator 
+will be used.
+Details about reporting are in the :doc:`reporting` section. 
+
+The from_email attribute within collaborator_report is used to specify what email 
+address the email with the report attached should be sent from. If this attribute 
+is missing then no email will be sent. The to_email attribute is used to specify 
+which emails to send the report to. If it is missing, but from_email is not then 
+the author's email attribute is used instead. Similarly, cc_email is used to 
+specify which emails to cc the report to. email_body is used to specify what should 
+be in the body of the email, and email_subject is used to specify what should be 
+in the subject of the email.
+
 Commands Requiring This Section:
 
 author_search
@@ -132,17 +153,17 @@ pubmed_name_search is used as the query string when querying sources. This is so
 the user can specify exactly what to query rather than simply querying the first 
 and last name. 
 
-email is used to send individual project reports to authors about their publications 
-if the user chooses to do so.
+email is used to send individual project reports and collaborator reports to 
+authors about their publications if the user chooses to do so.
 
 ORCID is the ORCID ID of the author and is required to search an author's publications 
 in ORCID's database. If this is not present then the author will be skipped when 
 searching ORCID.
 
-The grants, cutoff_year, affiliations, and project_report attributes from the 
-project_description section can also be included individually for an author. They 
-are in the project_description section so it is easier to specify these fields 
-en masse, but it can be done on an individual level as well.
+The grants, cutoff_year, affiliations, project_report, and collaborator_report 
+attributes from the project_description section can also be included individually 
+for an author. They are in the project_description section so it is easier to 
+specify these fields en masse, but it can be done on an individual level as well.
 
 Commands Requiring This Section:
 

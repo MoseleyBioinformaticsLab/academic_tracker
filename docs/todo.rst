@@ -8,11 +8,7 @@ TODO List
 
 Improve reference search to see if every author on the pub has the pub associated with them on ORCID.
 
-Add functionality to more easily handle verbose option, and add more messages when it is in use.
-
 Let the authors_file for add_authors be an excel file.
-
-Collaborator tracking. Generate a list of authors you have published with and get thier affiliations. Make a new command generate_collaborators.
 
 Add recipes for common use cases such as a trainee project to the documentation.
 

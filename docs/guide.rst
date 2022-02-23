@@ -184,19 +184,20 @@ the use cases with examples are in the :doc:`tutorial` section.
 .. code-block:: console
 
     Usage:
-        academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose]
-        academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose]
-        academic_tracker find_ORCID <config_json_file> [--verbose]
-        academic_tracker find_Google_Scholar <config_json_file> [--verbose]
-        academic_tracker add_authors <config_json_file> <authors_file>
-        academic_tracker tokenize_reference <references_file_or_URL> [--verbose]
-        academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose]
-        academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose]
+        academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]
+        academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]
+        academic_tracker find_ORCID <config_json_file> [--verbose --silent]
+        academic_tracker find_Google_Scholar <config_json_file> [--verbose --silent]
+        academic_tracker add_authors <config_json_file> <authors_file> [--verbose --silent]
+        academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE_reference --verbose --silent]
+        academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose --silent]
+        academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose --silent]
         
     Options:
         -h --help                         Show this screen.
         --version                         Show version.
         --verbose                         Print hidden error messages.
+        --silent                          Do not print anything to the screen.
         --test                            Generate pubs and email texts, but do not send emails.
         --prev_pub=<file-path>            Filepath to json or csv with publication ids to ignore. Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
         

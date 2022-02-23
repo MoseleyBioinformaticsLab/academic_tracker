@@ -3,7 +3,6 @@
 
 import os
 import requests
-import copy
 import re
 
 import pytest
@@ -19,7 +18,7 @@ def disable_network_calls(monkeypatch):
     def stunted_get():
         raise RuntimeError("Network access not allowed during testing!")
     monkeypatch.setattr(requests, "get", lambda *args, **kwargs: stunted_get())
-
+    
 
 
 @pytest.fixture
@@ -30,28 +29,21 @@ def config_dict():
 
 
 def test_input_reading_and_checking(config_dict):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
-            "--verbose":True,
-            "--prev_pub":"ignore",
-            "--no_ORCID":False,
-            "--no_Crossref":False,
-            "--no_GoogleScholar":False}
+    config_json_filepath = os.path.join("testing_files", "config_truncated.json")
     
     expected_config_dict = config_dict
     
-    actual_config_dict = input_reading_and_checking(args)
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
     
     assert expected_config_dict == actual_config_dict
 
 
 
 def test_generate_internal_data_and_check_authors(config_dict, capsys):
-    args = {"--verbose":True}
-    
     expected_authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     expected_config_dict = load_json(os.path.join("testing_files", "config_truncated_authors_adjusted.json"))
     
-    actual_authors_by_project_dict, actual_config_dict = generate_internal_data_and_check_authors(args, config_dict)
+    actual_authors_by_project_dict, actual_config_dict = generate_internal_data_and_check_authors(config_dict)
     
     captured = capsys.readouterr()
     
@@ -62,12 +54,7 @@ def test_generate_internal_data_and_check_authors(config_dict, capsys):
 
 
 def test_build_publication_dict_all_sources(config_dict, mocker):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
-            "--verbose":True,
-            "--prev_pub":"ignore",
-            "--no_ORCID":False,
-            "--no_Crossref":False,
-            "--no_GoogleScholar":False}
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
     expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
@@ -89,7 +76,7 @@ def test_build_publication_dict_all_sources(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(args, config_dict, {})
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, False)
     
     assert expected_pub_dict == actual_publication_dict
     assert expected_pub_dict == prev_pubs
@@ -97,12 +84,7 @@ def test_build_publication_dict_all_sources(config_dict, mocker):
 
 
 def test_build_publication_dict_no_ORCID(config_dict, mocker):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
-            "--verbose":True,
-            "--prev_pub":"ignore",
-            "--no_ORCID":True,
-            "--no_Crossref":False,
-            "--no_GoogleScholar":False}
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
     expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
@@ -125,7 +107,7 @@ def test_build_publication_dict_no_ORCID(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(args, config_dict, {})
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, True, False, False)
     
     assert expected_pub_dict == actual_publication_dict
     assert expected_pub_dict == prev_pubs
@@ -133,12 +115,7 @@ def test_build_publication_dict_no_ORCID(config_dict, mocker):
 
 
 def test_build_publication_dict_no_Crossref(config_dict, mocker):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
-            "--verbose":True,
-            "--prev_pub":"ignore",
-            "--no_ORCID":False,
-            "--no_Crossref":True,
-            "--no_GoogleScholar":False}
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
     expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
@@ -161,7 +138,7 @@ def test_build_publication_dict_no_Crossref(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(args, config_dict, {})
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, True)
     
     assert expected_pub_dict == actual_publication_dict
     assert expected_pub_dict == prev_pubs
@@ -169,12 +146,7 @@ def test_build_publication_dict_no_Crossref(config_dict, mocker):
 
 
 def test_build_publication_dict_no_Google_Scholar(config_dict, mocker):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
-            "--verbose":True,
-            "--prev_pub":"ignore",
-            "--no_ORCID":False,
-            "--no_Crossref":False,
-            "--no_GoogleScholar":True}
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
     expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
@@ -197,7 +169,7 @@ def test_build_publication_dict_no_Google_Scholar(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(args, config_dict, {})
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, True, False)
     
     assert expected_pub_dict == actual_publication_dict
     assert expected_pub_dict == prev_pubs
@@ -205,12 +177,7 @@ def test_build_publication_dict_no_Google_Scholar(config_dict, mocker):
 
 
 def test_build_publication_dict_no_pubs_found(config_dict, mocker, capsys):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
-            "--verbose":True,
-            "--prev_pub":"ignore",
-            "--no_ORCID":False,
-            "--no_Crossref":False,
-            "--no_GoogleScholar":False}
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
            
     def mock_query(*args, **kwargs):
         return {}
@@ -229,7 +196,7 @@ def test_build_publication_dict_no_pubs_found(config_dict, mocker, capsys):
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
     with pytest.raises(SystemExit):
-        actual_publication_dict, prev_pubs = build_publication_dict(args, config_dict, {})
+        actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, False)
     
     captured = capsys.readouterr()
     expected_message = "No new publications found." + "\n"
@@ -239,7 +206,6 @@ def test_build_publication_dict_no_pubs_found(config_dict, mocker, capsys):
 
 
 def test_save_and_send_reports_and_emails_no_email(config_dict, mocker):
-    args = {"--test":True}
     
     def emails(*args, **kwargs):
         return {"creation_date":"asdf", "emails":[]}
@@ -251,7 +217,7 @@ def test_save_and_send_reports_and_emails_no_email(config_dict, mocker):
     config_dict["summary_report"] = {}
     config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_loop_template_string.txt"))
     
-    save_dir = save_and_send_reports_and_emails(args, authors_by_project_dict, pub_dict, config_dict)
+    save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
     assert read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report_custom_template.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
@@ -260,7 +226,6 @@ def test_save_and_send_reports_and_emails_no_email(config_dict, mocker):
 
 
 def test_save_and_send_reports_and_emails_with_email(config_dict, mocker):
-    args = {"--test":True}
     
     def emails(*args, **kwargs):
         return {"creation_date":"asdf", "emails":[]}
@@ -277,7 +242,7 @@ def test_save_and_send_reports_and_emails_with_email(config_dict, mocker):
     config_dict["summary_report"]["email_body"] = "Body"
     config_dict["summary_report"]["email_subject"] = "Subject"
     
-    save_dir = save_and_send_reports_and_emails(args, authors_by_project_dict, pub_dict, config_dict)
+    save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
     assert read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report_custom_template.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
@@ -286,7 +251,6 @@ def test_save_and_send_reports_and_emails_with_email(config_dict, mocker):
 
 
 def test_save_and_send_reports_and_emails_default_template(config_dict, mocker):
-    args = {"--test":True}
     
     def emails(*args, **kwargs):
         return {"creation_date":"asdf", "emails":[]}
@@ -297,14 +261,67 @@ def test_save_and_send_reports_and_emails_default_template(config_dict, mocker):
     
     config_dict["summary_report"] = {}
     
-    save_dir = save_and_send_reports_and_emails(args, authors_by_project_dict, pub_dict, config_dict)
+    save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
     assert read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
 
 
+def test_save_and_send_reports_and_emails_collab_reports(config_dict, mocker):
+    
+    def emails(*args, **kwargs):
+        return {"creation_date":"asdf", "emails":[]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
+    
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
+    
+    config_dict["Authors"]["Anna Hoover"]["collaborator_report"] = {"from_email":"ptth222@uky.edu", 
+                                                                    "email_body":"asdf",
+                                                                    "email_subject":"asdf",
+                                                                    }
+    
+    save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
+    
+    assert os.path.exists(os.path.join(save_dir, "Anna Hoover_collaborators.csv"))
+    assert os.path.exists(os.path.join(save_dir, "emails.json"))
+    
+    
+def test_save_and_send_reports_and_emails_tabular_summary(config_dict, mocker):
+    
+    def emails(*args, **kwargs):
+        return {"creation_date":"asdf", "emails":[]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
+    
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
+    
+    config_dict["summary_report"] = {}
+    config_dict["summary_report"]["columns"] = {"Col1":"<project_name>"}
+    
+    save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
+    
+    assert os.path.exists(os.path.join(save_dir, "summary_report.csv"))
+    
 
+
+def test_save_and_send_reports_and_emails_manual_name(config_dict, mocker):
+    
+    def emails(*args, **kwargs):
+        return {"creation_date":"asdf", "emails":[]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
+    
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
+    
+    config_dict["summary_report"] = {}
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_loop_template_string.txt"))
+    config_dict["summary_report"]["filename"] = "test_name.txt"
+    
+    save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
+    
+    assert os.path.exists(os.path.join(save_dir, "test_name.txt"))
 
 
 

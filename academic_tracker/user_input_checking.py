@@ -6,10 +6,12 @@ This module contains the functions that check the user input for errors.
 
 import sys
 import re
+import copy
 
 import jsonschema
 
 from . import tracker_schema
+from . import helper_functions
 
 
 
@@ -49,6 +51,8 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
             message += e.message
         elif e.validator == "minLength":
             custom_message = " cannot be an empty string."
+        elif e.validator == "maxLength":
+            custom_message = " is too long."
         elif e.validator == "minItems":
             custom_message = " cannot be empty."
         elif e.validator == "type":
@@ -70,7 +74,7 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
         
         if custom_message:
             message = message + "The value for " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + custom_message
-        print(message)
+        helper_functions.vprint(message)
         sys.exit()
 
 
@@ -108,77 +112,20 @@ def cli_inputs_check(args):
 
 
 
-def config_file_check(config_json, args):
+def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
     """Check that the configuration JSON file is as expected.
     
-    The configuration JSON file format is expected to be:
-    {
-           "project_descriptions" : {
-               "<project-name>" : {
-                  "grants" : [ "P42ES007380", "P42 ES007380" ],
-                  "cutoff_year" : 2019, # optional
-                  "affiliations" : [ "kentucky" ],
-                  "project_report" : { # optional 
-                          "template": "<formatted_string>",
-                          "to_email": [],    #optional
-                          "cc_email": []    #optional
-                          "from_email": "<email>",  #optional
-                          "email_body": "<body>",    #optional
-                          "email_subject": "<subject>",   #optional              
-                      },
-                  "authors" : [], # optional
-                  },...
-           },
-               "ORCID_search" : {
-                  "ORCID_key": "<ORCID_key>",
-                  "ORCID_secret": "<ORCID_secret>"
-           },
-               "PubMed_search": {
-                  "PubMed_email": "<PubMed_email>" 
-           },
-               "Crossref_search": {
-                  "mailto_email": "<mailto_email>" 
-           },
-               "summary_report" : { # optional 
-                   "template": "<formatted_string>",
-                   "to_email": [],    #optional
-                   "cc_email": []    #optional
-                   "from_email": "<email>",  #optional
-                   "email_body": "<body>",    #optional
-                   "email_subject": "<subject>",   #optional              
-           },
-               "Authors" : {
-                  "Author 1": {  
-                           "first_name" : "<first-name>",
-                           "last_name" : "<last-name>",
-                           "pubmed_name_search" : "<search-str>",
-                           "email": "email@uky.edu",
-                           "ORCID": "<orcid>" # optional       
-                           "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional    
-                        },
-            
-                  "Author 2": {  
-                           "first_name" : "<first-name>",
-                           "last_name" : "<last-name>",
-                           "pubmed_name_search" : "<search-str>", # optional
-                           "email": "email@uky.edu",
-                           "ORCID": "<orcid>" # optional 
-                           "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-                        },
-           }
-         }
-    
+    The validational jsonschema is in the tracker_schema module. 
     
     Args:
         config_json (dict): dict with the same structure as the configuration JSON file
-        args (dict): dict of the input args to the program
     """
     
-    schema = tracker_schema.config_schema
-    if args["--no_ORCID"]:
+    schema = copy.deepcopy(tracker_schema.config_schema)
+    if no_ORCID:
         del schema["properties"]["ORCID_search"]
         schema["required"].remove("ORCID_search")
-    if args["--no_Crossref"] and args["--no_GoogleScholar"]:
+    if no_Crossref and no_GoogleScholar:
         del schema["properties"]["Crossref_search"]
         schema["required"].remove("Crossref_search")
     
@@ -186,126 +133,46 @@ def config_file_check(config_json, args):
     tracker_validate(instance=config_json, schema=schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
     
     for project, project_attributes in config_json["project_descriptions"].items():
-        if "project_report" in project_attributes and not "cc_email" in project_attributes["project_report"]:
-            config_json["project_descriptions"][project]["project_report"]["cc_email"] = []
-            
-    if "summary_report" in config_json and not "cc_email" in config_json["summary_report"]:
-            config_json["summary_report"]["cc_email"] = []
-    
+        if "collaborator_report" in project_attributes and "columns" in project_attributes["collaborator_report"] and "sort" in project_attributes["collaborator_report"]:
+            names_not_in_columns = [name for name in project_attributes["collaborator_report"]["sort"] if not name in project_attributes["collaborator_report"]["columns"]]
+            if names_not_in_columns:
+                helper_functions.vprint("ValidationError: The \"sort\" attribute for the collaborator_report in project " + project + " has values that are not column names in \"columns\".")
+                helper_functions.vprint("The following names in \"sort\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
+                sys.exit()
+                
+    for author, author_attributes in config_json["Authors"].items():
+        if "collaborator_report" in author_attributes and "columns" in author_attributes["collaborator_report"] and "sort" in author_attributes["collaborator_report"]:
+            names_not_in_columns = [name for name in author_attributes["collaborator_report"]["sort"] if not name in author_attributes["collaborator_report"]["columns"]]
+            if names_not_in_columns:
+                helper_functions.vprint("ValidationError: The \"sort\" attribute for the collaborator_report for author " + author + " has values that are not column names in \"columns\".")
+                helper_functions.vprint("The following names in \"sort\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
+                sys.exit()
+        
             
 
-def ref_config_file_check(config_json, args):
+def ref_config_file_check(config_json, no_Crossref):
     """Check that the configuration JSON file is as expected.
     
-    The configuration JSON file format is expected to be:
-    {
-       "project_descriptions" : {
-           "<project-name> : {
-              "from_email" : "ptth222@uky.edu", #optional
-              "to_email" : [], # optional
-              "cc_email" : [], # optional
-              "email_template" : "<formatted-string>", #optional
-              "email_subject" : "<formatted-string>", #optional
-              "report_ref_template" : <formatted-string>, #optional
-              },...
-             },
-           "PubMed_search": {
-              "PubMed_email": "<PubMed_email>"
-            },
-           "Crossref_search": {
-              "mailto_email": "<mailto_email>"
-            },
-    }
-    
+    The validational jsonschema is in the tracker_schema module.    
     
     Args:
         config_json (dict): dict with a truncated structure of the configuration JSON file
-        args (dict): dict of the input args to the program
     """
     
-    schema = tracker_schema.ref_config_schema
-    if args["--no_Crossref"]:
+    schema = copy.deepcopy(tracker_schema.ref_config_schema)
+    if no_Crossref:
         del schema["properties"]["Crossref_search"]
         schema["required"].remove("Crossref_search")
     
-    tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())
-    
-    if "summary_report" in config_json and not "cc_email" in config_json["summary_report"]:
-            config_json["summary_report"]["cc_email"] = []
-            
+    tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())            
         
- 
-
-
-
-# def author_file_check(authors_json):
-#     """Run input checking on the authors_json.
-#
-#     The authors_json read in from the authors JSON file is expected to have the format::
-#         {
-#             "Author 1": {
-#                            "first_name" : "<first_name>",
-#                            "last_name" : "<last_name>",
-#                            "pubmed_name_search" : "<search-str>",
-#                            "email": "email@uky.edu",
-#                            "ORCID": "<orcid>" # optional
-#                            "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-#                         },
-#
-#             "Author 2": {
-#                            "first_name" : "<first_name>",
-#                            "last_name" : "<last_name>",
-#                            "pubmed_name_search" : "<search-str>",
-#                            "email": "email@uky.edu",
-#                            "ORCID": "<orcid>" # optional
-#                            "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
-#                         },
-#         }
-#
-#
-#     Args:
-#         authors_json (dict): dict with the same structure as the authors JSON file.
-#     """
-#
-#     pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
-#     tracker_validate(instance=authors_json, schema=tracker_schema.authors_schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
-
-
 
 
 
 def prev_pubs_file_check(prev_pubs):
     """Run input checking on prev_pubs dict.
     
-    The prev_pubs read in from the previous publications JSON file is expected to have the format:
-        {
-           "pub_id1": 
-              {
-                "abstract": "<publication abstract>",
-                "authors": [
-                   {
-                      "affiliation": "<comma separated list of affiliations>",
-                      "firstname": "<author first name>",
-                      "initials": "<author initials>",
-                      "lastname": "<author last name>",
-                      "author_id": "<author_id>"        ## Optional, only added if author is detected and validated
-                   },
-                ],
-                "conclusions": "<publication conclusions>",
-                "copyrights": "<copyrights>",
-                "doi": "DOI string",
-                "journal": "<journal name>",
-                "keywords": ["keyword 1", "keyword 2"],
-                "methods": "<publication methods>",
-                "publication_date": "yyyy-mm-dd",
-                "pubmed_id": "<pubmed id>",
-                "results": "<publication results>",
-                "title": "<publication title>"
-                "grants : ["grant1", "grant2"],
-                "PMCID" : "<PMCID>"
-              },
-        }
-            
+    The validational jsonschema is in the tracker_schema module. 
     
     Args:
         prev_pubs (dict): dict with the same structure as the previous publications JSON file.
@@ -318,15 +185,7 @@ def prev_pubs_file_check(prev_pubs):
 def tok_reference_check(tok_ref):
     """Run input checking on tok_ref dict.
     
-    The tok_ref read in from JSON is expected to have the format:
-        {
-           "authors": [{"last": "<last>", "initials": "<initials>", "first": "<first>", "middle": "<middle>"}],
-           "title": "<title>",
-           "PMID": "<PMID>",
-           "DOI": "<DOI>",
-           "reference_line": "<reference_line>", 
-           "pub_dict_key": "<matching_key_to_publication_json>"
-        }
+    The validational jsonschema is in the tracker_schema module. 
             
     Args:
         tok_ref (dict): dict with the same structure as the tokenized reference JSON file.

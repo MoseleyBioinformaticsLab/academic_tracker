@@ -61,7 +61,7 @@ def build_pub_dict_from_PMID(PMID_list, from_email):
 
 
 
-def search_references_on_PubMed(tokenized_citations, from_email, verbose):
+def search_references_on_PubMed(tokenized_citations, from_email):
     """Searhes PubMed for publications matching the citations.
     
     For each citation in tokenized_citations PubMed is queried for the publication. 
@@ -69,7 +69,6 @@ def search_references_on_PubMed(tokenized_citations, from_email, verbose):
     Args:
         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         from_email (str): used in the query to PubMed
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
@@ -137,13 +136,12 @@ def search_references_on_PubMed(tokenized_citations, from_email, verbose):
 
        
 
-def search_references_on_Google_Scholar(tokenized_citations, mailto_email, verbose):
+def search_references_on_Google_Scholar(tokenized_citations, mailto_email):
     """Searhes Google Scholar for publications that match the citations.
         
     Args:
         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
@@ -194,8 +192,8 @@ def search_references_on_Google_Scholar(tokenized_citations, mailto_email, verbo
                 if "pub_url" in pub:
                     pub_id = pub["pub_url"]
                 else:
-                    print("Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.")
-                    print("Title: " + title)
+                    helper_functions.vprint("Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.", verbosity=1)
+                    helper_functions.vprint("Title: " + title, verbosity=1)
                     break
             
             
@@ -228,13 +226,12 @@ def search_references_on_Google_Scholar(tokenized_citations, mailto_email, verbo
 
 
 
-def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
+def search_references_on_Crossref(tokenized_citations, mailto_email):
     """Searhes Crossref for publications matching the citations.
     
     Args:
         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         mailto_email (str): used in the query to Crossref
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
@@ -360,9 +357,8 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
             elif external_url:
                 pub_id = external_url
             else:
-                if verbose:
-                    print("Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.")
-                    print("Title: " + title)
+                helper_functions.vprint("Warning: Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.", verbosity=1)
+                helper_functions.vprint("Title: " + title, verbosity=1)
                 continue
             
             
@@ -412,7 +408,7 @@ def search_references_on_Crossref(tokenized_citations, mailto_email, verbose):
 
 
 
-def parse_myncbi_citations(url, verbose):
+def parse_myncbi_citations(url):
     """Tokenize the citations on a MyNCBI URL.
     
     Note that authors and title can be missing or empty from the webpage.
@@ -422,16 +418,15 @@ def parse_myncbi_citations(url, verbose):
     
     Args:
         url (str): the url of the MyNCBI page.
-        verbose (bool): if True print HTML errors.
         
     Returns:
         parsed_pubs (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema.    
     """
     
     ## Get the first page, find out the total pages, and parse it.
-    url_str = webio.get_url_contents_as_str(url, verbose)
+    url_str = webio.get_url_contents_as_str(url)
     if not url_str:
-        print("Error: Could not access the MYNCBI webpage. Make sure the address is correct.")
+        helper_functions.vprint("Error: Could not access the MYNCBI webpage. Make sure the address is correct.")
         sys.exit()
     
     soup = bs4.BeautifulSoup(url_str, "html.parser")
@@ -447,9 +442,9 @@ def parse_myncbi_citations(url, verbose):
     
     for i in range(2,number_of_pages+1):
         
-        url_str = webio.get_url_contents_as_str(new_url + "?page=" + str(i), verbose)
+        url_str = webio.get_url_contents_as_str(new_url + "?page=" + str(i))
         if not url_str:
-            print("Error: Could not access page " + str(i) + " of the MYNCBI webpage. Aborting run.")
+            helper_functions.vprint("Error: Could not access page " + str(i) + " of the MYNCBI webpage. Aborting run.")
             sys.exit()
         
         temp_pubs = citation_parsing.tokenize_myncbi_citations(url_str)
@@ -459,7 +454,7 @@ def parse_myncbi_citations(url, verbose):
 
 
 
-def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
+def tokenize_reference_input(reference_input, MEDLINE_reference):
     """Tokenize the citations in reference_input.
     
     reference_input can be a URL or filepath. MyNCBI URLs are handled special, 
@@ -471,7 +466,6 @@ def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
     Args:
         reference_input (str): URL or filepath
         MEDLINE_reference (bool): True if reference_input is in MEDLINE format
-        verbose (bool): If True print HTML errors
         
     Returns:
         tokenized_citations (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema. 
@@ -486,12 +480,12 @@ def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
     ## Check the reference file input and see if it is a URL
     elif re.match(r"http.*", reference_input):
         if re.match(r".*ncbi.nlm.nih.gov/myncbi.*", reference_input):
-            tokenized_citations = parse_myncbi_citations(reference_input, verbose)
+            tokenized_citations = parse_myncbi_citations(reference_input)
         else:
-            document_string = webio.clean_tags_from_url(reference_input, verbose)
+            document_string = webio.clean_tags_from_url(reference_input)
             
             if not document_string:
-                print("Nothing was read from the URL. Make sure the address is correct.")
+                helper_functions.vprint("Nothing was read from the URL. Make sure the address is correct.")
                 sys.exit()
             
             tokenized_citations = citation_parsing.parse_text_for_citations(document_string)
@@ -502,11 +496,11 @@ def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
         elif extension == "txt":
             document_string = fileio.read_text_from_txt(reference_input)
         else:
-            print("Unknown file type for reference file.")
+            helper_functions.vprint("Unknown file type for reference file.")
             sys.exit()
     
         if not document_string:
-            print("Nothing was read from the reference file. Make sure the file is not empty or is a supported file type.")
+            helper_functions.vprint("Nothing was read from the reference file. Make sure the file is not empty or is a supported file type.")
             sys.exit()
         
         if MEDLINE_reference:
@@ -515,24 +509,24 @@ def tokenize_reference_input(reference_input, MEDLINE_reference, verbose):
             tokenized_citations = citation_parsing.parse_text_for_citations(document_string)
             
     if not tokenized_citations:
-        print("Warning: Could not tokenize any citations in provided reference. Check setup and formatting and try again.")
+        helper_functions.vprint("Warning: Could not tokenize any citations in provided reference. Check setup and formatting and try again.")
         sys.exit()
     
     ## Look for duplicates in citations.
     duplicate_citations = helper_functions.find_duplicate_citations(tokenized_citations)
     if duplicate_citations:
-        print("Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.")
-        print("Duplicates:")
+        helper_functions.vprint("Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.", verbosity=1)
+        helper_functions.vprint("Duplicates:", verbosity=1)
         for index_list in duplicate_citations:
             for index in index_list:
                 if tokenized_citations[index]["reference_line"]:
                     pretty_print = tokenized_citations[index]["reference_line"].split("\n")
                     pretty_print = " ".join([line.strip() for line in pretty_print])
-                    print(pretty_print)
+                    helper_functions.vprint(pretty_print, verbosity=1)
                 else:
-                    print(tokenized_citations[index]["title"])
-                print()
-            print("\n")
+                    helper_functions.vprint(tokenized_citations[index]["title"], verbosity=1)
+                helper_functions.vprint("", verbosity=1)
+            helper_functions.vprint("\n", verbosity=1)
         
         indexes_to_remove = [index for duplicate_set in duplicate_citations for index in duplicate_set[1:]]
         

@@ -8,6 +8,30 @@ import copy
 
 import fuzzywuzzy.fuzz
 
+from . import __main__
+
+
+def vprint(*args, verbosity=0):
+    """Print depending on the state of VERBOSE, SILENT, and verbosity.
+    
+    If the global SILENT is True don't print anything. If verbosity is 0 then 
+    print. If verbosity is 1 then VERBOSE must be True to print.
+    
+    Args:
+        verbosity (int): Either 0 or 1 for different levels of verbosity.
+    """
+    
+    VERBOSE = __main__.VERBOSE
+    SILENT = __main__.SILENT
+    
+    if SILENT:
+        return
+    
+    if verbosity == 0:
+        print(*args)
+    elif VERBOSE and verbosity == 1:
+        print(*args)
+
 
 
 def create_authors_by_project_dict(config_dict):
@@ -30,7 +54,7 @@ def create_authors_by_project_dict(config_dict):
                 if author in config_dict["Authors"]:
                     authors_by_project_dict[project][author] = copy.deepcopy(config_dict["Authors"][author])
                 else:
-                    print("Warning: The author, " + author + ", in the " + project + " project of the project tracking configuration file could not be found in the Authors section of the Configuration JSON file.")
+                    vprint("Warning: The author, " + author + ", in the " + project + " project of the project tracking configuration file could not be found in the Authors section of the Configuration JSON file.")
         else:
             authors_by_project_dict[project] = copy.deepcopy(config_dict["Authors"])
     
@@ -83,6 +107,9 @@ def adjust_author_attributes(authors_by_project_dict, config_dict):
                 if "grants" in authors_dict[author]:
                     grants |= set(authors_dict[author]["grants"])
                     
+                if "collaborator_report" in authors_dict[author]:
+                    config_dict["Authors"][author]["collaborator_report"] = authors_dict[author]["collaborator_report"]
+                    
         affiliations = list(affiliations)
         grants = list(grants)
         grants.sort()
@@ -91,7 +118,7 @@ def adjust_author_attributes(authors_by_project_dict, config_dict):
         config_dict["Authors"][author]["affiliations"] = affiliations
         config_dict["Authors"][author]["grants"] = grants
         
-    return config_dict["Authors"]
+    return config_dict
 
 
 

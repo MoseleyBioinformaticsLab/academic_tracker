@@ -27,7 +27,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose]
+    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]
 
 
 Description
@@ -94,6 +94,10 @@ If used author_search will not search Crossref for publications.
 
 If used HTML errors and other warnings will be printed to the screen.
 
+--silent:
+
+If used nothing will be printed to the screen.
+
 
 Outputs
 -------
@@ -127,6 +131,123 @@ projectname_authorname_project_report.txt
 Examples
 --------
 Typical run.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "project_descriptions": {
+        "Project 1": {
+          "affiliations": [
+            "affiliaton1"
+          ],
+          "authors": [
+            "Author1",
+            "Author2"
+          ],
+          "cutoff_year": 2020,
+          "grants": [
+            "grant1",
+            "grant2"
+          ]
+        }
+      },
+      "summary_report": {},
+      "ORCID_search": {
+        "ORCID_key": "orcid key",
+        "ORCID_secret": "orcid secret"
+      },
+      "PubMed_search": {
+        "PubMed_email": "email@email.com"
+      },
+      "Crossref_search": {
+        "mailto_email": "email@email.com"
+      },
+      "Authors": {
+        "Author1": {
+          "ORCID": "Author1's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+        },
+        "Author2": {
+          "ORCID": "Author2's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+
+Console:
+
+.. code-block:: console
+    
+    >academic_tracker author_search config_file.json
+    Finding author's publications. This could take a while.
+    Searching PubMed.
+    Searching ORCID.
+    Searching Google Scholar.
+    Searching Crossref.
+    Success. Publications and reports saved in tracker-2202020140
+
+
+Create a collaborator report for an author.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "project_descriptions": {
+        "Project 1": {
+          "affiliations": [
+            "affiliaton1"
+          ],
+          "authors": [
+            "Author1",
+            "Author2"
+          ],
+          "cutoff_year": 2020,
+          "grants": [
+            "grant1",
+            "grant2"
+          ]
+        }
+      },
+      "ORCID_search": {
+        "ORCID_key": "orcid key",
+        "ORCID_secret": "orcid secret"
+      },
+      "PubMed_search": {
+        "PubMed_email": "email@email.com"
+      },
+      "Crossref_search": {
+        "mailto_email": "email@email.com"
+      },
+      "Authors": {
+        "Author1": {
+          "ORCID": "Author1's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+          "collaborator_report": {}
+        },
+        "Author2": {
+          "ORCID": "Author2's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+
+Console:
 
 .. code-block:: console
     
@@ -167,6 +288,56 @@ Designating a previous publications filepath instead of letting Academic Tracker
     
 Specifying that Academic Tracker shouldn't use ORCID.
 
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "project_descriptions": {
+        "Project 1": {
+          "affiliations": [
+            "affiliaton1"
+          ],
+          "authors": [
+            "Author1",
+            "Author2"
+          ],
+          "cutoff_year": 2020,
+          "grants": [
+            "grant1",
+            "grant2"
+          ]
+        }
+      },
+      "summary_report": {},
+      "PubMed_search": {
+        "PubMed_email": "email@email.com"
+      },
+      "Crossref_search": {
+        "mailto_email": "email@email.com"
+      },
+      "Authors": {
+        "Author1": {
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+        },
+        "Author2": {
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
+
 .. code-block:: console
     
     >academic_tracker author_search config_file.json --no_ORCID
@@ -185,7 +356,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]
 
 
 Description
@@ -256,6 +427,10 @@ If used reference_search will not search Crossref for publications.
 
 If used HTML errors and other warnings will be printed to the screen.
 
+--silent:
+
+If used nothing will be printed to the screen.
+
 
 Outputs
 -------
@@ -284,6 +459,26 @@ summary_report.txt
 Examples
 --------
 Typical run.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "summary_report": {},
+      "PubMed_search": {
+        "PubMed_email": "email@email.com"
+      },
+      "Crossref_search": {
+        "mailto_email": "email@email.com"
+      }
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
 
 .. code-block:: console
     
@@ -318,6 +513,23 @@ Designating a previous publications filepath.
     
 Specifying that Academic Tracker shouldn't use Crossref.
 
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "summary_report": {},
+      "PubMed_search": {
+        "PubMed_email": "email@email.com"
+      }
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
+
 .. code-block:: console
     
     >academic_tracker reference_search config_file.json reference_file.txt --no_Crossref
@@ -334,7 +546,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker find_ORCID <config_json_file> [--verbose]
+    academic_tracker find_ORCID <config_json_file> [--verbose --silent]
 
 
 Description
@@ -350,6 +562,10 @@ Options
 
 If used HTML errors and other warnings will be printed to the screen.
 
+--silent:
+
+If used nothing will be printed to the screen.
+
 
 Outputs
 -------
@@ -364,6 +580,39 @@ Examples
 --------
 
 Typical run.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "ORCID_search": {
+        "ORCID_key": "orcid key",
+        "ORCID_secret": "orcid secret"
+      },
+      "Authors": {
+        "Author1": {
+          "ORCID": "Author1's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+        },
+        "Author2": {
+          "ORCID": "Author2's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
 
 .. code-block:: console
     
@@ -389,7 +638,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker find_Google_Scholar <config_json_file> [--verbose]
+    academic_tracker find_Google_Scholar <config_json_file> [--verbose --silent]
 
 
 Description
@@ -405,6 +654,10 @@ Options
 
 If used HTML errors and other warnings will be printed to the screen.
 
+--silent:
+
+If used nothing will be printed to the screen.
+
 
 Outputs
 -------
@@ -418,6 +671,35 @@ configuration.json
 Examples
 --------
 Typical run.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "Authors": {
+        "Author1": {
+          "ORCID": "Author1's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+        },
+        "Author2": {
+          "ORCID": "Author2's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
 
 .. code-block:: console
     
@@ -443,7 +725,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker add_authors <config_json_file> <authors_file>
+    academic_tracker add_authors <config_json_file> <authors_file> [--verbose --silent]
 
 
 Description
@@ -464,6 +746,17 @@ Example csv:
     Name McName    Name         McName       Name McName           email@email.com   0000-00001-1234-1234
 
 
+Options
+-------
+--verbose: 
+
+If used HTML errors and other warnings will be printed to the screen.
+
+--silent:
+
+If used nothing will be printed to the screen.
+
+
 Outputs
 -------
 configuration.json
@@ -472,6 +765,35 @@ configuration.json
 Examples
 --------
 Typical run.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "Authors": {
+        "Author1": {
+          "ORCID": "Author1's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+        },
+        "Author2": {
+          "ORCID": "Author2's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
 
 .. code-block:: console
     
@@ -487,7 +809,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE_reference --verbose]
+    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE_reference --verbose --silent]
 
 
 Description
@@ -504,6 +826,10 @@ Specifies that the reference file is a MEDLINE_ formatted file.
 --verbose: 
 
 If used HTML errors and other warnings will be printed to the screen.
+
+--silent:
+
+If used nothing will be printed to the screen.
 
 
 Outputs
@@ -537,7 +863,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose]
+    academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose --silent]
 
 
 Description
@@ -562,6 +888,10 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 --verbose: 
 
 If used HTML errors and other warnings will be printed to the screen.
+
+--silent:
+
+If used nothing will be printed to the screen.
 
 
 Outputs
@@ -594,6 +924,53 @@ Examples
 --------
 Typical run.
 
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "project_descriptions": {
+        "Project 1": {
+          "affiliations": [
+            "affiliaton1"
+          ],
+          "project_report": {},
+          "authors": [
+            "Author1",
+            "Author2"
+          ],
+          "cutoff_year": 2020,
+          "grants": [
+            "grant1",
+            "grant2"
+          ]
+        }
+      },
+      "summary_report": {},
+      "Authors": {
+        "Author1": {
+          "ORCID": "Author1's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "First",
+          "last_name": "Last",
+          "pubmed_name_search": "First Last"
+        },
+        "Author2": {
+          "ORCID": "Author2's ORCID ID",
+          "email": "email@email.com",
+          "first_name": "Second",
+          "last_name": "Last",
+          "pubmed_name_search": "Second Last"
+        }
+      }
+    }
+
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+    
+Console:
+
 .. code-block:: console
     
     >academic_tracker gen_reports_and_emails_auth config_file.json publications.json
@@ -608,7 +985,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose]
+    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose --silent]
 
 
 Description
@@ -658,6 +1035,10 @@ Specifies that the reference file is a MEDLINE_ formatted file.
 
 If used HTML errors and other warnings will be printed to the screen.
 
+--silent:
+
+If used nothing will be printed to the screen.
+
 
 Outputs
 -------
@@ -681,6 +1062,20 @@ summary_report.txt
 Examples
 --------
 Typical run.
+
+config_file.json:
+
+.. code-block:: console
+
+    {
+      "summary_report": {},
+    }
+    
+.. note::
+
+    A minimal example is shown, but the config can have other sections and run without error.
+
+Console:
 
 .. code-block:: console
     

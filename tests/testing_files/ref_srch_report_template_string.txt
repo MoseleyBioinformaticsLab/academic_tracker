@@ -1,4 +1,4 @@
-Authors: <authors>
+<pub_loop>Authors: <authors>
 Grants: <grants>
 Abstract: <abstract>
 Conclusions: <conclusions>
@@ -20,4 +20,8 @@ Tok PMID: <tok_PMID>
 Tok Authors: <tok_authors>
 Ref Line: <ref_line>
 Comparison: <is_in_comparison_file>
+First Author: <first_author>
+Last Author: <last_author>
+Pub_Authors: <pub_author_loop>\n<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations></pub_author_loop>
 
+</pub_loop>

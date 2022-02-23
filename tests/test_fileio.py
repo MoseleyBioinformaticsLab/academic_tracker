@@ -186,21 +186,21 @@ def tracker_today_dir():
 
 def test_read_previous_publications_no_publications():
     
-    has_previous_pubs, prev_pubs = read_previous_publications({"--prev_pub":None})
+    has_previous_pubs, prev_pubs = read_previous_publications(None)
     
     assert not has_previous_pubs and prev_pubs == {}
 
 
 def test_read_previous_publications_ignore():
     
-    has_previous_pubs, prev_pubs = read_previous_publications({"--prev_pub":"ignore"})
+    has_previous_pubs, prev_pubs = read_previous_publications("ignore")
     
     assert not has_previous_pubs and prev_pubs == {}
     
     
 def test_read_previous_publications_read_until(tracker_latest_dir, tracker_today_dir):
     
-    has_previous_pubs, prev_pubs = read_previous_publications({"--prev_pub":None})
+    has_previous_pubs, prev_pubs = read_previous_publications(None)
     
     assert has_previous_pubs and prev_pubs == {"test":"test"}
 
@@ -209,7 +209,7 @@ def test_read_previous_publications_path_in_args(test_json):
     
     path = os.path.join(".", "testing_files", "config.json")
     
-    has_previous_pubs, prev_pubs = read_previous_publications({"--prev_pub":path})
+    has_previous_pubs, prev_pubs = read_previous_publications(path)
     
     assert has_previous_pubs and prev_pubs == test_json
 

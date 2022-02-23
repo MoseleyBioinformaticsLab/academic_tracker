@@ -24,7 +24,7 @@ PUBLICATION_TEMPLATE = webio.PUBLICATION_TEMPLATE
 
 
 ## TODO get with pymed and add grants and pmcid to PubMedArticle class.
-def search_PubMed_for_pubs(prev_pubs, authors_json, from_email, verbose):
+def search_PubMed_for_pubs(prev_pubs, authors_json, from_email):
     """Searhes PubMed for publications by each author.
     
     For each author in authors_json PubMed is queried for the publications. The list of publications is then filtered 
@@ -37,7 +37,6 @@ def search_PubMed_for_pubs(prev_pubs, authors_json, from_email, verbose):
         prev_pubs (dict): dictionary of publications matching the JSON schema for publications.
         authors_json (dict): keys are authors and values are author attributes. Matches Authors section of configuration JSON schema.
         from_email (str): used in the query to PubMed
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
@@ -93,7 +92,7 @@ def search_PubMed_for_pubs(prev_pubs, authors_json, from_email, verbose):
        
         
         
-def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json, verbose):
+def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json):
     """Searhes ORCID for publications by each author.
     
     For each author in authors_json ORCID is queried for the publications. The list of publications is then filtered 
@@ -107,7 +106,6 @@ def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json, verb
         ORCID_key (str): string of the app key ORCID gives when you register the app with them
         ORCID_secret (str): string of the secret ORCID gives when you register the app with them
         authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are publication ids and values are a dictionary with publication attributes
@@ -189,8 +187,8 @@ def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json, verb
                 elif pmid:
                     pub_id = pmid
                 else:
-                    print("Warning: Could not find a DOI, URL, or PMID for a publication when searching ORCID. It will not be in the publications")
-                    print("Title: " + title)
+                    helper_functions.vprint("Warning: Could not find a DOI, URL, or PMID for a publication when searching ORCID. It will not be in the publications", verbosity=1)
+                    helper_functions.vprint("Title: " + title, verbosity=1)
                     continue
                     
                 if helper_functions.is_pub_in_publication_dict(pub_id, title, prev_pubs, prev_pubs_titles):
@@ -236,7 +234,7 @@ def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json, verb
 
             
 
-def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email, verbose):
+def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email):
     """Searhes Google Scholar for publications by each author.
     
     For each author in authors_json Google Scholar is queried for the publications. The list of publications is then filtered 
@@ -249,7 +247,6 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email, verbos
         prev_pubs (dict): dictionary of publications matching the JSON schema for publications.
         authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
@@ -266,7 +263,7 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email, verbos
         try:
             queried_author = scholarly.scholarly.search_author_id(authors_attributes["scholar_id"])
         except:
-            print("Error: The \"scholar_id\" for author " + author + " is probably incorrect, an error occured when trying to query Google Scholar.")    
+            helper_functions.vprint("Warning: The \"scholar_id\" for author " + author + " is probably incorrect, an error occured when trying to query Google Scholar.", verbosity=1)    
             continue
         
         if not queried_author["scholar_id"] == authors_attributes["scholar_id"]:
@@ -297,8 +294,8 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email, verbos
                 if "pub_url" in pub:
                     pub_id = pub["pub_url"]
                 else:
-                    print("Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.")
-                    print("Title: " + title)
+                    helper_functions.vprint("Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.", verbosity=1)
+                    helper_functions.vprint("Title: " + title, verbosity=1)
                     continue
             
             if helper_functions.is_pub_in_publication_dict(pub_id, title, prev_pubs, prev_pubs_titles):
@@ -339,7 +336,7 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email, verbos
 
 
 
-def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email, verbose):
+def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email):
     """Searhes Crossref for publications by each author.
     
     For each author in authors_json Crossref is queried for the publications. The list of publications is then filtered 
@@ -352,7 +349,6 @@ def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email, verbose):
         prev_pubs (dict): dictionary of publications matching the JSON schema for publications.
         authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         mailto_email (str): used in the query to Crossref
-        verbose (bool): Determines whether errors are silenced or not.
         
     Returns:
         publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
@@ -463,8 +459,8 @@ def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email, verbose):
             elif external_url:
                 pub_id = external_url
             else:
-                print("Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.")
-                print("Title: " + title)
+                helper_functions.vprint("Warning: Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.", verbosity=1)
+                helper_functions.vprint("Title: " + title, verbosity=1)
                 continue
             
             

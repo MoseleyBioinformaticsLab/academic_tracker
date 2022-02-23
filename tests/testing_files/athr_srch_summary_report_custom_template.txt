@@ -19,6 +19,18 @@ Author First: Kelly
 Author Last: Pennell
 Name Search: Kelly Pennell
 Email: kellypennell@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -40,6 +52,19 @@ Author First: Angela
 Author Last: Gutierrez
 Name Search: Angela Gutierrez
 Email: amgu232@g.uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -61,6 +86,18 @@ Author First: Kelly
 Author Last: Pennell
 Name Search: Kelly Pennell
 Email: kellypennell@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -82,6 +119,19 @@ Author First: Angela
 Author Last: Gutierrez
 Name Search: Angela Gutierrez
 Email: amgu232@g.uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -103,6 +153,18 @@ Author First: Kelly
 Author Last: Pennell
 Name Search: Kelly Pennell
 Email: kellypennell@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -124,6 +186,19 @@ Author First: Angela
 Author Last: Gutierrez
 Name Search: Angela Gutierrez
 Email: amgu232@g.uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -145,6 +220,19 @@ Author First: Angela
 Author Last: Gutierrez
 Name Search: Angela Gutierrez
 Email: amgu232@g.uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -166,6 +254,18 @@ Author First: Ann
 Author Last: Koempel
 Name Search: Ann Koempel
 Email: ann.koempel@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -187,6 +287,18 @@ Author First: Anna
 Author Last: Hoover
 Name Search: Anna Hoover
 Email: Anna.Hoover@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -208,6 +320,18 @@ Author First: Dawn
 Author Last: Brewer
 Name Search: Dawn Brewer
 Email: dawn.brewer@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Fan Chen, Jinpeng Liu, Robert M Flight, Kassandra J Naughton, Alexsandr Lukyanchuk, Abigail R Edgin, Xiulong Song, Haikuo Zhang, Kwok-Kin Wong, Hunter N B Moseley, Chi Wang, Christine F Brainson
 Grants: NCI K22 CA201036, IRG-85-001-25, NCI R01 CA237643, 133123-RSG-19-081-01-TBG, NIGMS P20 GM121327-03, P30CA177558, NIGMS P20 GM121327-03
@@ -229,6 +353,26 @@ Author First: Hunter
 Author Last: Moseley
 Name Search: Hunter Moseley
 Email: hunter.moseley@gmail.com
+First Author: Chen, Fan
+Last Author: Brainson, Christine F
+Pub_Authors: 
+Chen, Fan F Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Liu, Jinpeng J Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.
+Flight, Robert M RM Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
+Naughton, Kassandra J KJ Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Lukyanchuk, Alexsandr A Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Edgin, Abigail R AR Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Song, Xiulong X Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Zhang, Haikuo H DNAtrix, 10355 Science Center Drive, Suite 110, San Diego, CA, 92121, USA.
+Wong, Kwok-Kin KK Laura and Isaac Perlmutter Cancer Center, NYU Langone Medical Center, New York University, New York, NY, 10016, USA.
+Moseley, Hunter N B HNB Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
+Wang, Chi C Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
+Brainson, Christine F CF Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -250,6 +394,18 @@ Author First: Kelly
 Author Last: Pennell
 Name Search: Kelly Pennell
 Email: kellypennell@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -271,6 +427,18 @@ Author First: Lindell
 Author Last: Ormsbee
 Name Search: Lindell Ormsbee
 Email: lindell.ormsbee@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -292,6 +460,19 @@ Author First: Pranto
 Author Last: Paul
 Name Search: Pranto Paul
 Email: ppa322@uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -313,6 +494,19 @@ Author First: Victoria
 Author Last: Klaus
 Name Search: Victoria Klaus
 Email: mxklaus@uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -334,6 +528,19 @@ Author First: Angela
 Author Last: Gutierrez
 Name Search: Angela Gutierrez
 Email: amgu232@g.uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -355,6 +562,18 @@ Author First: Ann
 Author Last: Koempel
 Name Search: Ann Koempel
 Email: ann.koempel@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -376,6 +595,18 @@ Author First: Anna
 Author Last: Hoover
 Name Search: Anna Hoover
 Email: Anna.Hoover@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -397,6 +628,18 @@ Author First: Dawn
 Author Last: Brewer
 Name Search: Dawn Brewer
 Email: dawn.brewer@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Fan Chen, Jinpeng Liu, Robert M Flight, Kassandra J Naughton, Alexsandr Lukyanchuk, Abigail R Edgin, Xiulong Song, Haikuo Zhang, Kwok-Kin Wong, Hunter N B Moseley, Chi Wang, Christine F Brainson
 Grants: NCI K22 CA201036, IRG-85-001-25, NCI R01 CA237643, 133123-RSG-19-081-01-TBG, NIGMS P20 GM121327-03, P30CA177558, NIGMS P20 GM121327-03
@@ -418,6 +661,26 @@ Author First: Hunter
 Author Last: Moseley
 Name Search: Hunter Moseley
 Email: hunter.moseley@gmail.com
+First Author: Chen, Fan
+Last Author: Brainson, Christine F
+Pub_Authors: 
+Chen, Fan F Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Liu, Jinpeng J Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.
+Flight, Robert M RM Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
+Naughton, Kassandra J KJ Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Lukyanchuk, Alexsandr A Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Edgin, Abigail R AR Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Song, Xiulong X Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Zhang, Haikuo H DNAtrix, 10355 Science Center Drive, Suite 110, San Diego, CA, 92121, USA.
+Wong, Kwok-Kin KK Laura and Isaac Perlmutter Cancer Center, NYU Langone Medical Center, New York University, New York, NY, 10016, USA.
+Moseley, Hunter N B HNB Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
+Wang, Chi C Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
+Brainson, Christine F CF Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.
+Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -439,6 +702,18 @@ Author First: Kelly
 Author Last: Pennell
 Name Search: Kelly Pennell
 Email: kellypennell@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer
 Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
@@ -460,6 +735,18 @@ Author First: Lindell
 Author Last: Ormsbee
 Name Search: Lindell Ormsbee
 Email: lindell.ormsbee@uky.edu
+First Author: Hoover, Anna G
+Last Author: Brewer, Dawn
+Pub_Authors: 
+Hoover, Anna G AG University of Kentucky College of Public Health.
+Koempel, Annie A University of Kentucky Department of Dietetics and Human Nutrition.
+Christian, W Jay WJ University of Kentucky College of Public Health.
+Tumlin, Kimberly I KI University of Kentucky College of Public Health.
+Pennell, Kelly G KG University of Kentucky College of Engineering.
+Evans, Steven S Kentucky Water Resources Research Institute.
+McAlister, Malissa M Kentucky Water Resources Research Institute.
+Ormsbee, Lindell E LE University of Kentucky College of Engineering.
+Brewer, Dawn D University of Kentucky Department of Dietetics and Human Nutrition.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -481,6 +768,19 @@ Author First: Pranto
 Author Last: Paul
 Name Search: Pranto Paul
 Email: ppa322@uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
 
 Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt
 Grants: None Found
@@ -502,3 +802,16 @@ Author First: Victoria
 Author Last: Klaus
 Name Search: Victoria Klaus
 Email: mxklaus@uky.edu
+First Author: Gutierrez, Angela M
+Last Author: Hilt, J Z
+Pub_Authors: 
+Gutierrez, Angela M AM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Frazar, E Molly EM Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Klaus, Victoria V Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Paul, Pranto P Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.
+Hilt, J Z JZ Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.
+Superfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.

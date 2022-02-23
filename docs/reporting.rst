@@ -3,7 +3,7 @@ Reporting
 
 To allow users some flexibility in report creation a unique system for specifying 
 their creation was created, and is described here. The key framework to keep in 
-mind is that there are 2 different reports and their specifications are slightly 
+mind is that there are 3 different reports and their specifications are slightly 
 different between each other and between author_search and reference_search.
 
 
@@ -25,22 +25,32 @@ are missing then no email is sent.
 Author Search
 -------------
 The report for the author_search is built by looping over each project, each 
-author associated with the project, and each publication associated with the author. 
-The template for author_search has 3 sections, 1 for each loop (project_loop, 
-author_loop, and pub_loop). Tags denote the beginning and end of the author_loop 
-and pub_loop, but not the project_loop as the whole template is considered to be 
-the project_loop. The section determines when keywords in the template are replaced. 
+author associated with the project, each publication associated with the author, 
+and each author on the publication. The template for author_search has 4 sections, 
+1 for each loop (project_loop, author_loop, pub_loop, and pub_author_loop). Tags 
+denote the beginning and end of the author_loop, pub_loop, and pub_author_loop, 
+but not the project_loop as the whole template is considered to be the project_loop. 
+The section determines when keywords in the template are replaced. Keywords inside
+the pub_author_loop section are replaced for each author on the publication. 
 Keywords inside the pub_loop section are replaced for each publication associated 
 with the author. Keywords inside the author_loop are replaced for each author 
 associated with the project. Keywords inside the project loop section are replaced 
-for each project.
+for each project. The sections are expected to be nested inside of each other, 
+so the pub_author_loop tags should be inside the pub_loop tags, and the pub_loop 
+tags should be inside the author_loop tags. If they are not then the report will 
+most likely not look as expected.
 
 
 Reference Search
 ----------------
 The report for the reference_search is built by looping over each publication matched 
-in the reference. It does not have sections and keywords are replaced for each 
-publication matched in the reference.
+in the reference, and each author on the publication. The template has 2 sections, 
+1 for each loop (pub_loop and pub_author_loop). Tags denote the beginning and end 
+of the pub_author_loop, but not the pub_loop as the whole template is considered 
+to be the pub_loop. The section determines when keywords in the template are 
+replaced. Keywords inside the pub_author_loop section are replaced for each author 
+on the publication. Keywords inside the pub_loop section are replaced for each 
+publication.
 
 
 Project Report
@@ -63,8 +73,12 @@ Keywords
 ~~~~~~~~
 .. code-block:: console
 
-    <author_loop> </author_loop>  - Denotes the beginning and end of the author_loop section.
-    <pub_loop> </pub_loop>        - Denotes the beginning and end of the pub_loop section.
+    <author_loop> </author_loop>           - Denotes the beginning and end of the author_loop section.
+    <pub_loop> </pub_loop>                 - Denotes the beginning and end of the pub_loop section.
+    <pub_author_loop> </pub_author_loop>   - Deontes the beginning and end of the pub_author_loop section.
+    
+    Project Keywords - Pulled from the project_descriptions section of the configuration JSON file.
+    <project_name>
     
     Publication Keywords - Pulled from the data that will be in the publication.json file output. Any missing data will be either blank or None in the report.
     <abstract>
@@ -81,10 +95,18 @@ Keywords
     <publication_year>
     <publication_month>
     <publication_day>
+    <first_author>
+    <last_author>
     <authors>              Will be replaced with a comma separated list of author names of all authors.
     <grants>               Will be replaced with a comma separated list of grants associated with the publication.
     
-    Author Keywords - Pulled from the Authors section of the Project Tracking Configuration file.
+    Pub Author Keywords - Pulled from the authors section of each publication in the publications.json file.
+    <pub_author_first>
+    <pub_author_last>
+    <pub_author_initials>
+    <pub_author_affiliations>
+    
+    Author Keywords - Pulled from the Authors section of the configuration JSON file.
     <author_first>
     <author_last>
     <author_name_search>
@@ -217,5 +239,82 @@ Reference Search
 .. code-block:: console
 
     Reference Line:\n\t<ref_line>\nTokenized Reference:\n\tAuthors: <tok_authors>\n\tTitle: <tok_title>\n\tPMID: <tok_PMID>\n\tDOI: <tok_DOI>\nQueried Information:\n\tDOI: <DOI>\n\tPMID: <PMID>\n\tPMCID: <PMCID>\n\tGrants: <grants>\n\n
+
+
+
+Collaborator Report
+~~~~~~~~~~~~~~~~~~~
+Creating a collaborator report for an author is actually a unique use case from 
+a typical author_search run, but since all of the steps are the same it is included 
+as a report in author_search rather than being its own command. The idea is to 
+be able to go through an author's publications and build a report that contains 
+all of the other authors they have worked with. This type of report is required 
+by some funding providers.
+
+Collaborator reports are only created for author_search. There is no conception 
+of them in reference_search. To create a collaborator report for an author include 
+the collaborator_report attribute for the author in the config JSON. Although a 
+collaborator report is done on a per author basis it can be included in a project 
+of the config JSON as a convenience. If it is included in a project then a collaborator 
+report will be created for each author associated with the project. 
+
+The collaborator report is a tabular CSV file. The names and values of each column 
+are specified in the "columns" attribute of the collaborator_report. They keys 
+of the entries in "columns" are the column names and the values are what should 
+be in each column. Each entry should be a combination of characters and keywords. 
+Each collaborator will be a row in the table and the keywords will be replaced 
+with the collaborator's information. Duplicate rows are removed and the table is 
+sorted according to the column names in the "sort" attribute. The "sort" attribute 
+should be a list of column names to sort the table by. If sort is not in the 
+attributes then the table will not be sorted. The separator to use for the CSV 
+file can be specified with the "separator" attribute. It can only be a single 
+character. If it is absent the default separator is a comma.
+
+If the collaborator_report attribute is missing then no collaborator report will 
+be made. If the columns property is not in the collaborator_report section then 
+a default columns and sort will be used (described below). If from_email 
+is absent then no emails will be sent. If from_email is provided and to_email is 
+provided then the report is sent to the to_email address, otherwise it is sent 
+to the author's email.
+
+Collaborator reports are saved in the tracker directory under author_id_collaborators.csv.
+
+
+Keywords
+~~~~~~~~
+.. code-block:: console
+
+    <first_name>    -  Collaborator's first name.
+    <last_name>     -  Collaborator's last name.
+    <initials>      -  Collaborator's initials.
+    <affiliations>  -  Collaborator's affiliations.
+    
+
+Examples
+~~~~~~~~
+.. code-block:: console
+
+    Collaborator Report Attributes:
+    columns = ["Name", "Affiliations"]
+    values = ["<last_name>, <first_name>", "<affiliations>"]
+    sort = ["Name"]
+    
+    Output CSV:
+    Name	           Affiliations
+    Brewer, Dawn	   University of Kentucky Department of Dietetics and Human Nutrition.
+    Christian, W Jay   University of Kentucky College of Public Health.
+    Evans, Steven	   Kentucky Water Resources Research Institute.
+    
+    
+Default Values
+~~~~~~~~~~~~~~
+.. code-block:: console
+
+    columns : {"Name":"<last_name>, <first_name>", "Affiliations":"<affiliations>"}
+    sort : ["Name"]
+    separator : ","
+
+    
+
 
 

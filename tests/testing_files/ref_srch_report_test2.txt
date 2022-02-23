@@ -20,6 +20,12 @@ Tok PMID: None
 Tok Authors: Jin H, Mitchell J, Moseley H
 Ref Line: N/A
 Comparison: False
+First Author: Jin, Huan
+Last Author: Moseley, Hunter N. B.
+Pub_Authors: 
+Jin, Huan None None
+Mitchell, Joshua M. None None
+Moseley, Hunter N. B. None None
 
 Authors: Christian D. Powell, Hunter N.B. Moseley
 Grants: None
@@ -43,4 +49,9 @@ Tok PMID: None
 Tok Authors: Powell C, Moseley H
 Ref Line: N/A
 Comparison: True
+First Author: Powell, Christian D.
+Last Author: Moseley, Hunter N.B.
+Pub_Authors: 
+Powell, Christian D. None None
+Moseley, Hunter N.B. None None
 

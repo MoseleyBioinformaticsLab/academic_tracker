@@ -1,0 +1,45 @@
+{
+  "creation_date": "2022-02-22 13:51",
+  "emails": [
+    {
+      "attachment": "Annie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.W Jay, Christian, WJ, University of Kentucky College of Public Health.Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.Kelly G, Pennell, KG, University of Kentucky College of Engineering.Steven, Evans, S, Kentucky Water Resources Research Institute.Malissa, McAlister, M, Kentucky Water Resources Research Institute.Lindell E, Ormsbee, LE, University of Kentucky College of Engineering.Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.",
+      "attachment_filename": "name_test.txt",
+      "author": "Anna Hoover",
+      "body": "asdf",
+      "cc": "",
+      "from": "ptth222@uky.edu",
+      "subject": "asdf",
+      "to": "Anna.Hoover@uky.edu"
+    },
+    {
+      "attachment": "Anna G, Hoover, AG, University of Kentucky College of Public Health.W Jay, Christian, WJ, University of Kentucky College of Public Health.Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.Kelly G, Pennell, KG, University of Kentucky College of Engineering.Steven, Evans, S, Kentucky Water Resources Research Institute.Malissa, McAlister, M, Kentucky Water Resources Research Institute.Lindell E, Ormsbee, LE, University of Kentucky College of Engineering.Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.",
+      "attachment_filename": "Ann Koempel_collaborators.txt",
+      "author": "Ann Koempel",
+      "body": "asdf",
+      "cc": "",
+      "from": "ptth222@uky.edu",
+      "subject": "asdf",
+      "to": "ann.koempel@uky.edu"
+    },
+    {
+      "attachment": "test_dir\\Kelly Pennell_collaborators.xlsx",
+      "attachment_filename": "Kelly Pennell_collaborators.xlsx",
+      "author": "Kelly Pennell",
+      "body": "asdf",
+      "cc": "",
+      "from": "ptth222@uky.edu",
+      "subject": "asdf",
+      "to": "ptth222@uky.edu"
+    },
+    {
+      "attachment": "Col1\r\n\"Anna G, Hoover, AG, University of Kentucky College of Public Health.\"\r\n\"Annie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\"\r\n\"Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\"\r\n\"Kelly G, Pennell, KG, University of Kentucky College of Engineering.\"\r\n\"Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.\"\r\n\"Malissa, McAlister, M, Kentucky Water Resources Research Institute.\"\r\n\"Steven, Evans, S, Kentucky Water Resources Research Institute.\"\r\n\"W Jay, Christian, WJ, University of Kentucky College of Public Health.\"\r\n",
+      "attachment_filename": "name_test.csv",
+      "author": "Lindell Ormsbee",
+      "body": "asdf",
+      "cc": "",
+      "from": "ptth222@uky.edu",
+      "subject": "asdf",
+      "to": "ptth222@uky.edu"
+    }
+  ]
+}

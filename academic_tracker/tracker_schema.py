@@ -46,6 +46,21 @@ config_schema = {
                                                 "dependencies":{
                                                         "from_email": ["email_body", "email_subject"],
                                                         "to_email": ["from_email", "email_body", "email_subject"]}},
+                             "collaborator_report": {"type": "object",
+                                                     "properties":{
+                                                             "columns": {"type": "object",
+                                                                         "minProperties":1,
+                                                                         "additionalProperties": {"type": "string", "minLength":1}},
+                                                             "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
+                                                             "separator":{"type":"string", "maxLength":1, "minLength":1},
+                                                             "from_email": {"type": "string", "format": "email"},
+                                                             "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                             "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                             "email_body": {"type": "string", "minLength":1},
+                                                             "email_subject": {"type": "string", "minLength":1},},
+                                                     "dependencies":{
+                                                             "from_email": ["email_body", "email_subject"],
+                                                             "to_email": ["from_email", "email_body", "email_subject"]},},
                              "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                              },
                              
@@ -101,6 +116,21 @@ config_schema = {
                                                 "dependencies":{
                                                         "from_email": ["email_body", "email_subject"],
                                                         "to_email": ["from_email", "email_body", "email_subject"]}},
+                                    "collaborator_report": {"type": "object",
+                                                     "properties":{
+                                                             "columns": {"type": "object",
+                                                                         "minProperties":1,
+                                                                         "additionalProperties": {"type": "string", "minLength":1}},
+                                                             "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
+                                                             "separator":{"type":"string", "maxLength":1, "minLength":1},
+                                                             "from_email": {"type": "string", "format": "email"},
+                                                             "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                             "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
+                                                             "email_body": {"type": "string", "minLength":1},
+                                                             "email_subject": {"type": "string", "minLength":1},},
+                                                     "dependencies":{
+                                                             "from_email": ["email_body", "email_subject"],
+                                                             "to_email": ["from_email", "email_body", "email_subject"]},},
                                      },
                              "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
 
@@ -134,6 +164,17 @@ del ref_config_schema["properties"]["ORCID_search"]
 del ref_config_schema["properties"]["Authors"]
 del ref_config_schema["properties"]["project_descriptions"]
 ref_config_schema["required"] = ["PubMed_search", "Crossref_search"]
+
+gen_reports_auth_schema = copy.deepcopy(config_schema)
+del gen_reports_auth_schema["properties"]["PubMed_search"]
+del gen_reports_auth_schema["properties"]["ORCID_search"]
+del gen_reports_auth_schema["properties"]["Crossref_search"]
+gen_reports_auth_schema["required"] = ["project_descriptions", "Authors"]
+
+gen_reports_ref_schema = copy.deepcopy(ref_config_schema)
+del gen_reports_ref_schema["properties"]["PubMed_search"]
+del gen_reports_ref_schema["properties"]["Crossref_search"]
+del gen_reports_ref_schema["required"]
 
 
 

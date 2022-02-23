@@ -11,6 +11,8 @@ import docx
 import json
 import pandas
 
+from . import helper_functions
+
 
 
 def load_json(filepath):
@@ -31,13 +33,13 @@ def load_json(filepath):
 
         return internal_data
     else:
-        print("No such file: " + filepath)
+        helper_functions.vprint("No such file: " + filepath)
         sys.exit()
 
 
 
 
-def read_previous_publications(args):
+def read_previous_publications(filepath):
     """Read in the previous publication json file.
     
     If the prev_pub option was given by the user then that filepath is used to read in the file
@@ -47,7 +49,7 @@ def read_previous_publications(args):
     If no previous publications are found then an empty dict is returned for prev_pubs.
     
     Args:
-        args (dict): args dict from DocOpt
+        filepath (str or None): path to the publications JSON to read in.
         
     Returns:
         has_previous_pubs (bool): True means that a previous publications file was found
@@ -55,12 +57,12 @@ def read_previous_publications(args):
     """
     
     has_previous_pubs = False
-    if args["--prev_pub"]:
+    if filepath:
         
-        if args["--prev_pub"].lower() == "ignore":
+        if filepath.lower() == "ignore":
             return False, {}
         
-        prev_pubs = load_json(args["--prev_pub"])
+        prev_pubs = load_json(filepath)
         has_previous_pubs = True
                             
     else:
@@ -141,7 +143,7 @@ def read_text_from_docx(doc_path):
         except Exception as e:
             raise e
     else:
-        print("No such file: " + doc_path)
+        helper_functions.vprint("No such file: " + doc_path)
         sys.exit()
 
 
@@ -165,7 +167,7 @@ def read_text_from_txt(doc_path):
         
         return "".join(lines)
     else:
-        print("No such file: " + doc_path)
+        helper_functions.vprint("No such file: " + doc_path)
         sys.exit()
     
 
@@ -187,7 +189,7 @@ def read_csv(doc_path):
         
         return df
     else:
-        print("No such file: " + doc_path)
+        helper_functions.vprint("No such file: " + doc_path)
         sys.exit()
 
          

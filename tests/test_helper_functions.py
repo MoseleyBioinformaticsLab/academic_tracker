@@ -9,12 +9,47 @@ import pytest
 import xml.etree.ElementTree as ET 
 
 from academic_tracker.fileio import load_json
-from academic_tracker.helper_functions import regex_match_return, regex_group_return, regex_search_return
+from academic_tracker import __main__
+from academic_tracker.helper_functions import vprint, regex_match_return, regex_group_return, regex_search_return
 from academic_tracker.helper_functions import match_authors_in_pub_PubMed, match_authors_in_pub_Crossref
 from academic_tracker.helper_functions import modify_pub_dict_for_saving, is_fuzzy_match_to_list, fuzzy_matches_to_list, is_pub_in_publication_dict 
 from academic_tracker.helper_functions import create_authors_by_project_dict, adjust_author_attributes, find_duplicate_citations, are_citations_in_pub_dict
 from fixtures import publication_dict, pub_with_grants, pub_with_matching_author, passing_config, authors_by_project_dict
 
+
+
+def test_vprint(capsys):
+    
+    vprint("asdf")
+    captured = capsys.readouterr()
+    
+    assert captured.out == "asdf\n"
+    
+
+def test_vprint_silent(monkeypatch, capsys):
+    monkeypatch.setattr(__main__, "SILENT", True)
+    
+    vprint("asdf")
+    captured = capsys.readouterr()
+    
+    assert captured.out == ""
+    
+    
+def test_vprint_verbose_on(capsys):
+    
+    vprint("asdf", verbosity=1)
+    captured = capsys.readouterr()
+    
+    assert captured.out == "asdf\n"
+    
+
+def test_vprint_verbose_off(monkeypatch, capsys):
+    monkeypatch.setattr(__main__, "VERBOSE", False)
+    
+    vprint("asdf", verbosity=1)
+    captured = capsys.readouterr()
+    
+    assert captured.out == ""
 
 
 @pytest.mark.parametrize("regex, string_to_match, return_value", [
@@ -274,6 +309,7 @@ def test_adjust_author_attributes(authors_by_project_dict, passing_config):
     
     modified_authors_json_file = {'Andrew Morris': {'ORCID': '0000-0003-1910-4865',
                                       'affiliations': ['kentucky'],
+                                      'collaborator_report': {},
                                       'cutoff_year': 2020,
                                       'email': 'a.j.morris@uky.edu',
                                       'first_name': 'Andrew',
@@ -283,6 +319,7 @@ def test_adjust_author_attributes(authors_by_project_dict, passing_config):
                                       'grants': ['P42 ES007380', 'P42ES007380']},
                                   'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
                                       'affiliations': ['asdf', 'kentucky'],
+                                      'collaborator_report': {},
                                       'cutoff_year': 2000,
                                       'email': 'hunter.moseley@gmail.com',
                                       'first_name': 'Hunter',

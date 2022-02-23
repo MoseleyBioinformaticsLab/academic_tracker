@@ -9,6 +9,7 @@ import email.message
 import subprocess
 import io
 import re
+import os
 
 import orcid
 import scholarly
@@ -167,12 +168,11 @@ def get_DOI_from_Crossref(title, mailto_email):
 
 
 
-def get_url_contents_as_str(url, verbose):
+def get_url_contents_as_str(url):
     """Query the url and return it's contents as a string.
     
     Args:
         url (str): the URL to query.
-        verbose (bool): True to print HTTP errors, False not to.
         
     Returns:
         (str): Either the website as a string or None if an error occurred.
@@ -186,15 +186,14 @@ def get_url_contents_as_str(url, verbose):
         return url_str
                 
     except urllib.error.HTTPError as e:
-        if verbose:
-            print(e)
-            print(url)
+        helper_functions.vprint(e, verbosity=1)
+        helper_functions.vprint(url, verbosity=1)
         
         return None
     
     
 
-def clean_tags_from_url(url, verbose):
+def clean_tags_from_url(url):
     """Remove tags from webpage.
     
     Remove tags from a webpage so it looks more like what a user would see in a 
@@ -202,13 +201,12 @@ def clean_tags_from_url(url, verbose):
     
     Args:
         url (str): the URL to query.
-        verbose (bool): True to print HTTP errors, False not to.
         
     Returns:
         clean_url (str): webpage contents cleaned of tags.    
     """
     
-    url_str = get_url_contents_as_str(url, verbose)
+    url_str = get_url_contents_as_str(url)
     if not url_str:
         return None
     
@@ -243,7 +241,14 @@ def send_emails(email_messages):
         msg["To"] = email_parts["to"]
         msg["Cc"] = email_parts["cc"]
         msg.set_content(email_parts["body"])
-        msg.add_attachment(email_parts["attachment"], filename=email_parts["attachment_filename"])
+        
+        if os.path.exists(email_parts["attachment"]):
+            with open(email_parts["atachment"], 'rb') as content_file:
+                content = content_file.read()
+        else:
+            content = email_parts["attachment"]
+        
+        msg.add_attachment(content, filename=email_parts["attachment_filename"])
         
         subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
 
@@ -314,7 +319,7 @@ def get_redirect_url_from_doi(doi):
         response.close()
                 
     except urllib.error.HTTPError:
-        print("Error trying to resolve DOI: " + doi)
+        helper_functions.vprint("Error trying to resolve DOI: " + doi, verbosity=1)
         return ""
         
     for value in json_response["values"]:
@@ -325,7 +330,7 @@ def get_redirect_url_from_doi(doi):
 
 
 
-def scrape_url_for_DOI(url, verbose):
+def scrape_url_for_DOI(url):
     """Searches url for DOI.
     
     Uses the regex "(?i).*doi:\s*([^\s]+\w).*" to look for a DOI on 
@@ -333,13 +338,12 @@ def scrape_url_for_DOI(url, verbose):
     
     Args:
         url (str): url to search.
-        verbose (bool): if True print HTTP errors.
         
     Returns:
         DOI (str): string of the DOI found on the webpage. Is empty string if DOI is not found.
     """
         
-    url_str = get_url_contents_as_str(url, verbose)
+    url_str = get_url_contents_as_str(url)
     if not url_str:
         return ""
             
@@ -358,7 +362,7 @@ def scrape_url_for_DOI(url, verbose):
     
 
 
-def check_doi_for_grants(doi, grants, verbose):
+def check_doi_for_grants(doi, grants):
     """Searches DOI webpage for grants.
     
     Concatenates "https://doi.org/" with the doi, visits the 
@@ -367,7 +371,6 @@ def check_doi_for_grants(doi, grants, verbose):
     Args:
         doi (str): DOI for the publication.
         grants (list): list of str for each grant to look for.
-        verbose (bool): if True print HTTP errors.
         
     Returns:
         found_grants (list): list of str with each grant that was found on the page.
@@ -377,7 +380,7 @@ def check_doi_for_grants(doi, grants, verbose):
     if not url:
         return set()
     
-    url_str = get_url_contents_as_str(url, verbose)
+    url_str = get_url_contents_as_str(url)
     if not url_str:
         return set()
         
@@ -386,7 +389,7 @@ def check_doi_for_grants(doi, grants, verbose):
 
 
 
-def download_pdf(pdf_url, verbose):
+def download_pdf(pdf_url):
     """
     """
     ## test url https://realpython.com/python-tricks-sample-pdf
@@ -397,9 +400,8 @@ def download_pdf(pdf_url, verbose):
         response.close()
                 
     except urllib.error.HTTPError as e:
-        if verbose:
-            print(e)
-            print(pdf_url)
+        helper_functions.vprint(e, verbosity=1)
+        helper_functions.vprint(pdf_url, verbosity=1)
         
         return None
             

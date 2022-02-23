@@ -19,4 +19,7 @@ Author First: <author_first>
 Author Last: <author_last>
 Name Search: <author_name_search>
 Email: <author_email>
+First Author: <first_author>
+Last Author: <last_author>
+Pub_Authors: <pub_author_loop>\n<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations></pub_author_loop>
 </pub_loop></author_loop>

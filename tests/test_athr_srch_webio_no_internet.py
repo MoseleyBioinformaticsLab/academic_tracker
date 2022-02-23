@@ -78,7 +78,7 @@ def test_request_pubs_from_pubmed_success(pymed_query, mocker, authors_dict, exp
     def mock_query(*args, **kwargs):
         return pymed_query
     mocker.patch("academic_tracker.athr_srch_webio.pymed.PubMed.query", mock_query)
-    test_publication_dict = search_PubMed_for_pubs({}, authors_dict, "ptth222@uky.edu", False)
+    test_publication_dict = search_PubMed_for_pubs({}, authors_dict, "ptth222@uky.edu")
     assert test_publication_dict == expected_publication_dict
 
 
@@ -99,7 +99,7 @@ def test_search_ORCID_for_pubs(ORCID_query, authors_dict, mocker):
     
     expected_dict = load_json(os.path.join("testing_files", "ORCID_pub_dict.json"))
     
-    returned_dict = search_ORCID_for_pubs({}, "qwerqwer", "asdfasdf", authors_dict, False)
+    returned_dict = search_ORCID_for_pubs({}, "qwerqwer", "asdfasdf", authors_dict)
     
     ## There is a character in the title of this publication that saves funny 
     ## so it won't be the same when you check.
@@ -153,7 +153,7 @@ def test_search_Google_Scholar_for_pubs(authors_dict, scholarly_pubs, scholarly_
     
     expected_pub_dict = load_json(os.path.join("testing_files", "scholarly_pub_dict.json"))
     
-    actual_pub_dict = search_Google_Scholar_for_pubs({}, authors_dict, "ptth222@uky.edu", False)
+    actual_pub_dict = search_Google_Scholar_for_pubs({}, authors_dict, "ptth222@uky.edu")
     
     assert actual_pub_dict == expected_pub_dict
 
@@ -166,7 +166,7 @@ def test_search_Crossref_for_pubs(authors_dict, mocker):
        
     expected_pub_dict = load_json(os.path.join("testing_files", "Crossref_pub_dict.json"))
     
-    actual_pub_dict = search_Crossref_for_pubs({}, authors_dict, "ptth222@uky.edu", False)
+    actual_pub_dict = search_Crossref_for_pubs({}, authors_dict, "ptth222@uky.edu")
         
     assert actual_pub_dict == expected_pub_dict
 

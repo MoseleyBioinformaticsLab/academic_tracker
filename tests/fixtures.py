@@ -98,6 +98,7 @@ def passing_config():
                           "template": "Hey <author_first>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
                           "from_email": "ptth222@uky.edu",
                           "cc_email": [],},
+                  "collaborator_report":{},
                   "authors": ["Andrew Morris", "Hunter Moseley", "Isabel Escobar"],
                   "grants": [
                     "P42ES007380",
@@ -195,6 +196,7 @@ def authors_by_project_dict():
                     'template': 'Hey <author_first>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>',
                     'from_email': 'ptth222@uky.edu',
                     'cc_email': []},
+                   'collaborator_report': {},
                    'authors': ['Andrew Morris', 'Hunter Moseley', 'Isabel Escobar'],
                    'grants': ['P42ES007380', 'P42 ES007380']},
               'Hunter Moseley': {'ORCID': '0000-0003-3995-5368',
@@ -210,6 +212,7 @@ def authors_by_project_dict():
                     'template': 'Hey <author_first>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>',
                     'from_email': 'ptth222@uky.edu',
                     'cc_email': []},
+                   'collaborator_report': {},
                    'authors': ['Andrew Morris', 'Hunter Moseley', 'Isabel Escobar'],
                    'grants': ['P42ES007380', 'P42 ES007380']}},
             'project 2': {

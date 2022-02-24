@@ -186,6 +186,20 @@ def test_config_file_project_check_errors(passing_config, config_project_errors)
         ({"cc_email":["asdf", "email@email.com"]}),
         ({"to_email":"asdf"}),
         ({"to_email":["asdf", "email@email.com"]}),
+        ({"columns":123}),
+        ({"columns":{}}),
+        ({"columns":{"asdf":""}}),
+        ({"sort":123}),
+        ({"sort":[]}),
+        ({"separator":123}),
+        ({"separator":""}),
+        ({"separator":"asdf"}),
+        ({"column_order":123}),
+        ({"column_order":[]}),
+        ({"file_format":123}),
+        ({"file_format":"asdf"}),
+        ({"filename":123}),
+        ({"filename":""}),
         ({"template":123}),
         ({"template":""}),
         ({"email_subject":123}),
@@ -199,6 +213,54 @@ def test_config_file_project_report_attributes_check_errors(passing_config, proj
     passing_config["project_descriptions"]["project 1"]["project_report"].update(project_report_errors)
     with pytest.raises(SystemExit):
         config_file_check(passing_config, False, False, False)
+        
+
+def test_config_file_project_report_sort_error_project(passing_config, capsys):
+    passing_config["project_descriptions"]["project 1"]["project_report"] = {"columns":{"Name":"asdf"},
+                                                                                  "sort":["asdf"]}
+    error_message = "ValidationError: The \"sort\" attribute for the project_report in project project 1 " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+
+def test_config_file_project_report_column_order_error_project(passing_config, capsys):
+    passing_config["project_descriptions"]["project 1"]["project_report"] = {"columns":{"Name":"asdf"},
+                                                                                  "column_order":["asdf"]}
+    error_message = "ValidationError: The \"column_order\" attribute for the project_report in project project 1 " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+    
+def test_config_file_project_report_sort_error_author(passing_config, capsys):
+    passing_config["Authors"]["Andrew Morris"]["project_report"] = {"columns":{"Name":"asdf"},
+                                                                         "sort":["asdf"]}
+    error_message = "ValidationError: The \"sort\" attribute for the project_report for author Andrew Morris " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+
+def test_config_file_project_report_column_order_error_author(passing_config, capsys):
+    passing_config["Authors"]["Andrew Morris"]["project_report"] = {"columns":{"Name":"asdf"},
+                                                                         "column_order":["asdf"]}
+    error_message = "ValidationError: The \"column_order\" attribute for the project_report for author Andrew Morris " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
         
 
 
@@ -217,6 +279,14 @@ def test_config_file_project_report_attributes_check_errors(passing_config, proj
         ({"separator":123}),
         ({"separator":""}),
         ({"separator":"asdf"}),
+        ({"column_order":123}),
+        ({"column_order":[]}),
+        ({"file_format":123}),
+        ({"file_format":"asdf"}),
+        ({"filename":123}),
+        ({"filename":""}),
+        ({"template":123}),
+        ({"template":""}),
         ({"email_subject":123}),
         ({"email_subject":""}),
         ({"email_body":123}),
@@ -241,12 +311,36 @@ def test_config_file_collaborator_report_sort_error_project(passing_config, caps
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
+
+def test_config_file_collaborator_report_column_order_error_project(passing_config, capsys):
+    passing_config["project_descriptions"]["project 1"]["collaborator_report"] = {"columns":{"Name":"asdf"},
+                                                                                  "column_order":["asdf"]}
+    error_message = "ValidationError: The \"column_order\" attribute for the collaborator_report in project project 1 " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
     
 def test_config_file_collaborator_report_sort_error_author(passing_config, capsys):
     passing_config["Authors"]["Andrew Morris"]["collaborator_report"] = {"columns":{"Name":"asdf"},
-                                                                                                 "sort":["asdf"]}
+                                                                         "sort":["asdf"]}
     error_message = "ValidationError: The \"sort\" attribute for the collaborator_report for author Andrew Morris " +\
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+
+def test_config_file_collaborator_report_column_order_error_author(passing_config, capsys):
+    passing_config["Authors"]["Andrew Morris"]["collaborator_report"] = {"columns":{"Name":"asdf"},
+                                                                         "column_order":["asdf"]}
+    error_message = "ValidationError: The \"column_order\" attribute for the collaborator_report for author Andrew Morris " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
         config_file_check(passing_config, False, False, False)
@@ -262,6 +356,20 @@ def test_config_file_collaborator_report_sort_error_author(passing_config, capsy
         ({"cc_email":["asdf", "email@email.com"]}),
         ({"to_email":"asdf"}),
         ({"to_email":["asdf", "email@email.com"]}),
+        ({"columns":123}),
+        ({"columns":{}}),
+        ({"columns":{"asdf":""}}),
+        ({"sort":123}),
+        ({"sort":[]}),
+        ({"separator":123}),
+        ({"separator":""}),
+        ({"separator":"asdf"}),
+        ({"column_order":123}),
+        ({"column_order":[]}),
+        ({"file_format":123}),
+        ({"file_format":"asdf"}),
+        ({"filename":123}),
+        ({"filename":""}),
         ({"template":123}),
         ({"template":""}),
         ({"email_subject":123}),
@@ -274,6 +382,30 @@ def test_config_file_summary_report_attributes_check_errors(passing_config, summ
     passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
         config_file_check(passing_config, False, False, False)
+        
+
+def test_config_file_summary_report_sort_error_project(passing_config, capsys):
+    passing_config["summary_report"] = {"columns":{"Name":"asdf"},
+                                        "sort":["asdf"]}
+    error_message = "ValidationError: The \"sort\" attribute for the summary_report " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+
+def test_config_file_summary_report_column_order_error_project(passing_config, capsys):
+    passing_config["summary_report"] = {"columns":{"Name":"asdf"},
+                                        "column_order":["asdf"]}
+    error_message = "ValidationError: The \"column_order\" attribute for the summary_report " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        config_file_check(passing_config, False, False, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
 
 
 
@@ -462,6 +594,30 @@ def test_ref_config_file_summary_report_attributes_check_errors(passing_config, 
     passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
         ref_config_file_check(passing_config, False)
+        
+
+def test_ref_config_file_summary_report_sort_error_project(passing_config, capsys):
+    passing_config["summary_report"] = {"columns":{"Name":"asdf"},
+                                        "sort":["asdf"]}
+    error_message = "ValidationError: The \"sort\" attribute for the summary_report " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        ref_config_file_check(passing_config, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
+    
+
+def test_ref_config_file_summary_report_column_order_error_project(passing_config, capsys):
+    passing_config["summary_report"] = {"columns":{"Name":"asdf"},
+                                        "column_order":["asdf"]}
+    error_message = "ValidationError: The \"column_order\" attribute for the summary_report " +\
+                     "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
+                     "could not be matched to a column in \"columns\":\n\nasdf"
+    with pytest.raises(SystemExit):
+        ref_config_file_check(passing_config, False)
+    captured = capsys.readouterr()
+    assert captured.out == error_message + "\n"
 
 
 

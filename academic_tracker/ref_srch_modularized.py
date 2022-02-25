@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Reference Search Modularized
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Modularized pieces of reference_search.
 """
 

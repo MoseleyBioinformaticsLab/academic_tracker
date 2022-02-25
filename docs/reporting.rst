@@ -2,24 +2,76 @@ Reporting
 =========
 
 To allow users some flexibility in report creation a unique system for specifying 
-their creation was created, and is described here. The key framework to keep in 
-mind is that there are 3 different reports and their specifications are slightly 
-different between each other and between author_search and reference_search.
+how to build reports was created. This system is described here. The key framework 
+to keep in mind is that there are 3 different reports and 2 ways to build each one. 
+The specifications also slightly differ between each other and between author_search 
+and reference_search. The 3 reports are summary_report, project_report, and collaborator_report. 
+Each report can be specified using a formatted text string or using a dictionary 
+to specify rows and columns.
+
+To specify a report using a formatted string include the "template" attribute for 
+the report. To specify a report using rows and columns include the "columns" 
+attribute for the report. "columns" should be a dictionary where the keys are 
+column names and values are what should be in each row of the column. Typically, 
+the values will be keywords. 
+
+If specifying the report with the "columns" attribute there are other attributes 
+that can be used in conjuction. "file_format" allows you to specify whether the 
+report should be a CSV or Excel file. The 2 allowed values are "csv" and "xlsx". 
+"sort" allows you to specify how to sort the table. It should be a list of column 
+names. Similarly, "column_order" allows you to specify the order of the columns 
+of the table. The order of the columns should be the same as the order given in 
+"columns", but just in case "column_order" is provided to manually set the order. 
+"separator" allows you to specify the separator character for CSV files. It must 
+be one character in length and defaults to a comma. 
+
+"filename" allows you to specify the filename of the report regardless of whether 
+"columns" or "template" are used to specify the report, but if the "file_format" 
+is "xlsx" and the filename extension is not xlsx then ".xlsx" will be added to 
+the filename.
+
+To email a report as an attachment simply include the email related attributes 
+in the report section. If the email attributes are missing then no email is sent.
+
+
+Example Config JSON Excerpt
+---------------------------
+.. code-block:: console
+    
+    "summary_report" : {"template":"This is a header\n<project_loop><project_name>:\n<author_loop><author_first>:\n<pub_loop><title></pub_loop></author_loop></project_loop>",
+                        
+                        "columns":{"Project":"<project_name>", "Author":"<author_first>; <author_last>", "Publication":"<title>"},
+                        "column_order":["Project", "Author", "Publication"],
+                        "sort":["Project", "Author"],
+                        "file_format":"csv",
+                        "separator":"\t",
+                        
+                        "filename":"summary_report.txt",
+                        
+                        "email_body":"Please see attached summary_report.",
+                        "email_subject":"Summary of Publications",
+                        "to_email":["person1@email.edu"],
+                        "from_email":"your_email@email.edu",
+                        "cc_email":["person2@email.edu"]}
+                        
+    Note that "template" takes precedent over "columns" so if both are specified "template" is used. This example is just trying to give a full example.
+
+
 
 
 Summary Report
 ~~~~~~~~~~~~~~
 Using the summary_report section of the configuration JSON a custom summary report 
-can be created. Academic Tracker will read the template attribute of this section 
-and certain keywords (described below) will be replaced with information collected 
-during the run. The keywords and inherent nature of how the report is built differs 
-between author_search and reference_search.
+can be created. Academic Tracker will read the template or columns attribute of 
+this section and certain keywords (described below) will be replaced with information 
+collected during the run. The keywords and inherent nature of how the report is 
+built differs between author_search and reference_search.
 
 If the summary_report section is missing then no summary report will be made. 
-If the template property is not in the summary_report section then a default template 
-will be used (described below). To email the report as an attachment simply include 
-the email related attributes in the summary_report section. If the email attributes 
-are missing then no email is sent.
+If the template and columns attributes are not in the summary_report section then 
+a default template will be used (described below). 
+
+Summary reports are saved in the tracker directory under summary_report.txt by default.
 
 
 Author Search
@@ -28,17 +80,18 @@ The report for the author_search is built by looping over each project, each
 author associated with the project, each publication associated with the author, 
 and each author on the publication. The template for author_search has 4 sections, 
 1 for each loop (project_loop, author_loop, pub_loop, and pub_author_loop). Tags 
-denote the beginning and end of the author_loop, pub_loop, and pub_author_loop, 
-but not the project_loop as the whole template is considered to be the project_loop. 
+denote the beginning and end of each loop.
+ 
 The section determines when keywords in the template are replaced. Keywords inside
 the pub_author_loop section are replaced for each author on the publication. 
 Keywords inside the pub_loop section are replaced for each publication associated 
 with the author. Keywords inside the author_loop are replaced for each author 
 associated with the project. Keywords inside the project loop section are replaced 
 for each project. The sections are expected to be nested inside of each other, 
-so the pub_author_loop tags should be inside the pub_loop tags, and the pub_loop 
-tags should be inside the author_loop tags. If they are not then the report will 
-most likely not look as expected.
+so the pub_author_loop tags should be inside the pub_loop tags, the pub_loop tags 
+should be inside the author_loop tags, and the author_loop tags should be inside 
+the project_loop tags. If they are not then the report will most likely not look 
+as expected.
 
 
 Reference Search
@@ -46,11 +99,12 @@ Reference Search
 The report for the reference_search is built by looping over each publication matched 
 in the reference, and each author on the publication. The template has 2 sections, 
 1 for each loop (pub_loop and pub_author_loop). Tags denote the beginning and end 
-of the pub_author_loop, but not the pub_loop as the whole template is considered 
-to be the pub_loop. The section determines when keywords in the template are 
-replaced. Keywords inside the pub_author_loop section are replaced for each author 
-on the publication. Keywords inside the pub_loop section are replaced for each 
-publication.
+of each loop. The section determines when keywords in the template are replaced. 
+Keywords inside the pub_author_loop section are replaced for each author on the 
+publication. Keywords inside the pub_loop section are replaced for each publication. 
+The sections are expected to be nested inside of each other, so the pub_author_loop 
+tags should be inside the pub_loop tags. If they are not then the report will 
+most likely not look as expected.
 
 
 Project Report
@@ -61,18 +115,23 @@ attribute for the project in the config JSON. The project report works similar
 to the summary report but is isolated to one project so lacks the project loop. 
 
 If the project_report attribute is missing then no project report will be made. 
-If the template property is not in the project_report section then a default template 
-will be used (described below). If from_email is absent then 1 report that loops 
-over each author and publication in the project will be generated and no emails 
-sent. If from_email is provided and to_email is provided then the report is emailed. 
-If to_email is not provided then a report is generated for each author individually 
-and emailed to each author.
+If the template and columns attributes are not in the project_report section then 
+a default template will be used (described below). If from_email is absent then 
+1 report that loops over each author and publication in the project will be 
+generated and no emails sent. If from_email is provided and to_email is provided 
+then the report is emailed. If to_email is not provided then a report is generated 
+for each author individually and emailed to each author.
+
+Project reports are saved in the tracker directory under 
+projectname_project_report.txt or projectname_authorname_project_report.txt by 
+default.
 
 
 Keywords
 ~~~~~~~~
 .. code-block:: console
 
+    <project_loop> </project_loop>         - Denotes the beginning and end of the project_loop section.
     <author_loop> </author_loop>           - Denotes the beginning and end of the author_loop section.
     <pub_loop> </pub_loop>                 - Denotes the beginning and end of the pub_loop section.
     <pub_author_loop> </pub_author_loop>   - Deontes the beginning and end of the pub_author_loop section.
@@ -127,10 +186,10 @@ Examples
 .. code-block:: console
 
     Summary Report Author Search Example:
-    <project_name>
+    <project_loop><project_name>
     <author_loop>        <author_first> <author_last>:
     <pub_loop>                <title> <authors> <grants>
-    </pub_loop></author_loop>
+    </pub_loop></author_loop></project_loop>
     
     Output:
     Core A Administrative Core
@@ -146,7 +205,7 @@ Examples
     
     
     Summary Report Reference Search Example:
-    Reference Line: <ref_line>
+    <pub_loop>Reference Line: <ref_line>
     Tokenized Reference:
             Authors: <tok_authors>
             Title: <tok_title>
@@ -157,6 +216,8 @@ Examples
             PMID: <PMID>
             PMCID: <PMCID>
             Grants: <grants>
+    
+    </pub_loop>
     
     Output:
     Reference Line: Baran M, Huang Y, Moseley H, Montelione G.  Automated Analysis of Protein NMR Assignments and Structures. ChemInform. 2004 November; 35(45):-. doi: 10.1002/chin.200445293.
@@ -184,6 +245,18 @@ Examples
        Grants: R01ES022191-01, R01 ES022191, 1 U24 DK097215-01A1, P01CA163223-01A1, P01 CA163223, P30 CA177558, U24 DK097215
     
     
+    Summary Report Tabular Example:
+    {"columns": {"Project":"<project_name>"", "Author":"<author_first>", "Publication":"<title>"},
+     "sort":["Project", "Author"]}
+     
+    Output:
+    Project       Author           Publication
+    Project 1     Jerika Durham    Differential Fuel Requirements of Human NK Cells and Human CD8 T Cells: Glutamine Regulates Glucose Uptake in Strongly Activated CD8 T Cells
+    Project 2     Pan Deng         Nutritional modulation of the toxicity of environmental pollutants: Implications in atherosclerosis
+    Project 2     Pan Deng         SSIF: Subsumption-based sub-term inference framework to audit gene ontology
+    Project 2     Pan Deng         MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations
+    
+    
     Project Report Individual Report Example:
     Hey <author_first>,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu"
     
@@ -207,6 +280,18 @@ Examples
             Nutritional modulation of the toxicity of environmental pollutants: Implications in atherosclerosis Pan Deng None Found
             SSIF: Subsumption-based sub-term inference framework to audit gene ontology Hunter Moseley None Found
             MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations Hunter Moseley None Found
+            
+            
+    Project Report Tabular Example:
+    {"columns": {"Author":"<author_first>", "Publication":"<title>"},
+     "sort":["Author"]}
+     
+    Output:
+    Author           Publication
+    Jerika Durham    Differential Fuel Requirements of Human NK Cells and Human CD8 T Cells: Glutamine Regulates Glucose Uptake in Strongly Activated CD8 T Cells
+    Pan Deng         Nutritional modulation of the toxicity of environmental pollutants: Implications in atherosclerosis
+    Pan Deng         SSIF: Subsumption-based sub-term inference framework to audit gene ontology
+    Pan Deng         MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations
 
 
 Default Template Strings
@@ -258,36 +343,34 @@ collaborator report is done on a per author basis it can be included in a projec
 of the config JSON as a convenience. If it is included in a project then a collaborator 
 report will be created for each author associated with the project. 
 
-The collaborator report is a tabular CSV file. The names and values of each column 
-are specified in the "columns" attribute of the collaborator_report. They keys 
-of the entries in "columns" are the column names and the values are what should 
-be in each column. Each entry should be a combination of characters and keywords. 
-Each collaborator will be a row in the table and the keywords will be replaced 
-with the collaborator's information. Duplicate rows are removed and the table is 
-sorted according to the column names in the "sort" attribute. The "sort" attribute 
-should be a list of column names to sort the table by. If sort is not in the 
-attributes then the table will not be sorted. The separator to use for the CSV 
-file can be specified with the "separator" attribute. It can only be a single 
-character. If it is absent the default separator is a comma.
+The report is built by looping over each publication for the author and each 
+author on the publication. Unlike the project report though only the pub_author_loop 
+is available for the collaborator report. Tags denote the beginning and end of 
+the loop.
+
+The collaborator report is a little unique compared to the sumary and project 
+reports because it defaults to a tabular file using the "columns" attribute rather 
+than using the "template" attribute. 
 
 If the collaborator_report attribute is missing then no collaborator report will 
-be made. If the columns property is not in the collaborator_report section then 
-a default columns and sort will be used (described below). If from_email 
+be made. If the template and columns attributes are not in the collaborator_report 
+section then a default columns and sort will be used (described below). If from_email 
 is absent then no emails will be sent. If from_email is provided and to_email is 
 provided then the report is sent to the to_email address, otherwise it is sent 
 to the author's email.
 
-Collaborator reports are saved in the tracker directory under author_id_collaborators.csv.
+Collaborator reports are saved in the tracker directory under 
+author_id_collaborators.csv by default.
 
 
 Keywords
 ~~~~~~~~
 .. code-block:: console
 
-    <first_name>    -  Collaborator's first name.
-    <last_name>     -  Collaborator's last name.
-    <initials>      -  Collaborator's initials.
-    <affiliations>  -  Collaborator's affiliations.
+    <pub_author_first>         -  Collaborator's first name.
+    <pub_author_last>          -  Collaborator's last name.
+    <pub_author_initials>      -  Collaborator's initials.
+    <pub_author_affiliations>  -  Collaborator's affiliations.
     
 
 Examples
@@ -311,6 +394,7 @@ Default Values
 .. code-block:: console
 
     columns : {"Name":"<last_name>, <first_name>", "Affiliations":"<affiliations>"}
+    column_order : ["Name", "Affiliations"]
     sort : ["Name"]
     separator : ","
 

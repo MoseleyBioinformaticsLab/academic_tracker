@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-JSON Schema for the cli, authors, and config JSON.
+Tracker Schema
+~~~~~~~~~~~~~~
+
+JSON Schema for the input JSON files.
 """
 
 import copy

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Internet interfacing for reference_search
+Reference Search Webio
+~~~~~~~~~~~~~~~~~~~~~~
+
+Internet interfacing for reference_search.
 """
 
 import time

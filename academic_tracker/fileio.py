@@ -1,4 +1,7 @@
 """
+Fileio
+~~~~~~
+
 This module contains the functions that read and write files.
 """
 

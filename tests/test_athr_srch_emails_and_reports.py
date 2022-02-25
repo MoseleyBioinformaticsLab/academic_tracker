@@ -180,12 +180,12 @@ def test_create_collaborators_reports_and_emails_tabular(publication_dict, confi
 
 def test_create_collaborators_reports_and_emails(publication_dict, config_dict):
     
-    config_dict["Authors"]["Ann Koempel"]["collaborator_report"] = {"template":"<pub_author_first>, <pub_author_last>, <pub_author_initials>, <pub_author_affiliations>",
+    config_dict["Authors"]["Ann Koempel"]["collaborator_report"] = {"template":"<pub_author_loop><pub_author_first>, <pub_author_last>, <pub_author_initials>, <pub_author_affiliations></pub_author_loop>",
                                                                     "from_email":"ptth222@uky.edu",
                                                                     "email_body":"asdf",
                                                                     "email_subject":"asdf"}
     
-    config_dict["Authors"]["Anna Hoover"]["collaborator_report"] = {"template":"<pub_author_first>, <pub_author_last>, <pub_author_initials>, <pub_author_affiliations>",
+    config_dict["Authors"]["Anna Hoover"]["collaborator_report"] = {"template":"<pub_author_loop><pub_author_first>, <pub_author_last>, <pub_author_initials>, <pub_author_affiliations></pub_author_loop>",
                                                                     "from_email":"ptth222@uky.edu",
                                                                     "email_body":"asdf",
                                                                     "email_subject":"asdf",
@@ -311,7 +311,7 @@ def test_create_tabular_collaborator_report_empty():
     
 def test_create_collaborator_report(publication_dict):
     
-    template = "<pub_author_first>, <pub_author_last>, <pub_author_initials>, <pub_author_affiliations>"
+    template = "<pub_author_loop><pub_author_first>, <pub_author_last>, <pub_author_initials>, <pub_author_affiliations></pub_author_loop>"
     
     expected_report = 'Annie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.W Jay, Christian, WJ, University of Kentucky College of Public Health.Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.Kelly G, Pennell, KG, University of Kentucky College of Engineering.Steven, Evans, S, Kentucky Water Resources Research Institute.Malissa, McAlister, M, Kentucky Water Resources Research Institute.Lindell E, Ormsbee, LE, University of Kentucky College of Engineering.Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.'
     

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-This module contains general functions that interface with the internet.
+Webio
+~~~~~
+
+General functions that interface with the internet.
 """
 
 import urllib.request
@@ -243,12 +246,12 @@ def send_emails(email_messages):
         msg.set_content(email_parts["body"])
         
         if os.path.exists(email_parts["attachment"]):
-            with open(email_parts["atachment"], 'rb') as content_file:
+            with open(email_parts["attachment"], 'rb') as content_file:
                 content = content_file.read()
+                
+            msg.add_attachment(content, maintype="application", subtype="vnd.ms-excel", filename=email_parts["attachment_filename"])
         else:
-            content = email_parts["attachment"]
-        
-        msg.add_attachment(content, filename=email_parts["attachment_filename"])
+            msg.add_attachment(email_parts["attachment"], filename=email_parts["attachment_filename"])
         
         subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
 

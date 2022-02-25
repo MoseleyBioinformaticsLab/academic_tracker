@@ -40,7 +40,6 @@ Search Options:
 ## Need help with pycharm UML diagram.
 ## How detailed to be about file specifications? Is what's in jsonschema.rst good?
 ## Is what's in tutorial.rst good enough for results? Reduce it to 1 for each use case? API example?
-## webio.send_email changed so update unit test
 ## add defulat pandas excel engine to required packages xlsxwriter I think
 
 

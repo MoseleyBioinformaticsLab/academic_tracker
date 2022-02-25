@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-This module contains the functions that check the user input for errors.
+User Input Checking
+~~~~~~~~~~~~~~~~~~~
+
+Functions that check the user input for errors.
 """
 
 
@@ -142,7 +145,12 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
             if names_not_in_columns:
                 helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the summary_report has values that are not column names in \"columns\".")
                 helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
-                sys.exit()        
+                sys.exit()   
+                
+            if attribute == "column_order":
+                if len(config_json["summary_report"]["column_order"]) != len(config_json["summary_report"]["columns"]):
+                    helper_functions.vprint("ValidationError: The \"column_order\" attribute for the summary_report does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
+                    sys.exit() 
             
             
     report_keys = ["collaborator_report", "project_report"]
@@ -155,6 +163,11 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
                         helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the " + report_key + " in project " + project + " has values that are not column names in \"columns\".")
                         helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
                         sys.exit()
+                        
+                    if attribute == "column_order":
+                        if len(project_attributes[report_key]["column_order"]) != len(project_attributes[report_key]["columns"]):
+                            helper_functions.vprint("ValidationError: The \"column_order\" attribute for the " + report_key + " in project " + project + " does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
+                            sys.exit() 
                                     
     
     for author, author_attributes in config_json["Authors"].items():
@@ -166,6 +179,11 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
                         helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the " + report_key + " for author " + author + " has values that are not column names in \"columns\".")
                         helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
                         sys.exit()
+                        
+                    if attribute == "column_order":
+                        if len(author_attributes[report_key]["column_order"]) != len(author_attributes[report_key]["columns"]):
+                            helper_functions.vprint("ValidationError: The \"column_order\" attribute for the " + report_key + " for author " + author + " does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
+                            sys.exit() 
                     
         
             
@@ -195,6 +213,11 @@ def ref_config_file_check(config_json, no_Crossref):
                 helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the summary_report has values that are not column names in \"columns\".")
                 helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
                 sys.exit()    
+                
+            if attribute == "column_order":
+                if len(config_json["summary_report"]["column_order"]) != len(config_json["summary_report"]["columns"]):
+                    helper_functions.vprint("ValidationError: The \"column_order\" attribute for the summary_report does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
+                    sys.exit() 
         
 
 

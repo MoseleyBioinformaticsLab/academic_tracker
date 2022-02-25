@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Reference Search Emails and Reports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Functions to create emails and reports for reference_search.
 """
 

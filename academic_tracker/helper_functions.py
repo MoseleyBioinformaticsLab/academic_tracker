@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-This module contains helper functions.
+Helper Functions
+~~~~~~~~~~~~~~~~
+
+This module contains helper functions, such as printing, and regex searching.
 """
 
 import re

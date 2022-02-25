@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Author Search Emails and Reports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Functions to create emails and reports for author_search.
 """
 
@@ -13,7 +16,7 @@ import pandas
 from . import helper_functions
 from . import fileio
 
-DEFAULT_SUMMARY_TEMPLATE = "<project_name>\n<author_loop>\t<author_first> <author_last>:<pub_loop>\n\t\tTitle: <title> \n\t\tAuthors: <authors> \n\t\tJournal: <journal> \n\t\tDOI: <DOI> \n\t\tPMID: <PMID> \n\t\tPMCID: <PMCID> \n\t\tGrants: <grants>\n</pub_loop>\n</author_loop>"
+DEFAULT_SUMMARY_TEMPLATE = "<project_loop><project_name>\n<author_loop>\t<author_first> <author_last>:<pub_loop>\n\t\tTitle: <title> \n\t\tAuthors: <authors> \n\t\tJournal: <journal> \n\t\tDOI: <DOI> \n\t\tPMID: <PMID> \n\t\tPMCID: <PMCID> \n\t\tGrants: <grants>\n</pub_loop>\n</author_loop></project_loop>"
 DEFAULT_PROJECT_TEMPLATE = "<author_loop><author_first> <author_last>:<pub_loop>\n\tTitle: <title> \n\tAuthors: <authors> \n\tJournal: <journal> \n\tDOI: <DOI> \n\tPMID: <PMID> \n\tPMCID: <PMCID> \n\tGrants: <grants>\n</pub_loop>\n</author_loop>"
 DEFAULT_AUTHOR_TEMPLATE = "<author_loop><author_first> <author_last>:<pub_loop>\n\tTitle: <title> \n\tAuthors: <authors> \n\tJournal: <journal> \n\tDOI: <DOI> \n\tPMID: <PMID> \n\tPMCID: <PMCID> \n\tGrants: <grants>\n</pub_loop>\n</author_loop>"
 
@@ -225,16 +228,20 @@ def create_summary_report(publication_dict, config_dict, authors_by_project_dict
         report_string (str): The report built by replacing the appropriate tags in template_string with relevant information.
     """
     
+    project_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<project_loop>(.*)</project_loop>.*", template_string), 0)
+    
     report_string = ""
     for project_name in config_dict["project_descriptions"]:
-        template_string_copy = template_string
+        project_template_copy = project_template
         
         project_authors = build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string)
         
-        template_string_copy = re.sub(r"(?s)<author_loop>.*</author_loop>", project_authors, template_string_copy)
-        template_string_copy = template_string_copy.replace("<project_name>", project_name)
+        project_template_copy = re.sub(r"(?s)<author_loop>.*</author_loop>", project_authors, project_template_copy)
+        project_template_copy = project_template_copy.replace("<project_name>", project_name)
         
-        report_string += template_string_copy
+        report_string += project_template_copy
+    
+    report_string = re.sub(r"(?s)<project_loop>.*</project_loop>", report_string, template_string)
         
     return report_string
 
@@ -365,6 +372,7 @@ def create_tabular_collaborator_report(publication_dict, config_dict, author, pu
     
     default_columns = {"Name":"<pub_author_last>, <pub_author_first>", "Affiliations":"<pub_author_affiliations>"}
     default_sort = ["Name"]
+    default_order = ["Name", "Affiliations"]
     
     if "separator" in config_dict["Authors"][author]["collaborator_report"]:
         separator = config_dict["Authors"][author]["collaborator_report"]["separator"]
@@ -374,18 +382,22 @@ def create_tabular_collaborator_report(publication_dict, config_dict, author, pu
     ## Determine whether to build the report to user specifications or use the deaults.
     if "columns" in config_dict["Authors"][author]["collaborator_report"]:
         columns = config_dict["Authors"][author]["collaborator_report"]["columns"]
+        
         if "sort" in config_dict["Authors"][author]["collaborator_report"]:
             sort = config_dict["Authors"][author]["collaborator_report"]["sort"]
         else:
             sort = []
+            
+        if "column_order" in config_dict["Authors"][author]["collaborator_report"]:
+            column_order = config_dict["Authors"][author]["collaborator_report"]["column_order"]
+        else:
+            column_order = list(columns.keys())
     else:
         columns = default_columns
         sort = default_sort
+        column_order = default_order
         
-    if "column_order" in config_dict["Authors"][author]["collaborator_report"]:
-        column_order = config_dict["Authors"][author]["collaborator_report"]["column_order"]
-    else:
-        column_order = list(columns.keys())
+    
     
     
     authors_already_added = []
@@ -451,6 +463,8 @@ def create_collaborator_report(publication_dict, template, author, pubs, filenam
     
     authors_already_added = []
     
+    pub_author_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_author_loop>(.*)</pub_author_loop>.*", template), 0)
+    
     report = ""
     for pub in pubs:
         for pub_author in publication_dict[pub]["authors"]:
@@ -458,16 +472,17 @@ def create_collaborator_report(publication_dict, template, author, pubs, filenam
             if ("author_id" in pub_author and pub_author["author_id"] == author) or pub_author in authors_already_added:
                 continue
             
-            template_copy = template
+            pub_author_template_copy = pub_author_template
             
             for keyword, pub_author_key in pub_authors_keyword_map.items():
-                template_copy = template_copy.replace(keyword, str(pub_author[pub_author_key]))
+                pub_author_template_copy = pub_author_template_copy.replace(keyword, str(pub_author[pub_author_key]))
                 
-            report += template_copy
+            report += pub_author_template_copy
             
             authors_already_added.append(pub_author)
             
     if report:
+        report = re.sub(r"(?s)<pub_author_loop>.*</pub_author_loop>", report, template)
         fileio.save_string_to_file(save_dir_name, filename, report)
     
     return report

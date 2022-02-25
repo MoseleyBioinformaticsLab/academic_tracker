@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Citation Parsing
+~~~~~~~~~~~~~~~~
+
 Functions for parsing citations.
 """
 

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Author Search Modularized
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Modularized pieces of author_search.
 """
 import sys

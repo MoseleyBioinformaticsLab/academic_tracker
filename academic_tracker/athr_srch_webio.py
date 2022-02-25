@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Internet interfacing for author_search
+Author Search Webio
+~~~~~~~~~~~~~~~~~~~
+
+Internet interfacing for author_search.
 """
 
 

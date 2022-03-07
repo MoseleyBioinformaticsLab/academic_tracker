@@ -592,14 +592,12 @@ config_file.json:
       },
       "Authors": {
         "Author1": {
-          "ORCID": "Author1's ORCID ID",
           "email": "email@email.com",
           "first_name": "First",
           "last_name": "Last",
           "pubmed_name_search": "First Last"
         },
         "Author2": {
-          "ORCID": "Author2's ORCID ID",
           "email": "email@email.com",
           "first_name": "Second",
           "last_name": "Last",

@@ -164,7 +164,7 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
                     report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, template, config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
                     fileio.save_string_to_file(save_dir_name, filename, report)
                 
-                if "from_email" in report_attributes:
+                if "from_email" in report_attributes and "email" in authors_by_project_dict[project][author]:
                     email_messages["emails"].append({"body":authors_by_project_dict[project][author]["project_report"]["email_body"],
                                                      "subject":authors_by_project_dict[project][author]["project_report"]["email_subject"],
                                                      "from":authors_by_project_dict[project][author]["project_report"]["from_email"],
@@ -554,16 +554,17 @@ def create_collaborators_reports_and_emails(publication_dict, config_dict, save_
                 if "to_email" in config_dict["Authors"][author]["collaborator_report"]:
                     to_email = config_dict["Authors"][author]["collaborator_report"]["to_email"]
                 else:
-                    to_email = config_dict["Authors"][author]["email"]
+                    to_email = config_dict["Authors"][author]["email"] if "email" in config_dict["Authors"][author] else ""
                 
-                email_messages["emails"].append({"body":config_dict["Authors"][author]["collaborator_report"]["email_body"],
-                                                 "subject":config_dict["Authors"][author]["collaborator_report"]["email_subject"],
-                                                 "from":config_dict["Authors"][author]["collaborator_report"]["from_email"],
-                                                 "to":to_email,
-                                                 "cc":",".join([email for email in config_dict["Authors"][author]["collaborator_report"]["cc_email"]]) if "cc_email" in config_dict["Authors"][author]["collaborator_report"] else "",
-                                                 "attachment": report,
-                                                 "attachment_filename": filename,
-                                                 "author":author})
+                if to_email:
+                    email_messages["emails"].append({"body":config_dict["Authors"][author]["collaborator_report"]["email_body"],
+                                                     "subject":config_dict["Authors"][author]["collaborator_report"]["email_subject"],
+                                                     "from":config_dict["Authors"][author]["collaborator_report"]["from_email"],
+                                                     "to":to_email,
+                                                     "cc":",".join([email for email in config_dict["Authors"][author]["collaborator_report"]["cc_email"]]) if "cc_email" in config_dict["Authors"][author]["collaborator_report"] else "",
+                                                     "attachment": report,
+                                                     "attachment_filename": filename,
+                                                     "author":author})
         
     return email_messages
         
@@ -649,7 +650,8 @@ def create_tabular_summary_report(publication_dict, config_dict, authors_by_proj
             else:
                 rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author))
                 
-                
+    
+    report = ""            
     if rows:
         df = pandas.DataFrame(rows)
         if sort:
@@ -745,7 +747,8 @@ def create_tabular_project_report(publication_dict, config_dict, authors_by_proj
         else:
             rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author))
                 
-                
+    
+    report = ""            
     if rows:
         df = pandas.DataFrame(rows)
         if sort:

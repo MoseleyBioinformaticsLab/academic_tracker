@@ -328,7 +328,7 @@ Validating Schema
                                                                  "from_email": ["email_body", "email_subject"],
                                                                  "to_email": ["from_email", "email_body", "email_subject"]},},
                                          },
-                                 "required" : ["first_name", "last_name", "pubmed_name_search", "email"]
+                                 "required" : ["first_name", "last_name", "pubmed_name_search"]
     
                                  }
                            }

@@ -28,19 +28,16 @@ Search Options:
 """
 
 
-
-## Less important or far future things:
-## TODO improve reference search to see if every author on the pub has the pub associated with them on ORCID
-## Let the authors_file for add_authors be an excel file.
-## Recipes for common use cases such as a trainee project.
-
-## Should I autodoc the code into the documentation? yes
-## Should the documentation include what I have on the wiki about searching GS, ORCID, and Crossref?
-
 ## Need help with pycharm UML diagram.
-## How detailed to be about file specifications? Is what's in jsonschema.rst good?
-## Is what's in tutorial.rst good enough for results? Reduce it to 1 for each use case? API example?
 ## add defulat pandas excel engine to required packages xlsxwriter I think
+
+## take docs/_build  out of gitignore and point GitHub pages there for documentation.
+## Add the url of this page to the about section on gitHub.
+## When to merge to master?
+## When to create github pages?
+## Is BSD license okay?
+## Putting on pypi? When?
+## Does the lab have github actions for sphinx documentation? 
 
 
 import re

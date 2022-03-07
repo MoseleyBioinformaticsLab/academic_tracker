@@ -1,36 +1,36 @@
 Academic Tracker
 ================
 ..
-    .. image:: https://img.shields.io/pypi/l/mwtab.svg
+    .. image:: https://img.shields.io/pypi/l/academic_tracker.svg
        :target: https://choosealicense.com/licenses/bsd-3-clause-clear/
        :alt: License information
     
-    .. image:: https://img.shields.io/pypi/v/mwtab.svg
-       :target: https://pypi.org/project/mwtab
+    .. image:: https://img.shields.io/pypi/v/academic_tracker.svg
+       :target: https://pypi.org/project/academic_tracker
        :alt: Current library version
     
-    .. image:: https://img.shields.io/pypi/pyversions/mwtab.svg
-       :target: https://pypi.org/project/mwtab
+    .. image:: https://img.shields.io/pypi/pyversions/academic_tracker.svg
+       :target: https://pypi.org/project/academic_tracker
        :alt: Supported Python versions
     
     .. image:: https://readthedocs.org/projects/nmrstarlib/badge/?version=latest
        :target: http://mwtab.readthedocs.io/en/latest/?badge=latest
        :alt: Documentation status
     
-    .. image:: https://api.travis-ci.org/MoseleyBioinformaticsLab/mwtab.svg?branch=master
-       :target: https://travis-ci.org/MoseleyBioinformaticsLab/mwtab
-       :alt: Travis CI status
+    .. image:: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml/badge.svg
+       :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml
+       :alt: Build status
     
-    .. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/mwtab/branch/master/graphs/badge.svg?branch=master
-       :target: https://codecov.io/gh/MoseleyBioinformaticsLab/mwtab
+    .. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker/branch/master/graphs/badge.svg?branch=master
+       :target: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker
        :alt: Code coverage information
     
     .. image:: https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg
        :target: https://doi.org/10.3390/metabo11030163
        :alt: Citation link
     
-    .. image:: https://img.shields.io/github/stars/MoseleyBioinformaticsLab/mwtab.svg?style=social&label=Star
-        :target: https://github.com/MoseleyBioinformaticsLab/mwtab
+    .. image:: https://img.shields.io/github/stars/MoseleyBioinformaticsLab/academic_tracker.svg?style=social&label=Star
+        :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker
         :alt: GitHub project
 
 |
@@ -152,7 +152,7 @@ them to their publications depending on how far back you want to search in time.
 How Publications Are Matched
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 When searching by publications it is necessary to confirm that the publication 
-in the given reference matches the publicaiton returned in the query. This is done 
+in the given reference matches the publication returned in the query. This is done 
 by either matching the DOIs, PMIDs, or the title and at least one author. Titles 
 are fuzzy matched using fuzzywuzzy which is why at least one author must also be 
 matched. Author's are matched using last name and at least one affiliation.

@@ -36,8 +36,9 @@ REQUIRES = [
     "scholarly >= 1.4.5",
     "beautifulsoup4 >= 4.9.3",
     "fuzzywuzzy >= 0.18.0",
-    "docx >= 0.2.4",
-    "pandas >= 0.24.2"
+    "python-docx >= 0.8.11",
+    "pandas >= 0.24.2",
+    "openpyxl >= 2.6.2"
 ]
 
 
@@ -50,7 +51,7 @@ setup(
     keywords='PubMed publications citations Crossref ORCID Google Scholar',
     license='BSD',
     url='https://github.com/MoseleyBioinformaticsLab/academic_tracker',
-    packages=find_packages(),
+    packages=find_packages(exclude=['doc', 'docs', 'vignettes']),
     platforms=['any'],
     long_description=readme(),
     install_requires=REQUIRES,

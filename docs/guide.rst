@@ -153,13 +153,13 @@ run the following commands:
            python3 -m pip install fuzzywuzzy  # On Linux, Mac OS X
            py -3 -m pip install fuzzywuzzy    # On Windows
            
-   * docx_ for reading docx files.
-      * To install the docx_ Python library run the following:
+   * python-docx_ for reading docx files.
+      * To install the python-docx_ Python library run the following:
 
         .. code:: bash
 
-           python3 -m pip install docx  # On Linux, Mac OS X
-           py -3 -m pip install docx    # On Windows
+           python3 -m pip install python-docx  # On Linux, Mac OS X
+           py -3 -m pip install python-docx    # On Windows
            
    * pandas_ for easy data manipulation.
       * To install the pandas_ Python library run the following:
@@ -168,6 +168,14 @@ run the following commands:
 
            python3 -m pip install pandas  # On Linux, Mac OS X
            py -3 -m pip install pandas    # On Windows
+           
+   * openpyxl_ for saving Excel files in pandas.
+      * To install the openpyxl_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install openpyxl  # On Linux, Mac OS X
+           py -3 -m pip install openpyxl    # On Windows
 
 
 Basic usage
@@ -224,5 +232,6 @@ the use cases with examples are in the :doc:`tutorial` section.
 .. _scholarly: https://pypi.org/project/scholarly/
 .. _beautifulsoup4: https://pypi.org/project/beautifulsoup4/
 .. _fuzzywuzzy: https://pypi.org/project/fuzzywuzzy/
-.. _docx: https://pypi.org/project/docx/
+.. _python-docx: https://pypi.org/project/python-docx/
 .. _pandas: https://pypi.org/project/pandas/
+.. _openpyxl: https://pypi.org/project/openpyxl/

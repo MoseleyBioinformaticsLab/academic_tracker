@@ -248,7 +248,8 @@ def create_tabular_report(publication_dict, config_dict, is_citation_in_prev_pub
         else:
             rows.append(replace_keywords(row_template, publication_dict, pub, tokenized_citations[tok_index], is_citation_in_prev_pubs))
             
-                
+    
+    report = ""            
     if rows:
         df = pandas.DataFrame(rows)
         if sort:

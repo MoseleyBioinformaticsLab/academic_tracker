@@ -93,6 +93,12 @@ should be inside the author_loop tags, and the author_loop tags should be inside
 the project_loop tags. If they are not then the report will most likely not look 
 as expected.
 
+If specifying a tabular report using the "columns" attribute the loops are determined 
+by what keywords are present. If there are keywords from the pub_author_loop in 
+"columns" then a new row will be created for each publication author, but if there 
+are only keywords from the author_loop then a new row will be created for each 
+author.
+
 
 Reference Search
 ----------------
@@ -302,7 +308,7 @@ Summary
 +++++++
 .. code-block:: console
 
-    <project_name>\n<author_loop>\t<author_first> <author_last>:<pub_loop>\n\t\tTitle: <title> \n\t\tAuthors: <authors> \n\t\tJournal: <journal> \n\t\tDOI: <DOI> \n\t\tPMID: <PMID> \n\t\tPMCID: <PMCID> \n\t\tGrants: <grants>\n</pub_loop>\n</author_loop>
+    <project_loop><project_name>\n<author_loop>\t<author_first> <author_last>:<pub_loop>\n\t\tTitle: <title> \n\t\tAuthors: <authors> \n\t\tJournal: <journal> \n\t\tDOI: <DOI> \n\t\tPMID: <PMID> \n\t\tPMCID: <PMCID> \n\t\tGrants: <grants>\n</pub_loop>\n</author_loop></project_loop>
 
 
 Project
@@ -323,7 +329,7 @@ Reference Search
 ----------------
 .. code-block:: console
 
-    Reference Line:\n\t<ref_line>\nTokenized Reference:\n\tAuthors: <tok_authors>\n\tTitle: <tok_title>\n\tPMID: <tok_PMID>\n\tDOI: <tok_DOI>\nQueried Information:\n\tDOI: <DOI>\n\tPMID: <PMID>\n\tPMCID: <PMCID>\n\tGrants: <grants>\n\n
+    <pub_loop>Reference Line:\n\t<ref_line>\nTokenized Reference:\n\tAuthors: <tok_authors>\n\tTitle: <tok_title>\n\tPMID: <tok_PMID>\n\tDOI: <tok_DOI>\nQueried Information:\n\tDOI: <DOI>\n\tPMID: <PMID>\n\tPMCID: <PMCID>\n\tGrants: <grants>\n\n</pub_loop>
 
 
 

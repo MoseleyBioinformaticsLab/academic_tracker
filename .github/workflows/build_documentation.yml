@@ -24,12 +24,12 @@ jobs:
     # Publish built docs to gh-pages branch.
     # ===============================
     - name: Commit documentation changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name "${GITHUB_ACTOR}"
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        git init
-        git remote add deploy "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-        git checkout -b gh-pages
+        git clone "https://token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --branch gh-pages --single-branch gh-pages
         
         cp -r docs/_build/html/* gh-pages/
         cd gh-pages
@@ -39,11 +39,10 @@ jobs:
         git commit -m "Update documentation." -a || true
         # The above command will fail if no changes were present, so we ignore
         # that.
-        git push deploy gh-pages --force
-#    - name: Push changes
-#      uses: ad-m/github-push-action@master
-#      with:
-#        branch: gh-pages
-#        directory: gh-pages
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: gh-pages
+        directory: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     # ===============================

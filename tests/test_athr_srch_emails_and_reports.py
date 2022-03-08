@@ -85,9 +85,12 @@ def test_create_project_reports_and_emails_tabular(publication_dict, config_dict
             
     expected_emails = load_json(os.path.join("tests", "testing_files", "athr_project_emails_tabular.json"))
     del expected_emails["creation_date"]
+    ## attachment for xlsx files is a filepath and it differs between OS's.
+    del expected_emails["emails"][2]["attachment"]
     
     actual_emails = create_project_reports_and_emails(authors_by_project_dict_tabular, publication_dict, config_dict_tabular, TESTING_DIR)
     del actual_emails["creation_date"]
+    del actual_emails["emails"][2]["attachment"]
     
     dir_contents = os.listdir(TESTING_DIR)
     expected_num_of_project_reports = 13
@@ -208,9 +211,11 @@ def test_create_collaborators_reports_and_emails(publication_dict, config_dict):
     
     expected_emails = load_json(os.path.join("tests", "testing_files", "collaborator_emails.json"))
     del expected_emails["creation_date"]
+    del expected_emails["emails"][2]["attachment"]
     
     actual_emails = create_collaborators_reports_and_emails(publication_dict, config_dict, TESTING_DIR)
     del actual_emails["creation_date"]
+    del actual_emails["emails"][2]["attachment"]
     
     dir_contents = os.listdir(TESTING_DIR)
     expected_num_of_collaborator_reports = 4

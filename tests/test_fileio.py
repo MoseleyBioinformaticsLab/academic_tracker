@@ -40,7 +40,7 @@ def test_json():
 def test_load_json_error():
     path = os.path.join("tests", "testing_files", "load_json_error")
     
-    with pytest.raises(Exception):
+    with pytest.raises(SystemExit):
         load_json(path)
 
 
@@ -64,7 +64,7 @@ def test_load_json_no_path():
 def test_read_text_from_txt_error():
     path = os.path.join("tests", "testing_files", "load_json_error")
     
-    with pytest.raises(Exception):
+    with pytest.raises(SystemExit):
         read_text_from_txt(path)
 
 
@@ -88,7 +88,7 @@ def test_read_text_from_txt_no_path():
 def test_read_text_from_docx_error():
     path = os.path.join("tests", "testing_files", "load_json_error")
     
-    with pytest.raises(Exception):
+    with pytest.raises(SystemExit):
         read_text_from_docx(path)
 
 
@@ -112,7 +112,7 @@ def test_read_text_from_docx_no_path():
 def test_read_csv_error():
     path = os.path.join("tests", "testing_files", "load_json_error")
     
-    with pytest.raises(Exception):
+    with pytest.raises(SystemExit):
         read_csv(path)
 
 

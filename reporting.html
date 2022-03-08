@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reporting &mdash; Academic Tracker 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tokenization" href="tokenization.html" />
+    <link rel="prev" title="JSON Schema" href="jsonschema.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reporting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-config-json-excerpt">Example Config JSON Excerpt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary-report">Summary Report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#author-search">Author Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-search">Reference Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-report">Project Report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keywords">Keywords</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-template-strings">Default Template Strings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Author Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Reference Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collaborator-report">Collaborator Report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Keywords</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-values">Default Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Reporting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/reporting.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="reporting">
+<h1>Reporting<a class="headerlink" href="#reporting" title="Permalink to this headline">¶</a></h1>
+<p>To allow users some flexibility in report creation a unique system for specifying
+how to build reports was created. This system is described here. The key framework
+to keep in mind is that there are 3 different reports and 2 ways to build each one.
+The specifications also slightly differ between each other and between author_search
+and reference_search. The 3 reports are summary_report, project_report, and collaborator_report.
+Each report can be specified using a formatted text string or using a dictionary
+to specify rows and columns.</p>
+<p>To specify a report using a formatted string include the “template” attribute for
+the report. To specify a report using rows and columns include the “columns”
+attribute for the report. “columns” should be a dictionary where the keys are
+column names and values are what should be in each row of the column. Typically,
+the values will be keywords.</p>
+<p>If specifying the report with the “columns” attribute there are other attributes
+that can be used in conjuction. “file_format” allows you to specify whether the
+report should be a CSV or Excel file. The 2 allowed values are “csv” and “xlsx”.
+“sort” allows you to specify how to sort the table. It should be a list of column
+names. Similarly, “column_order” allows you to specify the order of the columns
+of the table. The order of the columns should be the same as the order given in
+“columns”, but just in case “column_order” is provided to manually set the order.
+“separator” allows you to specify the separator character for CSV files. It must
+be one character in length and defaults to a comma.</p>
+<p>“filename” allows you to specify the filename of the report regardless of whether
+“columns” or “template” are used to specify the report, but if the “file_format”
+is “xlsx” and the filename extension is not xlsx then “.xlsx” will be added to
+the filename.</p>
+<p>To email a report as an attachment simply include the email related attributes
+in the report section. If the email attributes are missing then no email is sent.</p>
+<div class="section" id="example-config-json-excerpt">
+<h2>Example Config JSON Excerpt<a class="headerlink" href="#example-config-json-excerpt" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&quot;summary_report&quot; : {&quot;template&quot;:&quot;This is a header\n&lt;project_loop&gt;&lt;project_name&gt;:\n&lt;author_loop&gt;&lt;author_first&gt;:\n&lt;pub_loop&gt;&lt;title&gt;&lt;/pub_loop&gt;&lt;/author_loop&gt;&lt;/project_loop&gt;&quot;,</span>
+
+<span class="go">                    &quot;columns&quot;:{&quot;Project&quot;:&quot;&lt;project_name&gt;&quot;, &quot;Author&quot;:&quot;&lt;author_first&gt;; &lt;author_last&gt;&quot;, &quot;Publication&quot;:&quot;&lt;title&gt;&quot;},</span>
+<span class="go">                    &quot;column_order&quot;:[&quot;Project&quot;, &quot;Author&quot;, &quot;Publication&quot;],</span>
+<span class="go">                    &quot;sort&quot;:[&quot;Project&quot;, &quot;Author&quot;],</span>
+<span class="go">                    &quot;file_format&quot;:&quot;csv&quot;,</span>
+<span class="go">                    &quot;separator&quot;:&quot;\t&quot;,</span>
+
+<span class="go">                    &quot;filename&quot;:&quot;summary_report.txt&quot;,</span>
+
+<span class="go">                    &quot;email_body&quot;:&quot;Please see attached summary_report.&quot;,</span>
+<span class="go">                    &quot;email_subject&quot;:&quot;Summary of Publications&quot;,</span>
+<span class="go">                    &quot;to_email&quot;:[&quot;person1@email.edu&quot;],</span>
+<span class="go">                    &quot;from_email&quot;:&quot;your_email@email.edu&quot;,</span>
+<span class="go">                    &quot;cc_email&quot;:[&quot;person2@email.edu&quot;]}</span>
+
+<span class="go">Note that &quot;template&quot; takes precedent over &quot;columns&quot; so if both are specified &quot;template&quot; is used. This example is just trying to give a full example.</span>
+</pre></div>
+</div>
+<div class="section" id="summary-report">
+<h3>Summary Report<a class="headerlink" href="#summary-report" title="Permalink to this headline">¶</a></h3>
+<p>Using the summary_report section of the configuration JSON a custom summary report
+can be created. Academic Tracker will read the template or columns attribute of
+this section and certain keywords (described below) will be replaced with information
+collected during the run. The keywords and inherent nature of how the report is
+built differs between author_search and reference_search.</p>
+<p>If the summary_report section is missing then no summary report will be made.
+If the template and columns attributes are not in the summary_report section then
+a default template will be used (described below).</p>
+<p>Summary reports are saved in the tracker directory under summary_report.txt by default.</p>
+</div>
+</div>
+<div class="section" id="author-search">
+<h2>Author Search<a class="headerlink" href="#author-search" title="Permalink to this headline">¶</a></h2>
+<p>The report for the author_search is built by looping over each project, each
+author associated with the project, each publication associated with the author,
+and each author on the publication. The template for author_search has 4 sections,
+1 for each loop (project_loop, author_loop, pub_loop, and pub_author_loop). Tags
+denote the beginning and end of each loop.</p>
+<p>The section determines when keywords in the template are replaced. Keywords inside
+the pub_author_loop section are replaced for each author on the publication.
+Keywords inside the pub_loop section are replaced for each publication associated
+with the author. Keywords inside the author_loop are replaced for each author
+associated with the project. Keywords inside the project loop section are replaced
+for each project. The sections are expected to be nested inside of each other,
+so the pub_author_loop tags should be inside the pub_loop tags, the pub_loop tags
+should be inside the author_loop tags, and the author_loop tags should be inside
+the project_loop tags. If they are not then the report will most likely not look
+as expected.</p>
+<p>If specifying a tabular report using the “columns” attribute the loops are determined
+by what keywords are present. If there are keywords from the pub_author_loop in
+“columns” then a new row will be created for each publication author, but if there
+are only keywords from the author_loop then a new row will be created for each
+author.</p>
+</div>
+<div class="section" id="reference-search">
+<h2>Reference Search<a class="headerlink" href="#reference-search" title="Permalink to this headline">¶</a></h2>
+<p>The report for the reference_search is built by looping over each publication matched
+in the reference, and each author on the publication. The template has 2 sections,
+1 for each loop (pub_loop and pub_author_loop). Tags denote the beginning and end
+of each loop. The section determines when keywords in the template are replaced.
+Keywords inside the pub_author_loop section are replaced for each author on the
+publication. Keywords inside the pub_loop section are replaced for each publication.
+The sections are expected to be nested inside of each other, so the pub_author_loop
+tags should be inside the pub_loop tags. If they are not then the report will
+most likely not look as expected.</p>
+<div class="section" id="project-report">
+<h3>Project Report<a class="headerlink" href="#project-report" title="Permalink to this headline">¶</a></h3>
+<p>Project reports are only created for author_search. There is no conception of them
+in reference_search. To create project reports for a project include the project_report
+attribute for the project in the config JSON. The project report works similar
+to the summary report but is isolated to one project so lacks the project loop.</p>
+<p>If the project_report attribute is missing then no project report will be made.
+If the template and columns attributes are not in the project_report section then
+a default template will be used (described below). If from_email is absent then
+1 report that loops over each author and publication in the project will be
+generated and no emails sent. If from_email is provided and to_email is provided
+then the report is emailed. If to_email is not provided then a report is generated
+for each author individually and emailed to each author.</p>
+<p>Project reports are saved in the tracker directory under
+projectname_project_report.txt or projectname_authorname_project_report.txt by
+default.</p>
+</div>
+<div class="section" id="keywords">
+<h3>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;project_loop&gt; &lt;/project_loop&gt;         - Denotes the beginning and end of the project_loop section.</span>
+<span class="go">&lt;author_loop&gt; &lt;/author_loop&gt;           - Denotes the beginning and end of the author_loop section.</span>
+<span class="go">&lt;pub_loop&gt; &lt;/pub_loop&gt;                 - Denotes the beginning and end of the pub_loop section.</span>
+<span class="go">&lt;pub_author_loop&gt; &lt;/pub_author_loop&gt;   - Deontes the beginning and end of the pub_author_loop section.</span>
+
+<span class="go">Project Keywords - Pulled from the project_descriptions section of the configuration JSON file.</span>
+<span class="go">&lt;project_name&gt;</span>
+
+<span class="go">Publication Keywords - Pulled from the data that will be in the publication.json file output. Any missing data will be either blank or None in the report.</span>
+<span class="go">&lt;abstract&gt;</span>
+<span class="go">&lt;conclusions&gt;</span>
+<span class="go">&lt;copyrights&gt;</span>
+<span class="go">&lt;DOI&gt;</span>
+<span class="go">&lt;journal&gt;</span>
+<span class="go">&lt;keywords&gt;</span>
+<span class="go">&lt;methods&gt;</span>
+<span class="go">&lt;PMID&gt;</span>
+<span class="go">&lt;results&gt;</span>
+<span class="go">&lt;title&gt;</span>
+<span class="go">&lt;PMCID&gt;</span>
+<span class="go">&lt;publication_year&gt;</span>
+<span class="go">&lt;publication_month&gt;</span>
+<span class="go">&lt;publication_day&gt;</span>
+<span class="go">&lt;first_author&gt;</span>
+<span class="go">&lt;last_author&gt;</span>
+<span class="go">&lt;authors&gt;              Will be replaced with a comma separated list of author names of all authors.</span>
+<span class="go">&lt;grants&gt;               Will be replaced with a comma separated list of grants associated with the publication.</span>
+
+<span class="go">Pub Author Keywords - Pulled from the authors section of each publication in the publications.json file.</span>
+<span class="go">&lt;pub_author_first&gt;</span>
+<span class="go">&lt;pub_author_last&gt;</span>
+<span class="go">&lt;pub_author_initials&gt;</span>
+<span class="go">&lt;pub_author_affiliations&gt;</span>
+
+<span class="go">Author Keywords - Pulled from the Authors section of the configuration JSON file.</span>
+<span class="go">&lt;author_first&gt;</span>
+<span class="go">&lt;author_last&gt;</span>
+<span class="go">&lt;author_name_search&gt;</span>
+<span class="go">&lt;author_email&gt;</span>
+
+<span class="go">Reference Search Specific Keywords</span>
+<span class="go">&lt;ref_line&gt;                The line from the reference file used to find the publication.</span>
+<span class="go">&lt;tok_title&gt;               The title parsed (tokenized) from the reference line.</span>
+<span class="go">&lt;tok_DOI&gt;                 The DOI parsed (tokenized) from the reference line.</span>
+<span class="go">&lt;tok_PMID&gt;                The PMID parsed (tokenized) from the reference line.</span>
+<span class="go">&lt;tok_authors&gt;             The authors parsed (tokenized) from the reference line. Will be a comma separated list.</span>
+<span class="go">&lt;is_in_comparison_file&gt;   If the publication is in the comparison file True otherwise False.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Summary Report Author Search Example:</span>
+<span class="go">&lt;project_loop&gt;&lt;project_name&gt;</span>
+<span class="go">&lt;author_loop&gt;        &lt;author_first&gt; &lt;author_last&gt;:</span>
+<span class="go">&lt;pub_loop&gt;                &lt;title&gt; &lt;authors&gt; &lt;grants&gt;</span>
+<span class="go">&lt;/pub_loop&gt;&lt;/author_loop&gt;&lt;/project_loop&gt;</span>
+
+<span class="go">Output:</span>
+<span class="go">Core A Administrative Core</span>
+<span class="go">        Kelly Pennell:</span>
+<span class="go">                Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396</span>
+<span class="go">                Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry Kelly Pennell, Andrew Morris None Found</span>
+<span class="go">Core B BEAC</span>
+<span class="go">        Jianzhong Chen:</span>
+<span class="go">                Rubusoside-assisted solubilization of poorly soluble C6-Ceramide for a pilot pharmacokinetic study Jianzhong Chen None Found</span>
+<span class="go">                Tris(1,3&amp;#x2010;Dichloro&amp;#x2010;2&amp;#x2010;Propyl)Phosphate Is an Endocrine Disrupting Compound Causing Sex&amp;#x2010;Specific Changes in Body Composition and Insulin Sensitivity Cetewayo Rashid, Sara Tenlep, Jianzhong Chen, Andrew Morris None Found</span>
+<span class="go">                Pioglitazone does not synergize with mirabegron to increase beige fat or further improve glucose metabolism Jianzhong Chen, Andrew Morris None Found</span>
+<span class="go">                The &amp;beta;3-adrenergic receptor agonist mirabegron improves glucose homeostasis in obese humans Jianzhong Chen, Andrew Morris None Found</span>
+
+
+<span class="go">Summary Report Reference Search Example:</span>
+<span class="go">&lt;pub_loop&gt;Reference Line: &lt;ref_line&gt;</span>
+<span class="go">Tokenized Reference:</span>
+<span class="go">        Authors: &lt;tok_authors&gt;</span>
+<span class="go">        Title: &lt;tok_title&gt;</span>
+<span class="go">        PMID: &lt;tok_PMID&gt;</span>
+<span class="go">        DOI: &lt;tok_DOI&gt;</span>
+<span class="go">Queried Information:</span>
+<span class="go">        DOI: &lt;DOI&gt;</span>
+<span class="go">        PMID: &lt;PMID&gt;</span>
+<span class="go">        PMCID: &lt;PMCID&gt;</span>
+<span class="go">        Grants: &lt;grants&gt;</span>
+
+<span class="go">&lt;/pub_loop&gt;</span>
+
+<span class="go">Output:</span>
+<span class="go">Reference Line: Baran M, Huang Y, Moseley H, Montelione G.  Automated Analysis of Protein NMR Assignments and Structures. ChemInform. 2004 November; 35(45):-. doi: 10.1002/chin.200445293.</span>
+<span class="go">Tokenized Reference:</span>
+<span class="go">   Authors: Baran M, Huang Y, Moseley H, Montelione G.</span>
+<span class="go">   Title: Automated Analysis of Protein NMR Assignments and Structures.</span>
+<span class="go">   PMID:</span>
+<span class="go">   DOI: 10.1002/chin.200445293</span>
+<span class="go">Queried Information:</span>
+<span class="go">   DOI: 10.1002/chin.200445293</span>
+<span class="go">   PMID: None</span>
+<span class="go">   PMCID: None</span>
+<span class="go">   Grants: None</span>
+
+<span class="go">Reference Line: Lane AN, Arumugam S, Lorkiewicz PK, Higashi RM, Laulhé S, Nantz MH, Moseley HN, Fan TW.  Chemoselective detection and discrimination of carbonyl-containing compounds in metabolite mixtures by 1H-detected 15N nuclear magnetic resonance. Magn Reson Chem.   2015 May;53(5):337-43. doi: 10.1002/mrc.4199. Epub 2015 Jan 23. PubMed PMID: 25616249; PubMed Central PMCID: PMC4409496.</span>
+<span class="go">Tokenized Reference:</span>
+<span class="go">   Authors: Lane AN, Arumugam S, Lorkiewicz PK, Higashi RM, Laulhé S, Nantz MH, Moseley HN, Fan TW.</span>
+<span class="go">   Title: Chemoselective detection and discrimination of carbonyl-containing compounds in metabolite mixtures by 1H-detected 15N nuclear magnetic resonance.</span>
+<span class="go">   PMID: 25616249</span>
+<span class="go">   DOI: 10.1002/mrc.4199</span>
+<span class="go">Queried Information:</span>
+<span class="go">   DOI: 10.1002/mrc.4199</span>
+<span class="go">   PMID: 25616249</span>
+<span class="go">   PMCID: PMC4409496</span>
+<span class="go">   Grants: R01ES022191-01, R01 ES022191, 1 U24 DK097215-01A1, P01CA163223-01A1, P01 CA163223, P30 CA177558, U24 DK097215</span>
+
+
+<span class="go">Summary Report Tabular Example:</span>
+<span class="go">{&quot;columns&quot;: {&quot;Project&quot;:&quot;&lt;project_name&gt;&quot;&quot;, &quot;Author&quot;:&quot;&lt;author_first&gt;&quot;, &quot;Publication&quot;:&quot;&lt;title&gt;&quot;},</span>
+<span class="go"> &quot;sort&quot;:[&quot;Project&quot;, &quot;Author&quot;]}</span>
+
+<span class="go">Output:</span>
+<span class="go">Project       Author           Publication</span>
+<span class="go">Project 1     Jerika Durham    Differential Fuel Requirements of Human NK Cells and Human CD8 T Cells: Glutamine Regulates Glucose Uptake in Strongly Activated CD8 T Cells</span>
+<span class="go">Project 2     Pan Deng         Nutritional modulation of the toxicity of environmental pollutants: Implications in atherosclerosis</span>
+<span class="go">Project 2     Pan Deng         SSIF: Subsumption-based sub-term inference framework to audit gene ontology</span>
+<span class="go">Project 2     Pan Deng         MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations</span>
+
+
+<span class="go">Project Report Individual Report Example:</span>
+<span class="go">Hey &lt;author_first&gt;,\n\nThese are the publications I was able to find on PubMed. Are any missing?\n\n&lt;author_loop&gt;&lt;pub_loop&gt;\t&lt;title&gt; &lt;authors&gt; &lt;grants&gt;\n&lt;/pub_loop&gt;&lt;/author_loop&gt;\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu&quot;</span>
+
+<span class="go">Output:</span>
+<span class="go">Hey Angela,</span>
+
+<span class="go">These are the publications I was able to find on PubMed. Are any missing?</span>
+
+<span class="go">        Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment Angela M. Gutierrez, E. Molly Frazar, Victoria Klaus, Pranto Paul, J. Z. Hilt None Found</span>
+<span class="go">        Synthesis of magnetic nanocomposite microparticles for binding of chlorinated organics in contaminated water sources Angela M. Gutierrez, Rohit Bhandari, Jiaying Weng, Arnold Stromberg, Thomas D. Dziubla, J. Zach Hilt P42ES007380</span>
+
+
+<span class="go">Project Report Example:</span>
+<span class="go">&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:\n&lt;pub_loop&gt;\t&lt;title&gt; &lt;authors&gt; &lt;grants&gt;\n&lt;/pub_loop&gt;&lt;/author_loop&gt;\n\nKind regards,\n\n</span>
+
+<span class="go">Output:</span>
+
+<span class="go">Jerika Durham:</span>
+<span class="go">        Differential Fuel Requirements of Human NK Cells and Human CD8 T Cells: Glutamine Regulates Glucose Uptake in Strongly Activated CD8 T Cells Jerika Durham None Found</span>
+<span class="go">Pan Deng:</span>
+<span class="go">        Nutritional modulation of the toxicity of environmental pollutants: Implications in atherosclerosis Pan Deng None Found</span>
+<span class="go">        SSIF: Subsumption-based sub-term inference framework to audit gene ontology Hunter Moseley None Found</span>
+<span class="go">        MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations Hunter Moseley None Found</span>
+
+
+<span class="go">Project Report Tabular Example:</span>
+<span class="go">{&quot;columns&quot;: {&quot;Author&quot;:&quot;&lt;author_first&gt;&quot;, &quot;Publication&quot;:&quot;&lt;title&gt;&quot;},</span>
+<span class="go"> &quot;sort&quot;:[&quot;Author&quot;]}</span>
+
+<span class="go">Output:</span>
+<span class="go">Author           Publication</span>
+<span class="go">Jerika Durham    Differential Fuel Requirements of Human NK Cells and Human CD8 T Cells: Glutamine Regulates Glucose Uptake in Strongly Activated CD8 T Cells</span>
+<span class="go">Pan Deng         Nutritional modulation of the toxicity of environmental pollutants: Implications in atherosclerosis</span>
+<span class="go">Pan Deng         SSIF: Subsumption-based sub-term inference framework to audit gene ontology</span>
+<span class="go">Pan Deng         MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-template-strings">
+<h3>Default Template Strings<a class="headerlink" href="#default-template-strings" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Author Search<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;project_loop&gt;&lt;project_name&gt;\n&lt;author_loop&gt;\t&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\t\tTitle: &lt;title&gt; \n\t\tAuthors: &lt;authors&gt; \n\t\tJournal: &lt;journal&gt; \n\t\tDOI: &lt;DOI&gt; \n\t\tPMID: &lt;PMID&gt; \n\t\tPMCID: &lt;PMCID&gt; \n\t\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;&lt;/project_loop&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\tTitle: &lt;title&gt; \n\tAuthors: &lt;authors&gt; \n\tJournal: &lt;journal&gt; \n\tDOI: &lt;DOI&gt; \n\tPMID: &lt;PMID&gt; \n\tPMCID: &lt;PMCID&gt; \n\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\tTitle: &lt;title&gt; \n\tAuthors: &lt;authors&gt; \n\tJournal: &lt;journal&gt; \n\tDOI: &lt;DOI&gt; \n\tPMID: &lt;PMID&gt; \n\tPMCID: &lt;PMCID&gt; \n\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Reference Search<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;pub_loop&gt;Reference Line:\n\t&lt;ref_line&gt;\nTokenized Reference:\n\tAuthors: &lt;tok_authors&gt;\n\tTitle: &lt;tok_title&gt;\n\tPMID: &lt;tok_PMID&gt;\n\tDOI: &lt;tok_DOI&gt;\nQueried Information:\n\tDOI: &lt;DOI&gt;\n\tPMID: &lt;PMID&gt;\n\tPMCID: &lt;PMCID&gt;\n\tGrants: &lt;grants&gt;\n\n&lt;/pub_loop&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="collaborator-report">
+<h3>Collaborator Report<a class="headerlink" href="#collaborator-report" title="Permalink to this headline">¶</a></h3>
+<p>Creating a collaborator report for an author is actually a unique use case from
+a typical author_search run, but since all of the steps are the same it is included
+as a report in author_search rather than being its own command. The idea is to
+be able to go through an author’s publications and build a report that contains
+all of the other authors they have worked with. This type of report is required
+by some funding providers.</p>
+<p>Collaborator reports are only created for author_search. There is no conception
+of them in reference_search. To create a collaborator report for an author include
+the collaborator_report attribute for the author in the config JSON. Although a
+collaborator report is done on a per author basis it can be included in a project
+of the config JSON as a convenience. If it is included in a project then a collaborator
+report will be created for each author associated with the project.</p>
+<p>The report is built by looping over each publication for the author and each
+author on the publication. Unlike the project report though only the pub_author_loop
+is available for the collaborator report. Tags denote the beginning and end of
+the loop.</p>
+<p>The collaborator report is a little unique compared to the sumary and project
+reports because it defaults to a tabular file using the “columns” attribute rather
+than using the “template” attribute.</p>
+<p>If the collaborator_report attribute is missing then no collaborator report will
+be made. If the template and columns attributes are not in the collaborator_report
+section then a default columns and sort will be used (described below). If from_email
+is absent then no emails will be sent. If from_email is provided and to_email is
+provided then the report is sent to the to_email address, otherwise it is sent
+to the author’s email.</p>
+<p>Collaborator reports are saved in the tracker directory under
+author_id_collaborators.csv by default.</p>
+</div>
+<div class="section" id="id3">
+<h3>Keywords<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;pub_author_first&gt;         -  Collaborator&#39;s first name.</span>
+<span class="go">&lt;pub_author_last&gt;          -  Collaborator&#39;s last name.</span>
+<span class="go">&lt;pub_author_initials&gt;      -  Collaborator&#39;s initials.</span>
+<span class="go">&lt;pub_author_affiliations&gt;  -  Collaborator&#39;s affiliations.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Collaborator Report Attributes:</span>
+<span class="go">columns = [&quot;Name&quot;, &quot;Affiliations&quot;]</span>
+<span class="go">values = [&quot;&lt;last_name&gt;, &lt;first_name&gt;&quot;, &quot;&lt;affiliations&gt;&quot;]</span>
+<span class="go">sort = [&quot;Name&quot;]</span>
+
+<span class="go">Output CSV:</span>
+<span class="go">Name                   Affiliations</span>
+<span class="go">Brewer, Dawn           University of Kentucky Department of Dietetics and Human Nutrition.</span>
+<span class="go">Christian, W Jay   University of Kentucky College of Public Health.</span>
+<span class="go">Evans, Steven          Kentucky Water Resources Research Institute.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-values">
+<h3>Default Values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">columns : {&quot;Name&quot;:&quot;&lt;last_name&gt;, &lt;first_name&gt;&quot;, &quot;Affiliations&quot;:&quot;&lt;affiliations&gt;&quot;}</span>
+<span class="go">column_order : [&quot;Name&quot;, &quot;Affiliations&quot;]</span>
+<span class="go">sort : [&quot;Name&quot;]</span>
+<span class="go">separator : &quot;,&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="jsonschema.html" class="btn btn-neutral float-left" title="JSON Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tokenization.html" class="btn btn-neutral float-right" title="Tokenization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

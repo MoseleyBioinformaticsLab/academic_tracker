@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Guide &mdash; Academic Tracker 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Welcome to Academic Tracker’s Documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-on-linux-mac-os-x">Install on Linux, Mac OS X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-on-linux-mac-os-x">Upgrade on Linux, Mac OS X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-inside-virtualenv">Install inside virtualenv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/guide.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Academic Tracker was created to automate the process of making sure that NIH
+funded publications get listed on PubMed and that the grant funding source for
+them is cited.</p>
+<p>Academic Tracker searches PubMed, ORCID, Crossref, and Google Scholar to look
+for publications. The 2 main use cases allows users to search by author names or
+a publication citation/reference. The output is customizable by the user, but in
+general will be a JSON file of publication information, a JSON file of email
+information if emails were sent, and text files of summary information.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The Academic Tracker package runs under Python 3.7+. Use <a class="reference external" href="https://pip.pypa.io/">pip</a> to install.
+Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io/">pip</a> is included by default.</p>
+<div class="section" id="install-on-linux-mac-os-x">
+<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker
+</pre></div>
+</div>
+</div>
+<div class="section" id="upgrade-on-linux-mac-os-x">
+<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker --upgrade
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-inside-virtualenv">
+<h3>Install inside virtualenv<a class="headerlink" href="#install-inside-virtualenv" title="Permalink to this headline">¶</a></h3>
+<p>For an isolated install, you can run the same inside a <a class="reference external" href="https://virtualenv.pypa.io/">virtualenv</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv -p /usr/bin/python3 venv            <span class="c1"># create virtual environment, use python3 interpreter</span>
+
+$ <span class="nb">source</span> venv/bin/activate                       <span class="c1"># activate virtual environment</span>
+
+$ python3 -m pip install academic_tracker        <span class="c1"># install academic_tracker as usual</span>
+
+$ deactivate                                     <span class="c1"># if you are done working in the virtual environment</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="get-the-source-code">
+<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Code is available on GitHub: <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/academic_tracker">https://github.com/MoseleyBioinformaticsLab/academic_tracker</a></p>
+<p>You can either clone the public repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ https://github.com/MoseleyBioinformaticsLab/academic_tracker.git
+</pre></div>
+</div>
+<p>Or, download the tarball and/or zipball:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/tarball/master
+
+$ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/zipball/master
+</pre></div>
+</div>
+<p>Once you have a copy of the source, you can embed it in your own Python package,
+or install it into your system site-packages easily:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 setup.py install
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>The Academic Tracker package depends on several Python libraries. The <code class="docutils literal notranslate"><span class="pre">pip</span></code> command
+will install all dependencies automatically, but if you wish to install them manually,
+run the following commands:</p>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> for creating the command-line interface.</dt><dd><ul>
+<li><p>To install <a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install docopt  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install docopt    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/pymed/">pymed</a> for querying PubMed.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/pymed/">pymed</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install pymed  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install pymed    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> for validating JSON.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install jsonschema  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install jsonschema    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/habanero/">habanero</a> for querying Crossref.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/habanero/">habanero</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install habanero  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install habanero    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/orcid/">orcid</a> for quering ORCID.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/orcid/">orcid</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install orcid  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install orcid    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/scholarly/">scholarly</a> for querying Google Scholar.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/scholarly/">scholarly</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install scholarly  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install scholarly    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a> for parsing webpages.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install beautifulsoup4  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install beautifulsoup4    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/fuzzywuzzy/">fuzzywuzzy</a> for fuzzy matching publication titles.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/fuzzywuzzy/">fuzzywuzzy</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install fuzzywuzzy  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install fuzzywuzzy    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/python-docx/">python-docx</a> for reading docx files.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/python-docx/">python-docx</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install python-docx  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install python-docx    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> for easy data manipulation.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install pandas  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install pandas    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> for saving Excel files in pandas.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install openpyxl  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install openpyxl    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/requests/">requests</a> for making internet requests.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/requests/">requests</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install requests  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install requests    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://pypi.org/project/urllib3/">urllib3</a> for making internet requests.</dt><dd><ul>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/urllib3/">urllib3</a> Python library run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install urllib3  <span class="c1"># On Linux, Mac OS X</span>
+py -3 -m pip install urllib3    <span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<p>Academic Tracker expects at least a configuration JSON file, and possibly more
+depending on the usage. The 2 main use cases are author_search and reference_search,
+with the other usages mostly included to support those. author_search searches
+by the authors given in the configuration JSON file while reference_search searches
+by the publication references given in the reference file or URL. Details about
+the JSON files are in the <a class="reference internal" href="jsonschema.html"><span class="doc">JSON Schema</span></a> section, and more information about
+the use cases with examples are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> section.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Usage:</span>
+<span class="go">    academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]</span>
+<span class="go">    academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]</span>
+<span class="go">    academic_tracker find_ORCID &lt;config_json_file&gt; [--verbose --silent]</span>
+<span class="go">    academic_tracker find_Google_Scholar &lt;config_json_file&gt; [--verbose --silent]</span>
+<span class="go">    academic_tracker add_authors &lt;config_json_file&gt; &lt;authors_file&gt; [--verbose --silent]</span>
+<span class="go">    academic_tracker tokenize_reference &lt;references_file_or_URL&gt; [--MEDLINE_reference --verbose --silent]</span>
+<span class="go">    academic_tracker gen_reports_and_emails_auth &lt;config_json_file&gt; &lt;publication_json_file&gt; [--test --verbose --silent]</span>
+<span class="go">    academic_tracker gen_reports_and_emails_ref &lt;config_json_file&gt; &lt;references_file_or_URL&gt; &lt;publication_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --MEDLINE_reference --verbose --silent]</span>
+
+<span class="go">Options:</span>
+<span class="go">    -h --help                         Show this screen.</span>
+<span class="go">    --version                         Show version.</span>
+<span class="go">    --verbose                         Print hidden error messages.</span>
+<span class="go">    --silent                          Do not print anything to the screen.</span>
+<span class="go">    --test                            Generate pubs and email texts, but do not send emails.</span>
+<span class="go">    --prev_pub=&lt;file-path&gt;            Filepath to json or csv with publication ids to ignore. Enter &quot;ignore&quot; for the &lt;file_path&gt; to not look for previous publications.json files in tracker directories.</span>
+
+<span class="go">Reference Type Options:</span>
+<span class="go">    --PMID_reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.</span>
+<span class="go">    --MEDLINE_reference               Indicates that the reference_file is a MEDLINE file.</span>
+
+<span class="go">Search Options:</span>
+<span class="go">    --no_GoogleScholar                Don&#39;t search Google Scholar.</span>
+<span class="go">    --no_ORCID                        Don&#39;t search ORCID.</span>
+<span class="go">    --no_Crossref                     Don&#39;t search Crossref.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Academic Tracker’s Documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

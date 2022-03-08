@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; Academic Tracker 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="JSON Schema" href="jsonschema.html" />
+    <link rel="prev" title="User Guide" href="guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-json-file">Configuration JSON File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-for-publications-by-author">Search For Publications By Author</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#command-line-signature">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#search-for-publications-by-reference">Search For Publications By Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#find-orcid-ids-for-authors">Find ORCID IDs for Authors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#find-scholar-ids-for-authors">Find Scholar IDs for Authors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#add-or-update-authors-in-configuration-json">Add Or Update Authors In Configuration JSON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tokenize-a-reference">Tokenize A Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-reports-and-emails-like-author-search">Generate Reports And Emails Like Author Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-reports-and-emails-like-reference-search">Generate Reports And Emails Like Reference Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Command Line Signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>Academic Tracker is intended to be used solely as a command line program. This
+tutorial describes each command and its options.</p>
+<div class="section" id="configuration-json-file">
+<h2>Configuration JSON File<a class="headerlink" href="#configuration-json-file" title="Permalink to this headline">¶</a></h2>
+<p>Details about the configuration JSON file can be found in the <a class="reference internal" href="jsonschema.html"><span class="doc">JSON Schema</span></a>
+section, but in general the sections of the configuration JSON file that aren’t
+needed for a particular command are not required. For instance, the ORCID_search
+section is not required for reference_search since it does not search ORCID. The
+same is true if the –no_ORCID option is used.</p>
+</div>
+<div class="section" id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<p>The specific files output by Academic Tracker vary by the command used and some
+options, but each command always creates a new timestamped directory in the working
+directory. If the –test option is not used then the directory will be named
+tracker-YYMMDDHHMM. If the –test option is used then the directory will be named
+tracker-test-YYMMDDHHMM.</p>
+</div>
+<div class="section" id="search-for-publications-by-author">
+<h2>Search For Publications By Author<a class="headerlink" href="#search-for-publications-by-author" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="command-line-signature">
+<h3>Command Line Signature<a class="headerlink" href="#command-line-signature" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>For each author in the Authors section of the configuration JSON file search
+PubMed, ORCID, Crossref, and Google Scholar for publications they are an author
+on. The cutoff_year attribute for either the projects or the authors can be used
+to filter the publications to only those in that year or after.</p>
+<p>Similarly, a previous publications JSON file can be used to filter out publications
+that are already in the file. This file can be specified manually with the –prev_pub
+option. If not specified manually author_search will automatically look for a
+publications.json file in the most recent tracker directories and if it finds
+one it will be used as the previous publications. To stop this automatic lookup
+enter “ignore” for the –prev_pub option. The output publications.json file will
+be a combination of the previous publications and any new publications found. To
+be clear the new publications.json file will be the previous publications.json
+file with any new entries added in.</p>
+<p>The description of everything author_search does with the previous publications
+may seem arbitrary and confusing. The idea is that users will make an initial
+list of authors to keep track of and then run author_search every so often to
+look for new publications for them. To make this as easy as possible it is
+neceessary to both have author_search look for previous publications automatically
+and for the output to be cumulative so that the same publications are not reported
+multiple times.</p>
+<p>Although the configuration JSON file contains projects, they are mostly there for
+organizational convenience and reporting. author_search queries every author in
+the Authors section of the configuration JSON, but the information in the projects
+section can affect the search. One of the first things author_search does is that
+it goes through each author and reconciles the information given for them with
+that given for any projects they are associated with. Specifically, the minimum
+cutoff_year is found, and affiliations and grants are concatenated. These reconciled
+values are then what is used when querying.</p>
+</div>
+<div class="section" id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p>–test:</p>
+<p>The test option changes the name of the output directory from tracker-YYMMDDHHMM
+to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
+<p>–prev_pub:</p>
+<p>Specifies a publications.json file to use as a list of publications to ignore
+when searching for new publications. Set to “ignore” to prevent author_search
+from automatically looking for a publications.json file in tracker directories.</p>
+<p>–no_GoogleScholar:</p>
+<p>If used author_search will not search Google Scholar for publications.</p>
+<p>–no_ORCID:</p>
+<p>If used author_search will not search ORCID for publications.</p>
+<p>–no_Crossref:</p>
+<p>If used author_search will not search Crossref for publications.</p>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id1">
+<h3>Outputs<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Outputs depend on the configuration JSON file and options.</p>
+<p>A publications.json file will always be output.</p>
+<p>An emails.json file is only created if the from_email attribute is given in either
+the summary_report or project_report sections of the configuration JSON file.</p>
+<p>A summary_report.txt file is only created if the summary_report attribute is in
+the configuration JSON file.</p>
+<p>Similarly, project_report.txt files are created for projects that have the
+project_report attribute. Project reports will either be for the whole project
+or individual authors and the name of the project report file will indicate this.
+If from_email is given in project_report then a report for the whole project is
+created. If the authors attribute is given in the project and from_email is not
+then a file for each author in the project is created. If neither authors nor
+from_email is given then a file is created for every author that had new publications.</p>
+<p>Details about reports can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+<p>publications.json
+emails.json
+summary_report.txt
+projectname_project_report.txt
+projectname_authorname_project_report.txt</p>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;project_descriptions&quot;: {</span>
+<span class="go">    &quot;Project 1&quot;: {</span>
+<span class="go">      &quot;affiliations&quot;: [</span>
+<span class="go">        &quot;affiliaton1&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;authors&quot;: [</span>
+<span class="go">        &quot;Author1&quot;,</span>
+<span class="go">        &quot;Author2&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;cutoff_year&quot;: 2020,</span>
+<span class="go">      &quot;grants&quot;: [</span>
+<span class="go">        &quot;grant1&quot;,</span>
+<span class="go">        &quot;grant2&quot;</span>
+<span class="go">      ]</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;summary_report&quot;: {},</span>
+<span class="go">  &quot;ORCID_search&quot;: {</span>
+<span class="go">    &quot;ORCID_key&quot;: &quot;orcid key&quot;,</span>
+<span class="go">    &quot;ORCID_secret&quot;: &quot;orcid secret&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;PubMed_search&quot;: {</span>
+<span class="go">    &quot;PubMed_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Crossref_search&quot;: {</span>
+<span class="go">    &quot;mailto_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author1&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author2&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker author_search config_file.json
+<span class="go">Finding author&#39;s publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching ORCID.</span>
+<span class="go">Searching Google Scholar.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>Create a collaborator report for an author.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;project_descriptions&quot;: {</span>
+<span class="go">    &quot;Project 1&quot;: {</span>
+<span class="go">      &quot;affiliations&quot;: [</span>
+<span class="go">        &quot;affiliaton1&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;authors&quot;: [</span>
+<span class="go">        &quot;Author1&quot;,</span>
+<span class="go">        &quot;Author2&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;cutoff_year&quot;: 2020,</span>
+<span class="go">      &quot;grants&quot;: [</span>
+<span class="go">        &quot;grant1&quot;,</span>
+<span class="go">        &quot;grant2&quot;</span>
+<span class="go">      ]</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;ORCID_search&quot;: {</span>
+<span class="go">    &quot;ORCID_key&quot;: &quot;orcid key&quot;,</span>
+<span class="go">    &quot;ORCID_secret&quot;: &quot;orcid secret&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;PubMed_search&quot;: {</span>
+<span class="go">    &quot;PubMed_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Crossref_search&quot;: {</span>
+<span class="go">    &quot;mailto_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author1&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">      &quot;collaborator_report&quot;: {}</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author2&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker author_search config_file.json
+<span class="go">Finding author&#39;s publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching ORCID.</span>
+<span class="go">Searching Google Scholar.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>Run in test mode so emails aren’t sent.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker author_search config_file.json --test
+<span class="go">Finding author&#39;s publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching ORCID.</span>
+<span class="go">Searching Google Scholar.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-test-2202020140</span>
+</pre></div>
+</div>
+<p>Designating a previous publications filepath instead of letting Academic Tracker find the most recent.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker author_search config_file.json --prev_pub prev_pub_file_path.json
+<span class="go">Finding author&#39;s publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching ORCID.</span>
+<span class="go">Searching Google Scholar.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>Specifying that Academic Tracker shouldn’t use ORCID.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;project_descriptions&quot;: {</span>
+<span class="go">    &quot;Project 1&quot;: {</span>
+<span class="go">      &quot;affiliations&quot;: [</span>
+<span class="go">        &quot;affiliaton1&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;authors&quot;: [</span>
+<span class="go">        &quot;Author1&quot;,</span>
+<span class="go">        &quot;Author2&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;cutoff_year&quot;: 2020,</span>
+<span class="go">      &quot;grants&quot;: [</span>
+<span class="go">        &quot;grant1&quot;,</span>
+<span class="go">        &quot;grant2&quot;</span>
+<span class="go">      ]</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;summary_report&quot;: {},</span>
+<span class="go">  &quot;PubMed_search&quot;: {</span>
+<span class="go">    &quot;PubMed_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Crossref_search&quot;: {</span>
+<span class="go">    &quot;mailto_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker author_search config_file.json --no_ORCID
+<span class="go">Finding author&#39;s publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching Google Scholar.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="search-for-publications-by-reference">
+<h2>Search For Publications By Reference<a class="headerlink" href="#search-for-publications-by-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Command Line Signature<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Description<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Parse and tokenize the reference file or URL and then search PubMed and Crossref
+for the publications found. ORCID is not searched because it is a database of
+authors and does not support searching for publications directly. Google Scholar
+is not searched because it does not like bots, so cannot be easily searched without
+using a 3rd party paid service or proxies.</p>
+<p>The reference_file_or_URL can be several different things. If it is a file then
+it can be a JSON file of already tokenized data, a docx file, or a txt file. If
+not a JSON file then each reference is expected to be on a single line. If it is
+a URL then it can be either a MyNCBI URL or not. If it is a MyNCBI URL then it
+is expected to be the first page of a bibliography and will be tokenized in a
+specific way. All other URLs are simply read as a text file and tokenized like
+one.</p>
+<p>The –PMID_reference and –MEDLINE_reference options change how the reference file
+is interpreted. If the –PMID_reference option is used then it indicates that the
+given reference file is a list of PMIDs (PubMed’s unique IDs). Instead of tokenizing
+this file it is assumed that each line is a PMID so PubMed will be queried for
+each PMID and Crossref will not be queried. The idea for this option was to be
+able to quickly grab information from PubMed.</p>
+<p>The –MEDLINE_reference option indicates that given reference file is a <a class="reference external" href="https://www.nlm.nih.gov/bsd/mms/medlineelements.html">MEDLINE</a>
+formatted file. This will be tokenized in a unique way since the publication
+information is spread out over multiple lines in this format. This format is
+supported because it is a dounload option on MyNCBI bibliography pages.</p>
+<p>Details about tokenization are in the <a class="reference internal" href="tokenization.html"><span class="doc">Tokenization</span></a> section.</p>
+<p>The –prev_pub option is different for reference_search than it is for author_search.
+First, reference_search does not automatically look for a publicaitons.json file
+to use since the same assumptions as described for author_search do not hold here.
+Second, publications in the prev_pub file are not used to ignore publications.
+Publications in the prev_pub file will still be in the newly created publications.json
+file. What this option does do is set the &lt;is_in_comparison_file&gt; keyword to True
+for matching publications in the summary report.</p>
+</div>
+<div class="section" id="id4">
+<h3>Options<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>–test:</p>
+<p>The test option changes the name of the output directory from tracker-YYMMDDHHMM
+to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
+<p>–prev_pub:</p>
+<p>Specifies a publications.json file to use as a list of publications to compare
+with when generating the summary report.</p>
+<p>–PMID_reference:</p>
+<p>Specifies that the reference file is a list of PMIDs and to only return
+information from PubMed.</p>
+<p>–MEDLINE_reference:</p>
+<p>Specifies that the reference file is a <a class="reference external" href="https://www.nlm.nih.gov/bsd/mms/medlineelements.html">MEDLINE</a> formatted file.</p>
+<p>–no_Crossref:</p>
+<p>If used reference_search will not search Crossref for publications.</p>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id5">
+<h3>Outputs<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Outputs depend on the configuration JSON file and options.</p>
+<p>A publications.json file will always be output.</p>
+<p>A tokenized_reference.json file will always be output.</p>
+<p>An emails.json file is only created if the from_email attribute is given in
+the summary_report section of the configuration JSON file.</p>
+<p>A summary_report.txt file is only created if the summary_report attribute is in
+the configuration JSON file.</p>
+<p>If –PMID_reference is used no reports or emails are generated.</p>
+<p>Details about reports can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+<p>publications.json
+tokenized_reference.json
+emails.json
+summary_report.txt</p>
+</div>
+<div class="section" id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;summary_report&quot;: {},</span>
+<span class="go">  &quot;PubMed_search&quot;: {</span>
+<span class="go">    &quot;PubMed_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Crossref_search&quot;: {</span>
+<span class="go">    &quot;mailto_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker reference_search config_file.json reference_file.txt
+<span class="go">Finding publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>Run in test mode so emails aren’t sent.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker reference_search config_file.json reference_file.txt --test
+<span class="go">Finding publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-test-2202020140</span>
+</pre></div>
+</div>
+<p>Designating a previous publications filepath.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker reference_search config_file.json reference_file.txt --prev_pub prev_pub_file_path.json
+<span class="go">Finding publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Searching Crossref.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>Specifying that Academic Tracker shouldn’t use Crossref.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;summary_report&quot;: {},</span>
+<span class="go">  &quot;PubMed_search&quot;: {</span>
+<span class="go">    &quot;PubMed_email&quot;: &quot;email@email.com&quot;</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker reference_search config_file.json reference_file.txt --no_Crossref
+<span class="go">Finding publications. This could take a while.</span>
+<span class="go">Searching PubMed.</span>
+<span class="go">Success. Publications and reports saved in tracker-2202020140</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="find-orcid-ids-for-authors">
+<h2>Find ORCID IDs for Authors<a class="headerlink" href="#find-orcid-ids-for-authors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>Command Line Signature<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker find_ORCID &lt;config_json_file&gt; [--verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Description<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>For each author in the Authors section of the configuration JSON file with a
+missing or blank ORCID attribute search ORCID for a match to get an ID. Matching
+is done using first and last names and the affiliations attribute.</p>
+</div>
+<div class="section" id="id9">
+<h3>Options<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id10">
+<h3>Outputs<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>If any authors are found then a new configuration.json file is created with the
+ORCID information updated in the Authors. If no authors are matched then there
+are no outputs.</p>
+<p>configuration.json</p>
+</div>
+<div class="section" id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;ORCID_search&quot;: {</span>
+<span class="go">    &quot;ORCID_key&quot;: &quot;orcid key&quot;,</span>
+<span class="go">    &quot;ORCID_secret&quot;: &quot;orcid secret&quot;</span>
+<span class="go">  },</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker find_ORCID config_file.json
+<span class="go">Searching ORCID for author&#39;s ORCID ids.</span>
+<span class="go">Success! configuration.json saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>No authors found.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker find_ORCID config_file.json
+<span class="go">Searching ORCID for author&#39;s ORCID ids.</span>
+<span class="go">No authors were matched from the ORCID results. No new file saved.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="find-scholar-ids-for-authors">
+<h2>Find Scholar IDs for Authors<a class="headerlink" href="#find-scholar-ids-for-authors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h3>Command Line Signature<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker find_Google_Scholar &lt;config_json_file&gt; [--verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>Description<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>For each author in the Authors section of the configuration JSON file with a
+missing or blank scholar_id attribute search Google Scholar for a match to get
+an ID. Matching is done using first and last names and the affiliations attribute.</p>
+</div>
+<div class="section" id="id14">
+<h3>Options<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id15">
+<h3>Outputs<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>If any authors are found then a new configuration.json file is created with the
+scholar_id information updated in the Authors. If no authors are matched then there
+are no outputs.</p>
+<p>configuration.json</p>
+</div>
+<div class="section" id="id16">
+<h3>Examples<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author1&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author2&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker find_Google_Scholar config_file.json
+<span class="go">Searching Google Scholar for author&#39;s scholar ids.</span>
+<span class="go">Success! configuration.json saved in tracker-2202020140</span>
+</pre></div>
+</div>
+<p>No authors found.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker find_Google_Scholar config_file.json
+<span class="go">Searching Google Scholar for author&#39;s scholar ids.</span>
+<span class="go">No authors were matched from the Google Scholar results. No new file saved.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="add-or-update-authors-in-configuration-json">
+<h2>Add Or Update Authors In Configuration JSON<a class="headerlink" href="#add-or-update-authors-in-configuration-json" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>Command Line Signature<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker add_authors &lt;config_json_file&gt; &lt;authors_file&gt; [--verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Description<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>Read in the authors_file and update the Authors section of the configuration JSON
+file with the information in it.</p>
+<p>The authors_file must be a csv file. The columns are the attributes for each author
+and each row is one author. Including columns for each required author attribute
+there must also be a column named “author_id” which contains the key for the author.
+In all the required columns are “author_id”, “first_name”, “last_name”, “pubmed_name_search”,
+and “email”.</p>
+<p>Example csv:
+.. code-block:: console</p>
+<blockquote>
+<div><p>author_id      first_name   last_name    pubmed_name_search    email             ORCID
+Name McName    Name         McName       Name McName           <a class="reference external" href="mailto:email&#37;&#52;&#48;email&#46;com">email<span>&#64;</span>email<span>&#46;</span>com</a>   0000-00001-1234-1234</p>
+</div></blockquote>
+</div>
+<div class="section" id="id19">
+<h3>Options<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id20">
+<h3>Outputs<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>configuration.json</p>
+</div>
+<div class="section" id="id21">
+<h3>Examples<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author1&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author2&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker add_authors config_file.json
+<span class="go">Success! configuration.json saved in tracker-2202020140</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tokenize-a-reference">
+<h2>Tokenize A Reference<a class="headerlink" href="#tokenize-a-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h3>Command Line Signature<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker tokenize_reference &lt;references_file_or_URL&gt; [--MEDLINE_reference --verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h3>Description<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>Tokenize the input reference and output a tokenization report and JSON file.</p>
+</div>
+<div class="section" id="id24">
+<h3>Options<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>–MEDLINE_reference:</p>
+<p>Specifies that the reference file is a <a class="reference external" href="https://www.nlm.nih.gov/bsd/mms/medlineelements.html">MEDLINE</a> formatted file.</p>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id25">
+<h3>Outputs<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>The information in the text report and JSON file are essentially the same, but
+the text report is presented in a more human readable way. They both have every
+publication that could be identified in the reference and tokenized, so if one
+does not appear that should be then there is a problem during tokenization. More
+detailed information about tokenization is in the <a class="reference internal" href="tokenization.html"><span class="doc">Tokenization</span></a> section.</p>
+<p>tokenization_report.txt
+tokenized_reference.json</p>
+</div>
+<div class="section" id="id26">
+<h3>Examples<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker tokenize_reference reference_file.txt
+<span class="go">Searching Google Scholar for author&#39;s scholar ids.</span>
+<span class="go">Success! Tokenization files saved in tracker-2202020140</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-reports-and-emails-like-author-search">
+<h2>Generate Reports And Emails Like Author Search<a class="headerlink" href="#generate-reports-and-emails-like-author-search" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id27">
+<h3>Command Line Signature<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker gen_reports_and_emails_auth &lt;config_json_file&gt; &lt;publication_json_file&gt; [--test --verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h3>Description<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p>Create reports and emails and send emails just like author_search would if it
+had found the publications in the given publications JSON file. The idea behind
+this command is to give the user the ability to play with the reporting system
+without having to query for publications. This command will also send emails if
+the –test option is not used, so don’t forget to use it lest you send a bunch
+of test emails to the wrong people, or make sure the emails are all going to you.</p>
+<p>Details about reporting can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+</div>
+<div class="section" id="id29">
+<h3>Options<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>–test:</p>
+<p>The test option changes the name of the output directory from tracker-YYMMDDHHMM
+to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id30">
+<h3>Outputs<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<p>Outputs depend on the configuration JSON file and options.</p>
+<p>An emails.json file is only created if the from_email attribute is given in either
+the summary_report or project_report sections of the configuration JSON file.</p>
+<p>A summary_report.txt file is only created if the summary_report attribute is in
+the configuration JSON file.</p>
+<p>Similarly, project_report.txt files are created for projects that have the
+project_report attribute. Project reports will either be for the whole project
+or individual authors and the name of the project report file will indicate this.
+If from_email is given in project_report then a report for the whole project is
+created. If the authors attribute is given in the project and from_email is not
+then a file for each author in the project is created. If neither authors nor
+from_email is given then a file is created for every author that had new publications.</p>
+<p>Details about reports can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+<p>emails.json
+summary_report.txt
+projectname_project_report.txt
+projectname_authorname_project_report.txt</p>
+</div>
+<div class="section" id="id31">
+<h3>Examples<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;project_descriptions&quot;: {</span>
+<span class="go">    &quot;Project 1&quot;: {</span>
+<span class="go">      &quot;affiliations&quot;: [</span>
+<span class="go">        &quot;affiliaton1&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;project_report&quot;: {},</span>
+<span class="go">      &quot;authors&quot;: [</span>
+<span class="go">        &quot;Author1&quot;,</span>
+<span class="go">        &quot;Author2&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;cutoff_year&quot;: 2020,</span>
+<span class="go">      &quot;grants&quot;: [</span>
+<span class="go">        &quot;grant1&quot;,</span>
+<span class="go">        &quot;grant2&quot;</span>
+<span class="go">      ]</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;summary_report&quot;: {},</span>
+<span class="go">  &quot;Authors&quot;: {</span>
+<span class="go">    &quot;Author1&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author1&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;First&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;First Last&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Author2&quot;: {</span>
+<span class="go">      &quot;ORCID&quot;: &quot;Author2&#39;s ORCID ID&quot;,</span>
+<span class="go">      &quot;email&quot;: &quot;email@email.com&quot;,</span>
+<span class="go">      &quot;first_name&quot;: &quot;Second&quot;,</span>
+<span class="go">      &quot;last_name&quot;: &quot;Last&quot;,</span>
+<span class="go">      &quot;pubmed_name_search&quot;: &quot;Second Last&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker gen_reports_and_emails_auth config_file.json publications.json
+<span class="go">Success! Reports and emails saved in tracker-2202020140</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-reports-and-emails-like-reference-search">
+<h2>Generate Reports And Emails Like Reference Search<a class="headerlink" href="#generate-reports-and-emails-like-reference-search" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id32">
+<h3>Command Line Signature<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker gen_reports_and_emails_ref &lt;config_json_file&gt; &lt;references_file_or_URL&gt; &lt;publication_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --MEDLINE_reference --verbose --silent]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h3>Description<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<p>Create reports and emails and send emails just like reference_search would if it
+had found the publications in the given publications JSON file. The idea behind
+this command is to give the user the ability to play with the reporting system
+without having to query for publications. This command will also send emails if
+the –test option is not used, so don’t forget to use it lest you send a bunch
+of test emails to the wrong people, or make sure the emails are all going to you.</p>
+<p>This command differs a little from the author_search version due to the nature
+of reference_search. Each reference must be linked to a publication in the
+given publications JSON file. During reference_search this is done and the
+matching publication key is stored in the pub_dict_key attribute of the tokenized
+reference file. If the tokenized reference is generated on the fly or was not
+generated in tandem with the given publications JSON file then this will not be
+the case. To resolve this the gen_reports_and_emails_ref command does its best
+to match each tokenized reference with the publications in the given publications
+JSON file by comparing DOI, PMID, and title.</p>
+<p>The point is that if the given reference and publications were not generated in
+tandem then results may be different from expectations. A new tokenized_reference.json
+file is output with this command so the user can see which publications were matched
+with each reference by looking at the pub_dict_key attribute.</p>
+<p>Details about reporting can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+</div>
+<div class="section" id="id34">
+<h3>Options<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<p>–test:</p>
+<p>The test option changes the name of the output directory from tracker-YYMMDDHHMM
+to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
+<p>–prev_pub:</p>
+<p>Specifies a publications.json file to use as a list of publications to compare
+with when generating the summary report.</p>
+<p>–MEDLINE_reference:</p>
+<p>Specifies that the reference file is a <a class="reference external" href="https://www.nlm.nih.gov/bsd/mms/medlineelements.html">MEDLINE</a> formatted file.</p>
+<p>–verbose:</p>
+<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>–silent:</p>
+<p>If used nothing will be printed to the screen.</p>
+</div>
+<div class="section" id="id35">
+<h3>Outputs<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<p>Outputs depend on the configuration JSON file and options.</p>
+<p>A tokenized_reference.json is always generated.</p>
+<p>An emails.json file is only created if the from_email attribute is given in either
+the summary_report or project_report sections of the configuration JSON file.</p>
+<p>A summary_report.txt file is only created if the summary_report attribute is in
+the configuration JSON file.</p>
+<p>Details about reports can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+<p>tokenized_reference.json
+emails.json
+summary_report.txt</p>
+</div>
+<div class="section" id="id36">
+<h3>Examples<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<p>Typical run.</p>
+<p>config_file.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;summary_report&quot;: {},</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A minimal example is shown, but the config can have other sections and run without error.</p>
+</div>
+<p>Console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>academic_tracker gen_reports_and_emails_ref config_file.json reference_file.txt publications.json
+<span class="go">Success! Reports and emails saved in tracker-2202020140</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="jsonschema.html" class="btn btn-neutral float-right" title="JSON Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

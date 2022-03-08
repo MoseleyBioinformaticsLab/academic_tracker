@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Academic Tracker’s Documentation! &mdash; Academic Tracker 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User Guide" href="guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to Academic Tracker’s Documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="welcome-to-academic-tracker-s-documentation">
+<h1>Welcome to Academic Tracker’s Documentation!<a class="headerlink" href="#welcome-to-academic-tracker-s-documentation" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="academic-tracker">
+<h1>Academic Tracker<a class="headerlink" href="#academic-tracker" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Academic Tracker was created to automate the process of making sure that NIH
+funded publications get listed on PubMed and that the grant funding source for
+them is cited.</p>
+<p>Academic Tracker is a command line tool to search PubMed, ORCID, Google Scholar,
+and Crossref for publications. The program can either be given a list of authors
+to look for publications for, or references/citations to publications themselves.
+The program will then will look for publications on the aforementioned sources
+and return what relevant information is available from those sources.</p>
+<p>The primary use case is to give the program a list of authors to find publications
+for. From this list of publications it can then be determined which ones need
+further action to be in compliance with NIH.</p>
+<div class="section" id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Academic Tracker &#64; <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/academic_tracker">GitHub</a></p></li>
+<li><p>Academic Tracker &#64; <a class="reference external" href="https://pypi.org/project/academic_tracker">PyPI</a></p></li>
+<li><p>Documentation &#64; <a class="reference external" href="http://academic_tracker.readthedocs.io">ReadTheDocs</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The Academic Tracker package runs under Python 3.7+. Use <a class="reference external" href="https://pip.pypa.io">pip</a> to install.
+Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io">pip</a> is included by default. Academic Tracker relies
+on sendmail which is built into Linux to send emails, so it is only available for
+use there.</p>
+<div class="section" id="install-on-linux-mac-os-x">
+<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker
+</pre></div>
+</div>
+</div>
+<div class="section" id="upgrade-on-linux-mac-os-x">
+<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker --upgrade
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Academic Tracker has several commands and options. The simplest most common use
+case is simply:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>academic_tracker author_search config_file.json
+</pre></div>
+</div>
+<p>Academic Tracker’s behavior can be quite complex though, so it is highly encouraged
+to read the <a class="reference internal" href="guide.html"><span class="doc">User Guide</span></a> and <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
+</div>
+<div class="section" id="creating-the-configuration-json">
+<h2>Creating The Configuration JSON<a class="headerlink" href="#creating-the-configuration-json" title="Permalink to this headline">¶</a></h2>
+<p>A configuration JSON file is required to run Academic Tracker, but initially creating
+it the first time can be burdensome. Unfortunately, there is no easy solution for
+this. It is encouraged to read the configuration JSON section in <a class="reference internal" href="jsonschema.html"><span class="doc">JSON Schema</span></a>
+and use the example there to create it initially. The add_authors command can help
+with building the Authors section if you already have a csv file with author
+information. A good tool to help track down pesky JSON syntax errors is <a class="reference external" href="https://csvjson.com/json_validator">here</a>.</p>
+</div>
+<div class="section" id="registering-with-orcid">
+<h2>Registering With ORCID<a class="headerlink" href="#registering-with-orcid" title="Permalink to this headline">¶</a></h2>
+<p>In order to have this program search ORCID you must register with ORCID and obtain
+a key and secret. Details on how to do that are <a class="reference external" href="https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/">here</a>.
+If you do not want to do that then the –no_ORCID option can be used to skip searching
+ORCID.</p>
+</div>
+<div class="section" id="mac-os-note">
+<h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this headline">¶</a></h2>
+<p>When you try to run the program on Mac OS you may get an SSL error.</p>
+<blockquote>
+<div><p>certificate verify failed: unable to get local issuer certificate</p>
+</div></blockquote>
+<p>This is due to a change in Mac OS and Python. To fix it go to to your Python
+folder in Applications and run the Install Certificates.command shell command.
+This should fix the issue.</p>
+</div>
+<div class="section" id="email-sending-note">
+<h2>Email Sending Note<a class="headerlink" href="#email-sending-note" title="Permalink to this headline">¶</a></h2>
+<p>Academic Tracker uses sendmail to send emails, so any system it is going to be
+used on needs to have sendmail installed in /usr/sbin/sendmail. If you try to
+send emails without this the program will error. This can be avoided by using
+the –test option though. The –test option blocks email sending so the program
+can be ran just fine on systems without sendmail if that option is used. Email
+sending can also be avoided by leaving the from_email attribute out of the report
+sections of the configuration JSON file.</p>
+</div>
+<div class="section" id="how-authors-are-identified">
+<h2>How Authors Are Identified<a class="headerlink" href="#how-authors-are-identified" title="Permalink to this headline">¶</a></h2>
+<p>When searching by authors it is necessary to confirm that the author given to
+Academic Tracker matches the author returned in the query. In general this matching
+is done by matching the first and last names and at least one affiliation given
+for the author in the configuration JSON file. Note that affiliations can change
+over time as authors move, so they may need many affiliations to accurately match
+them to their publications depending on how far back you want to search in time.</p>
+</div>
+<div class="section" id="how-publications-are-matched">
+<h2>How Publications Are Matched<a class="headerlink" href="#how-publications-are-matched" title="Permalink to this headline">¶</a></h2>
+<p>When searching by publications it is necessary to confirm that the publication
+in the given reference matches the publication returned in the query. This is done
+by either matching the DOIs, PMIDs, or the title and at least one author. Titles
+are fuzzy matched using fuzzywuzzy which is why at least one author must also be
+matched. Author’s are matched using last name and at least one affiliation.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>This package is distributed under the <a class="reference external" href="https://choosealicense.com/licenses/bsd-3-clause-clear/">BSD</a> <cite>license</cite>.</p>
+</div>
+</div>
+<div class="section" id="documentation-index">
+<h1>Documentation index:<a class="headerlink" href="#documentation-index" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#basic-usage">Basic usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#configuration-json-file">Configuration JSON File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#outputs">Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#search-for-publications-by-author">Search For Publications By Author</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#search-for-publications-by-reference">Search For Publications By Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#find-orcid-ids-for-authors">Find ORCID IDs for Authors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#find-scholar-ids-for-authors">Find Scholar IDs for Authors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#add-or-update-authors-in-configuration-json">Add Or Update Authors In Configuration JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#tokenize-a-reference">Tokenize A Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#generate-reports-and-emails-like-author-search">Generate Reports And Emails Like Author Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#generate-reports-and-emails-like-reference-search">Generate Reports And Emails Like Reference Search</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jsonschema.html">JSON Schema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jsonschema.html#configuration-json">Configuration JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jsonschema.html#publications-json">Publications JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jsonschema.html#email-json">Email JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jsonschema.html#tokenized-references-json">Tokenized References JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reporting.html">Reporting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html#example-config-json-excerpt">Example Config JSON Excerpt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html#author-search">Author Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html#reference-search">Reference Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html#id1">Author Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting.html#id2">Reference Search</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html#regular-expressions">Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tokenization.html#special-cases">Special Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide.html" class="btn btn-neutral float-right" title="User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

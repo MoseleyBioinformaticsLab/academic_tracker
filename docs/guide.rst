@@ -176,6 +176,22 @@ run the following commands:
 
            python3 -m pip install openpyxl  # On Linux, Mac OS X
            py -3 -m pip install openpyxl    # On Windows
+           
+   * requests_ for making internet requests.
+      * To install the requests_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install requests  # On Linux, Mac OS X
+           py -3 -m pip install requests    # On Windows
+           
+   * urllib3_ for making internet requests.
+      * To install the urllib3_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install urllib3  # On Linux, Mac OS X
+           py -3 -m pip install urllib3    # On Windows
 
 
 Basic usage
@@ -235,3 +251,5 @@ the use cases with examples are in the :doc:`tutorial` section.
 .. _python-docx: https://pypi.org/project/python-docx/
 .. _pandas: https://pypi.org/project/pandas/
 .. _openpyxl: https://pypi.org/project/openpyxl/
+.. _requests: https://pypi.org/project/requests/
+.. _urllib3: https://pypi.org/project/urllib3/

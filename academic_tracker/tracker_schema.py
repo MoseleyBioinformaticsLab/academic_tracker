@@ -54,7 +54,7 @@ config_schema = {
                                                         "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                                         "email_body": {"type": "string", "minLength":1},
                                                         "email_subject": {"type": "string", "minLength":1},},
-                                                "dependencies":{
+                                                "dependentRequired":{
                                                         "from_email": ["email_body", "email_subject"],
                                                         "to_email": ["from_email", "email_body", "email_subject"]}},
                              "collaborator_report": {"type": "object",
@@ -73,7 +73,7 @@ config_schema = {
                                                              "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                                              "email_body": {"type": "string", "minLength":1},
                                                              "email_subject": {"type": "string", "minLength":1},},
-                                                     "dependencies":{
+                                                     "dependentRequired":{
                                                              "from_email": ["email_body", "email_subject"],
                                                              "to_email": ["from_email", "email_body", "email_subject"]},},
                              "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
@@ -112,7 +112,7 @@ config_schema = {
                                   "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                   "email_body": {"type": "string", "minLength":1},
                                   "email_subject": {"type": "string", "minLength":1},},
-                          "dependencies":{
+                          "dependentRequired":{
                                   "from_email": ["email_body", "email_subject", "to_email"]}},
         "Authors" :  { "type": "object",
                      "minProperties": 1,
@@ -144,7 +144,7 @@ config_schema = {
                                                         "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                                         "email_body": {"type": "string", "minLength":1},
                                                         "email_subject": {"type": "string", "minLength":1},},
-                                                "dependencies":{
+                                                "dependentRequired":{
                                                         "from_email": ["email_body", "email_subject"],
                                                         "to_email": ["from_email", "email_body", "email_subject"]}},
                                     "collaborator_report": {"type": "object",
@@ -163,7 +163,7 @@ config_schema = {
                                                              "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
                                                              "email_body": {"type": "string", "minLength":1},
                                                              "email_subject": {"type": "string", "minLength":1},},
-                                                     "dependencies":{
+                                                     "dependentRequired":{
                                                              "from_email": ["email_body", "email_subject"],
                                                              "to_email": ["from_email", "email_body", "email_subject"]},},
                                      },

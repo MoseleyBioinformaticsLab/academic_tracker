@@ -52,6 +52,9 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
         elif e.validator == "dependencies":
             message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing a dependent property.\n"
             message += e.message
+        elif e.validator == "dependentRequired":
+            message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing a dependent property.\n"
+            message += e.message
         elif e.validator == "minLength":
             custom_message = " cannot be an empty string."
         elif e.validator == "maxLength":

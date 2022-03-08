@@ -10,18 +10,18 @@ from academic_tracker.fileio import load_json
 
 @pytest.fixture
 def authors_json_file():
-    return load_json(os.path.join("testing_files", "authors.json"))
+    return load_json(os.path.join("tests", "testing_files", "authors.json"))
 
 @pytest.fixture
 def pub_with_no_matching_author():
-    xml_path = os.path.join("testing_files", "no_author.xml")
+    xml_path = os.path.join("tests", "testing_files", "no_author.xml")
     tree = ET.parse(xml_path)
     return pymed.article.PubMedArticle(xml_element=tree.getroot())
 
 
 @pytest.fixture
 def pub_with_matching_author():
-    xml_path = os.path.join("testing_files", "has_author.xml")
+    xml_path = os.path.join("tests", "testing_files", "has_author.xml")
     tree = ET.parse(xml_path)
     return pymed.article.PubMedArticle(xml_element=tree.getroot())
 
@@ -38,7 +38,7 @@ def author_info():
 
 @pytest.fixture
 def pub_with_grants():
-    xml_path = os.path.join("testing_files", "has_pubmed_grants.xml")
+    xml_path = os.path.join("tests", "testing_files", "has_pubmed_grants.xml")
     tree = ET.parse(xml_path)
     return pymed.article.PubMedArticle(xml_element=tree.getroot())
 

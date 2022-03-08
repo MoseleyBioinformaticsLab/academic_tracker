@@ -2,7 +2,7 @@
   "creation_date": "2022-02-16 12:42",
   "emails": [
     {
-      "attachment": "Name,Affiliations\r\n\"Brewer, Dawn\",University of Kentucky Department of Dietetics and Human Nutrition.\r\n\"Christian, W Jay\",University of Kentucky College of Public Health.\r\n\"Evans, Steven\",Kentucky Water Resources Research Institute.\r\n\"Koempel, Annie\",University of Kentucky Department of Dietetics and Human Nutrition.\r\n\"McAlister, Malissa\",Kentucky Water Resources Research Institute.\r\n\"Ormsbee, Lindell E\",University of Kentucky College of Engineering.\r\n\"Pennell, Kelly G\",University of Kentucky College of Engineering.\r\n\"Tumlin, Kimberly I\",University of Kentucky College of Public Health.\r\n",
+      "attachment": "Name,Affiliations\n\"Brewer, Dawn\",University of Kentucky Department of Dietetics and Human Nutrition.\n\"Christian, W Jay\",University of Kentucky College of Public Health.\n\"Evans, Steven\",Kentucky Water Resources Research Institute.\n\"Koempel, Annie\",University of Kentucky Department of Dietetics and Human Nutrition.\n\"McAlister, Malissa\",Kentucky Water Resources Research Institute.\n\"Ormsbee, Lindell E\",University of Kentucky College of Engineering.\n\"Pennell, Kelly G\",University of Kentucky College of Engineering.\n\"Tumlin, Kimberly I\",University of Kentucky College of Public Health.\n",
       "attachment_filename": "Anna Hoover_collaborators.csv",
       "author": "Anna Hoover",
       "body": "asdf",
@@ -12,7 +12,7 @@
       "to": "Anna.Hoover@uky.edu"
     },
     {
-      "attachment": "Col1\r\nAnna G, Hoover, AG, University of Kentucky College of Public Health.\r\nAnnie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\r\nW Jay, Christian, WJ, University of Kentucky College of Public Health.\r\nKimberly I, Tumlin, KI, University of Kentucky College of Public Health.\r\nSteven, Evans, S, Kentucky Water Resources Research Institute.\r\nMalissa, McAlister, M, Kentucky Water Resources Research Institute.\r\nLindell E, Ormsbee, LE, University of Kentucky College of Engineering.\r\nDawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\r\n",
+      "attachment": "Col1\nAnna G, Hoover, AG, University of Kentucky College of Public Health.\nAnnie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\nW Jay, Christian, WJ, University of Kentucky College of Public Health.\nKimberly I, Tumlin, KI, University of Kentucky College of Public Health.\nSteven, Evans, S, Kentucky Water Resources Research Institute.\nMalissa, McAlister, M, Kentucky Water Resources Research Institute.\nLindell E, Ormsbee, LE, University of Kentucky College of Engineering.\nDawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\n",
       "attachment_filename": "Kelly Pennell_collaborators.csv",
       "author": "Kelly Pennell",
       "body": "asdf",
@@ -22,7 +22,7 @@
       "to": "ptth222@uky.edu"
     },
     {
-      "attachment": "Col1\r\n\"Anna G, Hoover, AG, University of Kentucky College of Public Health.\"\r\n\"Annie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\"\r\n\"Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\"\r\n\"Kelly G, Pennell, KG, University of Kentucky College of Engineering.\"\r\n\"Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.\"\r\n\"Malissa, McAlister, M, Kentucky Water Resources Research Institute.\"\r\n\"Steven, Evans, S, Kentucky Water Resources Research Institute.\"\r\n\"W Jay, Christian, WJ, University of Kentucky College of Public Health.\"\r\n",
+      "attachment": "Col1\n\"Anna G, Hoover, AG, University of Kentucky College of Public Health.\"\n\"Annie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\"\n\"Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\"\n\"Kelly G, Pennell, KG, University of Kentucky College of Engineering.\"\n\"Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.\"\n\"Malissa, McAlister, M, Kentucky Water Resources Research Institute.\"\n\"Steven, Evans, S, Kentucky Water Resources Research Institute.\"\n\"W Jay, Christian, WJ, University of Kentucky College of Public Health.\"\n",
       "attachment_filename": "Lindell Ormsbee_collaborators.csv",
       "author": "Lindell Ormsbee",
       "body": "asdf",

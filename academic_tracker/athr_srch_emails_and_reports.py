@@ -427,7 +427,7 @@ def create_tabular_collaborator_report(publication_dict, config_dict, author, pu
         df = df[column_order]
         
         if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator)
+            report = df.to_csv(index=False, sep=separator, line_terminator="\n")
             fileio.save_string_to_file(save_dir_name, filename, report)
         else:
             ## If the file extension isn't .xlsx then there will be an error, so force it.
@@ -660,7 +660,7 @@ def create_tabular_summary_report(publication_dict, config_dict, authors_by_proj
         df = df[column_order]
         
         if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator)
+            report = df.to_csv(index=False, sep=separator, line_terminator="\n")
             fileio.save_string_to_file(save_dir_name, filename, report)
         else:
             ## If the file extension isn't .xlsx then there will be an error, so force it.
@@ -757,7 +757,7 @@ def create_tabular_project_report(publication_dict, config_dict, authors_by_proj
         df = df[column_order]
         
         if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator)
+            report = df.to_csv(index=False, sep=separator, line_terminator="\n")
             fileio.save_string_to_file(save_dir_name, filename, report)
         else:
             ## If the file extension isn't .xlsx then there will be an error, so force it.

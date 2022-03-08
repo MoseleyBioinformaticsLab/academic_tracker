@@ -206,7 +206,7 @@ def test_create_collaborators_reports_and_emails(publication_dict, config_dict):
                                                                         "sort":["Col1"],
                                                                         "filename":"name_test.csv"}
     
-    expected_emails = load_json(os.path.join("testing_files", "collaborator_emails.json"))
+    expected_emails = load_json(os.path.join("tests", "testing_files", "collaborator_emails.json"))
     del expected_emails["creation_date"]
     
     actual_emails = create_collaborators_reports_and_emails(publication_dict, config_dict, TESTING_DIR)

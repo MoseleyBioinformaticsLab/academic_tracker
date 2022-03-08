@@ -69,11 +69,11 @@ def test_main_PMID_reference(mocker, capsys):
 
 def test_author_search(mocker, capsys):
     def mock_call(*args, **kwargs):
-        publication_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+        publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
         return publication_dict, publication_dict
     mocker.patch("academic_tracker.__main__.athr_srch_modularized.build_publication_dict", mock_call)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"), 
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"), 
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -96,13 +96,13 @@ def test_author_search(mocker, capsys):
 
 def test_reference_search(mocker, capsys):
     def mock_call(*args, **kwargs):
-        publication_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
-        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        publication_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
+        tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
         return publication_dict, tokenized_citations
     mocker.patch("academic_tracker.__main__.ref_srch_modularized.build_publication_dict", mock_call)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_duplicates_removed.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json"),
             "--MEDLINE_reference":False,
             "--verbose":True,
             "--prev_pub":"ignore",
@@ -135,7 +135,7 @@ def test_reference_search(mocker, capsys):
 
 def test_PMID_reference(reference_file, mocker, capsys):
     def mock_call(*args, **kwargs):
-        publication_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+        publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
         publication_dict["34811960"] = publication_dict["https://doi.org/10.1002/adhm.202101820"]
         publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/advs.202101999"]
         del publication_dict["https://doi.org/10.1002/adhm.202101820"]
@@ -143,8 +143,8 @@ def test_PMID_reference(reference_file, mocker, capsys):
         return publication_dict
     mocker.patch("academic_tracker.__main__.ref_srch_webio.build_pub_dict_from_PMID", mock_call)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", reference_file),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", reference_file),
             "--MEDLINE_reference":False,
             "--verbose":True,
             "--prev_pub":"ignore",
@@ -172,7 +172,7 @@ def test_PMID_reference(reference_file, mocker, capsys):
 
 def test_PMID_reference_errors(error_file, error_message, mocker, capsys):
     def mock_call(*args, **kwargs):
-        publication_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+        publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
         publication_dict["34811960"] = publication_dict["https://doi.org/10.1002/adhm.202101820"]
         publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/advs.202101999"]
         del publication_dict["https://doi.org/10.1002/adhm.202101820"]
@@ -180,8 +180,8 @@ def test_PMID_reference_errors(error_file, error_message, mocker, capsys):
         return publication_dict
     mocker.patch("academic_tracker.__main__.ref_srch_webio.build_pub_dict_from_PMID", mock_call)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", error_file),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", error_file),
             "--MEDLINE_reference":False,
             "--verbose":True,
             "--prev_pub":"ignore",
@@ -199,17 +199,17 @@ def test_PMID_reference_errors(error_file, error_message, mocker, capsys):
 
 def test_find_ORCID(mocker, capsys):
     def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
         return config_dict["Authors"]
     mocker.patch("academic_tracker.__main__.webio.search_ORCID_for_ids", mock_call)
     
     def mock_config(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
         del config_dict["Authors"]["Andrew Morris"]["ORCID"]
         return config_dict
     mocker.patch("academic_tracker.__main__.fileio.load_json", mock_config)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -228,11 +228,11 @@ def test_find_ORCID(mocker, capsys):
 
 def test_find_ORCID_no_new(mocker, capsys):
     def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
         return config_dict["Authors"]
     mocker.patch("academic_tracker.__main__.webio.search_ORCID_for_ids", mock_call)
         
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -250,17 +250,17 @@ def test_find_ORCID_no_new(mocker, capsys):
 
 def test_find_Google_Scholar(mocker, capsys):
     def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
         return config_dict["Authors"]
     mocker.patch("academic_tracker.__main__.webio.search_Google_Scholar_for_ids", mock_call)
     
     def mock_config(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
         del config_dict["Authors"]["Andrew Morris"]["scholar_id"]
         return config_dict
     mocker.patch("academic_tracker.__main__.fileio.load_json", mock_config)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -279,11 +279,11 @@ def test_find_Google_Scholar(mocker, capsys):
 
 def test_find_Google_Scholar_no_new(mocker, capsys):
     def mock_call(*args, **kwargs):
-        config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
+        config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
         return config_dict["Authors"]
     mocker.patch("academic_tracker.__main__.webio.search_Google_Scholar_for_ids", mock_call)
         
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -300,8 +300,8 @@ def test_find_Google_Scholar_no_new(mocker, capsys):
     
 
 def test_add_authors(capsys):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<authors_file>":os.path.join("testing_files", "add_authors.csv"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<authors_file>":os.path.join("tests", "testing_files", "add_authors.csv"),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -309,7 +309,7 @@ def test_add_authors(capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    expected_config = load_json(os.path.join("testing_files", "config_truncated.json"))
+    expected_config = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
     expected_config["Authors"]["Name McNamerson"] = {"first_name":"Name",
                                                      "last_name":"McNamerson",
                                                      "pubmed_name_search":"Name McNamerson",
@@ -334,8 +334,8 @@ def test_add_authors(capsys):
 
 
 def test_add_authors_errors(error_file, error_message, capsys):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<authors_file>":os.path.join("testing_files", error_file),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<authors_file>":os.path.join("tests", "testing_files", error_file),
             "--verbose":True,
             "--prev_pub":"ignore",
             "--no_ORCID":False,
@@ -343,7 +343,7 @@ def test_add_authors_errors(error_file, error_message, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    expected_config = load_json(os.path.join("testing_files", "config_truncated.json"))
+    expected_config = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
     expected_config["Authors"]["Name McNamerson"] = {"first_name":"Name",
                                                      "last_name":"McNamerson",
                                                      "pubmed_name_search":"Name McNamerson",
@@ -360,13 +360,13 @@ def test_add_authors_errors(error_file, error_message, capsys):
 
 def test_tokenize_reference(mocker, capsys):
     def mock_call(*args, **kwargs):
-        tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+        tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
         tokenized_citations.append({"authors":[], "title":"", "DOI":"", "PMID":"", "reference_line":""})
         return tokenized_citations
     mocker.patch("academic_tracker.__main__.ref_srch_webio.tokenize_reference_input", mock_call)
     
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",
@@ -375,7 +375,7 @@ def test_tokenize_reference(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    expected_text = read_text_from_txt(os.path.join("testing_files", "tokenization_report.txt"))
+    expected_text = read_text_from_txt(os.path.join("tests", "testing_files", "tokenization_report.txt"))
     
     tokenize_reference(args["<references_file_or_URL>"], args["--MEDLINE_reference"])
     
@@ -388,8 +388,8 @@ def test_tokenize_reference(mocker, capsys):
 
 
 def test_gen_reports_and_emails_auth(capsys):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated.json"),
-            "<publication_json_file>":os.path.join("testing_files", "publication_dict_truncated.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
+            "<publication_json_file>":os.path.join("tests", "testing_files", "publication_dict_truncated.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",
@@ -411,9 +411,9 @@ def test_gen_reports_and_emails_auth(capsys):
 
 
 def test_gen_reports_and_emails_ref(mocker, capsys):
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated_ref_srch_summary_report.json"),
-            "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated_ref_srch_summary_report.json"),
+            "<publication_json_file>":os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",
@@ -435,9 +435,9 @@ def test_gen_reports_and_emails_ref(mocker, capsys):
     
 
 def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):    
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated_ref_srch_summary_report.json"),
-            "<publication_json_file>":os.path.join("testing_files", "ref_srch_gen_reports_test_pub_dict.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test2.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated_ref_srch_summary_report.json"),
+            "<publication_json_file>":os.path.join("tests", "testing_files", "ref_srch_gen_reports_test_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", "tokenized_citations_for_report_test2.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",
@@ -446,7 +446,7 @@ def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
             "--no_GoogleScholar":False,
             "--test":True}
     
-    expected_report = read_text_from_txt(os.path.join("testing_files", "gen_reports_ref_summary_report.txt"))
+    expected_report = read_text_from_txt(os.path.join("tests", "testing_files", "gen_reports_ref_summary_report.txt"))
     
     gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
                                    args["<publication_json_file>"], args["--MEDLINE_reference"], 
@@ -462,9 +462,9 @@ def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
     
 
 def test_gen_reports_and_emails_ref_no_matches(mocker, capsys):       
-    args = {"<config_json_file>":os.path.join("testing_files", "config_truncated_ref_srch_summary_report.json"),
-            "<publication_json_file>":os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"),
-            "<references_file_or_URL>":os.path.join("testing_files", "tokenized_citations_for_report_test_empty.json"),
+    args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated_ref_srch_summary_report.json"),
+            "<publication_json_file>":os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"),
+            "<references_file_or_URL>":os.path.join("tests", "testing_files", "tokenized_citations_for_report_test_empty.json"),
             "--verbose":True,
             "--MEDLINE_reference":False,
             "--prev_pub":"ignore",

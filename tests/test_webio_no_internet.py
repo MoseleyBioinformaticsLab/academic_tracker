@@ -24,7 +24,7 @@ def disable_network_calls(monkeypatch):
 
 @pytest.fixture
 def ORCID_query():
-    return load_json(os.path.join("testing_files", "ORCID_author_search_query.json"))
+    return load_json(os.path.join("tests", "testing_files", "ORCID_author_search_query.json"))
 
 
 def test_search_ORCID_for_ids_already_has_id(ORCID_query, authors_dict, mocker):
@@ -96,7 +96,7 @@ def test_search_ORCID_for_ids_found(ORCID_query, authors_dict, mocker):
 
 @pytest.fixture
 def scholarly_authors():
-    return load_json(os.path.join("testing_files", "scholarly_author_query.json"))
+    return load_json(os.path.join("tests", "testing_files", "scholarly_author_query.json"))
 
 
 def test_search_Google_Scholar_for_ids_already_has_id(scholarly_authors, authors_dict, mocker):
@@ -153,7 +153,7 @@ def test_search_Google_Scholar_for_ids_found(scholarly_authors, authors_dict, mo
 
 def test_get_DOI_from_Crossref_DOI_found(mocker):
     def mock_query(*args, **kwargs):
-        return load_json(os.path.join("testing_files", "Crossref_DOI_query.json"))
+        return load_json(os.path.join("tests", "testing_files", "Crossref_DOI_query.json"))
     mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
     
     assert get_DOI_from_Crossref("The Existential Dimension to Aging", "ptth222@uky.edu") == '10.1353/pbm.2020.0014'
@@ -161,7 +161,7 @@ def test_get_DOI_from_Crossref_DOI_found(mocker):
 
 def test_get_DOI_from_Crossref_DOI_not_found(mocker):
     def mock_query(*args, **kwargs):
-        return load_json(os.path.join("testing_files", "Crossref_DOI_query.json"))
+        return load_json(os.path.join("tests", "testing_files", "Crossref_DOI_query.json"))
     mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
     
     assert get_DOI_from_Crossref("asdfasdf", "ptth222@uky.edu") == None
@@ -169,7 +169,7 @@ def test_get_DOI_from_Crossref_DOI_not_found(mocker):
 
 def test_get_grants_from_Crossref_grants_found(mocker):
     def mock_query(*args, **kwargs):
-        return load_json(os.path.join("testing_files", "Crossref_grant_query.json"))
+        return load_json(os.path.join("tests", "testing_files", "Crossref_grant_query.json"))
     mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
     
     assert get_grants_from_Crossref("Multifunctional temperature\u2010responsive polymers as advanced biomaterials and beyond", "ptth222@uky.edu", ['P42ES007380']) == ['P42ES007380']
@@ -177,7 +177,7 @@ def test_get_grants_from_Crossref_grants_found(mocker):
 
 def test_get_grants_from_Crossref_grants_not_found(mocker):
     def mock_query(*args, **kwargs):
-        return load_json(os.path.join("testing_files", "Crossref_grant_query.json"))
+        return load_json(os.path.join("tests", "testing_files", "Crossref_grant_query.json"))
     mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
     
     assert get_grants_from_Crossref("asdfasdf", "ptth222@uky.edu", ['P42ES007380']) == None

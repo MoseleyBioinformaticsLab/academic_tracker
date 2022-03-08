@@ -189,7 +189,7 @@ def test_match_authors_in_pub_Crossref(CR_author_list, returned_CR_author_list, 
 
 @pytest.fixture
 def pub_no_PMCID():
-    xml_path = os.path.join("testing_files", "no_author.xml")
+    xml_path = os.path.join("tests", "testing_files", "no_author.xml")
     tree = ET.parse(xml_path)
     return pymed.article.PubMedArticle(xml_element=tree.getroot())
 
@@ -221,7 +221,7 @@ def test_modify_pub_dict_for_saving_no_PMCID(pub_no_PMCID):
 
 @pytest.fixture
 def pub_with_PMCID():
-    xml_path = os.path.join("testing_files", "pub_with_PMCID.xml")
+    xml_path = os.path.join("tests", "testing_files", "pub_with_PMCID.xml")
     tree = ET.parse(xml_path)
     return pymed.article.PubMedArticle(xml_element=tree.getroot())
 
@@ -364,7 +364,7 @@ def test_find_duplicate_citations(tokenized_citations):
     
 @pytest.fixture
 def publication_json():
-    return load_json(os.path.join("testing_files", "publication_dict.json"))
+    return load_json(os.path.join("tests", "testing_files", "publication_dict.json"))
 
 
 def test_are_citations_in_pub_dict(publication_json):

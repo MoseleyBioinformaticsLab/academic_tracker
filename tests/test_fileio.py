@@ -38,7 +38,7 @@ def test_json():
 
 
 def test_load_json_error():
-    path = os.path.join(".", "testing_files", "load_json_error")
+    path = os.path.join(".", "tests", "testing_files", "load_json_error")
     
     with pytest.raises(Exception):
         load_json(path)
@@ -46,7 +46,7 @@ def test_load_json_error():
 
 def test_load_json_no_error(test_json):
     
-    path = os.path.join(".", "testing_files", "config.json")
+    path = os.path.join(".", "tests", "testing_files", "config.json")
     
     data = load_json(path)
     
@@ -54,7 +54,7 @@ def test_load_json_no_error(test_json):
     
     
 def test_load_json_no_path():
-    path = os.path.join(".", "testing_files", "asdf.asdf")
+    path = os.path.join(".", "tests", "testing_files", "asdf.asdf")
     
     with pytest.raises(SystemExit):
         load_json(path)
@@ -62,7 +62,7 @@ def test_load_json_no_path():
 
 
 def test_read_text_from_txt_error():
-    path = os.path.join(".", "testing_files", "load_json_error")
+    path = os.path.join(".", "tests", "testing_files", "load_json_error")
     
     with pytest.raises(Exception):
         read_text_from_txt(path)
@@ -70,7 +70,7 @@ def test_read_text_from_txt_error():
 
 def test_read_text_from_txt_no_error():
     
-    path = os.path.join(".", "testing_files", "testing_text.txt")
+    path = os.path.join(".", "tests", "testing_files", "testing_text.txt")
     
     data = read_text_from_txt(path)
     
@@ -78,7 +78,7 @@ def test_read_text_from_txt_no_error():
     
 
 def test_read_text_from_txt_no_path():
-    path = os.path.join(".", "testing_files", "asdf.asdf")
+    path = os.path.join(".", "tests", "testing_files", "asdf.asdf")
     
     with pytest.raises(SystemExit):
         read_text_from_txt(path)
@@ -86,7 +86,7 @@ def test_read_text_from_txt_no_path():
 
 
 def test_read_text_from_docx_error():
-    path = os.path.join(".", "testing_files", "load_json_error")
+    path = os.path.join(".", "tests", "testing_files", "load_json_error")
     
     with pytest.raises(Exception):
         read_text_from_docx(path)
@@ -94,7 +94,7 @@ def test_read_text_from_docx_error():
 
 def test_read_text_from_docx_no_error():
     
-    path = os.path.join(".", "testing_files", "testing_docx.docx")
+    path = os.path.join(".", "tests", "testing_files", "testing_docx.docx")
     
     data = read_text_from_docx(path)
     
@@ -102,7 +102,7 @@ def test_read_text_from_docx_no_error():
     
     
 def test_read_text_from_docx_no_path():
-    path = os.path.join(".", "testing_files", "asdf.asdf")
+    path = os.path.join(".", "tests", "testing_files", "asdf.asdf")
     
     with pytest.raises(SystemExit):
         read_text_from_docx(path)
@@ -110,7 +110,7 @@ def test_read_text_from_docx_no_path():
 
 
 def test_read_csv_error():
-    path = os.path.join(".", "testing_files", "load_json_error")
+    path = os.path.join(".", "tests", "testing_files", "load_json_error")
     
     with pytest.raises(Exception):
         read_csv(path)
@@ -118,7 +118,7 @@ def test_read_csv_error():
 
 def test_read_csv_no_error():
     
-    path = os.path.join(".", "testing_files", "testing_csv.csv")
+    path = os.path.join(".", "tests", "testing_files", "testing_csv.csv")
     
     data = read_csv(path)
     
@@ -126,7 +126,7 @@ def test_read_csv_no_error():
     
 
 def test_read_csv_no_path():
-    path = os.path.join(".", "testing_files", "asdf.asdf")
+    path = os.path.join(".", "tests", "testing_files", "asdf.asdf")
     
     with pytest.raises(SystemExit):
         read_csv(path)
@@ -207,7 +207,7 @@ def test_read_previous_publications_read_until(tracker_latest_dir, tracker_today
 
 def test_read_previous_publications_path_in_args(test_json):
     
-    path = os.path.join(".", "testing_files", "config.json")
+    path = os.path.join(".", "tests", "testing_files", "config.json")
     
     has_previous_pubs, prev_pubs = read_previous_publications(path)
     

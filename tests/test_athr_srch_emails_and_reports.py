@@ -33,11 +33,11 @@ def test_email_dir():
 
 @pytest.fixture
 def publication_dict():
-    return load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    return load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
 
 
 def test_create_pubs_by_author_dict(publication_dict):
-    expected = load_json(os.path.join("testing_files", "pubs_by_author_dict_truncated.json"))
+    expected = load_json(os.path.join("tests", "testing_files", "pubs_by_author_dict_truncated.json"))
     
     actual = create_pubs_by_author_dict(publication_dict)
     
@@ -47,17 +47,17 @@ def test_create_pubs_by_author_dict(publication_dict):
 
 @pytest.fixture
 def config_dict():
-    return load_json(os.path.join("testing_files", "config_truncated.json"))
+    return load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
 
 
 @pytest.fixture
 def authors_by_project_dict():
-    return load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
+    return load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
 
 
 def test_create_project_reports_and_emails(publication_dict, config_dict, authors_by_project_dict):
     
-    expected_emails = load_json(os.path.join("testing_files", "athr_project_emails.json"))
+    expected_emails = load_json(os.path.join("tests", "testing_files", "athr_project_emails.json"))
     del expected_emails["creation_date"]
     
     actual_emails = create_project_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, TESTING_DIR)
@@ -73,17 +73,17 @@ def test_create_project_reports_and_emails(publication_dict, config_dict, author
     
 @pytest.fixture
 def config_dict_tabular():
-    return load_json(os.path.join("testing_files", "config_tabular.json"))
+    return load_json(os.path.join("tests", "testing_files", "config_tabular.json"))
 
 
 @pytest.fixture
 def authors_by_project_dict_tabular():
-    return load_json(os.path.join("testing_files", "authors_by_project_dict_tabular.json"))
+    return load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_tabular.json"))
     
     
 def test_create_project_reports_and_emails_tabular(publication_dict, config_dict_tabular, authors_by_project_dict_tabular):
             
-    expected_emails = load_json(os.path.join("testing_files", "athr_project_emails_tabular.json"))
+    expected_emails = load_json(os.path.join("tests", "testing_files", "athr_project_emails_tabular.json"))
     del expected_emails["creation_date"]
     
     actual_emails = create_project_reports_and_emails(authors_by_project_dict_tabular, publication_dict, config_dict_tabular, TESTING_DIR)
@@ -109,7 +109,7 @@ def test_create_project_report(publication_dict, config_dict, authors_by_project
     author_first = "Kelly"
     author_last = "Pennell"
     
-    expected_text = read_text_from_txt(os.path.join("testing_files", "project_report.txt"))
+    expected_text = read_text_from_txt(os.path.join("tests", "testing_files", "project_report.txt"))
     
     actual_text = create_project_report(publication_dict, config_dict, authors_by_project_dict, "Core A Administrative Core", template_string, author_first, author_last)
     
@@ -119,7 +119,7 @@ def test_create_project_report(publication_dict, config_dict, authors_by_project
 
 def test_create_summary_report(publication_dict, config_dict, authors_by_project_dict):
     
-    expected_text = read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report.txt"))
+    expected_text = read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_summary_report.txt"))
     
     actual_text = create_summary_report(publication_dict, config_dict, authors_by_project_dict)
     
@@ -129,9 +129,9 @@ def test_create_summary_report(publication_dict, config_dict, authors_by_project
 
 def test_build_author_loop(publication_dict, config_dict, authors_by_project_dict):
     
-    template_string = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_loop_template_string.txt"))
+    template_string = read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_build_loop_template_string.txt"))
                          
-    expected_text = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_author_loop.txt"))
+    expected_text = read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_build_author_loop.txt"))
     
     actual_text = build_author_loop(publication_dict, config_dict, authors_by_project_dict, "No from_email", template_string)
     
@@ -163,7 +163,7 @@ def test_create_collaborators_reports_and_emails_tabular(publication_dict, confi
                                                                         "sort":["Col1"]
                                                                         }
     
-    expected_emails = load_json(os.path.join("testing_files", "collaborator_emails_tabular.json"))
+    expected_emails = load_json(os.path.join("tests", "testing_files", "collaborator_emails_tabular.json"))
     del expected_emails["creation_date"]
     
     actual_emails = create_collaborators_reports_and_emails(publication_dict, config_dict, TESTING_DIR)
@@ -395,7 +395,7 @@ def test_create_tabular_summary_report_excel(publication_dict, config_dict, auth
 
 @pytest.fixture
 def pubs_by_author_dict():
-    return load_json(os.path.join("testing_files", "pubs_by_author_dict_truncated.json"))
+    return load_json(os.path.join("tests", "testing_files", "pubs_by_author_dict_truncated.json"))
 
 def test_create_tabular_project_report_no_pub_keywords(publication_dict, config_dict, authors_by_project_dict, pubs_by_author_dict):
     

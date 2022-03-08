@@ -25,7 +25,7 @@ def disable_network_calls(monkeypatch):
 ## Each call to the iterator does an http request. Here I simply put the articles in a list. 
 @pytest.fixture
 def pymed_query():
-    with open(os.path.join("testing_files", "pymed_pubs.pkl"), "rb") as f:
+    with open(os.path.join("tests", "testing_files", "pymed_pubs.pkl"), "rb") as f:
         articles = pickle.load(f)
     return articles
 
@@ -85,7 +85,7 @@ def test_request_pubs_from_pubmed_success(pymed_query, mocker, authors_dict, exp
 
 @pytest.fixture
 def ORCID_query():
-    return load_json(os.path.join("testing_files", "ORCID_query.json"))
+    return load_json(os.path.join("tests", "testing_files", "ORCID_query.json"))
 
 
 def test_search_ORCID_for_pubs(ORCID_query, authors_dict, mocker):
@@ -97,7 +97,7 @@ def test_search_ORCID_for_pubs(ORCID_query, authors_dict, mocker):
         return "sdfg"
     mocker.patch("academic_tracker.athr_srch_webio.orcid.PublicAPI.get_search_token_from_orcid", mock_token)
     
-    expected_dict = load_json(os.path.join("testing_files", "ORCID_pub_dict.json"))
+    expected_dict = load_json(os.path.join("tests", "testing_files", "ORCID_pub_dict.json"))
     
     returned_dict = search_ORCID_for_pubs({}, "qwerqwer", "asdfasdf", authors_dict)
     
@@ -112,12 +112,12 @@ def test_search_ORCID_for_pubs(ORCID_query, authors_dict, mocker):
 
 @pytest.fixture
 def scholarly_pubs():
-    return load_json(os.path.join("testing_files", "scholarly_pubs.json"))
+    return load_json(os.path.join("tests", "testing_files", "scholarly_pubs.json"))
 
         
 @pytest.fixture
 def scholarly_doi():
-    return load_json(os.path.join("testing_files", "scholarly_DOIs.json"))
+    return load_json(os.path.join("tests", "testing_files", "scholarly_DOIs.json"))
 
 
 def test_search_Google_Scholar_for_pubs(authors_dict, scholarly_pubs, scholarly_doi, mocker):
@@ -134,7 +134,7 @@ def test_search_Google_Scholar_for_pubs(authors_dict, scholarly_pubs, scholarly_
     
     def mock_fill_publications(dictionary, *args, **kwargs):
         if "sections" in kwargs:
-            filled_publications = load_json(os.path.join("testing_files", "scholarly_query.json"))
+            filled_publications = load_json(os.path.join("tests", "testing_files", "scholarly_query.json"))
             return filled_publications
         else:
             for pub in scholarly_pubs:
@@ -151,7 +151,7 @@ def test_search_Google_Scholar_for_pubs(authors_dict, scholarly_pubs, scholarly_
         
     mocker.patch("academic_tracker.webio.get_DOI_from_Crossref", mock_Crossref_DOI)
     
-    expected_pub_dict = load_json(os.path.join("testing_files", "scholarly_pub_dict.json"))
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "scholarly_pub_dict.json"))
     
     actual_pub_dict = search_Google_Scholar_for_pubs({}, authors_dict, "ptth222@uky.edu")
     
@@ -161,10 +161,10 @@ def test_search_Google_Scholar_for_pubs(authors_dict, scholarly_pubs, scholarly_
 
 def test_search_Crossref_for_pubs(authors_dict, mocker):
     def mock_query(*args, **kwargs):
-        return load_json(os.path.join("testing_files", "Crossref_query.json"))
+        return load_json(os.path.join("tests", "testing_files", "Crossref_query.json"))
     mocker.patch("academic_tracker.athr_srch_webio.habanero.Crossref.works", mock_query)
        
-    expected_pub_dict = load_json(os.path.join("testing_files", "Crossref_pub_dict.json"))
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "Crossref_pub_dict.json"))
     
     actual_pub_dict = search_Crossref_for_pubs({}, authors_dict, "ptth222@uky.edu")
         

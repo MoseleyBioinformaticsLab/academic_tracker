@@ -13,9 +13,9 @@ from academic_tracker.fileio import load_json, read_text_from_txt
 
 def test_parse_text_for_citations():
     
-    text = read_text_from_txt(os.path.join("testing_files", "parse_citations_test.txt"))
+    text = read_text_from_txt(os.path.join("tests", "testing_files", "parse_citations_test.txt"))
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_parsing_test.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_parsing_test.json"))
     
     actual_tokenized_citations = parse_text_for_citations(text)
     
@@ -94,9 +94,9 @@ def test_tokenize_APA_or_Harvard_authors(authors_string, authors):
 
 
 def test_tokenize_myncbi_citations():
-    pages = load_json(os.path.join("testing_files", "myncbi_webpages.json"))
+    pages = load_json(os.path.join("tests", "testing_files", "myncbi_webpages.json"))
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_myncbi_page1.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_myncbi_page1.json"))
     
     actual_tokenized_citations = tokenize_myncbi_citations(pages[0])
     
@@ -106,9 +106,9 @@ def test_tokenize_myncbi_citations():
 
 
 def test_parse_MEDLINE_format():
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_MEDLINE.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_MEDLINE.json"))
     
-    actual_tokenized_citations = parse_MEDLINE_format(read_text_from_txt(os.path.join("testing_files", "medline.txt")))
+    actual_tokenized_citations = parse_MEDLINE_format(read_text_from_txt(os.path.join("tests", "testing_files", "medline.txt")))
     
     assert expected_tokenized_citations == actual_tokenized_citations
 

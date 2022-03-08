@@ -22,50 +22,50 @@ def disable_network_calls(monkeypatch):
 
 @pytest.fixture
 def config_dict():
-    return load_json(os.path.join("testing_files", "config_truncated.json"))
+    return load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
 
 
 def test_input_reading_and_checking_no_prev_pub(config_dict):
-    config_json_filepath = os.path.join("testing_files", "config_truncated.json")
-    ref_path_or_URL = os.path.join("testing_files", "tokenized_citations_duplicates_removed.json")
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated.json")
+    ref_path_or_URL = os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json")
     
     expected_config_dict = config_dict
     
     actual_config_dict, tokenized_citations, has_previous_pubs, prev_pubs = input_reading_and_checking(config_json_filepath, ref_path_or_URL, False, False, "ignore")
     
     assert expected_config_dict == actual_config_dict
-    assert tokenized_citations == load_json(os.path.join("testing_files", "tokenized_citations_duplicates_removed.json"))
+    assert tokenized_citations == load_json(os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json"))
     assert has_previous_pubs == False
     assert prev_pubs == {}
 
 
 
 def test_input_reading_and_checking_has_prev_pub(config_dict):
-    config_json_filepath = os.path.join("testing_files", "config_truncated.json")
-    ref_path_or_URL = os.path.join("testing_files", "tokenized_citations_duplicates_removed.json")
-    prev_pub_filepath = os.path.join("testing_files", "publication_dict_truncated.json")
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated.json")
+    ref_path_or_URL = os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json")
+    prev_pub_filepath = os.path.join("tests", "testing_files", "publication_dict_truncated.json")
     
     expected_config_dict = config_dict
     
     actual_config_dict, tokenized_citations, has_previous_pubs, prev_pubs = input_reading_and_checking(config_json_filepath, ref_path_or_URL, False, False, prev_pub_filepath)
     
     assert expected_config_dict == actual_config_dict
-    assert tokenized_citations == load_json(os.path.join("testing_files", "tokenized_citations_duplicates_removed.json"))
+    assert tokenized_citations == load_json(os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json"))
     assert has_previous_pubs == True
-    assert prev_pubs == load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    assert prev_pubs == load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
 
 
 
 
 def test_build_publication_dict_with_Crossref(config_dict, mocker):
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
     
     input_tokenized_citations = copy.deepcopy(expected_tokenized_citations)
     for citation in input_tokenized_citations:
         citation["pub_dict_key"] = ""
     
-    expected_pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     
     def mock_query(*args, **kwargs):
         return {"https://doi.org/10.3390/metabo10090368":expected_pub_dict["https://doi.org/10.3390/metabo10090368"]}, [None, "https://doi.org/10.3390/metabo10090368"]
@@ -84,14 +84,14 @@ def test_build_publication_dict_with_Crossref(config_dict, mocker):
 
 def test_build_publication_dict_no_Crossref(config_dict, mocker):
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
     expected_tokenized_citations[0]["pub_dict_key"] = ""
     
     input_tokenized_citations = copy.deepcopy(expected_tokenized_citations)
     for citation in input_tokenized_citations:
         citation["pub_dict_key"] = ""
         
-    expected_pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     del expected_pub_dict["https://doi.org/10.3390/metabo11030163"]
     
     def mock_query(*args, **kwargs):
@@ -112,27 +112,27 @@ def test_build_publication_dict_no_Crossref(config_dict, mocker):
 
 def test_save_and_send_reports_and_emails_no_email(config_dict):
     
-    tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-    pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
+    pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     
     config_dict["summary_report"] = {}
-    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_template_string.txt"))
     
     save_dir = save_and_send_reports_and_emails(config_dict, tokenized_citations, pub_dict, {}, False, False)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
-    assert read_text_from_txt(os.path.join("testing_files", "ref_srch_report_test1.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    assert read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_test1.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
 
 
 
 def test_save_and_send_reports_and_emails_with_email(config_dict):
     
-    tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-    pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
+    pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     
     config_dict["summary_report"] = {}
-    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_template_string.txt"))
     config_dict["summary_report"]["from_email"] = "ptth222@uky.edu"
     config_dict["summary_report"]["to_email"] = ["ptth222@uky.edu"]
     config_dict["summary_report"]["cc_email"] = ["ptth222@uky.edu"]
@@ -142,29 +142,29 @@ def test_save_and_send_reports_and_emails_with_email(config_dict):
     save_dir = save_and_send_reports_and_emails(config_dict, tokenized_citations, pub_dict, {}, False, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
-    assert read_text_from_txt(os.path.join("testing_files", "ref_srch_report_test1.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    assert read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_test1.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert os.path.exists(os.path.join(save_dir, "emails.json"))
 
 
 
 def test_save_and_send_reports_and_emails_default_template(config_dict):
     
-    tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-    pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
+    pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     
     config_dict["summary_report"] = {}
     
     save_dir = save_and_send_reports_and_emails(config_dict, tokenized_citations, pub_dict, {}, False, False)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
-    assert read_text_from_txt(os.path.join("testing_files", "ref_srch_report_default.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    assert read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_default.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
     
     
 def test_save_and_send_reports_and_emails_tabular(config_dict):
     
-    tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-    pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
+    pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     
     config_dict["summary_report"] = {}
     config_dict["summary_report"]["columns"] = {"Col1":"<author_first>"}
@@ -177,11 +177,11 @@ def test_save_and_send_reports_and_emails_tabular(config_dict):
     
 def test_save_and_send_reports_and_emails_manual_name(config_dict):
     
-    tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_for_report_test.json"))
-    pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
+    tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
+    pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     
     config_dict["summary_report"] = {}
-    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "ref_srch_report_template_string.txt"))
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_template_string.txt"))
     config_dict["summary_report"]["filename"] = "test_name.txt"
     
     save_dir = save_and_send_reports_and_emails(config_dict, tokenized_citations, pub_dict, {}, False, False)

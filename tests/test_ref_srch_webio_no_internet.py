@@ -25,7 +25,7 @@ def disable_network_calls(monkeypatch):
 ## Each call to the iterator does an http request. Here I simply put the articles in a list. 
 @pytest.fixture
 def pymed_query():
-    with open(os.path.join("testing_files", "pymed_pubs.pkl"), "rb") as f:
+    with open(os.path.join("tests", "testing_files", "pymed_pubs.pkl"), "rb") as f:
         articles = pickle.load(f)
     return articles
 
@@ -85,13 +85,13 @@ def test_build_pub_dict_from_PMID(pymed_query, mocker, expected_publication_dict
 ## so I saved them as a string. Here they are loaded back in and converted to an article.
 @pytest.fixture
 def ref_pymed_query():
-    xml_strings = load_json(os.path.join("testing_files", "ref_srch_PubMed_pubs.json"))
+    xml_strings = load_json(os.path.join("tests", "testing_files", "ref_srch_PubMed_pubs.json"))
     return [pymed.article.PubMedArticle(xml_element=ET.fromstring(string)) for string in xml_strings]
 
 
 @pytest.fixture
 def tokenized_citations():
-    tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations.json"))
+    tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations.json"))
     return [tokenized_citations[i] for i in [6,8,63]]
     
 
@@ -101,8 +101,8 @@ def test_search_references_on_PubMed(tokenized_citations, ref_pymed_query, mocke
         return ref_pymed_query
     mocker.patch("academic_tracker.ref_srch_webio.pymed.PubMed.query", mock_query)
     
-    expected_publication_dict = load_json(os.path.join("testing_files", "ref_srch_publication_dict.json"))
-    expected_citation_keys = load_json(os.path.join("testing_files", "ref_srch_keys_for_citations.json"))
+    expected_publication_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_publication_dict.json"))
+    expected_citation_keys = load_json(os.path.join("tests", "testing_files", "ref_srch_keys_for_citations.json"))
     
     actual_publication_dict, actual_citation_keys = search_references_on_PubMed(tokenized_citations, "ptth222@uky.edu")
     
@@ -114,7 +114,7 @@ def test_search_references_on_PubMed(tokenized_citations, ref_pymed_query, mocke
 
 def test_search_references_on_Crossref(tokenized_citations, mocker):
     def query_generator():
-        queries = load_json(os.path.join("testing_files", "ref_srch_Crossref_queries.json"))
+        queries = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_queries.json"))
         for query in queries:
             yield query
             
@@ -124,8 +124,8 @@ def test_search_references_on_Crossref(tokenized_citations, mocker):
         return next(queries)
     mocker.patch("academic_tracker.ref_srch_webio.habanero.Crossref.works", mock_query)
        
-    expected_pub_dict = load_json(os.path.join("testing_files", "ref_srch_Crossref_pub_dict.json"))
-    expected_citation_keys = load_json(os.path.join("testing_files", "ref_srch_Crossref_keys_for_citations.json"))
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
+    expected_citation_keys = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_keys_for_citations.json"))
     
     actual_pub_dict, actual_citation_keys = search_references_on_Crossref(tokenized_citations, "ptth222@uky.edu")
         
@@ -137,7 +137,7 @@ def test_search_references_on_Crossref(tokenized_citations, mocker):
 
 def test_parse_myncbi_citations(mocker):
     def page_generator():
-        pages = load_json(os.path.join("testing_files", "myncbi_webpages.json"))
+        pages = load_json(os.path.join("tests", "testing_files", "myncbi_webpages.json"))
         for page in pages:
             yield page
             
@@ -147,7 +147,7 @@ def test_parse_myncbi_citations(mocker):
         return next(pages)
     mocker.patch("academic_tracker.ref_srch_webio.webio.get_url_contents_as_str", mock_query)
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations.json"))
     
     actual_tokenized_citations = parse_myncbi_citations("asdf")
     
@@ -158,9 +158,9 @@ def test_parse_myncbi_citations(mocker):
 ## Test that the JSON read in works and finds and eliminates duplicates.
 def test_tokenize_reference_input_JSON(capsys):
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_citations_duplicates_removed.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "tokenized_citations.json"), False)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "tokenized_citations.json"), False)
     captured = capsys.readouterr()
     
     assert expected_tokenized_citations == actual_tokenized_citations
@@ -171,10 +171,10 @@ def test_tokenize_reference_input_JSON(capsys):
 
 def test_tokenize_reference_input_html(mocker):
     def mock_query(*args, **kwargs):
-        return read_text_from_txt(os.path.join("testing_files", "nsf_award_page.txt"))
+        return read_text_from_txt(os.path.join("tests", "testing_files", "nsf_award_page.txt"))
     mocker.patch("academic_tracker.ref_srch_webio.webio.clean_tags_from_url", mock_query)
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_nsf_award_page.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_nsf_award_page.json"))
     
     actual_tokenized_citations = tokenize_reference_input("https://www.nsf.gov/awardsearch/showAward?AWD_ID=1419282", False)
     
@@ -184,7 +184,7 @@ def test_tokenize_reference_input_html(mocker):
 
 def test_tokenize_reference_input_no_html_content(capsys, mocker):
     def mock_query(*args, **kwargs):
-        return read_text_from_txt(os.path.join("testing_files", "empty_file.txt"))
+        return read_text_from_txt(os.path.join("tests", "testing_files", "empty_file.txt"))
     mocker.patch("academic_tracker.ref_srch_webio.webio.clean_tags_from_url", mock_query)
     
     with pytest.raises(SystemExit):
@@ -197,9 +197,9 @@ def test_tokenize_reference_input_no_html_content(capsys, mocker):
 
 def test_tokenize_reference_input_docx():
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_ref_test.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_ref_test.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "reference_test.docx"), False)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "reference_test.docx"), False)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -207,9 +207,9 @@ def test_tokenize_reference_input_docx():
 
 def test_tokenize_reference_input_txt():
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_ref_test.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_ref_test.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "reference_test.txt"), False)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "reference_test.txt"), False)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -228,7 +228,7 @@ def test_tokenize_reference_input_wrong_file_extension(capsys):
 def test_tokenize_reference_input_empty_file(capsys):
     
     with pytest.raises(SystemExit):
-        tokenize_reference_input(os.path.join("testing_files", "empty_file.txt"), False)
+        tokenize_reference_input(os.path.join("tests", "testing_files", "empty_file.txt"), False)
     captured = capsys.readouterr()
     
     assert captured.out == "Nothing was read from the reference file. Make sure the file is not empty or is a supported file type.\n"
@@ -237,9 +237,9 @@ def test_tokenize_reference_input_empty_file(capsys):
 
 def test_tokenize_reference_input_MEDLINE():
     
-    expected_tokenized_citations = load_json(os.path.join("testing_files", "tokenized_MEDLINE.json"))
+    expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_MEDLINE.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("testing_files", "medline.txt"), True)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "medline.txt"), True)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -248,7 +248,7 @@ def test_tokenize_reference_input_MEDLINE():
 def test_tokenize_reference_input_no_references(capsys):
     
     with pytest.raises(SystemExit):
-        tokenize_reference_input(os.path.join("testing_files", "testing_text.txt"), False)
+        tokenize_reference_input(os.path.join("tests", "testing_files", "testing_text.txt"), False)
     captured = capsys.readouterr()
     
     assert captured.out == "Warning: Could not tokenize any citations in provided reference. Check setup and formatting and try again.\n"

@@ -145,10 +145,9 @@ def save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, 
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
+    os.mkdir(save_dir_name)
         
     
     email_messages = athr_srch_emails_and_reports.create_project_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, save_dir_name)
@@ -191,11 +190,5 @@ def save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, 
             webio.send_emails(email_messages)
     
     return save_dir_name
-
-
-
-
-
-
 
 

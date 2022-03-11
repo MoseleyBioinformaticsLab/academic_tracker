@@ -131,10 +131,9 @@ This should fix the issue.
 Email Sending Note
 ~~~~~~~~~~~~~~~~~~
 Academic Tracker uses sendmail to send emails, so any system it is going to be 
-used on needs to have sendmail installed in /usr/sbin/sendmail. If you try to 
-send emails without this the program will error. This can be avoided by using 
-the --test option though. The --test option blocks email sending so the program 
-can be ran just fine on systems without sendmail if that option is used. Email 
+used on needs to have sendmail installed and the path in PATH. If you try to 
+send emails without this the program will display a warning. This can be avoided 
+by using the --test option though. The --test option blocks email sending. Email 
 sending can also be avoided by leaving the from_email attribute out of the report 
 sections of the configuration JSON file.
 

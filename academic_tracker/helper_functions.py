@@ -84,20 +84,11 @@ def adjust_author_attributes(authors_by_project_dict, config_dict):
     """
     
     for author, author_attr in config_dict["Authors"].items():
-        if "cutoff_year" in author_attr:
-            cutoff_year = author_attr["cutoff_year"]
-        else:
-            cutoff_year = 99999999
+        cutoff_year = author_attr["cutoff_year"] if "cutoff_year" in author_attr else 99999999
         
-        if "affiliations" in author_attr:
-            affiliations = set(author_attr["affiliations"])
-        else:
-            affiliations = set()
+        affiliations = set(author_attr["affiliations"]) if "affiliations" in author_attr else set()
         
-        if "grants" in author_attr:
-            grants = set(author_attr["grants"])
-        else:
-            grants = set()
+        grants = set(author_attr["grants"]) if "grants" in author_attr else set()
         
         for project, authors_dict in authors_by_project_dict.items():
             if author in authors_dict:
@@ -141,10 +132,7 @@ def regex_match_return(regex, string_to_match):
     """
     
     match = re.match(regex, string_to_match)
-    if match:
-        return match.groups()
-    else:
-        return ()
+    return match.groups() if match else ()
 
 
 
@@ -161,10 +149,7 @@ def regex_group_return(regex_groups, group_index):
         (str): Either emtpy string or the group string matched by the regex.
     """
     
-    if group_index < len(regex_groups) and regex_groups[group_index]:
-        return regex_groups[group_index]
-    else:
-        return ""
+    return regex_groups[group_index] if group_index < len(regex_groups) and regex_groups[group_index] else ""
 
 
 
@@ -183,10 +168,7 @@ def regex_search_return(regex, string_to_search):
     """
     
     match = re.search(regex, string_to_search)
-    if match:
-        return match.groups()
-    else:
-        return ()
+    return match.groups() if match else ()
 
 
 
@@ -226,10 +208,7 @@ def match_authors_in_pub_PubMed(authors_json, author_list):
                     author_items["author_id"] = author
                     break
                 
-    if publication_has_affiliated_author:
-        return author_list
-    else:
-        return []
+    return author_list if publication_has_affiliated_author else []
 
     
     
@@ -261,10 +240,7 @@ def match_authors_in_pub_Crossref(authors_json, author_list):
         else:
             author_items_affiliation = []
         
-        if "given" in author_items:
-            author_items_first_name = str(author_items.get("given")).lower()
-        else:
-            author_items_first_name = ""
+        author_items_first_name = str(author_items.get("given")).lower() if "given" in author_items else ""
         author_items_last_name = str(author_items.get("family")).lower()
         
         if "ORCID" in author_items:
@@ -316,10 +292,7 @@ def modify_pub_dict_for_saving(pub):
     
     pub_dict["grants"] = [grant.text for grant in pub.xml.findall(".//GrantID")]
     PMC_id_elements = pub.xml.findall(".//ArticleId[@IdType='pmc']")
-    if PMC_id_elements:
-        pub_dict["PMCID"] = PMC_id_elements[0].text
-    else:
-        pub_dict["PMCID"] = None
+    pub_dict["PMCID"] = PMC_id_elements[0].text if PMC_id_elements else None
         
     del pub_dict["xml"]
     pub_dict["publication_date"] = {"year":pub_dict["publication_date"].year, "month":pub_dict["publication_date"].month, "day":pub_dict["publication_date"].day}
@@ -388,10 +361,7 @@ def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
     if not titles:
         titles = [pub_attr["title"] for pub_attr in publication_dict.values() if pub_attr["title"]]
     
-    if is_fuzzy_match_to_list(title, titles):
-        return True
-    else:
-        return False
+    return True if is_fuzzy_match_to_list(title, titles) else False
 
 
 
@@ -505,11 +475,5 @@ def are_citations_in_pub_dict(tokenized_citations, pub_dict):
     pub_pmids = [pub["pubmed_id"] for pub in pub_dict.values() if pub["pubmed_id"]]
     
     return [True if citation["PMID"] in pub_pmids or citation["DOI"].lower() in pub_dois or is_fuzzy_match_to_list(citation["title"], pub_titles) else False for citation in tokenized_citations]
-
-
-
-
-
-
 
 

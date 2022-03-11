@@ -27,6 +27,9 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
         instance (dict): JSON as a dict to validate
         schema (dict): JSON schema as a dict to validate instance against
         pattern_messages (dict): if the instance has a ValidationError of the pattern type then look up the attribute that failed the pattern in this dict and see if there is a custom message
+        
+    Raises:
+        jsonshcema.ValidationError: If an unexpected jsonschema error happens this is raised rather than a system exit.
     """
     
 
@@ -248,12 +251,4 @@ def tok_reference_check(tok_ref):
     """
     
     tracker_validate(instance=tok_ref, schema=tracker_schema.tok_schema, format_checker=jsonschema.FormatChecker())
-
-
-
-
-
-
-
-
 

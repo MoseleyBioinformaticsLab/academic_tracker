@@ -37,19 +37,13 @@ def convert_tokenized_authors_to_str(authors):
         if "first" in author:
             if author["first"]:
                 authors_string += author["first"]
-                if author["last"]:
-                    authors_string += " " + author["last"] + ", "
-                else:
-                    authors_string += ", "
+                authors_string += " " + author["last"] + ", " if author["last"] else ", "
             elif author["last"]:
                 authors_string += author["last"] + ", "
         else:
             if author["last"]:
                 authors_string += author["last"]
-                if author["initials"]:
-                    authors_string += " " + author["initials"] + ", "
-                else:
-                    authors_string += ", "
+                authors_string += " " + author["initials"] + ", " if author["initials"] else ", "
             else:
                 authors_string += author["initials"] + ", "
         
@@ -139,10 +133,7 @@ def create_report_from_template(publication_dict, is_citation_in_prev_pubs_list,
         authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in pub_values["authors"]])
         pub_template_copy = pub_template_copy.replace("<authors>", authors)
         
-        if pub_values["grants"]:
-            grants = ", ".join(pub_values["grants"])
-        else:
-            grants = "None"
+        grants = ", ".join(pub_values["grants"]) if pub_values["grants"] else "None"
         pub_template_copy = pub_template_copy.replace("<grants>", grants)
         
         for keyword, date_key in publication_date_keywords_map.items():
@@ -198,35 +189,23 @@ def create_tabular_report(publication_dict, config_dict, is_citation_in_prev_pub
     
     matching_key_for_citation = [citation["pub_dict_key"] for citation in tokenized_citations]
     
-    if "separator" in config_dict["summary_report"]:
-        separator = config_dict["summary_report"]["separator"]
-    else:
-        separator = ","
-        
-    if "sort" in config_dict["summary_report"]:
-        sort = config_dict["summary_report"]["sort"]
-    else:
-        sort = []
-        
+    separator = config_dict["summary_report"]["separator"] if "separator" in config_dict["summary_report"] else ","
+    
+    sort = config_dict["summary_report"]["sort"] if "sort" in config_dict["summary_report"] else []
+    
     if "column_order" in config_dict["summary_report"]:
         column_order = config_dict["summary_report"]["column_order"]
     else:
         column_order = list(row_template.keys())
-        
-    if "file_format" in config_dict["summary_report"]:
-        file_format = config_dict["summary_report"]["file_format"]
-    else:
-        file_format = "csv"
+    
+    file_format = config_dict["summary_report"]["file_format"] if "file_format" in config_dict["summary_report"] else "csv"
         
     if "filename" in config_dict["summary_report"]:
         filename = config_dict["summary_report"]["filename"]
     else:
-        if file_format == "csv":
-            filename = "summary_report.csv"
-        else:
-            filename = "summary_report.xlsx"
+        filename = "summary_report.csv" if file_format == "csv" else "summary_report.xlsx"
     
-    row_string = "".join(row_template.values())    
+    row_string = "".join(row_template.values()) 
     if any([pub_author_keyword in row_string for pub_author_keyword in pub_authors_keyword_map.keys()]):
         has_pub_author_keywords = True
     else:
@@ -235,10 +214,7 @@ def create_tabular_report(publication_dict, config_dict, is_citation_in_prev_pub
     
     for pub, pub_values in publication_dict.items():
         tok_index = matching_key_for_citation.index(pub)
-        if is_citation_in_prev_pubs_list:
-            is_citation_in_prev_pubs = is_citation_in_prev_pubs_list[tok_index]
-        else:
-            is_citation_in_prev_pubs = None
+        is_citation_in_prev_pubs = is_citation_in_prev_pubs_list[tok_index] if is_citation_in_prev_pubs_list else None
         
         if has_pub_author_keywords:
             for pub_author in publication_dict[pub]["authors"]:
@@ -306,10 +282,7 @@ def replace_keywords(template, publication_dict, pub, tokenized_citation, is_cit
         authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
         template_copy[key] = template_copy[key].replace("<authors>", authors)
         
-        if publication_dict[pub]["grants"]:
-            grants = ", ".join(publication_dict[pub]["grants"])
-        else:
-            grants = "None Found"
+        grants = ", ".join(publication_dict[pub]["grants"]) if publication_dict[pub]["grants"] else "None Found"
         template_copy[key] = template_copy[key].replace("<grants>", grants)
         
         for keyword, date_key in publication_date_keywords_map.items():
@@ -369,18 +342,9 @@ def create_tokenization_report(tokenized_citations):
             report_string += "Reference Line: \n\tN/A\n"
         
         report_string += "Tokenized Reference: \n\tAuthors: " + convert_tokenized_authors_to_str(citation["authors"])
-        if citation["title"]:
-            report_string += "\n\tTitle: " + citation["title"]
-        else:
-            report_string += "\n\tTitle: None"
-        if citation["PMID"]:
-            report_string += "\n\tPMID: " + str(citation["PMID"])
-        else:
-            report_string += "\n\tPMID: None"
-        if citation["DOI"]:
-            report_string += "\n\tDOI: " + citation["DOI"]
-        else:
-            report_string += "\n\tDOI: None"
+        report_string += "\n\tTitle: " + citation["title"] if citation["title"] else "\n\tTitle: None"
+        report_string += "\n\tPMID: " + str(citation["PMID"]) if citation["PMID"] else "\n\tPMID: None"
+        report_string += "\n\tDOI: " + citation["DOI"] if citation["DOI"] else "\n\tDOI: None"
         report_string += "\n\n"
         
     return report_string
@@ -436,8 +400,5 @@ def create_reference_search_diagnostic(publication_dict, is_citation_in_prev_pub
         report_string += "\n\n\n"
         
     return report_string
-
-
-
 
 

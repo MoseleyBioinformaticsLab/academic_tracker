@@ -80,10 +80,8 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
         if "to_email" in report_attributes or not "from_email" in report_attributes:
             
             if "columns" in report_attributes:
-                if "file_format" in report_attributes:
-                    file_format = report_attributes["file_format"]
-                else:
-                    file_format = "csv"
+                
+                file_format = report_attributes["file_format"] if "file_format" in report_attributes else "csv"
                     
                 if "filename" in report_attributes:
                     filename = report_attributes["filename"]
@@ -97,15 +95,9 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
             
             else:
                 
-                if "template" in report_attributes:
-                    template = report_attributes["template"]
-                else:
-                    template = DEFAULT_PROJECT_TEMPLATE
-                    
-                if "filename" in report_attributes:
-                    filename = report_attributes["filename"]
-                else:
-                    filename = project + "_project_report.txt"
+                template = report_attributes["template"] if "template" in report_attributes else DEFAULT_PROJECT_TEMPLATE
+                
+                filename = report_attributes["filename"] if "filename" in report_attributes else project + "_project_report.txt"
                 
                 report = create_project_report(publication_dict, config_dict, authors_by_project_dict, project, template)
                 fileio.save_string_to_file(save_dir_name, filename, report)
@@ -120,13 +112,9 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
                                                  "attachment_filename": filename})
             
         else:
-             ## If authors is in project send an email to each author in the project.
-            if "authors" in project_attributes:
-                authors = project_attributes["authors"]
-            
-            ## If neither authors nor to_email is in the project then send emails to all authors that have publications.    
-            else:
-                authors = pubs_by_author_dict
+            ## If authors is in project send an email to each author in the project.
+            ## If neither authors nor to_email is in the project then send emails to all authors that have publications.  
+            authors = project_attributes["authors"] if "authors" in project_attributes else pubs_by_author_dict
                 
             for author in authors:
                 report_attributes = authors_by_project_dict[project][author]["project_report"]
@@ -135,10 +123,8 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
                     continue
                 
                 if "columns" in report_attributes:
-                    if "file_format" in report_attributes:
-                        file_format = report_attributes["file_format"]
-                    else:
-                        file_format = "csv"
+                    
+                    file_format = report_attributes["file_format"] if "file_format" in report_attributes else "csv"
                         
                     if "filename" in report_attributes:
                         filename = report_attributes["filename"]
@@ -151,15 +137,9 @@ def create_project_reports_and_emails(authors_by_project_dict, publication_dict,
                     report, filename = create_tabular_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, pubs_by_author_dict, project, report_attributes, save_dir_name, filename)
                 
                 else:
-                    if "template" in report_attributes:
-                        template = report_attributes["template"]
-                    else:
-                        template = DEFAULT_AUTHOR_TEMPLATE
-                        
-                    if "filename" in report_attributes:
-                        filename = report_attributes["filename"]
-                    else:
-                        filename = project + "_" + author + "_project_report.txt"
+                    template = report_attributes["template"] if "template" in report_attributes else DEFAULT_AUTHOR_TEMPLATE
+                    
+                    filename = report_attributes["filename"] if "filename" in report_attributes else project + "_" + author + "_project_report.txt"
                     
                     report = create_project_report(publication_dict, config_dict, {project:{author:authors_by_project_dict[project][author]}}, project, template, config_dict["Authors"][author]["first_name"], config_dict["Authors"][author]["last_name"])
                     fileio.save_string_to_file(save_dir_name, filename, report)
@@ -331,10 +311,7 @@ def build_author_loop(publication_dict, config_dict, authors_by_project_dict, pr
             authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
             pub_template_copy = pub_template_copy.replace("<authors>", authors)
             
-            if publication_dict[pub]["grants"]:
-                grants = ", ".join(publication_dict[pub]["grants"])
-            else:
-                grants = "None Found"
+            grants = ", ".join(publication_dict[pub]["grants"]) if publication_dict[pub]["grants"] else "None Found"
             pub_template_copy = pub_template_copy.replace("<grants>", grants)
             
             for keyword, date_key in publication_date_keywords_map.items():
@@ -613,17 +590,11 @@ def create_tabular_summary_report(publication_dict, config_dict, authors_by_proj
     if "filename" in config_dict["summary_report"]:
         filename = config_dict["summary_report"]["filename"]
     else:
-        if file_format == "csv":
-            filename = "summary_report.csv"
-        else:
-            filename = "summary_report.xlsx"
+        filename = "summary_report.csv" if file_format == "csv" else "summary_report.xlsx"
     
-    row_string = "".join(row_template.values())    
-    if any([pub_keyword in row_string for pub_keyword in pub_keywords]):
-        has_pub_keywords = True
-    else:
-        has_pub_keywords = False
-        
+    row_string = "".join(row_template.values())  
+    has_pub_keywords = True if any([pub_keyword in row_string for pub_keyword in pub_keywords]) else False
+    
     if any([pub_author_keyword in row_string for pub_author_keyword in pub_authors_keyword_map.keys()]):
         has_pub_author_keywords = True
     else:
@@ -696,33 +667,18 @@ def create_tabular_project_report(publication_dict, config_dict, authors_by_proj
     rows = []
     row_template = copy.deepcopy(report_attributes["columns"])
     
-    if "separator" in report_attributes:
-        separator = report_attributes["separator"]
-    else:
-        separator = ","
-        
-    if "sort" in report_attributes:
-        sort = report_attributes["sort"]
-    else:
-        sort = []
-        
-    if "column_order" in report_attributes:
-        column_order = report_attributes["column_order"]
-    else:
-        column_order = list(row_template.keys())
-        
-    if "file_format" in report_attributes:
-        file_format = report_attributes["file_format"]
-    else:
-        file_format = "csv"
+    separator = report_attributes["separator"] if "separator" in report_attributes else ","
     
+    sort = report_attributes["sort"] if "sort" in report_attributes else []
+    
+    column_order = report_attributes["column_order"] if "column_order" in report_attributes else list(row_template.keys())   
+    
+    file_format = report_attributes["file_format"] if "file_format" in report_attributes else "csv"    
         
-    row_string = "".join(row_template.values())    
-    if any([pub_keyword in row_string for pub_keyword in pub_keywords]):
-        has_pub_keywords = True
-    else:
-        has_pub_keywords = False
-        
+    row_string = "".join(row_template.values())
+    
+    has_pub_keywords = True if any([pub_keyword in row_string for pub_keyword in pub_keywords]) else False
+    
     if any([pub_author_keyword in row_string for pub_author_keyword in pub_authors_keyword_map.keys()]):
         has_pub_author_keywords = True
     else:
@@ -817,10 +773,7 @@ def replace_keywords(template, publication_dict, config_dict, project_name="", a
             authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
             template_copy[key] = template_copy[key].replace("<authors>", authors)
             
-            if publication_dict[pub]["grants"]:
-                grants = ", ".join(publication_dict[pub]["grants"])
-            else:
-                grants = "None Found"
+            grants = ", ".join(publication_dict[pub]["grants"]) if publication_dict[pub]["grants"] else "None Found"
             template_copy[key] = template_copy[key].replace("<grants>", grants)
             
             for keyword, date_key in publication_date_keywords_map.items():
@@ -833,9 +786,5 @@ def replace_keywords(template, publication_dict, config_dict, project_name="", a
             
     return template_copy
         
-
-
-
-
 
 

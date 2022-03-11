@@ -139,13 +139,14 @@ def search_ORCID_for_pubs(prev_pubs, ORCID_key, ORCID_secret, authors_json):
             pmid = None
             ## If the work is not a journal article then skip it.
             work_is_a_journal_article = True
+            work_before_relevant_year = False
             for work_summary in work["work-summary"]:
                 
                 if work_summary["type"] != "JOURNAL_ARTICLE":
                     work_is_a_journal_article = False
                     break
                 
-                work_before_relevant_year = False
+                
                 if work_summary["publication-date"]:
                     if not publication_year and work_summary["publication-date"]["year"]:
                         publication_year = int(work_summary["publication-date"]["year"]["value"])
@@ -278,10 +279,7 @@ def search_Google_Scholar_for_pubs(prev_pubs, authors_json, mailto_email):
         for pub in queried_author["publications"]:
             
             ## Find the publication year and check that it is in range.
-            if "pub_year" in pub["bib"]:
-                publication_year = int(pub["bib"]["pub_year"])
-            else:
-                publication_year = None
+            publication_year = int(pub["bib"]["pub_year"]) if "pub_year" in pub["bib"] else None
         
             if not publication_year or publication_year < authors_attributes["cutoff_year"]:
                 continue
@@ -425,10 +423,7 @@ def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email):
                 
                 temp_dict = {"lastname":cr_author_dict["family"], "initials":None,}
                 
-                if "given" in cr_author_dict:
-                    temp_dict["firstname"] = cr_author_dict["given"]
-                else:
-                    temp_dict["firstname"] = None
+                temp_dict["firstname"] = cr_author_dict["given"] if "given" in cr_author_dict else None
                 
                 if cr_author_dict["affiliation"] and "name" in cr_author_dict["affiliation"][0]:
                     temp_dict["affiliation"] = cr_author_dict["affiliation"][0]["name"]
@@ -441,10 +436,7 @@ def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email):
                 new_author_list.append(temp_dict)
             
             ## Look for DOI
-            if "DOI" in work:
-                doi = work["DOI"].lower()
-            else:
-                doi = None
+            doi = work["DOI"].lower() if "DOI" in work else None
             
             ## Look for external URL
             if "URL" in work:
@@ -478,18 +470,12 @@ def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email):
             if "funder" in work:
                 ## the grant string could be in any value of the funder dict so look for it in each one.
                 found_grants = {grant for funder in work["funder"] for value in funder.values() for grant in authors_attributes["grants"] if grant in value}
-                if found_grants:
-                    found_grants = list(found_grants)
-                else:
-                    found_grants = None
+                found_grants = list(found_grants) if found_grants else None
             else:
                 found_grants = None
                 
             ## Look for journal
-            if "publisher" in work:
-                journal = work["publisher"]
-            else:
-                journal = None
+            journal = work["publisher"] if "publisher" in work else None
                 
         
             ## Build the pub_dict from what we were able to collect.
@@ -518,27 +504,3 @@ def search_Crossref_for_pubs(prev_pubs, authors_json, mailto_email):
             
             
     return publication_dict
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

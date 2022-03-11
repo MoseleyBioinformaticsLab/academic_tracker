@@ -299,5 +299,3 @@ PMID_reference_schema = {
 
 
 
-
-

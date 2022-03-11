@@ -13,6 +13,7 @@ import subprocess
 import io
 import re
 import os
+import shutil
 
 import orcid
 import scholarly
@@ -61,19 +62,18 @@ def search_ORCID_for_ids(ORCID_key, ORCID_secret, authors_json):
         authors_json (dict): the authors_json modified with any ORCID IDs found.
     """
     
+    ## This is a workaround to get the expanded search functionality that the orcid package doesn't currently have.
     SEARCH_VERSION = "/v3.0"
-    def search_replace(self, query, method, start, rows, headers,
-                endpoint):
-        url = endpoint + SEARCH_VERSION + \
-                "/expanded-search/?defType=" + method + "&q=" + query
+    def search_replace(self, query, method, start, rows, headers, endpoint):
+        url = endpoint + SEARCH_VERSION + "/expanded-search/?defType=" + method + "&q=" + query
         if start:
             url += "&start=%s" % start
         if rows:
             url += "&rows=%s" % rows
 
-        response = requests.get(url, headers=headers,
-                                timeout=self._timeout)
+        response = requests.get(url, headers=headers, timeout=self._timeout)
         response.raise_for_status()
+        
         if self.do_store_raw_response:
             self.raw_response = response
         return response.json()
@@ -234,7 +234,9 @@ def send_emails(email_messages):
     Args:
         email_messages (dict): keys are author names and values are the message
     """
-    sendmail_location = "/usr/sbin/sendmail"
+    if not shutil.which("sendmail"):
+        helper_functions.vprint("Warning: sendmail was not found in PATH, so no emails were sent.")
+        return
     
     # build and send each message by looping over the email_messages dict
     for email_parts in email_messages["emails"]:
@@ -253,7 +255,7 @@ def send_emails(email_messages):
         else:
             msg.add_attachment(email_parts["attachment"], filename=email_parts["attachment_filename"])
         
-        subprocess.run([sendmail_location, "-t", "-oi"], input=msg.as_bytes())
+        subprocess.run(["sendmail", "-t", "-oi"], input=msg.as_bytes())
 
 
 
@@ -355,10 +357,7 @@ def scrape_url_for_DOI(url):
     if doi:
         
         url = get_redirect_url_from_doi(doi)
-        if url:
-            return doi
-        else:
-            return ""
+        return doi if url else ""
         
     else:
         return ""
@@ -412,5 +411,3 @@ def download_pdf(pdf_url):
 
 
     
-
-        

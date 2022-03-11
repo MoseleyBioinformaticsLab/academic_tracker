@@ -185,14 +185,6 @@ run the following commands:
            python3 -m pip install requests  # On Linux, Mac OS X
            py -3 -m pip install requests    # On Windows
            
-   * urllib3_ for making internet requests.
-      * To install the urllib3_ Python library run the following:
-
-        .. code:: bash
-
-           python3 -m pip install urllib3  # On Linux, Mac OS X
-           py -3 -m pip install urllib3    # On Windows
-
 
 Basic usage
 ~~~~~~~~~~~
@@ -240,7 +232,6 @@ the use cases with examples are in the :doc:`tutorial` section.
 .. _pip: https://pip.pypa.io/
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _docopt: https://pypi.org/project/docopt/
-.. _schema: https://pypi.org/project/schema/
 .. _pymed: https://pypi.org/project/pymed/
 .. _jsonschema: https://pypi.org/project/jsonschema/
 .. _habanero: https://pypi.org/project/habanero/
@@ -252,4 +243,3 @@ the use cases with examples are in the :doc:`tutorial` section.
 .. _pandas: https://pypi.org/project/pandas/
 .. _openpyxl: https://pypi.org/project/openpyxl/
 .. _requests: https://pypi.org/project/requests/
-.. _urllib3: https://pypi.org/project/urllib3/

@@ -26,6 +26,9 @@ def load_json(filepath):
         
     Returns:
         internal_data (dict): json read from file in a dictionary
+        
+    Raises:
+        Exception: If file opening has a problem will raise an exception.
     """
     if os.path.exists(filepath):
         try:
@@ -136,6 +139,9 @@ def read_text_from_docx(doc_path):
         
     Returns:
         (str): A string of the contents of the docx file. Each line concatenated with a newline character.
+    
+    Raises:
+        Exception: If file opening has a problem will raise an exception.
     """
     
     ## https://stackoverflow.com/questions/25228106/how-to-extract-text-from-an-existing-docx-file-using-python-docx
@@ -159,6 +165,9 @@ def read_text_from_txt(doc_path):
         
     Returns:
         (str): A string of the contents of the txt or csv file. Each line concatenated with a newline character. 
+    
+    Raises:
+        Exception: If file opening has a problem will raise an exception.
     """
     
     if os.path.exists(doc_path):
@@ -182,6 +191,9 @@ def read_csv(doc_path):
         
     Returns:
         df (DataFrame): Pandas dataframe of the csv contents.
+    
+    Raises:
+        Exception: If file opening has a problem will raise an exception.
     """
     
     if os.path.exists(doc_path):
@@ -226,20 +238,4 @@ def save_json_to_file(save_dir_name, file_name, json_dict):
     
     with open(save_path, 'w') as outFile:
         print(json.dumps(json_dict, indent=2, sort_keys=True), file=outFile)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

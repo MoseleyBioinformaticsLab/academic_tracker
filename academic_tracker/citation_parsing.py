@@ -61,10 +61,7 @@ def parse_text_for_citations(text):
                 tokenized_authors = tokenize_function_dict[citation_style](authors)
                 
                 match = helper_functions.regex_match_return(r"(?i).*pmid:\s*(\d+).*", tail)
-                if match:
-                    pmid = match[0]
-                else:
-                    pmid = None
+                pmid = match[0] if match else None
                 
                 match = helper_functions.regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", tail)
                 if match:
@@ -231,10 +228,7 @@ def tokenize_myncbi_citations(html):
     for citation in citations:
         
         authors_str = citation.find("span", class_ = "authors")
-        if authors_str:
-            authors_str = authors_str.text
-        else:
-            authors_str = list(citation.children)[1].text
+        authors_str = authors_str.text if authors_str else list(citation.children)[1].text
         
         authors_str = authors_str.strip()
         if authors_str and authors_str[-1] == ".":
@@ -255,28 +249,19 @@ def tokenize_myncbi_citations(html):
             title = title.text.strip()
         else:
             children = list(citation.children)
-            if children[2].name == "span":
-                title = ""
-            else:
-                title = children[2].text.strip()
+            title = "" if children[2].name == "span" else children[2].text.strip()
             
         doi = citation.find("span", class_ = "doi")
         if doi:
             match = helper_functions.regex_match_return(r"(?i).*doi:\s*([^\s]+\w).*", doi.text)
-            if match:
-                doi = match[0].lower()
-            else:
-                doi = ""
+            doi = match[0].lower() if match else ""
         else:
             doi = ""
             
         pmid = citation.find("span", class_ = "pmid")
         if pmid:
             match = helper_functions.regex_match_return(r"(?i).*pmid:\s*(\d+).*", pmid.text)
-            if match:
-                pmid = match[0]
-            else:
-                pmid = ""
+            pmid = match[0] if match else ""
         else:
             pmid = ""
         

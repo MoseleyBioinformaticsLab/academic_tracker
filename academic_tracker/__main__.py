@@ -27,18 +27,7 @@ Search Options:
     --no_Crossref                     Don't search Crossref.
 """
 
-
-## Need help with pycharm UML diagram.
-## add defulat pandas excel engine to required packages xlsxwriter I think
-
-## take docs/_build  out of gitignore and point GitHub pages there for documentation.
-## Add the url of this page to the about section on gitHub.
-## When to merge to master?
-## When to create github pages?
-## Is BSD license okay?
-## Putting on pypi? When?
-## Does the lab have github actions for sphinx documentation? 
-
+## look for ternery
 
 import re
 import os
@@ -206,10 +195,8 @@ def PMID_reference(config_json_filepath, ref_path_or_URL, test):
         helper_functions.vprint("Nothing was read from the PMID file. Make sure the file is not empty or is a supported file type.")
         sys.exit()
     
-    if type(file_contents) == str:
-        PMID_list = [line for line in file_contents.split("\n") if line]
-    else:
-        PMID_list = file_contents
+    PMID_list = [line for line in file_contents.split("\n") if line] if type(file_contents) == str else file_contents
+    
     user_input_checking.tracker_validate(PMID_list, tracker_schema.PMID_reference_schema)
     
     helper_functions.vprint("Querying PubMed and building the publication list.")
@@ -218,10 +205,9 @@ def PMID_reference(config_json_filepath, ref_path_or_URL, test):
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
+    os.mkdir(save_dir_name)
     
     ## combine previous and new publications lists and save
     fileio.save_publications_to_file(save_dir_name, publication_dict, {})

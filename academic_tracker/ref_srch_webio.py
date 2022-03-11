@@ -181,10 +181,7 @@ def search_references_on_Google_Scholar(tokenized_citations, mailto_email):
                 continue
             
             ## Find the publication year and check that it is in range.
-            if "pub_year" in pub["bib"]:
-                publication_year = int(pub["bib"]["pub_year"])
-            else:
-                publication_year = None
+            publication_year = int(pub["bib"]["pub_year"]) if "pub_year" in pub["bib"] else None
         
             
             ## Determine the pub_id
@@ -261,10 +258,7 @@ def search_references_on_Crossref(tokenized_citations, mailto_email):
         for work in works:
             
             ## Look for DOI
-            if "DOI" in work:
-                doi = work["DOI"].lower()
-            else:
-                doi = None
+            doi = work["DOI"].lower() if "DOI" in work else None
              
             ## Look for title    
             if "title" in work and work["title"]:
@@ -328,10 +322,7 @@ def search_references_on_Crossref(tokenized_citations, mailto_email):
                 
                 temp_dict = {"lastname":cr_author_dict["family"], "initials":None,}
                 
-                if "given" in cr_author_dict:
-                    temp_dict["firstname"] = cr_author_dict["given"]
-                else:
-                    temp_dict["firstname"] = None
+                temp_dict["firstname"] = cr_author_dict["given"] if "given" in cr_author_dict else None
                 
                 if cr_author_dict["affiliation"] and "name" in cr_author_dict["affiliation"][0]:
                     temp_dict["affiliation"] = cr_author_dict["affiliation"][0]["name"]
@@ -371,10 +362,7 @@ def search_references_on_Crossref(tokenized_citations, mailto_email):
             
             
             ## Look for journal
-            if "publisher" in work:
-                journal = work["publisher"]
-            else:
-                journal = None
+            journal = work["publisher"] if "publisher" in work else None
                 
         
             ## Build the pub_dict from what we were able to collect.
@@ -437,11 +425,8 @@ def parse_myncbi_citations(url):
     
     parsed_pubs = citation_parsing.tokenize_myncbi_citations(url_str)
     
-    ## Parse the rest of the pages.    
-    if url[-1] == "/":
-        new_url = url
-    else:
-        new_url = url + "/"
+    ## Parse the rest of the pages.
+    new_url = url if url[-1] == "/" else url + "/"
     
     for i in range(2,number_of_pages+1):
         

@@ -129,10 +129,9 @@ def save_and_send_reports_and_emails(config_dict, tokenized_citations, publicati
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
+    os.mkdir(save_dir_name)
     
     
     if "summary_report" in config_dict:
@@ -170,8 +169,6 @@ def save_and_send_reports_and_emails(config_dict, tokenized_citations, publicati
                 webio.send_emails(email_messages)
                 
     return save_dir_name
-
-
 
 
 

@@ -78,10 +78,16 @@
 </div>
 <div class="section" id="academic-tracker">
 <h1>Academic Tracker<a class="headerlink" href="#academic-tracker" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://pypi.org/project/academic_tracker"><img alt="Current library version" src="https://img.shields.io/pypi/v/academic_tracker.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.org/project/academic_tracker"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/academic_tracker.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml"><img alt="Build status" src="https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker"><img alt="Code coverage information" src="https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker/branch/main/graphs/badge.svg?branch=main" /></a>
+<a class="reference external image-reference" href="https://doi.org/10.3390/metabo11030163"><img alt="Citation link" src="https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/academic_tracker"><img alt="GitHub project" src="https://img.shields.io/github/stars/MoseleyBioinformaticsLab/academic_tracker.svg?style=social&amp;label=Star" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Academic Tracker was created to automate the process of making sure that NIH
+<p>Academic Tracker was created to automate the process of making sure that federally
 funded publications get listed on PubMed and that the grant funding source for
 them is cited.</p>
 <p>Academic Tracker is a command line tool to search PubMed, ORCID, Google Scholar,
@@ -91,7 +97,12 @@ The program will then will look for publications on the aforementioned sources
 and return what relevant information is available from those sources.</p>
 <p>The primary use case is to give the program a list of authors to find publications
 for. From this list of publications it can then be determined which ones need
-further action to be in compliance with NIH.</p>
+further action to be in compliance.</p>
+<p>A secondary use case for finding author’s publications is to create a report of
+the collaborators they have worked with, and can be done by specifying the creation
+of that report in the configuration file. Details on reports are in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/reporting.html">documentation</a>.</p>
+<p>The other primary use case is to give the program a list of publication references
+to find information for.</p>
 <div class="section" id="links">
 <h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
 <blockquote>
@@ -105,18 +116,31 @@ further action to be in compliance with NIH.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>The Academic Tracker package runs under Python 3.7+. Use <a class="reference external" href="https://pip.pypa.io">pip</a> to install.
-Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io">pip</a> is included by default. Academic Tracker relies
-on sendmail which is built into Linux to send emails, so it is only available for
-use there.</p>
+Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io">pip</a> is included by default. Be sure to use the latest
+version of pip as older versions are known to have issues grabbing all dependencies.
+Academic Tracker relies on sendmail to send emails, so if you need to use that
+feature be sure sendmail is installed and in PATH.</p>
 <div class="section" id="install-on-linux-mac-os-x">
 <h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker
 </pre></div>
 </div>
 </div>
+<div class="section" id="install-on-windows">
+<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install academic_tracker
+</pre></div>
+</div>
+</div>
 <div class="section" id="upgrade-on-linux-mac-os-x">
 <h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker --upgrade
+</pre></div>
+</div>
+</div>
+<div class="section" id="upgrade-on-windows">
+<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install academic_tracker --upgrade
 </pre></div>
 </div>
 </div>
@@ -129,13 +153,14 @@ case is simply:</p>
 </pre></div>
 </div>
 <p>Academic Tracker’s behavior can be quite complex though, so it is highly encouraged
-to read the <a class="reference internal" href="guide.html"><span class="doc">User Guide</span></a> and <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
+to read the <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/guide.html">guide</a>
+and <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/tutorial.html">tutorial</a>.</p>
 </div>
 <div class="section" id="creating-the-configuration-json">
 <h2>Creating The Configuration JSON<a class="headerlink" href="#creating-the-configuration-json" title="Permalink to this headline">¶</a></h2>
 <p>A configuration JSON file is required to run Academic Tracker, but initially creating
 it the first time can be burdensome. Unfortunately, there is no easy solution for
-this. It is encouraged to read the configuration JSON section in <a class="reference internal" href="jsonschema.html"><span class="doc">JSON Schema</span></a>
+this. It is encouraged to read the configuration JSON section in <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/jsonschema.html">jsonschema</a>
 and use the example there to create it initially. The add_authors command can help
 with building the Authors section if you already have a csv file with author
 information. A good tool to help track down pesky JSON syntax errors is <a class="reference external" href="https://csvjson.com/json_validator">here</a>.</p>
@@ -160,10 +185,9 @@ This should fix the issue.</p>
 <div class="section" id="email-sending-note">
 <h2>Email Sending Note<a class="headerlink" href="#email-sending-note" title="Permalink to this headline">¶</a></h2>
 <p>Academic Tracker uses sendmail to send emails, so any system it is going to be
-used on needs to have sendmail installed in /usr/sbin/sendmail. If you try to
-send emails without this the program will error. This can be avoided by using
-the –test option though. The –test option blocks email sending so the program
-can be ran just fine on systems without sendmail if that option is used. Email
+used on needs to have sendmail installed and the path in PATH. If you try to
+send emails without this the program will display a warning. This can be avoided
+by using the –test option though. The –test option blocks email sending. Email
 sending can also be avoided by leaving the from_email attribute out of the report
 sections of the configuration JSON file.</p>
 </div>
@@ -186,7 +210,7 @@ matched. Author’s are matched using last name and at least one affiliation.</p
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>This package is distributed under the <a class="reference external" href="https://choosealicense.com/licenses/bsd-3-clause-clear/">BSD</a> <cite>license</cite>.</p>
+<p>This package is distributed under the BSD <cite>license</cite>.</p>
 </div>
 </div>
 <div class="section" id="documentation-index">

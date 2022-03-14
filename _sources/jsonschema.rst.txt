@@ -35,11 +35,8 @@ of the configuration JSON.
 project_report is used to specify that creating a project report is desired and 
 how to construct and email it. If project_report is missing then no report is 
 created for that project. Additional attributes within the project_report attribute 
-specify how to construct the report and whether to email it.
-
-The template attribute within project_report is used to specify how to build the 
-report. If it is missing then the default template will be used. Details about 
-reporting are in the :doc:`reporting` section. 
+specify how to construct the report and whether to email it. 
+Details about reporting are in the :doc:`reporting` section. 
 
 The from_email attribute within project_report is used to specify what email 
 address the email with the report attached should be sent from. If this attribute 
@@ -56,11 +53,6 @@ desired and how to construct and email it. If collaborator_report is missing
 then no report is created for the authors of that project. Additional attributes 
 within the collaborator_report attribute specify how to construct the report 
 and whether to email it.
-
-The columns, separator, and sort attributes within collaborator_report are used to 
-specify how to build the report. If columns is missing then the defaults for columns 
-and sort will be used. If separator is missing then the default comma separator 
-will be used.
 Details about reporting are in the :doc:`reporting` section. 
 
 The from_email attribute within collaborator_report is used to specify what email 
@@ -125,11 +117,8 @@ summary_report
 summary_report is used to specify that creating a summary report is desired and 
 how to construct and email it. If summary_report is missing then no report is 
 created for that run. Additional attributes within the summary_report attribute 
-specify how to construct the report and whether to email it.
-
-The template attribute within summary_report is used to specify how to build the 
-report. If it is missing then the default template will be used. Details about 
-reporting are in the :doc:`reporting` section. 
+specify how to construct the report and whether to email it. 
+Details about reporting are in the :doc:`reporting` section. 
 
 The from_email attribute within summary_report is used to specify what email 
 address the email with the report attached should be sent from. If this attribute 

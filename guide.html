@@ -44,7 +44,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-on-linux-mac-os-x">Install on Linux, Mac OS X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-on-windows">Install on Windows</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#upgrade-on-linux-mac-os-x">Upgrade on Linux, Mac OS X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-on-windows">Upgrade on Windows</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-inside-virtualenv">Install inside virtualenv</a></li>
 </ul>
 </li>
@@ -90,7 +92,7 @@
 <h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>Academic Tracker was created to automate the process of making sure that NIH
+<p>Academic Tracker was created to automate the process of making sure that federally
 funded publications get listed on PubMed and that the grant funding source for
 them is cited.</p>
 <p>Academic Tracker searches PubMed, ORCID, Crossref, and Google Scholar to look
@@ -98,6 +100,9 @@ for publications. The 2 main use cases allows users to search by author names or
 a publication citation/reference. The output is customizable by the user, but in
 general will be a JSON file of publication information, a JSON file of email
 information if emails were sent, and text files of summary information.</p>
+<p>A secondary use case of searching by author names is to create a report of the
+collaborators they have worked with. This can be done by specifying the creation
+of that report in the configuration file. Details on reports are in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/reporting.html">documentation</a>.</p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
@@ -109,9 +114,21 @@ Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.i
 </pre></div>
 </div>
 </div>
+<div class="section" id="install-on-windows">
+<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install academic_tracker
+</pre></div>
+</div>
+</div>
 <div class="section" id="upgrade-on-linux-mac-os-x">
 <h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker --upgrade
+</pre></div>
+</div>
+</div>
+<div class="section" id="upgrade-on-windows">
+<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install academic_tracker --upgrade
 </pre></div>
 </div>
 </div>
@@ -292,18 +309,6 @@ py -3 -m pip install openpyxl    <span class="c1"># On Windows</span>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/requests/">requests</a> Python library run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install requests  <span class="c1"># On Linux, Mac OS X</span>
 py -3 -m pip install requests    <span class="c1"># On Windows</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt><a class="reference external" href="https://pypi.org/project/urllib3/">urllib3</a> for making internet requests.</dt><dd><ul>
-<li><p>To install the <a class="reference external" href="https://pypi.org/project/urllib3/">urllib3</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install urllib3  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install urllib3    <span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>

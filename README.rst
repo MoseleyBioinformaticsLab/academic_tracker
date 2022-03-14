@@ -53,7 +53,7 @@ Links
 
    * Academic Tracker @ GitHub_
    * Academic Tracker @ PyPI_
-   * Documentation @ ReadTheDocs_
+   * Documentation @ Pages_
 
 
 Installation
@@ -176,6 +176,6 @@ This package is distributed under the BSD `license`.
 
 
 .. _GitHub: https://github.com/MoseleyBioinformaticsLab/academic_tracker
-.. _ReadTheDocs: http://academic_tracker.readthedocs.io
+.. _Pages: https://moseleybioinformaticslab.github.io/academic_tracker/
 .. _PyPI: https://pypi.org/project/academic_tracker
 .. _pip: https://pip.pypa.io

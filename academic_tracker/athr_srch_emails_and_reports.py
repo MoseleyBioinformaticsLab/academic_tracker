@@ -321,7 +321,7 @@ def build_author_loop(publication_dict, config_dict, authors_by_project_dict, pr
         
         author_template_copy = re.sub(r"(?s)<pub_loop>.*</pub_loop>", authors_pubs, author_template_copy)
         for keyword, auth_key in authors_keywords_map.items():
-            author_template_copy = author_template_copy.replace(keyword, str(config_dict["Authors"][author][auth_key]))
+            author_template_copy = author_template_copy.replace(keyword, str(config_dict["Authors"][author][auth_key]) if auth_key in config_dict["Authors"][author] else "None")
             
         project_authors += author_template_copy
         
@@ -756,7 +756,7 @@ def replace_keywords(template, publication_dict, config_dict, project_name="", a
         ## Authors keywords
         if author:
             for keyword, auth_key in authors_keywords_map.items():
-                template_copy[key] = template_copy[key].replace(keyword, str(config_dict["Authors"][author][auth_key]))
+                template_copy[key] = template_copy[key].replace(keyword, str(config_dict["Authors"][author][auth_key]) if auth_key in config_dict["Authors"][author] else "None")
         
         ## Publication keywords
         if pub:

@@ -137,8 +137,8 @@ When you try to run the program on Mac OS you may get an SSL error.
     certificate verify failed: unable to get local issuer certificate
     
 This is due to a change in Mac OS and Python. To fix it go to to your Python 
-folder in Applications and run the Install Certificates.command shell command. 
-This should fix the issue.
+folder in Applications and run the Install Certificates.command shell command 
+in the /Applications/Python 3.x folder. This should fix the issue.
 
 
 Email Sending Note

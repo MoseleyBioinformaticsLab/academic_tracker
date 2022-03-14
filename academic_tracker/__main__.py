@@ -27,7 +27,6 @@ Search Options:
     --no_Crossref                     Don't search Crossref.
 """
 
-## look for ternery
 
 import re
 import os

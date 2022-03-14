@@ -1,41 +1,33 @@
 Academic Tracker
 ================
-..
-    .. image:: https://img.shields.io/pypi/l/academic_tracker.svg
-       :target: https://choosealicense.com/licenses/bsd-3-clause-clear/
-       :alt: License information
-    
-    .. image:: https://img.shields.io/pypi/v/academic_tracker.svg
-       :target: https://pypi.org/project/academic_tracker
-       :alt: Current library version
-    
-    .. image:: https://img.shields.io/pypi/pyversions/academic_tracker.svg
-       :target: https://pypi.org/project/academic_tracker
-       :alt: Supported Python versions
-    
-    .. image:: https://readthedocs.org/projects/nmrstarlib/badge/?version=latest
-       :target: http://mwtab.readthedocs.io/en/latest/?badge=latest
-       :alt: Documentation status
-    
-    .. image:: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml/badge.svg
-       :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml
-       :alt: Build status
-    
-    .. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker/branch/master/graphs/badge.svg?branch=master
-       :target: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker
-       :alt: Code coverage information
-    
-    .. image:: https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg
-       :target: https://doi.org/10.3390/metabo11030163
-       :alt: Citation link
-    
-    .. image:: https://img.shields.io/github/stars/MoseleyBioinformaticsLab/academic_tracker.svg?style=social&label=Star
-        :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker
-        :alt: GitHub project
+
+.. image:: https://img.shields.io/pypi/v/academic_tracker.svg
+   :target: https://pypi.org/project/academic_tracker
+   :alt: Current library version
+
+.. image:: https://img.shields.io/pypi/pyversions/academic_tracker.svg
+   :target: https://pypi.org/project/academic_tracker
+   :alt: Supported Python versions
+
+.. image:: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml/badge.svg
+   :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml
+   :alt: Build status
+
+.. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker/branch/main/graphs/badge.svg?branch=main
+   :target: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker
+   :alt: Code coverage information
+
+.. image:: https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg
+   :target: https://doi.org/10.3390/metabo11030163
+   :alt: Citation link
+
+.. image:: https://img.shields.io/github/stars/MoseleyBioinformaticsLab/academic_tracker.svg?style=social&label=Star
+    :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker
+    :alt: GitHub project
 
 |
 
-Academic Tracker was created to automate the process of making sure that NIH 
+Academic Tracker was created to automate the process of making sure that federally 
 funded publications get listed on PubMed and that the grant funding source for 
 them is cited. 
 
@@ -47,9 +39,14 @@ and return what relevant information is available from those sources.
 
 The primary use case is to give the program a list of authors to find publications 
 for. From this list of publications it can then be determined which ones need 
-further action to be in compliance with NIH.
+further action to be in compliance.
 
+A secondary use case for finding author's publications is to create a report of 
+the collaborators they have worked with, and can be done by specifying the creation 
+of that report in the configuration file. Details on reports are in the `documentation <https://moseleybioinformaticslab.github.io/academic_tracker/reporting.html>`__.
 
+The other primary use case is to give the program a list of publication references 
+to find information for.
 
 Links
 ~~~~~
@@ -62,9 +59,10 @@ Links
 Installation
 ~~~~~~~~~~~~
 The Academic Tracker package runs under Python 3.7+. Use pip_ to install.
-Starting with Python 3.4, pip_ is included by default. Academic Tracker relies 
-on sendmail which is built into Linux to send emails, so it is only available for 
-use there.
+Starting with Python 3.4, pip_ is included by default. Be sure to use the latest 
+version of pip as older versions are known to have issues grabbing all dependencies. 
+Academic Tracker relies on sendmail to send emails, so if you need to use that 
+feature be sure sendmail is installed and in PATH.
 
 
 Install on Linux, Mac OS X
@@ -75,7 +73,13 @@ Install on Linux, Mac OS X
    python3 -m pip install academic_tracker
 
 
+Install on Windows
+------------------
 
+.. code:: bash
+
+   py -3 -m pip install academic_tracker
+   
 
 Upgrade on Linux, Mac OS X
 --------------------------
@@ -83,6 +87,14 @@ Upgrade on Linux, Mac OS X
 .. code:: bash
 
    python3 -m pip install academic_tracker --upgrade
+   
+
+Upgrade on Windows
+------------------
+
+.. code:: bash
+
+   py -3 -m pip install academic_tracker --upgrade
 
 
 
@@ -96,23 +108,24 @@ case is simply:
     academic_tracker author_search config_file.json
 
 Academic Tracker's behavior can be quite complex though, so it is highly encouraged 
-to read the :doc:`guide` and :doc:`tutorial`.
+to read the `guide <https://moseleybioinformaticslab.github.io/academic_tracker/guide.html>`_ 
+and `tutorial <https://moseleybioinformaticslab.github.io/academic_tracker/tutorial.html>`_.
 
 
 Creating The Configuration JSON
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A configuration JSON file is required to run Academic Tracker, but initially creating 
 it the first time can be burdensome. Unfortunately, there is no easy solution for 
-this. It is encouraged to read the configuration JSON section in :doc:`jsonschema` 
+this. It is encouraged to read the configuration JSON section in `jsonschema <https://moseleybioinformaticslab.github.io/academic_tracker/jsonschema.html>`_ 
 and use the example there to create it initially. The add_authors command can help 
 with building the Authors section if you already have a csv file with author 
-information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`_.
+information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`__.
 
 
 Registering With ORCID
 ~~~~~~~~~~~~~~~~~~~~~~
 In order to have this program search ORCID you must register with ORCID and obtain 
-a key and secret. Details on how to do that are `here <https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/>`_. 
+a key and secret. Details on how to do that are `here <https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/>`__. 
 If you do not want to do that then the --no_ORCID option can be used to skip searching 
 ORCID.
 
@@ -159,11 +172,10 @@ matched. Author's are matched using last name and at least one affiliation.
 
 License
 ~~~~~~~
-This package is distributed under the BSD_ `license`.
+This package is distributed under the BSD `license`.
 
 
 .. _GitHub: https://github.com/MoseleyBioinformaticsLab/academic_tracker
 .. _ReadTheDocs: http://academic_tracker.readthedocs.io
 .. _PyPI: https://pypi.org/project/academic_tracker
 .. _pip: https://pip.pypa.io
-.. _BSD: https://choosealicense.com/licenses/bsd-3-clause-clear/

@@ -4,7 +4,7 @@ User Guide
 Description
 ~~~~~~~~~~~
 
-Academic Tracker was created to automate the process of making sure that NIH 
+Academic Tracker was created to automate the process of making sure that federally 
 funded publications get listed on PubMed and that the grant funding source for 
 them is cited. 
 
@@ -13,6 +13,11 @@ for publications. The 2 main use cases allows users to search by author names or
 a publication citation/reference. The output is customizable by the user, but in 
 general will be a JSON file of publication information, a JSON file of email 
 information if emails were sent, and text files of summary information.
+
+A secondary use case of searching by author names is to create a report of the 
+collaborators they have worked with. This can be done by specifying the creation 
+of that report in the configuration file. Details on reports are in the `documentation <https://moseleybioinformaticslab.github.io/academic_tracker/reporting.html>`__.
+
 
 Installation
 ~~~~~~~~~~~~
@@ -29,6 +34,12 @@ Install on Linux, Mac OS X
    python3 -m pip install academic_tracker
 
 
+Install on Windows
+------------------
+
+.. code:: bash
+
+   py -3 -m pip install academic_tracker
 
 
 Upgrade on Linux, Mac OS X
@@ -38,6 +49,13 @@ Upgrade on Linux, Mac OS X
 
    python3 -m pip install academic_tracker --upgrade
 
+
+Upgrade on Windows
+------------------
+
+.. code:: bash
+
+   py -3 -m pip install academic_tracker --upgrade
 
 
 

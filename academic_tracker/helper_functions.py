@@ -84,7 +84,7 @@ def adjust_author_attributes(authors_by_project_dict, config_dict):
     """
     
     for author, author_attr in config_dict["Authors"].items():
-        cutoff_year = author_attr["cutoff_year"] if "cutoff_year" in author_attr else 99999999
+        cutoff_year = author_attr["cutoff_year"] if "cutoff_year" in author_attr else 9999
         
         affiliations = set(author_attr["affiliations"]) if "affiliations" in author_attr else set()
         

@@ -41,7 +41,7 @@ def test_schema():
              "wrong_type_test": {"type": "string"}, 
              "wrong_format_test": {"type": "string", "format": "email"},
              "wrong_pattern_test": {"type": "string", "pattern": "^asdf$"},
-             "other_error_type": {"type": "number", "maximum":100}
+             "other_error_type": {"type": "number", "exclusiveMaximum":100}
              },
      "required": ["required_test"]
              
@@ -117,6 +117,8 @@ def test_cli_inputs_check_no_error(empty_args):
         ({"grants":[123]}),     ##item type
         ({"grants":[""]}),      ##item minLength
         ({"cutoff_year":"123"}),
+        ({"cutoff_year":1}),
+        ({"cutoff_year":99999}),
         ({"affiliations":""}),        ##type
         ({"affiliations":[]}),        ##minItems
         ({"affiliations":[123]}),     ##item type
@@ -556,6 +558,8 @@ def test_config_file_check_missing_required_error(passing_config):
         ({"grants":[123]}),     ##item type
         ({"grants":[""]}),      ##item minLength
         ({"cutoff_year":"123"}),
+        ({"cutoff_year":1}),
+        ({"cutoff_year":99999}),
         ({"affiliations":""}),        ##type
         ({"affiliations":[]}),        ##minItems
         ({"affiliations":[123]}),     ##item type

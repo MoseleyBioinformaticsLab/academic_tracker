@@ -371,7 +371,7 @@ Example
                        "first_name" : "<first-name>",
                        "last_name" : "<last-name>",
                        "pubmed_name_search" : "<search-str>",
-                       "email": "email@uky.edu",
+                       "email": "email@uky.edu", #optional
                        "ORCID": "<orcid>" #optional       
                        "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional    
                     },
@@ -379,8 +379,8 @@ Example
               "Author 2": {  
                        "first_name" : "<first-name>",
                        "last_name" : "<last-name>",
-                       "pubmed_name_search" : "<search-str>", # optional
-                       "email": "email@uky.edu",
+                       "pubmed_name_search" : "<search-str>",
+                       "email": "email@uky.edu", #optional
                        "ORCID": "<orcid>" #optional 
                        "affiliations" : ["<affiliation1>", "<affiliation2>"] #optional
                     },

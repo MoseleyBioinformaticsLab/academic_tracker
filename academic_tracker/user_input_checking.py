@@ -79,6 +79,10 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
             custom_message = " is not a valid " + e.validator_value + "."
         elif e.validator == "pattern" and e.relative_path[-1] in pattern_messages:
             custom_message = pattern_messages[e.relative_path[-1]]
+        elif e.validator == "minimum":
+            custom_message = " must be greater than or equal to " + str(e.validator_value)
+        elif e.validator == "maximum":
+            custom_message = " must be less than or equal to " + str(e.validator_value)
         else:
             raise e
         

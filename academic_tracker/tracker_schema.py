@@ -36,7 +36,7 @@ config_schema = {
                      "type":"object",
                      "properties":{
                              "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                             "cutoff_year": {"type": "integer"},
+                             "cutoff_year": {"type": "integer", "minimum":1000, "maximum":9999},
                              "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                              "project_report": {"type": "object",
                                                 "properties":{
@@ -125,7 +125,7 @@ config_schema = {
                                      "email":{"type": "string", "format":"email"},
                                      "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
                                      "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                     "cutoff_year": {"type": "integer"},
+                                     "cutoff_year": {"type": "integer", "minimum":1000, "maximum":9999},
                                      "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                                      "scholar_id": {"type": "string", "minLength":1},
                                      "project_report": {"type": "object",

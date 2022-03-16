@@ -36,6 +36,7 @@ def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar,
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.config_file_check(config_dict, no_ORCID, no_GoogleScholar, no_Crossref)
+    user_input_checking.config_report_check(config_dict)
     
     return config_dict
 

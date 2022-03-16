@@ -41,6 +41,7 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.ref_config_file_check(config_dict, no_Crossref)
+    user_input_checking.config_report_check(config_dict)
     
     if not prev_pub_filepath or prev_pub_filepath.lower() == "ignore":
         prev_pubs = {}

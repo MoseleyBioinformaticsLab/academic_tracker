@@ -177,6 +177,7 @@ def PMID_reference(config_json_filepath, ref_path_or_URL, test):
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.ref_config_file_check(config_dict, True)
+    user_input_checking.config_report_check(config_dict)
     
     ## Check the DOI file extension and call the correct read in function.
     extension = os.path.splitext(ref_path_or_URL)[1][1:].lower()
@@ -367,6 +368,7 @@ def gen_reports_and_emails_auth(config_json_filepath, publication_json_filepath,
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.tracker_validate(config_dict, tracker_schema.gen_reports_auth_schema)
+    user_input_checking.config_report_check(config_dict)
     
     ## Create an authors_json for each project in the config_dict and update those authors attributes with the project attributes.
     authors_by_project_dict, config_dict = athr_srch_modularized.generate_internal_data_and_check_authors(config_dict)
@@ -400,6 +402,7 @@ def gen_reports_and_emails_ref(config_json_filepath, ref_path_or_URL, publicatio
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.tracker_validate(config_dict, tracker_schema.gen_reports_ref_schema)
+    user_input_checking.config_report_check(config_dict)
     
     if not prev_pub_filepath or prev_pub_filepath.lower() == "ignore":
         prev_pubs = {}

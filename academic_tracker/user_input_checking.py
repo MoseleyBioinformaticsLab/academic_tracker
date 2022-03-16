@@ -133,7 +133,10 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
     The validational jsonschema is in the tracker_schema module. 
     
     Args:
-        config_json (dict): dict with the same structure as the configuration JSON file
+        config_json (dict): dict with the same structure as the configuration JSON file.
+        no_ORCID (bool): if True delete the part of the schema that checks ORCID attributes.
+        no_GoogleScholar (bool): if True and no_Crossref is True delete the part of the schema that checks Crossref attributes.
+        no_Crossref (bool): if True and no_GoogleScholar is True delete the part of the schema that checks Crossref attributes.
     """
     
     schema = copy.deepcopy(tracker_schema.config_schema)
@@ -146,7 +149,38 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
     
     pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
     tracker_validate(instance=config_json, schema=schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
+
+
+            
+
+def ref_config_file_check(config_json, no_Crossref):
+    """Check that the configuration JSON file is as expected.
     
+    The validational jsonschema is in the tracker_schema module.    
+    
+    Args:
+        config_json (dict): dict with a truncated structure of the configuration JSON file.
+        no_Crossref (bool): if True delete the part of the schema that checks Crossref attributes.
+    """
+    
+    schema = copy.deepcopy(tracker_schema.ref_config_schema)
+    if no_Crossref:
+        del schema["properties"]["Crossref_search"]
+        schema["required"].remove("Crossref_search")
+    
+    tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())    
+
+
+
+def config_report_check(config_json):
+    """Check that the report attributes don't have conflicts.
+    
+    Make sure that the values in sort and column_order are in columns, 
+    and that every column is in column_order.
+    
+    Args:
+        config_json (dict): dict with the same structure as the configuration JSON file.
+    """
     ## Make sure sort and column_order only have values in columns for any report.
     attributes_to_check = ["sort", "column_order"]
     for attribute in attributes_to_check:
@@ -162,73 +196,40 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref):
                     helper_functions.vprint("ValidationError: The \"column_order\" attribute for the summary_report does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
                     sys.exit() 
             
-            
-    report_keys = ["collaborator_report", "project_report"]
-    for project, project_attributes in config_json["project_descriptions"].items():
-        for report_key in report_keys:
-            for attribute in attributes_to_check:
-                if report_key in project_attributes and "columns" in project_attributes[report_key] and attribute in project_attributes[report_key]:
-                    names_not_in_columns = [name for name in project_attributes[report_key][attribute] if not name in project_attributes[report_key]["columns"]]
-                    if names_not_in_columns:
-                        helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the " + report_key + " in project " + project + " has values that are not column names in \"columns\".")
-                        helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
-                        sys.exit()
-                        
-                    if attribute == "column_order":
-                        if len(project_attributes[report_key]["column_order"]) != len(project_attributes[report_key]["columns"]):
-                            helper_functions.vprint("ValidationError: The \"column_order\" attribute for the " + report_key + " in project " + project + " does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
-                            sys.exit() 
+    
+    if "project_descriptions" in config_json:        
+        report_keys = ["collaborator_report", "project_report"]
+        for project, project_attributes in config_json["project_descriptions"].items():
+            for report_key in report_keys:
+                for attribute in attributes_to_check:
+                    if report_key in project_attributes and "columns" in project_attributes[report_key] and attribute in project_attributes[report_key]:
+                        names_not_in_columns = [name for name in project_attributes[report_key][attribute] if not name in project_attributes[report_key]["columns"]]
+                        if names_not_in_columns:
+                            helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the " + report_key + " in project " + project + " has values that are not column names in \"columns\".")
+                            helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
+                            sys.exit()
+                            
+                        if attribute == "column_order":
+                            if len(project_attributes[report_key]["column_order"]) != len(project_attributes[report_key]["columns"]):
+                                helper_functions.vprint("ValidationError: The \"column_order\" attribute for the " + report_key + " in project " + project + " does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
+                                sys.exit() 
                                     
     
-    for author, author_attributes in config_json["Authors"].items():
-        for report_key in report_keys:
-            for attribute in attributes_to_check:
-                if report_key in author_attributes and "columns" in author_attributes[report_key] and attribute in author_attributes[report_key]:
-                    names_not_in_columns = [name for name in author_attributes[report_key][attribute] if not name in author_attributes[report_key]["columns"]]
-                    if names_not_in_columns:
-                        helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the " + report_key + " for author " + author + " has values that are not column names in \"columns\".")
-                        helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
-                        sys.exit()
-                        
-                    if attribute == "column_order":
-                        if len(author_attributes[report_key]["column_order"]) != len(author_attributes[report_key]["columns"]):
-                            helper_functions.vprint("ValidationError: The \"column_order\" attribute for the " + report_key + " for author " + author + " does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
-                            sys.exit() 
-                    
-        
-            
-
-def ref_config_file_check(config_json, no_Crossref):
-    """Check that the configuration JSON file is as expected.
-    
-    The validational jsonschema is in the tracker_schema module.    
-    
-    Args:
-        config_json (dict): dict with a truncated structure of the configuration JSON file
-    """
-    
-    schema = copy.deepcopy(tracker_schema.ref_config_schema)
-    if no_Crossref:
-        del schema["properties"]["Crossref_search"]
-        schema["required"].remove("Crossref_search")
-    
-    tracker_validate(instance=config_json, schema=schema, format_checker=jsonschema.FormatChecker())
-
-    ## Make sure sort and column_order only have values in columns for any report.
-    attributes_to_check = ["sort", "column_order"]
-    for attribute in attributes_to_check:
-        if "summary_report" in config_json and "columns" in config_json["summary_report"] and attribute in config_json["summary_report"]:
-            names_not_in_columns = [name for name in config_json["summary_report"][attribute] if not name in config_json["summary_report"]["columns"]]
-            if names_not_in_columns:
-                helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the summary_report has values that are not column names in \"columns\".")
-                helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
-                sys.exit()    
-                
-            if attribute == "column_order":
-                if len(config_json["summary_report"]["column_order"]) != len(config_json["summary_report"]["columns"]):
-                    helper_functions.vprint("ValidationError: The \"column_order\" attribute for the summary_report does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
-                    sys.exit() 
-        
+    if "Authors" in config_json:
+        for author, author_attributes in config_json["Authors"].items():
+            for report_key in report_keys:
+                for attribute in attributes_to_check:
+                    if report_key in author_attributes and "columns" in author_attributes[report_key] and attribute in author_attributes[report_key]:
+                        names_not_in_columns = [name for name in author_attributes[report_key][attribute] if not name in author_attributes[report_key]["columns"]]
+                        if names_not_in_columns:
+                            helper_functions.vprint("ValidationError: The \"" + attribute + "\" attribute for the " + report_key + " for author " + author + " has values that are not column names in \"columns\".")
+                            helper_functions.vprint("The following names in \"" + attribute + "\" could not be matched to a column in \"columns\":\n\n" + "\n".join(names_not_in_columns))
+                            sys.exit()
+                            
+                        if attribute == "column_order":
+                            if len(author_attributes[report_key]["column_order"]) != len(author_attributes[report_key]["columns"]):
+                                helper_functions.vprint("ValidationError: The \"column_order\" attribute for the " + report_key + " for author " + author + " does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\".")
+                                sys.exit()     
 
 
 

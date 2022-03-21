@@ -84,11 +84,13 @@ If used author_search will not search Google Scholar for publications.
 
 --no_ORCID: 
 
-If used author_search will not search ORCID for publications.
+If used author_search will not search ORCID for publications. This option is assumed 
+if the ORCID_search section of the configuration JSON file is missing.
 
 --no_Crossref: 
 
-If used author_search will not search Crossref for publications.
+If used author_search will not search Crossref for publications. This option is 
+assumed if the Crossref_search section of the configuration JSON file is missing.
 
 --verbose: 
 
@@ -421,7 +423,8 @@ Specifies that the reference file is a MEDLINE_ formatted file.
             
 --no_Crossref: 
 
-If used reference_search will not search Crossref for publications.
+If used reference_search will not search Crossref for publications. This option 
+is assumed if the Crossref_search section of the configuration JSON file is missing.
 
 --verbose: 
 

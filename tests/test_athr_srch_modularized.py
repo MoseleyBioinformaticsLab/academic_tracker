@@ -36,6 +36,34 @@ def test_input_reading_and_checking(config_dict):
     actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
     
     assert expected_config_dict == actual_config_dict
+    
+
+def test_input_reading_and_checking_no_ORCID(config_dict):
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noORCID.json")
+    
+    expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noORCID.json"))
+    
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
+    
+    assert expected_config_dict == actual_config_dict
+    
+    
+def test_input_reading_and_checking_no_Crossref(config_dict):
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
+        
+    with pytest.raises(BaseException):
+        actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
+        
+
+def test_input_reading_and_checking_no_Crossref_noGS(config_dict):
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
+        
+    expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noCrossref.json"))
+    
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, True, False)
+    
+    assert expected_config_dict == actual_config_dict
+    
 
 
 

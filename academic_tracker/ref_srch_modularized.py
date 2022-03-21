@@ -39,6 +39,9 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
     
+    if not "Crossref_search" in config_dict:
+        no_Crossref = True
+    
     ## Get inputs from config file and check them for errors.
     user_input_checking.ref_config_file_check(config_dict, no_Crossref)
     user_input_checking.config_report_check(config_dict)

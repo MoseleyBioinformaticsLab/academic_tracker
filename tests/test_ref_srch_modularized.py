@@ -39,7 +39,6 @@ def test_input_reading_and_checking_no_prev_pub(config_dict):
     assert prev_pubs == {}
 
 
-
 def test_input_reading_and_checking_has_prev_pub(config_dict):
     config_json_filepath = os.path.join("tests", "testing_files", "config_truncated.json")
     ref_path_or_URL = os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json")
@@ -53,6 +52,20 @@ def test_input_reading_and_checking_has_prev_pub(config_dict):
     assert tokenized_citations == load_json(os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json"))
     assert has_previous_pubs == True
     assert prev_pubs == load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    
+    
+def test_input_reading_and_checking_noCrossref(config_dict):
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
+    ref_path_or_URL = os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json")
+    
+    expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noCrossref.json"))
+    
+    actual_config_dict, tokenized_citations, has_previous_pubs, prev_pubs = input_reading_and_checking(config_json_filepath, ref_path_or_URL, False, False, "ignore")
+    
+    assert expected_config_dict == actual_config_dict
+    assert tokenized_citations == load_json(os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed.json"))
+    assert has_previous_pubs == False
+    assert prev_pubs == {}
 
 
 

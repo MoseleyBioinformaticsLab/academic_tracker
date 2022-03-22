@@ -1,0 +1,84 @@
+{
+  "comments": ["This is an example configuration file used by the University of Kentucky.", 
+               "Academic Tracker is ran once a month and the reports are cumulative.",
+               "The reports do not have duplicate publications except for the case where", 
+               "a title is too dissimilar between web portals. These reports are created", 
+               "so it is easy to see which publications need attention."],
+  "template_author": "Travis Thompson",
+  "project_descriptions": {
+    "[Project-Name]": {
+      "affiliations": [
+        "[institution]",
+        "..."
+      ],
+      "authors": [
+        "[author-name]",
+        "..."
+      ],
+      "project_report": {
+        "columns": {
+          "First Author": "<first_author>",
+          "Last Author": "<last_author>",
+          "All Authors": "<authors>",
+          "Article Title": "<title>",
+          "Journal Name": "<journal>",
+          "Journal Publication Date": "<publication_month>-<publication_day>-<publication_year>",
+          "PubMed PMID #": "<PMID>",
+          "PubMed Central PMCID #": "<PMCID>",
+          "DOI #": "<DOI>"
+        },
+        "sort": [
+          "Author Searched"
+        ],
+        "file_format": "[xlsx|json]"
+      },
+      "cutoff_year": [integer-year],
+      "grants": [
+        "[grant-id]",
+        "..."
+      ]
+    },
+    ...
+  },
+  "ORCID_search": {
+    "ORCID_key": "[key]",
+    "ORCID_secret": "[secret]"
+  },
+  "PubMed_search": {
+    "PubMed_email": "[email]"
+  },
+  "Crossref_search": {
+    "mailto_email": "[email]"
+  },
+  "summary_report": {
+    "columns": {
+      "First Author": "<first_author>",
+      "Last Author": "<last_author>",
+      "All Authors": "<authors>",
+      "Article Title": "<title>",
+      "Journal Name": "<journal>",
+      "Journal Publication Date": "<publication_month>-<publication_day>-<publication_year>",
+      "PubMed PMID #": "<PMID>",
+      "PubMed Central PMCID #": "<PMCID>",
+      "DOI #": "<DOI>"
+    },
+    "sort": [
+      "Project",
+      "Author Searched"
+    ],
+    "file_format": "[xlsx|json]"
+  },
+  "Authors": {
+    "[author-name]": {
+      "ORCID": "[id]",
+      "affiliations": [
+        "[institution]"
+      ],
+      "first_name": "[first-name]",
+      "last_name": "[last-name]",
+      "pubmed_name_search": "[author-name-for-searching]",
+      "scholar_id": "[id]"
+    },
+    ...
+  }
+}

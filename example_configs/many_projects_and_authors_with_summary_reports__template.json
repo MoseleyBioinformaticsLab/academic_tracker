@@ -1,0 +1,86 @@
+{
+  "comments": [ "This is a template configuration file to generate cumulative reports.",
+               "The reports have repeated publications for authors that are on the same",
+               "publication or in multiple projects. These reports are created so authors",
+               "can easily filter to the publications they are responsible for." ],
+  "template_author": "Travis Thompson",
+  "project_descriptions": {
+    "[Project-Name]": {
+      "affiliations": [
+        "[institution]",
+        "..."
+      ],
+      "authors": [
+        "[author-name]",
+        "..."
+      ],
+      "project_report": {
+        "columns": {
+          "Author Searched": "<author_name_search>",
+          "First Author": "<first_author>",
+          "Last Author": "<last_author>",
+          "All Authors": "<authors>",
+          "Article Title": "<title>",
+          "Journal Name": "<journal>",
+          "Journal Publication Date": "<publication_month>-<publication_day>-<publication_year>",
+          "PubMed PMID #": "<PMID>",
+          "PubMed Central PMCID #": "<PMCID>",
+          "DOI #": "<DOI>"
+        },
+        "sort": [
+          "Author Searched"
+        ],
+        "file_format": "[xlsx|json]"
+      },
+      "cutoff_year": [integer-year],
+      "grants": [
+        "[grant-id]",
+        "..."
+      ]
+    },
+    ...
+  },
+  "ORCID_search": {
+    "ORCID_key": "[key]",
+    "ORCID_secret": "[secret]"
+  },
+  "PubMed_search": {
+    "PubMed_email": "[email]"
+  },
+  "Crossref_search": {
+    "mailto_email": "[email]"
+  },
+  "summary_report": {
+    "columns": {
+      "Project": "<project_name>",
+      "Author Searched": "<author_name_search>",
+      "First Author": "<first_author>",
+      "Last Author": "<last_author>",
+      "All Authors": "<authors>",
+      "Article Title": "<title>",
+      "Journal Name": "<journal>",
+      "Journal Publication Date": "<publication_month>-<publication_day>-<publication_year>",
+      "PubMed PMID #": "<PMID>",
+      "PubMed Central PMCID #": "<PMCID>",
+      "DOI #": "<DOI>"
+    },
+    "sort": [
+      "Project",
+      "Author Searched"
+    ],
+    "file_format": "[xlsx|json]"
+  },
+  "Authors": {
+    "[author-name]": {
+      "ORCID": "[id]",
+      "affiliations": [
+        "[institution]"
+      ],
+      "first_name": "[first-name]",
+      "last_name": "[last-name]",
+      "pubmed_name_search": "[author-name-for-searching]",
+      "scholar_id": "[id]"
+    },
+    ...
+  }
+}

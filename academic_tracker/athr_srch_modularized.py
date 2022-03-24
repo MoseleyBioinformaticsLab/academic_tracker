@@ -10,6 +10,8 @@ import re
 import datetime
 import os
 
+import deepdiff
+
 from . import user_input_checking
 from . import fileio
 from . import helper_functions
@@ -98,20 +100,21 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
     ## Get publications from PubMed 
     helper_functions.vprint("Finding author's publications. This could take a while.")
     helper_functions.vprint("Searching PubMed.")
-    PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(prev_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
-    prev_pubs.update(PubMed_publication_dict)
+    current_pubs = {}
+    PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(current_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
+    current_pubs.update(PubMed_publication_dict)
     if not no_ORCID:
         helper_functions.vprint("Searching ORCID.")
-        ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(prev_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
-        prev_pubs.update(ORCID_publication_dict)
+        ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(current_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
+        current_pubs.update(ORCID_publication_dict)
     if not no_GoogleScholar:
         helper_functions.vprint("Searching Google Scholar.")
-        Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(prev_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
-        prev_pubs.update(Google_Scholar_publication_dict)
+        Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(current_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
+        current_pubs.update(Google_Scholar_publication_dict)
     if not no_Crossref:
         helper_functions.vprint("Searching Crossref.")
-        Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(prev_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
-        prev_pubs.update(Crossref_publication_dict)
+        Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(current_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
+        current_pubs.update(Crossref_publication_dict)
     
     publication_dict = PubMed_publication_dict
     if not no_ORCID:
@@ -126,13 +129,18 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
         for key, value in Crossref_publication_dict.items():
             if not key in publication_dict:
                 publication_dict[key] = value
+    
+    ## Compare current pubs with previous and only keep those that are new or updated.
+    for pub_id, pub_values in prev_pubs.items():
+        if pub_id in publication_dict and not deepdiff.DeepDiff(publication_dict[pub_id], pub_values, ignore_order=True, report_repetition=True):
+            del publication_dict[pub_id]
         
         
     if len(publication_dict) == 0:
         helper_functions.vprint("No new publications found.")
         sys.exit()
         
-    return publication_dict, prev_pubs
+    return publication_dict
 
 
 

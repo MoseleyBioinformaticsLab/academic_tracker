@@ -40,6 +40,7 @@ REQUIRES = [
     "pandas >= 0.24.2",
     "openpyxl >= 2.6.2",
     "requests >= 2.21.0",
+    "deepdiff >= 5.7.0"
 ]
 
 

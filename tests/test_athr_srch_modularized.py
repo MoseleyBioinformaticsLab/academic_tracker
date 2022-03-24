@@ -104,10 +104,9 @@ def test_build_publication_dict_all_sources(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, False)
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False)
     
     assert expected_pub_dict == actual_publication_dict
-    assert expected_pub_dict == prev_pubs
 
 
 
@@ -135,10 +134,9 @@ def test_build_publication_dict_no_ORCID(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, True, False, False)
+    actual_publication_dict = build_publication_dict(config_dict, {}, True, False, False)
     
     assert expected_pub_dict == actual_publication_dict
-    assert expected_pub_dict == prev_pubs
     
 
 
@@ -166,10 +164,9 @@ def test_build_publication_dict_no_Crossref(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, True)
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, True)
     
     assert expected_pub_dict == actual_publication_dict
-    assert expected_pub_dict == prev_pubs
     
 
 
@@ -197,10 +194,42 @@ def test_build_publication_dict_no_Google_Scholar(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, True, False)
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, True, False)
     
     assert expected_pub_dict == actual_publication_dict
-    assert expected_pub_dict == prev_pubs
+    
+
+    
+def test_build_publication_dict_duplicates(config_dict, mocker):
+    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+        
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
+    expected_pub_dict["32095798"] = expected_pub_dict["32095784"]
+    prev_pubs = {"32095798":expected_pub_dict["32095798"]}
+    
+    
+    def mock_query(*args, **kwargs):
+        return {"32095784":expected_pub_dict["32095784"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_PubMed_for_pubs", mock_query)
+    
+    def mock_query2(*args, **kwargs):
+        return {"https://doi.org/10.1002/adhm.202101820":expected_pub_dict["https://doi.org/10.1002/adhm.202101820"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_ORCID_for_pubs", mock_query2)
+    
+    def mock_query3(*args, **kwargs):
+        return {"https://doi.org/10.1002/advs.202101999":expected_pub_dict["https://doi.org/10.1002/advs.202101999"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Crossref_for_pubs", mock_query3)
+    
+    def mock_query4(*args, **kwargs):
+        return {"32095798":expected_pub_dict["32095798"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
+    
+    actual_publication_dict = build_publication_dict(config_dict, prev_pubs, False, False, False)
+    
+    del expected_pub_dict["32095798"]
+    
+    assert expected_pub_dict == actual_publication_dict
 
 
 
@@ -224,7 +253,7 @@ def test_build_publication_dict_no_pubs_found(config_dict, mocker, capsys):
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
     with pytest.raises(SystemExit):
-        actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, False)
+        actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False)
     
     captured = capsys.readouterr()
     expected_message = "No new publications found." + "\n"

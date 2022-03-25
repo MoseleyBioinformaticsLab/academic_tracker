@@ -121,7 +121,8 @@ and use the example there to create it initially. The add_authors command can he
 with building the Authors section if you already have a csv file with author 
 information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`__. 
 There are also examples in the `example_configs <https://github.com/MoseleyBioinformaticsLab/academic_tracker/tree/main/example_configs>`__ 
-directory of the GitHub repo.
+directory of the GitHub repo. There are also more example in the supplemental 
+material of the paper https://doi.org/10.6084/m9.figshare.19412165.
 
 
 Registering With ORCID
@@ -129,7 +130,7 @@ Registering With ORCID
 In order to have this program search ORCID you must register with ORCID and obtain 
 a key and secret. Details on how to do that are `here <https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/>`__. 
 If you do not want to do that then the --no_ORCID option can be used to skip searching 
-ORCID.
+ORCID, or don't include the ORCID_search section in the config file.
 
           
 Mac OS Note

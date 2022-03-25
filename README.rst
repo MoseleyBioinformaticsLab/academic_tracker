@@ -119,7 +119,9 @@ it the first time can be burdensome. Unfortunately, there is no easy solution fo
 this. It is encouraged to read the configuration JSON section in `jsonschema <https://moseleybioinformaticslab.github.io/academic_tracker/jsonschema.html>`_ 
 and use the example there to create it initially. The add_authors command can help 
 with building the Authors section if you already have a csv file with author 
-information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`__.
+information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`__. 
+There are also examples in the `example_configs <https://github.com/MoseleyBioinformaticsLab/academic_tracker/tree/main/example_configs>`__ 
+directory of the GitHub repo.
 
 
 Registering With ORCID

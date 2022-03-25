@@ -76,7 +76,9 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 
 Specifies a publications.json file to use as a list of publications to ignore 
 when searching for new publications. Set to "ignore" to prevent author_search 
-from automatically looking for a publications.json file in tracker directories.
+from automatically looking for a publications.json file in tracker directories. 
+If a publication is in prev_pub but the information has updated then it will not 
+be ignored.
             
 --no_GoogleScholar: 
 

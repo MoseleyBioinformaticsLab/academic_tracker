@@ -203,6 +203,14 @@ run the following commands:
            python3 -m pip install requests  # On Linux, Mac OS X
            py -3 -m pip install requests    # On Windows
            
+   * deepdiff_ for comparing publication data.
+      * To install the deepdiff_ Python library run the following:
+
+        .. code:: bash
+
+           python3 -m pip install deepdiff  # On Linux, Mac OS X
+           py -3 -m pip install deepdiff    # On Windows
+           
 
 Basic usage
 ~~~~~~~~~~~
@@ -261,3 +269,4 @@ the use cases with examples are in the :doc:`tutorial` section.
 .. _pandas: https://pypi.org/project/pandas/
 .. _openpyxl: https://pypi.org/project/openpyxl/
 .. _requests: https://pypi.org/project/requests/
+.. _deepdiff: https://pypi.org/project/deepdiff/

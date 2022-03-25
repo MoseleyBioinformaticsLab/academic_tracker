@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Academic Tracker’s Documentation! &mdash; Academic Tracker 1.0.2 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Welcome to Academic Tracker’s Documentation! &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -27,7 +27,7 @@
             <a href="#" class="icon icon-home"> Academic Tracker
           </a>
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -163,14 +163,17 @@ it the first time can be burdensome. Unfortunately, there is no easy solution fo
 this. It is encouraged to read the configuration JSON section in <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/jsonschema.html">jsonschema</a>
 and use the example there to create it initially. The add_authors command can help
 with building the Authors section if you already have a csv file with author
-information. A good tool to help track down pesky JSON syntax errors is <a class="reference external" href="https://csvjson.com/json_validator">here</a>.</p>
+information. A good tool to help track down pesky JSON syntax errors is <a class="reference external" href="https://csvjson.com/json_validator">here</a>.
+There are also examples in the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/academic_tracker/tree/main/example_configs">example_configs</a>
+directory of the GitHub repo. There are also more example in the supplemental
+material of the paper <a class="reference external" href="https://doi.org/10.6084/m9.figshare.19412165">https://doi.org/10.6084/m9.figshare.19412165</a>.</p>
 </div>
 <div class="section" id="registering-with-orcid">
 <h2>Registering With ORCID<a class="headerlink" href="#registering-with-orcid" title="Permalink to this headline">¶</a></h2>
 <p>In order to have this program search ORCID you must register with ORCID and obtain
 a key and secret. Details on how to do that are <a class="reference external" href="https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/">here</a>.
 If you do not want to do that then the –no_ORCID option can be used to skip searching
-ORCID.</p>
+ORCID, or don’t include the ORCID_search section in the config file.</p>
 </div>
 <div class="section" id="mac-os-note">
 <h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this headline">¶</a></h2>

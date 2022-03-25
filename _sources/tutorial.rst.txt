@@ -76,7 +76,9 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 
 Specifies a publications.json file to use as a list of publications to ignore 
 when searching for new publications. Set to "ignore" to prevent author_search 
-from automatically looking for a publications.json file in tracker directories.
+from automatically looking for a publications.json file in tracker directories. 
+If a publication is in prev_pub but the information has updated then it will not 
+be ignored.
             
 --no_GoogleScholar: 
 
@@ -84,11 +86,13 @@ If used author_search will not search Google Scholar for publications.
 
 --no_ORCID: 
 
-If used author_search will not search ORCID for publications.
+If used author_search will not search ORCID for publications. This option is assumed 
+if the ORCID_search section of the configuration JSON file is missing.
 
 --no_Crossref: 
 
-If used author_search will not search Crossref for publications.
+If used author_search will not search Crossref for publications. This option is 
+assumed if the Crossref_search section of the configuration JSON file is missing.
 
 --verbose: 
 
@@ -421,7 +425,8 @@ Specifies that the reference file is a MEDLINE_ formatted file.
             
 --no_Crossref: 
 
-If used reference_search will not search Crossref for publications.
+If used reference_search will not search Crossref for publications. This option 
+is assumed if the Crossref_search section of the configuration JSON file is missing.
 
 --verbose: 
 

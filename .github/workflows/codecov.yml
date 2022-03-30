@@ -36,7 +36,7 @@ jobs:
           python setup.py install
 
       - name: Run tests and collect coverage
-        run: pytest --cov=pythonLocation/lib/site-packages/academic_tracker --cov-report=xml
+        run: pytest --cov=${{pythonLocation}}/lib/site-packages/academic_tracker --cov-report=xml
 
       # codecov
       - name: "Upload coverage to Codecov"

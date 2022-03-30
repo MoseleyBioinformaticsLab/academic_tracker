@@ -9,3 +9,5 @@ data/*
 .pytest_cache
 build/
 dist/
+coverage.xml
+.coverage

@@ -6,7 +6,7 @@ import pytest
 import pickle
 import requests
 
-from fixtures import  authors_dict
+from fixtures import authors_dict
 from academic_tracker.athr_srch_webio import search_PubMed_for_pubs, search_ORCID_for_pubs, search_Google_Scholar_for_pubs
 from academic_tracker.athr_srch_webio import search_Crossref_for_pubs
 from academic_tracker.fileio import load_json

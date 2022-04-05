@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import academic_tracker
-print(academic_tracker.__file__)
+
 import pytest
 
 from academic_tracker import __main__

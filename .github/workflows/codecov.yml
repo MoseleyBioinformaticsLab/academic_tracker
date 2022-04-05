@@ -36,7 +36,7 @@ jobs:
           pip install .
 
       - name: Run tests and collect coverage
-        run: pytest --cov=academic_tracker --cov-report=xml --import-mode=append
+        run: pytest --cov=academic_tracker --cov-report=xml
 
       # codecov
       - name: "Upload coverage to Codecov"

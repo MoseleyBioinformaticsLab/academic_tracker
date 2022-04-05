@@ -19,7 +19,7 @@ def readme():
 
 
 def find_version():
-    with open('academic_tracker/__init__.py', 'r') as fd:
+    with open('src/academic_tracker/__init__.py', 'r') as fd:
         version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                             fd.read(), re.MULTILINE).group(1)
     if not version:
@@ -53,7 +53,8 @@ setup(
     keywords='PubMed publications citations Crossref ORCID Google Scholar',
     license='BSD',
     url='https://github.com/MoseleyBioinformaticsLab/academic_tracker',
-    packages=find_packages(exclude=['doc', 'docs', 'vignettes']),
+    packages=find_packages("src", exclude=['doc', 'docs', 'vignettes']),
+    package_dir={'': 'src'},
     platforms=['any'],
     long_description=readme(),
     long_description_content_type="text/x-rst",

@@ -17,7 +17,7 @@ import sys
 # sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('..'))
  
-from academic_tracker import __version__
+from src.academic_tracker import __version__
 
 
 # -- Project information -----------------------------------------------------

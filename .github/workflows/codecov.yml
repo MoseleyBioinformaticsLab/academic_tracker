@@ -37,7 +37,7 @@ jobs:
 
       - name: Run tests and collect coverage
         run: |
-          export PACKAGE_LOCATION=`python -c "import <package-name>; print(<package-name>.__path__[0])"`
+          export PACKAGE_LOCATION=`python -c "import academic_tracker; print(academic_tracker.__path__[0])"`
           pytest --cov=$PACKAGE_LOCATION --cov-report=xml
 
       # codecov

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-import sys
-print(sys.path)
 
 from academic_tracker import __main__
 

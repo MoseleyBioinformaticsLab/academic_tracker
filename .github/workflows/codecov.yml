@@ -33,10 +33,12 @@ jobs:
           pip install -r requirements.txt
           pip install pytest-cov
           pip install pytest-mock
-          pip install -e .
+          pip install .
 
       - name: Run tests and collect coverage
-        run: pytest --cov=academic_tracker --cov-report=xml
+        run: |
+          export PACKAGE_LOCATION=`python -c "import <package-name>; print(<package-name>.__path__[0])"`
+          pytest --cov=$PACKAGE_LOCATION --cov-report=xml
 
       # codecov
       - name: "Upload coverage to Codecov"

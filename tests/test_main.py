@@ -70,7 +70,7 @@ def test_main_PMID_reference(mocker, capsys):
 def test_author_search(mocker, capsys):
     def mock_call(*args, **kwargs):
         publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-        return publication_dict, publication_dict
+        return publication_dict
     mocker.patch("academic_tracker.__main__.athr_srch_modularized.build_publication_dict", mock_call)
     
     args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"), 

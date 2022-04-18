@@ -124,7 +124,7 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
         user_input_checking.prev_pubs_file_check(prev_pubs)
             
     ## Query sources and build publication_dict.
-    publication_dict, prev_pubs = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref)            
+    publication_dict = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref)            
     
     save_dir_name = athr_srch_modularized.save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, test)
     

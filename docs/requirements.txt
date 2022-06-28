@@ -1,2 +1,15 @@
 sphinxcontrib-napoleon
 sphinx_rtd_theme
+docopt >= 0.6.2
+pymed >= 0.8.9
+jsonschema >= 4.4.0
+habanero >= 1.0.0
+orcid >= 1.0.3
+scholarly >= 1.4.5
+beautifulsoup4 >= 4.9.3
+fuzzywuzzy >= 0.18.0
+python-docx >= 0.8.11
+pandas >= 0.24.2
+openpyxl >= 2.6.2
+requests >= 2.21.0
+deepdiff >= 5.7.0

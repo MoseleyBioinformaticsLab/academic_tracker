@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.academic_tracker.webio &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reporting.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>src.academic_tracker.webio</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.academic_tracker.webio</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Webio</span>
+<span class="sd">~~~~~</span>
+
+<span class="sd">General functions that interface with the internet.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">urllib.error</span>
+<span class="kn">import</span> <span class="nn">email.message</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="kn">import</span> <span class="nn">orcid</span>
+<span class="kn">import</span> <span class="nn">scholarly</span>
+<span class="kn">import</span> <span class="nn">habanero</span>
+<span class="kn">import</span> <span class="nn">bs4</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">helper_functions</span>
+
+
+<span class="n">TOOL</span> <span class="o">=</span> <span class="s2">&quot;Academic Tracker&quot;</span>
+<span class="n">DOI_URL</span> <span class="o">=</span> <span class="s2">&quot;https://doi.org/&quot;</span>
+
+<span class="n">PUBLICATION_TEMPLATE</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;authors&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;conclusions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;copyrights&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;journal&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;keywords&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;methods&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;publication_date&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">},</span>
+        <span class="s2">&quot;pubmed_id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;grants&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;PMCID&quot;</span><span class="p">:</span> <span class="kc">None</span>
+   <span class="p">}</span>
+
+
+
+<span class="c1">##TODO look into adding expanded search to orcid, would need to upgrade to 3.0.</span>
+<div class="viewcode-block" id="search_ORCID_for_ids"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.search_ORCID_for_ids">[docs]</a><span class="k">def</span> <span class="nf">search_ORCID_for_ids</span><span class="p">(</span><span class="n">ORCID_key</span><span class="p">,</span> <span class="n">ORCID_secret</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Query ORCID with author names and get ORCID IDs.</span>
+<span class="sd">    </span>
+<span class="sd">    If an author already has an ORCID, or doesn&#39;t have affiliations they are skipped.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        ORCID_key (str): key assigned to your registered application from ORCID.</span>
+<span class="sd">        ORCID_secret (str): secret given to you by ORCID.</span>
+<span class="sd">        authors_json (dict): JSON matching the Authors section of the Configuration file.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        authors_json (dict): the authors_json modified with any ORCID IDs found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">## This is a workaround to get the expanded search functionality that the orcid package doesn&#39;t currently have.</span>
+    <span class="n">SEARCH_VERSION</span> <span class="o">=</span> <span class="s2">&quot;/v3.0&quot;</span>
+    <span class="k">def</span> <span class="nf">search_replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="o">+</span> <span class="n">SEARCH_VERSION</span> <span class="o">+</span> <span class="s2">&quot;/expanded-search/?defType=&quot;</span> <span class="o">+</span> <span class="n">method</span> <span class="o">+</span> <span class="s2">&quot;&amp;q=&quot;</span> <span class="o">+</span> <span class="n">query</span>
+        <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;&amp;start=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">start</span>
+        <span class="k">if</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;&amp;rows=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">rows</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_store_raw_response</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">=</span> <span class="n">response</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    
+    <span class="n">orcid</span><span class="o">.</span><span class="n">PublicAPI</span><span class="o">.</span><span class="n">_search</span> <span class="o">=</span> <span class="n">search_replace</span>
+    
+    <span class="n">api</span> <span class="o">=</span> <span class="n">orcid</span><span class="o">.</span><span class="n">PublicAPI</span><span class="p">(</span><span class="n">ORCID_key</span><span class="p">,</span> <span class="n">ORCID_secret</span><span class="p">)</span>
+    
+    <span class="n">search_token</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_search_token_from_orcid</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">authors_json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="ow">not</span> <span class="s2">&quot;affiliations&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+            <span class="k">continue</span>
+        
+        <span class="n">search_results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;pubmed_name_search&quot;</span><span class="p">],</span> <span class="n">access_token</span><span class="o">=</span><span class="n">search_token</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">search_results</span><span class="p">[</span><span class="s2">&quot;expanded-result&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.*&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;given-names&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;family-names&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                
+                <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">affiliation</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">institution</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">institution</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;institution-name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">affiliation</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;affiliations&quot;</span><span class="p">]]):</span>
+                    <span class="n">authors_json</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;orcid-id&quot;</span><span class="p">]</span>
+                    <span class="k">break</span>
+
+
+    <span class="k">return</span> <span class="n">authors_json</span></div>
+
+
+
+<div class="viewcode-block" id="search_Google_Scholar_for_ids"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.search_Google_Scholar_for_ids">[docs]</a><span class="k">def</span> <span class="nf">search_Google_Scholar_for_ids</span><span class="p">(</span><span class="n">authors_json</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Query Google Scholar with author names and get Scholar IDs.</span>
+<span class="sd">    </span>
+<span class="sd">    If an author already has a scholar_id, or doesn&#39;t have affiliations they are skipped.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        authors_json (dict): JSON matching the Authors section of the Configuration file.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        authors_json (dict): the authors_json modified with any ORCID IDs found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">authors_json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;scholar_id&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;scholar_id&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="ow">not</span> <span class="s2">&quot;affiliations&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+            <span class="k">continue</span>
+    
+        <span class="n">search_query</span> <span class="o">=</span> <span class="n">scholarly</span><span class="o">.</span><span class="n">scholarly</span><span class="o">.</span><span class="n">search_author</span><span class="p">(</span><span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;pubmed_name_search&quot;</span><span class="p">])</span>
+        
+        <span class="k">for</span> <span class="n">queried_author</span> <span class="ow">in</span> <span class="n">search_query</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">queried_author</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="n">first_name</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">last_name</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">first_name</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">last_name</span><span class="p">:</span>
+        
+                <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">affiliation</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">queried_author</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">affiliation</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;affiliations&quot;</span><span class="p">]]):</span>
+                    <span class="n">authors_json</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;scholar_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">queried_author</span><span class="p">[</span><span class="s2">&quot;scholar_id&quot;</span><span class="p">]</span>
+                    <span class="k">break</span>
+            
+    <span class="k">return</span> <span class="n">authors_json</span></div>
+
+
+            
+
+<div class="viewcode-block" id="get_DOI_from_Crossref"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.get_DOI_from_Crossref">[docs]</a><span class="k">def</span> <span class="nf">get_DOI_from_Crossref</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Search title on Crossref and try to find a DOI for it.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        title (str): string of the title of the journal article to search for.</span>
+<span class="sd">        mailto_email (str): an email address needed to search Crossref more effectively.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        doi (str): Either None or the DOI of the article title. The DOI will not be a URL.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">doi</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="n">cr</span> <span class="o">=</span> <span class="n">habanero</span><span class="o">.</span><span class="n">Crossref</span><span class="p">(</span><span class="n">ua_string</span> <span class="o">=</span> <span class="s2">&quot;Academic Tracker (mailto:&quot;</span> <span class="o">+</span> <span class="n">mailto_email</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">works</span><span class="p">(</span><span class="n">query_bibliographic</span> <span class="o">=</span> <span class="n">title</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;journal-article&quot;</span><span class="p">})</span>
+    
+    <span class="k">for</span> <span class="n">work</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;items&quot;</span><span class="p">]:</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">work</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]):</span>
+            <span class="k">continue</span>
+            
+        <span class="c1">## Look for DOI</span>
+        <span class="k">if</span> <span class="s2">&quot;DOI&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
+            <span class="n">doi</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        
+        <span class="c1">## Crossref should only have one result that matches the title, so if it got past the check at the top break.</span>
+        <span class="k">break</span>
+    
+    <span class="k">return</span> <span class="n">doi</span></div>
+
+
+
+
+<div class="viewcode-block" id="get_url_contents_as_str"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.get_url_contents_as_str">[docs]</a><span class="k">def</span> <span class="nf">get_url_contents_as_str</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Query the url and return it&#39;s contents as a string.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): the URL to query.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (str): Either the website as a string or None if an error occurred.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0&quot;</span><span class="p">})</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">url_str</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">url_str</span>
+                
+    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="kc">None</span></div>
+    
+    
+
+<div class="viewcode-block" id="clean_tags_from_url"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.clean_tags_from_url">[docs]</a><span class="k">def</span> <span class="nf">clean_tags_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Remove tags from webpage.</span>
+<span class="sd">    </span>
+<span class="sd">    Remove tags from a webpage so it looks more like what a user would see in a </span>
+<span class="sd">    browser.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): the URL to query.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        clean_url (str): webpage contents cleaned of tags.    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">url_str</span> <span class="o">=</span> <span class="n">get_url_contents_as_str</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">url_str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1">## All of the python libraries return the html with newlines in seemingly </span>
+    <span class="c1">## arbitrary locations, so remove them and add in some for tags that make sense.</span>
+    <span class="n">clean_url</span> <span class="o">=</span> <span class="n">url_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">clean_url</span> <span class="o">=</span> <span class="n">clean_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">clean_url</span> <span class="o">=</span> <span class="n">clean_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/div&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">clean_url</span> <span class="o">=</span> <span class="n">clean_url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/p&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">clean_url</span> <span class="o">=</span> <span class="n">bs4</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">clean_url</span><span class="p">,</span> <span class="s2">&quot;lxml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="c1">#    clean_url = lxml.html.fromstring(url_str).text_content()</span>
+    
+    <span class="k">return</span> <span class="n">clean_url</span></div>
+
+
+
+<div class="viewcode-block" id="send_emails"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.send_emails">[docs]</a><span class="k">def</span> <span class="nf">send_emails</span><span class="p">(</span><span class="n">email_messages</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Uses sendmail to send email_messages to authors.</span>
+<span class="sd">    </span>
+<span class="sd">    Only works on systems with sendmail installed. </span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        email_messages (dict): keys are author names and values are the message</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">&quot;sendmail&quot;</span><span class="p">):</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Warning: sendmail was not found in PATH, so no emails were sent.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    
+    <span class="c1"># build and send each message by looping over the email_messages dict</span>
+    <span class="k">for</span> <span class="n">email_parts</span> <span class="ow">in</span> <span class="n">email_messages</span><span class="p">[</span><span class="s2">&quot;emails&quot;</span><span class="p">]:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">EmailMessage</span><span class="p">()</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;From&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">]</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;To&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">]</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;Cc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;cc&quot;</span><span class="p">]</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;attachment&quot;</span><span class="p">]):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;attachment&quot;</span><span class="p">],</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">content_file</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">content_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                
+            <span class="n">msg</span><span class="o">.</span><span class="n">add_attachment</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">maintype</span><span class="o">=</span><span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="s2">&quot;vnd.ms-excel&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;attachment_filename&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">add_attachment</span><span class="p">(</span><span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;attachment&quot;</span><span class="p">],</span> <span class="n">filename</span><span class="o">=</span><span class="n">email_parts</span><span class="p">[</span><span class="s2">&quot;attachment_filename&quot;</span><span class="p">])</span>
+        
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;sendmail&quot;</span><span class="p">,</span> <span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;-oi&quot;</span><span class="p">],</span> <span class="nb">input</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">as_bytes</span><span class="p">())</span></div>
+
+
+
+
+<span class="c1">###############</span>
+<span class="c1">## Unused Functions</span>
+<span class="c1">###############</span>
+        
+<div class="viewcode-block" id="get_grants_from_Crossref"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.get_grants_from_Crossref">[docs]</a><span class="k">def</span> <span class="nf">get_grants_from_Crossref</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">,</span> <span class="n">grants</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Search title on Crossref and try to find the grants associated with it.</span>
+<span class="sd">    </span>
+<span class="sd">    Only the grants in the grants parameter are searched for because trying to find </span>
+<span class="sd">    all grants associated with the article is too difficult.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        title (str): string of the title of the journal article to search for.</span>
+<span class="sd">        mailto_email (str): an email address needed to search Crossref more effectively.</span>
+<span class="sd">        grants (list): a list of the grants to try and find for the article.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        found_grants (str): Either None or a list of grants found for the article.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">found_grants</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="n">cr</span> <span class="o">=</span> <span class="n">habanero</span><span class="o">.</span><span class="n">Crossref</span><span class="p">(</span><span class="n">ua_string</span> <span class="o">=</span> <span class="s2">&quot;Academic Tracker (mailto:&quot;</span> <span class="o">+</span> <span class="n">mailto_email</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">works</span><span class="p">(</span><span class="n">query_bibliographic</span> <span class="o">=</span> <span class="n">title</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;journal-article&quot;</span><span class="p">})</span>
+    
+    <span class="k">for</span> <span class="n">work</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;items&quot;</span><span class="p">]:</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">work</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]):</span>
+            <span class="k">continue</span>
+            
+        <span class="k">if</span> <span class="s2">&quot;funder&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
+            <span class="c1">## the grant string could be in any value of the funder dict so look for it in each one.</span>
+            <span class="n">found_grants</span> <span class="o">=</span> <span class="p">{</span><span class="n">grant</span> <span class="k">for</span> <span class="n">funder</span> <span class="ow">in</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;funder&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">funder</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">grant</span> <span class="ow">in</span> <span class="n">grants</span> <span class="k">if</span> <span class="n">grant</span> <span class="ow">in</span> <span class="n">value</span><span class="p">}</span>
+            <span class="k">if</span> <span class="n">found_grants</span><span class="p">:</span>
+                <span class="n">found_grants</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">found_grants</span><span class="p">)</span>
+            
+        <span class="c1">## Crossref should only have one result that matches the title, so if it got past the check at the top break.</span>
+        <span class="k">break</span>
+    
+    <span class="k">return</span> <span class="n">found_grants</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">get_redirect_url_from_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+    
+    <span class="n">doi</span> <span class="o">=</span> <span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*http.*&quot;</span><span class="p">,</span> <span class="n">doi</span><span class="p">):</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*doi.org/(.*)&quot;</span><span class="p">,</span> <span class="n">doi</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="s2">&quot;api/handles/&quot;</span> <span class="o">+</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="s2">&quot;api/handles/&quot;</span> <span class="o">+</span> <span class="n">doi</span>
+        
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">json_response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                
+    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">:</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Error trying to resolve DOI: &quot;</span> <span class="o">+</span> <span class="n">doi</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">json_response</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;URL&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+
+
+<div class="viewcode-block" id="scrape_url_for_DOI"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.scrape_url_for_DOI">[docs]</a><span class="k">def</span> <span class="nf">scrape_url_for_DOI</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Searches url for DOI.</span>
+<span class="sd">    </span>
+<span class="sd">    Uses the regex &quot;(?i).*doi:\s*([^\s]+\w).*&quot; to look for a DOI on </span>
+<span class="sd">    the provided url. The DOI is visited to confirm it is a proper DOI.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): url to search.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        DOI (str): string of the DOI found on the webpage. Is empty string if DOI is not found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
+    <span class="n">url_str</span> <span class="o">=</span> <span class="n">get_url_contents_as_str</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">url_str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+            
+    <span class="n">doi</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_search_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?i)doi:\s*(&lt;[^&gt;]*&gt;)?([^\s&lt;]+)&quot;</span><span class="p">,</span> <span class="n">url_str</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">doi</span><span class="p">:</span>
+        
+        <span class="n">url</span> <span class="o">=</span> <span class="n">get_redirect_url_from_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">doi</span> <span class="k">if</span> <span class="n">url</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+    
+
+
+<div class="viewcode-block" id="check_doi_for_grants"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.check_doi_for_grants">[docs]</a><span class="k">def</span> <span class="nf">check_doi_for_grants</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span> <span class="n">grants</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Searches DOI webpage for grants.</span>
+<span class="sd">    </span>
+<span class="sd">    Concatenates &quot;https://doi.org/&quot; with the doi, visits the </span>
+<span class="sd">    page and looks for the given grants on that page.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        doi (str): DOI for the publication.</span>
+<span class="sd">        grants (list): list of str for each grant to look for.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        found_grants (list): list of str with each grant that was found on the page.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_redirect_url_from_doi</span><span class="p">(</span><span class="n">doi</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
+    
+    <span class="n">url_str</span> <span class="o">=</span> <span class="n">get_url_contents_as_str</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">url_str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
+        
+    <span class="k">return</span> <span class="p">{</span> <span class="n">grant</span> <span class="k">for</span> <span class="n">grant</span> <span class="ow">in</span> <span class="n">grants</span> <span class="k">if</span> <span class="n">grant</span> <span class="ow">in</span> <span class="n">url_str</span> <span class="p">}</span></div>
+    
+
+
+
+<div class="viewcode-block" id="download_pdf"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.webio.download_pdf">[docs]</a><span class="k">def</span> <span class="nf">download_pdf</span><span class="p">(</span><span class="n">pdf_url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">## test url https://realpython.com/python-tricks-sample-pdf</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">pdf_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0&quot;</span><span class="p">})</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">pdf_bytes</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                
+    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">pdf_url</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="kc">None</span>
+            
+    <span class="k">return</span> <span class="n">pdf_bytes</span></div>
+
+
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

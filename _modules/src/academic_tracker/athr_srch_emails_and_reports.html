@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.academic_tracker.athr_srch_emails_and_reports &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reporting.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>src.academic_tracker.athr_srch_emails_and_reports</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.academic_tracker.athr_srch_emails_and_reports</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Author Search Emails and Reports</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">Functions to create emails and reports for author_search.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">helper_functions</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">fileio</span>
+
+<span class="n">DEFAULT_SUMMARY_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&lt;project_loop&gt;&lt;project_name&gt;</span><span class="se">\n</span><span class="s2">&lt;author_loop&gt;</span><span class="se">\t</span><span class="s2">&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;</span><span class="se">\n\t\t</span><span class="s2">Title: &lt;title&gt; </span><span class="se">\n\t\t</span><span class="s2">Authors: &lt;authors&gt; </span><span class="se">\n\t\t</span><span class="s2">Journal: &lt;journal&gt; </span><span class="se">\n\t\t</span><span class="s2">DOI: &lt;DOI&gt; </span><span class="se">\n\t\t</span><span class="s2">PMID: &lt;PMID&gt; </span><span class="se">\n\t\t</span><span class="s2">PMCID: &lt;PMCID&gt; </span><span class="se">\n\t\t</span><span class="s2">Grants: &lt;grants&gt;</span><span class="se">\n</span><span class="s2">&lt;/pub_loop&gt;</span><span class="se">\n</span><span class="s2">&lt;/author_loop&gt;&lt;/project_loop&gt;&quot;</span>
+<span class="n">DEFAULT_PROJECT_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;</span><span class="se">\n\t</span><span class="s2">Title: &lt;title&gt; </span><span class="se">\n\t</span><span class="s2">Authors: &lt;authors&gt; </span><span class="se">\n\t</span><span class="s2">Journal: &lt;journal&gt; </span><span class="se">\n\t</span><span class="s2">DOI: &lt;DOI&gt; </span><span class="se">\n\t</span><span class="s2">PMID: &lt;PMID&gt; </span><span class="se">\n\t</span><span class="s2">PMCID: &lt;PMCID&gt; </span><span class="se">\n\t</span><span class="s2">Grants: &lt;grants&gt;</span><span class="se">\n</span><span class="s2">&lt;/pub_loop&gt;</span><span class="se">\n</span><span class="s2">&lt;/author_loop&gt;&quot;</span>
+<span class="n">DEFAULT_AUTHOR_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;</span><span class="se">\n\t</span><span class="s2">Title: &lt;title&gt; </span><span class="se">\n\t</span><span class="s2">Authors: &lt;authors&gt; </span><span class="se">\n\t</span><span class="s2">Journal: &lt;journal&gt; </span><span class="se">\n\t</span><span class="s2">DOI: &lt;DOI&gt; </span><span class="se">\n\t</span><span class="s2">PMID: &lt;PMID&gt; </span><span class="se">\n\t</span><span class="s2">PMCID: &lt;PMCID&gt; </span><span class="se">\n\t</span><span class="s2">Grants: &lt;grants&gt;</span><span class="se">\n</span><span class="s2">&lt;/pub_loop&gt;</span><span class="se">\n</span><span class="s2">&lt;/author_loop&gt;&quot;</span>
+
+
+<div class="viewcode-block" id="create_pubs_by_author_dict"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict">[docs]</a><span class="k">def</span> <span class="nf">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a dictionary with authors as the keys and values as the pub_ids and grants</span>
+<span class="sd">    </span>
+<span class="sd">    Organizes the publication information in an author focused way so other operations are easier.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">pubs_by_author_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_attributes</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">pub_attributes</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s2">&quot;author_id&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+                <span class="n">author_id</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">author_id</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">:</span>
+                    <span class="n">pubs_by_author_dict</span><span class="p">[</span><span class="n">author_id</span><span class="p">][</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_attributes</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pubs_by_author_dict</span><span class="p">[</span><span class="n">author_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">pub_id</span> <span class="p">:</span> <span class="n">pub_attributes</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">]}</span>
+                    
+    <span class="k">return</span> <span class="n">pubs_by_author_dict</span></div>
+
+
+
+<div class="viewcode-block" id="create_project_reports_and_emails"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails">[docs]</a><span class="k">def</span> <span class="nf">create_project_reports_and_emails</span><span class="p">(</span><span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create project reports and emails for each project.</span>
+<span class="sd">    </span>
+<span class="sd">    For each project in config_dict create a report and optional email.</span>
+<span class="sd">    Reports are saved in save_dir_name as they are created.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        save_dir_name (str): directory to save the reports in.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        email_messages (dict): keys and values match the email JSON file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># dict for email messages.</span>
+    <span class="n">email_messages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;creation_date&quot;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">16</span><span class="p">]}</span>
+    <span class="n">email_messages</span><span class="p">[</span><span class="s2">&quot;emails&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">pubs_by_author_dict</span> <span class="o">=</span> <span class="n">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">project</span><span class="p">,</span> <span class="n">project_attributes</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;project_descriptions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;project_report&quot;</span> <span class="ow">in</span> <span class="n">project_attributes</span><span class="p">:</span>
+            <span class="n">report_attributes</span> <span class="o">=</span> <span class="n">project_attributes</span><span class="p">[</span><span class="s2">&quot;project_report&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+        
+        <span class="c1">## If to_email is in project then send one email with all authors for the project.</span>
+        <span class="k">if</span> <span class="s2">&quot;to_email&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="ow">or</span> <span class="ow">not</span> <span class="s2">&quot;from_email&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="s2">&quot;columns&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">:</span>
+                
+                <span class="n">file_format</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;file_format&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;file_format&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="s2">&quot;csv&quot;</span>
+                    
+                <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">:</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+                        <span class="n">filename</span> <span class="o">=</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot;_project_report.csv&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">filename</span> <span class="o">=</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot;_project_report.xlsx&quot;</span>
+                
+                <span class="n">report</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">create_tabular_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">pubs_by_author_dict</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">report_attributes</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                
+                <span class="n">template</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;template&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;template&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="n">DEFAULT_PROJECT_TEMPLATE</span>
+                
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot;_project_report.txt&quot;</span>
+                
+                <span class="n">report</span> <span class="o">=</span> <span class="n">create_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">template</span><span class="p">)</span>
+                <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="s2">&quot;from_email&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">:</span>
+                <span class="n">email_messages</span><span class="p">[</span><span class="s2">&quot;emails&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;body&quot;</span><span class="p">:</span><span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;email_body&quot;</span><span class="p">],</span>
+                                                 <span class="s2">&quot;subject&quot;</span><span class="p">:</span><span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;email_subject&quot;</span><span class="p">],</span>
+                                                 <span class="s2">&quot;from&quot;</span><span class="p">:</span><span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;from_email&quot;</span><span class="p">],</span>
+                                                 <span class="s2">&quot;to&quot;</span><span class="p">:</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">email</span> <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;to_email&quot;</span><span class="p">]]),</span>
+                                                 <span class="s2">&quot;cc&quot;</span><span class="p">:</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">email</span> <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;cc_email&quot;</span><span class="p">]])</span> <span class="k">if</span> <span class="s2">&quot;cc_email&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                                 <span class="s2">&quot;attachment&quot;</span><span class="p">:</span><span class="n">report</span><span class="p">,</span>
+                                                 <span class="s2">&quot;attachment_filename&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">})</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">## If authors is in project send an email to each author in the project.</span>
+            <span class="c1">## If neither authors nor to_email is in the project then send emails to all authors that have publications.  </span>
+            <span class="n">authors</span> <span class="o">=</span> <span class="n">project_attributes</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;authors&quot;</span> <span class="ow">in</span> <span class="n">project_attributes</span> <span class="k">else</span> <span class="n">pubs_by_author_dict</span>
+                
+            <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">authors</span><span class="p">:</span>
+                <span class="n">report_attributes</span> <span class="o">=</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;project_report&quot;</span><span class="p">]</span>
+                
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                
+                <span class="k">if</span> <span class="s2">&quot;columns&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">:</span>
+                    
+                    <span class="n">file_format</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;file_format&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;file_format&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="s2">&quot;csv&quot;</span>
+                        
+                    <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span><span class="p">:</span>
+                        <span class="n">filename</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+                            <span class="n">filename</span> <span class="o">=</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;_project_report.csv&quot;</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">filename</span> <span class="o">=</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;_project_report.xlsx&quot;</span>
+                    
+                    <span class="n">report</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">create_tabular_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="p">{</span><span class="n">project</span><span class="p">:{</span><span class="n">author</span><span class="p">:</span><span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">]}},</span> <span class="n">pubs_by_author_dict</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">report_attributes</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+                
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">template</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;template&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;template&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="n">DEFAULT_AUTHOR_TEMPLATE</span>
+                    
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;_project_report.txt&quot;</span>
+                    
+                    <span class="n">report</span> <span class="o">=</span> <span class="n">create_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="p">{</span><span class="n">project</span><span class="p">:{</span><span class="n">author</span><span class="p">:</span><span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">]}},</span> <span class="n">project</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;first_name&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;last_name&quot;</span><span class="p">])</span>
+                    <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="s2">&quot;from_email&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="ow">and</span> <span class="s2">&quot;email&quot;</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">]:</span>
+                    <span class="n">email_messages</span><span class="p">[</span><span class="s2">&quot;emails&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;body&quot;</span><span class="p">:</span><span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;project_report&quot;</span><span class="p">][</span><span class="s2">&quot;email_body&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;subject&quot;</span><span class="p">:</span><span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;project_report&quot;</span><span class="p">][</span><span class="s2">&quot;email_subject&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;from&quot;</span><span class="p">:</span><span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;project_report&quot;</span><span class="p">][</span><span class="s2">&quot;from_email&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;to&quot;</span><span class="p">:</span><span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;email&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;cc&quot;</span><span class="p">:</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">email</span> <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;project_report&quot;</span><span class="p">][</span><span class="s2">&quot;cc_email&quot;</span><span class="p">]])</span> <span class="k">if</span> <span class="s2">&quot;cc_email&quot;</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;project_report&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                                     <span class="s2">&quot;attachment&quot;</span><span class="p">:</span> <span class="n">report</span><span class="p">,</span>
+                                                     <span class="s2">&quot;attachment_filename&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
+                                                     <span class="s2">&quot;author&quot;</span><span class="p">:</span><span class="n">author</span><span class="p">})</span>            
+    
+    <span class="k">return</span> <span class="n">email_messages</span></div>
+
+
+
+<div class="viewcode-block" id="create_project_report"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_project_report">[docs]</a><span class="k">def</span> <span class="nf">create_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="o">=</span><span class="n">DEFAULT_PROJECT_TEMPLATE</span><span class="p">,</span> <span class="n">author_first</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">author_last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create the project report for the project.</span>
+<span class="sd">    </span>
+<span class="sd">    The details of creating project reports are outlined in the documentation.</span>
+<span class="sd">    Use the information in the config_dict, publication_dict, and authors_by_project_dict </span>
+<span class="sd">    to fill in the information in the template_string. If author_first is given then </span>
+<span class="sd">    it is assumed the report is actually for a single author and not a whole project.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        project_name (str): The name of the project.</span>
+<span class="sd">        template_string (str): Template used to create the project report.</span>
+<span class="sd">        author_first (str): First name of the author. If not &quot;&quot; the report is assumed to be for 1 author.</span>
+<span class="sd">        author_last (str): Last name of the author.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        template_string (str): The template_string with the appropriate tags replaced with relevant information.        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">project_authors</span> <span class="o">=</span> <span class="n">build_author_loop</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="p">)</span>
+    
+    <span class="n">template_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;author_loop&gt;.*&lt;/author_loop&gt;&quot;</span><span class="p">,</span> <span class="n">project_authors</span><span class="p">,</span> <span class="n">template_string</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">author_first</span><span class="p">:</span>
+        <span class="n">template_string</span> <span class="o">=</span> <span class="n">template_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;author_first&gt;&quot;</span><span class="p">,</span> <span class="n">author_first</span><span class="p">)</span>
+        <span class="n">template_string</span> <span class="o">=</span> <span class="n">template_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;author_last&gt;&quot;</span><span class="p">,</span> <span class="n">author_last</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">template_string</span></div>
+
+
+
+
+<div class="viewcode-block" id="create_summary_report"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_summary_report">[docs]</a><span class="k">def</span> <span class="nf">create_summary_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">template_string</span><span class="o">=</span><span class="n">DEFAULT_SUMMARY_TEMPLATE</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create the summary report for the run.</span>
+<span class="sd">    </span>
+<span class="sd">    The details of creating summary reports are outlined in the documentation.</span>
+<span class="sd">    Use the information in the config_dict, publication_dict, and authors_by_project_dict </span>
+<span class="sd">    to fill in the information in the template_string.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        template_string (str): Template used to create the project report.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        report_string (str): The report built by replacing the appropriate tags in template_string with relevant information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">project_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;project_loop&gt;(.*)&lt;/project_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">report_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">project_name</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;project_descriptions&quot;</span><span class="p">]:</span>
+        <span class="n">project_template_copy</span> <span class="o">=</span> <span class="n">project_template</span>
+        
+        <span class="n">project_authors</span> <span class="o">=</span> <span class="n">build_author_loop</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="p">)</span>
+        
+        <span class="n">project_template_copy</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;author_loop&gt;.*&lt;/author_loop&gt;&quot;</span><span class="p">,</span> <span class="n">project_authors</span><span class="p">,</span> <span class="n">project_template_copy</span><span class="p">)</span>
+        <span class="n">project_template_copy</span> <span class="o">=</span> <span class="n">project_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;project_name&gt;&quot;</span><span class="p">,</span> <span class="n">project_name</span><span class="p">)</span>
+        
+        <span class="n">report_string</span> <span class="o">+=</span> <span class="n">project_template_copy</span>
+    
+    <span class="n">report_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;project_loop&gt;.*&lt;/project_loop&gt;&quot;</span><span class="p">,</span> <span class="n">report_string</span><span class="p">,</span> <span class="n">template_string</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">report_string</span></div>
+
+
+
+
+<span class="n">simple_publication_keywords_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;abstract&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;conclusions&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;conclusions&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;copyrights&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;copyrights&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;DOI&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;doi&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;journal&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;journal&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;keywords&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;keywords&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;methods&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;methods&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;PMID&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;results&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;results&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;title&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;title&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;&lt;PMCID&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;PMCID&quot;</span><span class="p">,}</span>
+
+<span class="n">pub_authors_keyword_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;pub_author_first&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;firstname&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;&lt;pub_author_last&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;lastname&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;&lt;pub_author_initials&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;initials&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;&lt;pub_author_affiliations&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;affiliation&quot;</span><span class="p">}</span>
+
+<span class="n">publication_date_keywords_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;publication_year&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+                                 <span class="s2">&quot;&lt;publication_month&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;month&quot;</span><span class="p">,</span>
+                                 <span class="s2">&quot;&lt;publication_day&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;day&quot;</span><span class="p">}</span>
+
+<span class="n">authors_keywords_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;author_first&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;&lt;author_last&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;&lt;author_name_search&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;pubmed_name_search&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;&lt;author_email&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;email&quot;</span><span class="p">}</span>
+
+<span class="n">pub_keywords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">simple_publication_keywords_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">publication_date_keywords_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;&lt;first_author&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;last_author&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;authors&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;grants&gt;&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="build_author_loop"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.build_author_loop">[docs]</a><span class="k">def</span> <span class="nf">build_author_loop</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Replace tags in template_string with the appropriate information.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        project_name (str): The name of the project.</span>
+<span class="sd">        template_string (str): Template used to create the project report.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        project_authors (str): The string built by looping over the authors in authors_by_project_dict and using the template_string to build a report.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">pubs_by_author_dict</span> <span class="o">=</span> <span class="n">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">)</span>
+    
+    <span class="n">author_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;author_loop&gt;(.*)&lt;/author_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pub_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;pub_loop&gt;(.*)&lt;/pub_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pub_author_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;pub_author_loop&gt;(.*)&lt;/pub_author_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">project_authors</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project_name</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">author_template_copy</span> <span class="o">=</span> <span class="n">author_template</span>
+        
+        <span class="n">authors_pubs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]:</span>
+            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template</span>
+            
+            <span class="n">pub_authors</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+                <span class="n">pub_author_template_copy</span> <span class="o">=</span> <span class="n">pub_author_template</span>
+                
+                <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_author_key</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">pub_author_template_copy</span> <span class="o">=</span> <span class="n">pub_author_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_author</span><span class="p">[</span><span class="n">pub_author_key</span><span class="p">]))</span>
+                    
+                <span class="n">pub_authors</span> <span class="o">+=</span> <span class="n">pub_author_template_copy</span>
+                
+            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;pub_author_loop&gt;.*&lt;/pub_author_loop&gt;&quot;</span><span class="p">,</span> <span class="n">pub_authors</span><span class="p">,</span> <span class="n">pub_template_copy</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_key</span> <span class="ow">in</span> <span class="n">simple_publication_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="n">pub_key</span><span class="p">]))</span>
+                
+            <span class="c1">## build first and last author</span>
+            <span class="n">first_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
+            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;first_author&gt;&quot;</span><span class="p">,</span> <span class="n">first_author</span><span class="p">)</span>
+            
+            <span class="n">last_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
+            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;last_author&gt;&quot;</span><span class="p">,</span> <span class="n">last_author</span><span class="p">)</span>
+            
+            <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]])</span>
+            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;authors&gt;&quot;</span><span class="p">,</span> <span class="n">authors</span><span class="p">)</span>
+            
+            <span class="n">grants</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;None Found&quot;</span>
+            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;grants&gt;&quot;</span><span class="p">,</span> <span class="n">grants</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">date_key</span> <span class="ow">in</span> <span class="n">publication_date_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="n">date_key</span><span class="p">]))</span>
+                    
+            <span class="n">authors_pubs</span> <span class="o">+=</span> <span class="n">pub_template_copy</span>
+        
+        <span class="n">author_template_copy</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;pub_loop&gt;.*&lt;/pub_loop&gt;&quot;</span><span class="p">,</span> <span class="n">authors_pubs</span><span class="p">,</span> <span class="n">author_template_copy</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">auth_key</span> <span class="ow">in</span> <span class="n">authors_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">author_template_copy</span> <span class="o">=</span> <span class="n">author_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="n">auth_key</span><span class="p">])</span> <span class="k">if</span> <span class="n">auth_key</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;None&quot;</span><span class="p">)</span>
+            
+        <span class="n">project_authors</span> <span class="o">+=</span> <span class="n">author_template_copy</span>
+        
+    <span class="k">return</span> <span class="n">project_authors</span></div>
+
+
+
+
+<div class="viewcode-block" id="create_tabular_collaborator_report"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">file_format</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a table for a collaborator report and save as either csv or xlsx.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        author (str): The key to the author in config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        pubs (dict): Keys are publications for the author and values are the grants associated with that pub.</span>
+<span class="sd">        filename (str): filename to save the publication under.</span>
+<span class="sd">        file_format (str): csv or xlsx, determines what format to save in.</span>
+<span class="sd">        save_dir_name (str): directory to save the report in.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        report (str): The text of the report, empty string, or path to the saved xlsx file.</span>
+<span class="sd">        filename (str): Filename of the report. Made have had an .xlsx added to the end.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">default_columns</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;pub_author_last&gt;, &lt;pub_author_first&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Affiliations&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;pub_author_affiliations&gt;&quot;</span><span class="p">}</span>
+    <span class="n">default_sort</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span>
+    <span class="n">default_order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Affiliations&quot;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="s2">&quot;separator&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;separator&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span>
+    
+    <span class="c1">## Determine whether to build the report to user specifications or use the deaults.</span>
+    <span class="k">if</span> <span class="s2">&quot;columns&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;columns&quot;</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;sort&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+            <span class="n">sort</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;sort&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sort</span> <span class="o">=</span> <span class="p">[]</span>
+            
+        <span class="k">if</span> <span class="s2">&quot;column_order&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+            <span class="n">column_order</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;column_order&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">column_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">columns</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">default_columns</span>
+        <span class="n">sort</span> <span class="o">=</span> <span class="n">default_sort</span>
+        <span class="n">column_order</span> <span class="o">=</span> <span class="n">default_order</span>
+        
+    
+    
+    
+    <span class="n">authors_already_added</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">collaborators</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pubs</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;author_id&quot;</span> <span class="ow">in</span> <span class="n">pub_author</span> <span class="ow">and</span> <span class="n">pub_author</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">author</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">authors_already_added</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">temp_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_author_key</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_author</span><span class="p">[</span><span class="n">pub_author_key</span><span class="p">]))</span>
+                <span class="n">temp_dict</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                
+            <span class="n">collaborators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+            <span class="n">authors_already_added</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_author</span><span class="p">)</span>
+    
+                
+    <span class="k">if</span> <span class="n">collaborators</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">collaborators</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column_order</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+            <span class="n">report</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">separator</span><span class="p">,</span> <span class="n">line_terminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">## If the file extension isn&#39;t .xlsx then there will be an error, so force it.</span>
+            <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">+=</span> <span class="s2">&quot;.xlsx&quot;</span>
+            
+            <span class="n">report</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        
+    <span class="k">return</span> <span class="n">report</span><span class="p">,</span> <span class="n">filename</span></div>
+    
+
+
+
+<div class="viewcode-block" id="create_collaborator_report"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_collaborator_report">[docs]</a><span class="k">def</span> <span class="nf">create_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a collaborator report from a formatted string.</span>
+<span class="sd">    </span>
+<span class="sd">    Loop over all of the author&#39;s publications and create a </span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        author (str): The key to the author in config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        pubs (dict): Keys are publications for the author and values are the grants associated with that pub.</span>
+<span class="sd">        filename (str): filename to save the publication under.</span>
+<span class="sd">        save_dir_name (str): directory to save the report in.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        report (str): The text of the report or an empty string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">authors_already_added</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">pub_author_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;pub_author_loop&gt;(.*)&lt;/pub_author_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pubs</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;author_id&quot;</span> <span class="ow">in</span> <span class="n">pub_author</span> <span class="ow">and</span> <span class="n">pub_author</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">author</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">authors_already_added</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">pub_author_template_copy</span> <span class="o">=</span> <span class="n">pub_author_template</span>
+            
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_author_key</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">pub_author_template_copy</span> <span class="o">=</span> <span class="n">pub_author_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_author</span><span class="p">[</span><span class="n">pub_author_key</span><span class="p">]))</span>
+                
+            <span class="n">report</span> <span class="o">+=</span> <span class="n">pub_author_template_copy</span>
+            
+            <span class="n">authors_already_added</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_author</span><span class="p">)</span>
+            
+    <span class="k">if</span> <span class="n">report</span><span class="p">:</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;pub_author_loop&gt;.*&lt;/pub_author_loop&gt;&quot;</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">template</span><span class="p">)</span>
+        <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">report</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="create_collaborators_reports_and_emails"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails">[docs]</a><span class="k">def</span> <span class="nf">create_collaborators_reports_and_emails</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a report of collaborators for authors in publication_dict.</span>
+<span class="sd">    </span>
+<span class="sd">    For each author in publication_dict with an author_id create a csv file with </span>
+<span class="sd">    the other authors on their publicaitons.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        save_dir_name (str): directory to save the reports in.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        email_messages (dict): keys and values match the email JSON file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">pubs_by_author_dict</span> <span class="o">=</span> <span class="n">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">)</span>
+    
+    <span class="c1"># dict for email messages.</span>
+    <span class="n">email_messages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;creation_date&quot;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">16</span><span class="p">]}</span>
+    <span class="n">email_messages</span><span class="p">[</span><span class="s2">&quot;emails&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+        <span class="c1">## Skip if the author isn&#39;t in the config dict or if the author doesn&#39;t have a collaborator report.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="s2">&quot;collaborator_report&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        
+        
+        <span class="k">if</span> <span class="s2">&quot;template&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;template&quot;</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;_collaborators.txt&quot;</span>
+                
+            <span class="n">report</span> <span class="o">=</span> <span class="n">create_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+        
+            <span class="k">if</span> <span class="s2">&quot;file_format&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+                <span class="n">file_format</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;file_format&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">file_format</span> <span class="o">=</span> <span class="s2">&quot;csv&quot;</span>
+                
+            <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;_collaborators.csv&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;_collaborators.xlsx&quot;</span>
+                    
+            <span class="n">report</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">create_tabular_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">file_format</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">)</span>
+            
+        
+        <span class="k">if</span> <span class="n">report</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;from_email&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="s2">&quot;to_email&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]:</span>
+                    <span class="n">to_email</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;to_email&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">to_email</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;email&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;email&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+                
+                <span class="k">if</span> <span class="n">to_email</span><span class="p">:</span>
+                    <span class="n">email_messages</span><span class="p">[</span><span class="s2">&quot;emails&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;body&quot;</span><span class="p">:</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;email_body&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;subject&quot;</span><span class="p">:</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;email_subject&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;from&quot;</span><span class="p">:</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;from_email&quot;</span><span class="p">],</span>
+                                                     <span class="s2">&quot;to&quot;</span><span class="p">:</span><span class="n">to_email</span><span class="p">,</span>
+                                                     <span class="s2">&quot;cc&quot;</span><span class="p">:</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">email</span> <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">][</span><span class="s2">&quot;cc_email&quot;</span><span class="p">]])</span> <span class="k">if</span> <span class="s2">&quot;cc_email&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                                     <span class="s2">&quot;attachment&quot;</span><span class="p">:</span> <span class="n">report</span><span class="p">,</span>
+                                                     <span class="s2">&quot;attachment_filename&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
+                                                     <span class="s2">&quot;author&quot;</span><span class="p">:</span><span class="n">author</span><span class="p">})</span>
+        
+    <span class="k">return</span> <span class="n">email_messages</span></div>
+        
+
+
+
+<div class="viewcode-block" id="create_tabular_summary_report"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_summary_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        save_dir_name (str): directory to save the report in.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        report (str): Either the text of the report if csv or a relative filepath to where the Excel file is saved.</span>
+<span class="sd">        filename (str): Filename of the report. Made have had an .xlsx added to the end.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">pubs_by_author_dict</span> <span class="o">=</span> <span class="n">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">)</span>
+        
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">row_template</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;columns&quot;</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="s2">&quot;separator&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">]:</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;separator&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span>
+        
+    <span class="k">if</span> <span class="s2">&quot;sort&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">]:</span>
+        <span class="n">sort</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;sort&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sort</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">if</span> <span class="s2">&quot;column_order&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">]:</span>
+        <span class="n">column_order</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;column_order&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">column_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">row_template</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        
+    <span class="k">if</span> <span class="s2">&quot;file_format&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">]:</span>
+        <span class="n">file_format</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;file_format&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">file_format</span> <span class="o">=</span> <span class="s2">&quot;csv&quot;</span>
+        
+    <span class="k">if</span> <span class="s2">&quot;filename&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">]:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;summary_report.csv&quot;</span> <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span> <span class="k">else</span> <span class="s2">&quot;summary_report.xlsx&quot;</span>
+    
+    <span class="n">row_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row_template</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>  
+    <span class="n">has_pub_keywords</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pub_keyword</span> <span class="ow">in</span> <span class="n">row_string</span> <span class="k">for</span> <span class="n">pub_keyword</span> <span class="ow">in</span> <span class="n">pub_keywords</span><span class="p">])</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pub_author_keyword</span> <span class="ow">in</span> <span class="n">row_string</span> <span class="k">for</span> <span class="n">pub_author_keyword</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+        <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">False</span>
+    
+    
+    <span class="k">for</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">project_attributes</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;project_descriptions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+        <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="k">if</span> <span class="n">has_pub_author_keywords</span> <span class="ow">or</span> <span class="n">has_pub_keywords</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]:</span>
+                    
+                    <span class="k">if</span> <span class="n">has_pub_author_keywords</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+                            
+                            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pub</span><span class="p">,</span> <span class="n">pub_author</span><span class="p">))</span>
+                            
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pub</span><span class="p">))</span>
+                        
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">author</span><span class="p">))</span>
+                
+    
+    <span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>            
+    <span class="k">if</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column_order</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+            <span class="n">report</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">separator</span><span class="p">,</span> <span class="n">line_terminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">## If the file extension isn&#39;t .xlsx then there will be an error, so force it.</span>
+            <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">+=</span> <span class="s2">&quot;.xlsx&quot;</span>
+            
+            <span class="n">report</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">report</span><span class="p">,</span> <span class="n">filename</span></div>
+
+
+
+<div class="viewcode-block" id="create_tabular_project_report"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">pubs_by_author_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">report_attributes</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.</span>
+<span class="sd">        project_name (str): Name of the project.</span>
+<span class="sd">        report_attributes (dict): Dictionary of the report attributes. Could come from project_descriptions or an author.</span>
+<span class="sd">        save_dir_name (str): directory to save the report in.</span>
+<span class="sd">        filename (str): Filename of the report.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        report (str): Either the text of the report if csv or a relative filepath to where the Excel file is saved.</span>
+<span class="sd">        filename (str): Filename of the report. Made have had an .xlsx added to the end.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">row_template</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">])</span>
+    
+    <span class="n">separator</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;separator&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;separator&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="s2">&quot;,&quot;</span>
+    
+    <span class="n">sort</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;sort&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;sort&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="p">[]</span>
+    
+    <span class="n">column_order</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;column_order&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;column_order&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">row_template</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>   
+    
+    <span class="n">file_format</span> <span class="o">=</span> <span class="n">report_attributes</span><span class="p">[</span><span class="s2">&quot;file_format&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;file_format&quot;</span> <span class="ow">in</span> <span class="n">report_attributes</span> <span class="k">else</span> <span class="s2">&quot;csv&quot;</span>    
+        
+    <span class="n">row_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row_template</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    
+    <span class="n">has_pub_keywords</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pub_keyword</span> <span class="ow">in</span> <span class="n">row_string</span> <span class="k">for</span> <span class="n">pub_keyword</span> <span class="ow">in</span> <span class="n">pub_keywords</span><span class="p">])</span> <span class="k">else</span> <span class="kc">False</span>
+    
+    <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pub_author_keyword</span> <span class="ow">in</span> <span class="n">row_string</span> <span class="k">for</span> <span class="n">pub_author_keyword</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+        <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">False</span>
+    
+    
+    <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">:</span>
+            <span class="k">continue</span>
+        
+        <span class="k">if</span> <span class="n">has_pub_author_keywords</span> <span class="ow">or</span> <span class="n">has_pub_keywords</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]:</span>
+                
+                <span class="k">if</span> <span class="n">has_pub_author_keywords</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+                        
+                        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pub</span><span class="p">,</span> <span class="n">pub_author</span><span class="p">))</span>
+                        
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pub</span><span class="p">))</span>
+                    
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">author</span><span class="p">))</span>
+                
+    
+    <span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>            
+    <span class="k">if</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column_order</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+            <span class="n">report</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">separator</span><span class="p">,</span> <span class="n">line_terminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">## If the file extension isn&#39;t .xlsx then there will be an error, so force it.</span>
+            <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">+=</span> <span class="s2">&quot;.xlsx&quot;</span>
+            
+            <span class="n">report</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">report</span><span class="p">,</span> <span class="n">filename</span></div>
+                    
+                    
+                    
+
+<div class="viewcode-block" id="replace_keywords"><a class="viewcode-back" href="../../../api.html#src.academic_tracker.athr_srch_emails_and_reports.replace_keywords">[docs]</a><span class="k">def</span> <span class="nf">replace_keywords</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">pub</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">pub_author</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;Replace keywords in the values of the template dictionary.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        template (dict): keys are column names and values are what the elements of the column should be.</span>
+<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="sd">        config_dict (dict): keys and values match the project tracking configuration JSON file.</span>
+<span class="sd">        project_name (str): the name of the project to replace.</span>
+<span class="sd">        author (str): the key to the author in config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        pub (str): the key to the pub in publication_dict.</span>
+<span class="sd">        pub_author (dict): The author in pub.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        template_copy (dict): template with the keywords replaced in its values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">template_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">template_copy</span><span class="p">:</span>
+        
+        <span class="c1">## Project keywords</span>
+        <span class="k">if</span> <span class="n">project_name</span><span class="p">:</span>
+            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;project_name&gt;&quot;</span><span class="p">,</span> <span class="n">project_name</span><span class="p">)</span>
+        
+        <span class="c1">## Authors keywords</span>
+        <span class="k">if</span> <span class="n">author</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">auth_key</span> <span class="ow">in</span> <span class="n">authors_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="n">auth_key</span><span class="p">])</span> <span class="k">if</span> <span class="n">auth_key</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;None&quot;</span><span class="p">)</span>
+        
+        <span class="c1">## Publication keywords</span>
+        <span class="k">if</span> <span class="n">pub</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_key</span> <span class="ow">in</span> <span class="n">simple_publication_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="n">pub_key</span><span class="p">]))</span>
+                
+            <span class="c1">## build first and last author</span>
+            <span class="n">first_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
+            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;first_author&gt;&quot;</span><span class="p">,</span> <span class="n">first_author</span><span class="p">)</span>
+            
+            <span class="n">last_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
+            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;last_author&gt;&quot;</span><span class="p">,</span> <span class="n">last_author</span><span class="p">)</span>
+            
+            <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]])</span>
+            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;authors&gt;&quot;</span><span class="p">,</span> <span class="n">authors</span><span class="p">)</span>
+            
+            <span class="n">grants</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;None Found&quot;</span>
+            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;grants&gt;&quot;</span><span class="p">,</span> <span class="n">grants</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">date_key</span> <span class="ow">in</span> <span class="n">publication_date_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="n">date_key</span><span class="p">]))</span>
+        
+        <span class="c1">## Pub authors keywords</span>
+        <span class="k">if</span> <span class="n">pub_author</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_author_key</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_author</span><span class="p">[</span><span class="n">pub_author_key</span><span class="p">]))</span>
+            
+    <span class="k">return</span> <span class="n">template_copy</span></div>
+        
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

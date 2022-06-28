@@ -301,9 +301,9 @@ Examples
 
 
 Default Template Strings
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 Author Search
--------------
+~~~~~~~~~~~~~
 Summary
 +++++++
 .. code-block:: console

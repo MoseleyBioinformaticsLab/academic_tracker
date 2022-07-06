@@ -89,9 +89,9 @@ Or, download the tarball and/or zipball:
 
 .. code:: bash
 
-   $ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/tarball/master
+   $ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/tarball/main
 
-   $ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/zipball/master
+   $ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/zipball/main
 
 Once you have a copy of the source, you can embed it in your own Python package,
 or install it into your system site-packages easily:

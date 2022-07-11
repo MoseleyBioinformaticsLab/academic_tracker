@@ -175,7 +175,7 @@ matched. Author's are matched using last name and at least one affiliation.
 
 License
 ~~~~~~~
-This package is distributed under the BSD `license`.
+This package is distributed under the BSD `license <https://moseleybioinformaticslab.github.io/academic_tracker/license.html>`__.
 
 
 .. _GitHub: https://github.com/MoseleyBioinformaticsLab/academic_tracker

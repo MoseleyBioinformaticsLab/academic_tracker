@@ -1,32 +1,64 @@
 API
 ===
 
-.. automodule:: src.academic_tracker
+.. automodule:: academic_tracker
 
-.. automodule:: src.academic_tracker.user_input_checking
-    :members:
-
-.. automodule:: src.academic_tracker.athr_srch_modularized
-    :members:
-.. automodule:: src.academic_tracker.athr_srch_webio
-    :members:
-.. automodule:: src.academic_tracker.athr_srch_emails_and_reports
+user_input_checking
+-------------------
+.. automodule:: academic_tracker.user_input_checking
     :members:
 
-.. automodule:: src.academic_tracker.ref_srch_modularized
+
+athr_srch_modularized
+---------------------
+.. automodule:: academic_tracker.athr_srch_modularized
     :members:
-.. automodule:: src.academic_tracker.ref_srch_webio
-    :members:
-.. automodule:: src.academic_tracker.ref_srch_emails_and_reports
-    :members:
-.. automodule:: src.academic_tracker.citation_parsing
+    
+athr_srch_webio
+---------------
+.. automodule:: academic_tracker.athr_srch_webio
     :members:
 
-.. automodule:: src.academic_tracker.fileio
+athr_srch_emails_and_reports
+----------------------------
+.. automodule:: academic_tracker.athr_srch_emails_and_reports
     :members:
-.. automodule:: src.academic_tracker.helper_functions
+
+
+ref_srch_modularized
+--------------------
+.. automodule:: academic_tracker.ref_srch_modularized
     :members:
-.. automodule:: src.academic_tracker.webio
+    
+ref_srch_webio
+--------------
+.. automodule:: academic_tracker.ref_srch_webio
+    :members:
+
+ref_srch_emails_and_reports
+---------------------------
+.. automodule:: academic_tracker.ref_srch_emails_and_reports
+    :members:
+
+citation_parsing
+----------------
+.. automodule:: academic_tracker.citation_parsing
+    :members:
+
+
+fileio
+------
+.. automodule:: academic_tracker.fileio
+    :members:
+
+helper_functions
+----------------
+.. automodule:: academic_tracker.helper_functions
+    :members:
+
+webio
+-----
+.. automodule:: academic_tracker.webio
     :members:
 
 

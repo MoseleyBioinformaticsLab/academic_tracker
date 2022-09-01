@@ -46,17 +46,50 @@
 <li class="toctree-l1"><a class="reference internal" href="reporting.html">Reporting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#user-input-checking">User Input Checking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#author-search-modularized">Author Search Modularized</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#author-search-webio">Author Search Webio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#author-search-emails-and-reports">Author Search Emails and Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference-search-modularized">Reference Search Modularized</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference-search-webio">Reference Search Webio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference-search-emails-and-reports">Reference Search Emails and Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#citation-parsing">Citation Parsing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fileio">Fileio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#helper-functions">Helper Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#webio">Webio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.user_input_checking">user_input_checking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">User Input Checking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.athr_srch_modularized">athr_srch_modularized</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#author-search-modularized">Author Search Modularized</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.athr_srch_webio">athr_srch_webio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#author-search-webio">Author Search Webio</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.athr_srch_emails_and_reports">athr_srch_emails_and_reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#author-search-emails-and-reports">Author Search Emails and Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.ref_srch_modularized">ref_srch_modularized</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reference-search-modularized">Reference Search Modularized</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.ref_srch_webio">ref_srch_webio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reference-search-webio">Reference Search Webio</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.ref_srch_emails_and_reports">ref_srch_emails_and_reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reference-search-emails-and-reports">Reference Search Emails and Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.citation_parsing">citation_parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Citation Parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.fileio">fileio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Fileio</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.helper_functions">helper_functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-academic_tracker.webio">webio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Webio</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -87,8 +120,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-src.academic_tracker">
-<span id="api"></span><h1>API<a class="headerlink" href="#module-src.academic_tracker" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-academic_tracker">
+<span id="api"></span><h1>API<a class="headerlink" href="#module-academic_tracker" title="Permalink to this headline">¶</a></h1>
 <p>This package has the following modules:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">user_input_checking</span></code></dt><dd><p>This module contains functions for checking user input.</p>
@@ -116,12 +149,14 @@
 <dt><code class="docutils literal notranslate"><span class="pre">webio</span></code></dt><dd><p>This module contains general functions for interfacing with the internet.</p>
 </dd>
 </dl>
-<span class="target" id="module-src.academic_tracker.user_input_checking"></span><div class="section" id="user-input-checking">
-<h2>User Input Checking<a class="headerlink" href="#user-input-checking" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-academic_tracker.user_input_checking">
+<span id="user-input-checking"></span><h2>user_input_checking<a class="headerlink" href="#module-academic_tracker.user_input_checking" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>User Input Checking<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Functions that check the user input for errors.</p>
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.cli_inputs_check">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">cli_inputs_check</code><span class="sig-paren">(</span><em class="sig-param">args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#cli_inputs_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.cli_inputs_check" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.cli_inputs_check">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">cli_inputs_check</code><span class="sig-paren">(</span><em class="sig-param">args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#cli_inputs_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.cli_inputs_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run input checking on the CLI inputs.</p>
 <p>Uses jsonschema to validate the inputs.</p>
 <dl class="field-list simple">
@@ -132,8 +167,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.config_file_check">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.config_file_check" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.config_file_check">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.config_file_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the configuration JSON file is as expected.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
@@ -149,8 +184,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.config_report_check">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">config_report_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#config_report_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.config_report_check" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.config_report_check">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">config_report_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#config_report_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.config_report_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the report attributes don’t have conflicts.</p>
 <p>Make sure that the values in sort and column_order are in columns,
 and that every column is in column_order.</p>
@@ -162,8 +197,8 @@ and that every column is in column_order.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.prev_pubs_file_check">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">prev_pubs_file_check</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#prev_pubs_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.prev_pubs_file_check" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.prev_pubs_file_check">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">prev_pubs_file_check</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#prev_pubs_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.prev_pubs_file_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run input checking on prev_pubs dict.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
@@ -174,8 +209,8 @@ and that every column is in column_order.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.ref_config_file_check">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">ref_config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#ref_config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.ref_config_file_check" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.ref_config_file_check">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">ref_config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#ref_config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.ref_config_file_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the configuration JSON file is as expected.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
@@ -189,8 +224,8 @@ and that every column is in column_order.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.tok_reference_check">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">tok_reference_check</code><span class="sig-paren">(</span><em class="sig-param">tok_ref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#tok_reference_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.tok_reference_check" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.tok_reference_check">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">tok_reference_check</code><span class="sig-paren">(</span><em class="sig-param">tok_ref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#tok_reference_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.tok_reference_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run input checking on tok_ref dict.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
@@ -201,8 +236,8 @@ and that every column is in column_order.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.user_input_checking.tracker_validate">
-<code class="sig-prename descclassname">src.academic_tracker.user_input_checking.</code><code class="sig-name descname">tracker_validate</code><span class="sig-paren">(</span><em class="sig-param">instance</em>, <em class="sig-param">schema</em>, <em class="sig-param">pattern_messages={}</em>, <em class="sig-param">cls=None</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/user_input_checking.html#tracker_validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.user_input_checking.tracker_validate" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.user_input_checking.tracker_validate">
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">tracker_validate</code><span class="sig-paren">(</span><em class="sig-param">instance</em>, <em class="sig-param">schema</em>, <em class="sig-param">pattern_messages={}</em>, <em class="sig-param">cls=None</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#tracker_validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.tracker_validate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper around jsonchema.validate to give better error messages.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -219,12 +254,15 @@ and that every column is in column_order.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.athr_srch_modularized"></span><div class="section" id="author-search-modularized">
-<h2>Author Search Modularized<a class="headerlink" href="#author-search-modularized" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.athr_srch_modularized">
+<span id="athr-srch-modularized"></span><h2>athr_srch_modularized<a class="headerlink" href="#module-academic_tracker.athr_srch_modularized" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="author-search-modularized">
+<h3>Author Search Modularized<a class="headerlink" href="#author-search-modularized" title="Permalink to this headline">¶</a></h3>
 <p>Modularized pieces of author_search.</p>
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_modularized.build_publication_dict">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">prev_pubs</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_modularized.build_publication_dict">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">prev_pubs</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query PubMed, ORCID, Google Scholar, and Crossref for publications for the authors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -247,8 +285,8 @@ prev_pubs (dict): Same as input, but updated with the new publications found.</p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_modularized.generate_internal_data_and_check_authors">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">generate_internal_data_and_check_authors</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_modularized.html#generate_internal_data_and_check_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_modularized.generate_internal_data_and_check_authors" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_modularized.generate_internal_data_and_check_authors">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">generate_internal_data_and_check_authors</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#generate_internal_data_and_check_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.generate_internal_data_and_check_authors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create authors_by_project_dict and look for authors without projects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -265,8 +303,8 @@ config_dict (dict): same as input but with author information updated based on p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_modularized.input_reading_and_checking">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_modularized.input_reading_and_checking">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read in inputs from user and do error checking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -287,8 +325,8 @@ config_dict (dict): same as input but with author information updated based on p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_modularized.save_and_send_reports_and_emails">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">save_and_send_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">test</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_modularized.html#save_and_send_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_modularized.save_and_send_reports_and_emails" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_modularized.save_and_send_reports_and_emails">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">save_and_send_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">test</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#save_and_send_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.save_and_send_reports_and_emails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the summary report and project reports and email them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,12 +347,15 @@ config_dict (dict): same as input but with author information updated based on p
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.athr_srch_webio"></span><div class="section" id="author-search-webio">
-<h2>Author Search Webio<a class="headerlink" href="#author-search-webio" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.athr_srch_webio">
+<span id="athr-srch-webio"></span><h2>athr_srch_webio<a class="headerlink" href="#module-academic_tracker.athr_srch_webio" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="author-search-webio">
+<h3>Author Search Webio<a class="headerlink" href="#author-search-webio" title="Permalink to this headline">¶</a></h3>
 <p>Internet interfacing for author_search.</p>
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_webio.search_Crossref_for_pubs">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_Crossref_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">authors_json</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_webio.html#search_Crossref_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_webio.search_Crossref_for_pubs" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_webio.search_Crossref_for_pubs">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_Crossref_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">authors_json</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_webio.html#search_Crossref_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_webio.search_Crossref_for_pubs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes Crossref for publications by each author.</p>
 <p>For each author in authors_json Crossref is queried for the publications. The list of publications is then filtered
 by prev_pubs, affiliations, and cutoff_year. If the publication is in the prev_pubs then it is skipped.
@@ -339,8 +380,8 @@ for any of the grants in the author’s grants.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_webio.search_Google_Scholar_for_pubs">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_Google_Scholar_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">authors_json</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_webio.html#search_Google_Scholar_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_webio.search_Google_Scholar_for_pubs" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_webio.search_Google_Scholar_for_pubs">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_Google_Scholar_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">authors_json</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_webio.html#search_Google_Scholar_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_webio.search_Google_Scholar_for_pubs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes Google Scholar for publications by each author.</p>
 <p>For each author in authors_json Google Scholar is queried for the publications. The list of publications is then filtered
 by prev_pubs, affiliations, and cutoff_year. If the publication is in the prev_pubs then it is skipped.
@@ -365,8 +406,8 @@ for any of the grants in the author’s grants.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_webio.search_ORCID_for_pubs">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_ORCID_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">ORCID_key</em>, <em class="sig-param">ORCID_secret</em>, <em class="sig-param">authors_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_webio.html#search_ORCID_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_webio.search_ORCID_for_pubs" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_webio.search_ORCID_for_pubs">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_ORCID_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">ORCID_key</em>, <em class="sig-param">ORCID_secret</em>, <em class="sig-param">authors_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_webio.html#search_ORCID_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_webio.search_ORCID_for_pubs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes ORCID for publications by each author.</p>
 <p>For each author in authors_json ORCID is queried for the publications. The list of publications is then filtered
 by prev_pubs, affiliations, and cutoff_year. If the publication is in the prev_pubs then it is skipped.
@@ -392,8 +433,8 @@ for any of the grants in the author’s grants.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_webio.search_PubMed_for_pubs">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_PubMed_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">authors_json</em>, <em class="sig-param">from_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_webio.html#search_PubMed_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_webio.search_PubMed_for_pubs" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_webio.search_PubMed_for_pubs">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_webio.</code><code class="sig-name descname">search_PubMed_for_pubs</code><span class="sig-paren">(</span><em class="sig-param">prev_pubs</em>, <em class="sig-param">authors_json</em>, <em class="sig-param">from_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_webio.html#search_PubMed_for_pubs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_webio.search_PubMed_for_pubs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes PubMed for publications by each author.</p>
 <p>For each author in authors_json PubMed is queried for the publications. The list of publications is then filtered
 by prev_pubs, affiliations, and cutoff_year. If the publication is in the of prev_pubs then it is skipped.
@@ -418,12 +459,15 @@ for any of the grants in the author’s grants.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.athr_srch_emails_and_reports"></span><div class="section" id="author-search-emails-and-reports">
-<h2>Author Search Emails and Reports<a class="headerlink" href="#author-search-emails-and-reports" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.athr_srch_emails_and_reports">
+<span id="athr-srch-emails-and-reports"></span><h2>athr_srch_emails_and_reports<a class="headerlink" href="#module-academic_tracker.athr_srch_emails_and_reports" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="author-search-emails-and-reports">
+<h3>Author Search Emails and Reports<a class="headerlink" href="#author-search-emails-and-reports" title="Permalink to this headline">¶</a></h3>
 <p>Functions to create emails and reports for author_search.</p>
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.build_author_loop">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">build_author_loop</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">project_name</em>, <em class="sig-param">template_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#build_author_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.build_author_loop" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.build_author_loop">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">build_author_loop</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">project_name</em>, <em class="sig-param">template_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#build_author_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.build_author_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replace tags in template_string with the appropriate information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -445,8 +489,8 @@ for any of the grants in the author’s grants.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_collaborator_report">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_collaborator_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">template</em>, <em class="sig-param">author</em>, <em class="sig-param">pubs</em>, <em class="sig-param">filename</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_collaborator_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_collaborator_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_collaborator_report">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_collaborator_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">template</em>, <em class="sig-param">author</em>, <em class="sig-param">pubs</em>, <em class="sig-param">filename</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_collaborator_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_collaborator_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a collaborator report from a formatted string.</p>
 <p>Loop over all of the author’s publications and create a</p>
 <dl class="field-list simple">
@@ -469,8 +513,8 @@ for any of the grants in the author’s grants.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_collaborators_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_collaborators_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_collaborators_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_collaborators_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a report of collaborators for authors in publication_dict.</p>
 <p>For each author in publication_dict with an author_id create a csv file with
 the other authors on their publicaitons.</p>
@@ -492,8 +536,8 @@ the other authors on their publicaitons.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_project_report">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_project_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">project_name</em>, <em class="sig-param">template_string='&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\tTitle: &lt;title&gt; \n\tAuthors: &lt;authors&gt; \n\tJournal: &lt;journal&gt; \n\tDOI: &lt;DOI&gt; \n\tPMID: &lt;PMID&gt; \n\tPMCID: &lt;PMCID&gt; \n\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;'</em>, <em class="sig-param">author_first=''</em>, <em class="sig-param">author_last=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_project_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_project_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_project_report">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_project_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">project_name</em>, <em class="sig-param">template_string='&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\tTitle: &lt;title&gt; \n\tAuthors: &lt;authors&gt; \n\tJournal: &lt;journal&gt; \n\tDOI: &lt;DOI&gt; \n\tPMID: &lt;PMID&gt; \n\tPMCID: &lt;PMCID&gt; \n\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;'</em>, <em class="sig-param">author_first=''</em>, <em class="sig-param">author_last=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_project_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_project_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the project report for the project.</p>
 <p>The details of creating project reports are outlined in the documentation.
 Use the information in the config_dict, publication_dict, and authors_by_project_dict
@@ -521,8 +565,8 @@ it is assumed the report is actually for a single author and not a whole project
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_project_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_project_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_project_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_project_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create project reports and emails for each project.</p>
 <p>For each project in config_dict create a report and optional email.
 Reports are saved in save_dir_name as they are created.</p>
@@ -545,8 +589,8 @@ Reports are saved in save_dir_name as they are created.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_pubs_by_author_dict</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_pubs_by_author_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_pubs_by_author_dict</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_pubs_by_author_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a dictionary with authors as the keys and values as the pub_ids and grants</p>
 <p>Organizes the publication information in an author focused way so other operations are easier.</p>
 <dl class="field-list simple">
@@ -563,8 +607,8 @@ Reports are saved in save_dir_name as they are created.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_summary_report">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_summary_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">template_string='&lt;project_loop&gt;&lt;project_name&gt;\n&lt;author_loop&gt;\t&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\t\tTitle: &lt;title&gt; \n\t\tAuthors: &lt;authors&gt; \n\t\tJournal: &lt;journal&gt; \n\t\tDOI: &lt;DOI&gt; \n\t\tPMID: &lt;PMID&gt; \n\t\tPMCID: &lt;PMCID&gt; \n\t\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;&lt;/project_loop&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_summary_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_summary_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_summary_report">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_summary_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">template_string='&lt;project_loop&gt;&lt;project_name&gt;\n&lt;author_loop&gt;\t&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\t\tTitle: &lt;title&gt; \n\t\tAuthors: &lt;authors&gt; \n\t\tJournal: &lt;journal&gt; \n\t\tDOI: &lt;DOI&gt; \n\t\tPMID: &lt;PMID&gt; \n\t\tPMCID: &lt;PMCID&gt; \n\t\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;&lt;/project_loop&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_summary_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_summary_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the summary report for the run.</p>
 <p>The details of creating summary reports are outlined in the documentation.
 Use the information in the config_dict, publication_dict, and authors_by_project_dict
@@ -588,8 +632,8 @@ to fill in the information in the template_string.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_collaborator_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">author</em>, <em class="sig-param">pubs</em>, <em class="sig-param">filename</em>, <em class="sig-param">file_format</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_tabular_collaborator_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_collaborator_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">author</em>, <em class="sig-param">pubs</em>, <em class="sig-param">filename</em>, <em class="sig-param">file_format</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_tabular_collaborator_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table for a collaborator report and save as either csv or xlsx.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -614,8 +658,8 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_project_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">pubs_by_author_dict</em>, <em class="sig-param">project_name</em>, <em class="sig-param">report_attributes</em>, <em class="sig-param">save_dir_name</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_tabular_project_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_project_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">pubs_by_author_dict</em>, <em class="sig-param">project_name</em>, <em class="sig-param">report_attributes</em>, <em class="sig-param">save_dir_name</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_tabular_project_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a pandas DataFrame and save it as Excel or CSV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -641,8 +685,8 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_summary_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#create_tabular_summary_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_summary_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#create_tabular_summary_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a pandas DataFrame and save it as Excel or CSV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -664,8 +708,8 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.athr_srch_emails_and_reports.replace_keywords">
-<code class="sig-prename descclassname">src.academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">replace_keywords</code><span class="sig-paren">(</span><em class="sig-param">template</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">project_name=''</em>, <em class="sig-param">author=''</em>, <em class="sig-param">pub=''</em>, <em class="sig-param">pub_author={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/athr_srch_emails_and_reports.html#replace_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.athr_srch_emails_and_reports.replace_keywords" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.athr_srch_emails_and_reports.replace_keywords">
+<code class="sig-prename descclassname">academic_tracker.athr_srch_emails_and_reports.</code><code class="sig-name descname">replace_keywords</code><span class="sig-paren">(</span><em class="sig-param">template</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">project_name=''</em>, <em class="sig-param">author=''</em>, <em class="sig-param">pub=''</em>, <em class="sig-param">pub_author={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_emails_and_reports.html#replace_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_emails_and_reports.replace_keywords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replace keywords in the values of the template dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -689,12 +733,15 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.ref_srch_modularized"></span><div class="section" id="reference-search-modularized">
-<h2>Reference Search Modularized<a class="headerlink" href="#reference-search-modularized" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.ref_srch_modularized">
+<span id="ref-srch-modularized"></span><h2>ref_srch_modularized<a class="headerlink" href="#module-academic_tracker.ref_srch_modularized" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reference-search-modularized">
+<h3>Reference Search Modularized<a class="headerlink" href="#reference-search-modularized" title="Permalink to this headline">¶</a></h3>
 <p>Modularized pieces of reference_search.</p>
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_modularized.build_publication_dict">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_modularized.build_publication_dict">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query PubMed and Crossref for publications matching the citations in tokenized_citations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -715,8 +762,8 @@ tokenized_citations (list): Same list as the input but with the pud_dict_key upd
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_modularized.input_reading_and_checking">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">ref_path_or_URL</em>, <em class="sig-param">MEDLINE_reference</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">prev_pub_filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_modularized.input_reading_and_checking">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">ref_path_or_URL</em>, <em class="sig-param">MEDLINE_reference</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">prev_pub_filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read in inputs from user and do error checking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -741,8 +788,8 @@ prev_pubs (dict): The contents of the prev_pub file input by the user if provide
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_modularized.save_and_send_reports_and_emails">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">save_and_send_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">prev_pubs</em>, <em class="sig-param">has_previous_pubs</em>, <em class="sig-param">test</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_modularized.html#save_and_send_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_modularized.save_and_send_reports_and_emails" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_modularized.save_and_send_reports_and_emails">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">save_and_send_reports_and_emails</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">prev_pubs</em>, <em class="sig-param">has_previous_pubs</em>, <em class="sig-param">test</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#save_and_send_reports_and_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.save_and_send_reports_and_emails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the summary report and email it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -765,12 +812,15 @@ prev_pubs (dict): The contents of the prev_pub file input by the user if provide
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.ref_srch_webio"></span><div class="section" id="reference-search-webio">
-<h2>Reference Search Webio<a class="headerlink" href="#reference-search-webio" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.ref_srch_webio">
+<span id="ref-srch-webio"></span><h2>ref_srch_webio<a class="headerlink" href="#module-academic_tracker.ref_srch_webio" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reference-search-webio">
+<h3>Reference Search Webio<a class="headerlink" href="#reference-search-webio" title="Permalink to this headline">¶</a></h3>
 <p>Internet interfacing for reference_search.</p>
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_webio.build_pub_dict_from_PMID">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_webio.</code><code class="sig-name descname">build_pub_dict_from_PMID</code><span class="sig-paren">(</span><em class="sig-param">PMID_list</em>, <em class="sig-param">from_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_webio.html#build_pub_dict_from_PMID"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_webio.build_pub_dict_from_PMID" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_webio.build_pub_dict_from_PMID">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_webio.</code><code class="sig-name descname">build_pub_dict_from_PMID</code><span class="sig-paren">(</span><em class="sig-param">PMID_list</em>, <em class="sig-param">from_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_webio.html#build_pub_dict_from_PMID"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_webio.build_pub_dict_from_PMID" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query PubMed for each PMID and build a dictionary of the returned data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -789,8 +839,8 @@ prev_pubs (dict): The contents of the prev_pub file input by the user if provide
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_webio.parse_myncbi_citations">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_webio.</code><code class="sig-name descname">parse_myncbi_citations</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_webio.html#parse_myncbi_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_webio.parse_myncbi_citations" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_webio.parse_myncbi_citations">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_webio.</code><code class="sig-name descname">parse_myncbi_citations</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_webio.html#parse_myncbi_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_webio.parse_myncbi_citations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize the citations on a MyNCBI URL.</p>
 <p>Note that authors and title can be missing or empty from the webpage.
 This function assumes the url is the first page of the MyNCBI citations.
@@ -810,8 +860,8 @@ tokenized.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_webio.search_references_on_Crossref">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_webio.</code><code class="sig-name descname">search_references_on_Crossref</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_webio.html#search_references_on_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_webio.search_references_on_Crossref" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_webio.search_references_on_Crossref">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_webio.</code><code class="sig-name descname">search_references_on_Crossref</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_webio.html#search_references_on_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_webio.search_references_on_Crossref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes Crossref for publications matching the citations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -830,8 +880,8 @@ tokenized.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_webio.search_references_on_Google_Scholar">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_webio.</code><code class="sig-name descname">search_references_on_Google_Scholar</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_webio.html#search_references_on_Google_Scholar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_webio.search_references_on_Google_Scholar" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_webio.search_references_on_Google_Scholar">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_webio.</code><code class="sig-name descname">search_references_on_Google_Scholar</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_webio.html#search_references_on_Google_Scholar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_webio.search_references_on_Google_Scholar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes Google Scholar for publications that match the citations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -850,8 +900,8 @@ tokenized.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_webio.search_references_on_PubMed">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_webio.</code><code class="sig-name descname">search_references_on_PubMed</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">from_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_webio.html#search_references_on_PubMed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_webio.search_references_on_PubMed" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_webio.search_references_on_PubMed">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_webio.</code><code class="sig-name descname">search_references_on_PubMed</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">from_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_webio.html#search_references_on_PubMed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_webio.search_references_on_PubMed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searhes PubMed for publications matching the citations.</p>
 <p>For each citation in tokenized_citations PubMed is queried for the publication.</p>
 <dl class="field-list simple">
@@ -871,8 +921,8 @@ tokenized.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_webio.tokenize_reference_input">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_webio.</code><code class="sig-name descname">tokenize_reference_input</code><span class="sig-paren">(</span><em class="sig-param">reference_input</em>, <em class="sig-param">MEDLINE_reference</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_webio.html#tokenize_reference_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_webio.tokenize_reference_input" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_webio.tokenize_reference_input">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_webio.</code><code class="sig-name descname">tokenize_reference_input</code><span class="sig-paren">(</span><em class="sig-param">reference_input</em>, <em class="sig-param">MEDLINE_reference</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_webio.html#tokenize_reference_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_webio.tokenize_reference_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize the citations in reference_input.</p>
 <p>reference_input can be a URL or filepath. MyNCBI URLs are handled special,
 but all other URLs are read as a text document and parsed line by line as
@@ -896,12 +946,15 @@ by line. Citations are expected to be 1 per line otherwise.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.ref_srch_emails_and_reports"></span><div class="section" id="reference-search-emails-and-reports">
-<h2>Reference Search Emails and Reports<a class="headerlink" href="#reference-search-emails-and-reports" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.ref_srch_emails_and_reports">
+<span id="ref-srch-emails-and-reports"></span><h2>ref_srch_emails_and_reports<a class="headerlink" href="#module-academic_tracker.ref_srch_emails_and_reports" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reference-search-emails-and-reports">
+<h3>Reference Search Emails and Reports<a class="headerlink" href="#reference-search-emails-and-reports" title="Permalink to this headline">¶</a></h3>
 <p>Functions to create emails and reports for reference_search.</p>
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">convert_tokenized_authors_to_str</code><span class="sig-paren">(</span><em class="sig-param">authors</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_emails_and_reports.html#convert_tokenized_authors_to_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">convert_tokenized_authors_to_str</code><span class="sig-paren">(</span><em class="sig-param">authors</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_emails_and_reports.html#convert_tokenized_authors_to_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combine authors into a comma separated string.</p>
 <p>Try to do first_name last_name for each author, but if first name isn’t there
 then last_name initials. ex. first_name1 last_name1, last_name2 initials2</p>
@@ -919,8 +972,8 @@ then last_name initials. ex. first_name1 last_name1, last_name2 initials2</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_emails_and_reports.create_report_from_template">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">create_report_from_template</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">is_citation_in_prev_pubs_list</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">template_string='&lt;pub_loop&gt;Reference Line:\n\t&lt;ref_line&gt;\nTokenized Reference:\n\tAuthors: &lt;tok_authors&gt;\n\tTitle: &lt;tok_title&gt;\n\tPMID: &lt;tok_PMID&gt;\n\tDOI: &lt;tok_DOI&gt;\nQueried Information:\n\tDOI: &lt;DOI&gt;\n\tPMID: &lt;PMID&gt;\n\tPMCID: &lt;PMCID&gt;\n\tGrants: &lt;grants&gt;\n\n&lt;/pub_loop&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_emails_and_reports.html#create_report_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_emails_and_reports.create_report_from_template" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_emails_and_reports.create_report_from_template">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">create_report_from_template</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">is_citation_in_prev_pubs_list</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">template_string='&lt;pub_loop&gt;Reference Line:\n\t&lt;ref_line&gt;\nTokenized Reference:\n\tAuthors: &lt;tok_authors&gt;\n\tTitle: &lt;tok_title&gt;\n\tPMID: &lt;tok_PMID&gt;\n\tDOI: &lt;tok_DOI&gt;\nQueried Information:\n\tDOI: &lt;DOI&gt;\n\tPMID: &lt;PMID&gt;\n\tPMCID: &lt;PMCID&gt;\n\tGrants: &lt;grants&gt;\n\n&lt;/pub_loop&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_emails_and_reports.html#create_report_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_emails_and_reports.create_report_from_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create project report based on template_string.</p>
 <p>Loop over each publication in publication_dict and build a report based on
 the tags in the template_string. Details about reports are in the documentation.</p>
@@ -943,8 +996,8 @@ the tags in the template_string. Details about reports are in the documentation.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_emails_and_reports.create_tabular_report">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">is_citation_in_prev_pubs_list</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_emails_and_reports.html#create_tabular_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_emails_and_reports.create_tabular_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_emails_and_reports.create_tabular_report">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">create_tabular_report</code><span class="sig-paren">(</span><em class="sig-param">publication_dict</em>, <em class="sig-param">config_dict</em>, <em class="sig-param">is_citation_in_prev_pubs_list</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_emails_and_reports.html#create_tabular_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_emails_and_reports.create_tabular_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a pandas DataFrame and save it as Excel or CSV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -967,8 +1020,8 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_emails_and_reports.create_tokenization_report">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">create_tokenization_report</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_emails_and_reports.html#create_tokenization_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_emails_and_reports.create_tokenization_report" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_emails_and_reports.create_tokenization_report">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">create_tokenization_report</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_emails_and_reports.html#create_tokenization_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_emails_and_reports.create_tokenization_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a report that details all the information about how a reference was tokenized.</p>
 <p>Intended as a troubleshooting report.</p>
 <dl class="field-list simple">
@@ -985,8 +1038,8 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.ref_srch_emails_and_reports.replace_keywords">
-<code class="sig-prename descclassname">src.academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">replace_keywords</code><span class="sig-paren">(</span><em class="sig-param">template</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">pub</em>, <em class="sig-param">tokenized_citation</em>, <em class="sig-param">is_citation_in_prev_pubs</em>, <em class="sig-param">pub_author={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/ref_srch_emails_and_reports.html#replace_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.ref_srch_emails_and_reports.replace_keywords" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.ref_srch_emails_and_reports.replace_keywords">
+<code class="sig-prename descclassname">academic_tracker.ref_srch_emails_and_reports.</code><code class="sig-name descname">replace_keywords</code><span class="sig-paren">(</span><em class="sig-param">template</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">pub</em>, <em class="sig-param">tokenized_citation</em>, <em class="sig-param">is_citation_in_prev_pubs</em>, <em class="sig-param">pub_author={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_emails_and_reports.html#replace_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_emails_and_reports.replace_keywords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replace keywords in the values of the template dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1009,12 +1062,15 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.citation_parsing"></span><div class="section" id="citation-parsing">
-<h2>Citation Parsing<a class="headerlink" href="#citation-parsing" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.citation_parsing">
+<span id="citation-parsing"></span><h2>citation_parsing<a class="headerlink" href="#module-academic_tracker.citation_parsing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Citation Parsing<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Functions for parsing citations.</p>
 <dl class="function">
-<dt id="src.academic_tracker.citation_parsing.parse_MEDLINE_format">
-<code class="sig-prename descclassname">src.academic_tracker.citation_parsing.</code><code class="sig-name descname">parse_MEDLINE_format</code><span class="sig-paren">(</span><em class="sig-param">text_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/citation_parsing.html#parse_MEDLINE_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.citation_parsing.parse_MEDLINE_format" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.citation_parsing.parse_MEDLINE_format">
+<code class="sig-prename descclassname">academic_tracker.citation_parsing.</code><code class="sig-name descname">parse_MEDLINE_format</code><span class="sig-paren">(</span><em class="sig-param">text_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/citation_parsing.html#parse_MEDLINE_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.citation_parsing.parse_MEDLINE_format" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize text_string based on it being of the MEDLINE format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1030,8 +1086,8 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.citation_parsing.parse_text_for_citations">
-<code class="sig-prename descclassname">src.academic_tracker.citation_parsing.</code><code class="sig-name descname">parse_text_for_citations</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/citation_parsing.html#parse_text_for_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.citation_parsing.parse_text_for_citations" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.citation_parsing.parse_text_for_citations">
+<code class="sig-prename descclassname">academic_tracker.citation_parsing.</code><code class="sig-name descname">parse_text_for_citations</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/citation_parsing.html#parse_text_for_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.citation_parsing.parse_text_for_citations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse text line by line and tokenize it.</p>
 <p>The function is aware of MLA, APA, Chicago, Harvard, and Vancouver style citations.
 Although the citation styles the function is aware of have standards for citations
@@ -1051,8 +1107,8 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.citation_parsing.tokenize_APA_or_Harvard_authors">
-<code class="sig-prename descclassname">src.academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_APA_or_Harvard_authors</code><span class="sig-paren">(</span><em class="sig-param">authors_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/citation_parsing.html#tokenize_APA_or_Harvard_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.citation_parsing.tokenize_APA_or_Harvard_authors" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.citation_parsing.tokenize_APA_or_Harvard_authors">
+<code class="sig-prename descclassname">academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_APA_or_Harvard_authors</code><span class="sig-paren">(</span><em class="sig-param">authors_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/citation_parsing.html#tokenize_APA_or_Harvard_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.citation_parsing.tokenize_APA_or_Harvard_authors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize authors based on APA or Harvard citation style.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1068,8 +1124,8 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.citation_parsing.tokenize_MLA_or_Chicago_authors">
-<code class="sig-prename descclassname">src.academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_MLA_or_Chicago_authors</code><span class="sig-paren">(</span><em class="sig-param">authors_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/citation_parsing.html#tokenize_MLA_or_Chicago_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.citation_parsing.tokenize_MLA_or_Chicago_authors" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.citation_parsing.tokenize_MLA_or_Chicago_authors">
+<code class="sig-prename descclassname">academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_MLA_or_Chicago_authors</code><span class="sig-paren">(</span><em class="sig-param">authors_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/citation_parsing.html#tokenize_MLA_or_Chicago_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.citation_parsing.tokenize_MLA_or_Chicago_authors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize authors based on MLA or Chicago citation style.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1085,8 +1141,8 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.citation_parsing.tokenize_Vancouver_authors">
-<code class="sig-prename descclassname">src.academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_Vancouver_authors</code><span class="sig-paren">(</span><em class="sig-param">authors_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/citation_parsing.html#tokenize_Vancouver_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.citation_parsing.tokenize_Vancouver_authors" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.citation_parsing.tokenize_Vancouver_authors">
+<code class="sig-prename descclassname">academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_Vancouver_authors</code><span class="sig-paren">(</span><em class="sig-param">authors_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/citation_parsing.html#tokenize_Vancouver_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.citation_parsing.tokenize_Vancouver_authors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize authors based on Vancouver citation style.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1102,8 +1158,8 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.citation_parsing.tokenize_myncbi_citations">
-<code class="sig-prename descclassname">src.academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_myncbi_citations</code><span class="sig-paren">(</span><em class="sig-param">html</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/citation_parsing.html#tokenize_myncbi_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.citation_parsing.tokenize_myncbi_citations" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.citation_parsing.tokenize_myncbi_citations">
+<code class="sig-prename descclassname">academic_tracker.citation_parsing.</code><code class="sig-name descname">tokenize_myncbi_citations</code><span class="sig-paren">(</span><em class="sig-param">html</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/citation_parsing.html#tokenize_myncbi_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.citation_parsing.tokenize_myncbi_citations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenize the citations on a MyNCBI HTML page.</p>
 <p>Note that authors and title can be missing or empty from the webpage.</p>
 <dl class="field-list simple">
@@ -1120,12 +1176,15 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.fileio"></span><div class="section" id="fileio">
-<h2>Fileio<a class="headerlink" href="#fileio" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.fileio">
+<span id="fileio"></span><h2>fileio<a class="headerlink" href="#module-academic_tracker.fileio" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Fileio<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>This module contains the functions that read and write files.</p>
 <dl class="function">
-<dt id="src.academic_tracker.fileio.load_json">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">load_json</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#load_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.load_json" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.load_json">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">load_json</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#load_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.load_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds error checking around loading a json file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1144,8 +1203,8 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.read_csv">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">read_csv</code><span class="sig-paren">(</span><em class="sig-param">doc_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#read_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.read_csv" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.read_csv">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">read_csv</code><span class="sig-paren">(</span><em class="sig-param">doc_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#read_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.read_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read csv into a pandas dataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1164,8 +1223,8 @@ the function uses a more heuristic approach.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.read_previous_publications">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">read_previous_publications</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#read_previous_publications"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.read_previous_publications" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.read_previous_publications">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">read_previous_publications</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#read_previous_publications"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.read_previous_publications" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read in the previous publication json file.</p>
 <p>If the prev_pub option was given by the user then that filepath is used to read in the file
 and it is checked to make sure the json is a list and each value is a string. If the prev_pub
@@ -1187,8 +1246,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.read_text_from_docx">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">read_text_from_docx</code><span class="sig-paren">(</span><em class="sig-param">doc_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#read_text_from_docx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.read_text_from_docx" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.read_text_from_docx">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">read_text_from_docx</code><span class="sig-paren">(</span><em class="sig-param">doc_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#read_text_from_docx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.read_text_from_docx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open docx file at doc_path and read contents into a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1207,8 +1266,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.read_text_from_txt">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">read_text_from_txt</code><span class="sig-paren">(</span><em class="sig-param">doc_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#read_text_from_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.read_text_from_txt" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.read_text_from_txt">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">read_text_from_txt</code><span class="sig-paren">(</span><em class="sig-param">doc_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#read_text_from_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.read_text_from_txt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open txt or csv file at doc_path and read contents into a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1227,8 +1286,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.save_emails_to_file">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">save_emails_to_file</code><span class="sig-paren">(</span><em class="sig-param">email_messages</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#save_emails_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.save_emails_to_file" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.save_emails_to_file">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">save_emails_to_file</code><span class="sig-paren">(</span><em class="sig-param">email_messages</em>, <em class="sig-param">save_dir_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#save_emails_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.save_emails_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save email_messages to “emails.json” in save_dir_name in the current working directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1241,8 +1300,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.save_json_to_file">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">save_json_to_file</code><span class="sig-paren">(</span><em class="sig-param">save_dir_name</em>, <em class="sig-param">file_name</em>, <em class="sig-param">json_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#save_json_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.save_json_to_file" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.save_json_to_file">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">save_json_to_file</code><span class="sig-paren">(</span><em class="sig-param">save_dir_name</em>, <em class="sig-param">file_name</em>, <em class="sig-param">json_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#save_json_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.save_json_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Saves the json_dict to file_name in save_dir_name in the current working directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1255,8 +1314,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.save_publications_to_file">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">save_publications_to_file</code><span class="sig-paren">(</span><em class="sig-param">save_dir_name</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">prev_pubs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#save_publications_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.save_publications_to_file" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.save_publications_to_file">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">save_publications_to_file</code><span class="sig-paren">(</span><em class="sig-param">save_dir_name</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">prev_pubs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#save_publications_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.save_publications_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Saves the publication_dict to “publications.json” in save_dir_name in the current working directory.</p>
 <p>prev_pubs and publication_dict will be combined before saving.</p>
 <dl class="field-list simple">
@@ -1271,8 +1330,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.fileio.save_string_to_file">
-<code class="sig-prename descclassname">src.academic_tracker.fileio.</code><code class="sig-name descname">save_string_to_file</code><span class="sig-paren">(</span><em class="sig-param">save_dir_name</em>, <em class="sig-param">file_name</em>, <em class="sig-param">text_to_save</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/fileio.html#save_string_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.fileio.save_string_to_file" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.fileio.save_string_to_file">
+<code class="sig-prename descclassname">academic_tracker.fileio.</code><code class="sig-name descname">save_string_to_file</code><span class="sig-paren">(</span><em class="sig-param">save_dir_name</em>, <em class="sig-param">file_name</em>, <em class="sig-param">text_to_save</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/fileio.html#save_string_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.fileio.save_string_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save a string to file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1286,12 +1345,15 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.helper_functions"></span><div class="section" id="helper-functions">
-<h2>Helper Functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.helper_functions">
+<span id="helper-functions"></span><h2>helper_functions<a class="headerlink" href="#module-academic_tracker.helper_functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>Helper Functions<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>This module contains helper functions, such as printing, and regex searching.</p>
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.adjust_author_attributes">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">adjust_author_attributes</code><span class="sig-paren">(</span><em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">config_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#adjust_author_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.adjust_author_attributes" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.adjust_author_attributes">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">adjust_author_attributes</code><span class="sig-paren">(</span><em class="sig-param">authors_by_project_dict</em>, <em class="sig-param">config_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#adjust_author_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.adjust_author_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Modifies config_dict with values from authors_by_project_dict</p>
 <p>Go through the authors in authors_by_project_dict and find the lowest cutoff_year.
 Also find affiliations and grants and create a union of them across projects.
@@ -1313,8 +1375,8 @@ Update the authors in config_dict[“Authors”].</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.are_citations_in_pub_dict">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">are_citations_in_pub_dict</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">pub_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#are_citations_in_pub_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.are_citations_in_pub_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.are_citations_in_pub_dict">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">are_citations_in_pub_dict</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em>, <em class="sig-param">pub_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#are_citations_in_pub_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.are_citations_in_pub_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine which citations in tokenized_citations are in pub_dict.</p>
 <p>For each citation in tokenized_citations see if it is in pub_dict. Will be
 True for a citation if the PMID matches, DOI matches, or the title is similar
@@ -1336,8 +1398,8 @@ enough.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.create_authors_by_project_dict">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">create_authors_by_project_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#create_authors_by_project_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.create_authors_by_project_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.create_authors_by_project_dict">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">create_authors_by_project_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#create_authors_by_project_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.create_authors_by_project_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the authors_by_project_dict dict from the config_dict.</p>
 <p>Creates a dict where the keys are the projects in the config_dict and the values
 are the authors associated with that project from config_dict[“Authors”].</p>
@@ -1355,8 +1417,8 @@ are the authors associated with that project from config_dict[“Authors”].</p
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.find_duplicate_citations">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">find_duplicate_citations</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#find_duplicate_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.find_duplicate_citations" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.find_duplicate_citations">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">find_duplicate_citations</code><span class="sig-paren">(</span><em class="sig-param">tokenized_citations</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#find_duplicate_citations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.find_duplicate_citations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find citations that are duplicates of each other in tokenized_citations.</p>
 <p>Citations can be duplicates in 3 ways. Same PMID, same DOI, or similar enough titles.
 The function goes through each citation and looks for matches on these criteria.
@@ -1378,8 +1440,8 @@ unique duplicate sets are returned as a list of sorted lists.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.fuzzy_matches_to_list">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">fuzzy_matches_to_list</code><span class="sig-paren">(</span><em class="sig-param">str_to_match</em>, <em class="sig-param">list_to_match</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#fuzzy_matches_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.fuzzy_matches_to_list" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.fuzzy_matches_to_list">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">fuzzy_matches_to_list</code><span class="sig-paren">(</span><em class="sig-param">str_to_match</em>, <em class="sig-param">list_to_match</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#fuzzy_matches_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.fuzzy_matches_to_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return strings and indexes for strings with match ratio that is 90 or higher.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1398,8 +1460,8 @@ unique duplicate sets are returned as a list of sorted lists.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.is_fuzzy_match_to_list">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">is_fuzzy_match_to_list</code><span class="sig-paren">(</span><em class="sig-param">str_to_match</em>, <em class="sig-param">list_to_match</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#is_fuzzy_match_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.is_fuzzy_match_to_list" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.is_fuzzy_match_to_list">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">is_fuzzy_match_to_list</code><span class="sig-paren">(</span><em class="sig-param">str_to_match</em>, <em class="sig-param">list_to_match</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#is_fuzzy_match_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.is_fuzzy_match_to_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if string is a 90 or higher ratio match to any string in list, False otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1418,8 +1480,8 @@ unique duplicate sets are returned as a list of sorted lists.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.is_pub_in_publication_dict">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">is_pub_in_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">pub_id</em>, <em class="sig-param">title</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">titles=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#is_pub_in_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.is_pub_in_publication_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.is_pub_in_publication_dict">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">is_pub_in_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">pub_id</em>, <em class="sig-param">title</em>, <em class="sig-param">publication_dict</em>, <em class="sig-param">titles=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#is_pub_in_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.is_pub_in_publication_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if pub_id is in publication_dict or title is a fuzzy match to titles in titles.</p>
 <p>Check whether the pub_id is in publication_dict. If it isn’t then see if there is
 a fuzzy match in titles. If titles is not provided then get a list of titles
@@ -1443,8 +1505,8 @@ from publication_dict.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.match_authors_in_pub_Crossref">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">match_authors_in_pub_Crossref</code><span class="sig-paren">(</span><em class="sig-param">authors_json</em>, <em class="sig-param">author_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#match_authors_in_pub_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.match_authors_in_pub_Crossref" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.match_authors_in_pub_Crossref">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">match_authors_in_pub_Crossref</code><span class="sig-paren">(</span><em class="sig-param">authors_json</em>, <em class="sig-param">author_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#match_authors_in_pub_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.match_authors_in_pub_Crossref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Look for matching authors in Crossref pub data.</p>
 <p>Goes through the author list from Crossref and tries matching to an author in
 authors_json using firstname, lastname, and affiliations, or ORCID if ORCID
@@ -1466,8 +1528,8 @@ is present.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.match_authors_in_pub_PubMed">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">match_authors_in_pub_PubMed</code><span class="sig-paren">(</span><em class="sig-param">authors_json</em>, <em class="sig-param">author_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#match_authors_in_pub_PubMed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.match_authors_in_pub_PubMed" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.match_authors_in_pub_PubMed">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">match_authors_in_pub_PubMed</code><span class="sig-paren">(</span><em class="sig-param">authors_json</em>, <em class="sig-param">author_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#match_authors_in_pub_PubMed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.match_authors_in_pub_PubMed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Look for matching authors in PubMed pub data.</p>
 <p>Goes through the author list from PubMed and tries matching to an author in
 authors_json using firstname, lastname, and affiliations.</p>
@@ -1488,8 +1550,8 @@ authors_json using firstname, lastname, and affiliations.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.modify_pub_dict_for_saving">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">modify_pub_dict_for_saving</code><span class="sig-paren">(</span><em class="sig-param">pub</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#modify_pub_dict_for_saving"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.modify_pub_dict_for_saving" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.modify_pub_dict_for_saving">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">modify_pub_dict_for_saving</code><span class="sig-paren">(</span><em class="sig-param">pub</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#modify_pub_dict_for_saving"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.modify_pub_dict_for_saving" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert pymed.PubMedArticle to a dictionary and modify it for saving.</p>
 <p>Converts a pymed.PubMedArticle to a dictionary, deletes the “xml” key, and
 converts the “publication_date” key to a string.</p>
@@ -1508,8 +1570,8 @@ converts the “publication_date” key to a string.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.regex_group_return">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">regex_group_return</code><span class="sig-paren">(</span><em class="sig-param">regex_groups</em>, <em class="sig-param">group_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#regex_group_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.regex_group_return" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.regex_group_return">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">regex_group_return</code><span class="sig-paren">(</span><em class="sig-param">regex_groups</em>, <em class="sig-param">group_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#regex_group_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.regex_group_return" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the group in the regex_groups indicated by group_index if it exists, else return empty string.</p>
 <p>If group_index is out of range of the regex_groups an empty string is retruned.</p>
 <dl class="field-list simple">
@@ -1529,8 +1591,8 @@ converts the “publication_date” key to a string.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.regex_match_return">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">regex_match_return</code><span class="sig-paren">(</span><em class="sig-param">regex</em>, <em class="sig-param">string_to_match</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#regex_match_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.regex_match_return" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.regex_match_return">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">regex_match_return</code><span class="sig-paren">(</span><em class="sig-param">regex</em>, <em class="sig-param">string_to_match</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#regex_match_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.regex_match_return" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the groups matched in the regex if the regex matches.</p>
 <p>regex is delivered to re.match() with string_to_match, and if there is a match
 the match.groups() is returned, otherwise an empty tuple is returned.</p>
@@ -1551,8 +1613,8 @@ the match.groups() is returned, otherwise an empty tuple is returned.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.regex_search_return">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">regex_search_return</code><span class="sig-paren">(</span><em class="sig-param">regex</em>, <em class="sig-param">string_to_search</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#regex_search_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.regex_search_return" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.regex_search_return">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">regex_search_return</code><span class="sig-paren">(</span><em class="sig-param">regex</em>, <em class="sig-param">string_to_search</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#regex_search_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.regex_search_return" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the groups matched in the regex if the regex matches.</p>
 <p>regex is delivered to re.search() with string_to_search, and if there is a match
 the match.groups() is returned, otherwise an empty tuple is returned.</p>
@@ -1573,8 +1635,8 @@ the match.groups() is returned, otherwise an empty tuple is returned.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.helper_functions.vprint">
-<code class="sig-prename descclassname">src.academic_tracker.helper_functions.</code><code class="sig-name descname">vprint</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">verbosity=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/helper_functions.html#vprint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.helper_functions.vprint" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.helper_functions.vprint">
+<code class="sig-prename descclassname">academic_tracker.helper_functions.</code><code class="sig-name descname">vprint</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">verbosity=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/helper_functions.html#vprint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.helper_functions.vprint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print depending on the state of VERBOSE, SILENT, and verbosity.</p>
 <p>If the global SILENT is True don’t print anything. If verbosity is 0 then
 print. If verbosity is 1 then VERBOSE must be True to print.</p>
@@ -1586,12 +1648,15 @@ print. If verbosity is 1 then VERBOSE must be True to print.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-src.academic_tracker.webio"></span><div class="section" id="webio">
-<h2>Webio<a class="headerlink" href="#webio" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-academic_tracker.webio">
+<span id="webio"></span><h2>webio<a class="headerlink" href="#module-academic_tracker.webio" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>Webio<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>General functions that interface with the internet.</p>
 <dl class="function">
-<dt id="src.academic_tracker.webio.check_doi_for_grants">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">check_doi_for_grants</code><span class="sig-paren">(</span><em class="sig-param">doi</em>, <em class="sig-param">grants</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#check_doi_for_grants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.check_doi_for_grants" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.check_doi_for_grants">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">check_doi_for_grants</code><span class="sig-paren">(</span><em class="sig-param">doi</em>, <em class="sig-param">grants</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#check_doi_for_grants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.check_doi_for_grants" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searches DOI webpage for grants.</p>
 <p>Concatenates “<a class="reference external" href="https://doi.org/">https://doi.org/</a>” with the doi, visits the
 page and looks for the given grants on that page.</p>
@@ -1612,8 +1677,8 @@ page and looks for the given grants on that page.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.clean_tags_from_url">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">clean_tags_from_url</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#clean_tags_from_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.clean_tags_from_url" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.clean_tags_from_url">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">clean_tags_from_url</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#clean_tags_from_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.clean_tags_from_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove tags from webpage.</p>
 <p>Remove tags from a webpage so it looks more like what a user would see in a
 browser.</p>
@@ -1631,13 +1696,13 @@ browser.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.download_pdf">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">download_pdf</code><span class="sig-paren">(</span><em class="sig-param">pdf_url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#download_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.download_pdf" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.download_pdf">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">download_pdf</code><span class="sig-paren">(</span><em class="sig-param">pdf_url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#download_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.download_pdf" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.get_DOI_from_Crossref">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">get_DOI_from_Crossref</code><span class="sig-paren">(</span><em class="sig-param">title</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#get_DOI_from_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.get_DOI_from_Crossref" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.get_DOI_from_Crossref">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">get_DOI_from_Crossref</code><span class="sig-paren">(</span><em class="sig-param">title</em>, <em class="sig-param">mailto_email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#get_DOI_from_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.get_DOI_from_Crossref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search title on Crossref and try to find a DOI for it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1656,8 +1721,8 @@ browser.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.get_grants_from_Crossref">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">get_grants_from_Crossref</code><span class="sig-paren">(</span><em class="sig-param">title</em>, <em class="sig-param">mailto_email</em>, <em class="sig-param">grants</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#get_grants_from_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.get_grants_from_Crossref" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.get_grants_from_Crossref">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">get_grants_from_Crossref</code><span class="sig-paren">(</span><em class="sig-param">title</em>, <em class="sig-param">mailto_email</em>, <em class="sig-param">grants</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#get_grants_from_Crossref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.get_grants_from_Crossref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search title on Crossref and try to find the grants associated with it.</p>
 <p>Only the grants in the grants parameter are searched for because trying to find
 all grants associated with the article is too difficult.</p>
@@ -1679,8 +1744,8 @@ all grants associated with the article is too difficult.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.get_url_contents_as_str">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">get_url_contents_as_str</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#get_url_contents_as_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.get_url_contents_as_str" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.get_url_contents_as_str">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">get_url_contents_as_str</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#get_url_contents_as_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.get_url_contents_as_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query the url and return it’s contents as a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1696,8 +1761,8 @@ all grants associated with the article is too difficult.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.scrape_url_for_DOI">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">scrape_url_for_DOI</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#scrape_url_for_DOI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.scrape_url_for_DOI" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.scrape_url_for_DOI">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">scrape_url_for_DOI</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#scrape_url_for_DOI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.scrape_url_for_DOI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searches url for DOI.</p>
 <p>Uses the regex “(?i).*doi:s*([^s]+w).*” to look for a DOI on
 the provided url. The DOI is visited to confirm it is a proper DOI.</p>
@@ -1715,8 +1780,8 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.search_Google_Scholar_for_ids">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">search_Google_Scholar_for_ids</code><span class="sig-paren">(</span><em class="sig-param">authors_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#search_Google_Scholar_for_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.search_Google_Scholar_for_ids" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.search_Google_Scholar_for_ids">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">search_Google_Scholar_for_ids</code><span class="sig-paren">(</span><em class="sig-param">authors_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#search_Google_Scholar_for_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.search_Google_Scholar_for_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query Google Scholar with author names and get Scholar IDs.</p>
 <p>If an author already has a scholar_id, or doesn’t have affiliations they are skipped.</p>
 <dl class="field-list simple">
@@ -1733,8 +1798,8 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.search_ORCID_for_ids">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">search_ORCID_for_ids</code><span class="sig-paren">(</span><em class="sig-param">ORCID_key</em>, <em class="sig-param">ORCID_secret</em>, <em class="sig-param">authors_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#search_ORCID_for_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.search_ORCID_for_ids" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.search_ORCID_for_ids">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">search_ORCID_for_ids</code><span class="sig-paren">(</span><em class="sig-param">ORCID_key</em>, <em class="sig-param">ORCID_secret</em>, <em class="sig-param">authors_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#search_ORCID_for_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.search_ORCID_for_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query ORCID with author names and get ORCID IDs.</p>
 <p>If an author already has an ORCID, or doesn’t have affiliations they are skipped.</p>
 <dl class="field-list simple">
@@ -1755,8 +1820,8 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="src.academic_tracker.webio.send_emails">
-<code class="sig-prename descclassname">src.academic_tracker.webio.</code><code class="sig-name descname">send_emails</code><span class="sig-paren">(</span><em class="sig-param">email_messages</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/academic_tracker/webio.html#send_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.academic_tracker.webio.send_emails" title="Permalink to this definition">¶</a></dt>
+<dt id="academic_tracker.webio.send_emails">
+<code class="sig-prename descclassname">academic_tracker.webio.</code><code class="sig-name descname">send_emails</code><span class="sig-paren">(</span><em class="sig-param">email_messages</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/webio.html#send_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.webio.send_emails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses sendmail to send email_messages to authors.</p>
 <p>Only works on systems with sendmail installed.</p>
 <dl class="field-list simple">
@@ -1766,6 +1831,7 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 </dl>
 </dd></dl>
 
+</div>
 </div>
 </div>
 

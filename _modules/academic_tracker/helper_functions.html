@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>academic_tracker.helper_functions &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Academic Tracker
+          </a>
+              <div class="version">
+                1.0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jsonschema.html">JSON Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporting.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tokenization.html">Tokenization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Academic Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>academic_tracker.helper_functions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for academic_tracker.helper_functions</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Helper Functions</span>
+<span class="sd">~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">This module contains helper functions, such as printing, and regex searching.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">import</span> <span class="nn">fuzzywuzzy.fuzz</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">__main__</span>
+
+
+<div class="viewcode-block" id="vprint"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.vprint">[docs]</a><span class="k">def</span> <span class="nf">vprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print depending on the state of VERBOSE, SILENT, and verbosity.</span>
+<span class="sd">    </span>
+<span class="sd">    If the global SILENT is True don&#39;t print anything. If verbosity is 0 then </span>
+<span class="sd">    print. If verbosity is 1 then VERBOSE must be True to print.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        verbosity (int): Either 0 or 1 for different levels of verbosity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">VERBOSE</span>
+    <span class="n">SILENT</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">SILENT</span>
+    
+    <span class="k">if</span> <span class="n">SILENT</span><span class="p">:</span>
+        <span class="k">return</span>
+    
+    <span class="k">if</span> <span class="n">verbosity</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">VERBOSE</span> <span class="ow">and</span> <span class="n">verbosity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="create_authors_by_project_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_authors_by_project_dict">[docs]</a><span class="k">def</span> <span class="nf">create_authors_by_project_dict</span><span class="p">(</span><span class="n">config_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create the authors_by_project_dict dict from the config_dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Creates a dict where the keys are the projects in the config_dict and the values</span>
+<span class="sd">    are the authors associated with that project from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        config_dict (dict): schema matches the JSON Project Tracking Configuration file.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        authors_by_project_dict (dict): keys are the projects in the config_dict and the values are the authors associated with that project from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">authors_by_project_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">project</span><span class="p">:{}</span> <span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;project_descriptions&quot;</span><span class="p">]}</span>
+    <span class="k">for</span> <span class="n">project</span><span class="p">,</span> <span class="n">project_attributes</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;project_descriptions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s2">&quot;authors&quot;</span> <span class="ow">in</span> <span class="n">project_attributes</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">project_attributes</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]:</span>
+                    <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">][</span><span class="n">author</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Warning: The author, &quot;</span> <span class="o">+</span> <span class="n">author</span> <span class="o">+</span> <span class="s2">&quot;, in the &quot;</span> <span class="o">+</span> <span class="n">project</span> <span class="o">+</span> <span class="s2">&quot; project of the project tracking configuration file could not be found in the Authors section of the Configuration JSON file.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">])</span>
+    
+        <span class="k">for</span> <span class="n">author_attr</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="p">[</span><span class="n">project</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">project_attributes</span><span class="p">:</span>
+                <span class="n">author_attr</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">project_attributes</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                
+    <span class="k">return</span> <span class="n">authors_by_project_dict</span></div>
+
+
+<div class="viewcode-block" id="adjust_author_attributes"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.adjust_author_attributes">[docs]</a><span class="k">def</span> <span class="nf">adjust_author_attributes</span><span class="p">(</span><span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Modifies config_dict with values from authors_by_project_dict</span>
+<span class="sd">    </span>
+<span class="sd">    Go through the authors in authors_by_project_dict and find the lowest cutoff_year.</span>
+<span class="sd">    Also find affiliations and grants and create a union of them across projects.</span>
+<span class="sd">    Update the authors in config_dict[&quot;Authors&quot;].</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        authors_by_project_dict (dict): keys are the projects in the config_dict and the values are the authors associated with that project from config_dict[&quot;Authors&quot;].</span>
+<span class="sd">        config_dict (dict): schema matches the JSON Project Tracking Configuration file.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        config_dict (dict): schema matches the JSON Project Tracking Configuration file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attr</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">cutoff_year</span> <span class="o">=</span> <span class="n">author_attr</span><span class="p">[</span><span class="s2">&quot;cutoff_year&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;cutoff_year&quot;</span> <span class="ow">in</span> <span class="n">author_attr</span> <span class="k">else</span> <span class="mi">9999</span>
+        
+        <span class="n">affiliations</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">author_attr</span><span class="p">[</span><span class="s2">&quot;affiliations&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;affiliations&quot;</span> <span class="ow">in</span> <span class="n">author_attr</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+        
+        <span class="n">grants</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">author_attr</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;grants&quot;</span> <span class="ow">in</span> <span class="n">author_attr</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">project</span><span class="p">,</span> <span class="n">authors_dict</span> <span class="ow">in</span> <span class="n">authors_by_project_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">authors_dict</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;cutoff_year&quot;</span> <span class="ow">in</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]</span> <span class="ow">and</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;cutoff_year&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">cutoff_year</span><span class="p">:</span>
+                    <span class="n">cutoff_year</span> <span class="o">=</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;cutoff_year&quot;</span><span class="p">]</span>
+                    
+                <span class="k">if</span> <span class="s2">&quot;affiliations&quot;</span> <span class="ow">in</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]:</span>
+                    <span class="n">affiliations</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;affiliations&quot;</span><span class="p">])</span>
+                    
+                <span class="k">if</span> <span class="s2">&quot;grants&quot;</span> <span class="ow">in</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]:</span>
+                    <span class="n">grants</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span>
+                    
+                <span class="k">if</span> <span class="s2">&quot;collaborator_report&quot;</span> <span class="ow">in</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">]:</span>
+                    <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">authors_dict</span><span class="p">[</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;collaborator_report&quot;</span><span class="p">]</span>
+                    
+        <span class="n">affiliations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">affiliations</span><span class="p">)</span>
+        <span class="n">grants</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">grants</span><span class="p">)</span>
+        <span class="n">grants</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">affiliations</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;cutoff_year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cutoff_year</span>
+        <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;affiliations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">affiliations</span>
+        <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grants</span>
+        
+    <span class="k">return</span> <span class="n">config_dict</span></div>
+
+
+
+    
+<div class="viewcode-block" id="regex_match_return"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_match_return">[docs]</a><span class="k">def</span> <span class="nf">regex_match_return</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_match</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the groups matched in the regex if the regex matches.</span>
+<span class="sd">    </span>
+<span class="sd">    regex is delivered to re.match() with string_to_match, and if there is a match </span>
+<span class="sd">    the match.groups() is returned, otherwise an empty tuple is returned.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        regex (str): A string with a regular expression to be delivered to re.match().</span>
+<span class="sd">        string_to_match (str): The string to match with the regex.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (tuple): either the tuple of the matched groups in the regex or an empty tuple if a match wasn&#39;t found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_match</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="regex_group_return"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_group_return">[docs]</a><span class="k">def</span> <span class="nf">regex_group_return</span><span class="p">(</span><span class="n">regex_groups</span><span class="p">,</span> <span class="n">group_index</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the group in the regex_groups indicated by group_index if it exists, else return empty string.</span>
+<span class="sd">    </span>
+<span class="sd">    If group_index is out of range of the regex_groups an empty string is retruned.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        regex_groups (tuple): A tuple returned from a matched regex.groups() call.</span>
+<span class="sd">        group_number (int): The index of the regex_groups to return.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (str): Either emtpy string or the group string matched by the regex.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">regex_groups</span><span class="p">[</span><span class="n">group_index</span><span class="p">]</span> <span class="k">if</span> <span class="n">group_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">regex_groups</span><span class="p">)</span> <span class="ow">and</span> <span class="n">regex_groups</span><span class="p">[</span><span class="n">group_index</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="regex_search_return"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_search_return">[docs]</a><span class="k">def</span> <span class="nf">regex_search_return</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_search</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the groups matched in the regex if the regex matches.</span>
+<span class="sd">    </span>
+<span class="sd">    regex is delivered to re.search() with string_to_search, and if there is a match </span>
+<span class="sd">    the match.groups() is returned, otherwise an empty tuple is returned.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        regex (str): A string with a regular expression to be delivered to re.search().</span>
+<span class="sd">        string_to_search (str): The string to match with the regex.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (tuple): either the tuple of the matched groups in the regex or an empty tuple if a match wasn&#39;t found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_search</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="p">()</span></div>
+
+
+
+    
+<div class="viewcode-block" id="match_authors_in_pub_PubMed"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_authors_in_pub_PubMed">[docs]</a><span class="k">def</span> <span class="nf">match_authors_in_pub_PubMed</span><span class="p">(</span><span class="n">authors_json</span><span class="p">,</span> <span class="n">author_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Look for matching authors in PubMed pub data.</span>
+<span class="sd">    </span>
+<span class="sd">    Goes through the author list from PubMed and tries matching to an author in </span>
+<span class="sd">    authors_json using firstname, lastname, and affiliations.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.</span>
+<span class="sd">        author_list (list): list of dicts where each dict is attributes of an author.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        author_list (list): either the author list with matched authors containing an additional author_id attribute, or an empty list if no authors were matched.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">## pub.authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex &quot;Andrew P&quot;</span>
+    <span class="n">publication_has_affiliated_author</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">author_items</span> <span class="ow">in</span> <span class="n">author_list</span><span class="p">:</span>
+        <span class="n">author_items_affiliation</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;affiliation&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">author_items_first_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;firstname&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">author_items_last_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastname&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">authors_json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+            <span class="c1">## Match the author&#39;s first and last name and then match affiliations.</span>
+            <span class="c1">## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. </span>
+            <span class="c1">## For example the name Hu will match Hubert. Counting on the last name to reduce errors.</span>
+            <span class="c1">## Note that the PubMed query will return publications where the author is just a collaborater, so not finding a match in the authors isn&#39;t uncommon.</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.*&quot;</span><span class="p">,</span> <span class="n">author_items_first_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">author_items_last_name</span><span class="p">:</span>
+                <span class="c1">## affiliations are sets of strings so the intersection should have at least 1 string for a match.</span>
+                
+                <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">affiliation</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">author_items_affiliation</span> <span class="k">for</span> <span class="n">affiliation</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;affiliations&quot;</span><span class="p">]]):</span>
+                    <span class="n">publication_has_affiliated_author</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span>
+                    <span class="k">break</span>
+                
+    <span class="k">return</span> <span class="n">author_list</span> <span class="k">if</span> <span class="n">publication_has_affiliated_author</span> <span class="k">else</span> <span class="p">[]</span></div>
+
+    
+    
+    
+<div class="viewcode-block" id="match_authors_in_pub_Crossref"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_authors_in_pub_Crossref">[docs]</a><span class="k">def</span> <span class="nf">match_authors_in_pub_Crossref</span><span class="p">(</span><span class="n">authors_json</span><span class="p">,</span> <span class="n">author_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Look for matching authors in Crossref pub data.</span>
+<span class="sd">    </span>
+<span class="sd">    Goes through the author list from Crossref and tries matching to an author in </span>
+<span class="sd">    authors_json using firstname, lastname, and affiliations, or ORCID if ORCID</span>
+<span class="sd">    is present.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.</span>
+<span class="sd">        author_list (list): list of dicts where each dict is attributes of an author.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        author_list (list): either the author list with matched authors containing an additional author_id attribute, or an empty list if no authors were matched.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">## pub.authors are dictionaries with lastname, firstname, initials, and affiliation. firstname can have initials at the end ex &quot;Andrew P&quot;</span>
+    <span class="n">publication_has_affiliated_author</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">author_items</span> <span class="ow">in</span> <span class="n">author_list</span><span class="p">:</span>
+        <span class="c1">## If the author has no affiliation or ORCID id then go to the next.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">author_items</span><span class="p">:</span>
+            <span class="k">continue</span>
+        
+        <span class="k">if</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">author_items_affiliation</span> <span class="o">=</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">author_items_affiliation</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">author_items_first_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;given&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;given&quot;</span> <span class="ow">in</span> <span class="n">author_items</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">author_items_last_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">author_items</span><span class="p">:</span>
+            <span class="n">ORCID_id</span> <span class="o">=</span> <span class="n">regex_search_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{3}</span><span class="s2">[0,1,2,3,4,5,6,7,8,9,X])&quot;</span><span class="p">,</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ORCID_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        
+        <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">authors_json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        
+            <span class="c1">## Match the author&#39;s first and last name and then match affiliations.</span>
+            <span class="c1">## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. </span>
+            <span class="c1">## For example the name Hu will match Hubert. Counting on the last name to reduce errors.</span>
+            <span class="c1">## Note that the PubMed query will return publications where the author is just a collaborater, so not finding a match in the authors isn&#39;t uncommon.</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.*&quot;</span><span class="p">,</span> <span class="n">author_items_first_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">author_items_last_name</span><span class="p">:</span>
+                <span class="c1">## affiliations are sets of strings so the intersection should have at least 1 string for a match.</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">affiliation</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">author_items_affiliation</span> <span class="k">for</span> <span class="n">affiliation</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;affiliations&quot;</span><span class="p">]]):</span>
+                    <span class="n">publication_has_affiliated_author</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span>
+                    <span class="k">break</span>
+                
+            <span class="k">elif</span> <span class="n">ORCID_id</span> <span class="ow">and</span> <span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span> <span class="ow">and</span> <span class="n">ORCID_id</span> <span class="o">==</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]:</span>
+                <span class="n">publication_has_affiliated_author</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span>
+                <span class="k">break</span>
+                
+    <span class="k">if</span> <span class="n">publication_has_affiliated_author</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">author_list</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+
+
+<div class="viewcode-block" id="modify_pub_dict_for_saving"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.modify_pub_dict_for_saving">[docs]</a><span class="k">def</span> <span class="nf">modify_pub_dict_for_saving</span><span class="p">(</span><span class="n">pub</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert pymed.PubMedArticle to a dictionary and modify it for saving.</span>
+<span class="sd">    </span>
+<span class="sd">    Converts a pymed.PubMedArticle to a dictionary, deletes the &quot;xml&quot; key, and </span>
+<span class="sd">    converts the &quot;publication_date&quot; key to a string.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pub (pymed.PubMedArticle): publication to convert to a dictionary.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pub_dict (dict): pub converted to a dictionary. Keys are &quot;pubmed_id&quot;, &quot;title&quot;, &quot;abstract&quot;, </span>
+<span class="sd">        &quot;keywords&quot;, &quot;journal&quot;, &quot;publication_date&quot;, &quot;authors&quot;, &quot;methods&quot;, &quot;conclusions&quot;, &quot;results&quot;, &quot;copyrights&quot;, and &quot;doi&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">pub</span><span class="o">.</span><span class="n">toDict</span><span class="p">()</span>
+    
+    <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">grant</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">grant</span> <span class="ow">in</span> <span class="n">pub</span><span class="o">.</span><span class="n">xml</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//GrantID&quot;</span><span class="p">)]</span>
+    <span class="n">PMC_id_elements</span> <span class="o">=</span> <span class="n">pub</span><span class="o">.</span><span class="n">xml</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//ArticleId[@IdType=&#39;pmc&#39;]&quot;</span><span class="p">)</span>
+    <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;PMCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PMC_id_elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="n">PMC_id_elements</span> <span class="k">else</span> <span class="kc">None</span>
+        
+    <span class="k">del</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span>
+    <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span><span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">:</span><span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">:</span><span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">day</span><span class="p">}</span>
+    <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">pub_dict</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="is_fuzzy_match_to_list"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.is_fuzzy_match_to_list">[docs]</a><span class="k">def</span> <span class="nf">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_to_match</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;True if string is a 90 or higher ratio match to any string in list, False otherwise.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        str_to_match (str): string to compare with list</span>
+<span class="sd">        list_to_match (list): list of strings to compare with str_to_match</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (bool): True if str_to_match is a match to any string in list_tp_match, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">str_to_match</span> <span class="o">=</span> <span class="n">str_to_match</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">list_to_match</span> <span class="o">=</span> <span class="p">[</span><span class="n">list_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">list_string</span> <span class="ow">in</span> <span class="n">list_to_match</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="n">fuzzywuzzy</span><span class="o">.</span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_string</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="k">for</span> <span class="n">list_string</span> <span class="ow">in</span> <span class="n">list_to_match</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="fuzzy_matches_to_list"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.fuzzy_matches_to_list">[docs]</a><span class="k">def</span> <span class="nf">fuzzy_matches_to_list</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_to_match</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return strings and indexes for strings with match ratio that is 90 or higher.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        str_to_match (str): string to compare with list</span>
+<span class="sd">        list_to_match (list): list of strings to compare with str_to_match</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (list): list of matches (tuples) with each element being the string and its index in list_to_match. [(9, &quot;title 1&quot;), ...]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">str_to_match</span> <span class="o">=</span> <span class="n">str_to_match</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">list_to_match</span> <span class="o">=</span> <span class="p">[</span><span class="n">list_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">list_string</span> <span class="ow">in</span> <span class="n">list_to_match</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">[(</span><span class="n">index</span><span class="p">,</span> <span class="n">list_string</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">list_string</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">list_to_match</span><span class="p">)</span> <span class="k">if</span> <span class="n">fuzzywuzzy</span><span class="o">.</span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_string</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="is_pub_in_publication_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.is_pub_in_publication_dict">[docs]</a><span class="k">def</span> <span class="nf">is_pub_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">titles</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">&quot;&quot;&quot;True if pub_id is in publication_dict or title is a fuzzy match to titles in titles.</span>
+<span class="sd">    </span>
+<span class="sd">    Check whether the pub_id is in publication_dict. If it isn&#39;t then see if there is </span>
+<span class="sd">    a fuzzy match in titles. If titles is not provided then get a list of titles </span>
+<span class="sd">    from publication_dict.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pub_id (str): pub_id to check against in publication_dict to see if it already exists.</span>
+<span class="sd">        title (str): title corresponding to pub_id to check against titles in publication_dict.</span>
+<span class="sd">        publication_dict (dict): keys are pub_ids and values are pub attributes.</span>
+<span class="sd">        titles (list): list of strings that should be titles to fuzzy match to title.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (bool): True if the pub_id is in publication_dict or title is fuzzy matched in titles, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">pub_id</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">titles</span><span class="p">:</span>
+        <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_attr</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pub_attr</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub_attr</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]]</span>
+    
+    <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">titles</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="find_duplicate_citations"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.find_duplicate_citations">[docs]</a><span class="k">def</span> <span class="nf">find_duplicate_citations</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find citations that are duplicates of each other in tokenized_citations.</span>
+<span class="sd">    </span>
+<span class="sd">    Citations can be duplicates in 3 ways. Same PMID, same DOI, or similar enough titles.</span>
+<span class="sd">    The function goes through each citation and looks for matches on these criteria.</span>
+<span class="sd">    Then the matches are compared to create unique sets. For instance if citation 1</span>
+<span class="sd">    matches the PMID in citation 2, and citation 2 matches the DOI in citation 3, but </span>
+<span class="sd">    citation 1 and 3 don&#39;t match a duplicate set containing all 3 is created. The </span>
+<span class="sd">    unique duplicate sets are returned as a list of sorted lists.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        tokenized_citation (list): list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        unique_duplicate_sets (list): list of lists where each element is a list of indexes in tokenized_citations that match each other. The list of indexes is sorted in ascending order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">titles_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span> <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]]</span>
+    
+    <span class="n">pmids</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dois</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">titles</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">citation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
+        
+        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">pmids</span><span class="p">:</span>
+                <span class="n">pmids</span><span class="p">[</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pmids</span><span class="p">[</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">count</span><span class="p">]</span>
+                
+        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]:</span>
+            <span class="n">doi</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">doi</span> <span class="ow">in</span> <span class="n">dois</span><span class="p">:</span>
+                <span class="n">dois</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dois</span><span class="p">[</span><span class="n">doi</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">count</span><span class="p">]</span>
+                
+        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
+            <span class="n">fuzzy_matches</span> <span class="o">=</span> <span class="n">fuzzy_matches_to_list</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">titles_list</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fuzzy_matches</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">fuzzy_matches</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">titles</span><span class="p">:</span>
+                <span class="n">titles</span><span class="p">[</span><span class="n">fuzzy_matches</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">titles</span><span class="p">[</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">count</span><span class="p">]</span>
+                
+    
+    <span class="n">matching_pmids</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="k">for</span> <span class="n">pmid</span><span class="p">,</span> <span class="n">indexes</span> <span class="ow">in</span> <span class="n">pmids</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="n">matching_dois</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="k">for</span> <span class="n">doi</span><span class="p">,</span> <span class="n">indexes</span> <span class="ow">in</span> <span class="n">dois</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="n">matching_titles</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">indexes</span> <span class="ow">in</span> <span class="n">titles</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">}</span>
+    
+    <span class="n">all_matches</span> <span class="o">=</span> <span class="n">matching_pmids</span> <span class="o">|</span> <span class="n">matching_dois</span> <span class="o">|</span> <span class="n">matching_titles</span>
+    
+    <span class="c1">## Matches need to be matched recursively to find true sets of matches.</span>
+    <span class="c1">## For example if 1 and 2 are found to match on title and 2 and 3 are found to match </span>
+    <span class="c1">## on PMID then we need 1 set of (1,2,3) instead of 2 sets of (1,2) (2,3).</span>
+    <span class="n">duplicates_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">index_tuple</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">all_matches</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">index_tuple</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">duplicates_dict</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">index2</span> <span class="ow">in</span> <span class="n">index_tuple</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">index2</span> <span class="o">!=</span> <span class="n">index</span><span class="p">:</span>
+                        <span class="n">duplicates_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">index2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">duplicates_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">index2</span> <span class="ow">in</span> <span class="n">index_tuple</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">index2</span> <span class="o">!=</span> <span class="n">index</span><span class="p">:</span>
+                        <span class="n">duplicates_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">index2</span><span class="p">)</span>
+                        
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">matches</span> <span class="ow">in</span> <span class="n">duplicates_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">temp_set</span> <span class="o">=</span> <span class="n">matches</span>
+        <span class="n">set_before_loop</span> <span class="o">=</span> <span class="n">matches</span>
+        <span class="k">while</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+                <span class="n">temp_set</span> <span class="o">=</span> <span class="n">temp_set</span> <span class="o">|</span> <span class="n">duplicates_dict</span><span class="p">[</span><span class="n">match</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">set_before_loop</span> <span class="o">==</span> <span class="n">temp_set</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">set_before_loop</span> <span class="o">=</span> <span class="n">temp_set</span>
+                
+        <span class="n">duplicates_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_set</span>
+        
+    <span class="n">unique_duplicate_sets</span> <span class="o">=</span> <span class="p">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">duplicate_set</span><span class="p">)</span> <span class="k">for</span> <span class="n">duplicate_set</span> <span class="ow">in</span> <span class="n">duplicates_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+    <span class="n">unique_duplicate_sets</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">duplicate_set</span><span class="p">)</span> <span class="k">for</span> <span class="n">duplicate_set</span> <span class="ow">in</span> <span class="n">unique_duplicate_sets</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">duplicate_set</span> <span class="ow">in</span> <span class="n">unique_duplicate_sets</span><span class="p">:</span>
+        <span class="n">duplicate_set</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">unique_duplicate_sets</span></div>
+    
+    
+
+<div class="viewcode-block" id="are_citations_in_pub_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.are_citations_in_pub_dict">[docs]</a><span class="k">def</span> <span class="nf">are_citations_in_pub_dict</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">pub_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine which citations in tokenized_citations are in pub_dict.</span>
+<span class="sd">    </span>
+<span class="sd">    For each citation in tokenized_citations see if it is in pub_dict. Will be </span>
+<span class="sd">    True for a citation if the PMID matches, DOI matches, or the title is similar </span>
+<span class="sd">    enough.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        tokenized_citation (list): list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.</span>
+<span class="sd">        pub_dict (dict): schema matches the publication.json schema.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (list): list of bools, True if the citation at that index is in pub_dict, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">pub_titles</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]]</span>
+    <span class="n">pub_dois</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]]</span>
+    <span class="n">pub_pmids</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]]</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="kc">True</span> <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">pub_pmids</span> <span class="ow">or</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">pub_dois</span> <span class="ow">or</span> <span class="n">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">pub_titles</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">]</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -17,8 +17,8 @@ Academic Tracker
    :target: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker
    :alt: Code coverage information
 
-.. image:: https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg
-   :target: https://doi.org/10.3390/metabo11030163
+.. image:: https://img.shields.io/badge/DOI-10.1371%2Fjournal.pone.0277834-blue.svg
+   :target: https://doi.org/10.1371/journal.pone.0277834
    :alt: Citation link
 
 .. image:: https://img.shields.io/github/stars/MoseleyBioinformaticsLab/academic_tracker.svg?style=social&label=Star

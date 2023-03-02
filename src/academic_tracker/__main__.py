@@ -1,4 +1,4 @@
-"""   
+"""
 Usage:
     academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]
     academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]
@@ -11,7 +11,7 @@ Usage:
     
 Options:
     -h --help                         Show this screen.
-    --version                         Show version.
+    -v --version                      Show version.
     --verbose                         Print hidden error messages.
     --silent                          Do not print anything to the screen.
     --test                            Generate pubs and email texts, but do not send emails.

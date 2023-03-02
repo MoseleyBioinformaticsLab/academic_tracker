@@ -12,7 +12,7 @@ import copy
 cli_schema = {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Command Line Inputs",
- "description": "Input file that contains information for how the program should run.",
+ "description": "Schema to check that program arguments are valid.",
  
  "type": "object",
  "properties": {

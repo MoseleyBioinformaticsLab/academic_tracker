@@ -1,0 +1,32 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Thompson"
+  given-names: "Travis"
+  orcid: "https://orcid.org/0000-0002-8198-1327"
+- family-names: "Powell"
+  given-names: "Christian"
+  orcid: "https://orcid.org/0000-0002-4242-080X"
+- family-names: "Moseley"
+  given-names: "Hunter"
+  orcid: "https://orcid.org/0000-0003-3995-5368"
+title: "academic_tracker"
+version: 1.0.3
+date-released: 2022-03-28
+url: "https://github.com/MoseleyBioinformaticsLab/academic_tracker"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Thompson"
+    given-names: "Travis"
+    orcid: "https://orcid.org/0000-0002-8198-1327"
+  - family-names: "Moseley"
+    given-names: "Hunter"
+    orcid: "https://orcid.org/0000-0003-3995-5368"
+  doi: "10.1371/journal.pone.0277834"
+  journal: "Plos one"
+  month: 11
+  title: "Academic Tracker: Software for tracking and reporting publications associated with authors and grants"
+  number: 11
+  volume: 17
+  year: 2022

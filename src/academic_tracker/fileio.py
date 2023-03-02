@@ -9,9 +9,9 @@ This module contains the functions that read and write files.
 import re
 import os
 import sys
+import json
 
 import docx
-import json
 import pandas
 
 from . import helper_functions

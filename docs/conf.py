@@ -70,7 +70,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -200,3 +200,20 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+
+
+# def process_main_docstring(app, what, name, obj, options, lines):
+#     if what == 'module' and "__main__" in name:
+#         for i in range(len(lines)):
+#             lines[i] = "   " + lines[i]
+#         lines.insert(0, "")
+#         lines.insert(0, ".. code-block:: console")
+
+# def setup(app):
+#     app.connect('autodoc-process-docstring', process_main_docstring)
+
+
+rinoh_documents = [
+    dict(doc='index', target='AcademicTracker', template='article')
+]

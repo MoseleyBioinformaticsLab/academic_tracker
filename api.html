@@ -25,14 +25,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Academic Tracker
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Academic Tracker
           </a>
               <div class="version">
                 1.0.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -76,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>API</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,7 +130,7 @@
 <p>Uses jsonschema to validate the inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dict from docopt.</p>
+<dd class="field-odd"><p><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict from docopt.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -139,10 +143,10 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dict with the same structure as the configuration JSON file.</p></li>
-<li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True delete the part of the schema that checks ORCID attributes.</p></li>
-<li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True and no_Crossref is True delete the part of the schema that checks Crossref attributes.</p></li>
-<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True and no_GoogleScholar is True delete the part of the schema that checks Crossref attributes.</p></li>
+<li><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict with the same structure as the configuration JSON file.</p></li>
+<li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True delete the part of the schema that checks ORCID attributes.</p></li>
+<li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True and no_Crossref is True delete the part of the schema that checks Crossref attributes.</p></li>
+<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True and no_GoogleScholar is True delete the part of the schema that checks Crossref attributes.</p></li>
 </ul>
 </dd>
 </dl>
@@ -156,7 +160,7 @@
 and that every column is in column_order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dict with the same structure as the configuration JSON file.</p>
+<dd class="field-odd"><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict with the same structure as the configuration JSON file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -168,7 +172,7 @@ and that every column is in column_order.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dict with the same structure as the previous publications JSON file.</p>
+<dd class="field-odd"><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict with the same structure as the previous publications JSON file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -181,8 +185,8 @@ and that every column is in column_order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dict with a truncated structure of the configuration JSON file.</p></li>
-<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True delete the part of the schema that checks Crossref attributes.</p></li>
+<li><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict with a truncated structure of the configuration JSON file.</p></li>
+<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True delete the part of the schema that checks Crossref attributes.</p></li>
 </ul>
 </dd>
 </dl>
@@ -195,7 +199,7 @@ and that every column is in column_order.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tok_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dict with the same structure as the tokenized reference JSON file.</p>
+<dd class="field-odd"><p><strong>tok_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict with the same structure as the tokenized reference JSON file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -207,9 +211,9 @@ and that every column is in column_order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – JSON as a dict to validate</p></li>
-<li><p><strong>schema</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – JSON schema as a dict to validate instance against</p></li>
-<li><p><strong>pattern_messages</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – if the instance has a ValidationError of the pattern type then look up the attribute that failed the pattern in this dict and see if there is a custom message</p></li>
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – JSON as a dict to validate</p></li>
+<li><p><strong>schema</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – JSON schema as a dict to validate instance against</p></li>
+<li><p><strong>pattern_messages</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – if the instance has a ValidationError of the pattern type then look up the attribute that failed the pattern in this dict and see if there is a custom message</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -229,11 +233,11 @@ and that every column is in column_order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Matches the publication JSON schema. Used to ignore publications when querying.</p></li>
-<li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True search ORCID else don’t.</p></li>
-<li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True search Google Scholar else don’t.</p></li>
-<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True search Crossref else don’t.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the publication JSON schema. Used to ignore publications when querying.</p></li>
+<li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search ORCID else don’t.</p></li>
+<li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True search Google Scholar else don’t.</p></li>
+<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -241,7 +245,7 @@ and that every column is in column_order.</p>
 prev_pubs (dict): Same as input, but updated with the new publications found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -252,14 +256,14 @@ prev_pubs (dict): Same as input, but updated with the new publications found.</p
 <dd><p>Create authors_by_project_dict and look for authors without projects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p>
+<dd class="field-odd"><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Keys are project names and values are a dictionary of authors and their attributes.
 config_dict (dict): same as input but with author information updated based on project information.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>authors_by_project_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>authors_by_project_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -271,17 +275,17 @@ config_dict (dict): same as input but with author information updated based on p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_json_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – filepath to the configuration JSON.</p></li>
-<li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True search ORCID else don’t. Reduces checking on config JSON if True.</p></li>
-<li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if True search Google Scholar else don’t. Reduces checking on config JSON if True.</p></li>
-<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>config_json_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – filepath to the configuration JSON.</p></li>
+<li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search ORCID else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True search Google Scholar else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Matches the Configuration file JSON schema.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>config_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>config_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -293,17 +297,17 @@ config_dict (dict): same as input but with author information updated based on p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Keys are project names and values are a dictionary of authors and their attributes.</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The dictionary matching the publication JSON schema.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
-<li><p><strong>test</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True save_dir_name is tracker-test instead of tracker- and emails are not sent.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Keys are project names and values are a dictionary of authors and their attributes.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The dictionary matching the publication JSON schema.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
+<li><p><strong>test</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True save_dir_name is tracker-test instead of tracker- and emails are not sent.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Name of the directory where the emails and reports were saved.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>save_dir_name (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>save_dir_name (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -324,16 +328,16 @@ for any of the grants in the author’s grants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
-<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – used in the query to Crossref</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
+<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – used in the query to Crossref</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -350,16 +354,16 @@ for any of the grants in the author’s grants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
-<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – used in the query to Crossref when trying to find DOIs for the articles</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
+<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – used in the query to Crossref when trying to find DOIs for the articles</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -376,17 +380,17 @@ for any of the grants in the author’s grants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
-<li><p><strong>ORCID_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string of the app key ORCID gives when you register the app with them</p></li>
-<li><p><strong>ORCID_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string of the secret ORCID gives when you register the app with them</p></li>
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
+<li><p><strong>ORCID_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string of the app key ORCID gives when you register the app with them</p></li>
+<li><p><strong>ORCID_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string of the secret ORCID gives when you register the app with them</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are publication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -403,16 +407,16 @@ for any of the grants in the author’s grants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches Authors section of configuration JSON schema.</p></li>
-<li><p><strong>from_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – used in the query to PubMed</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dictionary of publications matching the JSON schema for publications.</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches Authors section of configuration JSON schema.</p></li>
+<li><p><strong>from_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – used in the query to PubMed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -428,18 +432,18 @@ for any of the grants in the author’s grants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
-<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the project.</p></li>
-<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Template used to create the project report.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
+<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the project.</p></li>
+<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Template used to create the project report.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The string built by looping over the authors in authors_by_project_dict and using the template_string to build a report.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>project_authors (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>project_authors (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -452,18 +456,18 @@ for any of the grants in the author’s grants.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The key to the author in config_dict[“Authors”].</p></li>
-<li><p><strong>pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Keys are publications for the author and values are the grants associated with that pub.</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – filename to save the publication under.</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the report in.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The key to the author in config_dict[“Authors”].</p></li>
+<li><p><strong>pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Keys are publications for the author and values are the grants associated with that pub.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – filename to save the publication under.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the report in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The text of the report or an empty string.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -477,16 +481,16 @@ the other authors on their publicaitons.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the reports in.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the reports in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys and values match the email JSON file.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>email_messages (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>email_messages (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -502,20 +506,20 @@ it is assumed the report is actually for a single author and not a whole project
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
-<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the project.</p></li>
-<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Template used to create the project report.</p></li>
-<li><p><strong>author_first</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – First name of the author. If not “” the report is assumed to be for 1 author.</p></li>
-<li><p><strong>author_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Last name of the author.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
+<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the project.</p></li>
+<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Template used to create the project report.</p></li>
+<li><p><strong>author_first</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – First name of the author. If not “” the report is assumed to be for 1 author.</p></li>
+<li><p><strong>author_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Last name of the author.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The template_string with the appropriate tags replaced with relevant information.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>template_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>template_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -529,17 +533,17 @@ Reports are saved in save_dir_name as they are created.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the reports in.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the reports in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys and values match the email JSON file.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>email_messages (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>email_messages (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -551,13 +555,13 @@ Reports are saved in save_dir_name as they are created.</p>
 <p>Organizes the publication information in an author focused way so other operations are easier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p>
+<dd class="field-odd"><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pubs_by_author_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>pubs_by_author_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -572,17 +576,17 @@ to fill in the information in the template_string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
-<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Template used to create the project report.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
+<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Template used to create the project report.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The report built by replacing the appropriate tags in template_string with relevant information.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -594,13 +598,13 @@ to fill in the information in the template_string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The key to the author in config_dict[“Authors”].</p></li>
-<li><p><strong>pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Keys are publications for the author and values are the grants associated with that pub.</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – filename to save the publication under.</p></li>
-<li><p><strong>file_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – csv or xlsx, determines what format to save in.</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the report in.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The key to the author in config_dict[“Authors”].</p></li>
+<li><p><strong>pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Keys are publications for the author and values are the grants associated with that pub.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – filename to save the publication under.</p></li>
+<li><p><strong>file_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – csv or xlsx, determines what format to save in.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the report in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -608,7 +612,7 @@ to fill in the information in the template_string.</p>
 filename (str): Filename of the report. Made have had an .xlsx added to the end.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -620,14 +624,14 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
-<li><p><strong>pubs_by_author_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.</p></li>
-<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of the project.</p></li>
-<li><p><strong>report_attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Dictionary of the report attributes. Could come from project_descriptions or an author.</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the report in.</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Filename of the report.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
+<li><p><strong>pubs_by_author_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.</p></li>
+<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Name of the project.</p></li>
+<li><p><strong>report_attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary of the report attributes. Could come from project_descriptions or an author.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the report in.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Filename of the report.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -635,7 +639,7 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 filename (str): Filename of the report. Made have had an .xlsx added to the end.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -647,10 +651,10 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the report in.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are project names from the config file and values are pulled from config_dict[“Authors”].</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the report in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -658,7 +662,7 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 filename (str): Filename of the report. Made have had an .xlsx added to the end.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -670,20 +674,20 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>template</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are column names and values are what the elements of the column should be.</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the name of the project to replace.</p></li>
-<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the key to the author in config_dict[“Authors”].</p></li>
-<li><p><strong>pub</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the key to the pub in publication_dict.</p></li>
-<li><p><strong>pub_author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The author in pub.</p></li>
+<li><p><strong>template</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are column names and values are what the elements of the column should be.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>project_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the name of the project to replace.</p></li>
+<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the key to the author in config_dict[“Authors”].</p></li>
+<li><p><strong>pub</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the key to the pub in publication_dict.</p></li>
+<li><p><strong>pub_author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The author in pub.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>template with the keywords replaced in its values.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>template_copy (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>template_copy (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -699,9 +703,9 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts. Matches the tokenized citations JSON schema.</p></li>
-<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts. Matches the tokenized citations JSON schema.</p></li>
+<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -709,7 +713,7 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 tokenized_citations (list): Same list as the input but with the pud_dict_key updated to match the publication found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -721,11 +725,11 @@ tokenized_citations (list): Same list as the input but with the pud_dict_key upd
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_json_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – filepath to the configuration JSON.</p></li>
-<li><p><strong>ref_path_or_URL</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – either a filepath to file to tokenize or a URL to tokenize.</p></li>
-<li><p><strong>MEDLINE_reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True re_path_or_URL is a filepath to a MEDLINE formatted file.</p></li>
-<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
-<li><p><strong>prev_pub_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – filepath to the publication JSON to read in.</p></li>
+<li><p><strong>config_json_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – filepath to the configuration JSON.</p></li>
+<li><p><strong>ref_path_or_URL</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – either a filepath to file to tokenize or a URL to tokenize.</p></li>
+<li><p><strong>MEDLINE_reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True re_path_or_URL is a filepath to a MEDLINE formatted file.</p></li>
+<li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>prev_pub_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – filepath to the publication JSON to read in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -735,7 +739,7 @@ has_previous_pubs (bool): True if a prev_pub file was input, False otherwise.
 prev_pubs (dict): The contents of the prev_pub file input by the user if provided.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>config_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>config_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -747,19 +751,19 @@ prev_pubs (dict): The contents of the prev_pub file input by the user if provide
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts. Matches the tokenized citations JSON schema.</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The dictionary matching the publication JSON schema.</p></li>
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The contents of the prev_pub file input by the user if provided.</p></li>
-<li><p><strong>has_previous_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – True if a prev_pub file was input, False otherwise.</p></li>
-<li><p><strong>test</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True save_dir_name is tracker-test instead of tracker- and emails are not sent.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts. Matches the tokenized citations JSON schema.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The dictionary matching the publication JSON schema.</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The contents of the prev_pub file input by the user if provided.</p></li>
+<li><p><strong>has_previous_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – True if a prev_pub file was input, False otherwise.</p></li>
+<li><p><strong>test</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True save_dir_name is tracker-test instead of tracker- and emails are not sent.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Name of the directory where the emails and report were saved.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>save_dir_name (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>save_dir_name (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -775,15 +779,15 @@ prev_pubs (dict): The contents of the prev_pub file input by the user if provide
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>PMID_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – A list of PMIDs as strings.</p></li>
-<li><p><strong>from_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – An email address to use when querying PubMed.</p></li>
+<li><p><strong>PMID_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – A list of PMIDs as strings.</p></li>
+<li><p><strong>from_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – An email address to use when querying PubMed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -798,13 +802,13 @@ The first page is tokenized and then each subsequent page is visited and
 tokenized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the url of the MyNCBI page.</p>
+<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the url of the MyNCBI page.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the citations tokenized in a dictionary matching the tokenized citations JSON schema.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -816,15 +820,15 @@ tokenized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of citations parsed from a source. Each citation is a dict {“authors”, “title”, “DOI”, “PMID”, “reference_line”, “pub_dict_key”}.</p></li>
-<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – used in the query to Crossref</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of citations parsed from a source. Each citation is a dict {“authors”, “title”, “DOI”, “PMID”, “reference_line”, “pub_dict_key”}.</p></li>
+<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – used in the query to Crossref</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -836,15 +840,15 @@ tokenized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of citations parsed from a source. Each citation is a dict {“authors”, “title”, “DOI”, “PMID”, “reference_line”, “pub_dict_key”}.</p></li>
-<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – used in the query to Crossref when trying to find DOIs for the articles</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of citations parsed from a source. Each citation is a dict {“authors”, “title”, “DOI”, “PMID”, “reference_line”, “pub_dict_key”}.</p></li>
+<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – used in the query to Crossref when trying to find DOIs for the articles</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -857,15 +861,15 @@ tokenized.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of citations parsed from a source. Each citation is a dict {“authors”, “title”, “DOI”, “PMID”, “reference_line”, “pub_dict_key”}.</p></li>
-<li><p><strong>from_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – used in the query to PubMed</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of citations parsed from a source. Each citation is a dict {“authors”, “title”, “DOI”, “PMID”, “reference_line”, “pub_dict_key”}.</p></li>
+<li><p><strong>from_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – used in the query to PubMed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are pulication ids and values are a dictionary with publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>publication_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -882,15 +886,15 @@ by line. Citations are expected to be 1 per line otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>reference_input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – URL or filepath</p></li>
-<li><p><strong>MEDLINE_reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – True if reference_input is in MEDLINE format</p></li>
+<li><p><strong>reference_input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – URL or filepath</p></li>
+<li><p><strong>MEDLINE_reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – True if reference_input is in MEDLINE format</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the citations tokenized in a dictionary matching the tokenized citations JSON schema.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>tokenized_citations (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>tokenized_citations (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -907,13 +911,13 @@ by line. Citations are expected to be 1 per line otherwise.</p>
 then last_name initials. ex. first_name1 last_name1, last_name2 initials2</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>authors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – a list of dictionaries [{“last”:last_name, “initials”:initials}, {“last”:last_name, “first”:first_name}]</p>
+<dd class="field-odd"><p><strong>authors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – a list of dictionaries [{“last”:last_name, “initials”:initials}, {“last”:last_name, “first”:first_name}]</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>comma separated list of authors.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>authors_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>authors_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -927,17 +931,17 @@ the tags in the template_string. Details about reports are in the documentation.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>is_citation_in_prev_pubs_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of bools that indicate whether or not the citation at the same index in tokenized_citations is in the prev_pubs</p></li>
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts. Matches the JSON schema for tokenized citations.</p></li>
-<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string with tags indicated what information to put in the report.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>is_citation_in_prev_pubs_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of bools that indicate whether or not the citation at the same index in tokenized_citations is in the prev_pubs</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts. Matches the JSON schema for tokenized citations.</p></li>
+<li><p><strong>template_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string with tags indicated what information to put in the report.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>text of the created report.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -949,11 +953,11 @@ the tags in the template_string. Details about reports are in the documentation.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
-<li><p><strong>is_citation_in_prev_pubs_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of bools that indicate whether or not the citation at the same index in tokenized_citations is in the prev_pubs</p></li>
-<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts. Matches the JSON schema for tokenized citations.</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory to save the report in.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the project tracking configuration JSON file.</p></li>
+<li><p><strong>is_citation_in_prev_pubs_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of bools that indicate whether or not the citation at the same index in tokenized_citations is in the prev_pubs</p></li>
+<li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts. Matches the JSON schema for tokenized citations.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory to save the report in.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -961,7 +965,7 @@ the tags in the template_string. Details about reports are in the documentation.
 filename (str): Filename of the report. Made have had an .xlsx added to the end.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -973,13 +977,13 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <p>Intended as a troubleshooting report.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts. Matches the JSON schema for tokenized citations.</p>
+<dd class="field-odd"><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts. Matches the JSON schema for tokenized citations.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>report text built from tokenized_citations.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>report_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>report_string (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -991,19 +995,19 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>template</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are column names and values are what the elements of the column should be.</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
-<li><p><strong>pub</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the key to the pub in publication_dict.</p></li>
-<li><p><strong>tokenized_citation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The tokenized citation from the reference for the publication.</p></li>
-<li><p><strong>is_citation_in_prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – Whether this publication is in the previous publications or not. If None then it isn’t applicable.</p></li>
-<li><p><strong>pub_author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – The author in pub.</p></li>
+<li><p><strong>template</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are column names and values are what the elements of the column should be.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys and values match the publications JSON file.</p></li>
+<li><p><strong>pub</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the key to the pub in publication_dict.</p></li>
+<li><p><strong>tokenized_citation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The tokenized citation from the reference for the publication.</p></li>
+<li><p><strong>is_citation_in_prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – Whether this publication is in the previous publications or not. If None then it isn’t applicable.</p></li>
+<li><p><strong>pub_author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The author in pub.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>template with the keywords replaced in its values.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>template_copy (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>template_copy (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1018,13 +1022,13 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <dd><p>Tokenize text_string based on it being of the MEDLINE format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>text_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The string to tokenize.</p>
+<dd class="field-odd"><p><strong>text_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The string to tokenize.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the citations tokenized in a dictionary matching the tokenized citations JSON schema.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1039,13 +1043,13 @@ in reality these standards are not strictly adhered to by the public. Therefore
 the function uses a more heuristic approach.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The text to parse.</p>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The text to parse.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the citations tokenized in a dictionary matching the tokenized citations JSON schema.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1056,13 +1060,13 @@ the function uses a more heuristic approach.</p>
 <dd><p>Tokenize authors based on APA or Harvard citation style.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>authors_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string with the authors to tokenize.</p>
+<dd class="field-odd"><p><strong>authors_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string with the authors to tokenize.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of dictionaries with the authors last names and initials. [{“last”:lastname, “initials”:initials}, …]</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1073,13 +1077,13 @@ the function uses a more heuristic approach.</p>
 <dd><p>Tokenize authors based on MLA or Chicago citation style.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>authors_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string with the authors to tokenize.</p>
+<dd class="field-odd"><p><strong>authors_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string with the authors to tokenize.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of dictionaries with the authors first, middle, and last names. [{“first”:firstname, “middle”:middlename, “last”:lastname}, …]</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1090,13 +1094,13 @@ the function uses a more heuristic approach.</p>
 <dd><p>Tokenize authors based on Vancouver citation style.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>authors_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string with the authors to tokenize.</p>
+<dd class="field-odd"><p><strong>authors_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string with the authors to tokenize.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of dictionaries with the authors last names and initials. [{“last”:lastname, “initials”:initials}, …]</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1108,13 +1112,13 @@ the function uses a more heuristic approach.</p>
 <p>Note that authors and title can be missing or empty from the webpage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>html</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the html of the MyNCBI page.</p>
+<dd class="field-odd"><p><strong>html</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the html of the MyNCBI page.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the citations tokenized in a dictionary matching the tokenized citations JSON schema.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>parsed_pubs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1129,16 +1133,16 @@ the function uses a more heuristic approach.</p>
 <dd><p>Adds error checking around loading a json file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – filepath to the json file</p>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – filepath to the json file</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>json read from file in a dictionary</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>internal_data (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>internal_data (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1149,7 +1153,7 @@ the function uses a more heuristic approach.</p>
 <dd><p>Read csv into a pandas dataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>doc_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – path to the csv file to read in.</p>
+<dd class="field-odd"><p><strong>doc_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – path to the csv file to read in.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Pandas dataframe of the csv contents.</p>
@@ -1158,7 +1162,7 @@ the function uses a more heuristic approach.</p>
 <dd class="field-odd"><p>df (DataFrame)</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1174,14 +1178,14 @@ directory and if it has a publications.json file then read in that file.
 If no previous publications are found then an empty dict is returned for prev_pubs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – path to the publications JSON to read in.</p>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – path to the publications JSON to read in.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True means that a previous publications file was found
 prev_pubs (dict): dict where keys are publication ids and values are a dict of publication attributes</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>has_previous_pubs (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a>)</p>
+<dd class="field-odd"><p>has_previous_pubs (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1192,16 +1196,16 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 <dd><p>Open docx file at doc_path and read contents into a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>doc_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – path to docx file.</p>
+<dd class="field-odd"><p><strong>doc_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – path to docx file.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A string of the contents of the docx file. Each line concatenated with a newline character.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1212,16 +1216,16 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 <dd><p>Open txt or csv file at doc_path and read contents into a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>doc_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – path to txt or csv file.</p>
+<dd class="field-odd"><p><strong>doc_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – path to txt or csv file.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A string of the contents of the txt or csv file. Each line concatenated with a newline character.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If file opening has a problem will raise an exception.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1233,8 +1237,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>email_messages</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are author names and values are the of the email</p></li>
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory name to append to the current working directory to save the emails.json file in</p></li>
+<li><p><strong>email_messages</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are author names and values are the of the email</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory name to append to the current working directory to save the emails.json file in</p></li>
 </ul>
 </dd>
 </dl>
@@ -1247,8 +1251,8 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory name to append to the current working directory to save the json_dict in.</p></li>
-<li><p><strong>json_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – data to save to file.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory name to append to the current working directory to save the json_dict in.</p></li>
+<li><p><strong>json_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – data to save to file.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1262,9 +1266,9 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory name to append to the current working directory to save the publications.json file in</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – dictionary with publication ids as the keys to the dict</p></li>
-<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – List of publication ids that are publications previously found.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory name to append to the current working directory to save the publications.json file in</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dictionary with publication ids as the keys to the dict</p></li>
+<li><p><strong>prev_pubs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – List of publication ids that are publications previously found.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1277,9 +1281,9 @@ prev_pubs (dict): dict where keys are publication ids and values are a dict of p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – directory in the current working directory to save the string to.</p></li>
-<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string to name the file.</p></li>
-<li><p><strong>text_to_save</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the string to put in the file contents.</p></li>
+<li><p><strong>save_dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – directory in the current working directory to save the string to.</p></li>
+<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string to name the file.</p></li>
+<li><p><strong>text_to_save</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the string to put in the file contents.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1299,15 +1303,15 @@ Update the authors in config_dict[“Authors”].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are the projects in the config_dict and the values are the authors associated with that project from config_dict[“Authors”].</p></li>
-<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – schema matches the JSON Project Tracking Configuration file.</p></li>
+<li><p><strong>authors_by_project_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are the projects in the config_dict and the values are the authors associated with that project from config_dict[“Authors”].</p></li>
+<li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – schema matches the JSON Project Tracking Configuration file.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>schema matches the JSON Project Tracking Configuration file.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>config_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>config_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1322,15 +1326,15 @@ enough.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tokenized_citation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.</p></li>
-<li><p><strong>pub_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – schema matches the publication.json schema.</p></li>
+<li><p><strong>tokenized_citation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.</p></li>
+<li><p><strong>pub_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – schema matches the publication.json schema.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of bools, True if the citation at that index is in pub_dict, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1343,13 +1347,13 @@ enough.</p>
 are the authors associated with that project from config_dict[“Authors”].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – schema matches the JSON Project Tracking Configuration file.</p>
+<dd class="field-odd"><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – schema matches the JSON Project Tracking Configuration file.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>keys are the projects in the config_dict and the values are the authors associated with that project from config_dict[“Authors”].</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>authors_by_project_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>authors_by_project_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1366,13 +1370,13 @@ citation 1 and 3 don’t match a duplicate set containing all 3 is created. The
 unique duplicate sets are returned as a list of sorted lists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tokenized_citation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.</p>
+<dd class="field-odd"><p><strong>tokenized_citation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dictionaries where each dictionary is a citation. Matches the tokenized_reference.json schema.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of lists where each element is a list of indexes in tokenized_citations that match each other. The list of indexes is sorted in ascending order.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>unique_duplicate_sets (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>unique_duplicate_sets (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1384,15 +1388,15 @@ unique duplicate sets are returned as a list of sorted lists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>str_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string to compare with list</p></li>
-<li><p><strong>list_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of strings to compare with str_to_match</p></li>
+<li><p><strong>str_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string to compare with list</p></li>
+<li><p><strong>list_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of strings to compare with str_to_match</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of matches (tuples) with each element being the string and its index in list_to_match. [(9, “title 1”), …]</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1404,15 +1408,15 @@ unique duplicate sets are returned as a list of sorted lists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>str_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string to compare with list</p></li>
-<li><p><strong>list_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of strings to compare with str_to_match</p></li>
+<li><p><strong>str_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string to compare with list</p></li>
+<li><p><strong>list_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of strings to compare with str_to_match</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True if str_to_match is a match to any string in list_tp_match, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1427,17 +1431,17 @@ from publication_dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pub_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – pub_id to check against in publication_dict to see if it already exists.</p></li>
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – title corresponding to pub_id to check against titles in publication_dict.</p></li>
-<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are pub_ids and values are pub attributes.</p></li>
-<li><p><strong>titles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of strings that should be titles to fuzzy match to title.</p></li>
+<li><p><strong>pub_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – pub_id to check against in publication_dict to see if it already exists.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – title corresponding to pub_id to check against titles in publication_dict.</p></li>
+<li><p><strong>publication_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are pub_ids and values are pub attributes.</p></li>
+<li><p><strong>titles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of strings that should be titles to fuzzy match to title.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True if the pub_id is in publication_dict or title is fuzzy matched in titles, False otherwise</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1452,15 +1456,15 @@ is present.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
-<li><p><strong>author_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts where each dict is attributes of an author.</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
+<li><p><strong>author_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts where each dict is attributes of an author.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>either the author list with matched authors containing an additional author_id attribute, or an empty list if no authors were matched.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>author_list (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>author_list (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1474,15 +1478,15 @@ authors_json using firstname, lastname, and affiliations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
-<li><p><strong>author_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of dicts where each dict is attributes of an author.</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are authors and values are author attributes. Matches authors JSON schema.</p></li>
+<li><p><strong>author_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts where each dict is attributes of an author.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>either the author list with matched authors containing an additional author_id attribute, or an empty list if no authors were matched.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>author_list (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>author_list (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1502,7 +1506,7 @@ converts the “publication_date” key to a string.</p>
 “keywords”, “journal”, “publication_date”, “authors”, “methods”, “conclusions”, “results”, “copyrights”, and “doi”</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pub_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>pub_dict (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1515,15 +1519,15 @@ converts the “publication_date” key to a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>regex_groups</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><em>tuple</em></a>) – A tuple returned from a matched regex.groups() call.</p></li>
-<li><p><strong>group_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The index of the regex_groups to return.</p></li>
+<li><p><strong>regex_groups</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a>) – A tuple returned from a matched regex.groups() call.</p></li>
+<li><p><strong>group_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The index of the regex_groups to return.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Either emtpy string or the group string matched by the regex.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1537,15 +1541,15 @@ the match.groups() is returned, otherwise an empty tuple is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – A string with a regular expression to be delivered to re.match().</p></li>
-<li><p><strong>string_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The string to match with the regex.</p></li>
+<li><p><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A string with a regular expression to be delivered to re.match().</p></li>
+<li><p><strong>string_to_match</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The string to match with the regex.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>either the tuple of the matched groups in the regex or an empty tuple if a match wasn’t found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)">tuple</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)">tuple</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1559,15 +1563,15 @@ the match.groups() is returned, otherwise an empty tuple is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – A string with a regular expression to be delivered to re.search().</p></li>
-<li><p><strong>string_to_search</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The string to match with the regex.</p></li>
+<li><p><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A string with a regular expression to be delivered to re.search().</p></li>
+<li><p><strong>string_to_search</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The string to match with the regex.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>either the tuple of the matched groups in the regex or an empty tuple if a match wasn’t found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)">tuple</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)">tuple</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1580,7 +1584,7 @@ the match.groups() is returned, otherwise an empty tuple is returned.</p>
 print. If verbosity is 1 then VERBOSE must be True to print.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>verbosity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Either 0 or 1 for different levels of verbosity.</p>
+<dd class="field-odd"><p><strong>verbosity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Either 0 or 1 for different levels of verbosity.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1598,15 +1602,15 @@ page and looks for the given grants on that page.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>doi</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – DOI for the publication.</p></li>
-<li><p><strong>grants</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – list of str for each grant to look for.</p></li>
+<li><p><strong>doi</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – DOI for the publication.</p></li>
+<li><p><strong>grants</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of str for each grant to look for.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of str with each grant that was found on the page.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>found_grants (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)">list</a>)</p>
+<dd class="field-odd"><p>found_grants (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1619,13 +1623,13 @@ page and looks for the given grants on that page.</p>
 browser.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the URL to query.</p>
+<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the URL to query.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>webpage contents cleaned of tags.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>clean_url (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>clean_url (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1642,15 +1646,15 @@ browser.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string of the title of the journal article to search for.</p></li>
-<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – an email address needed to search Crossref more effectively.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string of the title of the journal article to search for.</p></li>
+<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – an email address needed to search Crossref more effectively.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Either None or the DOI of the article title. The DOI will not be a URL.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>doi (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>doi (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1664,16 +1668,16 @@ all grants associated with the article is too difficult.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – string of the title of the journal article to search for.</p></li>
-<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – an email address needed to search Crossref more effectively.</p></li>
-<li><p><strong>grants</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – a list of the grants to try and find for the article.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – string of the title of the journal article to search for.</p></li>
+<li><p><strong>mailto_email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – an email address needed to search Crossref more effectively.</p></li>
+<li><p><strong>grants</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – a list of the grants to try and find for the article.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Either None or a list of grants found for the article.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>found_grants (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>found_grants (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1684,13 +1688,13 @@ all grants associated with the article is too difficult.</p>
 <dd><p>Query the url and return it’s contents as a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – the URL to query.</p>
+<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – the URL to query.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Either the website as a string or None if an error occurred.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1703,13 +1707,13 @@ all grants associated with the article is too difficult.</p>
 the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – url to search.</p>
+<dd class="field-odd"><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – url to search.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>string of the DOI found on the webpage. Is empty string if DOI is not found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>DOI (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a>)</p>
+<dd class="field-odd"><p>DOI (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1721,13 +1725,13 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 <p>If an author already has a scholar_id, or doesn’t have affiliations they are skipped.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – JSON matching the Authors section of the Configuration file.</p>
+<dd class="field-odd"><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – JSON matching the Authors section of the Configuration file.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the authors_json modified with any ORCID IDs found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>authors_json (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>authors_json (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1740,16 +1744,16 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ORCID_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – key assigned to your registered application from ORCID.</p></li>
-<li><p><strong>ORCID_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – secret given to you by ORCID.</p></li>
-<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – JSON matching the Authors section of the Configuration file.</p></li>
+<li><p><strong>ORCID_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – key assigned to your registered application from ORCID.</p></li>
+<li><p><strong>ORCID_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – secret given to you by ORCID.</p></li>
+<li><p><strong>authors_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – JSON matching the Authors section of the Configuration file.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the authors_json modified with any ORCID IDs found.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>authors_json (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)">dict</a>)</p>
+<dd class="field-odd"><p>authors_json (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1761,7 +1765,7 @@ the provided url. The DOI is visited to confirm it is a proper DOI.</p>
 <p>Only works on systems with sendmail installed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>email_messages</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – keys are author names and values are the message</p>
+<dd class="field-odd"><p><strong>email_messages</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – keys are author names and values are the message</p>
 </dd>
 </dl>
 </dd></dl>

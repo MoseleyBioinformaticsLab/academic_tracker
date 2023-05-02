@@ -65,6 +65,9 @@ def search_PubMed_for_pubs(prev_pubs, authors_json, from_email):
         for pub in publications:
             
             pub_id = DOI_URL + pub.doi if pub.doi else pub.pubmed_id.split("\n")[0]
+            ## Sometimes the publication_date can be None, so just skip it.
+            if not pub.publication_date:
+                continue
             publication_date = int(str(pub.publication_date)[:4])
             
             ## if the publication id is in prev_pubs or publication_dict or the publication date is before the curoff year then skip.

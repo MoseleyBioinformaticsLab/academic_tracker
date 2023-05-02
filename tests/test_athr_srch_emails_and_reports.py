@@ -262,7 +262,7 @@ def test_create_tabular_collaborator_report(publication_dict, config_dict_collab
     
     df = pandas.read_csv(os.path.join(TESTING_DIR, filename), sep=sep)
     report_text = read_text_from_txt(os.path.join(TESTING_DIR, filename))
-    assert df.to_csv(sep=sep, index=False, line_terminator="\n") == report_text
+    assert df.to_csv(sep=sep, index=False, lineterminator="\n") == report_text
     assert list(df.columns) == config_dict_collab["Authors"]["Anna Hoover"]["collaborator_report"]["column_order"]
     assert df.iloc[1].loc["Col1"] == column_one
     assert df.iloc[0].loc["Col2"] == "asdf"
@@ -281,7 +281,7 @@ def test_create_tabular_collaborator_report_defaults(publication_dict):
     
     df = pandas.read_csv(os.path.join(TESTING_DIR, "test_name.csv"), sep=",")
     report_text = read_text_from_txt(os.path.join(TESTING_DIR, "test_name.csv"))
-    assert df.to_csv(sep=",", index=False, line_terminator="\n") == report_text
+    assert df.to_csv(sep=",", index=False, lineterminator="\n") == report_text
     assert list(df.columns) == ["Name", "Affiliations"]
     assert df.iloc[0].loc["Name"] == 'Brewer, Dawn'
     assert df.iloc[0].loc["Affiliations"] == 'University of Kentucky Department of Dietetics and Human Nutrition.'
@@ -348,7 +348,7 @@ def test_create_tabular_summary_report_no_pub_keywords(publication_dict, config_
     
     df = pandas.read_csv(os.path.join(TESTING_DIR, "test_name.csv"), sep="\t")
     report_text = read_text_from_txt(os.path.join(TESTING_DIR, "test_name.csv"))
-    assert df.to_csv(sep="\t", index=False, line_terminator="\n") == report_text
+    assert df.to_csv(sep="\t", index=False, lineterminator="\n") == report_text
     assert list(df.columns) == config_dict["summary_report"]["column_order"]
     assert df.iloc[1].loc["Col1"] == "Project 1"
     assert df.iloc[0].loc["Col2"] == "Angela"
@@ -367,7 +367,7 @@ def test_create_tabular_summary_report_defaults(publication_dict, config_dict, a
     
     df = pandas.read_csv(os.path.join(TESTING_DIR, "summary_report.csv"), sep=",")
     report_text = read_text_from_txt(os.path.join(TESTING_DIR, "summary_report.csv"))
-    assert df.to_csv(sep=",", index=False, line_terminator="\n") == report_text
+    assert df.to_csv(sep=",", index=False, lineterminator="\n") == report_text
     assert list(df.columns) == list(config_dict["summary_report"]["columns"].keys())
     assert df.iloc[1].loc["Col1"] == 'Core A Administrative Core'
     assert df.iloc[0].loc["Col2"] == "Kelly"
@@ -423,7 +423,7 @@ def test_create_tabular_project_report_no_pub_keywords(publication_dict, config_
     
     df = pandas.read_csv(os.path.join(TESTING_DIR, filename), sep="\t")
     report_text = read_text_from_txt(os.path.join(TESTING_DIR, filename))
-    assert df.to_csv(sep="\t", index=False, line_terminator="\n") == report_text
+    assert df.to_csv(sep="\t", index=False, lineterminator="\n") == report_text
     assert list(df.columns) == report_attributes["column_order"]
     assert df.iloc[1].loc["Col1"] == "Project 1"
     assert df.iloc[0].loc["Col2"] == "Angela"
@@ -446,7 +446,7 @@ def test_create_tabular_project_report_defaults(publication_dict, config_dict, a
     
     df = pandas.read_csv(os.path.join(TESTING_DIR, "project_report.csv"), sep=",")
     report_text = read_text_from_txt(os.path.join(TESTING_DIR, "project_report.csv"))
-    assert df.to_csv(sep=",", index=False, line_terminator="\n") == report_text
+    assert df.to_csv(sep=",", index=False, lineterminator="\n") == report_text
     assert list(df.columns) == list(report_attributes["columns"].keys())
     assert df.iloc[1].loc["Col1"] == 'Project 1'
     assert df.iloc[0].loc["Col2"] == "Kelly"

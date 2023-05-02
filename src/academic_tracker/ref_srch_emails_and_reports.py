@@ -234,7 +234,7 @@ def create_tabular_report(publication_dict, config_dict, is_citation_in_prev_pub
         df = df[column_order]
         
         if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator, line_terminator="\n")
+            report = df.to_csv(index=False, sep=separator, lineterminator="\n")
             fileio.save_string_to_file(save_dir_name, filename, report)
         else:
             ## If the file extension isn't .xlsx then there will be an error, so force it.

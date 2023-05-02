@@ -58,7 +58,7 @@ Links
 
 Installation
 ~~~~~~~~~~~~
-The Academic Tracker package runs under Python 3.7+. Use pip_ to install.
+The Academic Tracker package runs under Python 3.8+. Use pip_ to install.
 Starting with Python 3.4, pip_ is included by default. Be sure to use the latest 
 version of pip as older versions are known to have issues grabbing all dependencies. 
 Academic Tracker relies on sendmail to send emails, so if you need to use that 

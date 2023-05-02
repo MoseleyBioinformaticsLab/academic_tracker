@@ -144,6 +144,9 @@
         <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">publications</span><span class="p">:</span>
             
             <span class="n">pub_id</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span> <span class="k">if</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span> <span class="k">else</span> <span class="n">pub</span><span class="o">.</span><span class="n">pubmed_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1">## Sometimes the publication_date can be None, so just skip it.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">pub</span><span class="o">.</span><span class="n">publication_date</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="n">publication_date</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pub</span><span class="o">.</span><span class="n">publication_date</span><span class="p">)[:</span><span class="mi">4</span><span class="p">])</span>
             
             <span class="c1">## if the publication id is in prev_pubs or publication_dict or the publication date is before the curoff year then skip.</span>

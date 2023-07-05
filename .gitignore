@@ -12,3 +12,4 @@ dist/
 coverage.xml
 .coverage
 htmlcov/
+README_old.rst

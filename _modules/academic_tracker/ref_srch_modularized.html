@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.ref_srch_modularized &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>academic_tracker.ref_srch_modularized &mdash; Academic Tracker 1.0.4 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -30,7 +30,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -98,7 +98,7 @@
 
 
 
-<div class="viewcode-block" id="input_reading_and_checking"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_modularized.input_reading_and_checking">[docs]</a><span class="k">def</span> <span class="nf">input_reading_and_checking</span><span class="p">(</span><span class="n">config_json_filepath</span><span class="p">,</span> <span class="n">ref_path_or_URL</span><span class="p">,</span> <span class="n">MEDLINE_reference</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">prev_pub_filepath</span><span class="p">):</span>
+<div class="viewcode-block" id="input_reading_and_checking"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_modularized.input_reading_and_checking">[docs]</a><span class="k">def</span> <span class="nf">input_reading_and_checking</span><span class="p">(</span><span class="n">config_json_filepath</span><span class="p">,</span> <span class="n">ref_path_or_URL</span><span class="p">,</span> <span class="n">MEDLINE_reference</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">,</span> <span class="n">prev_pub_filepath</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Read in inputs from user and do error checking.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -106,6 +106,7 @@
 <span class="sd">        ref_path_or_URL (str): either a filepath to file to tokenize or a URL to tokenize.</span>
 <span class="sd">        MEDLINE_reference (bool): If True re_path_or_URL is a filepath to a MEDLINE formatted file.</span>
 <span class="sd">        no_Crossref (bool): If True search Crossref else don&#39;t. Reduces checking on config JSON if True.</span>
+<span class="sd">        no_PubMed (bool): If True search PubMed else don&#39;t. Reduces checking on config JSON if True.</span>
 <span class="sd">        prev_pub_filepath (str or None): filepath to the publication JSON to read in.</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
@@ -120,9 +121,12 @@
     
     <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;Crossref_search&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">:</span>
         <span class="n">no_Crossref</span> <span class="o">=</span> <span class="kc">True</span>
+        
+    <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;PubMed_search&quot;</span> <span class="ow">in</span> <span class="n">config_dict</span><span class="p">:</span>
+        <span class="n">no_PubMed</span> <span class="o">=</span> <span class="kc">True</span>
     
     <span class="c1">## Get inputs from config file and check them for errors.</span>
-    <span class="n">user_input_checking</span><span class="o">.</span><span class="n">ref_config_file_check</span><span class="p">(</span><span class="n">config_dict</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">)</span>
+    <span class="n">user_input_checking</span><span class="o">.</span><span class="n">ref_config_file_check</span><span class="p">(</span><span class="n">config_dict</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">)</span>
     <span class="n">user_input_checking</span><span class="o">.</span><span class="n">config_report_check</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">prev_pub_filepath</span> <span class="ow">or</span> <span class="n">prev_pub_filepath</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;ignore&quot;</span><span class="p">:</span>
@@ -141,13 +145,14 @@
 
 
 
-<div class="viewcode-block" id="build_publication_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_modularized.build_publication_dict">[docs]</a><span class="k">def</span> <span class="nf">build_publication_dict</span><span class="p">(</span><span class="n">config_dict</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">):</span>
+<div class="viewcode-block" id="build_publication_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_modularized.build_publication_dict">[docs]</a><span class="k">def</span> <span class="nf">build_publication_dict</span><span class="p">(</span><span class="n">config_dict</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Query PubMed and Crossref for publications matching the citations in tokenized_citations.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        config_dict (dict): Matches the Configuration file JSON schema.</span>
 <span class="sd">        tokenized_citations (list): list of dicts. Matches the tokenized citations JSON schema.</span>
 <span class="sd">        no_Crossref (bool): If True search Crossref else don&#39;t. Reduces checking on config JSON if True.</span>
+<span class="sd">        no_PubMed (bool): If True search PubMed else don&#39;t. Reduces checking on config JSON if True.</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        publication_dict (dict): The dictionary matching the publication JSON schema.</span>
@@ -155,8 +160,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Finding publications. This could take a while.&quot;</span><span class="p">)</span>
-    <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching PubMed.&quot;</span><span class="p">)</span>
-    <span class="n">PubMed_publication_dict</span><span class="p">,</span> <span class="n">PubMed_matching_key_for_citation</span> <span class="o">=</span> <span class="n">ref_srch_webio</span><span class="o">.</span><span class="n">search_references_on_PubMed</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_email&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">no_PubMed</span><span class="p">:</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching PubMed.&quot;</span><span class="p">)</span>
+        <span class="n">PubMed_publication_dict</span><span class="p">,</span> <span class="n">PubMed_matching_key_for_citation</span> <span class="o">=</span> <span class="n">ref_srch_webio</span><span class="o">.</span><span class="n">search_references_on_PubMed</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_email&quot;</span><span class="p">])</span>
 <span class="c1">#    if not args[&quot;--no_GoogleScholar&quot;]:</span>
 <span class="c1">#        print(&quot;Searching Google Scholar.&quot;)</span>
 <span class="c1">#        Google_Scholar_publication_dict, Google_Scholar_matching_key_for_citation = webio.search_references_on_Google_Scholar(tokenized_citations, config_dict[&quot;Crossref_search&quot;][&quot;Crossref_email&quot;], args[&quot;--verbose&quot;])</span>
@@ -164,7 +170,11 @@
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching Crossref.&quot;</span><span class="p">)</span>
         <span class="n">Crossref_publication_dict</span><span class="p">,</span> <span class="n">Crossref_matching_key_for_citation</span> <span class="o">=</span> <span class="n">ref_srch_webio</span><span class="o">.</span><span class="n">search_references_on_Crossref</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">])</span>
     
-    <span class="n">publication_dict</span> <span class="o">=</span> <span class="n">PubMed_publication_dict</span>
+    <span class="n">publication_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">no_PubMed</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">PubMed_publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
+                <span class="n">publication_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 <span class="c1">#    if not args[&quot;--no_GoogleScholar&quot;]:</span>
 <span class="c1">#        for key, value in Google_Scholar_publication_dict.items():</span>
 <span class="c1">#            if not key in publication_dict:</span>
@@ -174,7 +184,9 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
                 <span class="n">publication_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
             
-    <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="n">PubMed_matching_key_for_citation</span>
+    <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">no_PubMed</span><span class="p">:</span>
+        <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">if</span> <span class="n">key</span> <span class="k">else</span> <span class="n">PubMed_matching_key_for_citation</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">matching_key_for_citation</span><span class="p">)]</span>
 <span class="c1">#    if not args[&quot;--no_GoogleScholar&quot;]:</span>
 <span class="c1">#        matching_key_for_citation = [key if key else Google_Scholar_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_Crossref</span><span class="p">:</span>

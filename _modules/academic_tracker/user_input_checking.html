@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.user_input_checking &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>academic_tracker.user_input_checking &mdash; Academic Tracker 1.0.4 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -30,7 +30,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -206,7 +206,7 @@
 
 
 
-<div class="viewcode-block" id="config_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.config_file_check">[docs]</a><span class="k">def</span> <span class="nf">config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_ORCID</span><span class="p">,</span> <span class="n">no_GoogleScholar</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">):</span>
+<div class="viewcode-block" id="config_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.config_file_check">[docs]</a><span class="k">def</span> <span class="nf">config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_ORCID</span><span class="p">,</span> <span class="n">no_GoogleScholar</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check that the configuration JSON file is as expected.</span>
 <span class="sd">    </span>
 <span class="sd">    The validational jsonschema is in the tracker_schema module. </span>
@@ -216,6 +216,7 @@
 <span class="sd">        no_ORCID (bool): if True delete the part of the schema that checks ORCID attributes.</span>
 <span class="sd">        no_GoogleScholar (bool): if True and no_Crossref is True delete the part of the schema that checks Crossref attributes.</span>
 <span class="sd">        no_Crossref (bool): if True and no_GoogleScholar is True delete the part of the schema that checks Crossref attributes.</span>
+<span class="sd">        no_PubMed (bool): if True delete the part of the schema that checks PubMed attributes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">schema</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">tracker_schema</span><span class="o">.</span><span class="n">config_schema</span><span class="p">)</span>
@@ -225,6 +226,9 @@
     <span class="k">if</span> <span class="n">no_Crossref</span> <span class="ow">and</span> <span class="n">no_GoogleScholar</span><span class="p">:</span>
         <span class="k">del</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">]</span>
         <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">no_PubMed</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">]</span>
+        <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">)</span>
     
     <span class="n">pattern_messages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ORCID&quot;</span><span class="p">:</span><span class="s2">&quot; is not a valid ORCID. It must match the regex \d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{3}</span><span class="s2">[0,1,2,3,4,5,6,7,8,9,X]&quot;</span><span class="p">}</span>
     <span class="n">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">config_json</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">pattern_messages</span><span class="o">=</span><span class="n">pattern_messages</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="p">())</span></div>
@@ -232,7 +236,7 @@
 
             
 
-<div class="viewcode-block" id="ref_config_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.ref_config_file_check">[docs]</a><span class="k">def</span> <span class="nf">ref_config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">):</span>
+<div class="viewcode-block" id="ref_config_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.ref_config_file_check">[docs]</a><span class="k">def</span> <span class="nf">ref_config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check that the configuration JSON file is as expected.</span>
 <span class="sd">    </span>
 <span class="sd">    The validational jsonschema is in the tracker_schema module.    </span>
@@ -240,12 +244,16 @@
 <span class="sd">    Args:</span>
 <span class="sd">        config_json (dict): dict with a truncated structure of the configuration JSON file.</span>
 <span class="sd">        no_Crossref (bool): if True delete the part of the schema that checks Crossref attributes.</span>
+<span class="sd">        no_PubMed (bool): if True delete the part of the schema that checks PubMed attributes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">schema</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">tracker_schema</span><span class="o">.</span><span class="n">ref_config_schema</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">no_Crossref</span><span class="p">:</span>
         <span class="k">del</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">]</span>
         <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">no_Crossref</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">]</span>
+        <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">)</span>
     
     <span class="n">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">config_json</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="p">())</span>    </div>
 

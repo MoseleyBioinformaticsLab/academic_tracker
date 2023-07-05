@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Tutorial &mdash; Academic Tracker 1.0.4 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -170,7 +170,7 @@ tracker-test-YYMMDDHHMM.</p>
 <h2>Search For Publications By Author<a class="headerlink" href="#search-for-publications-by-author" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="command-line-signature">
 <h3>Command Line Signature<a class="headerlink" href="#command-line-signature" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]</span>
 </pre></div>
 </div>
 </div>
@@ -213,17 +213,16 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
 <p>–prev_pub:</p>
 <p>Specifies a publications.json file to use as a list of publications to ignore
 when searching for new publications. Set to “ignore” to prevent author_search
-from automatically looking for a publications.json file in tracker directories.
-If a publication is in prev_pub but the information has updated then it will not
-be ignored.</p>
+from automatically looking for a publications.json file in tracker directories.</p>
 <p>–no_GoogleScholar:</p>
 <p>If used author_search will not search Google Scholar for publications.</p>
 <p>–no_ORCID:</p>
-<p>If used author_search will not search ORCID for publications. This option is assumed
-if the ORCID_search section of the configuration JSON file is missing.</p>
+<p>If used author_search will not search ORCID for publications.</p>
 <p>–no_Crossref:</p>
-<p>If used author_search will not search Crossref for publications. This option is
-assumed if the Crossref_search section of the configuration JSON file is missing.</p>
+<p>If used author_search will not search Crossref for publications.</p>
+<p>–no_PubMed:</p>
+<p>If used author_search will not search PubMed for publications. This option is
+assumed if the PubMed_search section of the configuration JSON file is missing.</p>
 <p>–verbose:</p>
 <p>If used HTML errors and other warnings will be printed to the screen.</p>
 <p>–silent:</p>
@@ -453,7 +452,7 @@ projectname_authorname_project_report.txt</p>
 <h2>Search For Publications By Reference<a class="headerlink" href="#search-for-publications-by-reference" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
 <h3>Command Line Signature<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]</span>
 </pre></div>
 </div>
 </div>
@@ -504,8 +503,10 @@ information from PubMed.</p>
 <p>–MEDLINE_reference:</p>
 <p>Specifies that the reference file is a <a class="reference external" href="https://www.nlm.nih.gov/bsd/mms/medlineelements.html">MEDLINE</a> formatted file.</p>
 <p>–no_Crossref:</p>
+<p>If used reference_search will not search Crossref for publications.</p>
+<p>–no_PubMed:</p>
 <p>If used reference_search will not search Crossref for publications. This option
-is assumed if the Crossref_search section of the configuration JSON file is missing.</p>
+is assumed if the PubMed_search section of the configuration JSON file is missing.</p>
 <p>–verbose:</p>
 <p>If used HTML errors and other warnings will be printed to the screen.</p>
 <p>–silent:</p>

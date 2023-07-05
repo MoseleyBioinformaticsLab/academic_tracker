@@ -27,7 +27,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]
+    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]
 
 
 Description
@@ -76,9 +76,7 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 
 Specifies a publications.json file to use as a list of publications to ignore 
 when searching for new publications. Set to "ignore" to prevent author_search 
-from automatically looking for a publications.json file in tracker directories. 
-If a publication is in prev_pub but the information has updated then it will not 
-be ignored.
+from automatically looking for a publications.json file in tracker directories.
             
 --no_GoogleScholar: 
 
@@ -86,13 +84,16 @@ If used author_search will not search Google Scholar for publications.
 
 --no_ORCID: 
 
-If used author_search will not search ORCID for publications. This option is assumed 
-if the ORCID_search section of the configuration JSON file is missing.
+If used author_search will not search ORCID for publications.
 
 --no_Crossref: 
 
-If used author_search will not search Crossref for publications. This option is 
-assumed if the Crossref_search section of the configuration JSON file is missing.
+If used author_search will not search Crossref for publications.
+
+--no_PubMed: 
+
+If used author_search will not search PubMed for publications. This option is 
+assumed if the PubMed_search section of the configuration JSON file is missing.
 
 --verbose: 
 
@@ -360,7 +361,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]
 
 
 Description
@@ -425,8 +426,12 @@ Specifies that the reference file is a MEDLINE_ formatted file.
             
 --no_Crossref: 
 
+If used reference_search will not search Crossref for publications.
+
+--no_PubMed: 
+
 If used reference_search will not search Crossref for publications. This option 
-is assumed if the Crossref_search section of the configuration JSON file is missing.
+is assumed if the PubMed_search section of the configuration JSON file is missing.
 
 --verbose: 
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>API &mdash; Academic Tracker 1.0.4 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -137,7 +137,7 @@
 
 <dl class="function">
 <dt id="academic_tracker.user_input_checking.config_file_check">
-<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.config_file_check" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">no_PubMed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.config_file_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the configuration JSON file is as expected.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
@@ -147,6 +147,7 @@
 <li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True delete the part of the schema that checks ORCID attributes.</p></li>
 <li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True and no_Crossref is True delete the part of the schema that checks Crossref attributes.</p></li>
 <li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True and no_GoogleScholar is True delete the part of the schema that checks Crossref attributes.</p></li>
+<li><p><strong>no_PubMed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True delete the part of the schema that checks PubMed attributes.</p></li>
 </ul>
 </dd>
 </dl>
@@ -179,7 +180,7 @@ and that every column is in column_order.</p>
 
 <dl class="function">
 <dt id="academic_tracker.user_input_checking.ref_config_file_check">
-<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">ref_config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#ref_config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.ref_config_file_check" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">academic_tracker.user_input_checking.</code><code class="sig-name descname">ref_config_file_check</code><span class="sig-paren">(</span><em class="sig-param">config_json</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">no_PubMed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/user_input_checking.html#ref_config_file_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.user_input_checking.ref_config_file_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the configuration JSON file is as expected.</p>
 <p>The validational jsonschema is in the tracker_schema module.</p>
 <dl class="field-list simple">
@@ -187,6 +188,7 @@ and that every column is in column_order.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>config_json</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – dict with a truncated structure of the configuration JSON file.</p></li>
 <li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True delete the part of the schema that checks Crossref attributes.</p></li>
+<li><p><strong>no_PubMed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True delete the part of the schema that checks PubMed attributes.</p></li>
 </ul>
 </dd>
 </dl>
@@ -228,7 +230,7 @@ and that every column is in column_order.</p>
 <p>Modularized pieces of author_search.</p>
 <dl class="function">
 <dt id="academic_tracker.athr_srch_modularized.build_publication_dict">
-<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">prev_pubs</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">prev_pubs</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">no_PubMed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query PubMed, ORCID, Google Scholar, and Crossref for publications for the authors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -238,6 +240,7 @@ and that every column is in column_order.</p>
 <li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search ORCID else don’t.</p></li>
 <li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True search Google Scholar else don’t.</p></li>
 <li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t.</p></li>
+<li><p><strong>no_PubMed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search PubMed else don’t.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -270,7 +273,7 @@ config_dict (dict): same as input but with author information updated based on p
 
 <dl class="function">
 <dt id="academic_tracker.athr_srch_modularized.input_reading_and_checking">
-<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">academic_tracker.athr_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">no_ORCID</em>, <em class="sig-param">no_GoogleScholar</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">no_PubMed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/athr_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.athr_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read in inputs from user and do error checking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -279,6 +282,7 @@ config_dict (dict): same as input but with author information updated based on p
 <li><p><strong>no_ORCID</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search ORCID else don’t. Reduces checking on config JSON if True.</p></li>
 <li><p><strong>no_GoogleScholar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – if True search Google Scholar else don’t. Reduces checking on config JSON if True.</p></li>
 <li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>no_PubMed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search PubMed else don’t. Reduces checking on config JSON if True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -698,7 +702,7 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <p>Modularized pieces of reference_search.</p>
 <dl class="function">
 <dt id="academic_tracker.ref_srch_modularized.build_publication_dict">
-<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">no_Crossref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">build_publication_dict</code><span class="sig-paren">(</span><em class="sig-param">config_dict</em>, <em class="sig-param">tokenized_citations</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">no_PubMed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#build_publication_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.build_publication_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query PubMed and Crossref for publications matching the citations in tokenized_citations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -706,6 +710,7 @@ filename (str): Filename of the report. Made have had an .xlsx added to the end.
 <li><p><strong>config_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Matches the Configuration file JSON schema.</p></li>
 <li><p><strong>tokenized_citations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – list of dicts. Matches the tokenized citations JSON schema.</p></li>
 <li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>no_PubMed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search PubMed else don’t. Reduces checking on config JSON if True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -720,7 +725,7 @@ tokenized_citations (list): Same list as the input but with the pud_dict_key upd
 
 <dl class="function">
 <dt id="academic_tracker.ref_srch_modularized.input_reading_and_checking">
-<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">ref_path_or_URL</em>, <em class="sig-param">MEDLINE_reference</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">prev_pub_filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">academic_tracker.ref_srch_modularized.</code><code class="sig-name descname">input_reading_and_checking</code><span class="sig-paren">(</span><em class="sig-param">config_json_filepath</em>, <em class="sig-param">ref_path_or_URL</em>, <em class="sig-param">MEDLINE_reference</em>, <em class="sig-param">no_Crossref</em>, <em class="sig-param">no_PubMed</em>, <em class="sig-param">prev_pub_filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/academic_tracker/ref_srch_modularized.html#input_reading_and_checking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#academic_tracker.ref_srch_modularized.input_reading_and_checking" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read in inputs from user and do error checking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -729,6 +734,7 @@ tokenized_citations (list): Same list as the input but with the pud_dict_key upd
 <li><p><strong>ref_path_or_URL</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – either a filepath to file to tokenize or a URL to tokenize.</p></li>
 <li><p><strong>MEDLINE_reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True re_path_or_URL is a filepath to a MEDLINE formatted file.</p></li>
 <li><p><strong>no_Crossref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search Crossref else don’t. Reduces checking on config JSON if True.</p></li>
+<li><p><strong>no_PubMed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True search PubMed else don’t. Reduces checking on config JSON if True.</p></li>
 <li><p><strong>prev_pub_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – filepath to the publication JSON to read in.</p></li>
 </ul>
 </dd>

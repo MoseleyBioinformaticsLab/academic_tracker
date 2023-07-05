@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; Academic Tracker 1.0.3 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>User Guide &mdash; Academic Tracker 1.0.4 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -345,8 +345,8 @@ by the publication references given in the reference file or URL. Details about
 the JSON files are in the <a class="reference internal" href="jsonschema.html"><span class="doc">JSON Schema</span></a> section, and more information about
 the use cases with examples are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> section.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
-    academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]
-    academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]
+    academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]
+    academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]
     academic_tracker find_ORCID &lt;config_json_file&gt; [--verbose --silent]
     academic_tracker find_Google_Scholar &lt;config_json_file&gt; [--verbose --silent]
     academic_tracker add_authors &lt;config_json_file&gt; &lt;authors_file&gt; [--verbose --silent]
@@ -370,6 +370,7 @@ Search Options:
     --no_GoogleScholar                Don&#39;t search Google Scholar.
     --no_ORCID                        Don&#39;t search ORCID.
     --no_Crossref                     Don&#39;t search Crossref.
+    --no_PubMed                       Don&#39;t search PubMed.
 </pre></div>
 </div>
 </div>

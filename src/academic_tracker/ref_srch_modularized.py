@@ -40,10 +40,6 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
     
-<<<<<<< Updated upstream:academic_tracker/ref_srch_modularized.py
-    ## Get inputs from config file and check them for errors.
-    user_input_checking.ref_config_file_check(config_dict, no_Crossref)
-=======
     if not "Crossref_search" in config_dict:
         no_Crossref = True
         
@@ -53,7 +49,6 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
     ## Get inputs from config file and check them for errors.
     user_input_checking.ref_config_file_check(config_dict, no_Crossref, no_PubMed)
     user_input_checking.config_report_check(config_dict)
->>>>>>> Stashed changes:src/academic_tracker/ref_srch_modularized.py
     
     if not prev_pub_filepath or prev_pub_filepath.lower() == "ignore":
         prev_pubs = {}
@@ -150,10 +145,9 @@ def save_and_send_reports_and_emails(config_dict, tokenized_citations, publicati
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
+    os.mkdir(save_dir_name)
     
     
     if "summary_report" in config_dict:
@@ -191,8 +185,6 @@ def save_and_send_reports_and_emails(config_dict, tokenized_citations, publicati
                 webio.send_emails(email_messages)
                 
     return save_dir_name
-
-
 
 
 

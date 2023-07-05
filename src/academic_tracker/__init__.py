@@ -39,8 +39,4 @@ This package has the following modules:
     This module contains general functions for interfacing with the internet.
 
 """
-<<<<<<< Updated upstream:academic_tracker/__init__.py
-__version__ = "1.0.0"
-=======
 __version__ = "1.0.4"
->>>>>>> Stashed changes:src/academic_tracker/__init__.py

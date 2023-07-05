@@ -10,6 +10,8 @@ import re
 import datetime
 import os
 
+import deepdiff
+
 from . import user_input_checking
 from . import fileio
 from . import helper_functions
@@ -35,10 +37,6 @@ def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar,
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
     
-<<<<<<< Updated upstream:academic_tracker/athr_srch_modularized.py
-    ## Get inputs from config file and check them for errors.
-    user_input_checking.config_file_check(config_dict, no_ORCID, no_GoogleScholar, no_Crossref)
-=======
     if not "ORCID_search" in config_dict:
         no_ORCID = True
         
@@ -51,7 +49,6 @@ def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar,
     ## Get inputs from config file and check them for errors.
     user_input_checking.config_file_check(config_dict, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed)
     user_input_checking.config_report_check(config_dict)
->>>>>>> Stashed changes:src/academic_tracker/athr_srch_modularized.py
     
     return config_dict
 
@@ -107,29 +104,23 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
     
     ## Get publications from PubMed 
     helper_functions.vprint("Finding author's publications. This could take a while.")
-<<<<<<< Updated upstream:academic_tracker/athr_srch_modularized.py
-    helper_functions.vprint("Searching PubMed.")
-    PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(prev_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
-    prev_pubs.update(PubMed_publication_dict)
-=======
     current_pubs = {}
     if not no_PubMed:
         helper_functions.vprint("Searching PubMed.")
         PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(current_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
         current_pubs.update(PubMed_publication_dict)
->>>>>>> Stashed changes:src/academic_tracker/athr_srch_modularized.py
     if not no_ORCID:
         helper_functions.vprint("Searching ORCID.")
-        ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(prev_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
-        prev_pubs.update(ORCID_publication_dict)
+        ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(current_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
+        current_pubs.update(ORCID_publication_dict)
     if not no_GoogleScholar:
         helper_functions.vprint("Searching Google Scholar.")
-        Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(prev_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
-        prev_pubs.update(Google_Scholar_publication_dict)
+        Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(current_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
+        current_pubs.update(Google_Scholar_publication_dict)
     if not no_Crossref:
         helper_functions.vprint("Searching Crossref.")
-        Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(prev_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
-        prev_pubs.update(Crossref_publication_dict)
+        Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(current_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
+        current_pubs.update(Crossref_publication_dict)
     
     publication_dict = {}
     if not no_PubMed:
@@ -148,13 +139,18 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
         for key, value in Crossref_publication_dict.items():
             if not key in publication_dict:
                 publication_dict[key] = value
+    
+    ## Compare current pubs with previous and only keep those that are new or updated.
+    for pub_id, pub_values in prev_pubs.items():
+        if pub_id in publication_dict and not deepdiff.DeepDiff(publication_dict[pub_id], pub_values, ignore_order=True, report_repetition=True):
+            del publication_dict[pub_id]
         
         
     if len(publication_dict) == 0:
         helper_functions.vprint("No new publications found.")
         sys.exit()
         
-    return publication_dict, prev_pubs
+    return publication_dict
 
 
 
@@ -174,10 +170,9 @@ def save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, 
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-        os.mkdir(save_dir_name)
+    os.mkdir(save_dir_name)
         
     
     email_messages = athr_srch_emails_and_reports.create_project_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, save_dir_name)
@@ -220,11 +215,5 @@ def save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, 
             webio.send_emails(email_messages)
     
     return save_dir_name
-
-
-
-
-
-
 
 

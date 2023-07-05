@@ -172,7 +172,7 @@ def ref_config_file_check(config_json, no_Crossref, no_PubMed):
     if no_Crossref:
         del schema["properties"]["Crossref_search"]
         schema["required"].remove("Crossref_search")
-    if no_Crossref:
+    if no_PubMed:
         del schema["properties"]["PubMed_search"]
         schema["required"].remove("PubMed_search")
     

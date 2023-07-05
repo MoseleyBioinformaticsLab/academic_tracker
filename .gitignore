@@ -11,3 +11,4 @@ build/
 dist/
 coverage.xml
 .coverage
+htmlcov/

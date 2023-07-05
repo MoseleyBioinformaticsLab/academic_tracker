@@ -19,7 +19,7 @@ from . import webio
 
 
 
-def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, prev_pub_filepath):
+def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, prev_pub_filepath):
     """Read in inputs from user and do error checking.
     
     Args:
@@ -27,6 +27,7 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
         ref_path_or_URL (str): either a filepath to file to tokenize or a URL to tokenize.
         MEDLINE_reference (bool): If True re_path_or_URL is a filepath to a MEDLINE formatted file.
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
+        no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
         
     Returns:
@@ -39,12 +40,20 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
     
-    if not "Crossref_search" in config_dict:
-        no_Crossref = True
-    
+<<<<<<< Updated upstream:academic_tracker/ref_srch_modularized.py
     ## Get inputs from config file and check them for errors.
     user_input_checking.ref_config_file_check(config_dict, no_Crossref)
+=======
+    if not "Crossref_search" in config_dict:
+        no_Crossref = True
+        
+    if not "PubMed_search" in config_dict:
+        no_PubMed = True
+    
+    ## Get inputs from config file and check them for errors.
+    user_input_checking.ref_config_file_check(config_dict, no_Crossref, no_PubMed)
     user_input_checking.config_report_check(config_dict)
+>>>>>>> Stashed changes:src/academic_tracker/ref_srch_modularized.py
     
     if not prev_pub_filepath or prev_pub_filepath.lower() == "ignore":
         prev_pubs = {}
@@ -62,13 +71,14 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
 
 
 
-def build_publication_dict(config_dict, tokenized_citations, no_Crossref):
+def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_PubMed):
     """Query PubMed and Crossref for publications matching the citations in tokenized_citations.
     
     Args:
         config_dict (dict): Matches the Configuration file JSON schema.
         tokenized_citations (list): list of dicts. Matches the tokenized citations JSON schema.
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
+        no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
         
     Returns:
         publication_dict (dict): The dictionary matching the publication JSON schema.
@@ -76,8 +86,9 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref):
     """
     
     helper_functions.vprint("Finding publications. This could take a while.")
-    helper_functions.vprint("Searching PubMed.")
-    PubMed_publication_dict, PubMed_matching_key_for_citation = ref_srch_webio.search_references_on_PubMed(tokenized_citations, config_dict["PubMed_search"]["PubMed_email"])
+    if not no_PubMed:
+        helper_functions.vprint("Searching PubMed.")
+        PubMed_publication_dict, PubMed_matching_key_for_citation = ref_srch_webio.search_references_on_PubMed(tokenized_citations, config_dict["PubMed_search"]["PubMed_email"])
 #    if not args["--no_GoogleScholar"]:
 #        print("Searching Google Scholar.")
 #        Google_Scholar_publication_dict, Google_Scholar_matching_key_for_citation = webio.search_references_on_Google_Scholar(tokenized_citations, config_dict["Crossref_search"]["Crossref_email"], args["--verbose"])
@@ -85,7 +96,11 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref):
         helper_functions.vprint("Searching Crossref.")
         Crossref_publication_dict, Crossref_matching_key_for_citation = ref_srch_webio.search_references_on_Crossref(tokenized_citations, config_dict["Crossref_search"]["mailto_email"])
     
-    publication_dict = PubMed_publication_dict
+    publication_dict = {}
+    if not no_PubMed:
+        for key, value in PubMed_publication_dict.items():
+            if not key in publication_dict:
+                publication_dict[key] = value
 #    if not args["--no_GoogleScholar"]:
 #        for key, value in Google_Scholar_publication_dict.items():
 #            if not key in publication_dict:
@@ -95,7 +110,9 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref):
             if not key in publication_dict:
                 publication_dict[key] = value
             
-    matching_key_for_citation = PubMed_matching_key_for_citation
+    matching_key_for_citation = [None] * len(tokenized_citations)
+    if not no_PubMed:
+        matching_key_for_citation = [key if key else PubMed_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
 #    if not args["--no_GoogleScholar"]:
 #        matching_key_for_citation = [key if key else Google_Scholar_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
     if not no_Crossref:
@@ -133,9 +150,10 @@ def save_and_send_reports_and_emails(config_dict, tokenized_citations, publicati
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
+        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-    os.mkdir(save_dir_name)
+        os.mkdir(save_dir_name)
     
     
     if "summary_report" in config_dict:
@@ -173,6 +191,8 @@ def save_and_send_reports_and_emails(config_dict, tokenized_citations, publicati
                 webio.send_emails(email_messages)
                 
     return save_dir_name
+
+
 
 
 

@@ -1,7 +1,7 @@
-"""
+"""   
 Usage:
-    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --verbose --silent]
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --verbose --silent]
+    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]
     academic_tracker find_ORCID <config_json_file> [--verbose --silent]
     academic_tracker find_Google_Scholar <config_json_file> [--verbose --silent]
     academic_tracker add_authors <config_json_file> <authors_file> [--verbose --silent]
@@ -11,7 +11,7 @@ Usage:
     
 Options:
     -h --help                         Show this screen.
-    -v --version                      Show version.
+    --version                         Show version.
     --verbose                         Print hidden error messages.
     --silent                          Do not print anything to the screen.
     --test                            Generate pubs and email texts, but do not send emails.
@@ -25,7 +25,20 @@ Search Options:
     --no_GoogleScholar                Don't search Google Scholar.
     --no_ORCID                        Don't search ORCID.
     --no_Crossref                     Don't search Crossref.
+    --no_PubMed                       Don't search PubMed.
 """
+
+
+## Need help with pycharm UML diagram.
+## add defulat pandas excel engine to required packages xlsxwriter I think
+
+## take docs/_build  out of gitignore and point GitHub pages there for documentation.
+## Add the url of this page to the about section on gitHub.
+## When to merge to master?
+## When to create github pages?
+## Is BSD license okay?
+## Putting on pypi? When?
+## Does the lab have github actions for sphinx documentation? 
 
 
 import re
@@ -67,7 +80,8 @@ def main():
     
     if len(sys.argv) > 1 and sys.argv[1] == "author_search":
         author_search(args["<config_json_file>"], args["--no_ORCID"], 
-                      args["--no_GoogleScholar"], args["--no_Crossref"], 
+                      args["--no_GoogleScholar"], args["--no_Crossref"],
+                      args["--no_PubMed"],
                       args["--test"], args["--prev_pub"])
     elif len(sys.argv) > 1 and sys.argv[1] == "reference_search":
         if args["--PMID_reference"]:
@@ -75,6 +89,7 @@ def main():
         else:
             reference_search(args["<config_json_file>"], args["<references_file_or_URL>"], 
                              args["--MEDLINE_reference"], args["--no_Crossref"], 
+                             args["--no_PubMed"],
                              args["--test"], args["--prev_pub"])
     elif len(sys.argv) > 1 and sys.argv[1] == "find_ORCID":
         find_ORCID(args["<config_json_file>"])
@@ -95,7 +110,7 @@ def main():
         
 
 
-def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref, test, prev_pub_filepath):
+def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed, test, prev_pub_filepath):
     """Query sources for publications by author.
     
     Reads in the JSON config file, previous publications JSON file, and checks for errors.
@@ -109,11 +124,12 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
         no_ORCID (bool): If True search ORCID else don't. Reduces checking on config JSON if True.
         no_GoogleScholar (bool): if True search Google Scholar else don't. Reduces checking on config JSON if True.
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
+        no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
         test (bool): If True save_dir_name is tracker-test instead of tracker- and emails are not sent.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
     """
     
-    config_dict = athr_srch_modularized.input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref)
+    config_dict = athr_srch_modularized.input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed)
     
     ## Create an authors_json for each project in the config_dict and update those authors attributes with the project attributes.
     authors_by_project_dict, config_dict = athr_srch_modularized.generate_internal_data_and_check_authors(config_dict)
@@ -124,7 +140,11 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
         user_input_checking.prev_pubs_file_check(prev_pubs)
             
     ## Query sources and build publication_dict.
-    publication_dict = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref)            
+<<<<<<< Updated upstream:academic_tracker/__main__.py
+    publication_dict, prev_pubs = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref)            
+=======
+    publication_dict = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed)            
+>>>>>>> Stashed changes:src/academic_tracker/__main__.py
     
     save_dir_name = athr_srch_modularized.save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, test)
     
@@ -135,7 +155,7 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
 
 
 
-def reference_search(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, test, prev_pub_filepath):
+def reference_search(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, test, prev_pub_filepath):
     """Query PubMed and Crossref for publications matching a reference.
     
     Read in user inputs and check for error, query sources based on inputs, build 
@@ -146,13 +166,14 @@ def reference_search(config_json_filepath, ref_path_or_URL, MEDLINE_reference, n
         ref_path_or_URL (str): either a filepath to file to tokenize or a URL to tokenize.
         MEDLINE_reference (bool): If True re_path_or_URL is a filepath to a MEDLINE formatted file.
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
+        no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
         test (bool): If True save_dir_name is tracker-test instead of tracker- and emails are not sent.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
     """
     
-    config_dict, tokenized_citations, has_previous_pubs, prev_pubs = ref_srch_modularized.input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, prev_pub_filepath)       
+    config_dict, tokenized_citations, has_previous_pubs, prev_pubs = ref_srch_modularized.input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, prev_pub_filepath)       
 
-    publication_dict, tokenized_citations = ref_srch_modularized.build_publication_dict(config_dict, tokenized_citations, no_Crossref)
+    publication_dict, tokenized_citations = ref_srch_modularized.build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_PubMed)
             
     save_dir_name = ref_srch_modularized.save_and_send_reports_and_emails(config_dict, tokenized_citations, publication_dict, prev_pubs, has_previous_pubs, test)
             
@@ -176,8 +197,12 @@ def PMID_reference(config_json_filepath, ref_path_or_URL, test):
     config_dict = fileio.load_json(config_json_filepath)
     
     ## Get inputs from config file and check them for errors.
+<<<<<<< Updated upstream:academic_tracker/__main__.py
     user_input_checking.ref_config_file_check(config_dict, True)
+=======
+    user_input_checking.ref_config_file_check(config_dict, True, False)
     user_input_checking.config_report_check(config_dict)
+>>>>>>> Stashed changes:src/academic_tracker/__main__.py
     
     ## Check the DOI file extension and call the correct read in function.
     extension = os.path.splitext(ref_path_or_URL)[1][1:].lower()
@@ -195,8 +220,10 @@ def PMID_reference(config_json_filepath, ref_path_or_URL, test):
         helper_functions.vprint("Nothing was read from the PMID file. Make sure the file is not empty or is a supported file type.")
         sys.exit()
     
-    PMID_list = [line for line in file_contents.split("\n") if line] if type(file_contents) == str else file_contents
-    
+    if type(file_contents) == str:
+        PMID_list = [line for line in file_contents.split("\n") if line]
+    else:
+        PMID_list = file_contents
     user_input_checking.tracker_validate(PMID_list, tracker_schema.PMID_reference_schema)
     
     helper_functions.vprint("Querying PubMed and building the publication list.")
@@ -205,9 +232,10 @@ def PMID_reference(config_json_filepath, ref_path_or_URL, test):
     ## Build the save directory name.
     if test:
         save_dir_name = "tracker-test-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
+        os.mkdir(save_dir_name)
     else:
         save_dir_name = "tracker-" + re.sub(r"\-| |\:", "", str(datetime.datetime.now())[2:16])
-    os.mkdir(save_dir_name)
+        os.mkdir(save_dir_name)
     
     ## combine previous and new publications lists and save
     fileio.save_publications_to_file(save_dir_name, publication_dict, {})
@@ -368,7 +396,6 @@ def gen_reports_and_emails_auth(config_json_filepath, publication_json_filepath,
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.tracker_validate(config_dict, tracker_schema.gen_reports_auth_schema)
-    user_input_checking.config_report_check(config_dict)
     
     ## Create an authors_json for each project in the config_dict and update those authors attributes with the project attributes.
     authors_by_project_dict, config_dict = athr_srch_modularized.generate_internal_data_and_check_authors(config_dict)
@@ -402,7 +429,6 @@ def gen_reports_and_emails_ref(config_json_filepath, ref_path_or_URL, publicatio
     
     ## Get inputs from config file and check them for errors.
     user_input_checking.tracker_validate(config_dict, tracker_schema.gen_reports_ref_schema)
-    user_input_checking.config_report_check(config_dict)
     
     if not prev_pub_filepath or prev_pub_filepath.lower() == "ignore":
         prev_pubs = {}

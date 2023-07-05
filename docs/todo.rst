@@ -16,3 +16,4 @@ Add PMCID and grants to pymed package.
 
 Add expanded search to orcid package or look for more up to date package to use. Expanded search was added to ORCID's API with 3.0 release. orcid package appears to be 2.0 only.
 
+Add capability to get the citations each paper cites.

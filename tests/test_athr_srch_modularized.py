@@ -23,19 +23,21 @@ def disable_network_calls(monkeypatch):
 
 @pytest.fixture
 def config_dict():
-    return load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+    return load_json(os.path.join("testing_files", "config_truncated.json"))
 
 
 
 
 def test_input_reading_and_checking(config_dict):
-    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated.json")
+    config_json_filepath = os.path.join("testing_files", "config_truncated.json")
     
     expected_config_dict = config_dict
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False)
     
     assert expected_config_dict == actual_config_dict
+<<<<<<< Updated upstream
+=======
     
 
 def test_input_reading_and_checking_no_ORCID(config_dict):
@@ -43,7 +45,17 @@ def test_input_reading_and_checking_no_ORCID(config_dict):
     
     expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noORCID.json"))
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False)
+    
+    assert expected_config_dict == actual_config_dict
+    
+
+def test_input_reading_and_checking_no_PubMed(config_dict):
+    config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noPubMed.json")
+    
+    expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noPubMed.json"))
+    
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False)
     
     assert expected_config_dict == actual_config_dict
     
@@ -52,7 +64,7 @@ def test_input_reading_and_checking_no_Crossref(config_dict):
     config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
         
     with pytest.raises(BaseException):
-        actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False)
+        actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False)
         
 
 def test_input_reading_and_checking_no_Crossref_noGS(config_dict):
@@ -60,16 +72,17 @@ def test_input_reading_and_checking_no_Crossref_noGS(config_dict):
         
     expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noCrossref.json"))
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, True, False)
+    actual_config_dict = input_reading_and_checking(config_json_filepath, False, True, False, False)
     
     assert expected_config_dict == actual_config_dict
     
+>>>>>>> Stashed changes
 
 
 
 def test_generate_internal_data_and_check_authors(config_dict, capsys):
-    expected_authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
-    expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_authors_adjusted.json"))
+    expected_authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
+    expected_config_dict = load_json(os.path.join("testing_files", "config_truncated_authors_adjusted.json"))
     
     actual_authors_by_project_dict, actual_config_dict = generate_internal_data_and_check_authors(config_dict)
     
@@ -82,9 +95,9 @@ def test_generate_internal_data_and_check_authors(config_dict, capsys):
 
 
 def test_build_publication_dict_all_sources(config_dict, mocker):
-    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
-    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
     expected_pub_dict["32095798"] = expected_pub_dict["32095784"]
     
@@ -104,16 +117,21 @@ def test_build_publication_dict_all_sources(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False)
+<<<<<<< Updated upstream
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, False)
+=======
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False, False)
+>>>>>>> Stashed changes
     
     assert expected_pub_dict == actual_publication_dict
+    assert expected_pub_dict == prev_pubs
 
 
 
 def test_build_publication_dict_no_ORCID(config_dict, mocker):
-    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
-    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
     expected_pub_dict["32095798"] = expected_pub_dict["32095784"]
     del expected_pub_dict["https://doi.org/10.1002/adhm.202101820"]
@@ -134,16 +152,21 @@ def test_build_publication_dict_no_ORCID(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict = build_publication_dict(config_dict, {}, True, False, False)
+<<<<<<< Updated upstream
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, True, False, False)
+=======
+    actual_publication_dict = build_publication_dict(config_dict, {}, True, False, False, False)
+>>>>>>> Stashed changes
     
     assert expected_pub_dict == actual_publication_dict
+    assert expected_pub_dict == prev_pubs
     
 
 
 def test_build_publication_dict_no_Crossref(config_dict, mocker):
-    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
-    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
     expected_pub_dict["32095798"] = expected_pub_dict["32095784"]
     del expected_pub_dict["https://doi.org/10.1002/advs.202101999"]
@@ -164,16 +187,21 @@ def test_build_publication_dict_no_Crossref(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, True)
+<<<<<<< Updated upstream
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, True)
+=======
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, True, False)
+>>>>>>> Stashed changes
     
     assert expected_pub_dict == actual_publication_dict
+    assert expected_pub_dict == prev_pubs
     
 
 
 def test_build_publication_dict_no_Google_Scholar(config_dict, mocker):
-    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
         
-    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    expected_pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
     ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
     expected_pub_dict["32095798"] = expected_pub_dict["32095784"]
     del expected_pub_dict["32095798"]
@@ -194,7 +222,40 @@ def test_build_publication_dict_no_Google_Scholar(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict = build_publication_dict(config_dict, {}, False, True, False)
+<<<<<<< Updated upstream
+    actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, True, False)
+=======
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, True, False, False)
+    
+    assert expected_pub_dict == actual_publication_dict
+    
+ 
+    
+def test_build_publication_dict_no_PubMed(config_dict, mocker):
+    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+        
+    expected_pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
+    ## Add a fourth entry that is a copy of one of the others just to have a 4th to assign to the 4 different queries.
+    expected_pub_dict["32095798"] = expected_pub_dict["32095784"]
+    del expected_pub_dict["32095784"]
+    
+    def mock_query(*args, **kwargs):
+        return {"32095784":expected_pub_dict["32095784"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_PubMed_for_pubs", mock_query)
+    
+    def mock_query2(*args, **kwargs):
+        return {"https://doi.org/10.1002/adhm.202101820":expected_pub_dict["https://doi.org/10.1002/adhm.202101820"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_ORCID_for_pubs", mock_query2)
+    
+    def mock_query3(*args, **kwargs):
+        return {"https://doi.org/10.1002/advs.202101999":expected_pub_dict["https://doi.org/10.1002/advs.202101999"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Crossref_for_pubs", mock_query3)
+    
+    def mock_query4(*args, **kwargs):
+        return {"32095798":expected_pub_dict["32095798"]}
+    mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
+    
+    actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False, True)
     
     assert expected_pub_dict == actual_publication_dict
     
@@ -225,16 +286,18 @@ def test_build_publication_dict_duplicates(config_dict, mocker):
         return {"32095798":expected_pub_dict["32095798"]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
-    actual_publication_dict = build_publication_dict(config_dict, prev_pubs, False, False, False)
+    actual_publication_dict = build_publication_dict(config_dict, prev_pubs, False, False, False, False)
     
     del expected_pub_dict["32095798"]
+>>>>>>> Stashed changes
     
     assert expected_pub_dict == actual_publication_dict
+    assert expected_pub_dict == prev_pubs
 
 
 
 def test_build_publication_dict_no_pubs_found(config_dict, mocker, capsys):
-    config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
+    config_dict = load_json(os.path.join("testing_files", "config_truncated.json"))
            
     def mock_query(*args, **kwargs):
         return {}
@@ -253,7 +316,11 @@ def test_build_publication_dict_no_pubs_found(config_dict, mocker, capsys):
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_webio.search_Google_Scholar_for_pubs", mock_query4)
     
     with pytest.raises(SystemExit):
-        actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False)
+<<<<<<< Updated upstream
+        actual_publication_dict, prev_pubs = build_publication_dict(config_dict, {}, False, False, False)
+=======
+        actual_publication_dict = build_publication_dict(config_dict, {}, False, False, False, False)
+>>>>>>> Stashed changes
     
     captured = capsys.readouterr()
     expected_message = "No new publications found." + "\n"
@@ -268,16 +335,16 @@ def test_save_and_send_reports_and_emails_no_email(config_dict, mocker):
         return {"creation_date":"asdf", "emails":[]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
     
-    pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-    authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     
     config_dict["summary_report"] = {}
-    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_build_loop_template_string.txt"))
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_loop_template_string.txt"))
     
     save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
-    assert read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_summary_report_custom_template.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    assert read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report_custom_template.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
 
 
@@ -288,11 +355,11 @@ def test_save_and_send_reports_and_emails_with_email(config_dict, mocker):
         return {"creation_date":"asdf", "emails":[]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
     
-    pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-    authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     
     config_dict["summary_report"] = {}
-    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_build_loop_template_string.txt"))
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_loop_template_string.txt"))
     config_dict["summary_report"]["from_email"] = "ptth222@uky.edu"
     config_dict["summary_report"]["to_email"] = ["ptth222@uky.edu"]
     config_dict["summary_report"]["cc_email"] = ["ptth222@uky.edu"]
@@ -302,7 +369,7 @@ def test_save_and_send_reports_and_emails_with_email(config_dict, mocker):
     save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
-    assert read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_summary_report_custom_template.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    assert read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report_custom_template.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert os.path.exists(os.path.join(save_dir, "emails.json"))
 
 
@@ -313,15 +380,15 @@ def test_save_and_send_reports_and_emails_default_template(config_dict, mocker):
         return {"creation_date":"asdf", "emails":[]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
     
-    pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-    authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     
     config_dict["summary_report"] = {}
     
     save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)
     
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
-    assert read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_summary_report.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
+    assert read_text_from_txt(os.path.join("testing_files", "athr_srch_summary_report.txt")) == read_text_from_txt(os.path.join(save_dir, "summary_report.txt"))
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
 
 
@@ -331,8 +398,8 @@ def test_save_and_send_reports_and_emails_collab_reports(config_dict, mocker):
         return {"creation_date":"asdf", "emails":[]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
     
-    pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-    authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     
     config_dict["Authors"]["Anna Hoover"]["collaborator_report"] = {"from_email":"ptth222@uky.edu", 
                                                                     "email_body":"asdf",
@@ -351,8 +418,8 @@ def test_save_and_send_reports_and_emails_tabular_summary(config_dict, mocker):
         return {"creation_date":"asdf", "emails":[]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
     
-    pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-    authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     
     config_dict["summary_report"] = {}
     config_dict["summary_report"]["columns"] = {"Col1":"<project_name>"}
@@ -369,11 +436,11 @@ def test_save_and_send_reports_and_emails_manual_name(config_dict, mocker):
         return {"creation_date":"asdf", "emails":[]}
     mocker.patch("academic_tracker.athr_srch_modularized.athr_srch_emails_and_reports.create_project_reports_and_emails", emails)
     
-    pub_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-    authors_by_project_dict = load_json(os.path.join("tests", "testing_files", "authors_by_project_dict_truncated.json"))
+    pub_dict = load_json(os.path.join("testing_files", "publication_dict_truncated.json"))
+    authors_by_project_dict = load_json(os.path.join("testing_files", "authors_by_project_dict_truncated.json"))
     
     config_dict["summary_report"] = {}
-    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("tests", "testing_files", "athr_srch_build_loop_template_string.txt"))
+    config_dict["summary_report"]["template"] = read_text_from_txt(os.path.join("testing_files", "athr_srch_build_loop_template_string.txt"))
     config_dict["summary_report"]["filename"] = "test_name.txt"
     
     save_dir = save_and_send_reports_and_emails(authors_by_project_dict, pub_dict, config_dict, True)

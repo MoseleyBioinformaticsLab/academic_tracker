@@ -5,7 +5,7 @@ import pytest
 from jsonschema import FormatChecker, ValidationError
 from contextlib import nullcontext as does_not_raise
 
-from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check, config_report_check
+from academic_tracker.user_input_checking import tracker_validate, cli_inputs_check, config_file_check
 from academic_tracker.user_input_checking import prev_pubs_file_check, ref_config_file_check, tok_reference_check
 from fixtures import passing_config
 
@@ -41,7 +41,7 @@ def test_schema():
              "wrong_type_test": {"type": "string"}, 
              "wrong_format_test": {"type": "string", "format": "email"},
              "wrong_pattern_test": {"type": "string", "pattern": "^asdf$"},
-             "other_error_type": {"type": "number", "exclusiveMaximum":100}
+             "other_error_type": {"type": "number", "maximum":100}
              },
      "required": ["required_test"]
              
@@ -117,8 +117,6 @@ def test_cli_inputs_check_no_error(empty_args):
         ({"grants":[123]}),     ##item type
         ({"grants":[""]}),      ##item minLength
         ({"cutoff_year":"123"}),
-        ({"cutoff_year":1}),
-        ({"cutoff_year":99999}),
         ({"affiliations":""}),        ##type
         ({"affiliations":[]}),        ##minItems
         ({"affiliations":[123]}),     ##item type
@@ -176,7 +174,7 @@ def test_cli_inputs_check_no_error(empty_args):
 def test_config_file_project_check_errors(passing_config, config_project_errors):
     passing_config["project_descriptions"]["project 1"].update(config_project_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
 
 
@@ -214,7 +212,7 @@ def test_config_file_project_check_errors(passing_config, config_project_errors)
 def test_config_file_project_report_attributes_check_errors(passing_config, project_report_errors):
     passing_config["project_descriptions"]["project 1"]["project_report"].update(project_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
 
 def test_config_file_project_report_sort_error_project(passing_config, capsys):
@@ -224,7 +222,7 @@ def test_config_file_project_report_sort_error_project(passing_config, capsys):
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -236,7 +234,7 @@ def test_config_file_project_report_column_order_error_project(passing_config, c
                      "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -248,7 +246,7 @@ def test_config_file_project_report_column_order_error_not_all_names_project(pas
     error_message = "ValidationError: The \"column_order\" attribute for the project_report in project project 1 " +\
                      "does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\"."
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -260,7 +258,7 @@ def test_config_file_project_report_sort_error_author(passing_config, capsys):
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -272,7 +270,7 @@ def test_config_file_project_report_column_order_error_author(passing_config, ca
                      "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -284,7 +282,7 @@ def test_config_file_project_report_column_order_error_not_all_names_author(pass
     error_message = "ValidationError: The \"column_order\" attribute for the project_report for author Andrew Morris " +\
                      "does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\"."
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
         
@@ -323,7 +321,7 @@ def test_config_file_project_report_column_order_error_not_all_names_author(pass
 def test_config_file_collaborator_report_attributes_check_errors(passing_config, collaborator_report_errors):
     passing_config["project_descriptions"]["project 1"]["collaborator_report"].update(collaborator_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
         
 def test_config_file_collaborator_report_sort_error_project(passing_config, capsys):
@@ -333,7 +331,7 @@ def test_config_file_collaborator_report_sort_error_project(passing_config, caps
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -345,7 +343,7 @@ def test_config_file_collaborator_report_column_order_error_project(passing_conf
                      "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -357,7 +355,7 @@ def test_config_file_collaborator_report_column_order_error_not_all_names_projec
     error_message = "ValidationError: The \"column_order\" attribute for the collaborator_report in project project 1 " +\
                      "does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\"."
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -369,7 +367,7 @@ def test_config_file_collaborator_report_sort_error_author(passing_config, capsy
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -381,7 +379,7 @@ def test_config_file_collaborator_report_column_order_error_author(passing_confi
                      "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -393,7 +391,7 @@ def test_config_file_collaborator_report_column_order_error_not_all_names_author
     error_message = "ValidationError: The \"column_order\" attribute for the collaborator_report for author Andrew Morris " +\
                      "does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\"."
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
         
@@ -431,7 +429,7 @@ def test_config_file_collaborator_report_column_order_error_not_all_names_author
 def test_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors):
     passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
 
 def test_config_file_summary_report_sort_error_project(passing_config, capsys):
@@ -441,7 +439,7 @@ def test_config_file_summary_report_sort_error_project(passing_config, capsys):
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -453,7 +451,7 @@ def test_config_file_summary_report_column_order_error_project(passing_config, c
                      "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -465,7 +463,7 @@ def test_config_file_summary_report_column_order_error_not_all_names_project(pas
     error_message = "ValidationError: The \"column_order\" attribute for the summary_report " +\
                      "does not have all of the column names in \"columns\". Every column in \"columns\" must be in \"column_order\"."
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        config_file_check(passing_config, False, False, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
 
@@ -493,7 +491,7 @@ def test_config_file_summary_report_column_order_error_not_all_names_project(pas
 def test_config_file_summary_report_check_errors(passing_config, summary_report_errors):
     passing_config.update(summary_report_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
 
 
 
@@ -508,7 +506,7 @@ def test_config_file_summary_report_check_errors(passing_config, summary_report_
 def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors):
     passing_config["ORCID_search"].update(config_ORCID_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
 
 
 
@@ -521,7 +519,7 @@ def test_config_file_ORCID_check_errors(passing_config, config_ORCID_errors):
 def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
     passing_config["PubMed_search"].update(config_PubMed_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
 
 @pytest.mark.parametrize("config_Crossref_errors", [
@@ -533,22 +531,22 @@ def test_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
 def test_config_file_Crossref_check_errors(passing_config, config_Crossref_errors):
     passing_config["Crossref_search"].update(config_Crossref_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
 
 
 def test_config_file_check_no_error(passing_config):
     with does_not_raise():
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
 
 
 def test_config_file_check_empty_file_error():
     with pytest.raises(SystemExit):
-        config_file_check({}, False, False, False)
+        config_file_check({}, False, False, False, False)
 
 def test_config_file_check_missing_required_error(passing_config):
     del passing_config["project_descriptions"]
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
         
     
@@ -558,8 +556,6 @@ def test_config_file_check_missing_required_error(passing_config):
         ({"grants":[123]}),     ##item type
         ({"grants":[""]}),      ##item minLength
         ({"cutoff_year":"123"}),
-        ({"cutoff_year":1}),
-        ({"cutoff_year":99999}),
         ({"affiliations":""}),        ##type
         ({"affiliations":[]}),        ##minItems
         ({"affiliations":[123]}),     ##item type
@@ -623,15 +619,16 @@ def test_config_file_check_missing_required_error(passing_config):
 def test_author_file_check_errors(passing_config, author_errors):
     passing_config["Authors"]["Andrew Morris"].update(author_errors)
     with pytest.raises(SystemExit):
-        config_file_check(passing_config, False, False, False)
+        config_file_check(passing_config, False, False, False, False)
         
 
 
 def test_config_file_check_schema_reduction(passing_config):
     del passing_config["ORCID_search"]["ORCID_key"]
     del passing_config["Crossref_search"]
+    del passing_config["PubMed_search"]
     with does_not_raise():
-        config_file_check(passing_config, True, True, True)
+        config_file_check(passing_config, True, True, True, True)
 
 
 
@@ -657,7 +654,7 @@ def test_config_file_check_schema_reduction(passing_config):
 def test_ref_config_file_summary_report_attributes_check_errors(passing_config, summary_report_errors):
     passing_config["summary_report"].update(summary_report_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, False)
+        ref_config_file_check(passing_config, False, False)
         
 
 def test_ref_config_file_summary_report_sort_error_project(passing_config, capsys):
@@ -667,7 +664,7 @@ def test_ref_config_file_summary_report_sort_error_project(passing_config, capsy
                      "has values that are not column names in \"columns\".\nThe following names in \"sort\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        ref_config_file_check(passing_config, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
     
@@ -679,7 +676,7 @@ def test_ref_config_file_summary_report_column_order_error_project(passing_confi
                      "has values that are not column names in \"columns\".\nThe following names in \"column_order\" " +\
                      "could not be matched to a column in \"columns\":\n\nasdf"
     with pytest.raises(SystemExit):
-        config_report_check(passing_config)
+        ref_config_file_check(passing_config, False)
     captured = capsys.readouterr()
     assert captured.out == error_message + "\n"
 
@@ -707,7 +704,7 @@ def test_ref_config_file_summary_report_column_order_error_project(passing_confi
 def test_ref_config_file_summary_report_check_errors(passing_config, summary_report_errors):
     passing_config.update(summary_report_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, False)
+        ref_config_file_check(passing_config, False, False)
 
 
 
@@ -720,7 +717,7 @@ def test_ref_config_file_summary_report_check_errors(passing_config, summary_rep
 def test_ref_config_file_PubMed_check_errors(passing_config, config_PubMed_errors):
     passing_config["PubMed_search"].update(config_PubMed_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, False)
+        ref_config_file_check(passing_config, False, False)
         
 
 @pytest.mark.parametrize("config_Crossref_errors", [
@@ -732,28 +729,29 @@ def test_ref_config_file_PubMed_check_errors(passing_config, config_PubMed_error
 def test_ref_config_file_Crossref_check_errors(passing_config, config_Crossref_errors):
     passing_config["Crossref_search"].update(config_Crossref_errors)
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, False)
+        ref_config_file_check(passing_config, False, False)
 
 
 def test_ref_config_file_check_no_error(passing_config):
     with does_not_raise():
-        ref_config_file_check(passing_config, False)
+        ref_config_file_check(passing_config, False, False)
 
 
 def test_ref_config_file_check_empty_file_error():
     with pytest.raises(SystemExit):
-        ref_config_file_check({}, False)
+        ref_config_file_check({}, False, False)
 
 def test_ref_config_file_check_missing_required_error(passing_config):
     del passing_config["PubMed_search"]
     with pytest.raises(SystemExit):
-        ref_config_file_check(passing_config, False)
+        ref_config_file_check(passing_config, False, False)
 
 
 def test_ref_config_file_check_schema_reduction(passing_config):
     del passing_config["Crossref_search"]
+    del passing_config["PubMed_search"]
     with does_not_raise():
-        ref_config_file_check(passing_config, True)
+        ref_config_file_check(passing_config, True, True)
 
 
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; Academic Tracker 1.0.4 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>User Guide &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.4
+                1.0.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -345,14 +345,30 @@ by the publication references given in the reference file or URL. Details about
 the JSON files are in the <a class="reference internal" href="jsonschema.html"><span class="doc">JSON Schema</span></a> section, and more information about
 the use cases with examples are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> section.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
-    academic_tracker author_search &lt;config_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]
-    academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev_pub=&lt;file-path&gt; --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]
+    academic_tracker author_search &lt;config_json_file&gt; [--test] 
+                                                      [--prev_pub=&lt;file-path&gt; --prev-pub=&lt;file-path&gt;] 
+                                                      [--no-GoogleScholar --no_GoogleScholar] 
+                                                      [--no-ORCID --no_ORCID] 
+                                                      [--no-Crossref --no_Crossref] 
+                                                      [--no-PubMed --no_PubMed]
+                                                      [--verbose --silent]
+    academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test] 
+                                                                                  [--prev-pub=&lt;file-path&gt; --prev_pub=&lt;file-path&gt;]
+                                                                                  [--PMID-reference --PMID_reference]
+                                                                                  [--MEDLINE-reference --MEDLINE_reference]
+                                                                                  [--no-Crossref --no_Crossref]
+                                                                                  [--no-PubMed --no_PubMed]
+                                                                                  [--verbose --silent]
     academic_tracker find_ORCID &lt;config_json_file&gt; [--verbose --silent]
     academic_tracker find_Google_Scholar &lt;config_json_file&gt; [--verbose --silent]
     academic_tracker add_authors &lt;config_json_file&gt; &lt;authors_file&gt; [--verbose --silent]
-    academic_tracker tokenize_reference &lt;references_file_or_URL&gt; [--MEDLINE_reference --verbose --silent]
+    academic_tracker tokenize_reference &lt;references_file_or_URL&gt; [--MEDLINE-reference --MEDLINE_reference]
+                                                                 [--verbose --silent]
     academic_tracker gen_reports_and_emails_auth &lt;config_json_file&gt; &lt;publication_json_file&gt; [--test --verbose --silent]
-    academic_tracker gen_reports_and_emails_ref &lt;config_json_file&gt; &lt;references_file_or_URL&gt; &lt;publication_json_file&gt; [--test --prev_pub=&lt;file-path&gt; --MEDLINE_reference --verbose --silent]
+    academic_tracker gen_reports_and_emails_ref &lt;config_json_file&gt; &lt;references_file_or_URL&gt; &lt;publication_json_file&gt; [--test]
+                                                                                                                    [--prev-pub=&lt;file-path&gt; --prev_pub=&lt;file-path&gt;]
+                                                                                                                    [--MEDLINE-reference --MEDLINE_reference]
+                                                                                                                    [--verbose --silent]
     
 Options:
     -h --help                         Show this screen.
@@ -360,17 +376,25 @@ Options:
     --verbose                         Print hidden error messages.
     --silent                          Do not print anything to the screen.
     --test                            Generate pubs and email texts, but do not send emails.
-    --prev_pub=&lt;file-path&gt;            Filepath to json or csv with publication ids to ignore. Enter &quot;ignore&quot; for the &lt;file_path&gt; to not look for previous publications.json files in tracker directories.
+    --prev-pub=&lt;file-path&gt;            Filepath to json or csv with publication ids to ignore. 
+                                      Enter &quot;ignore&quot; for the &lt;file_path&gt; to not look for previous publications.json files in tracker directories.
+    --prev_pub=&lt;file-path&gt;            Deprecated. Use --prev-pub instead.
     
 Reference Type Options:    
-    --PMID_reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
-    --MEDLINE_reference               Indicates that the reference_file is a MEDLINE file.
+    --PMID-reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
+    --PMID_reference                  Deprecated. Use --PMID-reference instead.
+    --MEDLINE-reference               Indicates that the reference_file is a MEDLINE file.
+    --MEDLINE_reference               Deprecated. Use --MEDLINE-reference instead.
 
 Search Options:
-    --no_GoogleScholar                Don&#39;t search Google Scholar.
-    --no_ORCID                        Don&#39;t search ORCID.
-    --no_Crossref                     Don&#39;t search Crossref.
-    --no_PubMed                       Don&#39;t search PubMed.
+    --no-GoogleScholar                Don&#39;t search Google Scholar.
+    --no_GoogleScholar                Deprecated. Use --no-GoogleScholar instead.
+    --no-ORCID                        Don&#39;t search ORCID.
+    --no_ORCID                        Deprecated. Use --no-ORCID instead.
+    --no-Crossref                     Don&#39;t search Crossref.
+    --no_Crossref                     Deprecated. Use --no-Crossref instead.
+    --no-PubMed                       Don&#39;t search PubMed.
+    --no_PubMed                       Deprecated. Use --no-PubMed instead.
 </pre></div>
 </div>
 </div>

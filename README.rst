@@ -70,7 +70,7 @@ Install on Linux, Mac OS X
 
 .. code:: bash
 
-   python3 -m pip install academic_tracker
+   python3 -m pip install academic-tracker
 
 
 Install on Windows
@@ -78,7 +78,7 @@ Install on Windows
 
 .. code:: bash
 
-   py -3 -m pip install academic_tracker
+   py -3 -m pip install academic-tracker
    
 
 Upgrade on Linux, Mac OS X
@@ -86,7 +86,7 @@ Upgrade on Linux, Mac OS X
 
 .. code:: bash
 
-   python3 -m pip install academic_tracker --upgrade
+   python3 -m pip install academic-tracker --upgrade
    
 
 Upgrade on Windows
@@ -94,7 +94,7 @@ Upgrade on Windows
 
 .. code:: bash
 
-   py -3 -m pip install academic_tracker --upgrade
+   py -3 -m pip install academic-tracker --upgrade
 
 
 

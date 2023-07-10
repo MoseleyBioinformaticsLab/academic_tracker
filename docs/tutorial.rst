@@ -9,7 +9,7 @@ Details about the configuration JSON file can be found in the :doc:`jsonschema`
 section, but in general the sections of the configuration JSON file that aren't 
 needed for a particular command are not required. For instance, the ORCID_search 
 section is not required for reference_search since it does not search ORCID. The 
-same is true if the --no_ORCID option is used.
+same is true if the --no-ORCID option is used.
 
 Outputs
 ~~~~~~~
@@ -27,7 +27,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]
+    academic_tracker author_search <config_json_file> [--test --prev-pub=<file-path> --no-GoogleScholar --no-ORCID --no-Crossref --no-PubMed --verbose --silent]
 
 
 Description
@@ -38,11 +38,11 @@ on. The cutoff_year attribute for either the projects or the authors can be used
 to filter the publications to only those in that year or after. 
 
 Similarly, a previous publications JSON file can be used to filter out publications 
-that are already in the file. This file can be specified manually with the --prev_pub 
+that are already in the file. This file can be specified manually with the --prev-pub 
 option. If not specified manually author_search will automatically look for a 
 publications.json file in the most recent tracker directories and if it finds 
 one it will be used as the previous publications. To stop this automatic lookup 
-enter "ignore" for the --prev_pub option. The output publications.json file will 
+enter "ignore" for the --prev-pub option. The output publications.json file will 
 be a combination of the previous publications and any new publications found. To 
 be clear the new publications.json file will be the previous publications.json 
 file with any new entries added in. 
@@ -72,25 +72,25 @@ Options
 The test option changes the name of the output directory from tracker-YYMMDDHHMM 
 to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 
---prev_pub: 
+--prev-pub: 
 
 Specifies a publications.json file to use as a list of publications to ignore 
 when searching for new publications. Set to "ignore" to prevent author_search 
 from automatically looking for a publications.json file in tracker directories.
             
---no_GoogleScholar: 
+--no-GoogleScholar: 
 
 If used author_search will not search Google Scholar for publications.
 
---no_ORCID: 
+--no-ORCID: 
 
 If used author_search will not search ORCID for publications.
 
---no_Crossref: 
+--no-Crossref: 
 
 If used author_search will not search Crossref for publications.
 
---no_PubMed: 
+--no-PubMed: 
 
 If used author_search will not search PubMed for publications. This option is 
 assumed if the PubMed_search section of the configuration JSON file is missing.
@@ -282,7 +282,7 @@ Designating a previous publications filepath instead of letting Academic Tracker
 
 .. code-block:: console
     
-    >academic_tracker author_search config_file.json --prev_pub prev_pub_file_path.json
+    >academic_tracker author_search config_file.json --prev-pub prev_pub_file_path.json
     Finding author's publications. This could take a while.
     Searching PubMed.
     Searching ORCID.
@@ -345,7 +345,7 @@ Console:
 
 .. code-block:: console
     
-    >academic_tracker author_search config_file.json --no_ORCID
+    >academic_tracker author_search config_file.json --no-ORCID
     Finding author's publications. This could take a while.
     Searching PubMed.
     Searching Google Scholar.
@@ -361,7 +361,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev-pub=<file-path> --PMID-reference --MEDLINE-reference --no-Crossref --no-PubMed --verbose --silent]
 
 
 Description
@@ -380,21 +380,21 @@ is expected to be the first page of a bibliography and will be tokenized in a
 specific way. All other URLs are simply read as a text file and tokenized like 
 one.
 
-The --PMID_reference and --MEDLINE_reference options change how the reference file 
-is interpreted. If the --PMID_reference option is used then it indicates that the 
+The --PMID-reference and --MEDLINE-reference options change how the reference file 
+is interpreted. If the --PMID-reference option is used then it indicates that the 
 given reference file is a list of PMIDs (PubMed's unique IDs). Instead of tokenizing 
 this file it is assumed that each line is a PMID so PubMed will be queried for 
 each PMID and Crossref will not be queried. The idea for this option was to be 
 able to quickly grab information from PubMed. 
 
-The --MEDLINE_reference option indicates that given reference file is a MEDLINE_ 
+The --MEDLINE-reference option indicates that given reference file is a MEDLINE_ 
 formatted file. This will be tokenized in a unique way since the publication 
 information is spread out over multiple lines in this format. This format is 
 supported because it is a dounload option on MyNCBI bibliography pages.
 
 Details about tokenization are in the :doc:`tokenization` section.
 
-The --prev_pub option is different for reference_search than it is for author_search. 
+The --prev-pub option is different for reference_search than it is for author_search. 
 First, reference_search does not automatically look for a publicaitons.json file 
 to use since the same assumptions as described for author_search do not hold here. 
 Second, publications in the prev_pub file are not used to ignore publications. 
@@ -410,25 +410,25 @@ Options
 The test option changes the name of the output directory from tracker-YYMMDDHHMM 
 to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 
---prev_pub: 
+--prev-pub: 
 
 Specifies a publications.json file to use as a list of publications to compare 
 with when generating the summary report.
             
---PMID_reference: 
+--PMID-reference: 
 
 Specifies that the reference file is a list of PMIDs and to only return 
 information from PubMed.
                   
---MEDLINE_reference: 
+--MEDLINE-reference: 
 
 Specifies that the reference file is a MEDLINE_ formatted file.
             
---no_Crossref: 
+--no-Crossref: 
 
 If used reference_search will not search Crossref for publications.
 
---no_PubMed: 
+--no-PubMed: 
 
 If used reference_search will not search Crossref for publications. This option 
 is assumed if the PubMed_search section of the configuration JSON file is missing.
@@ -456,7 +456,7 @@ the summary_report section of the configuration JSON file.
 A summary_report.txt file is only created if the summary_report attribute is in 
 the configuration JSON file. 
 
-If --PMID_reference is used no reports or emails are generated.
+If --PMID-reference is used no reports or emails are generated.
 
 Details about reports can be found in the :doc:`reporting` section.
 
@@ -514,7 +514,7 @@ Designating a previous publications filepath.
 
 .. code-block:: console
     
-    >academic_tracker reference_search config_file.json reference_file.txt --prev_pub prev_pub_file_path.json
+    >academic_tracker reference_search config_file.json reference_file.txt --prev-pub prev_pub_file_path.json
     Finding publications. This could take a while. 
     Searching PubMed.
     Searching Crossref.
@@ -542,7 +542,7 @@ Console:
 
 .. code-block:: console
     
-    >academic_tracker reference_search config_file.json reference_file.txt --no_Crossref
+    >academic_tracker reference_search config_file.json reference_file.txt --no-Crossref
     Finding publications. This could take a while. 
     Searching PubMed.
     Success. Publications and reports saved in tracker-2202020140
@@ -817,7 +817,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE_reference --verbose --silent]
+    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE-reference --verbose --silent]
 
 
 Description
@@ -827,7 +827,7 @@ Tokenize the input reference and output a tokenization report and JSON file.
 
 Options
 -------
---MEDLINE_reference: 
+--MEDLINE-reference: 
 
 Specifies that the reference file is a MEDLINE_ formatted file.
 
@@ -993,7 +993,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose --silent]
+    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev-pub=<file-path> --MEDLINE-reference --verbose --silent]
 
 
 Description
@@ -1030,12 +1030,12 @@ Options
 The test option changes the name of the output directory from tracker-YYMMDDHHMM 
 to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
         
---prev_pub: 
+--prev-pub: 
 
 Specifies a publications.json file to use as a list of publications to compare 
 with when generating the summary report.
             
---MEDLINE_reference: 
+--MEDLINE-reference: 
 
 Specifies that the reference file is a MEDLINE_ formatted file.
         

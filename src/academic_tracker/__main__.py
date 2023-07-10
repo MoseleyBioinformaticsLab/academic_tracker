@@ -1,13 +1,29 @@
 """
 Usage:
-    academic_tracker author_search <config_json_file> [--test --prev_pub=<file-path> --no_GoogleScholar --no_ORCID --no_Crossref --no_PubMed --verbose --silent]
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev_pub=<file-path> --PMID_reference --MEDLINE_reference --no_Crossref --no_PubMed --verbose --silent]
+    academic_tracker author_search <config_json_file> [--test] 
+                                                      [--prev_pub=<file-path> --prev-pub=<file-path>] 
+                                                      [--no-GoogleScholar --no_GoogleScholar] 
+                                                      [--no-ORCID --no_ORCID] 
+                                                      [--no-Crossref --no_Crossref] 
+                                                      [--no-PubMed --no_PubMed]
+                                                      [--verbose --silent]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test] 
+                                                                                  [--prev-pub=<file-path> --prev_pub=<file-path>]
+                                                                                  [--PMID-reference --PMID_reference]
+                                                                                  [--MEDLINE-reference --MEDLINE_reference]
+                                                                                  [--no-Crossref --no_Crossref]
+                                                                                  [--no-PubMed --no_PubMed]
+                                                                                  [--verbose --silent]
     academic_tracker find_ORCID <config_json_file> [--verbose --silent]
     academic_tracker find_Google_Scholar <config_json_file> [--verbose --silent]
     academic_tracker add_authors <config_json_file> <authors_file> [--verbose --silent]
-    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE_reference --verbose --silent]
+    academic_tracker tokenize_reference <references_file_or_URL> [--MEDLINE-reference --MEDLINE_reference]
+                                                                 [--verbose --silent]
     academic_tracker gen_reports_and_emails_auth <config_json_file> <publication_json_file> [--test --verbose --silent]
-    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test --prev_pub=<file-path> --MEDLINE_reference --verbose --silent]
+    academic_tracker gen_reports_and_emails_ref <config_json_file> <references_file_or_URL> <publication_json_file> [--test]
+                                                                                                                    [--prev-pub=<file-path> --prev_pub=<file-path>]
+                                                                                                                    [--MEDLINE-reference --MEDLINE_reference]
+                                                                                                                    [--verbose --silent]
     
 Options:
     -h --help                         Show this screen.
@@ -15,17 +31,25 @@ Options:
     --verbose                         Print hidden error messages.
     --silent                          Do not print anything to the screen.
     --test                            Generate pubs and email texts, but do not send emails.
-    --prev_pub=<file-path>            Filepath to json or csv with publication ids to ignore. Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
+    --prev-pub=<file-path>            Filepath to json or csv with publication ids to ignore. 
+                                      Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
+    --prev_pub=<file-path>            Deprecated. Use --prev-pub instead.
     
 Reference Type Options:    
-    --PMID_reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
-    --MEDLINE_reference               Indicates that the reference_file is a MEDLINE file.
+    --PMID-reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
+    --PMID_reference                  Deprecated. Use --PMID-reference instead.
+    --MEDLINE-reference               Indicates that the reference_file is a MEDLINE file.
+    --MEDLINE_reference               Deprecated. Use --MEDLINE-reference instead.
 
 Search Options:
-    --no_GoogleScholar                Don't search Google Scholar.
-    --no_ORCID                        Don't search ORCID.
-    --no_Crossref                     Don't search Crossref.
-    --no_PubMed                       Don't search PubMed.
+    --no-GoogleScholar                Don't search Google Scholar.
+    --no_GoogleScholar                Deprecated. Use --no-GoogleScholar instead.
+    --no-ORCID                        Don't search ORCID.
+    --no_ORCID                        Deprecated. Use --no-ORCID instead.
+    --no-Crossref                     Don't search Crossref.
+    --no_Crossref                     Deprecated. Use --no-Crossref instead.
+    --no-PubMed                       Don't search PubMed.
+    --no_PubMed                       Deprecated. Use --no-PubMed instead.
 """
 
 
@@ -57,6 +81,14 @@ SILENT = False
 
 def main():
     
+    ## Have to modify the doc string so docopt can recognize more options than what is written.
+    # options_to_alias = ["--no-PubMed", "--no-ORCID", "--no-Crossref", "--no-GoogleScholar", "--PMID-reference", "--MEDLINE-reference", "--prev-pub"]
+    # for option in options_to_alias:
+    #     alias = f"--{option[2:].replace('-', '_')}"
+    #     doc = __doc__.replace("option", f"{option} {alias}")
+        
+    # args = docopt.docopt(doc, version=str("Academic Tracker ") + __version__)
+    
     args = docopt.docopt(__doc__, version=str("Academic Tracker ") + __version__)
     
     user_input_checking.cli_inputs_check(args)
@@ -67,18 +99,24 @@ def main():
     SILENT = args["--silent"]
     
     if len(sys.argv) > 1 and sys.argv[1] == "author_search":
-        author_search(args["<config_json_file>"], args["--no_ORCID"], 
-                      args["--no_GoogleScholar"], args["--no_Crossref"],
-                      args["--no_PubMed"],
-                      args["--test"], args["--prev_pub"])
+        author_search(args["<config_json_file>"], 
+                      args["--no_ORCID"] or args["--no-ORCID"], 
+                      args["--no_GoogleScholar"] or args["--no-GoogleScholar"], 
+                      args["--no_Crossref"] or args["--no-Crossref"],
+                      args["--no_PubMed"] or args["--no-PubMed"],
+                      args["--test"], 
+                      args["--prev-pub"] if args["--prev-pub"] else args["--prev_pub"])
     elif len(sys.argv) > 1 and sys.argv[1] == "reference_search":
-        if args["--PMID_reference"]:
+        if args["--PMID_reference"] or args["--PMID-reference"]:
             PMID_reference(args["<config_json_file>"], args["<references_file_or_URL>"], args["--test"])
         else:
-            reference_search(args["<config_json_file>"], args["<references_file_or_URL>"], 
-                             args["--MEDLINE_reference"], args["--no_Crossref"], 
-                             args["--no_PubMed"],
-                             args["--test"], args["--prev_pub"])
+            reference_search(args["<config_json_file>"], 
+                             args["<references_file_or_URL>"], 
+                             args["--MEDLINE_reference"] or args["--MEDLINE-reference"], 
+                             args["--no_Crossref"] or args["--no-Crossref"], 
+                             args["--no_PubMed"] or args["--no-PubMed"],
+                             args["--test"], 
+                             args["--prev-pub"] if args["--prev-pub"] else args["--prev_pub"])
     elif len(sys.argv) > 1 and sys.argv[1] == "find_ORCID":
         find_ORCID(args["<config_json_file>"])
     elif len(sys.argv) > 1 and sys.argv[1] == "find_Google_Scholar":
@@ -86,13 +124,17 @@ def main():
     elif len(sys.argv) > 1 and sys.argv[1] == "add_authors":
         add_authors(args["<config_json_file>"], args["<authors_file>"])
     elif len(sys.argv) > 1 and sys.argv[1] == "tokenize_reference":
-        tokenize_reference(args["<references_file_or_URL>"], args["--MEDLINE_reference"])
+        tokenize_reference(args["<references_file_or_URL>"], 
+                           args["--MEDLINE_reference"] or args["--MEDLINE-reference"])
     elif len(sys.argv) > 1 and sys.argv[1] == "gen_reports_and_emails_auth":
         gen_reports_and_emails_auth(args["<config_json_file>"], args["<publication_json_file>"], args["--test"])
     elif len(sys.argv) > 1 and sys.argv[1] == "gen_reports_and_emails_ref":
-        gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
-                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
-                                   args["--test"], args["--prev_pub"])
+        gen_reports_and_emails_ref(args["<config_json_file>"], 
+                                   args["<references_file_or_URL>"], 
+                                   args["<publication_json_file>"], 
+                                   args["--MEDLINE_reference"] or args["--MEDLINE-reference"], 
+                                   args["--test"], 
+                                   args["--prev-pub"] if args["--prev-pub"] else args["--prev_pub"])
     else:
         print("Unrecognized command")  
         

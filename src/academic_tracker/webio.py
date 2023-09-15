@@ -41,8 +41,10 @@ PUBLICATION_TEMPLATE = {
         "pubmed_id": None,
         "results": None,
         "title": None,
-        "grants": None,
-        "PMCID": None
+        "grants": [],
+        "PMCID": None,
+        "queried_sources": [],
+        "references": []
    }
 
 

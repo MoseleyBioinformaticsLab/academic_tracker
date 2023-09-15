@@ -9,6 +9,7 @@ Modularized pieces of reference_search.
 import re
 import datetime
 import os
+import sys
 
 from . import user_input_checking
 from . import fileio
@@ -19,7 +20,7 @@ from . import webio
 
 
 
-def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, prev_pub_filepath):
+def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, prev_pub_filepath, citation_match_ratio):
     """Read in inputs from user and do error checking.
     
     Args:
@@ -29,6 +30,7 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
         no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
+        citation_match_ratio (int): should be an integer between 0-100.
         
     Returns:
         config_dict (dict): Matches the Configuration file JSON schema.
@@ -36,6 +38,12 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
         has_previous_pubs (bool): True if a prev_pub file was input, False otherwise.
         prev_pubs (dict): The contents of the prev_pub file input by the user if provided.
     """
+    if not isinstance(citation_match_ratio, int):
+        helper_functions.vprint("Error: The given citation-match-ratio is not an integer value.")
+        sys.exit()
+    elif citation_match_ratio > 100 or citation_match_ratio < 0:
+        helper_functions.vprint("Error: The given citation-match-ratio is not within the range 0-100.")
+        sys.exit()
     
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
@@ -66,7 +74,7 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
 
 
 
-def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_PubMed):
+def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_PubMed, citation_match_ratio):
     """Query PubMed and Crossref for publications matching the citations in tokenized_citations.
     
     Args:
@@ -74,50 +82,52 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_Pub
         tokenized_citations (list): list of dicts. Matches the tokenized citations JSON schema.
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
         no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
+        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         
     Returns:
-        publication_dict (dict): The dictionary matching the publication JSON schema.
+        running_pubs (dict): The dictionary matching the publication JSON schema.
         tokenized_citations (list): Same list as the input but with the pud_dict_key updated to match the publication found.        
+        all_queries (dict): for each source searched a list of lists, each index is the pubs searched through after querying until the citation was matched, {"PubMed":[[pub1, ...], ...], "Crossref":[[pub1, ...], ...]}
     """
     
     helper_functions.vprint("Finding publications. This could take a while.")
+    running_pubs = {}
+    all_queries = {}
     if not no_PubMed:
         helper_functions.vprint("Searching PubMed.")
-        PubMed_publication_dict, PubMed_matching_key_for_citation = ref_srch_webio.search_references_on_PubMed(tokenized_citations, config_dict["PubMed_search"]["PubMed_email"])
-#    if not args["--no_GoogleScholar"]:
-#        print("Searching Google Scholar.")
-#        Google_Scholar_publication_dict, Google_Scholar_matching_key_for_citation = webio.search_references_on_Google_Scholar(tokenized_citations, config_dict["Crossref_search"]["Crossref_email"], args["--verbose"])
+        running_pubs, PubMed_matching_key_for_citation, PubMed_publication_dict = ref_srch_webio.search_references_on_PubMed(running_pubs, tokenized_citations, config_dict["PubMed_search"]["PubMed_email"])
+        all_queries["PubMed"] = PubMed_publication_dict
     if not no_Crossref:
         helper_functions.vprint("Searching Crossref.")
-        Crossref_publication_dict, Crossref_matching_key_for_citation = ref_srch_webio.search_references_on_Crossref(tokenized_citations, config_dict["Crossref_search"]["mailto_email"])
+        running_pubs, Crossref_matching_key_for_citation, Crossref_publication_dict = ref_srch_webio.search_references_on_Crossref(running_pubs, tokenized_citations, config_dict["Crossref_search"]["mailto_email"])
+        all_queries["Crossref"] = Crossref_publication_dict
     
-    publication_dict = {}
+    
+    ## Do a second pass using the saved queries.
     if not no_PubMed:
-        for key, value in PubMed_publication_dict.items():
-            if not key in publication_dict:
-                publication_dict[key] = value
-#    if not args["--no_GoogleScholar"]:
-#        for key, value in Google_Scholar_publication_dict.items():
-#            if not key in publication_dict:
-#                publication_dict[key] = value
+        running_pubs, PubMed_matching_key_for_citation, PubMed_publication_dict = ref_srch_webio.search_references_on_PubMed(running_pubs, tokenized_citations, config_dict["PubMed_search"]["PubMed_email"], all_queries["PubMed"])
     if not no_Crossref:
-        for key, value in Crossref_publication_dict.items():
-            if not key in publication_dict:
-                publication_dict[key] = value
+        running_pubs, Crossref_matching_key_for_citation, Crossref_publication_dict = ref_srch_webio.search_references_on_Crossref(running_pubs, tokenized_citations, config_dict["Crossref_search"]["mailto_email"], all_queries["Crossref"])
+    
             
     matching_key_for_citation = [None] * len(tokenized_citations)
     if not no_PubMed:
         matching_key_for_citation = [key if key else PubMed_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
-#    if not args["--no_GoogleScholar"]:
-#        matching_key_for_citation = [key if key else Google_Scholar_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
     if not no_Crossref:
         matching_key_for_citation = [key if key else Crossref_matching_key_for_citation[count] for count, key in enumerate(matching_key_for_citation)]
         
     for count, citation in enumerate(tokenized_citations):
         if matching_key_for_citation[count]:
             citation["pub_dict_key"] = matching_key_for_citation[count]
+    
+    ## Convert PubMed articles class to dicts so they can be saved as JSON.
+    for i, pub_list in enumerate(all_queries["PubMed"]):
+        new_list = []
+        for pub in pub_list:
+            new_list.append(helper_functions.modify_pub_dict_for_saving(pub))
+        all_queries["PubMed"][i] = new_list
             
-    return publication_dict, tokenized_citations
+    return running_pubs, tokenized_citations, all_queries
 
 
 

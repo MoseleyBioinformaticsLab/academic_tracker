@@ -8,10 +8,15 @@ This module contains helper functions, such as printing, and regex searching.
 
 import re
 import copy
+import collections.abc
+import xml.etree.ElementTree as ET
 
 import fuzzywuzzy.fuzz
 
 from . import __main__
+from . import webio
+
+DOI_URL = webio.DOI_URL
 
 
 def vprint(*args, verbosity=0):
@@ -191,16 +196,19 @@ def match_authors_in_pub_PubMed(authors_json, author_list):
     publication_has_affiliated_author = False
     for author_items in author_list:
         author_items_affiliation = str(author_items.get("affiliation")).lower()
-        author_items_first_name = str(author_items.get("firstname")).lower()
-        author_items_last_name = str(author_items.get("lastname")).lower()
+        author_items_first_name = str(author_items.get("firstname")).replace(".","").lower()
+        author_items_last_name = str(author_items.get("lastname")).replace(".","").lower()
         
         for author, author_attributes in authors_json.items():
+            author_json_first_name = author_attributes["first_name"].replace(".","").lower()
+            author_json_last_name = author_attributes["last_name"].replace(".","").lower()
         
             ## Match the author's first and last name and then match affiliations.
             ## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. 
             ## For example the name Hu will match Hubert. Counting on the last name to reduce errors.
             ## Note that the PubMed query will return publications where the author is just a collaborater, so not finding a match in the authors isn't uncommon.
-            if re.match(author_attributes["first_name"].lower() + ".*", author_items_first_name) and author_attributes["last_name"].lower() == author_items_last_name:
+            if re.match(".* " + author_json_first_name + "|" + author_json_first_name + " .*", author_items_first_name) and \
+               author_json_last_name == author_items_last_name:
                 ## affiliations are sets of strings so the intersection should have at least 1 string for a match.
                 
                 if any([affiliation.lower() in author_items_affiliation for affiliation in author_attributes["affiliations"]]):
@@ -240,8 +248,8 @@ def match_authors_in_pub_Crossref(authors_json, author_list):
         else:
             author_items_affiliation = []
         
-        author_items_first_name = str(author_items.get("given")).lower() if "given" in author_items else ""
-        author_items_last_name = str(author_items.get("family")).lower()
+        author_items_first_name = str(author_items.get("given")).replace(".","").lower() if "given" in author_items else ""
+        author_items_last_name = str(author_items.get("family")).replace(".","").lower()
         
         if "ORCID" in author_items:
             ORCID_id = regex_search_return(r"(\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X])", author_items["ORCID"])[0]
@@ -249,12 +257,15 @@ def match_authors_in_pub_Crossref(authors_json, author_list):
             ORCID_id = ""
         
         for author, author_attributes in authors_json.items():
+            author_json_first_name = author_attributes["first_name"].replace(".","").lower()
+            author_json_last_name = author_attributes["last_name"].replace(".","").lower()
         
             ## Match the author's first and last name and then match affiliations.
             ## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. 
             ## For example the name Hu will match Hubert. Counting on the last name to reduce errors.
             ## Note that the PubMed query will return publications where the author is just a collaborater, so not finding a match in the authors isn't uncommon.
-            if re.match(author_attributes["first_name"].lower() + ".*", author_items_first_name) and author_attributes["last_name"].lower() == author_items_last_name:
+            if re.match(".* " + author_json_first_name + "|" + author_json_first_name + " .*", author_items_first_name) and \
+               author_json_last_name == author_items_last_name:
                 ## affiliations are sets of strings so the intersection should have at least 1 string for a match.
                 if any([affiliation.lower() in author_items_affiliation for affiliation in author_attributes["affiliations"]]):
                     publication_has_affiliated_author = True
@@ -273,15 +284,123 @@ def match_authors_in_pub_Crossref(authors_json, author_list):
 
 
 
+def match_authors_in_prev_pub(prev_author_list, new_author_list):
+    """Look for matching authors in previous pub data.
+    
+    Goes through the new_author_list and tries to find a match for each author 
+    in the prev_author_list. Any authors that aren't matched are added to a 
+    combined list. Both lists are expected to be a list of a dicts.
+    
+    {"firstname": author's first name,
+     "lastname": author's last name,
+     "author_id" : author's ID}
+    
+    If author_id is missing or None in the prev_author_list, it will be updated 
+    in the combined_author_list if the matched author in new_author_list has it.
+    
+    Args:
+        prev_author_list (list): list of dicts where each dict is the attributes of an author.
+        new_author_list (list): list of dicts where each dict is the attributes of an author.
+        
+    Returns:
+        combined_author_list (list): the prev_author_list updated with "author_id" for dictionaries in the list that matched the given author.
+    """
+    combined_author_list = copy.deepcopy(prev_author_list)
+    for new_author_attributes in new_author_list:
+        new_firstname_adjusted = new_author_attributes["firstname"].replace(".","").lower()
+        new_lastname_adjusted = new_author_attributes["lastname"].replace(".","").lower()
+        new_author_matched = False
+        for i, prev_author_attributes in enumerate(prev_author_list):
+            if new_author_attributes.get("author_id", 0) == prev_author_attributes.get("author_id", 1):
+                new_author_matched = True
+                break
+            
+            prev_firstname_adjusted = prev_author_attributes["firstname"].replace(".","").lower()
+            prev_lastname_adjusted = prev_author_attributes["lastname"].replace(".","").lower()
+            
+            if re.match(".* " + new_firstname_adjusted + "|" + new_firstname_adjusted + " .*", prev_firstname_adjusted) and \
+               new_lastname_adjusted == prev_lastname_adjusted:
+                    if (author_id := new_author_attributes.get("author_id")) and not prev_author_attributes.get("author_id"):
+                        combined_author_list[i]["author_id"] = author_id
+                        new_author_matched = True
+                        break
+        if not new_author_matched:
+            combined_author_list.append(new_author_attributes)
+                
+    return combined_author_list
 
-def modify_pub_dict_for_saving(pub):
+
+
+def _match_references_in_prev_pub(prev_reference_list, new_reference_list, citation_match_ratio):
+    """Look for matching references in previous pub data.
+    
+    Goes through the new_reference_list and tries to find a match for each reference 
+    in the prev_reference_list. Any references that aren't matched are added to a 
+    combined list. Both lists are expected to be a list of a dicts.
+    
+    {"citation": reference citation,
+     "doi": reference DOI,
+     "pubmed_id" : reference PMID,
+     "PMCID": reference PMCID}
+    
+    Fields that are missing or None in the prev_reference_list will be updated 
+    in the combined_reference_list if the matched reference in new_reference_list has it.
+    
+    Args:
+        prev_reference_list (list): list of dicts where each dict is the attributes of a reference.
+        new_reference_list (list): list of dicts where each dict is the attributes of a reference.
+        citation_match_ratio (int): if the fuzzy ratio between the prev and new citations is greater 
+                                    than or equal to this, then consider them to match.
+        
+    Returns:
+        combined_reference_list (list): the prev_reference_list updated with keys for dictionaries in the list that matched the given reference.
+    """
+    combined_reference_list = copy.deepcopy(prev_reference_list)
+    for new_reference_attributes in new_reference_list:
+        new_reference_matched = False
+        for i, prev_reference_attributes in enumerate(prev_reference_list):
+            new_doi = new_reference_attributes.get("doi")
+            prev_doi = prev_reference_attributes.get("doi")
+            new_pmid = new_reference_attributes.get("pubmed_id")
+            prev_pmid = prev_reference_attributes.get("pubmed_id")
+            new_pmcid = new_reference_attributes.get("PMCID")
+            prev_pmcid = prev_reference_attributes.get("PMCID")
+            new_citation = new_reference_attributes.get("citation")
+            prev_citation = prev_reference_attributes.get("citation")
+            new_title = new_reference_attributes.get("title")
+            prev_title = prev_reference_attributes.get("title")
+            
+            if (new_doi and prev_doi and new_doi.lower() == prev_doi.lower()) or\
+               (new_pmid and prev_pmid and new_pmid == prev_pmid) or\
+               (new_pmcid and prev_pmcid and new_pmcid == prev_pmcid) or\
+               (new_title and prev_title and \
+               (fuzzywuzzy.fuzz.ratio(new_title.lower(), prev_title.lower()) >= 90 or\
+               fuzzywuzzy.fuzz.ratio(prev_title.lower(), new_title.lower()) >= 90)) or\
+               (new_title and prev_citation and new_title.lower() in prev_citation.lower()) or\
+               (new_citation and prev_title and prev_title.lower() in new_citation.lower()) or\
+               (new_citation and prev_citation and \
+               (fuzzywuzzy.fuzz.ratio(new_citation.lower(), prev_citation.lower()) >= citation_match_ratio or\
+               fuzzywuzzy.fuzz.ratio(prev_citation.lower(), new_citation.lower()) >= citation_match_ratio)):
+                _update(combined_reference_list[i], new_reference_list[i])
+                new_reference_matched = True
+                break
+            
+        if not new_reference_matched:
+            combined_reference_list.append(new_reference_attributes)
+                
+    return combined_reference_list
+
+
+
+def modify_pub_dict_for_saving(pub, include_xml=False):
     """Convert pymed.PubMedArticle to a dictionary and modify it for saving.
     
-    Converts a pymed.PubMedArticle to a dictionary, deletes the "xml" key, and 
+    Converts a pymed.PubMedArticle to a dictionary, deletes the "xml" key if include_xml is False, and 
     converts the "publication_date" key to a string.
     
     Args:
         pub (pymed.PubMedArticle): publication to convert to a dictionary.
+        include_xml (bool): if True, include the raw XML query in the key "xml".
         
     Returns:
         pub_dict (dict): pub converted to a dictionary. Keys are "pubmed_id", "title", "abstract", 
@@ -290,13 +409,61 @@ def modify_pub_dict_for_saving(pub):
     
     pub_dict = pub.toDict()
     
-    pub_dict["grants"] = [grant.text for grant in pub.xml.findall(".//GrantID")]
-    PMC_id_elements = pub.xml.findall(".//ArticleId[@IdType='pmc']")
-    pub_dict["PMCID"] = PMC_id_elements[0].text if PMC_id_elements else None
+    if (pmid := pub_dict["xml"].find("PubmedData/ArticleIdList/ArticleId[@IdType='pubmed']")) is not None:
+        pub_dict["pubmed_id"] = pmid.text
+    else:
+        pub_dict["pubmed_id"] = None
+    
+    if (doi := pub_dict["xml"].find("PubmedData/ArticleIdList/ArticleId[@IdType='doi']")) is not None:
+        pub_dict["doi"] = DOI_URL + doi.text.lower()
+    else:
+        pub_dict["doi"] = None
         
-    del pub_dict["xml"]
-    pub_dict["publication_date"] = {"year":pub_dict["publication_date"].year, "month":pub_dict["publication_date"].month, "day":pub_dict["publication_date"].day}
-    pub_dict["pubmed_id"] = pub_dict["pubmed_id"].split("\n")[0]
+    if (pmc := pub_dict["xml"].find("PubmedData/ArticleIdList/ArticleId[@IdType='pmc']")) is not None:
+        pub_dict["PMCID"] = pmc.text
+    else:
+        pub_dict["PMCID"] = None
+    
+    pub_dict["grants"] = [grant.text for grant in pub.xml.findall(".//GrantID")]
+    
+    references = []
+    for reference in pub_dict["xml"].findall(".//Reference"):
+        if (text := reference.find("Citation")) is not None:
+            citation = text.text
+        else:
+            citation = None
+        
+        if (text := reference.find("ArticleId[@IdType='pmc']")) is not None:
+            ref_pmc = text.text
+        else:
+            ref_pmc = None
+        
+        if (text := reference.find("ArticleId[@IdType='pubmed']")) is not None:
+            ref_pmid = text.text
+        else:
+            ref_pmid = None
+        
+        if (text := reference.find("ArticleId[@IdType='doi']")) is not None:
+            ref_doi = text.text.lower()
+        else:
+            ref_doi = None
+        
+        references.append({"citation":citation,
+                           "title": None,
+                           "PMCID":ref_pmc,
+                           "pubmed_id":ref_pmid,
+                           "doi":ref_doi})
+    pub_dict["references"] = references
+        
+    if not include_xml:
+        del pub_dict["xml"]
+    else:
+        pub_dict["xml"] = str(ET.tostring(pub_dict["xml"]), encoding="utf-8")
+    
+    if pub_dict["publication_date"]:
+        pub_dict["publication_date"] = {"year":pub_dict["publication_date"].year, "month":pub_dict["publication_date"].month, "day":pub_dict["publication_date"].day}
+    else:
+        pub_dict["publication_date"] = {"year":None, "month":None, "day":None}
     
     return pub_dict
 
@@ -317,7 +484,7 @@ def is_fuzzy_match_to_list(str_to_match, list_to_match):
     str_to_match = str_to_match.lower()
     list_to_match = [list_string.lower() for list_string in list_to_match]
     
-    return any([fuzzywuzzy.fuzz.ratio(str_to_match, list_string) >= 90 for list_string in list_to_match])
+    return any([fuzzywuzzy.fuzz.ratio(str_to_match, list_string) >= 90 or fuzzywuzzy.fuzz.ratio(list_string, str_to_match) >= 90 for list_string in list_to_match])
 
 
 
@@ -334,11 +501,11 @@ def fuzzy_matches_to_list(str_to_match, list_to_match):
     str_to_match = str_to_match.lower()
     list_to_match = [list_string.lower() for list_string in list_to_match]
     
-    return [(index, list_string) for index, list_string in enumerate(list_to_match) if fuzzywuzzy.fuzz.ratio(str_to_match, list_string) >= 90]
+    return [(index, list_string) for index, list_string in enumerate(list_to_match) if fuzzywuzzy.fuzz.ratio(str_to_match, list_string) >= 90 or fuzzywuzzy.fuzz.ratio(list_string, str_to_match) >= 90]
 
 
 
-def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
+def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=None):
     """True if pub_id is in publication_dict or title is a fuzzy match to titles in titles.
     
     Check whether the pub_id is in publication_dict. If it isn't then see if there is 
@@ -349,7 +516,7 @@ def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
         pub_id (str): pub_id to check against in publication_dict to see if it already exists.
         title (str): title corresponding to pub_id to check against titles in publication_dict.
         publication_dict (dict): keys are pub_ids and values are pub attributes.
-        titles (list): list of strings that should be titles to fuzzy match to title.
+        titles (list|None): list of strings that should be titles to fuzzy match to title.
         
     Returns:
         (bool): True if the pub_id is in publication_dict or title is fuzzy matched in titles, False otherwise
@@ -362,6 +529,34 @@ def is_pub_in_publication_dict(pub_id, title, publication_dict, titles=[]):
         titles = [pub_attr["title"] for pub_attr in publication_dict.values() if pub_attr["title"]]
     
     return True if is_fuzzy_match_to_list(title, titles) else False
+
+
+
+def get_pub_id_in_publication_dict(pub_id, title, publication_dict):
+    """Get the pub_id in publication_dict for the publication that matches the given pub_id or fuzzy matches a title.
+    
+    Check whether the pub_id is in publication_dict. If it isn't then see if there is 
+    a fuzzy match in titles. It is assumed every dictionary in publication_dict will 
+    have a "title" key with a string value.
+    
+    Args:
+        pub_id (str): pub_id to check against in publication_dict to see if it already exists.
+        title (str): title corresponding to pub_id to check against titles in publication_dict.
+        publication_dict (dict): keys are pub_ids and values are pub attributes.
+        
+    Returns:
+        (str|None): the pub_id matched in publication_dict or None if nothing was found.
+    """
+    
+    if pub_id.lower() in publication_dict:
+        return pub_id.lower()
+    
+    for key, value in publication_dict.items():
+        if fuzzywuzzy.fuzz.ratio(title.lower(), value["title"].lower()) >= 90 or\
+           fuzzywuzzy.fuzz.ratio(value["title"].lower(), title.lower()) >= 90:
+            return key
+    
+    return None
 
 
 
@@ -476,4 +671,75 @@ def are_citations_in_pub_dict(tokenized_citations, pub_dict):
     
     return [True if citation["PMID"] in pub_pmids or citation["DOI"].lower() in pub_dois or is_fuzzy_match_to_list(citation["title"], pub_titles) else False for citation in tokenized_citations]
 
+
+
+# def _update_nulls(original_dict, upgrade_dict):
+#     """Update a dictionary in a nested fashion.
+    
+#     Only updates original_dict if original_dict has a None value for a key. 
+#     This is recursive, so if a dicitonary type is seen for the value then this 
+#     is called on that nested dictionary.
+    
+#     Args:
+#         original_dict (dict): the dictionary to update.
+#         upgrade_dict (dict): the dictionary to update values from.
+        
+#     Returns:
+#         original_dict (dict): the updated original_dict
+#     """
+#     for key, value in original_dict.items():
+#         if isinstance(value, collections.abc.Mapping):
+#             original_dict[key] = _update_nulls(original_dict[key], upgrade_dict[key])
+#         elif value is None and upgrade_dict.get(key) is not None:
+#             original_dict[key] = upgrade_dict[key]
+    
+#     return original_dict
+
+
+
+def _update(original_dict, upgrade_dict):
+    """Update a dictionary in a nested fashion.
+    
+    Only updates original_dict if original_dict has a None value for a key, or 
+    if the key does not already exist in original_dict.
+    This is recursive, so if a dicitonary type is seen for the value then this 
+    is called on that nested dictionary.
+    
+    Args:
+        original_dict (dict): the dictionary to update.
+        upgrade_dict (dict): the dictionary to update values from.
+        
+    Returns:
+        original_dict (dict): the updated original_dict
+    """
+    for key, value in upgrade_dict.items():
+        if key not in original_dict:
+            original_dict[key] = value
+        elif isinstance(value, collections.abc.Mapping) and isinstance(original_dict[key], collections.abc.Mapping):
+            original_dict[key] = _update(original_dict[key], upgrade_dict[key])
+        elif value is not None and original_dict[key] is None:
+            original_dict[key] = upgrade_dict[key]
+    
+    return original_dict
+
+
+
+def _merge_pub_dicts(prev_dict, new_dict, citation_match_ratio):
+    """Merge information from 2 unified pub_dicts.
+    
+    Args:
+        prev_dict (dict): the dictionary whose values will be updated.
+        new_dict (dict): the dictionary whose values will be used to update prev_dict.
+        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
+    
+    Returns:
+        prev_dict (dict): prev_dict with updated values
+    """
+    _update(prev_dict, new_dict)
+    prev_dict["authors"] = match_authors_in_prev_pub(prev_dict["authors"], new_dict["authors"])
+    prev_dict["references"] = _match_references_in_prev_pub(prev_dict["references"], new_dict["references"], citation_match_ratio)
+    new_grants = [grant for grant in new_dict["grants"] if grant not in prev_dict["grants"]]
+    prev_dict["grants"] += new_grants
+    
+    return prev_dict
 

@@ -1,0 +1,659 @@
+{
+  "https://doi.org/10.1289/ehp11484": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "Biochemistry &amp; Molecular Biology Department, Institute for Integrative Toxicology, Michigan State University, East Lansing, Michigan, USA",
+        "firstname": "Rance",
+        "initials": null,
+        "lastname": "Nault"
+      },
+      {
+        "affiliation": "Division of Gastroenterology, Hepatology, and Nutrition, University of Louisville, Louisville, Kentucky, USA",
+        "firstname": "Matthew C.",
+        "initials": null,
+        "lastname": "Cave"
+      },
+      {
+        "affiliation": "Department of Occupational and Environmental Health, University of Iowa, Iowa City, Iowa, USA",
+        "firstname": "Gabriele",
+        "initials": null,
+        "lastname": "Ludewig"
+      },
+      {
+        "affiliation": "Molecular and Cellular Biochemistry Department, University of Kentucky, Lexington, Kentucky, USA",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter N.B.",
+        "initials": null,
+        "lastname": "Moseley"
+      },
+      {
+        "affiliation": "Department of Civil Engineering, University of Kentucky, Lexington, Kentucky, USA",
+        "firstname": "Kelly G.",
+        "initials": null,
+        "lastname": "Pennell"
+      },
+      {
+        "affiliation": "Biochemistry &amp; Molecular Biology Department, Institute for Integrative Toxicology, Michigan State University, East Lansing, Michigan, USA",
+        "firstname": "Tim",
+        "initials": null,
+        "lastname": "Zacharewski"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1289/ehp11484",
+    "grants": [],
+    "journal": "Environmental Health Perspectives",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/533452a",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "NIH (National Institutes of Health) Office of Science Policy. 2020. Final NIH Policy for Data Management and Sharing: NOT-OD-21-013. https://grants.nih.gov/grants/guide/notice-files/NOT-OD-21-013.html.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.17226/25116",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "European Commission Directorate-General for Research and Innovation. 2018. Turning FAIR into Reality: Final Report and Action Plan from the European Commission Expert Group on FAIR data. https://data.europa.eu/doi/10.2777/1524 [accessed 19 June 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Wellcome Trust. Open research. https://wellcome.org/what-we-do/our-work/open-research. [accessed 6 February 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nemer M. 2020. Roadmap for Open Science. https://science.gc.ca/site/science/sites/default/files/attachments/2022/Roadmap-for-Open-Science.pdf [accessed 19 June 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/s41563-019-0332-5",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.cotox.2019.05.005",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/toxsci/kfab157",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Brock J. 2019. \u201cA love letter to your future self\u201d: what scientists need to know about FAIR data. https://www.nature.com/nature-index/news-blog/what-scientists-need-to-know-about-fair-data. [accessed 6 February 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1371/journal.pbio.2006930",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.3390/agriculture12020309",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/nbt.1411",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/ng1201-365",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2021. Minimum Information About a Microarray Experiment (MIAME). https://fairsharing.org/FAIRsharing.32b10v [accessed 26 September 2022].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2022. Minimal Information About a Cellular Assay (MIACA). https://fairsharing.org/FAIRsharing.7d0yv9 [accessed 19 June 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2022. Minimal Information about a high throughput SEQuencing Experiment (MINSEQE). https://fairsharing.org/FAIRsharing.a55z32 [accessed 19 June 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/ng.1054",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1089/omi.2008.0019",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1089/omi.2006.10.164",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.4056/sigs.147362",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Moxon S Solbrig H Unni D Jiao D Bruskiewich R Balhoff J et\u00a0al. 2021. The Linked Data Modeling Language (LinkML): a general-purpose data modeling framework grounded in machine-readable semantics. In: CEUR Workshop Proceedings: 2021 International Conference on Biomedical Ontologies (ICBO 2021). 16\u201318 September 2021. Bozen-Bolzano Italy 148\u2013151.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Gamble M Goble C Klyne G Zhao J. 2012. MIM: A Minimum Information Model: A Minimum Information Model vocabulary and framework for Scientific Linked Data. In: 2012 IEEE 8th International Conference on E-Science. 8\u201312 October 2012. Chicago Illinois 1\u20138.",
+        "doi": "https://doi.org/10.1109/eScience.2012.6404489",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1289/EHP10092",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1101/2021.09.27.461968",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.3389/frai.2020.00031",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/toxsci/kfm090",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2021. Minimum Information About a Bioactive Entity (MIABE). https://fairsharing.org/FAIRsharing.dt7hn8 [accessed 15 February 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2022. Minimum Information About an Array-Based Toxicogenomics Experiment (MIAME/Tox). https://fairsharing.org/10.25504/FAIRsharing.zrmjr7 [accessed 4 November 2014].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2021. Minimal Information About T Cell Assays (MIATA). https://fairsharing.org/FAIRsharing.n7nqde [accessed 19 June 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.comtox.2019.100096",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "O\u2019Connor MJ, Warzel DB, Martinez-Romero M, Hardi J, Willrett D, Egyedi AL, et\u00a0al. 2019. Unleashing the value of Common Data Elements through the CEDAR Workbench. AMIA Annu Symp Proc 2019:681\u2013690, PMID: 32308863.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Unleashing the value of Common Data Elements through the CEDAR Workbench"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/nar/gkz1019",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hufton A. Scientific Data \u2019s metadata specification. Scientificdataupdates: a blog from Scientific Data . https://blogs.nature.com/scientificdata/2014/01/08/scientific-datas-metadata-specification/ [accessed 24 May 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.envint.2022.107243",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/nar/gkm755",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.reprotox.2019.07.012",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1053/j.seminoncol.2019.09.002",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1182/blood-2017-03-735654",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1002/cpt.666",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1515/reveh-2019-0089",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1021/acs.est.1c08383",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/d41586-022-02820-7",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1186/2041-1480-4-36",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Law M, Shaw DR. 2018. Mouse Genome Informatics (MGI) is the international resource for information on the laboratory mouse. In: Eukaryotic Genomic Databases: Methods and Protocols. Kollmar M, ed. New York, NY: Springer New York, 141\u2013161.",
+        "doi": "https://doi.org/10.1007/978-1-4939-7737-6_7",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1186/s12917-020-02451-y",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.3390/ijerph18178985",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/toxsci/kfq355",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.toxlet.2019.04.003",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.26434/chemrxiv-2022-bt3f6",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/bioinformatics/btq415",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "M\u00fchlhaus T, Brillhaus D, Tsch\u00f6pe M, Maus O, Gr\u00fcning B, Garth C, et\u00a0al. 2021. DataPLANT\u2013Tools and Services to structure the Data Jungle for fundamental plant researchers. In: E-Science-Tage 2021: Share Your Research Data. Heuveline V, Bisheh N, eds. Heidelberg, Germany: heiBOOKS, 132\u2013145.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1101/2022.03.04.483070",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.3390/metabo11030163",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "FAIRsharing.org. 2021. Tox Biology Checklist (TBC). https://fairsharing.org/229 [accessed 19 June 2023].",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.yrtph.2021.105020",
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
+    "results": null,
+    "title": "A Case for Accelerating Standards to Achieve the FAIR Principles of Environmental Health Research Experimental Data"
+  },
+  "https://doi.org/10.3390/metabo13070842": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA",
+        "firstname": "P. Travis",
+        "initials": null,
+        "lastname": "Thompson"
+      },
+      {
+        "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter N. B.",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo13070842",
+    "grants": [
+      "P42 ES007380"
+    ],
+    "journal": "MDPI AG",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "Carroll, M. (2018). National Academies of Sciences, Engineering, and Medicine, Open Science by Design: Realizing a Vision for 21st Century Research, The National Academies Press.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1016/j.jbusres.2017.12.043",
+        "pubmed_id": null,
+        "title": "Open Science now: A systematic literature review for an integrated definition"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "pubmed_id": null,
+        "title": "The FAIR Guiding Principles for scientific data management and stewardship"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/nar/gkv1042",
+        "pubmed_id": null,
+        "title": "Metabolomics Workbench: An international repository for metabolomics data and metadata, metabolite standards, protocols, tutorials and training, and analysis tools"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "MetaboLights: A resource evolving in response to the needs of its scientific community"
+      },
+      {
+        "PMCID": null,
+        "citation": "(2020). NOT-OD-21-013. Vol NOT-OD-21-013. NIH Grants & Funding, National Institutes of Health.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1007/s11306-007-0070-6",
+        "pubmed_id": null,
+        "title": "The metabolomics standards initiative (MSI)"
+      },
+      {
+        "PMCID": null,
+        "citation": "Powell, C.D., and Moseley, H.N. (2021). The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository. Metabolites, 11.",
+        "doi": "https://doi.org/10.3390/metabo11030163",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Powell, C.D., and Moseley, H.N. (2022). The Metabolomics Workbench File Status Website: A Metadata Repository Promoting FAIR Principles of Metabolomics Data. bioRxiv.",
+        "doi": "https://doi.org/10.1101/2022.03.04.483070",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/nar/gks1004",
+        "pubmed_id": null,
+        "title": "MetaboLights\u2014An open-access general-purpose repository for metabolomics studies and associated meta-data"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1093/database/bat029",
+        "pubmed_id": null,
+        "title": "The MetaboLights repository: Curation challenges in metabolomics"
+      },
+      {
+        "PMCID": null,
+        "citation": "(2023, January 01). Docopt Python Library for Creating Command-Line Interfaces. Available online: http://docopt.readthedocs.io/en/latest/.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Pezoa, F., Reutter, J.L., Suarez, F., Ugarte, M., and Vrgo\u010d, D. (2016, January 11\u201315). Foundations of JSON schema. Proceedings of the 25th International Conference on World Wide Web, Montreal, QC, Canada.",
+        "doi": "https://doi.org/10.1145/2872427.2883029",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Droettboom, M. (2023, January 01). Understanding JSON Schema. Available online: http://spacetelescope.github.io/understanding-jsonschema/UnderstandingJSONSchema.pdf.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "(2023, January 01). Open JS Foundation. Available online: https://openjsf.org/.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Pandas: A foundational Python library for data analysis and statistics"
+      },
+      {
+        "PMCID": null,
+        "citation": "Oliphant, T.E. (2006). A Guide to NumPy, Trelgol Publishing.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Gazoni, E., and Clark, C. (2023, January 01). openpyxl\u2014A Python Library to Read/Write Excel 2010 xlsx/xlsm Files. Available online: http://openpyxl.readthedocs.org/en/default.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1109/MCSE.2010.118",
+        "pubmed_id": null,
+        "title": "Cython: The best of both worlds"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "https://doi.org/10.1007/s11306-018-1356-6",
+        "pubmed_id": null,
+        "title": "A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository"
+      },
+      {
+        "PMCID": null,
+        "citation": "Hildebrandt, G. (2020, January 01). Metabolomics of Lung Injury after Allogeneic Hematopoietic Cell Transplantation\u2014Colon ICMS. Available online: https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&ProjectID=PR000993.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Organisation for Economic Co-Operation Development (2023, January 01). Draft Advisory Document of the Working Group on Good Laboratory Practice on GLP Data Integrity. Available online: https://www.oecd.org/env/ehs/testing/DRAFT_OECD_Advisory_Document_on_GLP_Data_Integrity_07_August_2020.pdf.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
+    "results": null,
+    "title": "MESSES: Software for Transforming Messy Research Datasets into Clean Submissions to Metabolomics Workbench for Public Sharing"
+  }
+}

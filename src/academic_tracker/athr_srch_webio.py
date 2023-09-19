@@ -28,7 +28,7 @@ PUBLICATION_TEMPLATE = webio.PUBLICATION_TEMPLATE
 
 
 ## TODO get with pymed and add grants and pmcid to PubMedArticle class.
-def search_PubMed_for_pubs(running_pubs, authors_json, from_email, citation_match_ratio, prev_query=None):
+def search_PubMed_for_pubs(running_pubs, authors_json, from_email, prev_query=None):
     """Searhes PubMed for publications by each author.
     
     For each author in authors_json PubMed is queried for the publications. The list of publications is then filtered 
@@ -41,7 +41,6 @@ def search_PubMed_for_pubs(running_pubs, authors_json, from_email, citation_matc
         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
         authors_json (dict): keys are authors and values are author attributes. Matches Authors section of configuration JSON schema.
         from_email (str): used in the query to PubMed.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         prev_query (dict|None): a dictionary containing publications from a previous call to this function. {author1: [pub1, ...], ...}
         
     Returns:
@@ -75,7 +74,7 @@ def search_PubMed_for_pubs(running_pubs, authors_json, from_email, citation_matc
                 if "PubMed" in running_pubs[matching_pub_id]["queried_sources"]:
                     continue
                 
-                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict, citation_match_ratio)
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
                 running_pubs[matching_pub_id]["queried_sources"].append("PubMed")
             else:
                     
@@ -108,7 +107,7 @@ def search_PubMed_for_pubs(running_pubs, authors_json, from_email, citation_matc
        
         
         
-def search_ORCID_for_pubs(running_pubs, ORCID_key, ORCID_secret, authors_json, citation_match_ratio, prev_query=None):
+def search_ORCID_for_pubs(running_pubs, ORCID_key, ORCID_secret, authors_json, prev_query=None):
     """Searhes ORCID for publications by each author.
     
     For each author in authors_json ORCID is queried for the publications. The list of publications is then filtered 
@@ -121,7 +120,6 @@ def search_ORCID_for_pubs(running_pubs, ORCID_key, ORCID_secret, authors_json, c
         ORCID_key (str): string of the app key ORCID gives when you register the app with them
         ORCID_secret (str): string of the secret ORCID gives when you register the app with them
         authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         prev_query (dict|None): a dictionary containing publications from a previous call to this function. {author1: [pub1, ...], ...}
         
     Returns:
@@ -242,7 +240,7 @@ def search_ORCID_for_pubs(running_pubs, ORCID_key, ORCID_secret, authors_json, c
                 if "ORCID" in running_pubs[matching_pub_id]["queried_sources"]:
                     continue
                 
-                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict, citation_match_ratio)
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
                 running_pubs[matching_pub_id]["queried_sources"].append("ORCID")
             
             else:
@@ -260,7 +258,7 @@ def search_ORCID_for_pubs(running_pubs, ORCID_key, ORCID_secret, authors_json, c
 
 
 
-def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, citation_match_ratio, prev_query=None):
+def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, prev_query=None):
     """Searhes Google Scholar for publications by each author.
     
     For each author in authors_json Google Scholar is queried for the publications. The list of publications is then filtered 
@@ -272,7 +270,6 @@ def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, cit
         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
         authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         prev_query (dict|None): a dictionary containing publications from a previous call to this function. {author1: [pub1, ...], ...}
         
     Returns:
@@ -317,7 +314,8 @@ def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, cit
             if doi:
                 pub_id = DOI_URL + doi
             else:
-                pub = scholarly.scholarly.fill(pub)
+                if prev_query is None:
+                    pub = scholarly.scholarly.fill(pub)
                 ## The fill method modifies the original pub I think, so this line isn't necessary.
                 # all_pubs[author][-1] = pub
                 if "pub_url" in pub:
@@ -352,7 +350,7 @@ def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, cit
                 if "Google Scholar" in running_pubs[matching_pub_id]["queried_sources"]:
                     continue
                 
-                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict, citation_match_ratio)
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
                 running_pubs[matching_pub_id]["queried_sources"].append("Google Scholar")
             
             else:
@@ -372,7 +370,7 @@ def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, cit
 
 
 
-def search_Crossref_for_pubs(running_pubs, authors_json, mailto_email, citation_match_ratio, prev_query=None):
+def search_Crossref_for_pubs(running_pubs, authors_json, mailto_email, prev_query=None):
     """Searhes Crossref for publications by each author.
     
     For each author in authors_json Crossref is queried for the publications. The list of publications is then filtered 
@@ -385,7 +383,6 @@ def search_Crossref_for_pubs(running_pubs, authors_json, mailto_email, citation_
         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
         authors_json (dict): keys are authors and values are author attributes. Matches authors JSON schema.
         mailto_email (str): used in the query to Crossref.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         prev_query (dict|None): a dictionary containing publications from a previous call to this function. {author1: [pub1, ...], ...}
         
     Returns:
@@ -550,7 +547,7 @@ def search_Crossref_for_pubs(running_pubs, authors_json, mailto_email, citation_
                 if "Crossref" in running_pubs[matching_pub_id]["queried_sources"]:
                     continue
                 
-                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict, citation_match_ratio)
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
                 running_pubs[matching_pub_id]["queried_sources"].append("Crossref")
             
             else:

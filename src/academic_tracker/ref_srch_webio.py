@@ -64,7 +64,7 @@ def build_pub_dict_from_PMID(PMID_list, from_email):
 
 
 
-def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, citation_match_ratio, prev_query=None):
+def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, prev_query=None):
     """Searhes PubMed for publications matching the citations.
     
     For each citation in tokenized_citations PubMed is queried for the publication. 
@@ -75,7 +75,6 @@ def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, c
         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         from_email (str): used in the query to PubMed.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]
         
     Returns:
@@ -118,7 +117,7 @@ def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, c
                     citation_matched = True
                     break
                 
-                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict, citation_match_ratio)
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
                 running_pubs[matching_pub_id]["queried_sources"].append("PubMed")
                 matching_key_for_citation.append(matching_pub_id)
                 citation_matched = True
@@ -241,7 +240,7 @@ def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, c
 
 
 
-def search_references_on_Crossref(running_pubs, tokenized_citations, mailto_email, citation_match_ratio, prev_query=None):
+def search_references_on_Crossref(running_pubs, tokenized_citations, mailto_email, prev_query=None):
     """Searhes Crossref for publications matching the citations.
     
     For each citation in tokenized_citations Crossref is queried for the publication. 
@@ -252,7 +251,6 @@ def search_references_on_Crossref(running_pubs, tokenized_citations, mailto_emai
         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
         mailto_email (str): used in the query to Crossref.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]
         
     Returns:
@@ -415,7 +413,7 @@ def search_references_on_Crossref(running_pubs, tokenized_citations, mailto_emai
                     citation_matched = True
                     break
                 
-                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict, citation_match_ratio)
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
                 running_pubs[matching_pub_id]["queried_sources"].append("Crossref")
                 matching_key_for_citation.append(matching_pub_id)
                 citation_matched = True

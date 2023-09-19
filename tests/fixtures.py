@@ -47,10 +47,10 @@ def publication_dict(pub_with_grants, pub_with_matching_author):
     publication_dict = {}
     
     pub_dict = modify_pub_dict_for_saving(pub_with_grants)
-    publication_dict["https://doi.org/" + pub_dict["doi"]] = pub_dict
+    publication_dict[pub_dict["doi"]] = pub_dict
     
     pub_dict = modify_pub_dict_for_saving(pub_with_matching_author)
-    publication_dict["https://doi.org/" + pub_dict["doi"]] = pub_dict
+    publication_dict[pub_dict["doi"]] = pub_dict
     
     return publication_dict
 

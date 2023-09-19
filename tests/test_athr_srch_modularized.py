@@ -42,10 +42,6 @@ def original_queries():
     for author, pub_list in query_json["PubMed"].items():
         new_list = []
         for pub in pub_list:
-            # pub["publication_date"] = datetime.date(year=pub["publication_date"]["year"],
-            #                                         month=pub["publication_date"]["month"],
-            #                                         day=pub["publication_date"]["day"])
-            # new_list.append(pymed.article.PubMedArticle(**pub))
             new_list.append(pymed.article.PubMedArticle(ET.fromstring(pub["xml"])))
         query_json["PubMed"][author] = new_list
     return query_json
@@ -59,8 +55,9 @@ def test_input_reading_and_checking(config_dict):
     
     expected_config_dict = config_dict
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
+    actual_config_dict, citation_match_ratio = input_reading_and_checking(config_json_filepath, False, False, False, False, '65')
     
+    assert citation_match_ratio == 65
     assert expected_config_dict == actual_config_dict
     
 
@@ -69,7 +66,7 @@ def test_input_reading_and_checking_no_ORCID():
     
     expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noORCID.json"))
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
+    actual_config_dict, _ = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
     
     assert expected_config_dict == actual_config_dict
     
@@ -79,7 +76,7 @@ def test_input_reading_and_checking_no_PubMed():
     
     expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noPubMed.json"))
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
+    actual_config_dict, _ = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
     
     assert expected_config_dict == actual_config_dict
     
@@ -88,7 +85,7 @@ def test_input_reading_and_checking_no_Crossref():
     config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
         
     with pytest.raises(BaseException):
-        actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
+        actual_config_dict, _ = input_reading_and_checking(config_json_filepath, False, False, False, False, 65)
         
 
 def test_input_reading_and_checking_no_Crossref_noGS():
@@ -96,7 +93,7 @@ def test_input_reading_and_checking_no_Crossref_noGS():
         
     expected_config_dict = load_json(os.path.join("tests", "testing_files", "config_truncated_noCrossref.json"))
     
-    actual_config_dict = input_reading_and_checking(config_json_filepath, False, True, False, False, 65)
+    actual_config_dict, _ = input_reading_and_checking(config_json_filepath, False, True, False, False, 65)
     
     assert expected_config_dict == actual_config_dict
     
@@ -105,7 +102,7 @@ def test_input_reading_and_checking_wrong_citation_match_type(capsys):
     config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
         
     with pytest.raises(SystemExit):
-        actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False, "asdf")
+        actual_config_dict, _ = input_reading_and_checking(config_json_filepath, False, False, False, False, "asdf")
     
     captured = capsys.readouterr()
     assert captured.out == "Error: The given citation-match-ratio is not an integer value.\n"
@@ -115,7 +112,7 @@ def test_input_reading_and_checking_citation_match_out_of_range(capsys):
     config_json_filepath = os.path.join("tests", "testing_files", "config_truncated_noCrossref.json")
         
     with pytest.raises(SystemExit):
-        actual_config_dict = input_reading_and_checking(config_json_filepath, False, False, False, False, 1000)
+        actual_config_dict, _ = input_reading_and_checking(config_json_filepath, False, False, False, False, 1000)
     
     captured = capsys.readouterr()
     assert captured.out == "Error: The given citation-match-ratio is not within the range 0-100.\n"

@@ -176,6 +176,18 @@ def regex_search_return(regex, string_to_search):
     return match.groups() if match else ()
 
 
+def _generate_first_name_match_regex(name):
+    """Generate a regular expression to match the given first name.
+    
+    Args:
+        name (str): first name to generate regex for.
+    
+    Returns:
+        (str) regular expression to use with re.match().
+    """
+    return ".* " + name + "|" + name + " .*|" + name
+
+
 
     
 def match_authors_in_pub_PubMed(authors_json, author_list):
@@ -207,7 +219,7 @@ def match_authors_in_pub_PubMed(authors_json, author_list):
             ## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. 
             ## For example the name Hu will match Hubert. Counting on the last name to reduce errors.
             ## Note that the PubMed query will return publications where the author is just a collaborater, so not finding a match in the authors isn't uncommon.
-            if re.match(".* " + author_json_first_name + "|" + author_json_first_name + " .*", author_items_first_name) and \
+            if re.match(_generate_first_name_match_regex(author_json_first_name), author_items_first_name) and \
                author_json_last_name == author_items_last_name:
                 ## affiliations are sets of strings so the intersection should have at least 1 string for a match.
                 
@@ -264,7 +276,7 @@ def match_authors_in_pub_Crossref(authors_json, author_list):
             ## The first name is matched with an additional .* to try and allow for the addition of initials, but this could cause bad matches. 
             ## For example the name Hu will match Hubert. Counting on the last name to reduce errors.
             ## Note that the PubMed query will return publications where the author is just a collaborater, so not finding a match in the authors isn't uncommon.
-            if re.match(".* " + author_json_first_name + "|" + author_json_first_name + " .*", author_items_first_name) and \
+            if re.match(_generate_first_name_match_regex(author_json_first_name), author_items_first_name) and \
                author_json_last_name == author_items_last_name:
                 ## affiliations are sets of strings so the intersection should have at least 1 string for a match.
                 if any([affiliation.lower() in author_items_affiliation for affiliation in author_attributes["affiliations"]]):
@@ -318,7 +330,7 @@ def match_authors_in_prev_pub(prev_author_list, new_author_list):
             prev_firstname_adjusted = prev_author_attributes["firstname"].replace(".","").lower()
             prev_lastname_adjusted = prev_author_attributes["lastname"].replace(".","").lower()
             
-            if re.match(".* " + new_firstname_adjusted + "|" + new_firstname_adjusted + " .*", prev_firstname_adjusted) and \
+            if re.match(_generate_first_name_match_regex(new_firstname_adjusted), prev_firstname_adjusted) and \
                new_lastname_adjusted == prev_lastname_adjusted:
                     if (author_id := new_author_attributes.get("author_id")) and not prev_author_attributes.get("author_id"):
                         combined_author_list[i]["author_id"] = author_id
@@ -355,6 +367,7 @@ def _match_references_in_prev_pub(prev_reference_list, new_reference_list, citat
     Returns:
         combined_reference_list (list): the prev_reference_list updated with keys for dictionaries in the list that matched the given reference.
     """
+    characters_to_remove = ['.', ',', ';', '(', ')', '[', ']', '{', '}']
     combined_reference_list = copy.deepcopy(prev_reference_list)
     for new_reference_attributes in new_reference_list:
         new_reference_matched = False
@@ -369,7 +382,7 @@ def _match_references_in_prev_pub(prev_reference_list, new_reference_list, citat
             prev_citation = prev_reference_attributes.get("citation")
             new_title = new_reference_attributes.get("title")
             prev_title = prev_reference_attributes.get("title")
-            
+                        
             if (new_doi and prev_doi and new_doi.lower() == prev_doi.lower()) or\
                (new_pmid and prev_pmid and new_pmid == prev_pmid) or\
                (new_pmcid and prev_pmcid and new_pmcid == prev_pmcid) or\
@@ -378,9 +391,12 @@ def _match_references_in_prev_pub(prev_reference_list, new_reference_list, citat
                fuzzywuzzy.fuzz.ratio(prev_title.lower(), new_title.lower()) >= 90)) or\
                (new_title and prev_citation and new_title.lower() in prev_citation.lower()) or\
                (new_citation and prev_title and prev_title.lower() in new_citation.lower()) or\
-               (new_citation and prev_citation and \
-               (fuzzywuzzy.fuzz.ratio(new_citation.lower(), prev_citation.lower()) >= citation_match_ratio or\
-               fuzzywuzzy.fuzz.ratio(prev_citation.lower(), new_citation.lower()) >= citation_match_ratio)):
+               ((percentages := _compute_common_phrase_percent(prev_citation, new_citation, characters_to_remove, 4)) and\
+                (percentages[0] >= 85 or percentages[1] >= 85)):
+               # (new_citation and prev_citation and \
+               # (fuzzywuzzy.fuzz.ratio(new_citation.lower(), prev_citation.lower()) >= citation_match_ratio or\
+               # fuzzywuzzy.fuzz.ratio(prev_citation.lower(), new_citation.lower()) >= citation_match_ratio))
+               # (prev_common_percentage >= 85 or new_common_percentage >= 85)):
                 _update(combined_reference_list[i], new_reference_list[i])
                 new_reference_matched = True
                 break
@@ -389,6 +405,59 @@ def _match_references_in_prev_pub(prev_reference_list, new_reference_list, citat
             combined_reference_list.append(new_reference_attributes)
                 
     return combined_reference_list
+
+
+
+def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_remove, min_len=2):
+    """Find common phrases between prev_citation and new_citation and return percentage.
+    
+    Determine the common subphrases between the citations and then divide the length of the 
+    common subphrases with the length of the common subphrases plus the uncommon subphrases 
+    left for each citation and multiply by 100 to get the percentage of characters that are 
+    common between the common+uncommon and common subphrases. If either citation is None, then 
+    return None.
+    
+    Example:
+        prev_citation = 'open js foundation 2019  accessed on 1 january 2023  available online:  https://openjsforg/'
+        new_citation = '2023 january 01 open js foundation available online: https://openjsforg/'
+        
+        common_base_string = ' https://openjsforg/open js foundation available online:  january 2023 '
+        
+        prev_common_plus_uncommon = ' https://openjsforg/open js foundation available online:  january 2023 2019  accessed on 1'
+        new_common_plus_uncommon = ' https://openjsforg/open js foundation available online:  january 2023 01'
+        
+        prev_percent = 78.88888888888889
+        new_percent = 97.26027397260275
+    
+    Args:
+        prev_citation (str|None): a string to find common subphrases with another string.
+        new_citation (str|None): a string to find common subphrases with another string.
+        characters_to_remove (list): a list of characters or strings to remove from each citation before finding common subphrases.
+        min_len (int): the minimum length of a subphrase.
+    
+    Returns:
+        ((int, int)|None): if either citation is None, then return None, else the percentage of common to uncommon phrase length for each citation.
+    """
+    if prev_citation and new_citation:
+        citation_strip_regex = "|".join([f"\{char}" for char in characters_to_remove])
+        # citation_strip_regex = r"\.|,|;|\(|\)|\[|\]|\{|\}"
+        stripped_prev_citation = re.sub(citation_strip_regex, "", prev_citation.lower())
+        stripped_new_citation = re.sub(citation_strip_regex, "", new_citation.lower())
+        
+        common_subphrases = find_common_subphrases(stripped_prev_citation, stripped_new_citation, min_len)
+        
+        prev_citation_common_phrases_removed = stripped_prev_citation
+        new_citation_common_phrases_removed = stripped_new_citation
+        for phrase in common_subphrases:
+            stripped_prev_citation = prev_citation_common_phrases_removed.replace(phrase.strip(), "")
+            new_citation_common_phrases_removed = new_citation_common_phrases_removed.replace(phrase.strip(), "")
+        common_base_string = "".join(common_subphrases)
+        prev_common_percentage = len(common_base_string) / len(common_base_string + prev_citation_common_phrases_removed.strip()) * 100
+        new_common_percentage = len(common_base_string) / len(common_base_string + new_citation_common_phrases_removed.strip()) * 100
+        
+        return prev_common_percentage, new_common_percentage
+    else:
+        return None
 
 
 
@@ -742,4 +811,64 @@ def _merge_pub_dicts(prev_dict, new_dict, citation_match_ratio):
     prev_dict["grants"] += new_grants
     
     return prev_dict
+
+
+
+def find_common_subphrases(str1, str2, min_len=2):
+    """Find all common subphrases between str1 and str2 longer than min_len.
+    
+    Modified from https://stackoverflow.com/a/63337541/19957088.
+    Find all common subphrases between the 2 strings, but filer out common subphrases 
+    between subphrases. For example, if "sand" is common between the 2 strings the 
+    function will not return "and" unless there is another instance of "and" between 
+    the 2 strings. A phrase is a string that must end in a space or be at the end 
+    of the string. So "sand asdf" and "sand awer" will only match "sand " and not 
+    "sand a". Spaces are expected to be meaningful. It is recommended to remove 
+    punctuation from the strings.
+    
+    Args:
+        str1 (str): one of the 2 strings to look for common substrings in.
+        str2 (str): one of the 2 strings to look for common substrings in.
+        min_len (int): if the length of a substring is less than this, then ignore it.
+        
+    Returns:
+        cs_array (list): a list of the common substrings.
+    """
+    len1, len2 = len(str1), len(str2)
+
+    if len1 > len2:
+        str1, str2 = str2, str1 
+        len1, len2 = len2, len1
+    
+    cs_array=[]
+    cs_array_index = []
+    for i in range(len1, min_len-1, -1):
+        for k in range(len1-i+1):
+            end_index = i + k
+            sub_string = str1[k:end_index]
+            if sub_string[-1] != " " and end_index < len1 and sub_string[0] != " " and k > 0:
+                continue
+            if sub_string in str2:
+                flag = 1
+                for m in range(len(cs_array)):
+                    if (sub_string in cs_array[m] and\
+                       ## Have to make sure the sub_string is in the same index range as what it matched.
+                       ## Otherwise, "and" won't get matched between 'sand asdf and' and 'sand and'.
+                       k >= cs_array_index[m][0] and end_index <= cs_array_index[m][1]) or (\
+                       ## We don't want to return overlapping substrings, without the below check 'sand asdf and'
+                       ## and 'sand and' will return 'sand a' and 'and' instead of 'sand a' and 'nd'.
+                       ## This is undesirable for us because we plan to remove the found substrings 
+                       ## after this function, and overlapping substrings make that harder.
+                       (k >= cs_array_index[m][0] and k < cs_array_index[m][1])):
+                        flag=0
+                        break
+                if flag == 1:
+                    cs_array.append(sub_string)
+                    cs_array_index.append([k, end_index])
+    return cs_array
+
+## Good test phrases to understand how the function works.
+# find_common_subphrases('sandc cand','sandb asdf and', 2)
+# find_common_subphrases('sand and','sand asdf and', 2)
+# find_common_subphrases('sand and','sand qsdf and', 2)
 

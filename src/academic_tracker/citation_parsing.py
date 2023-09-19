@@ -49,7 +49,7 @@ def parse_text_for_citations(text):
             groups = helper_functions.regex_match_return(regex, line)
             if groups:
                 authors = groups[0].strip()
-                ## Sanity check to make sure we are looking at author names separated by commas and not a sentence with a comman in it.
+                ## Sanity check to make sure we are looking at author names separated by commas and not a sentence with a comma in it.
                 ## Assuming names won't be more than 4 words.
                 temp_authors = authors.replace(" and ", ",")
                 sanity_check = any([len(author.strip().split(" ")) > 4 for author in temp_authors.split(",")])

@@ -36,10 +36,6 @@ def original_queries():
     for author, pub_list in query_json["PubMed"].items():
         new_list = []
         for pub in pub_list:
-            # pub["publication_date"] = datetime.date(year=pub["publication_date"]["year"],
-            #                                         month=pub["publication_date"]["month"],
-            #                                         day=pub["publication_date"]["day"])
-            # new_list.append(pymed.article.PubMedArticle(**pub))
             new_list.append(pymed.article.PubMedArticle(ET.fromstring(pub["xml"])))
         query_json["PubMed"][author] = new_list
     return query_json

@@ -20,7 +20,7 @@ from . import athr_srch_emails_and_reports
 from . import webio
 
 
-def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed, citation_match_ratio):
+def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed):
     """Read in inputs from user and do error checking.
     
     Args:
@@ -29,18 +29,10 @@ def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar,
         no_GoogleScholar (bool): if True search Google Scholar else don't. Reduces checking on config JSON if True.
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
         no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
-        citation_match_ratio (int): should be an integer between 0-100.
         
     Returns:
         config_dict (dict): Matches the Configuration file JSON schema.
-    """
-    if not isinstance(citation_match_ratio, int):
-        helper_functions.vprint("Error: The given citation-match-ratio is not an integer value.")
-        sys.exit()
-    elif citation_match_ratio > 100 or citation_match_ratio < 0:
-        helper_functions.vprint("Error: The given citation-match-ratio is not within the range 0-100.")
-        sys.exit()
-    
+    """    
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
     
@@ -93,7 +85,7 @@ def generate_internal_data_and_check_authors(config_dict):
 
 
 
-def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed, citation_match_ratio):
+def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed):
     """Query PubMed, ORCID, Google Scholar, and Crossref for publications for the authors.
     
     Args:
@@ -103,7 +95,6 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
         no_GoogleScholar (bool): if True search Google Scholar else don't.
         no_Crossref (bool): If True search Crossref else don't.
         no_PubMed (bool): If True search PubMed else don't.
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
         
     Returns:
         running_pubs (dict): The dictionary matching the publication JSON schema.
@@ -116,30 +107,30 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
     all_queries = {}
     if not no_PubMed:
         helper_functions.vprint("Searching PubMed.")
-        running_pubs, PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(running_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"], citation_match_ratio)
+        running_pubs, PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(running_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
         all_queries["PubMed"] = PubMed_publication_dict
     if not no_ORCID:
         helper_functions.vprint("Searching ORCID.")
-        running_pubs, ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(running_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"], citation_match_ratio)
+        running_pubs, ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(running_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
         all_queries["ORCID"] = ORCID_publication_dict
     if not no_GoogleScholar:
         helper_functions.vprint("Searching Google Scholar.")
-        running_pubs, Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], citation_match_ratio)
+        running_pubs, Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
         all_queries["Google Scholar"] = Google_Scholar_publication_dict
     if not no_Crossref:
         helper_functions.vprint("Searching Crossref.")
-        running_pubs, Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], citation_match_ratio)
+        running_pubs, Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
         all_queries["Crossref"] = Crossref_publication_dict
     
     ## Do a second pass using the saved queries.
     if not no_PubMed:
-        running_pubs, PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(running_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"], citation_match_ratio, all_queries["PubMed"])
+        running_pubs, PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(running_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"], all_queries["PubMed"])
     if not no_ORCID:
-        running_pubs, ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(running_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"], citation_match_ratio, all_queries["ORCID"])
+        running_pubs, ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(running_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"], all_queries["ORCID"])
     if not no_GoogleScholar:
-        running_pubs, Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], citation_match_ratio, all_queries["Google Scholar"])
+        running_pubs, Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], all_queries["Google Scholar"])
     if not no_Crossref:
-        running_pubs, Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], citation_match_ratio, all_queries["Crossref"])
+        running_pubs, Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], all_queries["Crossref"])
         
     ## Compare current pubs with previous and only keep those that are new or updated.
     for pub_id, pub_values in prev_pubs.items():

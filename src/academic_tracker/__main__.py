@@ -7,7 +7,6 @@ Usage:
                                                       [--no-ORCID --no_ORCID] 
                                                       [--no-Crossref --no_Crossref] 
                                                       [--no-PubMed --no_PubMed]
-                                                      [--citation-match-ratio=<0-100>]
                                                       [--verbose --silent]
     academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test] 
                                                                                   [--prev-pub=<file-path> --prev_pub=<file-path>]
@@ -16,7 +15,6 @@ Usage:
                                                                                   [--MEDLINE-reference --MEDLINE_reference]
                                                                                   [--no-Crossref --no_Crossref]
                                                                                   [--no-PubMed --no_PubMed]
-                                                                                  [--citation-match-ratio=<0-100>]
                                                                                   [--verbose --silent]
     academic_tracker find_ORCID <config_json_file> [--verbose --silent]
     academic_tracker find_Google_Scholar <config_json_file> [--verbose --silent]
@@ -39,7 +37,6 @@ Options:
                                       Enter "ignore" for the <file_path> to not look for previous publications.json files in tracker directories.
     --prev_pub=<file-path>            Deprecated. Use --prev-pub instead.
     --save-all-queries                Save all queried results from each source in "all_results.json".
-    --citation-match-ratio=<num>      An integer from 0-100. The threshold to consider 2 citations the same using fuzzy matching. Lower is more forgiving. [default: 65]
     
 Reference Type Options:    
     --PMID-reference                  Indicates that the reference_file is a PMID file and only PubMed info will be returned.
@@ -112,8 +109,7 @@ def main():
                       args["--no_PubMed"] or args["--no-PubMed"],
                       args["--test"], 
                       args["--prev-pub"] if args["--prev-pub"] else args["--prev_pub"],
-                      args["--save-all-queries"],
-                      args["--citation-match-ratio"])
+                      args["--save-all-queries"])
     elif len(sys.argv) > 1 and sys.argv[1] == "reference_search":
         if args["--PMID_reference"] or args["--PMID-reference"]:
             PMID_reference(args["<config_json_file>"], args["<references_file_or_URL>"], args["--test"])
@@ -125,8 +121,7 @@ def main():
                              args["--no_PubMed"] or args["--no-PubMed"],
                              args["--test"], 
                              args["--prev-pub"] if args["--prev-pub"] else args["--prev_pub"],
-                             args["--save-all-queries"],
-                             args["--citation-match-ratio"])
+                             args["--save-all-queries"])
     elif len(sys.argv) > 1 and sys.argv[1] == "find_ORCID":
         find_ORCID(args["<config_json_file>"])
     elif len(sys.argv) > 1 and sys.argv[1] == "find_Google_Scholar":
@@ -151,7 +146,7 @@ def main():
 
 
 def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed, 
-                  test, prev_pub_filepath, save_all_results, citation_match_ratio):
+                  test, prev_pub_filepath, save_all_results):
     """Query sources for publications by author.
     
     Reads in the JSON config file, previous publications JSON file, and checks for errors.
@@ -169,11 +164,10 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
         test (bool): If True save_dir_name is tracker-test instead of tracker- and emails are not sent.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
         save_all_results (bool): if True, save all of the queried publications from each source as "all_results.json"
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
     """
     
     config_dict = athr_srch_modularized.input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar, 
-                                                                   no_Crossref, no_PubMed, citation_match_ratio)
+                                                                   no_Crossref, no_PubMed)
     
     ## Create an authors_json for each project in the config_dict and update those authors attributes with the project attributes.
     authors_by_project_dict, config_dict = athr_srch_modularized.generate_internal_data_and_check_authors(config_dict)
@@ -184,7 +178,7 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
         user_input_checking.prev_pubs_file_check(prev_pubs)
             
     ## Query sources and build publication_dict.
-    publication_dict, all_queries = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed, citation_match_ratio)            
+    publication_dict, all_queries = athr_srch_modularized.build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, no_Crossref, no_PubMed)            
     
     save_dir_name = athr_srch_modularized.save_and_send_reports_and_emails(authors_by_project_dict, publication_dict, config_dict, test)
     
@@ -199,7 +193,7 @@ def author_search(config_json_filepath, no_ORCID, no_GoogleScholar, no_Crossref,
 
 
 def reference_search(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, 
-                     test, prev_pub_filepath, save_all_results, citation_match_ratio):
+                     test, prev_pub_filepath, save_all_results):
     """Query PubMed and Crossref for publications matching a reference.
     
     Read in user inputs and check for error, query sources based on inputs, build 
@@ -214,12 +208,14 @@ def reference_search(config_json_filepath, ref_path_or_URL, MEDLINE_reference, n
         test (bool): If True save_dir_name is tracker-test instead of tracker- and emails are not sent.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
         save_all_results (bool): if True, save all of the queried publications from each source as "all_results.json"
-        citation_match_ratio (int): if the fuzzy ratio between 2 citations is greater than or equal to this, then consider them to match.
     """
     
-    config_dict, tokenized_citations, has_previous_pubs, prev_pubs = ref_srch_modularized.input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, prev_pub_filepath, citation_match_ratio)       
+    config_dict, tokenized_citations, has_previous_pubs, prev_pubs = \
+        ref_srch_modularized.input_reading_and_checking(config_json_filepath, ref_path_or_URL, 
+                                                        MEDLINE_reference, no_Crossref, no_PubMed, 
+                                                        prev_pub_filepath)       
 
-    publication_dict, tokenized_citations, all_queries = ref_srch_modularized.build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_PubMed, citation_match_ratio)
+    publication_dict, tokenized_citations, all_queries = ref_srch_modularized.build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_PubMed)
             
     save_dir_name = ref_srch_modularized.save_and_send_reports_and_emails(config_dict, tokenized_citations, publication_dict, prev_pubs, has_previous_pubs, test)
             

@@ -226,16 +226,18 @@ def save_string_to_file(save_dir_name, file_name, text_to_save):
     
     
 
-def save_json_to_file(save_dir_name, file_name, json_dict):
+def save_json_to_file(save_dir_name, file_name, json_dict, sort_keys=True):
     """Saves the json_dict to file_name in save_dir_name in the current working directory.
     
     Args:
         save_dir_name (str): directory name to append to the current working directory to save the json_dict in.
+        file_name (str): the name to give the file, should have '.json' as the extension.
         json_dict (dict or list): data to save to file.
+        sort_keys (bool): passed to json.dumps, if True sort the dictionary keys before saving.
     """
     
     save_path = os.path.join(os.getcwd(), save_dir_name, file_name)
     
     with open(save_path, 'w') as outFile:
-        print(json.dumps(json_dict, indent=2, sort_keys=True), file=outFile)
+        print(json.dumps(json_dict, indent=2, sort_keys=sort_keys), file=outFile)
 

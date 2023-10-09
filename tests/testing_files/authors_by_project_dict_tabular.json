@@ -8,7 +8,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "amgu232@g.uky.edu",
@@ -38,7 +39,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "bhennig@uky.edu",
@@ -60,6 +62,38 @@
       },
       "pubmed_name_search": "Bernhard Hennig"
     },
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Moseley",
+      "project_report": {
+        "cc_email": [],
+        "columns": {
+          "Col1": "<author_first>, <author_last>",
+          "Col2": "<title>"
+        },
+        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu"
+      },
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
+    },
     "Kelly Pennell": {
       "ORCID": "0000-0003-3423-9610",
       "affiliations": [
@@ -68,7 +102,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "kellypennell@uky.edu",
@@ -1119,7 +1154,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "amgu232@g.uky.edu",
@@ -1139,7 +1175,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "bhennig@uky.edu",
@@ -1151,6 +1188,28 @@
       "last_name": "Hennig",
       "pubmed_name_search": "Bernhard Hennig"
     },
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Moseley",
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
+    },
     "Kelly Pennell": {
       "ORCID": "0000-0003-3423-9610",
       "affiliations": [
@@ -1159,7 +1218,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "kellypennell@uky.edu",
@@ -2200,7 +2260,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "amgu232@g.uky.edu",
@@ -2234,7 +2295,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "bhennig@uky.edu",
@@ -2260,6 +2322,42 @@
       },
       "pubmed_name_search": "Bernhard Hennig"
     },
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Moseley",
+      "project_report": {
+        "cc_email": [],
+        "columns": {
+          "Col1": "<project_name>",
+          "Col2": "<title>"
+        },
+        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "file_format": "xlsx",
+        "from_email": "ptth222@uky.edu",
+        "to_email": [
+          "ptth222@uky.edu"
+        ]
+      },
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
+    },
     "Kelly Pennell": {
       "ORCID": "0000-0003-3423-9610",
       "affiliations": [
@@ -2268,7 +2366,8 @@
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "kellypennell@uky.edu",

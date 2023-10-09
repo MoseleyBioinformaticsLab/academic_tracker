@@ -119,14 +119,11 @@ config_schema = {
                      "additionalProperties": {
                              "type": "object",
                              "properties":{
-                                     "first_name": {"type": "string", "minLength":1},
-                                     "last_name":{"type": "string", "minLength":1},
                                      "pubmed_name_search": {"type": "string", "minLength":1},
                                      "email":{"type": "string", "format":"email"},
                                      "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
                                      "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                                      "cutoff_year": {"type": "integer", "minimum":1000, "maximum":9999},
-                                     "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                                      "scholar_id": {"type": "string", "minLength":1},
                                      "project_report": {"type": "object",
                                                 "properties":{
@@ -167,8 +164,22 @@ config_schema = {
                                                              "from_email": ["email_body", "email_subject"],
                                                              "to_email": ["from_email", "email_body", "email_subject"]},},
                                      },
-                             "required" : ["first_name", "last_name", "pubmed_name_search"]
-
+                             "if": {
+                                 "properties":{"collective_name":{"type": "string", "minLength":1}},
+                                 "required":["collective_name"]
+                                 },
+                             "then":{
+                                 "properties":{"collective_name":{"type": "string", "minLength":1}},
+                                 "required":["collective_name"]
+                                 },
+                             "else":{
+                                 "properties": {
+                                         "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
+                                         "first_name": {"type": "string", "minLength":1},
+                                         "last_name":{"type": "string", "minLength":1},
+                                      },
+                                   "required": ["first_name", "last_name"]},
+                             "required" : ["pubmed_name_search"]
                              }
                        }
                                   
@@ -227,14 +238,24 @@ publications_schema={
                 "authors": {"type":"array", 
                             "minItems":1, 
                             "items": {"type": "object", 
-                                      "properties": {
-                                              "affiliation": {"type": ["string", "null"]},
-                                              "firstname": {"type": ["string", "null"]},
-                                              "initials": {"type": ["string", "null"]},
-                                              "lastname": {"type": ["string", "null"]},
-                                              "author_id" : {"type": "string"}  # optional, only put in if author detected and validated
-                                           },
-                                        "required": ["affiliation", "firstname", "lastname", "initials"]
+                                      "properties": {"ORCID": {"type": ["string", "null"], "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"}},
+                                      "if": {
+                                          "properties":{"collectivename":{"type":["string", "null"]}},
+                                          "required":["collectivename"]
+                                          },
+                                      "then":{
+                                          "properties":{"collectivename":{"type":["string", "null"]}},
+                                          "required":["collectivename"]
+                                          },
+                                      "else":{
+                                          "properties": {
+                                                  "affiliation": {"type": ["string", "null"]},
+                                                  "firstname": {"type": ["string", "null"]},
+                                                  "initials": {"type": ["string", "null"]},
+                                                  "lastname": {"type": ["string", "null"]},
+                                                  "author_id" : {"type": ["string", "null"]}  # optional, only put in if author detected and validated
+                                               },
+                                            "required": ["affiliation", "firstname", "lastname", "initials"]}
                                         }
                             },
                 "conclusions": {"type": ["string", "null"]},
@@ -270,11 +291,22 @@ tok_schema = {
            "minItems":1,
            "properties": {"authors": {"type": "array",
                                       "items": {"type": "object",
-                                                "properties": {"last": {"type":["string", "null"]},
-                                                               "initials": {"type":["string", "null"]},
-                                                               "first": {"type":["string", "null"]},
-                                                               "middle": {"type":["string", "null"]}},
-                                                "required": ["last"]}},
+                                                "properties": {"ORCID": {"type": ["string", "null"], "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"}},
+                                                "if": {
+                                                    "properties":{"collective_name":{"type":["string", "null"]}},
+                                                    "required":["collective_name"]
+                                                    },
+                                                "then":{
+                                                    "properties":{"collective_name":{"type":["string", "null"]}},
+                                                    "required":["collective_name"]
+                                                    },
+                                                "else":{
+                                                    "properties": {"last": {"type":["string", "null"]},
+                                                                   "initials": {"type":["string", "null"]},
+                                                                   "first": {"type":["string", "null"]},
+                                                                   "middle": {"type":["string", "null"]}},
+                                                    "required": ["last"]}
+                                                }},
                           "title": {"type":["string", "null"]},
                           "PMID": {"type":["string", "null"]},
                           "DOI": {"type":["string", "null"]},

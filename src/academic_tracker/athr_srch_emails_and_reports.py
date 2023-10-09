@@ -15,10 +15,25 @@ import pandas
 
 from . import helper_functions
 from . import fileio
+from . import emails_and_reports_helpers
 
 DEFAULT_SUMMARY_TEMPLATE = "<project_loop><project_name>\n<author_loop>\t<author_first> <author_last>:<pub_loop>\n\t\tTitle: <title> \n\t\tAuthors: <authors> \n\t\tJournal: <journal> \n\t\tDOI: <DOI> \n\t\tPMID: <PMID> \n\t\tPMCID: <PMCID> \n\t\tGrants: <grants>\n</pub_loop>\n</author_loop></project_loop>"
 DEFAULT_PROJECT_TEMPLATE = "<author_loop><author_first> <author_last>:<pub_loop>\n\tTitle: <title> \n\tAuthors: <authors> \n\tJournal: <journal> \n\tDOI: <DOI> \n\tPMID: <PMID> \n\tPMCID: <PMCID> \n\tGrants: <grants>\n</pub_loop>\n</author_loop>"
 DEFAULT_AUTHOR_TEMPLATE = "<author_loop><author_first> <author_last>:<pub_loop>\n\tTitle: <title> \n\tAuthors: <authors> \n\tJournal: <journal> \n\tDOI: <DOI> \n\tPMID: <PMID> \n\tPMCID: <PMCID> \n\tGrants: <grants>\n</pub_loop>\n</author_loop>"
+
+simple_publication_keywords_map = emails_and_reports_helpers.simple_publication_keywords_map
+
+pub_authors_keyword_map = emails_and_reports_helpers.pub_authors_keyword_map
+
+references_keyword_map = emails_and_reports_helpers.references_keyword_map
+
+publication_date_keywords_map = emails_and_reports_helpers.publication_date_keywords_map
+
+authors_keywords_map = emails_and_reports_helpers.authors_keywords_map
+
+pub_keywords = emails_and_reports_helpers.pub_keywords
+
+
 
 
 def create_pubs_by_author_dict(publication_dict):
@@ -36,8 +51,7 @@ def create_pubs_by_author_dict(publication_dict):
     pubs_by_author_dict = {}
     for pub_id, pub_attributes in publication_dict.items():
         for author_attributes in pub_attributes["authors"]:
-            if "author_id" in author_attributes:
-                author_id = author_attributes["author_id"]
+            if author_id := author_attributes["author_id"]:
                 if author_id in pubs_by_author_dict:
                     pubs_by_author_dict[author_id][pub_id] = pub_attributes["grants"]
                 else:
@@ -228,35 +242,6 @@ def create_summary_report(publication_dict, config_dict, authors_by_project_dict
 
 
 
-simple_publication_keywords_map = {"<abstract>":"abstract",
-                                    "<conclusions>":"conclusions",
-                                    "<copyrights>":"copyrights",
-                                    "<DOI>":"doi",
-                                    "<journal>":"journal",
-                                    "<keywords>":"keywords",
-                                    "<methods>":"methods",
-                                    "<PMID>":"pubmed_id",
-                                    "<results>":"results",
-                                    "<title>":"title",
-                                    "<PMCID>":"PMCID",}
-
-pub_authors_keyword_map = {"<pub_author_first>":"firstname",
-                           "<pub_author_last>":"lastname",
-                           "<pub_author_initials>":"initials",
-                           "<pub_author_affiliations>":"affiliation"}
-
-publication_date_keywords_map = {"<publication_year>":"year",
-                                 "<publication_month>":"month",
-                                 "<publication_day>":"day"}
-
-authors_keywords_map = {"<author_first>":"first_name",
-                        "<author_last>":"last_name",
-                        "<author_name_search>":"pubmed_name_search",
-                        "<author_email>":"email"}
-
-pub_keywords = list(simple_publication_keywords_map.keys()) + list(publication_date_keywords_map.keys()) + ["<first_author>", "<last_author>", "<authors>", "<grants>"]
-
-
 def build_author_loop(publication_dict, config_dict, authors_by_project_dict, project_name, template_string):
     """Replace tags in template_string with the appropriate information.
     
@@ -276,6 +261,7 @@ def build_author_loop(publication_dict, config_dict, authors_by_project_dict, pr
     author_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<author_loop>(.*)</author_loop>.*", template_string), 0)
     pub_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_loop>(.*)</pub_loop>.*", template_string), 0)
     pub_author_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<pub_author_loop>(.*)</pub_author_loop>.*", template_string), 0)
+    reference_template = helper_functions.regex_group_return(helper_functions.regex_match_return(r"(?s).*<reference_loop>(.*)</reference_loop>.*", template_string), 0)
     
     project_authors = ""
     for author in authors_by_project_dict[project_name]:
@@ -287,46 +273,24 @@ def build_author_loop(publication_dict, config_dict, authors_by_project_dict, pr
         for pub in pubs_by_author_dict[author]:
             pub_template_copy = pub_template
             
-            pub_authors = ""
-            for pub_author in publication_dict[pub]["authors"]:
-                pub_author_template_copy = pub_author_template
-                
-                for keyword, pub_author_key in pub_authors_keyword_map.items():
-                    pub_author_template_copy = pub_author_template_copy.replace(keyword, str(pub_author[pub_author_key]))
-                    
-                pub_authors += pub_author_template_copy
-                
-            pub_template_copy = re.sub(r"(?s)<pub_author_loop>.*</pub_author_loop>", pub_authors, pub_template_copy)
+            pub_template_copy = emails_and_reports_helpers._replace_pub_author_and_reference_loops(publication_dict, 
+                                                                                                   pub, 
+                                                                                                   pub_template_copy, 
+                                                                                                   pub_author_template, 
+                                                                                                   reference_template)
             
-            for keyword, pub_key in simple_publication_keywords_map.items():
-                pub_template_copy = pub_template_copy.replace(keyword, str(publication_dict[pub][pub_key]))
-                
-            ## build first and last author
-            first_author = str(publication_dict[pub]["authors"][0]["lastname"]) + ", " + str(publication_dict[pub]["authors"][0]["firstname"])
-            pub_template_copy = pub_template_copy.replace("<first_author>", first_author)
-            
-            last_author = str(publication_dict[pub]["authors"][-1]["lastname"]) + ", " + str(publication_dict[pub]["authors"][-1]["firstname"])
-            pub_template_copy = pub_template_copy.replace("<last_author>", last_author)
-            
-            authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
-            pub_template_copy = pub_template_copy.replace("<authors>", authors)
-            
-            grants = ", ".join(publication_dict[pub]["grants"]) if publication_dict[pub]["grants"] else "None Found"
-            pub_template_copy = pub_template_copy.replace("<grants>", grants)
-            
-            for keyword, date_key in publication_date_keywords_map.items():
-                pub_template_copy = pub_template_copy.replace(keyword, str(publication_dict[pub]["publication_date"][date_key]))
-                    
+            pub_template_copy = emails_and_reports_helpers._replace_keywords({"1":pub_template_copy}, 
+                                                                             publication_dict, 
+                                                                             config_dict, 
+                                                                             pub=pub)["1"]                    
             authors_pubs += pub_template_copy
         
         author_template_copy = re.sub(r"(?s)<pub_loop>.*</pub_loop>", authors_pubs, author_template_copy)
-        for keyword, auth_key in authors_keywords_map.items():
-            author_template_copy = author_template_copy.replace(keyword, str(config_dict["Authors"][author][auth_key]) if auth_key in config_dict["Authors"][author] else "None")
+        author_template_copy = emails_and_reports_helpers._replace_keywords({"1":author_template_copy}, publication_dict, config_dict, author=author)["1"]
             
         project_authors += author_template_copy
         
     return project_authors
-
 
 
 
@@ -373,9 +337,6 @@ def create_tabular_collaborator_report(publication_dict, config_dict, author, pu
         columns = default_columns
         sort = default_sort
         column_order = default_order
-        
-    
-    
     
     authors_already_added = []
     
@@ -395,27 +356,14 @@ def create_tabular_collaborator_report(publication_dict, config_dict, author, pu
             collaborators.append(temp_dict)
             authors_already_added.append(pub_author)
     
-                
-    if collaborators:
-        df = pandas.DataFrame(collaborators)
-        if sort:
-            df = df.sort_values(by=sort)
-        df = df.drop_duplicates()
-        df = df[column_order]
-        
-        if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator, lineterminator="\n")
-            fileio.save_string_to_file(save_dir_name, filename, report)
-        else:
-            ## If the file extension isn't .xlsx then there will be an error, so force it.
-            extension = os.path.splitext(filename)[1][1:].lower()
-            if not extension == "xlsx":
-                filename += ".xlsx"
-            
-            report = os.path.join(save_dir_name, filename)
-            df.to_excel(report, index=False)
-    else:
-        report = ""
+    
+    report, filename = emails_and_reports_helpers._save_rows_to_file(collaborators, 
+                                                                     filename, 
+                                                                     sort, 
+                                                                     column_order, 
+                                                                     file_format, 
+                                                                     separator, 
+                                                                     save_dir_name)           
         
     return report, filename
     
@@ -564,7 +512,6 @@ def create_tabular_summary_report(publication_dict, config_dict, authors_by_proj
     
     pubs_by_author_dict = create_pubs_by_author_dict(publication_dict)
         
-    rows = []
     row_template = copy.deepcopy(config_dict["summary_report"]["columns"])
     
     if "separator" in config_dict["summary_report"]:
@@ -592,56 +539,19 @@ def create_tabular_summary_report(publication_dict, config_dict, authors_by_proj
     else:
         filename = "summary_report.csv" if file_format == "csv" else "summary_report.xlsx"
     
-    row_string = "".join(row_template.values())  
-    has_pub_keywords = True if any([pub_keyword in row_string for pub_keyword in pub_keywords]) else False
     
-    if any([pub_author_keyword in row_string for pub_author_keyword in pub_authors_keyword_map.keys()]):
-        has_pub_author_keywords = True
-    else:
-        has_pub_author_keywords = False
-    
-    
+    rows = []
     for project_name, project_attributes in config_dict["project_descriptions"].items():
-        
-        for author, author_attributes in authors_by_project_dict[project_name].items():
-            if not author in pubs_by_author_dict:
-                continue
-            
-            if has_pub_author_keywords or has_pub_keywords:
-                for pub in pubs_by_author_dict[author]:
-                    
-                    if has_pub_author_keywords:
-                        for pub_author in publication_dict[pub]["authors"]:
-                            
-                            rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author, pub, pub_author))
-                            
-                    else:
-                        rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author, pub))
-                        
-            else:
-                rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author))
+        rows += _build_report_rows(publication_dict, config_dict, authors_by_project_dict, pubs_by_author_dict, row_template, project_name)
                 
+    report, filename = emails_and_reports_helpers._save_rows_to_file(rows, 
+                                                                     filename, 
+                                                                     sort, 
+                                                                     column_order, 
+                                                                     file_format, 
+                                                                     separator, 
+                                                                     save_dir_name)
     
-    report = ""            
-    if rows:
-        df = pandas.DataFrame(rows)
-        if sort:
-            df = df.sort_values(by=sort)
-        df = df.drop_duplicates()
-        df = df[column_order]
-        
-        if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator, lineterminator="\n")
-            fileio.save_string_to_file(save_dir_name, filename, report)
-        else:
-            ## If the file extension isn't .xlsx then there will be an error, so force it.
-            extension = os.path.splitext(filename)[1][1:].lower()
-            if not extension == "xlsx":
-                filename += ".xlsx"
-            
-            report = os.path.join(save_dir_name, filename)
-            df.to_excel(report, index=False)
-            
     return report, filename
 
 
@@ -664,7 +574,6 @@ def create_tabular_project_report(publication_dict, config_dict, authors_by_proj
         filename (str): Filename of the report. Made have had an .xlsx added to the end.
     """
     
-    rows = []
     row_template = copy.deepcopy(report_attributes["columns"])
     
     separator = report_attributes["separator"] if "separator" in report_attributes else ","
@@ -674,117 +583,248 @@ def create_tabular_project_report(publication_dict, config_dict, authors_by_proj
     column_order = report_attributes["column_order"] if "column_order" in report_attributes else list(row_template.keys())   
     
     file_format = report_attributes["file_format"] if "file_format" in report_attributes else "csv"    
-        
+                        
+    
+    rows = _build_report_rows(publication_dict, config_dict, authors_by_project_dict, pubs_by_author_dict, row_template, project_name)
+    
+    report, filename = emails_and_reports_helpers._save_rows_to_file(rows, 
+                                                                     filename, 
+                                                                     sort, 
+                                                                     column_order, 
+                                                                     file_format, 
+                                                                     separator, 
+                                                                     save_dir_name)
+    
+    return report, filename
+                                
+
+
+def _build_report_rows(publication_dict, config_dict, authors_by_project_dict, pubs_by_author_dict, row_template, project_name):
+    """Build the rows for a tabular report.
+    
+    Args:
+        publication_dict (dict): keys and values match the publications JSON file.
+        config_dict (dict): keys and values match the project tracking configuration JSON file.
+        authors_by_project_dict (dict): keys are project names from the config file and values are pulled from config_dict["Authors"].
+        pubs_by_author_dict (dict): dictionary where the keys are authors and the values are a dictionary of pub_ids with thier associated grants.
+        row_template (list[dict]): list of dictionaries to base each row on, values are replaced based on input data.
+        project_name (str): name of the project.
+    
+    Returns:
+        rows (list[dict]): list of dictionaries based on row_template with values replaced.
+    """
+    
     row_string = "".join(row_template.values())
     
     has_pub_keywords = True if any([pub_keyword in row_string for pub_keyword in pub_keywords]) else False
     
+    has_pub_author_keywords = False
     if any([pub_author_keyword in row_string for pub_author_keyword in pub_authors_keyword_map.keys()]):
         has_pub_author_keywords = True
-    else:
-        has_pub_author_keywords = False
     
+    has_reference_keywords = False
+    if any([reference_keyword in row_string for reference_keyword in references_keyword_map.keys()]):
+        has_reference_keywords = True
     
+    rows = []
     for author, author_attributes in authors_by_project_dict[project_name].items():
         if not author in pubs_by_author_dict:
             continue
         
-        if has_pub_author_keywords or has_pub_keywords:
+        if has_reference_keywords or has_pub_author_keywords or has_pub_keywords:
             for pub in pubs_by_author_dict[author]:
                 
-                if has_pub_author_keywords:
-                    for pub_author in publication_dict[pub]["authors"]:
-                        
-                        rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author, pub, pub_author))
-                        
-                else:
-                    rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author, pub))
-                    
-        else:
-            rows.append(replace_keywords(row_template, publication_dict, config_dict, project_name, author))
+                rows += emails_and_reports_helpers._build_pub_author_and_reference_rows(publication_dict, 
+                                                                                        config_dict, 
+                                                                                        has_pub_author_keywords, 
+                                                                                        has_reference_keywords,
+                                                                                        row_template, 
+                                                                                        project_name, 
+                                                                                        author, 
+                                                                                        pub, 
+                                                                                        None, 
+                                                                                        None)
                 
-    
-    report = ""            
-    if rows:
-        df = pandas.DataFrame(rows)
-        if sort:
-            df = df.sort_values(by=sort)
-        df = df.drop_duplicates()
-        df = df[column_order]
-        
-        if file_format == "csv":
-            report = df.to_csv(index=False, sep=separator, lineterminator="\n")
-            fileio.save_string_to_file(save_dir_name, filename, report)
-        else:
-            ## If the file extension isn't .xlsx then there will be an error, so force it.
-            extension = os.path.splitext(filename)[1][1:].lower()
-            if not extension == "xlsx":
-                filename += ".xlsx"
-            
-            report = os.path.join(save_dir_name, filename)
-            df.to_excel(report, index=False)
-            
-    return report, filename
+                
+                # ## If references or authors is an empty list then you get unexpected behavior where pubs just won't show up, 
+                # ## so look for it before hand and just give it a null dictionary if it is empty.
+                # if not (references := publication_dict[pub]["references"]):
+                #     references = [{
+                #                     "PMCID": None,
+                #                     "citation": None,
+                #                     "doi": None,
+                #                     "pubmed_id": None,
+                #                     "title": None
+                #                   }]
+                # ## There should always be at least 1 author since this is specific to author search, but the code is here for completeness.
+                # if not (pub_authors := publication_dict[pub]["authors"]):
+                #     pub_authors = [{
+                #                     "ORCID": None,
+                #                     "affiliation": None,
+                #                     "author_id": None,
+                #                     "firstname": None,
+                #                     "initials": None,
+                #                     "lastname": None
+                #                   }]
+                
+                # if has_pub_author_keywords and has_reference_keywords:
+                #     for pub_author in pub_authors:
+                #         for reference in references:
+                #             rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
+                #                                                                      publication_dict, 
+                #                                                                      config_dict, 
+                #                                                                      project_name, 
+                #                                                                      author,
+                #                                                                      pub, 
+                #                                                                      pub_author, 
+                #                                                                      reference))
+                
+                # elif has_pub_author_keywords:
+                #     for pub_author in pub_authors:
+                #         rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
+                #                                                                  publication_dict, 
+                #                                                                  config_dict, 
+                #                                                                  project_name, 
+                #                                                                  author, 
+                #                                                                  pub, 
+                #                                                                  pub_author))
+                
+                # elif has_reference_keywords:
+                #     for reference in references:
+                #         rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
+                #                                                                  publication_dict, 
+                #                                                                  config_dict, 
+                #                                                                  project_name, 
+                #                                                                  author, 
+                #                                                                  pub, 
+                #                                                                  {}, 
+                #                                                                  reference))
+                        
+                # else:
+                #     rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
+                #                                                              publication_dict, 
+                #                                                              config_dict, 
+                #                                                              project_name, 
+                #                                                              author, 
+                #                                                              pub))
                     
+        else:
+            rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
+                                                                     publication_dict, 
+                                                                     config_dict, 
+                                                                     project_name, 
+                                                                     author))
+    
+    return rows
+
+
+
+# def _save_rows_to_file(rows, filename, sort, column_order, file_format, separator, save_dir_name):
+#     """Turn a list of dicts into a DataFrame and save it to file.
+    
+#     Args:
+#         rows (list[dict]): list of dictionaries to save.
+#         filename (str): filename to save the DataFrame as, '.csv' or '.xlsx' will be added as needed.
+#         sort (list[str]): list of column names to sort the DataFrame by, passes into DataFrame.sort_values().
+#         column_order (list[str]): list of column names to reorder the DataFrame columns.
+#         file_format (str): either 'csv' or 'xlsx' to save in CSV or Excel format, respectively.
+#         separator (str): the separator to use if file_format is 'csv'.
+#         save_dir_name (str): the directory name to save the file in.
+    
+#     Returns:
+#         report (str): if file_format is 'csv', then the DataFrame in CSV form, else the path to the Excel file.
+#         filename (str): the filename the DataFrame was ultimately saved under.
+#     """
+    
+#     report = ""            
+#     if rows:
+#         df = pandas.DataFrame(rows)
+#         if sort:
+#             df = df.sort_values(by=sort)
+#         df = df.drop_duplicates()
+#         df = df[column_order]
+        
+#         if file_format == "csv":
+#             report = df.to_csv(index=False, sep=separator, lineterminator="\n")
+#             fileio.save_string_to_file(save_dir_name, filename, report)
+#         else:
+#             ## If the file extension isn't .xlsx then there will be an error, so force it.
+#             extension = os.path.splitext(filename)[1][1:].lower()
+#             if not extension == "xlsx":
+#                 filename += ".xlsx"
+            
+#             report = os.path.join(save_dir_name, filename)
+#             df.to_excel(report, index=False)
+    
+#     return report, filename
+
                     
                     
 
-def replace_keywords(template, publication_dict, config_dict, project_name="", author="", pub="", pub_author={}):
-    """Replace keywords in the values of the template dictionary.
+# def replace_keywords(template, publication_dict, config_dict, project_name="", author="", pub="", pub_author={}, reference={}):
+#     """Replace keywords in the values of the template dictionary.
     
-    Args:
-        template (dict): keys are column names and values are what the elements of the column should be.
-        publication_dict (dict): keys and values match the publications JSON file.
-        config_dict (dict): keys and values match the project tracking configuration JSON file.
-        project_name (str): the name of the project to replace.
-        author (str): the key to the author in config_dict["Authors"].
-        pub (str): the key to the pub in publication_dict.
-        pub_author (dict): The author in pub.
+#     Args:
+#         template (dict): keys are column names and values are what the elements of the column should be.
+#         publication_dict (dict): keys and values match the publications JSON file.
+#         config_dict (dict): keys and values match the project tracking configuration JSON file.
+#         project_name (str): the name of the project to replace.
+#         author (str): the key to the author in config_dict["Authors"].
+#         pub (str): the key to the pub in publication_dict.
+#         pub_author (dict): The author in pub.
         
-    Returns:
-        template_copy (dict): template with the keywords replaced in its values.
-    """
+#     Returns:
+#         template_copy (dict): template with the keywords replaced in its values.
+#     """
     
-    template_copy = copy.deepcopy(template)
+#     template_copy = copy.deepcopy(template)
     
-    for key in template_copy:
+#     for key in template_copy:
         
-        ## Project keywords
-        if project_name:
-            template_copy[key] = template_copy[key].replace("<project_name>", project_name)
+#         ## Project keywords
+#         if project_name:
+#             template_copy[key] = template_copy[key].replace("<project_name>", project_name)
         
-        ## Authors keywords
-        if author:
-            for keyword, auth_key in authors_keywords_map.items():
-                template_copy[key] = template_copy[key].replace(keyword, str(config_dict["Authors"][author][auth_key]) if auth_key in config_dict["Authors"][author] else "None")
+#         ## Authors keywords
+#         if author:
+#             for keyword, auth_key in authors_keywords_map.items():
+#                 template_copy[key] = template_copy[key].replace(keyword, str(config_dict["Authors"][author][auth_key]) if auth_key in config_dict["Authors"][author] else "None")
         
-        ## Publication keywords
-        if pub:
-            for keyword, pub_key in simple_publication_keywords_map.items():
-                template_copy[key] = template_copy[key].replace(keyword, str(publication_dict[pub][pub_key]))
+#         ## Publication keywords
+#         if pub:
+#             for keyword, pub_key in simple_publication_keywords_map.items():
+#                 template_copy[key] = template_copy[key].replace(keyword, str(publication_dict[pub][pub_key]))
                 
-            ## build first and last author
-            first_author = str(publication_dict[pub]["authors"][0]["lastname"]) + ", " + str(publication_dict[pub]["authors"][0]["firstname"])
-            template_copy[key] = template_copy[key].replace("<first_author>", first_author)
+#             ## build first and last author
+#             first_author = str(publication_dict[pub]["authors"][0]["lastname"]) + ", " + str(publication_dict[pub]["authors"][0]["firstname"])
+#             template_copy[key] = template_copy[key].replace("<first_author>", first_author)
             
-            last_author = str(publication_dict[pub]["authors"][-1]["lastname"]) + ", " + str(publication_dict[pub]["authors"][-1]["firstname"])
-            template_copy[key] = template_copy[key].replace("<last_author>", last_author)
+#             last_author = str(publication_dict[pub]["authors"][-1]["lastname"]) + ", " + str(publication_dict[pub]["authors"][-1]["firstname"])
+#             template_copy[key] = template_copy[key].replace("<last_author>", last_author)
             
-            authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
-            template_copy[key] = template_copy[key].replace("<authors>", authors)
+#             authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
+#             template_copy[key] = template_copy[key].replace("<authors>", authors)
             
-            grants = ", ".join(publication_dict[pub]["grants"]) if publication_dict[pub]["grants"] else "None Found"
-            template_copy[key] = template_copy[key].replace("<grants>", grants)
+#             grants = ", ".join(publication_dict[pub]["grants"]) if publication_dict[pub]["grants"] else "None Found"
+#             template_copy[key] = template_copy[key].replace("<grants>", grants)
             
-            for keyword, date_key in publication_date_keywords_map.items():
-                template_copy[key] = template_copy[key].replace(keyword, str(publication_dict[pub]["publication_date"][date_key]))
+#             queried_sources = ", ".join(publication_dict[pub]["queried_sources"])
+#             template_copy[key] = template_copy[key].replace("<queried_sources>", queried_sources)
+            
+#             for keyword, date_key in publication_date_keywords_map.items():
+#                 template_copy[key] = template_copy[key].replace(keyword, str(publication_dict[pub]["publication_date"][date_key]))
         
-        ## Pub authors keywords
-        if pub_author:
-            for keyword, pub_author_key in pub_authors_keyword_map.items():
-                template_copy[key] = template_copy[key].replace(keyword, str(pub_author[pub_author_key]))
+#         ## Pub authors keywords
+#         if pub_author:
+#             for keyword, pub_author_key in pub_authors_keyword_map.items():
+#                 template_copy[key] = template_copy[key].replace(keyword, str(pub_author[pub_author_key]))
+        
+#         ## references keywords
+#         if reference:
+#             for keyword, reference_key in references_keyword_map.items():
+#                 template_copy[key] = template_copy[key].replace(keyword, str(reference[reference_key]))
             
-    return template_copy
+#     return template_copy
         
 
 

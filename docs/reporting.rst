@@ -164,12 +164,15 @@ Keywords
     <last_author>
     <authors>              Will be replaced with a comma separated list of author names of all authors.
     <grants>               Will be replaced with a comma separated list of grants associated with the publication.
+    <queried_sources>               Will be replaced with a comma separated list of the sources where information was found for the publication.
     
     Pub Author Keywords - Pulled from the authors section of each publication in the publications.json file.
     <pub_author_first>
     <pub_author_last>
     <pub_author_initials>
     <pub_author_affiliations>
+    <pub_author_ORCID>
+    <pub_author_id>
     
     Author Keywords - Pulled from the Authors section of the configuration JSON file.
     <author_first>
@@ -377,6 +380,8 @@ Keywords
     <pub_author_last>          -  Collaborator's last name.
     <pub_author_initials>      -  Collaborator's initials.
     <pub_author_affiliations>  -  Collaborator's affiliations.
+    <pub_author_ORCID>         -  Collaborator's ORCID.
+    <pub_author_id>            -  Collaborator's ID.
     
 
 Examples

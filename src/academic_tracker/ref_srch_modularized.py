@@ -20,7 +20,12 @@ from . import webio
 
 
 
-def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_reference, no_Crossref, no_PubMed, prev_pub_filepath):
+def input_reading_and_checking(config_json_filepath, 
+                               ref_path_or_URL, 
+                               MEDLINE_reference, no_Crossref, 
+                               no_PubMed, 
+                               prev_pub_filepath, 
+                               remove_duplicates):
     """Read in inputs from user and do error checking.
     
     Args:
@@ -30,6 +35,7 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
         no_Crossref (bool): If True search Crossref else don't. Reduces checking on config JSON if True.
         no_PubMed (bool): If True search PubMed else don't. Reduces checking on config JSON if True.
         prev_pub_filepath (str or None): filepath to the publication JSON to read in.
+        remove_duplicates (bool): if True, remove duplicate entries in tokenized citations.
         
     Returns:
         config_dict (dict): Matches the Configuration file JSON schema.
@@ -60,7 +66,7 @@ def input_reading_and_checking(config_json_filepath, ref_path_or_URL, MEDLINE_re
     if has_previous_pubs:
         user_input_checking.prev_pubs_file_check(prev_pubs)
         
-    tokenized_citations = ref_srch_webio.tokenize_reference_input(ref_path_or_URL, MEDLINE_reference) 
+    tokenized_citations = ref_srch_webio.tokenize_reference_input(ref_path_or_URL, MEDLINE_reference, remove_duplicates) 
     
     return config_dict, tokenized_citations, has_previous_pubs, prev_pubs
 
@@ -130,7 +136,7 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_Pub
         for i, pub_list in enumerate(all_queries["PubMed"]):
             new_list = []
             for pub in pub_list:
-                new_list.append(helper_functions.modify_pub_dict_for_saving(pub, True))
+                new_list.append(helper_functions.create_pub_dict_for_saving_PubMed(pub, True))
             all_queries["PubMed"][i] = new_list
             
     return running_pubs, tokenized_citations, all_queries

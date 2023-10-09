@@ -146,7 +146,7 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
         for author, pub_list in all_queries["PubMed"].items():
             new_list = []
             for pub in pub_list:
-                new_list.append(helper_functions.modify_pub_dict_for_saving(pub, True))
+                new_list.append(helper_functions.create_pub_dict_for_saving_PubMed(pub, True))
             all_queries["PubMed"][author] = new_list
         
     return running_pubs, all_queries

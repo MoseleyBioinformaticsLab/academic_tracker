@@ -1,4 +1,7 @@
 Kelly Pennell:
-	Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-Angela Gutierrez:
-	Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt None Found
+Hunter Moseley:
+	Plk1 phosphorylation of PHGDH to regulate serine metabolism Hunter Moseley None Found
+	Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
+	Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell P42 ES007380, 2020026
+Travis Thompson:
+	Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell P42 ES007380, 2020026

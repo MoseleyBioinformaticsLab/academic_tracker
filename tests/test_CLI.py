@@ -27,18 +27,22 @@ def change_cwd():
     os.chdir(cwd)
 
 @pytest.fixture(autouse=True)
-def delete_folder():
-    paths = [os.path.abspath(name) for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
-    for path in paths:
-        path = pathlib.Path(path)
-        shutil.rmtree(path)
-        time_to_wait=10
-        time_counter = 0
-        while path.exists():
-            time.sleep(1)
-            time_counter += 1
-            if time_counter > time_to_wait:
-                raise FileExistsError(path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+def delete_folder(request):
+    def delete_tracker_dir():
+        paths = [os.path.abspath(name) for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
+        for path in paths:
+            path = pathlib.Path(path)
+            shutil.rmtree(path)
+            time_to_wait=10
+            time_counter = 0
+            while path.exists():
+                time.sleep(1)
+                time_counter += 1
+                if time_counter > time_to_wait:
+                    raise FileExistsError(path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+    delete_tracker_dir()
+    request.addfinalizer(delete_tracker_dir)
+    
 
 
 
@@ -308,62 +312,4 @@ def test_prev_pub_underscore_gen_reports_emails_ref():
     assert "Success" in output
 
 
-def test_citation_match_not_integer_author_search():
-    """Test that if the given citation match ratio is not an integer an error is printed for author_search."""
     
-    test_file = "config_truncated.json"
-    
-    command = "academic_tracker author_search ./" + test_file  + " --citation-match-ratio asdf" 
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stdout
-
-    assert not [name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
-                
-    assert "Error: The given citation-match-ratio is not an integer value." in output
-
-
-def test_citation_match_not_integer_ref_search():
-    """Test that if the given citation match ratio is not an integer an error is printed for reference_search."""
-    
-    test_file = "config_truncated.json"
-    
-    command = "academic_tracker reference_search ./" + test_file  + " tokenized_citations_duplicates_removed.json --citation-match-ratio asdf" 
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stdout
-
-    assert not [name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
-                
-    assert "Error: The given citation-match-ratio is not an integer value." in output
-
-
-def test_citation_match_not_in_range_author_search():
-    """Test that if the given citation match ratio is not in range an error is printed for author_search."""
-    
-    test_file = "config_truncated.json"
-    
-    command = "academic_tracker author_search ./" + test_file  + " --citation-match-ratio 1000" 
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stdout
-
-    assert not [name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
-                
-    assert "Error: The given citation-match-ratio is not within the range 0-100." in output
-
-
-def test_citation_match_not_in_range_ref_search():
-    """Test that if the given citation match ratio is not in range an error is printed for reference_search."""
-    
-    test_file = "config_truncated.json"
-    
-    command = "academic_tracker reference_search ./" + test_file  + " tokenized_citations_duplicates_removed.json --citation-match-ratio 1000"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stdout
-
-    assert not [name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
-                
-    assert "Error: The given citation-match-ratio is not within the range 0-100." in output
-

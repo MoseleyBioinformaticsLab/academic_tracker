@@ -1,33 +1,42 @@
 {
-  "https://doi.org/https://doi.org/10.1002/hep.32467": {
+  "https://doi.org/10.1002/hep.32467": {
     "PMCID": "PMC9489820",
     "abstract": "Resolution of pathways that converge to induce deleterious effects in hepatic diseases, such as in the later stages, have potential antifibrotic effects that may improve outcomes. We aimed to explore whether humans and rodents display similar fibrotic signaling networks.\nWe assiduously mapped kinase pathways using 340 substrate targets, upstream bioinformatic analysis of kinase pathways, and over 2000 random sampling iterations using the PamGene PamStation kinome microarray chip technology. Using this technology, we characterized a large number of kinases with altered activity in liver fibrosis of both species. Gene expression and immunostaining analyses validated many of these kinases as bona fide signaling events. Surprisingly, the insulin receptor emerged as a considerable protein tyrosine kinase that is hyperactive in fibrotic liver disease in humans and rodents. Discoidin domain receptor tyrosine kinase, activated by collagen that increases during fibrosis, was another hyperactive protein tyrosine kinase in humans and rodents with fibrosis. The serine/threonine kinases found to be the most active in fibrosis were dystrophy type 1 protein kinase and members of the protein kinase family of kinases. We compared the fibrotic events over four models: humans with cirrhosis and three murine models with differing levels of fibrosis, including two models of fatty liver disease with emerging fibrosis. The data demonstrate a high concordance between human and rodent hepatic kinome signaling that focalizes, as shown by our network analysis of detrimental pathways.\nOur findings establish a comprehensive kinase atlas for liver fibrosis, which identifies analogous signaling events conserved among humans and rodents.",
     "authors": [
       {
+        "ORCID": "0000-0003-3123-8401",
         "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.",
+        "author_id": null,
         "firstname": "Justin F",
         "initials": "JF",
         "lastname": "Creeden"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Zachary A",
         "initials": "ZA",
         "lastname": "Kipp"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Mei",
         "initials": "M",
         "lastname": "Xu"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Robert M",
         "initials": "RM",
         "lastname": "Flight"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, Kentucky, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, Kentucky, USA.\nCenter for Clinical and Translational Science, University of Kentucky, Lexington, Kentucky, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -35,79 +44,105 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Genesee J",
         "initials": "GJ",
         "lastname": "Martinez"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Wang-Hsin",
         "initials": "WH",
         "lastname": "Lee"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.",
+        "author_id": null,
         "firstname": "Khaled",
         "initials": "K",
         "lastname": "Alganem"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.",
+        "author_id": null,
         "firstname": "Ali S",
         "initials": "AS",
         "lastname": "Imami"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "author_id": null,
         "firstname": "Megan R",
         "initials": "MR",
         "lastname": "McMullen"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "author_id": null,
         "firstname": "Sanjoy",
         "initials": "S",
         "lastname": "Roychowdhury"
       },
       {
+        "ORCID": null,
         "affiliation": "Division of Transplant and Hepatobiliary, Department of Surgery, The University of Kansas Medical Center, Kansas City, Kansas, USA.",
+        "author_id": null,
         "firstname": "Atta M",
         "initials": "AM",
         "lastname": "Nawabi"
       },
       {
+        "ORCID": null,
         "affiliation": "Strata Oncology, Ann Arbor, Michigan, USA.",
+        "author_id": null,
         "firstname": "Jennifer A",
         "initials": "JA",
         "lastname": "Hipp"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\nDepartment of Pediatrics, University of Kentucky, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Samir",
         "initials": "S",
         "lastname": "Softic"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Internal Medicine and Liver Center, University of Kansas Medical Center, Kansas City, Kansas, USA.",
+        "author_id": null,
         "firstname": "Steven A",
         "initials": "SA",
         "lastname": "Weinman"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.\nNeurosciences Institute, ProMedica, Toledo, Ohio, USA.",
+        "author_id": null,
         "firstname": "Robert",
         "initials": "R",
         "lastname": "McCullumsmith"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.\nDepartment of Gastroenterology and Hepatology, Center for Liver Disease Research, Cleveland Clinic, Cleveland, Ohio, USA.\nDepartment of Molecular Medicine, Case Western Reserve University, Cleveland, Ohio, USA.",
+        "author_id": null,
         "firstname": "Laura E",
         "initials": "LE",
         "lastname": "Nagy"
       },
       {
+        "ORCID": "0000-0002-7599-1529",
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nBarnstable Brown Diabetes Center, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Terry D",
         "initials": "TD",
         "lastname": "Hinds"
@@ -456,95 +491,124 @@
     "results": null,
     "title": "Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents."
   },
-  "https://doi.org/https://doi.org/10.1038/s41467-023-35784-x": {
+  "https://doi.org/10.1038/s41467-023-35784-x": {
     "PMCID": "PMC9859827",
     "abstract": "Inhibitors of the Polycomb Repressive Complex 2 (PRC2) histone methyltransferase EZH2 are approved for certain cancers, but realizing their wider utility relies upon understanding PRC2 biology in each cancer system. Using a genetic model to delete Ezh2 in KRAS-driven lung adenocarcinomas, we observed that Ezh2 haplo-insufficient tumors were less lethal and lower grade than Ezh2 fully-insufficient tumors, which were poorly differentiated and metastatic. Using three-dimensional cultures and in vivo experiments, we determined that EZH2-deficient tumors were vulnerable to H3K27 demethylase or BET inhibitors. PRC2 loss/inhibition led to de-repression of FOXP2, a transcription factor that promotes migration and stemness, and FOXP2 could be suppressed by BET inhibition. Poorly differentiated human lung cancers were enriched for an H3K27me3-low state, representing a subtype that may benefit from BET inhibition as a single therapy or combined with additional EZH2 inhibition. These data highlight diverse roles of PRC2 in KRAS-driven lung adenocarcinomas, and demonstrate the utility of three-dimensional cultures for exploring epigenetic drug sensitivities for cancer.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.\nDepartment of Medical Oncology, Sun Yat-sen University Cancer Center, State Key Laboratory of Oncology in South China, Collaborative Innovation Center for Cancer Medicine, Sun Yat-sen University, 510060, Guangzhou, P. R. China.",
+        "author_id": null,
         "firstname": "Fan",
         "initials": "F",
         "lastname": "Chen"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Aria L",
         "initials": "AL",
         "lastname": "Byrd"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Jinpeng",
         "initials": "J",
         "lastname": "Liu"
       },
       {
+        "ORCID": "0000-0001-8141-7788",
         "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Robert M",
         "initials": "RM",
         "lastname": "Flight"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Tanner J",
         "initials": "TJ",
         "lastname": "DuCote"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Kassandra J",
         "initials": "KJ",
         "lastname": "Naughton"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Xiulong",
         "initials": "X",
         "lastname": "Song"
       },
       {
+        "ORCID": "0000-0003-2702-5198",
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Abigail R",
         "initials": "AR",
         "lastname": "Edgin"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Alexsandr",
         "initials": "A",
         "lastname": "Lukyanchuk"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Danielle T",
         "initials": "DT",
         "lastname": "Dixon"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Christian M",
         "initials": "CM",
         "lastname": "Gosser"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Dave-Preston",
         "initials": "DP",
         "lastname": "Esoe"
       },
       {
+        "ORCID": null,
         "affiliation": "Markey Cancer Center Biostatistics and Bioinformatics Shared Resource Facility, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Rani D",
         "initials": "RD",
         "lastname": "Jayswal"
       },
       {
+        "ORCID": "0000-0002-0313-152X",
         "affiliation": "Department of Hematology/Oncology, Boston Children's Hospital, Boston, MA, 02115, USA.",
+        "author_id": null,
         "firstname": "Stuart H",
         "initials": "SH",
         "lastname": "Orkin"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -552,13 +616,17 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Chi",
         "initials": "C",
         "lastname": "Wang"
       },
       {
+        "ORCID": "0000-0002-0854-5043",
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA. cfbrainson@uky.edu.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA. cfbrainson@uky.edu.",
+        "author_id": null,
         "firstname": "Christine Fillmore",
         "initials": "CF",
         "lastname": "Brainson"
@@ -1032,29 +1100,36 @@
     "results": null,
     "title": "Polycomb deficiency drives a FOXP2-high aggressive state targetable by epigenetic inhibitors."
   },
-  "https://doi.org/https://doi.org/10.1038/s41597-023-02277-x": {
+  "https://doi.org/10.1038/s41597-023-02277-x": {
     "PMCID": "PMC10275912",
     "abstract": "Exposure to per- and polyfluoroalkyl substances (PFAS) in drinking water is widely recognized as a public health concern. Decision-makers who are responsible for managing PFAS drinking water risks lack the tools to acquire the information they need. In response to this need, we provide a detailed description of a Kentucky dataset that allows decision-makers to visualize potential hot-spot areas and evaluate drinking water systems that may be susceptible to PFAS contamination. The dataset includes information extracted from publicly available sources to create five different maps in ArcGIS Online and highlights potential sources of PFAS contamination in the environment in relation to drinking water systems. As datasets of PFAS drinking water sampling continue to grow as part of evolving regulatory requirements, we used this Kentucky dataset as an example to promote the reuse of this dataset and others like it. We incorporated the FAIR (Findable, Accessible, Interoperable, and Reusable) principles by creating a Figshare item that includes all data and associated metadata with these five ArcGIS maps.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Sweta",
         "initials": "S",
         "lastname": "Ojha"
       },
       {
+        "ORCID": null,
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "P Travis",
         "initials": "PT",
         "lastname": "Thompson"
       },
       {
+        "ORCID": null,
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Computer Science (Data Science Program), Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Christian D",
         "initials": "CD",
         "lastname": "Powell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Molecular and Cellular Biochemistry, Lexington, Kentucky, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -1062,7 +1137,9 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": "0000-0003-3423-9610",
         "affiliation": "University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA. kellypennell@uky.edu.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA. kellypennell@uky.edu.",
+        "author_id": null,
         "firstname": "Kelly G",
         "initials": "KG",
         "lastname": "Pennell"
@@ -1336,35 +1413,44 @@
     "results": null,
     "title": "Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water."
   },
-  "https://doi.org/https://doi.org/10.1038/s41597-023-02281-1": {
+  "https://doi.org/10.1038/s41597-023-02281-1": {
     "PMCID": "PMC10275873",
     "abstract": "We present a draft Minimum Information About Geospatial Information System (MIAGIS) standard for facilitating public deposition of geospatial information system (GIS) datasets that follows the FAIR (Findable, Accessible, Interoperable and Reusable) principles. The draft MIAGIS standard includes a deposition directory structure and a minimum javascript object notation (JSON) metadata formatted file that is designed to capture critical metadata describing GIS layers and maps as well as their sources of data and methods of generation. The associated miagis Python package facilitates the creation of this MIAGIS metadata file and directly supports metadata extraction from both Esri JSON and GEOJSON GIS data formats plus options for extraction from user-specified JSON formats. We also demonstrate their use in crafting two example depositions of ArcGIS generated maps. We hope this draft MIAGIS standard along with the supporting miagis Python package will assist in establishing a GIS standards group that will develop the draft into a full standard for the wider GIS community as well as a future public repository for GIS datasets.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, KY, USA.",
+        "author_id": null,
         "firstname": "P Travis",
         "initials": "PT",
         "lastname": "Thompson"
       },
       {
+        "ORCID": null,
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, KY, USA.\nUniversity of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, KY, USA.",
+        "author_id": null,
         "firstname": "Sweta",
         "initials": "S",
         "lastname": "Ojha"
       },
       {
+        "ORCID": null,
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, KY, USA.\nUniversity of Kentucky, Department of Computer Science (Data Science Program), Lexington, KY, USA.",
+        "author_id": null,
         "firstname": "Christian D",
         "initials": "CD",
         "lastname": "Powell"
       },
       {
+        "ORCID": "0000-0003-3423-9610",
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, KY, USA.\nUniversity of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, KY, USA.",
+        "author_id": null,
         "firstname": "Kelly G",
         "initials": "KG",
         "lastname": "Pennell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, KY, USA. hunter.moseley@uky.edu.\nUniversity of Kentucky, Department of Molecular and Cellular Biochemistry, Lexington, KY, USA. hunter.moseley@uky.edu.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -1626,17 +1712,20 @@
     "results": null,
     "title": "A proposed FAIR approach for disseminating geospatial information system maps."
   },
-  "https://doi.org/https://doi.org/10.1186/s12859-023-05208-0": {
+  "https://doi.org/10.1186/s12859-023-05208-0": {
     "PMCID": "PMC9985241",
     "abstract": "The Kyoto Encyclopedia of Genes and Genomes (KEGG) provides organized genomic, biomolecular, and metabolic information and knowledge that is reasonably current and highly useful for a wide range of analyses and modeling. KEGG follows the principles of data stewardship to be findable, accessible, interoperable, and reusable (FAIR) by providing RESTful access to their database entries via their web-accessible KEGG API. However, the overall FAIRness of KEGG is often limited by the library and software package support available in a given programming language. While R library support for KEGG is fairly strong, Python library support has been lacking. Moreover, there is no software that provides extensive command line level support for KEGG access and utilization.\nWe present kegg_pull, a package implemented in the Python programming language that provides better KEGG access and utilization functionality than previous libraries and software packages. Not only does kegg_pull include an application programming interface (API) for Python programming, it also provides a command line interface (CLI) that enables utilization of KEGG for a wide range of shell scripting and data analysis pipeline use-cases. As kegg_pull's name implies, both the API and CLI provide versatile options for pulling (downloading and saving) an arbitrary (user defined) number of database entries from the KEGG API. Moreover, this functionality is implemented to efficiently utilize multiple central processing unit cores as demonstrated in several performance tests. Many options are provided to optimize fault-tolerant performance across a single or multiple processes, with recommendations provided based on extensive testing and practical network considerations.\nThe new kegg_pull package enables new flexible KEGG retrieval use cases not available in previous software packages. The most notable new feature that kegg_pull provides is its ability to robustly pull an arbitrary number of KEGG entries with a single API method or CLI command, including pulling an entire KEGG database. We provide recommendations to users for the most effective use of kegg_pull according to their network and computational circumstances.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": null,
         "firstname": "Erik",
         "initials": "E",
         "lastname": "Huckvale"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA. hunter.moseley@uky.edu.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA. hunter.moseley@uky.edu.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY, 40536, USA. hunter.moseley@uky.edu.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -1772,17 +1861,20 @@
     "results": "We present kegg_pull, a package implemented in the Python programming language that provides better KEGG access and utilization functionality than previous libraries and software packages. Not only does kegg_pull include an application programming interface (API) for Python programming, it also provides a command line interface (CLI) that enables utilization of KEGG for a wide range of shell scripting and data analysis pipeline use-cases. As kegg_pull's name implies, both the API and CLI provide versatile options for pulling (downloading and saving) an arbitrary (user defined) number of database entries from the KEGG API. Moreover, this functionality is implemented to efficiently utilize multiple central processing unit cores as demonstrated in several performance tests. Many options are provided to optimize fault-tolerant performance across a single or multiple processes, with recommendations provided based on extensive testing and practical network considerations.",
     "title": "kegg_pull: a software package for the RESTful access and pulling from the Kyoto Encyclopedia of Gene and Genomes."
   },
-  "https://doi.org/https://doi.org/10.1186/s12859-023-05423-9": {
+  "https://doi.org/10.1186/s12859-023-05423-9": {
     "PMCID": "PMC10364356",
     "abstract": "An updated version of the mwtab Python package for programmatic access to the Metabolomics Workbench (MetabolomicsWB) data repository was released at the beginning of 2021. Along with updating the package to match the changes to MetabolomicsWB's 'mwTab' file format specification and enhancing the package's functionality, the included validation facilities were used to detect and catalog file inconsistencies and errors across all publicly available datasets in MetabolomicsWB.\nThe MetabolomicsWB File Status website was developed to provide continuous validation of MetabolomicsWB data files and a useful interface to all found inconsistencies and errors. This list of detectable issues/errors include format parsing errors, format compliance issues, access problems via MetabolomicsWB's REST interface, and other small inconsistencies that can hinder reusability. The website uses the mwtab Python package to pull down and validate each available analysis file and then generates an html report. The website is updated on a weekly basis. Moreover, the Python website design utilizes GitHub and GitHub.io, providing an easy to replicate template for implementing other metadata, virtual, and meta- repositories.\nThe MetabolomicsWB File Status website provides a metadata repository of validation metadata to promote the FAIR use of existing metabolomics datasets from the MetabolomicsWB data repository.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "Department of Computer Science (Data Science Program), University of Kentucky, Lexington, KY, 40506, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
+        "author_id": null,
         "firstname": "Christian D",
         "initials": "CD",
         "lastname": "Powell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY, 40506, USA. hunter.moseley@uky.edu.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA. hunter.moseley@uky.edu.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40506, USA. hunter.moseley@uky.edu.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY, 40506, USA. hunter.moseley@uky.edu.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -1946,29 +2038,36 @@
     "results": "The MetabolomicsWB File Status website was developed to provide continuous validation of MetabolomicsWB data files and a useful interface to all found inconsistencies and errors. This list of detectable issues/errors include format parsing errors, format compliance issues, access problems via MetabolomicsWB's REST interface, and other small inconsistencies that can hinder reusability. The website uses the mwtab Python package to pull down and validate each available analysis file and then generates an html report. The website is updated on a weekly basis. Moreover, the Python website design utilizes GitHub and GitHub.io, providing an easy to replicate template for implementing other metadata, virtual, and meta- repositories.",
     "title": "The metabolomics workbench file status website: a metadata repository promoting FAIR principles of metabolomics data."
   },
-  "https://doi.org/https://doi.org/10.1289/ehp11484": {
+  "https://doi.org/10.1289/ehp11484": {
     "PMCID": "PMC10289218",
     "abstract": "Funding agencies, publishers, and other stakeholders are pushing environmental health science investigators to improve data sharing; to promote the findable, accessible, interoperable, and reusable (FAIR) principles; and to increase the rigor and reproducibility of the data collected. Accomplishing these goals will require significant cultural shifts surrounding data management and strategies to develop robust and reliable resources that bridge the technical challenges and gaps in expertise.\nIn this commentary, we examine the current state of managing data and metadata-referred to collectively as (meta)data-in the experimental environmental health sciences. We introduce new tools and resources based on \nWe discuss previous and ongoing efforts to improve (meta)data collection and curation. These include global efforts by the Functional Genomics Data Society to develop metadata collection tools such as the Investigation, Study, Assay (ISA) framework, and the Center for Expanded Data Annotation and Retrieval. We also conduct a case study of \nThe environmental health science community has played a key role in efforts to achieve the goals of the FAIR guiding principles and is well positioned to advance them further. We present a proposed framework to further promote these objectives and minimize the obstacles between data producers and data scientists to maximize the return on research investments. https://doi.org/10.1289/EHP11484.",
     "authors": [
       {
+        "ORCID": "0000-0002-6822-4962",
         "affiliation": "Biochemistry & Molecular Biology Department, Institute for Integrative Toxicology, Michigan State University, East Lansing, Michigan, USA.",
+        "author_id": null,
         "firstname": "Rance",
         "initials": "R",
         "lastname": "Nault"
       },
       {
+        "ORCID": null,
         "affiliation": "Division of Gastroenterology, Hepatology, and Nutrition, University of Louisville, Louisville, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Matthew C",
         "initials": "MC",
         "lastname": "Cave"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Occupational and Environmental Health, University of Iowa, Iowa City, Iowa, USA.",
+        "author_id": null,
         "firstname": "Gabriele",
         "initials": "G",
         "lastname": "Ludewig"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Molecular and Cellular Biochemistry Department, University of Kentucky, Lexington, Kentucky, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -1976,13 +2075,17 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Civil Engineering, University of Kentucky, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Kelly G",
         "initials": "KG",
         "lastname": "Pennell"
       },
       {
+        "ORCID": null,
         "affiliation": "Biochemistry & Molecular Biology Department, Institute for Integrative Toxicology, Michigan State University, East Lansing, Michigan, USA.",
+        "author_id": null,
         "firstname": "Tim",
         "initials": "T",
         "lastname": "Zacharewski"
@@ -2408,23 +2511,28 @@
     "results": null,
     "title": "A Case for Accelerating Standards to Achieve the FAIR Principles of Environmental Health Research Experimental Data."
   },
-  "https://doi.org/https://doi.org/10.1371/journal.pone.0277834": {
+  "https://doi.org/10.1371/journal.pone.0277834": {
     "PMCID": "PMC9674155",
     "abstract": "In recent years, United States federal funding agencies, including the National Institutes of Health (NIH) and the National Science Foundation (NSF), have implemented public access policies to make research supported by funding from these federal agencies freely available to the public. Enforcement is primarily through annual and final reports submitted to these funding agencies, where all peer-reviewed publications must be registered through the appropriate mechanism as required by the specific federal funding agency. Unreported and/or incorrectly reported papers can result in delayed acceptance of annual and final reports and even funding delays for current and new research grants. So, it's important to make sure every peer-reviewed publication is reported properly and in a timely manner. For large collaborative research efforts, the tracking and proper registration of peer-reviewed publications along with generation of accurate annual and final reports can create a large administrative burden. With large collaborative teams, it is easy for these administrative tasks to be overlooked, forgotten, or lost in the shuffle. In order to help with this reporting burden, we have developed the Academic Tracker software package, implemented in the Python 3 programming language and supporting Linux, Windows, and Mac operating systems. Academic Tracker helps with publication tracking and reporting by comprehensively searching major peer-reviewed publication tracking web portals, including PubMed, Crossref, ORCID, and Google Scholar, given a list of authors. Academic Tracker provides highly customizable reporting templates so information about the resulting publications is easily transformed into appropriate formats for tracking and reporting purposes. The source code and extensive documentation is hosted on GitHub (https://moseleybioinformaticslab.github.io/academic_tracker/) and is also available on the Python Package Index (https://pypi.org/project/academic_tracker) for easy installation.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY, United States of America.",
+        "author_id": null,
         "firstname": "P Travis",
         "initials": "PT",
         "lastname": "Thompson"
       },
       {
+        "ORCID": null,
         "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY, United States of America.\nDepartment of Computer Science (Data Science Program), University of Kentucky, Lexington, KY, United States of America.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, United States of America.",
+        "author_id": null,
         "firstname": "Christian D",
         "initials": "CD",
         "lastname": "Powell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY, United States of America.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, United States of America.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, United States of America.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY, United States of America.\nCenter for Clinical and Translational Science, University of Kentucky, Lexington, KY, United States of America.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -2523,23 +2631,28 @@
     "results": null,
     "title": "Academic Tracker: Software for tracking and reporting publications associated with authors and grants."
   },
-  "https://doi.org/https://doi.org/10.3390/metabo12060515": {
+  "https://doi.org/10.3390/metabo12060515": {
     "PMCID": "PMC9228344",
     "abstract": "We present a novel, scan-centric method for characterizing peaks from direct injection multi-scan Fourier transform mass spectra of complex samples that utilizes frequency values derived directly from the spacing of raw ",
     "authors": [
       {
+        "ORCID": "0000-0001-8141-7788",
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.\nDepartment of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, KY 40536, USA.",
+        "author_id": null,
         "firstname": "Robert M",
         "initials": "RM",
         "lastname": "Flight"
       },
       {
+        "ORCID": null,
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.\nDepartment of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, KY 40536, USA.",
+        "author_id": null,
         "firstname": "Joshua M",
         "initials": "JM",
         "lastname": "Mitchell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.\nDepartment of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, KY 40536, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY 40536, USA.\nDepartment of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY 40536, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -2934,41 +3047,52 @@
     "results": null,
     "title": "Scan-Centric, Frequency-Based Method for Characterizing Peaks from Direct Injection Fourier Transform Mass Spectrometry Experiments."
   },
-  "https://doi.org/https://doi.org/10.3390/metabo13020215": {
+  "https://doi.org/10.3390/metabo13020215": {
     "PMCID": "PMC9965094",
     "abstract": "Studies have indicated that increasing plasma bilirubin levels might be useful for preventing and treating hepatic lipid accumulation that occurs with metabolic diseases such as obesity and diabetes. We have previously demonstrated that mice with hyperbilirubinemia had significantly less lipid accumulation in a diet-induced non-alcoholic fatty liver disease (NAFLD) model. However, bilirubin's effects on individual lipid species are currently unknown. Therefore, we used liquid chromatography-mass spectroscopy (LC-MS) to determine the hepatic lipid composition of obese mice with NAFLD treated with bilirubin nanoparticles or vehicle control. We placed the mice on a high-fat diet (HFD) for 24 weeks and then treated them with bilirubin nanoparticles or vehicle control for 4 weeks while maintaining the HFD. Bilirubin nanoparticles suppressed hepatic fat content overall. After analyzing the lipidomics data, we determined that bilirubin inhibited the accumulation of ceramides in the liver. The bilirubin nanoparticles significantly lowered the hepatic expression of two essential enzymes that regulate ceramide production, ",
     "authors": [
       {
+        "ORCID": "0000-0001-7344-7469",
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky, 760 Press Avenue, Healthy Kentucky Research Building, Lexington, KY 40508, USA.",
+        "author_id": null,
         "firstname": "Zachary A",
         "initials": "ZA",
         "lastname": "Kipp"
       },
       {
+        "ORCID": "0000-0002-4593-7708",
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky, 760 Press Avenue, Healthy Kentucky Research Building, Lexington, KY 40508, USA.",
+        "author_id": null,
         "firstname": "Genesee J",
         "initials": "GJ",
         "lastname": "Martinez"
       },
       {
+        "ORCID": "0000-0002-4157-2481",
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky, 760 Press Avenue, Healthy Kentucky Research Building, Lexington, KY 40508, USA.",
+        "author_id": null,
         "firstname": "Evelyn A",
         "initials": "EA",
         "lastname": "Bates"
       },
       {
+        "ORCID": "0000-0003-0290-5180",
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky, 760 Press Avenue, Healthy Kentucky Research Building, Lexington, KY 40508, USA.",
+        "author_id": null,
         "firstname": "Agil B",
         "initials": "AB",
         "lastname": "Maharramov"
       },
       {
+        "ORCID": "0000-0001-8141-7788",
         "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40508, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40508, USA.",
+        "author_id": null,
         "firstname": "Robert M",
         "initials": "RM",
         "lastname": "Flight"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40508, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40508, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY 40508, USA.\nCenter for Clinical and Translational Sciences, University of Kentucky, Lexington, KY 40508, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
@@ -2976,19 +3100,25 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": "0000-0003-1910-4865",
         "affiliation": "Department of Pharmacology and Toxicology, University of Arkansas for Medical Sciences, Little Rock, AR 72205, USA.",
+        "author_id": null,
         "firstname": "Andrew J",
         "initials": "AJ",
         "lastname": "Morris"
       },
       {
+        "ORCID": "0000-0001-8359-4008",
         "affiliation": "Department of Physiology & Biophysics, Cardiorenal, and Metabolic Diseases Research Center, University of Mississippi Medical Center, Jackson, MS 39216, USA.",
+        "author_id": null,
         "firstname": "David E",
         "initials": "DE",
         "lastname": "Stec"
       },
       {
+        "ORCID": "0000-0002-7599-1529",
         "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky, 760 Press Avenue, Healthy Kentucky Research Building, Lexington, KY 40508, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40508, USA.\nBarnstable Brown Diabetes Center, University of Kentucky, Lexington, KY 40508, USA.",
+        "author_id": null,
         "firstname": "Terry D",
         "initials": "TD",
         "lastname": "Hinds"
@@ -3410,17 +3540,20 @@
     "results": null,
     "title": "Bilirubin Nanoparticle Treatment in Obese Mice Inhibits Hepatic Ceramide Production and Remodels Liver Fat Content."
   },
-  "https://doi.org/https://doi.org/10.3390/metabo13070842": {
+  "https://doi.org/10.3390/metabo13070842": {
     "PMCID": "PMC10386444",
     "abstract": "In recent years, the FAIR guiding principles and the broader concept of open science has grown in importance in academic research, especially as funding entities have aggressively promoted public sharing of research products. Key to public research sharing is deposition of datasets into online data repositories, but it can be a chore to transform messy unstructured data into the forms required by these repositories. To help generate Metabolomics Workbench depositions, we have developed the MESSES (Metadata from Experimental SpreadSheets Extraction System) software package, implemented in the Python 3 programming language and supported on Linux, Windows, and Mac operating systems. MESSES helps transform tabular data from multiple sources into a Metabolomics Workbench specific deposition format. The package provides three commands, extract, validate, and convert, that implement a natural data transformation workflow. Moreover, MESSES facilitates richer metadata capture than is typically attempted by manual efforts. The source code and extensive documentation is hosted on GitHub and is also available on the Python Package Index for easy installation.",
     "authors": [
       {
+        "ORCID": "0000-0002-8198-1327",
         "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA.",
+        "author_id": null,
         "firstname": "P Travis",
         "initials": "PT",
         "lastname": "Thompson"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA.\nDepartment of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.\nCenter for Clinical and Translational Science, Lexington, KY 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY 40536, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",

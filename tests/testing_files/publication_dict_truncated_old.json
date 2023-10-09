@@ -1,0 +1,255 @@
+{
+  "32095784": {
+    "PMCID": "PMC7039621",
+    "abstract": null,
+    "authors": [
+      {
+        "affiliation": "University of Kentucky College of Public Health.",
+        "author_id": "Anna Hoover",
+        "firstname": "Anna G",
+        "initials": "AG",
+        "lastname": "Hoover"
+      },
+      {
+        "affiliation": "University of Kentucky Department of Dietetics and Human Nutrition.",
+        "author_id": "Ann Koempel",
+        "firstname": "Annie",
+        "initials": "A",
+        "lastname": "Koempel"
+      },
+      {
+        "affiliation": "University of Kentucky College of Public Health.",
+        "firstname": "W Jay",
+        "initials": "WJ",
+        "lastname": "Christian"
+      },
+      {
+        "affiliation": "University of Kentucky College of Public Health.",
+        "firstname": "Kimberly I",
+        "initials": "KI",
+        "lastname": "Tumlin"
+      },
+      {
+        "affiliation": "University of Kentucky College of Engineering.",
+        "author_id": "Kelly Pennell",
+        "firstname": "Kelly G",
+        "initials": "KG",
+        "lastname": "Pennell"
+      },
+      {
+        "affiliation": "Kentucky Water Resources Research Institute.",
+        "firstname": "Steven",
+        "initials": "S",
+        "lastname": "Evans"
+      },
+      {
+        "affiliation": "Kentucky Water Resources Research Institute.",
+        "firstname": "Malissa",
+        "initials": "M",
+        "lastname": "McAlister"
+      },
+      {
+        "affiliation": "University of Kentucky College of Engineering.",
+        "author_id": "Lindell Ormsbee",
+        "firstname": "Lindell E",
+        "initials": "LE",
+        "lastname": "Ormsbee"
+      },
+      {
+        "affiliation": "University of Kentucky Department of Dietetics and Human Nutrition.",
+        "author_id": "Dawn Brewer",
+        "firstname": "Dawn",
+        "initials": "D",
+        "lastname": "Brewer"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": null,
+    "grants": [
+      "G08 LM013185",
+      "P30 ES026529",
+      "P42 ES007380",
+      "R01 ES032396"
+    ],
+    "journal": "Journal of Appalachian health",
+    "keywords": [],
+    "methods": null,
+    "publication_date": {
+      "day": 26,
+      "month": 2,
+      "year": 2020
+    },
+    "pubmed_id": "32095784",
+    "results": null,
+    "title": "Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health."
+  },
+  "https://doi.org/10.1002/adhm.202101820": {
+    "PMCID": null,
+    "abstract": "Humans are constantly exposed to exogenous chemicals throughout their life, which can lead to a multitude of negative health impacts. Advanced materials can play a key role in preventing or mitigating these impacts through a wide variety of applications. The tunable properties of hydrogels and hydrogel nanocomposites (e.g., swelling behavior, biocompatibility, stimuli responsiveness, functionality, etc.) have deemed them ideal platforms for removal of environmental contaminants, detoxification and reduction of body burden from exogenous chemical exposures for prevention of disease initiation, and advanced treatment of chronic diseases, including cancer, diabetes, and cardiovascular disease. In this review, three main junctures where the use of hydrogel and hydrogel nanocomposite materials can intervene to positively impact human health are highlighted: (1) preventing exposures to environmental contaminants; (2) prophylactic treatments to prevent chronic disease initiation; (3) treating chronic diseases after they have developed. This article is protected by copyright. All rights reserved.",
+    "authors": [
+      {
+        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
+        "author_id": "Angela Gutierrez",
+        "firstname": "Angela M",
+        "initials": "AM",
+        "lastname": "Gutierrez"
+      },
+      {
+        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
+        "firstname": "E Molly",
+        "initials": "EM",
+        "lastname": "Frazar"
+      },
+      {
+        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
+        "author_id": "Victoria Klaus",
+        "firstname": "Victoria",
+        "initials": "V",
+        "lastname": "Klaus"
+      },
+      {
+        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
+        "author_id": "Pranto Paul",
+        "firstname": "Pranto",
+        "initials": "P",
+        "lastname": "Paul"
+      },
+      {
+        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
+        "firstname": "J Z",
+        "initials": "JZ",
+        "lastname": "Hilt"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": "This article is protected by copyright. All rights reserved.",
+    "doi": "10.1002/adhm.202101820",
+    "grants": [],
+    "journal": "Advanced healthcare materials",
+    "keywords": [
+      "chronic diseases",
+      "hydrogel nanocomposites",
+      "hydrogels",
+      "remediations",
+      "therapeutics"
+    ],
+    "methods": null,
+    "publication_date": {
+      "day": 24,
+      "month": 11,
+      "year": 2021
+    },
+    "pubmed_id": "34811960",
+    "results": null,
+    "title": "Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment."
+  },
+  "https://doi.org/10.1002/advs.202101999": {
+    "PMCID": null,
+    "abstract": "Targeting the epidermal growth factor receptor (EGFR) with tyrosine kinase inhibitors (TKIs) is one of the major precision medicine treatment options for lung adenocarcinoma. Due to common development of drug resistance to first- and second-generation TKIs, third-generation inhibitors, including osimertinib and rociletinib, have been developed. A model of EGFR-driven lung cancer and a method to develop tumors of distinct epigenetic states through 3D organotypic cultures are described here. It is discovered that activation of the EGFR T790M/L858R mutation in lung epithelial cells can drive lung cancers with alveolar or bronchiolar features, which can originate from alveolar type 2 (AT2) cells or bronchioalveolar stem cells, but not basal cells or club cells of the trachea. It is also demonstrated that these clones are able to retain their epigenetic differences through passaging orthotopically in mice and crucially that they have distinct drug vulnerabilities. This work serves as a blueprint for exploring how epigenetics can be used to stratify patients for precision medicine decisions.",
+    "authors": [
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Fan",
+        "initials": "F",
+        "lastname": "Chen"
+      },
+      {
+        "affiliation": "Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Jinpeng",
+        "initials": "J",
+        "lastname": "Liu"
+      },
+      {
+        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Robert M",
+        "initials": "RM",
+        "lastname": "Flight"
+      },
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Kassandra J",
+        "initials": "KJ",
+        "lastname": "Naughton"
+      },
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Alexsandr",
+        "initials": "A",
+        "lastname": "Lukyanchuk"
+      },
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Abigail R",
+        "initials": "AR",
+        "lastname": "Edgin"
+      },
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Xiulong",
+        "initials": "X",
+        "lastname": "Song"
+      },
+      {
+        "affiliation": "DNAtrix, 10355 Science Center Drive, Suite 110, San Diego, CA, 92121, USA.",
+        "firstname": "Haikuo",
+        "initials": "H",
+        "lastname": "Zhang"
+      },
+      {
+        "affiliation": "Laura and Isaac Perlmutter Cancer Center, NYU Langone Medical Center, New York University, New York, NY, 10016, USA.",
+        "firstname": "Kwok-Kin",
+        "initials": "KK",
+        "lastname": "Wong"
+      },
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter N B",
+        "initials": "HNB",
+        "lastname": "Moseley"
+      },
+      {
+        "affiliation": "Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Chi",
+        "initials": "C",
+        "lastname": "Wang"
+      },
+      {
+        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "firstname": "Christine F",
+        "initials": "CF",
+        "lastname": "Brainson"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": "\u00a9 2021 The Authors. Advanced Science published by Wiley-VCH GmbH.",
+    "doi": "10.1002/advs.202101999",
+    "grants": [
+      "NCI K22 CA201036",
+      "IRG-85-001-25",
+      "NCI R01 CA237643",
+      "133123-RSG-19-081-01-TBG",
+      "NIGMS P20 GM121327-03",
+      "P30CA177558",
+      "NIGMS P20 GM121327-03"
+    ],
+    "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)",
+    "keywords": [
+      "EGFR",
+      "alveolar",
+      "bronchiolar",
+      "lung cancer",
+      "organoids"
+    ],
+    "methods": null,
+    "publication_date": {
+      "day": 9,
+      "month": 10,
+      "year": 2021
+    },
+    "pubmed_id": "34622577",
+    "results": null,
+    "title": "Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy."
+  }
+}

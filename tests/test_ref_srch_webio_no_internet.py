@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
 
 import pytest
 import pymed
@@ -30,53 +31,16 @@ def pymed_query():
     return articles
 
 
-@pytest.fixture
-def expected_publication_dict():
-    return {'https://doi.org/10.1016/j.chroma.2021.462426': {'pubmed_id': '34352431',
-  'title': 'Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.',
-  'abstract': 'We developed and validated a method for direct determination of per- and polyfluoroalkylated substances (PFASs) in environmental water samples without prior sample concentration. Samples are centrifuged and supernatants passed through an Acrodisc Filter (GXF/GHP 0.2\xa0\xa0um, 25\xa0\xa0mm diameter). After addition of ammonium acetate, samples are analyzed by UPLC-MS/MS using an AB Sciex 6500 plus Q-Trap mass spectrometer operated in negative multiple reaction-monitoring (MRM) mode. The instrument system incorporates a delay column between the pumps and autosampler to mitigate interference from background PFAS. The method monitors eight short-/long-chain PFAS which are identified by monitoring specific precursor product ion pairs and by their retention times and quantified using isotope mass-labeled internal standard based calibration plots. Average spiked recoveries (n\xa0=\xa08) of target analytes ranged from 84 to 110% with 4-9% relative standard deviation (RSD). The mean spiked recoveries (n\xa0=\xa08) of four surrogates were 94-106% with 3-8% RSD. For continuous calibration verification (CCV), average spiked recoveries (n\xa0=\xa08) for target analytes ranged from 88 to 114% with 4-11% RSD and for surrogates ranged from 104-112% with 3-11% RSD. The recoveries (n\xa0=\xa06) of matrix spike (MX), matrix spike duplicate (MXD), and field reagent blank (FRB) met our acceptance criteria. The limit of detection for the target analytes was between 0.007 and 0.04\xa0ng/mL. The method was used to measure PFAS in tap water and surface water.',
-  'keywords': ['Acrodisc filtration',
-   'Direct injection',
-   'Drinking and surface water',
-   'PFAS',
-   'UPLC-MS/MS'],
-  'journal': 'Journal of chromatography. A',
-  'publication_date': {'year': 2021, 'month': 8, 'day': 6},
-  'authors': [{'lastname': 'Mottaleb',
-    'firstname': 'M Abdul',
-    'initials': 'MA',
-    'affiliation': 'Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Division of Cardiovascular, Medicine, College of Medicine, University of Kentucky and Lexington VA Medical Center, Lexington, KY, 40536, United States. a.j.morris@uky.edu; Pressent address: Institute of Drug & Biotherapeutic Innovation, DRC, 1100 South Grand Blvd, Saint Louis University, Saint Louis, MO 63104 United States. Electronic address: m.a.mottaleb@uky.edu.'},
-   {'lastname': 'Ding',
-    'firstname': 'Qunxing X',
-    'initials': 'QX',
-    'affiliation': 'Department of Biology, College of Arts and Sciences, Kent State University, Kent, OH, 44242, United States. Electronic address: qding@kent.edu.'},
-   {'lastname': 'Pennell',
-    'firstname': 'Kelly G',
-    'initials': 'KG',
-    'affiliation': 'Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Department of Civil Engineering, College of Engineering, University of Kentucky, Lexington KY, 40506, United States. Electronic address: kellypennell@uky.edu.',},
-   {'lastname': 'Haynes',
-    'firstname': 'Erin N',
-    'initials': 'EN',
-    'affiliation': 'Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Department of Epidemiology, College of Public Health, University of Kentucky, Lexington KY, 40536, United States. Electronic address: erin.haynes@uky.edu.',},
-   {'lastname': 'Morris',
-    'firstname': 'Andrew J',
-    'initials': 'AJ',
-    'affiliation': 'Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Division of Cardiovascular, Medicine, College of Medicine, University of Kentucky and Lexington VA Medical Center, Lexington, KY, 40536, United States. a.j.morris@uky.edu; Pressent address: Institute of Drug & Biotherapeutic Innovation, DRC, 1100 South Grand Blvd, Saint Louis University, Saint Louis, MO 63104 United States. Electronic address: a.j.morris@uky.edu.',
-    'author_id': 'Andrew Morris'}],
-  'methods': None,
-  'conclusions': None,
-  'results': None,
-  'copyrights': 'Copyright © 2021. Published by Elsevier B.V.',
-  'doi': '10.1016/j.chroma.2021.462426',
-  'grants': ['P30 ES026529'],
-  'PMCID': None}}
 
 
-def test_build_pub_dict_from_PMID(pymed_query, mocker, expected_publication_dict):
+def test_build_pub_dict_from_PMID(pymed_query, mocker):
     def mock_query(*args, **kwargs):
         return pymed_query
     mocker.patch("academic_tracker.ref_srch_webio.pymed.PubMed.query", mock_query)
     test_publication_dict = build_pub_dict_from_PMID(['34352431', '11111111'], "ptth222@uky.edu")
+    expected_publication_dict = load_json(os.path.join("tests", "testing_files", "pub_dict_from_PMID.json"))
+    # with open(os.path.join("tests", "testing_files", "pub_dict_from_PMID_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(test_publication_dict, indent=2, sort_keys=True))
     assert test_publication_dict == expected_publication_dict
 
 
@@ -104,7 +68,11 @@ def test_search_references_on_PubMed(tokenized_citations, ref_pymed_query, mocke
     expected_publication_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_publication_dict.json"))
     expected_citation_keys = load_json(os.path.join("tests", "testing_files", "ref_srch_keys_for_citations.json"))
     
-    actual_publication_dict, actual_citation_keys = search_references_on_PubMed(tokenized_citations, "ptth222@uky.edu")
+    actual_publication_dict, actual_citation_keys, all_pubs = search_references_on_PubMed({}, tokenized_citations, "ptth222@uky.edu")
+    # with open(os.path.join("tests", "testing_files", "ref_srch_publication_dict_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_publication_dict, indent=2, sort_keys=True))
+    # with open(os.path.join("tests", "testing_files", "ref_srch_keys_for_citations_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_citation_keys, indent=2, sort_keys=True))
     
     assert expected_publication_dict == actual_publication_dict
     assert expected_citation_keys == actual_citation_keys
@@ -127,7 +95,11 @@ def test_search_references_on_Crossref(tokenized_citations, mocker):
     expected_pub_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
     expected_citation_keys = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_keys_for_citations.json"))
     
-    actual_pub_dict, actual_citation_keys = search_references_on_Crossref(tokenized_citations, "ptth222@uky.edu")
+    actual_pub_dict, actual_citation_keys, all_pubs = search_references_on_Crossref({}, tokenized_citations, "ptth222@uky.edu")
+    # with open(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_pub_dict, indent=2, sort_keys=True))
+    # with open(os.path.join("tests", "testing_files", "ref_srch_Crossref_keys_for_citations_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_citation_keys, indent=2, sort_keys=True))
         
     assert actual_pub_dict == expected_pub_dict
     assert actual_citation_keys == expected_citation_keys
@@ -150,6 +122,8 @@ def test_parse_myncbi_citations(mocker):
     expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations.json"))
     
     actual_tokenized_citations = parse_myncbi_citations("asdf")
+    # with open(os.path.join("tests", "testing_files", "tokenized_citations_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_tokenized_citations, indent=2, sort_keys=True))
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -162,6 +136,8 @@ def test_tokenize_reference_input_JSON(capsys):
     
     actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "tokenized_citations.json"), False)
     captured = capsys.readouterr()
+    # with open(os.path.join("tests", "testing_files", "tokenized_citations_duplicates_removed_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_tokenized_citations, indent=2, sort_keys=True))
     
     assert expected_tokenized_citations == actual_tokenized_citations
     ## There should be something about duplicates in stdout.
@@ -177,6 +153,8 @@ def test_tokenize_reference_input_html(mocker):
     expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_nsf_award_page.json"))
     
     actual_tokenized_citations = tokenize_reference_input("https://www.nsf.gov/awardsearch/showAward?AWD_ID=1419282", False)
+    # with open(os.path.join("tests", "testing_files", "tokenized_nsf_award_page_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(actual_tokenized_citations, indent=2, sort_keys=True))
     
     assert expected_tokenized_citations == actual_tokenized_citations
 
@@ -239,7 +217,7 @@ def test_tokenize_reference_input_MEDLINE():
     
     expected_tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_MEDLINE.json"))
     
-    actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "medline.txt"), True)
+    actual_tokenized_citations = tokenize_reference_input(os.path.join("tests", "testing_files", "medline.txt"), True, False)
     
     assert expected_tokenized_citations == actual_tokenized_citations
 

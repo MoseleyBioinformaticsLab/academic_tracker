@@ -9,7 +9,7 @@ import shutil
 import pandas
 
 from academic_tracker.ref_srch_emails_and_reports import convert_tokenized_authors_to_str, create_report_from_template, create_tokenization_report
-from academic_tracker.ref_srch_emails_and_reports import create_tabular_report, replace_keywords
+from academic_tracker.ref_srch_emails_and_reports import create_tabular_report
 from academic_tracker.fileio import load_json, read_text_from_txt
 
 
@@ -51,6 +51,16 @@ def test_convert_tokenized_authors_to_str_no_output():
     actual_string = convert_tokenized_authors_to_str([])
     
     assert expected_string == actual_string
+    
+
+def test_convert_tokenized_authors_to_str_wwierd_combinations(tokenized_citations):
+    
+    expected_string = 'Thompson, I. P.'
+    
+    authors = [{"last":"Thompson", "first":""}, {"initials":"I. P.", "last":""}]
+    actual_string = convert_tokenized_authors_to_str(authors)
+    
+    assert expected_string == actual_string
 
 
 
@@ -65,6 +75,8 @@ def test_create_report_from_template_no_comparison(publication_dict, tokenized_c
     
     template_string = read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_template_string.txt"))
     actual_text = create_report_from_template(publication_dict, [], tokenized_citations, template_string)
+    # with open(os.path.join("tests", "testing_files", "ref_srch_report_test1_new.txt"), 'wb') as outFile:
+    #     outFile.write(actual_text.encode("utf-8"))
     
     assert expected_text == actual_text
     
@@ -77,6 +89,8 @@ def test_create_report_from_template_no_reference(publication_dict, tokenized_ci
     for citation in tokenized_citations:
         citation["reference_line"] = ""
     actual_text = create_report_from_template(publication_dict, [True, False], tokenized_citations, template_string)
+    # with open(os.path.join("tests", "testing_files", "ref_srch_report_test2_new.txt"), 'wb') as outFile:
+    #     outFile.write(actual_text.encode("utf-8"))
     
     assert expected_text == actual_text
 
@@ -108,11 +122,12 @@ def config_dict():
                                                 'Comparison': '<is_in_comparison_file>',
                                                 'First Author': '<first_author>',
                                                 'Last Author': '<last_author>',
-                                                'Pub_Authors': '<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations>'},
+                                                'Pub_Authors': '<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations>',
+                                                'References': 'Citation: <reference_citation>, Title: <reference_title>, PMID: <reference_PMID>, PMCID: <reference_PMCID>, DOI: <reference_DOI>'},
                                      "column_order":['Authors', 'Grants', 'Abstract', 'Conclusions', 'Copyrights', 'DOI', 'Journal', 'Keywords', 'Methods',
                                                      'PMID', 'Results', 'Title', 'PMCID', 'Publication Year', 'Publication Month', 'Publication Day',
                                                      'Tok Title', 'Tok DOI', 'Tok PMID', 'Tok Authors', 'Ref Line', 'Comparison', 'First Author', 
-                                                     'Last Author', 'Pub_Authors'],
+                                                     'Last Author', 'Pub_Authors', 'References'],
                                      "sort":["Authors"],
                                      "file_format":"csv",
                                      "filename":"test_name.csv",
@@ -128,6 +143,8 @@ def test_create_tabular_report_no_comparison(publication_dict, tokenized_citatio
     report, filename = create_tabular_report(publication_dict, config_dict, [], tokenized_citations, TESTING_DIR)
     
     actual_text = read_text_from_txt(os.path.join(TESTING_DIR, filename))
+    # with open(os.path.join("tests", "testing_files", "ref_srch_report_tabular1_new.csv"), 'wb') as outFile:
+    #     outFile.write(actual_text.encode("utf-8"))
     
     assert expected_text == actual_text
     
@@ -142,6 +159,8 @@ def test_create_tabular_report_no_reference(publication_dict, tokenized_citation
     report, filename = create_tabular_report(publication_dict, config_dict, [True, False], tokenized_citations, TESTING_DIR)
     
     actual_text = read_text_from_txt(os.path.join(TESTING_DIR, filename))
+    # with open(os.path.join("tests", "testing_files", "ref_srch_report_tabular2_new.csv"), 'wb') as outFile:
+    #     outFile.write(actual_text.encode("utf-8"))
     
     assert expected_text == actual_text
     
@@ -149,12 +168,16 @@ def test_create_tabular_report_no_reference(publication_dict, tokenized_citation
 def test_create_tabular_report_defaults(publication_dict, tokenized_citations, config_dict):
     
     config_dict["summary_report"] = {"columns":config_dict["summary_report"]["columns"]}
+    ## delete references line because it adds too many rows and is tested elsewhere.
+    del config_dict["summary_report"]["columns"]["References"]
     
     expected_text = read_text_from_txt(os.path.join("tests", "testing_files", "ref_srch_report_tabular3.csv"))
     
     report, filename = create_tabular_report(publication_dict, config_dict, [], tokenized_citations, TESTING_DIR)
     
     actual_text = read_text_from_txt(os.path.join(TESTING_DIR, filename))
+    # with open(os.path.join("tests", "testing_files", "ref_srch_report_tabular3_new.csv"), 'wb') as outFile:
+    #     outFile.write(actual_text.encode("utf-8"))
     
     assert expected_text == actual_text
     
@@ -164,89 +187,18 @@ def test_create_tabular_report_excel(publication_dict, tokenized_citations, conf
     config_dict["summary_report"] = {"columns":config_dict["summary_report"]["columns"]}
     config_dict["summary_report"]["file_format"] = ".xlsx"
     config_dict["summary_report"]["filename"] = "test_name.csv"
+    ## delete references line because it adds too many rows and is tested elsewhere.
+    del config_dict["summary_report"]["columns"]["References"]
     
     expected_text = pandas.read_excel(os.path.join("tests", "testing_files", "ref_srch_report_tabular4.xlsx"))
     
     report, filename = create_tabular_report(publication_dict, config_dict, [], tokenized_citations, TESTING_DIR)
     
     actual_text = pandas.read_excel(os.path.join(TESTING_DIR, filename))
+    # actual_text.to_excel(os.path.join("tests", "testing_files", "ref_srch_report_tabular4_new.xlsx"))
     
     assert expected_text.to_csv() == actual_text.to_csv()
     
-    
-
-
-def test_replace_keywords1(publication_dict, config_dict, tokenized_citations):
-    
-    template = config_dict["summary_report"]["columns"]
-    
-    expected_template = {'Authors': 'Huan Jin, Joshua M. Mitchell, Hunter N. B. Moseley',
-                         'Grants': 'None Found',
-                         'Abstract': 'None',
-                         'Conclusions': 'None',
-                         'Copyrights': 'None',
-                         'DOI': '10.3390/metabo10090368',
-                         'Journal': 'MDPI AG',
-                         'Keywords': 'None',
-                         'Methods': 'None',
-                         'PMID': 'None',
-                         'Results': 'None',
-                         'Title': 'Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases',
-                         'PMCID': 'None',
-                         'Publication Year': '2020',
-                         'Publication Month': 'None',
-                         'Publication Day': 'None',
-                         'Tok Title': 'Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases.',
-                         'Tok DOI': '10.3390/metabo10090368',
-                         'Tok PMID': 'None',
-                         'Tok Authors': 'Jin H, Mitchell J, Moseley H',
-                         'Ref Line': 'Jin H, Mitchell J, Moseley H.  Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases. Metabolites. 2020 September; 10(9):368-. doi: 10.3390/metabo10090368.',
-                         'Comparison': 'N/A',
-                         'First Author': 'Jin, Huan',
-                         'Last Author': 'Moseley, Hunter N. B.',
-                         'Pub_Authors': '<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations>'}
-    
-    actual_template = replace_keywords(template, publication_dict, 'https://doi.org/10.3390/metabo10090368', tokenized_citations[1], None, pub_author={})
-    
-    assert expected_template == actual_template
-    
-    
-def test_replace_keywords2(publication_dict, config_dict, tokenized_citations):
-    
-    template = config_dict["summary_report"]["columns"]
-    publication_dict['https://doi.org/10.3390/metabo10090368']["grants"] = ["asdf"]
-    tokenized_citations[1]["reference_line"] = ""
-    
-    expected_template = {'Authors': 'Huan Jin, Joshua M. Mitchell, Hunter N. B. Moseley',
-                         'Grants': 'asdf',
-                         'Abstract': 'None',
-                         'Conclusions': 'None',
-                         'Copyrights': 'None',
-                         'DOI': '10.3390/metabo10090368',
-                         'Journal': 'MDPI AG',
-                         'Keywords': 'None',
-                         'Methods': 'None',
-                         'PMID': 'None',
-                         'Results': 'None',
-                         'Title': 'Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases',
-                         'PMCID': 'None',
-                         'Publication Year': '2020',
-                         'Publication Month': 'None',
-                         'Publication Day': 'None',
-                         'Tok Title': 'Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases.',
-                         'Tok DOI': '10.3390/metabo10090368',
-                         'Tok PMID': 'None',
-                         'Tok Authors': 'Jin H, Mitchell J, Moseley H',
-                         'Ref Line': 'N/A',
-                         'Comparison': 'True',
-                         'First Author': 'Jin, Huan',
-                         'Last Author': 'Moseley, Hunter N. B.',
-                         'Pub_Authors': 'Jin, Huan None None'}
-    
-    actual_template = replace_keywords(template, publication_dict, 'https://doi.org/10.3390/metabo10090368', tokenized_citations[1], True, publication_dict['https://doi.org/10.3390/metabo10090368']["authors"][0])
-    
-    assert expected_template == actual_template
-
 
 
 

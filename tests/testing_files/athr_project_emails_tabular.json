@@ -1,25 +1,15 @@
 {
-  "creation_date": "2022-02-21 17:49",
+  "creation_date": "2023-10-02 19:11",
   "emails": [
     {
-      "attachment": "Col1,Col2\n\"Kelly, Pennell\",Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health.\n",
-      "attachment_filename": "Core A Administrative Core_Kelly Pennell_project_report.csv",
-      "author": "Kelly Pennell",
+      "attachment": "Col1,Col2\n\"Hunter, Moseley\",Plk1 phosphorylation of PHGDH to regulate serine metabolism\n\"Hunter, Moseley\",Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents.\n\"Hunter, Moseley\",Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water.\n",
+      "attachment_filename": "Core A Administrative Core_Hunter Moseley_project_report.csv",
+      "author": "Hunter Moseley",
       "body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
       "cc": "",
       "from": "ptth222@uky.edu",
       "subject": "New PubMed Publications",
-      "to": "kellypennell@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Angela, Gutierrez\",Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment.\n",
-      "attachment_filename": "Core A Administrative Core_Angela Gutierrez_project_report.csv",
-      "author": "Angela Gutierrez",
-      "body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "amgu232@g.uky.edu"
+      "to": "hunter.moseley@gmail.com"
     },
     {
       "attachment": "test_dir\\Project 1_project_report.xlsx",
@@ -31,87 +21,7 @@
       "to": "ptth222@uky.edu"
     },
     {
-      "attachment": "Col1,Col2\n\"Anna, Hoover\",Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health.\n",
-      "attachment_filename": "No Authors_Anna Hoover_project_report.csv",
-      "author": "Anna Hoover",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "Anna.Hoover@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Ann, Koempel\",Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health.\n",
-      "attachment_filename": "No Authors_Ann Koempel_project_report.csv",
-      "author": "Ann Koempel",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "ann.koempel@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Kelly, Pennell\",Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health.\n",
-      "attachment_filename": "No Authors_Kelly Pennell_project_report.csv",
-      "author": "Kelly Pennell",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "kellypennell@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Lindell, Ormsbee\",Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health.\n",
-      "attachment_filename": "No Authors_Lindell Ormsbee_project_report.csv",
-      "author": "Lindell Ormsbee",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "lindell.ormsbee@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Dawn, Brewer\",Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health.\n",
-      "attachment_filename": "No Authors_Dawn Brewer_project_report.csv",
-      "author": "Dawn Brewer",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "dawn.brewer@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Angela, Gutierrez\",Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment.\n",
-      "attachment_filename": "No Authors_Angela Gutierrez_project_report.csv",
-      "author": "Angela Gutierrez",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "amgu232@g.uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Victoria, Klaus\",Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment.\n",
-      "attachment_filename": "No Authors_Victoria Klaus_project_report.csv",
-      "author": "Victoria Klaus",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "mxklaus@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Pranto, Paul\",Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment.\n",
-      "attachment_filename": "No Authors_Pranto Paul_project_report.csv",
-      "author": "Pranto Paul",
-      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "New PubMed Publications",
-      "to": "ppa322@uky.edu"
-    },
-    {
-      "attachment": "Col1,Col2\n\"Hunter, Moseley\",Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy.\n",
+      "attachment": "Col1,Col2\n\"Hunter, Moseley\",Plk1 phosphorylation of PHGDH to regulate serine metabolism\n\"Hunter, Moseley\",Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents.\n\"Hunter, Moseley\",Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water.\n",
       "attachment_filename": "No Authors_Hunter Moseley_project_report.csv",
       "author": "Hunter Moseley",
       "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
@@ -119,6 +29,16 @@
       "from": "ptth222@uky.edu",
       "subject": "New PubMed Publications",
       "to": "hunter.moseley@gmail.com"
+    },
+    {
+      "attachment": "Col1,Col2\n\"Travis, Thompson\",Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water.\n",
+      "attachment_filename": "No Authors_Travis Thompson_project_report.csv",
+      "author": "Travis Thompson",
+      "body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+      "cc": "",
+      "from": "ptth222@uky.edu",
+      "subject": "New PubMed Publications",
+      "to": "ptth222@uky.edu"
     }
   ]
 }

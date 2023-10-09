@@ -4,6 +4,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -36,6 +37,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -68,6 +70,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -100,6 +103,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -132,18 +136,56 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
         "initials": null,
         "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Sweta",
+        "initials": null,
+        "lastname": "Ojha"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "P. Travis",
+        "initials": null,
+        "lastname": "Thompson"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Christian D.",
+        "initials": null,
+        "lastname": "Powell"
+      },
+      {
+        "ORCID": "0000-0003-3423-9610",
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Kelly G.",
+        "initials": null,
+        "lastname": "Pennell"
       }
     ],
     "conclusions": null,
     "copyrights": null,
     "doi": "10.1038/s41597-023-02277-x",
     "grants": [
-      "P42 ES007380"
+      "P42 ES007380",
+      "P42 ES007380",
+      "P42 ES007380",
+      "P42 ES007380",
+      "P42 ES007380",
+      "2020026"
     ],
     "journal": "Springer Science and Business Media LLC",
     "keywords": null,
@@ -414,18 +456,53 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
         "initials": null,
         "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "P. Travis",
+        "initials": null,
+        "lastname": "Thompson"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Sweta",
+        "initials": null,
+        "lastname": "Ojha"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Christian D.",
+        "initials": null,
+        "lastname": "Powell"
+      },
+      {
+        "ORCID": "0000-0003-3423-9610",
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Kelly G.",
+        "initials": null,
+        "lastname": "Pennell"
       }
     ],
     "conclusions": null,
     "copyrights": null,
     "doi": "10.1038/s41597-023-02281-1",
     "grants": [
-      "P42 ES007380"
+      "P42 ES007380",
+      "P42 ES007380",
+      "2020026"
     ],
     "journal": "Springer Science and Business Media LLC",
     "keywords": null,
@@ -682,9 +759,26 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Erik",
+        "initials": null,
+        "lastname": "Huckvale"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Hunter N. B.",
         "initials": null,
         "lastname": "Moseley"
       }
@@ -692,7 +786,10 @@
     "conclusions": null,
     "copyrights": null,
     "doi": "10.1186/s12859-023-05208-0",
-    "grants": [],
+    "grants": [
+      "2020026",
+      "R03OD030603"
+    ],
     "journal": "Springer Science and Business Media LLC",
     "keywords": null,
     "methods": null,
@@ -814,18 +911,29 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
         "initials": null,
         "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Christian D.",
+        "initials": null,
+        "lastname": "Powell"
       }
     ],
     "conclusions": null,
     "copyrights": null,
     "doi": "10.1186/s12859-023-05423-9",
     "grants": [
-      "P42 ES007380"
+      "2020026",
+      "P42 ES007380",
+      "CF R03OD030603"
     ],
     "journal": "Springer Science and Business Media LLC",
     "keywords": null,
@@ -977,6 +1085,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -984,31 +1093,49 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": "0000-0002-6822-4962",
         "affiliation": "Biochemistry &amp; Molecular Biology Department, Institute for Integrative Toxicology, Michigan State University, East Lansing, Michigan, USA",
+        "author_id": null,
         "firstname": "Rance",
         "initials": null,
         "lastname": "Nault"
       },
       {
+        "ORCID": null,
         "affiliation": "Division of Gastroenterology, Hepatology, and Nutrition, University of Louisville, Louisville, Kentucky, USA",
+        "author_id": null,
         "firstname": "Matthew C.",
         "initials": null,
         "lastname": "Cave"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Occupational and Environmental Health, University of Iowa, Iowa City, Iowa, USA",
+        "author_id": null,
         "firstname": "Gabriele",
         "initials": null,
         "lastname": "Ludewig"
       },
       {
+        "ORCID": null,
+        "affiliation": "Molecular and Cellular Biochemistry Department, University of Kentucky, Lexington, Kentucky, USA",
+        "author_id": null,
+        "firstname": "Hunter N.B.",
+        "initials": null,
+        "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
         "affiliation": "Department of Civil Engineering, University of Kentucky, Lexington, Kentucky, USA",
+        "author_id": null,
         "firstname": "Kelly G.",
         "initials": null,
         "lastname": "Pennell"
       },
       {
+        "ORCID": null,
         "affiliation": "Biochemistry &amp; Molecular Biology Department, Institute for Integrative Toxicology, Michigan State University, East Lansing, Michigan, USA",
+        "author_id": null,
         "firstname": "Tim",
         "initials": null,
         "lastname": "Zacharewski"
@@ -1440,18 +1567,37 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
         "initials": null,
         "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "P. Travis",
+        "initials": null,
+        "lastname": "Thompson"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Christian D.",
+        "initials": null,
+        "lastname": "Powell"
       }
     ],
     "conclusions": null,
     "copyrights": null,
     "doi": "10.1371/journal.pone.0277834",
     "grants": [
-      "P42 ES007380"
+      "2020026",
+      "P42 ES007380",
+      "U54 TR001998-05A1"
     ],
     "journal": "Public Library of Science (PLoS)",
     "keywords": null,
@@ -1471,62 +1617,13 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
-        "citation": null,
         "doi": "https://doi.org/10.1073/pnas.98.2.381",
         "pubmed_id": null,
         "title": "PubMed Central: The GenBank of the published literature"
       },
       {
         "PMCID": null,
-        "citation": null,
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
-        "citation": null,
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
         "citation": "Consolidated Appropriations Act, 2014, H.R. 3547, Editor. 2013: Congressional Record.",
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
-        "citation": null,
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
-        "citation": null,
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
-        "citation": null,
-        "doi": null,
-        "pubmed_id": null,
-        "title": null
-      },
-      {
-        "PMCID": null,
-        "citation": null,
         "doi": null,
         "pubmed_id": null,
         "title": null
@@ -1547,17 +1644,40 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
         "initials": null,
         "lastname": "Moseley"
+      },
+      {
+        "ORCID": "0000-0001-8141-7788",
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Robert M.",
+        "initials": null,
+        "lastname": "Flight"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Joshua M.",
+        "initials": null,
+        "lastname": "Mitchell"
       }
     ],
     "conclusions": null,
     "copyrights": null,
     "doi": "10.3390/metabo12060515",
-    "grants": [],
+    "grants": [
+      "1419282",
+      "2020026",
+      "1P01CA163223-01A1",
+      "1U24DK097215-01A1",
+      "P30 CA177558"
+    ],
     "journal": "MDPI AG",
     "keywords": null,
     "methods": null,
@@ -1788,14 +1908,14 @@
         "citation": null,
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "R: A Language and Environment for Statistical Computing"
       },
       {
         "PMCID": null,
         "citation": null,
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "Python 3 Reference Manual"
       },
       {
         "PMCID": null,
@@ -1816,7 +1936,7 @@
         "citation": null,
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "Ggplot2: Elegant Graphics for Data Analysis"
       },
       {
         "PMCID": null,
@@ -1900,14 +2020,14 @@
         "citation": null,
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "R Markdown: The Definitive Guide"
       },
       {
         "PMCID": null,
         "citation": null,
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "R Markdown Cookbook"
       },
       {
         "PMCID": null,
@@ -1932,6 +2052,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -1965,6 +2086,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -1972,7 +2094,9 @@
         "lastname": "Moseley"
       },
       {
+        "ORCID": "0000-0002-8198-1327",
         "affiliation": "Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA",
+        "author_id": null,
         "firstname": "P. Travis",
         "initials": null,
         "lastname": "Thompson"
@@ -1982,7 +2106,8 @@
     "copyrights": null,
     "doi": "10.3390/metabo13070842",
     "grants": [
-      "P42 ES007380"
+      "P42 ES007380",
+      "2020026"
     ],
     "journal": "MDPI AG",
     "keywords": null,
@@ -2162,6 +2287,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -2194,6 +2320,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",
@@ -2226,6 +2353,7 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "kentucky",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter",

@@ -14,3 +14,4 @@ coverage.xml
 htmlcov/
 README_old.rst
 testing_scratch/
+tests/testing_files/new_intermediate_results/

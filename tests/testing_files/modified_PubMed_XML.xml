@@ -1,0 +1,259 @@
+<PubmedArticle>
+	<MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM" IndexingMethod="Automated">
+		<PMID Version="1">37512549</PMID>
+		<DateRevised>
+			<Year>2023</Year>
+			<Month>08</Month>
+			<Day>01</Day>
+		</DateRevised>
+		<Article PubModel="Electronic">
+			<Journal>
+				<ISSN IssnType="Print">2218-1989</ISSN>
+				<JournalIssue CitedMedium="Print">
+					<Volume>13</Volume>
+					<Issue>7</Issue>
+					<PubDate>
+						<Year>2023</Year>
+						<Month>Jul</Month>
+						<Day>12</Day>
+					</PubDate>
+				</JournalIssue>
+				<Title>Metabolites</Title>
+				<ISOAbbreviation>Metabolites</ISOAbbreviation>
+			</Journal>
+			<ArticleTitle>MESSES: Software for Transforming Messy Research Datasets into Clean Submissions to Metabolomics Workbench for Public Sharing.</ArticleTitle>
+			<ELocationID EIdType="pii" ValidYN="Y">842</ELocationID>
+			<ELocationID EIdType="doi" ValidYN="Y">10.3390/metabo13070842</ELocationID>
+			<Abstract>
+				<AbstractText>In recent years, the FAIR guiding principles and the broader concept of open science has grown in importance in academic research, especially as funding entities have aggressively promoted public sharing of research products. Key to public research sharing is deposition of datasets into online data repositories, but it can be a chore to transform messy unstructured data into the forms required by these repositories. To help generate Metabolomics Workbench depositions, we have developed the MESSES (Metadata from Experimental SpreadSheets Extraction System) software package, implemented in the Python 3 programming language and supported on Linux, Windows, and Mac operating systems. MESSES helps transform tabular data from multiple sources into a Metabolomics Workbench specific deposition format. The package provides three commands, extract, validate, and convert, that implement a natural data transformation workflow. Moreover, MESSES facilitates richer metadata capture than is typically attempted by manual efforts. The source code and extensive documentation is hosted on GitHub and is also available on the Python Package Index for easy installation.</AbstractText>
+			</Abstract>
+			<AuthorList CompleteYN="Y">
+				<Author ValidYN="Y">
+					<LastName>Thompson</LastName>
+					<ForeName>P Travis</ForeName>
+					<Initials>PT</Initials>
+					<Identifier Source="ORCID">0000-0002-8198-1327</Identifier>
+					<AffiliationInfo>
+						<Affiliation>Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA.</Affiliation>
+					</AffiliationInfo>
+				</Author>
+				<Author ValidYN="Y">
+					<LastName>Moseley</LastName>
+					<ForeName>Hunter N B</ForeName>
+					<Initials>HNB</Initials>
+					<Identifier Source="ORCID">0000-0003-3995-5368</Identifier>
+					<AffiliationInfo>
+						<Affiliation>Superfund Research Center, University of Kentucky, Lexington, KY 40536, USA.</Affiliation>
+					</AffiliationInfo>
+					<AffiliationInfo>
+						<Affiliation>Department of Molecular &amp; Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.</Affiliation>
+					</AffiliationInfo>
+					<AffiliationInfo>
+						<Affiliation>Center for Clinical and Translational Science, Lexington, KY 40536, USA.</Affiliation>
+					</AffiliationInfo>
+					<AffiliationInfo>
+						<Affiliation>Markey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.</Affiliation>
+					</AffiliationInfo>
+					<AffiliationInfo>
+						<Affiliation>Institute for Biomedical Informatics, University of Kentucky, Lexington, KY 40536, USA.</Affiliation>
+					</AffiliationInfo>
+				</Author>
+			</AuthorList>
+			<Language>eng</Language>
+			<GrantList CompleteYN="Y">
+				<Grant>
+					<GrantID>P42 ES007380</GrantID>
+					<Acronym>ES</Acronym>
+					<Agency>NIEHS NIH HHS</Agency>
+					<Country>United States</Country>
+				</Grant>
+				<Grant>
+					<GrantID>P42ES007380</GrantID>
+					<Acronym>NH</Acronym>
+					<Agency>NIH HHS</Agency>
+					<Country>United States</Country>
+				</Grant>
+			</GrantList>
+			<PublicationTypeList>
+				<PublicationType UI="D016428">Journal Article</PublicationType>
+			</PublicationTypeList>
+			<ArticleDate DateType="Electronic">
+				<Year>2023</Year>
+				<Month>07</Month>
+				<Day>12</Day>
+			</ArticleDate>
+		</Article>
+		<MedlineJournalInfo>
+			<Country>Switzerland</Country>
+			<MedlineTA>Metabolites</MedlineTA>
+			<NlmUniqueID>101578790</NlmUniqueID>
+			<ISSNLinking>2218-1989</ISSNLinking>
+		</MedlineJournalInfo>
+		<KeywordList Owner="NOTNLM">
+			<Keyword MajorTopicYN="N">Metabolomics Workbench</Keyword>
+			<Keyword MajorTopicYN="N">Python programming language</Keyword>
+			<Keyword MajorTopicYN="N">data sharing</Keyword>
+			<Keyword MajorTopicYN="N">data transformation</Keyword>
+			<Keyword MajorTopicYN="N">dataset deposition</Keyword>
+			<Keyword MajorTopicYN="N">metadata capture</Keyword>
+		</KeywordList>
+		<CoiStatement>The authors declare no conflict of interest. The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results.</CoiStatement>
+	</MedlineCitation>
+	<PubmedData>
+		<History>
+			<PubMedPubDate PubStatus="received">
+				<Year>2023</Year>
+				<Month>5</Month>
+				<Day>31</Day>
+			</PubMedPubDate>
+			<PubMedPubDate PubStatus="revised">
+				<Year>2023</Year>
+				<Month>7</Month>
+				<Day>7</Day>
+			</PubMedPubDate>
+			<PubMedPubDate PubStatus="accepted">
+				<Year>2023</Year>
+				<Month>7</Month>
+				<Day>10</Day>
+			</PubMedPubDate>
+			<PubMedPubDate PubStatus="medline">
+				<Year>2023</Year>
+				<Month>7</Month>
+				<Day>29</Day>
+				<Hour>11</Hour>
+				<Minute>49</Minute>
+			</PubMedPubDate>
+			<PubMedPubDate PubStatus="entrez">
+				<Year>2023</Year>
+				<Month>7</Month>
+				<Day>29</Day>
+				<Hour>1</Hour>
+				<Minute>30</Minute>
+			</PubMedPubDate>
+		</History>
+		<PublicationStatus>epublish</PublicationStatus>
+		<ArticleIdList>
+			<ArticleId IdType="pmc">PMC10386444</ArticleId>
+			<ArticleId IdType="pii">metabo13070842</ArticleId>
+		</ArticleIdList>
+		<ReferenceList>
+			<Reference>
+				<ArticleIdList>
+					<ArticleId IdType="pubmed">30212065</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Vicente-Saez R., Martinez-Fuentes C. Open Science now: A systematic literature review for an integrated definition. J. Bus. Res. 2018;88:428&#8211;436. doi: 10.1016/j.jbusres.2017.12.043.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1016/j.jbusres.2017.12.043</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Wilkinson M.D., Dumontier M., Aalbersberg I.J., Appleton G., Axton M., Baak A., Blomberg N., Boiten J.-W., da Silva Santos L.B., Bourne P.E. The FAIR Guiding Principles for scientific data management and stewardship. Sci. Data. 2016;3:160018. doi: 10.1038/sdata.2016.18.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1038/sdata.2016.18</ArticleId>
+					<ArticleId IdType="pmc">PMC4792175</ArticleId>
+					<ArticleId IdType="pubmed">26978244</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Sud M., Fahy E., Cotter D., Azam K., Vadivelu I., Burant C., Edison A., Fiehn O., Higashi R., Nair K.S. Metabolomics Workbench: An international repository for metabolomics data and metadata, metabolite standards, protocols, tutorials and training, and analysis tools. Nucleic Acids Res. 2016;44:D463&#8211;D470. doi: 10.1093/nar/gkv1042.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1093/nar/gkv1042</ArticleId>
+					<ArticleId IdType="pmc">PMC4702780</ArticleId>
+					<ArticleId IdType="pubmed">26467476</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Haug K., Cochrane K., Nainala V.C., Williams M., Chang J., Jayaseelan K.V., O&#8217;Donovan C. MetaboLights: A resource evolving in response to the needs of its scientific community. Nucleic Acids Res. 2020;48:D440&#8211;D444. doi: 10.1093/nar/gkz1019.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1093/nar/gkz1019</ArticleId>
+					<ArticleId IdType="pmc">PMC7145518</ArticleId>
+					<ArticleId IdType="pubmed">31691833</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>NOT-OD-21-013. Vol NOT-OD-21-013. NIH Grants &amp; Funding. National Institutes of Health; Bethesda, MD, USA: 2020. Final NIH policy for data management and sharing.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Fiehn O., Robertson D., Griffin J., van der Werf M., Nikolau B., Morrison N., Sumner L.W., Goodacre R., Hardy N.W., Taylor C. The metabolomics standards initiative (MSI) Metabolomics. 2007;3:175&#8211;178. doi: 10.1007/s11306-007-0070-6.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1007/s11306-007-0070-6</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Powell C.D., Moseley H.N. The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository. Metabolites. 2021;11:163. doi: 10.3390/metabo11030163.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.3390/metabo11030163</ArticleId>
+					<ArticleId IdType="pmc">PMC8000456</ArticleId>
+					<ArticleId IdType="pubmed">33808985</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Powell C.D., Moseley H.N. The Metabolomics Workbench File Status Website: A Metadata Repository Promoting FAIR Principles of Metabolomics Data. bioRxiv. 2022 doi: 10.1101/2022.03.04.483070.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1101/2022.03.04.483070</ArticleId>
+					<ArticleId IdType="pmc">PMC10364356</ArticleId>
+					<ArticleId IdType="pubmed">37482620</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Haug K., Salek R.M., Conesa P., Hastings J., de Matos P., Rijnbeek M., Mahendraker T., Williams M., Neumann S., Rocca-Serra P. MetaboLights&#8212;An open-access general-purpose repository for metabolomics studies and associated meta-data. Nucleic Acids Res. 2012;41:D781&#8211;D786. doi: 10.1093/nar/gks1004.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1093/nar/gks1004</ArticleId>
+					<ArticleId IdType="pmc">PMC3531110</ArticleId>
+					<ArticleId IdType="pubmed">23109552</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Salek R.M., Haug K., Conesa P., Hastings J., Williams M., Mahendraker T., Maguire E., Gonzalez-Beltran A.N., Rocca-Serra P., Sansone S.-A. The MetaboLights repository: Curation challenges in metabolomics. Database. 2013;2013:bat029. doi: 10.1093/database/bat029.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1093/database/bat029</ArticleId>
+					<ArticleId IdType="pmc">PMC3638156</ArticleId>
+					<ArticleId IdType="pubmed">23630246</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Docopt Python Library for Creating Command-Line Interfaces.  [(accessed on 1 January 2023)].  Available online:  http://docopt.readthedocs.io/en/latest/</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Pezoa F., Reutter J.L., Suarez F., Ugarte M., Vrgo&#269; D. Foundations of JSON schema; Proceedings of the 25th International Conference on World Wide Web; Montreal, QC, Canada. 11&#8211;15 April 2016; pp. 263&#8211;273.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Droettboom M. Understanding JSON Schema. 2014.  [(accessed on 1 January 2023)].  Available online:  http://spacetelescope.github.io/understanding-jsonschema/UnderstandingJSONSchema.pdf.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Open JS Foundation. 2019.  [(accessed on 1 January 2023)].  Available online:  https://openjsf.org/</Citation>
+			</Reference>
+			<Reference>
+				<Citation>McKinney W. Pandas: A foundational Python library for data analysis and statistics. Python High Perform. Sci. Comput. 2011;14:1&#8211;9.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Oliphant T.E. A Guide to NumPy. Volume 1 Trelgol Publishing; Spanish Fork, UT, USA: 2006.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Gazoni E., Clark C. openpyxl&#8212;A Python Library to Read/Write Excel 2010 xlsx/xlsm Files. 2016.  [(accessed on 1 January 2023)].  Available online:  http://openpyxl.readthedocs.org/en/default.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Behnel S., Bradshaw R., Citro C., Dalcin L., Seljebotn D.S., Smith K. Cython: The best of both worlds. Comput. Sci. Eng. 2011;13:31&#8211;39. doi: 10.1109/MCSE.2010.118.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1109/MCSE.2010.118</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Smelter A., Moseley H.N. A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository. Metabolomics. 2018;14:64. doi: 10.1007/s11306-018-1356-6.</Citation>
+				<ArticleIdList>
+					<ArticleId IdType="doi">10.1007/s11306-018-1356-6</ArticleId>
+					<ArticleId IdType="pmc">PMC5910482</ArticleId>
+					<ArticleId IdType="pubmed">29706851</ArticleId>
+				</ArticleIdList>
+			</Reference>
+			<Reference>
+				<Citation>Hildebrandt G. Metabolomics of Lung Injury after Allogeneic Hematopoietic Cell Transplantation&#8212;Colon ICMS.  [(accessed on 1 January 2020)].  Available online:  https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&amp;ProjectID=PR000993.</Citation>
+			</Reference>
+			<Reference>
+				<Citation>Organisation for Economic Co-Operation Development  Draft Advisory Document of the Working Group on Good Laboratory Practice on GLP Data Integrity.  [(accessed on 1 January 2023)].  Available online:  https://www.oecd.org/env/ehs/testing/DRAFT_OECD_Advisory_Document_on_GLP_Data_Integrity_07_August_2020.pdf.</Citation>
+			</Reference>
+		</ReferenceList>
+	</PubmedData>
+</PubmedArticle>

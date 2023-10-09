@@ -22,4 +22,5 @@ Email: <author_email>
 First Author: <first_author>
 Last Author: <last_author>
 Pub_Authors: <pub_author_loop>\n<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations></pub_author_loop>
+References: <reference_loop>\nCitation: <reference_citation>\nTitle: <reference_title>\nPMID: <reference_PMID>\nPMCID: <reference_PMCID>\nDOI: <reference_DOI>\n</reference_loop>
 </pub_loop></author_loop></project_loop>

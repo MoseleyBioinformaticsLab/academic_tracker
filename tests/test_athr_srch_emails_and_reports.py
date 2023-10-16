@@ -96,13 +96,13 @@ def test_create_project_reports_and_emails_tabular(publication_dict, config_dict
     expected_emails = load_json(os.path.join("tests", "testing_files", "athr_project_emails_tabular.json"))
     del expected_emails["creation_date"]
     ## attachment for xlsx files is a filepath and it differs between OS's.
-    del expected_emails["emails"][2]["attachment"]
+    del expected_emails["emails"][1]["attachment"]
     
     actual_emails = create_project_reports_and_emails(authors_by_project_dict_tabular, publication_dict, config_dict_tabular, TESTING_DIR)
     # with open(os.path.join("tests", "testing_files", "athr_project_emails_tabular_new.json"),'w') as jsonFile:
     #     jsonFile.write(json.dumps(actual_emails, indent=2, sort_keys=True))
     del actual_emails["creation_date"]
-    del actual_emails["emails"][2]["attachment"]
+    del actual_emails["emails"][1]["attachment"]
     
     dir_contents = os.listdir(TESTING_DIR)
     expected_num_of_project_reports = 5
@@ -243,13 +243,13 @@ def test_create_collaborators_reports_and_emails(publication_dict, config_dict):
     
     expected_emails = load_json(os.path.join("tests", "testing_files", "collaborator_emails.json"))
     del expected_emails["creation_date"]
-    del expected_emails["emails"][2]["attachment"]
+    del expected_emails["emails"][3]["attachment"]
     
     actual_emails = create_collaborators_reports_and_emails(publication_dict, config_dict, TESTING_DIR)
     # with open(os.path.join("tests", "testing_files", "collaborator_emails_new.json"),'w') as jsonFile:
     #     jsonFile.write(json.dumps(actual_emails, indent=2, sort_keys=True))
     del actual_emails["creation_date"]
-    del actual_emails["emails"][2]["attachment"]
+    del actual_emails["emails"][3]["attachment"]
     
     dir_contents = os.listdir(TESTING_DIR)
     expected_num_of_collaborator_reports = 4
@@ -536,7 +536,8 @@ def test_create_tabular_project_report_excel(publication_dict, config_dict, auth
     
     assert "project_report.csv.xlsx" in dir_contents
     
-    df = pandas.read_excel(os.path.join(TESTING_DIR, "project_report.csv.xlsx"))
+    df = pandas.read_excel(os.path.join(TESTING_DIR, "project_report.csv.xlsx"), keep_default_na=False)
+    # df.to_csv(os.path.join("tests", "testing_files", "aaa.csv"), sep="\t", index=False, lineterminator="\n")
     assert list(df.columns) == list(report_attributes["columns"].keys())
     assert df.iloc[1].loc["Col1"] == 'No Authors'
     assert df.iloc[0].loc["Col2"] == "Hunter"

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON Schema &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>JSON Schema &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -218,7 +219,11 @@ the email.</p>
 to search for goes. Every author in this section will be queried during author_search.</p>
 <p>The first_name and last_name attributes are for the author’s first and last names
 respectively, and are used to validate that the author under search is the same
-as the queried author.</p>
+as the queried author. There is a special type of author known as collective authors.
+These are not individuals, but are instead a collective and are published that way.
+Use the collective_name attribute to indicate that an author is a collective. This
+attribute takes priority, so if it is present the author will be treated as a collective
+author even if they have first_name and last_name attributes.</p>
 <p>pubmed_name_search is used as the query string when querying sources. This is so
 the user can specify exactly what to query rather than simply querying the first
 and last name.</p>
@@ -241,159 +246,171 @@ specify these fields en masse, but it can be done on an individual level as well
 </div>
 <div class="section" id="validating-schema">
 <h3>Validating Schema<a class="headerlink" href="#validating-schema" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
-<span class="go"> &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,</span>
-<span class="go"> &quot;title&quot;: &quot;Configuration JSON&quot;,</span>
-<span class="go"> &quot;description&quot;: &quot;Input file that contains information for how the program should run.&quot;,</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>config_schema = \
+    {
+ &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+ &quot;title&quot;: &quot;Configuration JSON&quot;,
+ &quot;description&quot;: &quot;Input file that contains information for how the program should run.&quot;,
 
-<span class="go"> &quot;type&quot;: &quot;object&quot;,</span>
-<span class="go"> &quot;properties&quot;: {</span>
-<span class="go">         &quot;project_descriptions&quot; : {</span>
-<span class="go">             &quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">             &quot;minProperties&quot;: 1,</span>
-<span class="go">             &quot;additionalProperties&quot;: {</span>
-<span class="go">                     &quot;type&quot;:&quot;object&quot;,</span>
-<span class="go">                     &quot;properties&quot;:{</span>
-<span class="go">                             &quot;grants&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},</span>
-<span class="go">                             &quot;cutoff_year&quot;: {&quot;type&quot;: &quot;integer&quot;},</span>
-<span class="go">                             &quot;affiliations&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},</span>
-<span class="go">                             &quot;project_report&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                &quot;properties&quot;:{</span>
-<span class="go">                                                        &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                                    &quot;minProperties&quot;:1,</span>
-<span class="go">                                                                    &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},</span>
-<span class="go">                                                        &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                        &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                        &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},</span>
-<span class="go">                                                        &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},</span>
-<span class="go">                                                        &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                        &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                        &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},</span>
-<span class="go">                                                &quot;dependentRequired&quot;:{</span>
-<span class="go">                                                        &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],</span>
-<span class="go">                                                        &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]}},</span>
-<span class="go">                             &quot;collaborator_report&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                     &quot;properties&quot;:{</span>
-<span class="go">                                                             &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                                         &quot;minProperties&quot;:1,</span>
-<span class="go">                                                                         &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},</span>
-<span class="go">                                                             &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                             &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                             &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},</span>
-<span class="go">                                                             &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},</span>
-<span class="go">                                                             &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                             &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                             &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},</span>
-<span class="go">                                                     &quot;dependentRequired&quot;:{</span>
-<span class="go">                                                             &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],</span>
-<span class="go">                                                             &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]},},</span>
-<span class="go">                             &quot;authors&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},</span>
-<span class="go">                             },</span>
-
-<span class="go">                     &quot;required&quot;: [&quot;grants&quot;, &quot;affiliations&quot;]</span>
-<span class="go">                     }</span>
-<span class="go">            },</span>
-
-<span class="go">        &quot;ORCID_search&quot; : {&quot;type&quot;:&quot;object&quot;,</span>
-<span class="go">                          &quot;properties&quot;: {</span>
-<span class="go">                                  &quot;ORCID_key&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                  &quot;ORCID_secret&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},</span>
-<span class="go">                          &quot;required&quot;: [&quot;ORCID_key&quot;, &quot;ORCID_secret&quot;]},</span>
-<span class="go">        &quot;PubMed_search&quot; : {&quot;type&quot;:&quot;object&quot;,</span>
-<span class="go">                          &quot;properties&quot;: {</span>
-<span class="go">                                  &quot;PubMed_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;:&quot;email&quot;}},</span>
-<span class="go">                          &quot;required&quot;:[&quot;PubMed_email&quot;]},</span>
-<span class="go">        &quot;Crossref_search&quot; : {&quot;type&quot;:&quot;object&quot;,</span>
-<span class="go">                          &quot;properties&quot;: {</span>
-<span class="go">                                  &quot;mailto_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;:&quot;email&quot;}},</span>
-<span class="go">                          &quot;required&quot;:[&quot;mailto_email&quot;]},</span>
-<span class="go">        &quot;summary_report&quot; : {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                          &quot;properties&quot;:{</span>
-<span class="go">                                  &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                              &quot;minProperties&quot;:1,</span>
-<span class="go">                                              &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},</span>
-<span class="go">                                  &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                  &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},</span>
-<span class="go">                                  &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                  &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},</span>
-<span class="go">                                  &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                  &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                  &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},</span>
-<span class="go">                                  &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                  &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                  &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                  &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},</span>
-<span class="go">                          &quot;dependentRequired&quot;:{</span>
-<span class="go">                                  &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;, &quot;to_email&quot;]}},</span>
-<span class="go">        &quot;Authors&quot; :  { &quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                     &quot;minProperties&quot;: 1,</span>
-<span class="go">                     &quot;additionalProperties&quot;: {</span>
-<span class="go">                             &quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                             &quot;properties&quot;:{</span>
-<span class="go">                                     &quot;first_name&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                     &quot;last_name&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                     &quot;pubmed_name_search&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                     &quot;email&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;format&quot;:&quot;email&quot;},</span>
-<span class="go">                                     &quot;ORCID&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;pattern&quot;:&quot;^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$&quot;},</span>
-<span class="go">                                     &quot;grants&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},</span>
-<span class="go">                                     &quot;cutoff_year&quot;: {&quot;type&quot;: &quot;integer&quot;},</span>
-<span class="go">                                     &quot;affiliations&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},</span>
-<span class="go">                                     &quot;scholar_id&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                     &quot;project_report&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                &quot;properties&quot;:{</span>
-<span class="go">                                                        &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                                    &quot;minProperties&quot;:1,</span>
-<span class="go">                                                                    &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},</span>
-<span class="go">                                                        &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                        &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                        &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},</span>
-<span class="go">                                                        &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},</span>
-<span class="go">                                                        &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                        &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                        &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                        &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},</span>
-<span class="go">                                                &quot;dependentRequired&quot;:{</span>
-<span class="go">                                                        &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],</span>
-<span class="go">                                                        &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]}},</span>
-<span class="go">                                    &quot;collaborator_report&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                     &quot;properties&quot;:{</span>
-<span class="go">                                                             &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,</span>
-<span class="go">                                                                         &quot;minProperties&quot;:1,</span>
-<span class="go">                                                                         &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},</span>
-<span class="go">                                                             &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                             &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},</span>
-<span class="go">                                                             &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},</span>
-<span class="go">                                                             &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},</span>
-<span class="go">                                                             &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                             &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},</span>
-<span class="go">                                                             &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},</span>
-<span class="go">                                                             &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},</span>
-<span class="go">                                                     &quot;dependentRequired&quot;:{</span>
-<span class="go">                                                             &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],</span>
-<span class="go">                                                             &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]},},</span>
-<span class="go">                                     },</span>
-<span class="go">                             &quot;required&quot; : [&quot;first_name&quot;, &quot;last_name&quot;, &quot;pubmed_name_search&quot;]</span>
-
-<span class="go">                             }</span>
-<span class="go">                       }</span>
-
-<span class="go">     },</span>
-<span class="go"> &quot;required&quot;: [&quot;project_descriptions&quot;, &quot;ORCID_search&quot;, &quot;PubMed_search&quot;, &quot;Crossref_search&quot;, &quot;Authors&quot;]</span>
-<span class="go">}</span>
+ &quot;type&quot;: &quot;object&quot;,
+ &quot;properties&quot;: {
+         &quot;project_descriptions&quot; : {
+             &quot;type&quot;: &quot;object&quot;,
+             &quot;minProperties&quot;: 1,
+             &quot;additionalProperties&quot;: {
+                     &quot;type&quot;:&quot;object&quot;,
+                     &quot;properties&quot;:{
+                             &quot;grants&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},
+                             &quot;cutoff_year&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;:1000, &quot;maximum&quot;:9999},
+                             &quot;affiliations&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},
+                             &quot;project_report&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                &quot;properties&quot;:{
+                                                        &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                                    &quot;minProperties&quot;:1,
+                                                                    &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                                        &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                        &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},
+                                                        &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                        &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},
+                                                        &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},
+                                                        &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                        &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},
+                                                        &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                        &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                        &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                        &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},
+                                                &quot;dependentRequired&quot;:{
+                                                        &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],
+                                                        &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]}},
+                             &quot;collaborator_report&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                     &quot;properties&quot;:{
+                                                             &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                                         &quot;minProperties&quot;:1,
+                                                                         &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                                             &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                             &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},
+                                                             &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                             &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},
+                                                             &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},
+                                                             &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                             &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},
+                                                             &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                             &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                             &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                             &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},
+                                                     &quot;dependentRequired&quot;:{
+                                                             &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],
+                                                             &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]},},
+                             &quot;authors&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},
+                             },
+                             
+                     &quot;required&quot;: [&quot;grants&quot;, &quot;affiliations&quot;]
+                     }
+            },
+             
+        &quot;ORCID_search&quot; : {&quot;type&quot;:&quot;object&quot;,
+                          &quot;properties&quot;: {
+                                  &quot;ORCID_key&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                  &quot;ORCID_secret&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                          &quot;required&quot;: [&quot;ORCID_key&quot;, &quot;ORCID_secret&quot;]},
+        &quot;PubMed_search&quot; : {&quot;type&quot;:&quot;object&quot;,
+                          &quot;properties&quot;: {
+                                  &quot;PubMed_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;:&quot;email&quot;}},
+                          &quot;required&quot;:[&quot;PubMed_email&quot;]},
+        &quot;Crossref_search&quot; : {&quot;type&quot;:&quot;object&quot;,
+                          &quot;properties&quot;: {
+                                  &quot;mailto_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;:&quot;email&quot;}},
+                          &quot;required&quot;:[&quot;mailto_email&quot;]},
+        &quot;summary_report&quot; : {&quot;type&quot;: &quot;object&quot;,
+                          &quot;properties&quot;:{
+                                  &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                              &quot;minProperties&quot;:1,
+                                              &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                  &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                  &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},
+                                  &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                  &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},
+                                  &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},
+                                  &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                  &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},
+                                  &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                  &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                  &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                  &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},
+                          &quot;dependentRequired&quot;:{
+                                  &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;, &quot;to_email&quot;]}},
+        &quot;Authors&quot; :  { &quot;type&quot;: &quot;object&quot;,
+                     &quot;minProperties&quot;: 1,
+                     &quot;additionalProperties&quot;: {
+                             &quot;type&quot;: &quot;object&quot;,
+                             &quot;properties&quot;:{
+                                     &quot;pubmed_name_search&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                     &quot;email&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;format&quot;:&quot;email&quot;},
+                                     &quot;ORCID&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;pattern&quot;:&quot;^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$&quot;},
+                                     &quot;grants&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},
+                                     &quot;cutoff_year&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;:1000, &quot;maximum&quot;:9999},
+                                     &quot;scholar_id&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                     &quot;project_report&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                &quot;properties&quot;:{
+                                                        &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                                    &quot;minProperties&quot;:1,
+                                                                    &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                                        &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                        &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},
+                                                        &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                        &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},
+                                                        &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},
+                                                        &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                        &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},
+                                                        &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                        &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                        &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                        &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},
+                                                &quot;dependentRequired&quot;:{
+                                                        &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],
+                                                        &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]}},
+                                    &quot;collaborator_report&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                     &quot;properties&quot;:{
+                                                             &quot;columns&quot;: {&quot;type&quot;: &quot;object&quot;,
+                                                                         &quot;minProperties&quot;:1,
+                                                                         &quot;additionalProperties&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                                             &quot;sort&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                             &quot;separator&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;maxLength&quot;:1, &quot;minLength&quot;:1},
+                                                             &quot;column_order&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;uniqueItems&quot;:True, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}, &quot;minItems&quot;:1},
+                                                             &quot;file_format&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;csv&quot;, &quot;xlsx&quot;]},
+                                                             &quot;filename&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},
+                                                             &quot;template&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                             &quot;from_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;},
+                                                             &quot;cc_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                             &quot;to_email&quot;: {&quot;type&quot;: &quot;array&quot;,  &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;email&quot;}},
+                                                             &quot;email_body&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                                             &quot;email_subject&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},},
+                                                     &quot;dependentRequired&quot;:{
+                                                             &quot;from_email&quot;: [&quot;email_body&quot;, &quot;email_subject&quot;],
+                                                             &quot;to_email&quot;: [&quot;from_email&quot;, &quot;email_body&quot;, &quot;email_subject&quot;]},},
+                                     },
+                             &quot;if&quot;: {
+                                 &quot;properties&quot;:{&quot;collective_name&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                 &quot;required&quot;:[&quot;collective_name&quot;]
+                                 },
+                             &quot;then&quot;:{
+                                 &quot;properties&quot;:{&quot;collective_name&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1}},
+                                 &quot;required&quot;:[&quot;collective_name&quot;]
+                                 },
+                             &quot;else&quot;:{
+                                 &quot;properties&quot;: {
+                                         &quot;affiliations&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;minItems&quot;:1, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}},
+                                         &quot;first_name&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                         &quot;last_name&quot;:{&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;:1},
+                                      },
+                                   &quot;required&quot;: [&quot;first_name&quot;, &quot;last_name&quot;]},
+                             &quot;required&quot; : [&quot;pubmed_name_search&quot;]
+                             }
+                       }
+                                  
+     },
+ &quot;required&quot;: [&quot;project_descriptions&quot;, &quot;ORCID_search&quot;, &quot;PubMed_search&quot;, &quot;Crossref_search&quot;, &quot;Authors&quot;]
+}
 </pre></div>
 </div>
 </div>

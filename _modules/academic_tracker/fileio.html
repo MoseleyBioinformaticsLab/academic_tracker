@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.fileio &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>academic_tracker.fileio &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -30,7 +30,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -305,18 +306,20 @@
     
     
 
-<div class="viewcode-block" id="save_json_to_file"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_json_to_file">[docs]</a><span class="k">def</span> <span class="nf">save_json_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">json_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="save_json_to_file"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_json_to_file">[docs]</a><span class="k">def</span> <span class="nf">save_json_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">json_dict</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Saves the json_dict to file_name in save_dir_name in the current working directory.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        save_dir_name (str): directory name to append to the current working directory to save the json_dict in.</span>
+<span class="sd">        file_name (str): the name to give the file, should have &#39;.json&#39; as the extension.</span>
 <span class="sd">        json_dict (dict or list): data to save to file.</span>
+<span class="sd">        sort_keys (bool): passed to json.dumps, if True sort the dictionary keys before saving.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
     
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outFile</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">outFile</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="n">sort_keys</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">outFile</span><span class="p">)</span></div>
 
 </pre></div>
 

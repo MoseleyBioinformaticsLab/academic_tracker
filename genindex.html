@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Index &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -31,7 +31,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,6 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -84,11 +85,13 @@
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
@@ -109,12 +112,14 @@
 </li>
       <li><a href="api.html#module-academic_tracker.citation_parsing">academic_tracker.citation_parsing (module)</a>
 </li>
-      <li><a href="api.html#module-academic_tracker.fileio">academic_tracker.fileio (module)</a>
+      <li><a href="api.html#module-academic_tracker.emails_and_reports_helpers">academic_tracker.emails_and_reports_helpers (module)</a>
 </li>
-      <li><a href="api.html#module-academic_tracker.helper_functions">academic_tracker.helper_functions (module)</a>
+      <li><a href="api.html#module-academic_tracker.fileio">academic_tracker.fileio (module)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#module-academic_tracker.helper_functions">academic_tracker.helper_functions (module)</a>
+</li>
       <li><a href="api.html#module-academic_tracker.ref_srch_emails_and_reports">academic_tracker.ref_srch_emails_and_reports (module)</a>
 </li>
       <li><a href="api.html#module-academic_tracker.ref_srch_modularized">academic_tracker.ref_srch_modularized (module)</a>
@@ -153,8 +158,6 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#academic_tracker.webio.check_doi_for_grants">check_doi_for_grants() (in module academic_tracker.webio)</a>
-</li>
       <li><a href="api.html#academic_tracker.webio.clean_tags_from_url">clean_tags_from_url() (in module academic_tracker.webio)</a>
 </li>
       <li><a href="api.html#academic_tracker.user_input_checking.cli_inputs_check">cli_inputs_check() (in module academic_tracker.user_input_checking)</a>
@@ -171,11 +174,15 @@
 </li>
       <li><a href="api.html#academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails">create_collaborators_reports_and_emails() (in module academic_tracker.athr_srch_emails_and_reports)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#academic_tracker.athr_srch_emails_and_reports.create_project_report">create_project_report() (in module academic_tracker.athr_srch_emails_and_reports)</a>
 </li>
       <li><a href="api.html#academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails">create_project_reports_and_emails() (in module academic_tracker.athr_srch_emails_and_reports)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#academic_tracker.helper_functions.create_pub_dict_for_saving_Crossref">create_pub_dict_for_saving_Crossref() (in module academic_tracker.helper_functions)</a>
+</li>
+      <li><a href="api.html#academic_tracker.helper_functions.create_pub_dict_for_saving_PubMed">create_pub_dict_for_saving_PubMed() (in module academic_tracker.helper_functions)</a>
 </li>
       <li><a href="api.html#academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict">create_pubs_by_author_dict() (in module academic_tracker.athr_srch_emails_and_reports)</a>
 </li>
@@ -199,7 +206,15 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#academic_tracker.webio.download_pdf">download_pdf() (in module academic_tracker.webio)</a>
+      <li><a href="api.html#academic_tracker.helper_functions.do_strings_fuzzy_match">do_strings_fuzzy_match() (in module academic_tracker.helper_functions)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#academic_tracker.helper_functions.extract_ORCID_from_string">extract_ORCID_from_string() (in module academic_tracker.helper_functions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -207,10 +222,12 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#academic_tracker.helper_functions.find_duplicate_citations">find_duplicate_citations() (in module academic_tracker.helper_functions)</a>
+      <li><a href="api.html#academic_tracker.helper_functions.find_common_subphrases">find_common_subphrases() (in module academic_tracker.helper_functions)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#academic_tracker.helper_functions.find_duplicate_citations">find_duplicate_citations() (in module academic_tracker.helper_functions)</a>
+</li>
       <li><a href="api.html#academic_tracker.helper_functions.fuzzy_matches_to_list">fuzzy_matches_to_list() (in module academic_tracker.helper_functions)</a>
 </li>
   </ul></td>
@@ -225,7 +242,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#academic_tracker.webio.get_grants_from_Crossref">get_grants_from_Crossref() (in module academic_tracker.webio)</a>
+      <li><a href="api.html#academic_tracker.helper_functions.get_pub_id_in_publication_dict">get_pub_id_in_publication_dict() (in module academic_tracker.helper_functions)</a>
 </li>
       <li><a href="api.html#academic_tracker.webio.get_url_contents_as_str">get_url_contents_as_str() (in module academic_tracker.webio)</a>
 </li>
@@ -261,13 +278,21 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#academic_tracker.helper_functions.match_authors_in_pub_Crossref">match_authors_in_pub_Crossref() (in module academic_tracker.helper_functions)</a>
+      <li><a href="api.html#academic_tracker.helper_functions.match_authors_in_prev_pub">match_authors_in_prev_pub() (in module academic_tracker.helper_functions)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#academic_tracker.helper_functions.match_authors_in_pub_PubMed">match_authors_in_pub_PubMed() (in module academic_tracker.helper_functions)</a>
+      <li><a href="api.html#academic_tracker.helper_functions.match_pub_authors_to_citation_authors">match_pub_authors_to_citation_authors() (in module academic_tracker.helper_functions)</a>
 </li>
-      <li><a href="api.html#academic_tracker.helper_functions.modify_pub_dict_for_saving">modify_pub_dict_for_saving() (in module academic_tracker.helper_functions)</a>
+      <li><a href="api.html#academic_tracker.helper_functions.match_pub_authors_to_config_authors">match_pub_authors_to_config_authors() (in module academic_tracker.helper_functions)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#academic_tracker.helper_functions.normalize_DOI">normalize_DOI() (in module academic_tracker.helper_functions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -299,22 +324,16 @@
 </li>
       <li><a href="api.html#academic_tracker.fileio.read_text_from_txt">read_text_from_txt() (in module academic_tracker.fileio)</a>
 </li>
-      <li><a href="api.html#academic_tracker.user_input_checking.ref_config_file_check">ref_config_file_check() (in module academic_tracker.user_input_checking)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#academic_tracker.user_input_checking.ref_config_file_check">ref_config_file_check() (in module academic_tracker.user_input_checking)</a>
+</li>
       <li><a href="api.html#academic_tracker.helper_functions.regex_group_return">regex_group_return() (in module academic_tracker.helper_functions)</a>
 </li>
       <li><a href="api.html#academic_tracker.helper_functions.regex_match_return">regex_match_return() (in module academic_tracker.helper_functions)</a>
 </li>
       <li><a href="api.html#academic_tracker.helper_functions.regex_search_return">regex_search_return() (in module academic_tracker.helper_functions)</a>
 </li>
-      <li><a href="api.html#academic_tracker.athr_srch_emails_and_reports.replace_keywords">replace_keywords() (in module academic_tracker.athr_srch_emails_and_reports)</a>
-
-      <ul>
-        <li><a href="api.html#academic_tracker.ref_srch_emails_and_reports.replace_keywords">(in module academic_tracker.ref_srch_emails_and_reports)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -335,8 +354,6 @@
 </li>
       <li><a href="api.html#academic_tracker.fileio.save_string_to_file">save_string_to_file() (in module academic_tracker.fileio)</a>
 </li>
-      <li><a href="api.html#academic_tracker.webio.scrape_url_for_DOI">scrape_url_for_DOI() (in module academic_tracker.webio)</a>
-</li>
       <li><a href="api.html#academic_tracker.athr_srch_webio.search_Crossref_for_pubs">search_Crossref_for_pubs() (in module academic_tracker.athr_srch_webio)</a>
 </li>
   </ul></td>
@@ -351,11 +368,7 @@
 </li>
       <li><a href="api.html#academic_tracker.athr_srch_webio.search_PubMed_for_pubs">search_PubMed_for_pubs() (in module academic_tracker.athr_srch_webio)</a>
 </li>
-      <li><a href="api.html#academic_tracker.ref_srch_webio.search_references_on_Crossref">search_references_on_Crossref() (in module academic_tracker.ref_srch_webio)</a>
-</li>
-      <li><a href="api.html#academic_tracker.ref_srch_webio.search_references_on_Google_Scholar">search_references_on_Google_Scholar() (in module academic_tracker.ref_srch_webio)</a>
-</li>
-      <li><a href="api.html#academic_tracker.ref_srch_webio.search_references_on_PubMed">search_references_on_PubMed() (in module academic_tracker.ref_srch_webio)</a>
+      <li><a href="api.html#academic_tracker.ref_srch_webio.search_references_on_source">search_references_on_source() (in module academic_tracker.ref_srch_webio)</a>
 </li>
       <li><a href="api.html#academic_tracker.webio.send_emails">send_emails() (in module academic_tracker.webio)</a>
 </li>

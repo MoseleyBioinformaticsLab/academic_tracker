@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.ref_srch_emails_and_reports &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>academic_tracker.ref_srch_emails_and_reports &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -30,7 +30,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -93,9 +94,20 @@
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">helper_functions</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">fileio</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">emails_and_reports_helpers</span>
 
 
 <span class="n">DEFAULT_SUMMARY_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&lt;pub_loop&gt;Reference Line:</span><span class="se">\n\t</span><span class="s2">&lt;ref_line&gt;</span><span class="se">\n</span><span class="s2">Tokenized Reference:</span><span class="se">\n\t</span><span class="s2">Authors: &lt;tok_authors&gt;</span><span class="se">\n\t</span><span class="s2">Title: &lt;tok_title&gt;</span><span class="se">\n\t</span><span class="s2">PMID: &lt;tok_PMID&gt;</span><span class="se">\n\t</span><span class="s2">DOI: &lt;tok_DOI&gt;</span><span class="se">\n</span><span class="s2">Queried Information:</span><span class="se">\n\t</span><span class="s2">DOI: &lt;DOI&gt;</span><span class="se">\n\t</span><span class="s2">PMID: &lt;PMID&gt;</span><span class="se">\n\t</span><span class="s2">PMCID: &lt;PMCID&gt;</span><span class="se">\n\t</span><span class="s2">Grants: &lt;grants&gt;</span><span class="se">\n\n</span><span class="s2">&lt;/pub_loop&gt;&quot;</span>
+
+<span class="n">simple_publication_keywords_map</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">simple_publication_keywords_map</span>
+
+<span class="n">pub_authors_keyword_map</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">pub_authors_keyword_map</span>
+
+<span class="n">references_keyword_map</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">references_keyword_map</span>
+
+<span class="n">publication_date_keywords_map</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">publication_date_keywords_map</span>
+
+<span class="n">tokenized_keywords_map</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">tokenized_keywords_map</span>
 
 
 <div class="viewcode-block" id="convert_tokenized_authors_to_str"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str">[docs]</a><span class="k">def</span> <span class="nf">convert_tokenized_authors_to_str</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
@@ -135,32 +147,6 @@
 
 
 
-<span class="n">simple_publication_keywords_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;abstract&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;conclusions&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;conclusions&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;copyrights&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;copyrights&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;DOI&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;doi&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;journal&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;journal&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;keywords&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;keywords&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;methods&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;methods&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;PMID&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;results&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;results&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;title&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;title&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&lt;PMCID&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;PMCID&quot;</span><span class="p">,}</span>
-
-<span class="n">pub_authors_keyword_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;pub_author_first&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;firstname&quot;</span><span class="p">,</span>
-                           <span class="s2">&quot;&lt;pub_author_last&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;lastname&quot;</span><span class="p">,</span>
-                           <span class="s2">&quot;&lt;pub_author_initials&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;initials&quot;</span><span class="p">,</span>
-                           <span class="s2">&quot;&lt;pub_author_affiliations&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;affiliation&quot;</span><span class="p">}</span>
-
-<span class="n">publication_date_keywords_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;publication_year&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
-                                 <span class="s2">&quot;&lt;publication_month&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;month&quot;</span><span class="p">,</span>
-                                 <span class="s2">&quot;&lt;publication_day&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;day&quot;</span><span class="p">}</span>
-
-<span class="n">tokenized_keywords_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&lt;tok_title&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> 
-                          <span class="s2">&quot;&lt;tok_DOI&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;DOI&quot;</span><span class="p">,</span> 
-                          <span class="s2">&quot;&lt;tok_PMID&gt;&quot;</span><span class="p">:</span><span class="s2">&quot;PMID&quot;</span><span class="p">}</span>
-    
-
     
 <div class="viewcode-block" id="create_report_from_template"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_report_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_report_from_template</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">template_string</span> <span class="o">=</span> <span class="n">DEFAULT_SUMMARY_TEMPLATE</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create project report based on template_string.</span>
@@ -182,64 +168,28 @@
     
     <span class="n">pub_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;pub_loop&gt;(.*)&lt;/pub_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">pub_author_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;pub_author_loop&gt;(.*)&lt;/pub_author_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">reference_template</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_group_return</span><span class="p">(</span><span class="n">helper_functions</span><span class="o">.</span><span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s).*&lt;reference_loop&gt;(.*)&lt;/reference_loop&gt;.*&quot;</span><span class="p">,</span> <span class="n">template_string</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
     
     <span class="n">report_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">for</span> <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_values</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template</span>
-        
-        <span class="n">pub_authors</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
-            <span class="n">pub_author_template_copy</span> <span class="o">=</span> <span class="n">pub_author_template</span>
-            
-            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_author_key</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">pub_author_template_copy</span> <span class="o">=</span> <span class="n">pub_author_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_author</span><span class="p">[</span><span class="n">pub_author_key</span><span class="p">]))</span>
-                
-            <span class="n">pub_authors</span> <span class="o">+=</span> <span class="n">pub_author_template_copy</span>
-            
-        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;pub_author_loop&gt;.*&lt;/pub_author_loop&gt;&quot;</span><span class="p">,</span> <span class="n">pub_authors</span><span class="p">,</span> <span class="n">pub_template_copy</span><span class="p">)</span>
-        
-        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_key</span> <span class="ow">in</span> <span class="n">simple_publication_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="n">pub_key</span><span class="p">]))</span>
-            
-        <span class="c1">## build first and last author</span>
-        <span class="n">first_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
-        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;first_author&gt;&quot;</span><span class="p">,</span> <span class="n">first_author</span><span class="p">)</span>
-        
-        <span class="n">last_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
-        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;last_author&gt;&quot;</span><span class="p">,</span> <span class="n">last_author</span><span class="p">)</span>
-        
-        <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]])</span>
-        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;authors&gt;&quot;</span><span class="p">,</span> <span class="n">authors</span><span class="p">)</span>
-        
-        <span class="n">grants</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;None&quot;</span>
-        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;grants&gt;&quot;</span><span class="p">,</span> <span class="n">grants</span><span class="p">)</span>
-        
-        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">date_key</span> <span class="ow">in</span> <span class="n">publication_date_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_values</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="n">date_key</span><span class="p">]))</span>
-        
         <span class="n">tok_index</span> <span class="o">=</span> <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">pub_id</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">tok_key</span> <span class="ow">in</span> <span class="n">tokenized_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">replacement</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">][</span><span class="n">tok_key</span><span class="p">])</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">replacement</span><span class="p">:</span>
-                <span class="n">replacement</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span>
-            
-        <span class="n">tok_authors</span> <span class="o">=</span> <span class="n">convert_tokenized_authors_to_str</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span>
-        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;tok_authors&gt;&quot;</span><span class="p">,</span> <span class="n">tok_authors</span><span class="p">)</span>
+        <span class="n">tokenized_citation</span> <span class="o">=</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">]</span>
+        <span class="n">is_citation_in_prev_pubs</span> <span class="o">=</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">[</span><span class="n">tok_index</span><span class="p">]</span> <span class="k">if</span> <span class="n">is_citation_in_prev_pubs_list</span> <span class="k">else</span> <span class="kc">None</span>
         
-        <span class="k">if</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]:</span>
-            <span class="n">pretty_print</span> <span class="o">=</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">pretty_print</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pretty_print</span><span class="p">])</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;ref_line&gt;&quot;</span><span class="p">,</span> <span class="n">pretty_print</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;ref_line&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">:</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;is_in_comparison_file&gt;&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">is_citation_in_prev_pubs_list</span><span class="p">[</span><span class="n">tok_index</span><span class="p">]))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">pub_template_copy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;is_in_comparison_file&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
-        
+        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">_replace_pub_author_and_reference_loops</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> 
+                                                                                               <span class="n">pub_id</span><span class="p">,</span> 
+                                                                                               <span class="n">pub_template_copy</span><span class="p">,</span> 
+                                                                                               <span class="n">pub_author_template</span><span class="p">,</span> 
+                                                                                               <span class="n">reference_template</span><span class="p">)</span>
+                
+        <span class="n">pub_template_copy</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">_replace_keywords</span><span class="p">({</span><span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="n">pub_template_copy</span><span class="p">},</span> 
+                                                                         <span class="n">publication_dict</span><span class="p">,</span> <span class="p">{},</span> 
+                                                                         <span class="n">pub</span><span class="o">=</span><span class="n">pub_id</span><span class="p">,</span> 
+                                                                         <span class="n">tokenized_citation</span><span class="o">=</span><span class="n">tokenized_citation</span><span class="p">,</span> 
+                                                                         <span class="n">is_citation_in_prev_pubs</span><span class="o">=</span><span class="n">is_citation_in_prev_pubs</span><span class="p">)[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
+                
         <span class="n">report_string</span> <span class="o">+=</span> <span class="n">pub_template_copy</span>
         
     <span class="n">report</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?s)&lt;pub_loop&gt;.*&lt;/pub_loop&gt;&quot;</span><span class="p">,</span> <span class="n">report_string</span><span class="p">,</span> <span class="n">template_string</span><span class="p">)</span>
@@ -263,7 +213,6 @@
 <span class="sd">        filename (str): Filename of the report. Made have had an .xlsx added to the end.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">row_template</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;summary_report&quot;</span><span class="p">][</span><span class="s2">&quot;columns&quot;</span><span class="p">])</span>
     
     <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="p">[</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">]</span>
@@ -284,117 +233,124 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;summary_report.csv&quot;</span> <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span> <span class="k">else</span> <span class="s2">&quot;summary_report.xlsx&quot;</span>
     
+    
     <span class="n">row_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row_template</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> 
+    
+    <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pub_author_keyword</span> <span class="ow">in</span> <span class="n">row_string</span> <span class="k">for</span> <span class="n">pub_author_keyword</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
         <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">has_pub_author_keywords</span> <span class="o">=</span> <span class="kc">False</span>
+        
+    
+    <span class="n">has_reference_keywords</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">reference_keyword</span> <span class="ow">in</span> <span class="n">row_string</span> <span class="k">for</span> <span class="n">reference_keyword</span> <span class="ow">in</span> <span class="n">references_keyword_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+        <span class="n">has_reference_keywords</span> <span class="o">=</span> <span class="kc">True</span>
     
     
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">pub</span><span class="p">,</span> <span class="n">pub_values</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">tok_index</span> <span class="o">=</span> <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">pub</span><span class="p">)</span>
         <span class="n">is_citation_in_prev_pubs</span> <span class="o">=</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">[</span><span class="n">tok_index</span><span class="p">]</span> <span class="k">if</span> <span class="n">is_citation_in_prev_pubs_list</span> <span class="k">else</span> <span class="kc">None</span>
         
-        <span class="k">if</span> <span class="n">has_pub_author_keywords</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">pub_author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
-                
-                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">pub</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">],</span> <span class="n">is_citation_in_prev_pubs</span><span class="p">,</span> <span class="n">pub_author</span><span class="p">))</span>
-                
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">pub</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">],</span> <span class="n">is_citation_in_prev_pubs</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">has_reference_keywords</span> <span class="ow">or</span> <span class="n">has_pub_author_keywords</span><span class="p">:</span>
             
-    
-    <span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>            
-    <span class="k">if</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column_order</span><span class="p">]</span>
-        
-        <span class="k">if</span> <span class="n">file_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
-            <span class="n">report</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">separator</span><span class="p">,</span> <span class="n">lineterminator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">fileio</span><span class="o">.</span><span class="n">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1">## If the file extension isn&#39;t .xlsx then there will be an error, so force it.</span>
-            <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">:</span>
-                <span class="n">filename</span> <span class="o">+=</span> <span class="s2">&quot;.xlsx&quot;</span>
+            <span class="n">rows</span> <span class="o">+=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">_build_pub_author_and_reference_rows</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> 
+                                                                                    <span class="n">config_dict</span><span class="p">,</span> 
+                                                                                    <span class="n">has_pub_author_keywords</span><span class="p">,</span> 
+                                                                                    <span class="n">has_reference_keywords</span><span class="p">,</span>
+                                                                                    <span class="n">row_template</span><span class="p">,</span> 
+                                                                                    <span class="kc">None</span><span class="p">,</span> 
+                                                                                    <span class="kc">None</span><span class="p">,</span> 
+                                                                                    <span class="n">pub</span><span class="p">,</span> 
+                                                                                    <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">],</span> 
+                                                                                    <span class="n">is_citation_in_prev_pubs</span><span class="p">)</span>
             
-            <span class="n">report</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">_replace_keywords</span><span class="p">(</span><span class="n">row_template</span><span class="p">,</span> 
+                                                                     <span class="n">publication_dict</span><span class="p">,</span> 
+                                                                     <span class="kc">None</span><span class="p">,</span>
+                                                                     <span class="n">pub</span><span class="o">=</span><span class="n">pub</span><span class="p">,</span> 
+                                                                     <span class="n">tokenized_citation</span><span class="o">=</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">tok_index</span><span class="p">],</span> 
+                                                                     <span class="n">is_citation_in_prev_pubs</span><span class="o">=</span><span class="n">is_citation_in_prev_pubs</span><span class="p">))</span>
+            
+    <span class="n">report</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">_save_rows_to_file</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> 
+                                                                     <span class="n">filename</span><span class="p">,</span> 
+                                                                     <span class="n">sort</span><span class="p">,</span> 
+                                                                     <span class="n">column_order</span><span class="p">,</span> 
+                                                                     <span class="n">file_format</span><span class="p">,</span> 
+                                                                     <span class="n">separator</span><span class="p">,</span> 
+                                                                     <span class="n">save_dir_name</span><span class="p">)</span>
             
     <span class="k">return</span> <span class="n">report</span><span class="p">,</span> <span class="n">filename</span></div>
 
 
 
 
-<div class="viewcode-block" id="replace_keywords"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.replace_keywords">[docs]</a><span class="k">def</span> <span class="nf">replace_keywords</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">pub</span><span class="p">,</span> <span class="n">tokenized_citation</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs</span><span class="p">,</span> <span class="n">pub_author</span><span class="o">=</span><span class="p">{}):</span>
-    <span class="sd">&quot;&quot;&quot;Replace keywords in the values of the template dictionary.</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        template (dict): keys are column names and values are what the elements of the column should be.</span>
-<span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
-<span class="sd">        pub (str): the key to the pub in publication_dict.</span>
-<span class="sd">        tokenized_citation (dict): The tokenized citation from the reference for the publication.</span>
-<span class="sd">        is_citation_in_prev_pubs (bool or None): Whether this publication is in the previous publications or not. If None then it isn&#39;t applicable.</span>
-<span class="sd">        pub_author (dict): The author in pub.</span>
-<span class="sd">        </span>
-<span class="sd">    Returns:</span>
-<span class="sd">        template_copy (dict): template with the keywords replaced in its values.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="c1"># def replace_keywords(template, publication_dict, pub, tokenized_citation, is_citation_in_prev_pubs, pub_author={}):</span>
+<span class="c1">#     &quot;&quot;&quot;Replace keywords in the values of the template dictionary.</span>
     
-    <span class="n">template_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+<span class="c1">#     Args:</span>
+<span class="c1">#         template (dict): keys are column names and values are what the elements of the column should be.</span>
+<span class="c1">#         publication_dict (dict): keys and values match the publications JSON file.</span>
+<span class="c1">#         pub (str): the key to the pub in publication_dict.</span>
+<span class="c1">#         tokenized_citation (dict): The tokenized citation from the reference for the publication.</span>
+<span class="c1">#         is_citation_in_prev_pubs (bool or None): Whether this publication is in the previous publications or not. If None then it isn&#39;t applicable.</span>
+<span class="c1">#         pub_author (dict): The author in pub.</span>
+        
+<span class="c1">#     Returns:</span>
+<span class="c1">#         template_copy (dict): template with the keywords replaced in its values.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
     
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">template_copy</span><span class="p">:</span>
+<span class="c1">#     template_copy = copy.deepcopy(template)</span>
+    
+<span class="c1">#     for key in template_copy:</span>
                 
-        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_key</span> <span class="ow">in</span> <span class="n">simple_publication_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="n">pub_key</span><span class="p">]))</span>
+<span class="c1">#         for keyword, pub_key in simple_publication_keywords_map.items():</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(keyword, str(publication_dict[pub][pub_key]))</span>
             
-        <span class="c1">## build first and last author</span>
-        <span class="n">first_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
-        <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;first_author&gt;&quot;</span><span class="p">,</span> <span class="n">first_author</span><span class="p">)</span>
+<span class="c1">#         ## build first and last author</span>
+<span class="c1">#         first_author = str(publication_dict[pub][&quot;authors&quot;][0][&quot;lastname&quot;]) + &quot;, &quot; + str(publication_dict[pub][&quot;authors&quot;][0][&quot;firstname&quot;])</span>
+<span class="c1">#         template_copy[key] = template_copy[key].replace(&quot;&lt;first_author&gt;&quot;, first_author)</span>
         
-        <span class="n">last_author</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span>
-        <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;last_author&gt;&quot;</span><span class="p">,</span> <span class="n">last_author</span><span class="p">)</span>
+<span class="c1">#         last_author = str(publication_dict[pub][&quot;authors&quot;][-1][&quot;lastname&quot;]) + &quot;, &quot; + str(publication_dict[pub][&quot;authors&quot;][-1][&quot;firstname&quot;])</span>
+<span class="c1">#         template_copy[key] = template_copy[key].replace(&quot;&lt;last_author&gt;&quot;, last_author)</span>
         
-        <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">author</span><span class="p">[</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;authors&quot;</span><span class="p">]])</span>
-        <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;authors&gt;&quot;</span><span class="p">,</span> <span class="n">authors</span><span class="p">)</span>
+<span class="c1">#         authors = &quot;, &quot;.join([str(author[&quot;firstname&quot;]) + &quot; &quot; + str(author[&quot;lastname&quot;]) for author in publication_dict[pub][&quot;authors&quot;]])</span>
+<span class="c1">#         template_copy[key] = template_copy[key].replace(&quot;&lt;authors&gt;&quot;, authors)</span>
         
-        <span class="n">grants</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;None Found&quot;</span>
-        <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;grants&gt;&quot;</span><span class="p">,</span> <span class="n">grants</span><span class="p">)</span>
+<span class="c1">#         grants = &quot;, &quot;.join(publication_dict[pub][&quot;grants&quot;]) if publication_dict[pub][&quot;grants&quot;] else &quot;None Found&quot;</span>
+<span class="c1">#         template_copy[key] = template_copy[key].replace(&quot;&lt;grants&gt;&quot;, grants)</span>
         
-        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">date_key</span> <span class="ow">in</span> <span class="n">publication_date_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub</span><span class="p">][</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="n">date_key</span><span class="p">]))</span>
+<span class="c1">#         for keyword, date_key in publication_date_keywords_map.items():</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(keyword, str(publication_dict[pub][&quot;publication_date&quot;][date_key]))</span>
         
-        <span class="c1">## Pub authors keywords</span>
-        <span class="k">if</span> <span class="n">pub_author</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">pub_author_key</span> <span class="ow">in</span> <span class="n">pub_authors_keyword_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">pub_author</span><span class="p">[</span><span class="n">pub_author_key</span><span class="p">]))</span>
+<span class="c1">#         ## Pub authors keywords</span>
+<span class="c1">#         if pub_author:</span>
+<span class="c1">#             for keyword, pub_author_key in pub_authors_keyword_map.items():</span>
+<span class="c1">#                 template_copy[key] = template_copy[key].replace(keyword, str(pub_author[pub_author_key]))</span>
                 
-        <span class="c1">## tokenized keywords</span>
-        <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">tok_key</span> <span class="ow">in</span> <span class="n">tokenized_keywords_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">replacement</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tokenized_citation</span><span class="p">[</span><span class="n">tok_key</span><span class="p">])</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">replacement</span><span class="p">:</span>
-                <span class="n">replacement</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span>
+<span class="c1">#         ## tokenized keywords</span>
+<span class="c1">#         for keyword, tok_key in tokenized_keywords_map.items():</span>
+<span class="c1">#             replacement = str(tokenized_citation[tok_key])</span>
+<span class="c1">#             if not replacement:</span>
+<span class="c1">#                 replacement = &quot;None&quot;</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(keyword, replacement)</span>
             
-        <span class="n">tok_authors</span> <span class="o">=</span> <span class="n">convert_tokenized_authors_to_str</span><span class="p">(</span><span class="n">tokenized_citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span>
-        <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;tok_authors&gt;&quot;</span><span class="p">,</span> <span class="n">tok_authors</span><span class="p">)</span>
+<span class="c1">#         tok_authors = convert_tokenized_authors_to_str(tokenized_citation[&quot;authors&quot;])</span>
+<span class="c1">#         template_copy[key] = template_copy[key].replace(&quot;&lt;tok_authors&gt;&quot;, tok_authors)</span>
         
-        <span class="k">if</span> <span class="n">tokenized_citation</span><span class="p">[</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]:</span>
-            <span class="n">pretty_print</span> <span class="o">=</span> <span class="n">tokenized_citation</span><span class="p">[</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">pretty_print</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pretty_print</span><span class="p">])</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;ref_line&gt;&quot;</span><span class="p">,</span> <span class="n">pretty_print</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;ref_line&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
+<span class="c1">#         if tokenized_citation[&quot;reference_line&quot;]:</span>
+<span class="c1">#             pretty_print = tokenized_citation[&quot;reference_line&quot;].split(&quot;\n&quot;)</span>
+<span class="c1">#             pretty_print = &quot; &quot;.join([line.strip() for line in pretty_print])</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(&quot;&lt;ref_line&gt;&quot;, pretty_print)</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(&quot;&lt;ref_line&gt;&quot;, &quot;N/A&quot;)</span>
         
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">is_citation_in_prev_pubs</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;is_in_comparison_file&gt;&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">is_citation_in_prev_pubs</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template_copy</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;is_in_comparison_file&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
+<span class="c1">#         if type(is_citation_in_prev_pubs) == bool:</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(&quot;&lt;is_in_comparison_file&gt;&quot;, str(is_citation_in_prev_pubs))</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             template_copy[key] = template_copy[key].replace(&quot;&lt;is_in_comparison_file&gt;&quot;, &quot;N/A&quot;)</span>
             
-    <span class="k">return</span> <span class="n">template_copy</span></div>
+<span class="c1">#     return template_copy</span>
 
 
 
@@ -435,50 +391,50 @@
 <span class="c1">###############</span>
     
 
-<span class="k">def</span> <span class="nf">create_reference_search_diagnostic</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="c1"># def create_reference_search_diagnostic(publication_dict, is_citation_in_prev_pubs_list, tokenized_citations):</span>
+<span class="c1">#     &quot;&quot;&quot;&quot;&quot;&quot;</span>
     
-    <span class="n">report_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">citation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]:</span>
-            <span class="n">pretty_print</span> <span class="o">=</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">pretty_print</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pretty_print</span><span class="p">])</span>
-            <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot;Reference Line: &quot;</span> <span class="o">+</span> <span class="n">pretty_print</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="c1">#     report_string = &quot;&quot;</span>
+<span class="c1">#     for count, citation in enumerate(tokenized_citations):</span>
+<span class="c1">#         if tokenized_citations[count][&quot;reference_line&quot;]:</span>
+<span class="c1">#             pretty_print = tokenized_citations[count][&quot;reference_line&quot;].split(&quot;\n&quot;)</span>
+<span class="c1">#             pretty_print = &quot; &quot;.join([line.strip() for line in pretty_print])</span>
+<span class="c1">#             report_string += &quot;Reference Line: &quot; + pretty_print + &quot;\n&quot;</span>
         
-        <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot;Tokenized Reference: </span><span class="se">\n\t</span><span class="s2">Authors: &quot;</span> <span class="o">+</span> <span class="n">convert_tokenized_authors_to_str</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">Title: &quot;</span> <span class="o">+</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]:</span>
-            <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">PMID: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]:</span>
-            <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">DOI: &quot;</span> <span class="o">+</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span>
-        <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="c1">#         report_string += &quot;Tokenized Reference: \n\tAuthors: &quot; + convert_tokenized_authors_to_str(citation[&quot;authors&quot;]) + &quot; \n\tTitle: &quot; + citation[&quot;title&quot;]</span>
+<span class="c1">#         if citation[&quot;PMID&quot;]:</span>
+<span class="c1">#             report_string += &quot; \n\tPMID: &quot; + str(citation[&quot;PMID&quot;])</span>
+<span class="c1">#         if citation[&quot;DOI&quot;]:</span>
+<span class="c1">#             report_string += &quot; \n\tDOI: &quot; + citation[&quot;DOI&quot;]</span>
+<span class="c1">#         report_string += &quot;\n&quot;</span>
         
-        <span class="k">if</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]:</span>
-            <span class="n">doi</span> <span class="o">=</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]][</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span>
-            <span class="n">pmid</span> <span class="o">=</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]][</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span>
-            <span class="n">pmcid</span> <span class="o">=</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]][</span><span class="s2">&quot;PMCID&quot;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]][</span><span class="s2">&quot;grants&quot;</span><span class="p">]:</span>
-                <span class="n">grants</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">count</span><span class="p">][</span><span class="s2">&quot;pub_dict_key&quot;</span><span class="p">]][</span><span class="s2">&quot;grants&quot;</span><span class="p">])</span>
+<span class="c1">#         if tokenized_citations[count][&quot;pub_dict_key&quot;]:</span>
+<span class="c1">#             doi = publication_dict[tokenized_citations[count][&quot;pub_dict_key&quot;]][&quot;doi&quot;]</span>
+<span class="c1">#             pmid = publication_dict[tokenized_citations[count][&quot;pub_dict_key&quot;]][&quot;pubmed_id&quot;]</span>
+<span class="c1">#             pmcid = publication_dict[tokenized_citations[count][&quot;pub_dict_key&quot;]][&quot;PMCID&quot;]</span>
+<span class="c1">#             if publication_dict[tokenized_citations[count][&quot;pub_dict_key&quot;]][&quot;grants&quot;]:</span>
+<span class="c1">#                 grants = &quot;, &quot;.join(publication_dict[tokenized_citations[count][&quot;pub_dict_key&quot;]][&quot;grants&quot;])</span>
         
                 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">doi</span><span class="p">:</span>
-            <span class="n">doi</span> <span class="o">=</span> <span class="s2">&quot;Not Found&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">pmid</span><span class="p">:</span>
-            <span class="n">pmid</span> <span class="o">=</span> <span class="s2">&quot;Not Found&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">pmcid</span><span class="p">:</span>
-            <span class="n">pmcid</span> <span class="o">=</span> <span class="s2">&quot;Not Found&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">grants</span><span class="p">:</span>
-            <span class="n">grants</span> <span class="o">=</span> <span class="s2">&quot;None Found&quot;</span>
+<span class="c1">#         if not doi:</span>
+<span class="c1">#             doi = &quot;Not Found&quot;</span>
+<span class="c1">#         if not pmid:</span>
+<span class="c1">#             pmid = &quot;Not Found&quot;</span>
+<span class="c1">#         if not pmcid:</span>
+<span class="c1">#             pmcid = &quot;Not Found&quot;</span>
+<span class="c1">#         if not grants:</span>
+<span class="c1">#             grants = &quot;None Found&quot;</span>
         
-        <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot;Queried Information: </span><span class="se">\n\t</span><span class="s2">DOI: &quot;</span> <span class="o">+</span> <span class="n">doi</span> <span class="o">+</span> \
-                         <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">PMID: &quot;</span> <span class="o">+</span> <span class="n">pmid</span> <span class="o">+</span> \
-                         <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">PMCID: &quot;</span> <span class="o">+</span> <span class="n">pmcid</span> <span class="o">+</span>\
-                         <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">Grants: &quot;</span> <span class="o">+</span> <span class="n">grants</span>
-        <span class="k">if</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">:</span>
-            <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="se">\n\t</span><span class="s2">Is In Comparison File: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">is_citation_in_prev_pubs_list</span><span class="p">[</span><span class="n">count</span><span class="p">])</span>
+<span class="c1">#         report_string += &quot;Queried Information: \n\tDOI: &quot; + doi + \</span>
+<span class="c1">#                          &quot; \n\tPMID: &quot; + pmid + \</span>
+<span class="c1">#                          &quot; \n\tPMCID: &quot; + pmcid +\</span>
+<span class="c1">#                          &quot; \n\tGrants: &quot; + grants</span>
+<span class="c1">#         if is_citation_in_prev_pubs_list:</span>
+<span class="c1">#             report_string += &quot; \n\tIs In Comparison File: &quot; + str(is_citation_in_prev_pubs_list[count])</span>
         
-        <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span>
+<span class="c1">#         report_string += &quot;\n\n\n&quot;</span>
         
-    <span class="k">return</span> <span class="n">report_string</span>
+<span class="c1">#     return report_string</span>
 
 
 </pre></div>

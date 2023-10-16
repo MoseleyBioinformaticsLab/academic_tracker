@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.athr_srch_modularized &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>academic_tracker.athr_srch_modularized &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -30,7 +30,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -111,8 +112,7 @@
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        config_dict (dict): Matches the Configuration file JSON schema.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
+<span class="sd">    &quot;&quot;&quot;</span>    
     <span class="c1">## read in config file</span>
     <span class="n">config_dict</span> <span class="o">=</span> <span class="n">fileio</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">config_json_filepath</span><span class="p">)</span>
     
@@ -177,59 +177,60 @@
 <span class="sd">        no_PubMed (bool): If True search PubMed else don&#39;t.</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
-<span class="sd">        publication_dict (dict): The dictionary matching the publication JSON schema.</span>
-<span class="sd">        prev_pubs (dict): Same as input, but updated with the new publications found.</span>
+<span class="sd">        running_pubs (dict): The dictionary matching the publication JSON schema.</span>
+<span class="sd">        all_queries (dict): The pubs searched for each source and each author. {&quot;PubMed&quot;:{&quot;author1&quot;:[pub1, ...], ...}, &quot;ORCID&quot;:{&quot;author1&quot;:[pub1, ...], ...}, &quot;Google Scholar&quot;:{&quot;author1&quot;:[pub1, ...], ...}, &quot;Crossref&quot;:{&quot;author1&quot;:[pub1, ...], ...}}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1">## Get publications from PubMed </span>
     <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Finding author&#39;s publications. This could take a while.&quot;</span><span class="p">)</span>
-    <span class="n">current_pubs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">running_pubs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">all_queries</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_PubMed</span><span class="p">:</span>
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching PubMed.&quot;</span><span class="p">)</span>
-        <span class="n">PubMed_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_PubMed_for_pubs</span><span class="p">(</span><span class="n">current_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_email&quot;</span><span class="p">])</span>
-        <span class="n">current_pubs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PubMed_publication_dict</span><span class="p">)</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">PubMed_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_PubMed_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_email&quot;</span><span class="p">])</span>
+        <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;PubMed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PubMed_publication_dict</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_ORCID</span><span class="p">:</span>
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching ORCID.&quot;</span><span class="p">)</span>
-        <span class="n">ORCID_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_ORCID_for_pubs</span><span class="p">(</span><span class="n">current_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;ORCID_search&quot;</span><span class="p">][</span><span class="s2">&quot;ORCID_key&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;ORCID_search&quot;</span><span class="p">][</span><span class="s2">&quot;ORCID_secret&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">])</span>
-        <span class="n">current_pubs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ORCID_publication_dict</span><span class="p">)</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">ORCID_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_ORCID_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;ORCID_search&quot;</span><span class="p">][</span><span class="s2">&quot;ORCID_key&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;ORCID_search&quot;</span><span class="p">][</span><span class="s2">&quot;ORCID_secret&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">])</span>
+        <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ORCID_publication_dict</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_GoogleScholar</span><span class="p">:</span>
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching Google Scholar.&quot;</span><span class="p">)</span>
-        <span class="n">Google_Scholar_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_Google_Scholar_for_pubs</span><span class="p">(</span><span class="n">current_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">])</span>
-        <span class="n">current_pubs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Google_Scholar_publication_dict</span><span class="p">)</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">Google_Scholar_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_Google_Scholar_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">])</span>
+        <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;Google Scholar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Google_Scholar_publication_dict</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_Crossref</span><span class="p">:</span>
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Searching Crossref.&quot;</span><span class="p">)</span>
-        <span class="n">Crossref_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_Crossref_for_pubs</span><span class="p">(</span><span class="n">current_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">])</span>
-        <span class="n">current_pubs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Crossref_publication_dict</span><span class="p">)</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">Crossref_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_Crossref_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">])</span>
+        <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;Crossref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Crossref_publication_dict</span>
     
-    <span class="n">publication_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1">## Do a second pass using the saved queries.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_PubMed</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">PubMed_publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
-                <span class="n">publication_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">PubMed_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_PubMed_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_email&quot;</span><span class="p">],</span> <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;PubMed&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_ORCID</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ORCID_publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
-                <span class="n">publication_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">ORCID_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_ORCID_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;ORCID_search&quot;</span><span class="p">][</span><span class="s2">&quot;ORCID_key&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;ORCID_search&quot;</span><span class="p">][</span><span class="s2">&quot;ORCID_secret&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_GoogleScholar</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">Google_Scholar_publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
-                <span class="n">publication_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">Google_Scholar_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_Google_Scholar_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">],</span> <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;Google Scholar&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">no_Crossref</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">Crossref_publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="p">:</span>
-                <span class="n">publication_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-    
+        <span class="n">running_pubs</span><span class="p">,</span> <span class="n">Crossref_publication_dict</span> <span class="o">=</span> <span class="n">athr_srch_webio</span><span class="o">.</span><span class="n">search_Crossref_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">],</span> <span class="n">config_dict</span><span class="p">[</span><span class="s2">&quot;Crossref_search&quot;</span><span class="p">][</span><span class="s2">&quot;mailto_email&quot;</span><span class="p">],</span> <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;Crossref&quot;</span><span class="p">])</span>
+        
     <span class="c1">## Compare current pubs with previous and only keep those that are new or updated.</span>
     <span class="k">for</span> <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_values</span> <span class="ow">in</span> <span class="n">prev_pubs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">pub_id</span> <span class="ow">in</span> <span class="n">publication_dict</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">deepdiff</span><span class="o">.</span><span class="n">DeepDiff</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">],</span> <span class="n">pub_values</span><span class="p">,</span> <span class="n">ignore_order</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">report_repetition</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-            <span class="k">del</span> <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pub_id</span> <span class="ow">in</span> <span class="n">running_pubs</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">deepdiff</span><span class="o">.</span><span class="n">DeepDiff</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">[</span><span class="n">pub_id</span><span class="p">],</span> <span class="n">pub_values</span><span class="p">,</span> <span class="n">ignore_order</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">report_repetition</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="k">del</span> <span class="n">running_pubs</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span>
         
-        
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;No new publications found.&quot;</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
         
-    <span class="k">return</span> <span class="n">publication_dict</span></div>
+    <span class="c1">## Convert PubMed articles class to dicts so they can be saved as JSON.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">no_PubMed</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">pub_list</span> <span class="ow">in</span> <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;PubMed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">new_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_list</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">create_pub_dict_for_saving_PubMed</span><span class="p">(</span><span class="n">pub</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_dict</span><span class="p">)</span>
+            <span class="n">all_queries</span><span class="p">[</span><span class="s2">&quot;PubMed&quot;</span><span class="p">][</span><span class="n">author</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_list</span>
+        
+    <span class="k">return</span> <span class="n">running_pubs</span><span class="p">,</span> <span class="n">all_queries</span></div>
 
 
 

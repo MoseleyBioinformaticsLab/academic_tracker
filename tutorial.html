@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Tutorial &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -120,6 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -170,7 +171,7 @@ tracker-test-YYMMDDHHMM.</p>
 <h2>Search For Publications By Author<a class="headerlink" href="#search-for-publications-by-author" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="command-line-signature">
 <h3>Command Line Signature<a class="headerlink" href="#command-line-signature" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker author_search &lt;config_json_file&gt; [--test --prev-pub=&lt;file-path&gt; --no-GoogleScholar --no-ORCID --no-Crossref --no-PubMed --verbose --silent]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker author_search &lt;config_json_file&gt; [--test --prev-pub=&lt;file-path&gt; --save-all-queries --no-GoogleScholar --no-ORCID --no-Crossref --no-PubMed --verbose --silent]</span>
 </pre></div>
 </div>
 </div>
@@ -193,7 +194,7 @@ file with any new entries added in.</p>
 may seem arbitrary and confusing. The idea is that users will make an initial
 list of authors to keep track of and then run author_search every so often to
 look for new publications for them. To make this as easy as possible it is
-neceessary to both have author_search look for previous publications automatically
+necessary to both have author_search look for previous publications automatically
 and for the output to be cumulative so that the same publications are not reported
 multiple times.</p>
 <p>Although the configuration JSON file contains projects, they are mostly there for
@@ -214,19 +215,23 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
 <p>Specifies a publications.json file to use as a list of publications to ignore
 when searching for new publications. Set to “ignore” to prevent author_search
 from automatically looking for a publications.json file in tracker directories.</p>
+<p>–save-all-queries:</p>
+<p>If used, all of the raw data returned from each source for each author will be saved
+in a file called “all_results.json”. The structure is {“source_name”:{“author_id_1”:[pub_dict_1, pub_dict_2, …], …}, …}
+Ex. {“PubMed”:{“Hunter Moseley”:[{}, …]}, “Crossref”:{“Hunter Moseley”:[{}, …]}, …}</p>
 <p>–no-GoogleScholar:</p>
-<p>If used author_search will not search Google Scholar for publications.</p>
+<p>If used, author_search will not search Google Scholar for publications.</p>
 <p>–no-ORCID:</p>
-<p>If used author_search will not search ORCID for publications.</p>
+<p>If used, author_search will not search ORCID for publications.</p>
 <p>–no-Crossref:</p>
-<p>If used author_search will not search Crossref for publications.</p>
+<p>If used, author_search will not search Crossref for publications.</p>
 <p>–no-PubMed:</p>
-<p>If used author_search will not search PubMed for publications. This option is
+<p>If used, author_search will not search PubMed for publications. This option is
 assumed if the PubMed_search section of the configuration JSON file is missing.</p>
 <p>–verbose:</p>
-<p>If used HTML errors and other warnings will be printed to the screen.</p>
+<p>If used, HTML errors and other warnings will be printed to the screen.</p>
 <p>–silent:</p>
-<p>If used nothing will be printed to the screen.</p>
+<p>If used, nothing will be printed to the screen.</p>
 </div>
 <div class="section" id="id1">
 <h3>Outputs<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -244,11 +249,13 @@ created. If the authors attribute is given in the project and from_email is not
 then a file for each author in the project is created. If neither authors nor
 from_email is given then a file is created for every author that had new publications.</p>
 <p>Details about reports can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+<p>An all_results.json file will be output if the –save-all-queries option is given.</p>
 <p>publications.json
 emails.json
 summary_report.txt
 projectname_project_report.txt
-projectname_authorname_project_report.txt</p>
+projectname_authorname_project_report.txt
+all_results.json</p>
 </div>
 <div class="section" id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
@@ -452,7 +459,7 @@ projectname_authorname_project_report.txt</p>
 <h2>Search For Publications By Reference<a class="headerlink" href="#search-for-publications-by-reference" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
 <h3>Command Line Signature<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev-pub=&lt;file-path&gt; --PMID-reference --MEDLINE-reference --no-Crossref --no-PubMed --verbose --silent]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">academic_tracker reference_search &lt;config_json_file&gt; &lt;references_file_or_URL&gt; [--test --prev-pub=&lt;file-path&gt; --save-all-queries --PMID-reference --MEDLINE-reference --no-Crossref --no-PubMed --verbose --silent]</span>
 </pre></div>
 </div>
 </div>
@@ -497,6 +504,11 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.</p>
 <p>–prev-pub:</p>
 <p>Specifies a publications.json file to use as a list of publications to compare
 with when generating the summary report.</p>
+<p>–save-all-queries:</p>
+<p>If used, all of the raw data returned from each source for each author will be saved
+in a file called “all_results.json”. The structure is {“source_name”:[[pub_dict_1, pub_dict_2, …]], …}
+Ex. {“PubMed”:[[{}, …]], “Crossref”:[[{}, …]]} The index of each list in the source
+lines up with the index in the tokenized_reference.</p>
 <p>–PMID-reference:</p>
 <p>Specifies that the reference file is a list of PMIDs and to only return
 information from PubMed.</p>
@@ -523,10 +535,12 @@ the summary_report section of the configuration JSON file.</p>
 the configuration JSON file.</p>
 <p>If –PMID-reference is used no reports or emails are generated.</p>
 <p>Details about reports can be found in the <a class="reference internal" href="reporting.html"><span class="doc">Reporting</span></a> section.</p>
+<p>An all_results.json file will be output if the –save-all-queries option is given.</p>
 <p>publications.json
 tokenized_reference.json
 emails.json
-summary_report.txt</p>
+summary_report.txt
+all_results.json</p>
 </div>
 <div class="section" id="id6">
 <h3>Examples<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>

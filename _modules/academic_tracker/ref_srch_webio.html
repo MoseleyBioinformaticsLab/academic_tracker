@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.ref_srch_webio &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>academic_tracker.ref_srch_webio &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
@@ -30,7 +30,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -95,7 +96,6 @@
 <span class="kn">import</span> <span class="nn">scholarly</span>
 <span class="kn">import</span> <span class="nn">habanero</span>
 <span class="kn">import</span> <span class="nn">bs4</span>
-<span class="kn">import</span> <span class="nn">fuzzywuzzy.fuzz</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">helper_functions</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">citation_parsing</span>
@@ -130,11 +130,10 @@
         <span class="n">publications</span> <span class="o">=</span> <span class="n">pubmed</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">PMID_to_search</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
         
         <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">publications</span><span class="p">:</span>
+            <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">create_pub_dict_for_saving_PubMed</span><span class="p">(</span><span class="n">pub</span><span class="p">)</span>
             
-            <span class="n">pmid</span> <span class="o">=</span> <span class="n">pub</span><span class="o">.</span><span class="n">pubmed_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">pub_id</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span> <span class="k">else</span> <span class="n">pmid</span>
-            <span class="k">if</span> <span class="n">pmid</span> <span class="o">==</span> <span class="n">PMID_to_search</span><span class="p">:</span>
-                <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">modify_pub_dict_for_saving</span><span class="p">(</span><span class="n">pub</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">PMID_to_search</span><span class="p">:</span>
+                <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_dict</span>
                 <span class="k">break</span>
                 
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -143,338 +142,346 @@
 
 
 
-<div class="viewcode-block" id="search_references_on_PubMed"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_webio.search_references_on_PubMed">[docs]</a><span class="k">def</span> <span class="nf">search_references_on_PubMed</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">from_email</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes PubMed for publications matching the citations.</span>
+<span class="c1"># def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, prev_query=None):</span>
+<span class="c1">#     &quot;&quot;&quot;Searhes PubMed for publications matching the citations.</span>
+    
+<span class="c1">#     For each citation in tokenized_citations PubMed is queried for the publication. </span>
+<span class="c1">#     If the publication is already in running_pubs then missing information will be </span>
+<span class="c1">#     filled in if possible.</span>
+    
+<span class="c1">#     Args:</span>
+<span class="c1">#         running_pubs (dict): dictionary of publications matching the JSON schema for publications.</span>
+<span class="c1">#         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {&quot;authors&quot;, &quot;title&quot;, &quot;DOI&quot;, &quot;PMID&quot;, &quot;reference_line&quot;, &quot;pub_dict_key&quot;}.</span>
+<span class="c1">#         from_email (str): used in the query to PubMed.</span>
+<span class="c1">#         prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]</span>
+        
+<span class="c1">#     Returns:</span>
+<span class="c1">#         running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
+<span class="c1">#         matching_key_for_citation (list): list of keys to the publication matching the citation at the same index</span>
+<span class="c1">#         all_pubs (list): list of lists, each index is the pubs searched through after querying until the citation was matched</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+       
+<span class="c1">#     # initiate PubMed API</span>
+<span class="c1">#     pubmed = pymed.PubMed(tool=TOOL, email=from_email)</span>
+    
+<span class="c1">#     all_pubs = []</span>
+<span class="c1">#     matching_key_for_citation = []</span>
+    
+<span class="c1">#     for i, citation in enumerate(tokenized_citations):</span>
+<span class="c1">#         all_pubs.append([])</span>
+        
+<span class="c1">#         if citation[&quot;PMID&quot;]:</span>
+<span class="c1">#             query_string = citation[&quot;PMID&quot;]</span>
+<span class="c1">#         elif citation[&quot;DOI&quot;]:</span>
+<span class="c1">#             query_string = citation[&quot;DOI&quot;]</span>
+<span class="c1">#         elif citation[&quot;title&quot;]:</span>
+<span class="c1">#             query_string = citation[&quot;title&quot;]</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             matching_key_for_citation.append(None)</span>
+<span class="c1">#             continue</span>
+<span class="c1">#         publications = pubmed.query(query_string, max_results=10) if not prev_query else prev_query[i]</span>
+        
+<span class="c1">#         citation_matched_to_pub = False</span>
+<span class="c1">#         for pub in publications:</span>
+<span class="c1">#             if not isinstance(pub, pymed.article.PubMedArticle):</span>
+<span class="c1">#                 continue</span>
+<span class="c1">#             all_pubs[i].append(pub)</span>
+            
+<span class="c1">#             pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub)</span>
+<span class="c1">#             pub_id = pub_dict[&quot;doi&quot;] if pub_dict[&quot;doi&quot;] else pub_dict[&quot;pubmed_id&quot;]</span>
+            
+<span class="c1">#             ## Match publication to the citation.</span>
+<span class="c1">#             if citation[&quot;PMID&quot;] == pub_dict[&quot;pubmed_id&quot;]:</span>
+<span class="c1">#                 citation_matched_to_pub = True</span>
+<span class="c1">#             elif pub.doi and citation[&quot;DOI&quot;] and citation[&quot;DOI&quot;].lower() == pub.doi.lower():</span>
+<span class="c1">#                 citation_matched_to_pub = True</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 has_matching_author = helper_functions.match_pub_authors_to_citation_authors(citation[&quot;authors&quot;], pub_dict[&quot;authors&quot;])</span>
+<span class="c1">#                 if has_matching_author and helper_functions.do_strings_fuzzy_match(citation[&quot;title&quot;], pub_dict[&quot;title&quot;]):</span>
+<span class="c1">#                     citation_matched_to_pub = True</span>
+                               
+<span class="c1">#             if matching_pub_id := helper_functions.get_pub_id_in_publication_dict(pub_id, pub.title, running_pubs):</span>
+<span class="c1">#                 if &quot;PubMed&quot; in running_pubs[matching_pub_id][&quot;queried_sources&quot;]:</span>
+<span class="c1">#                     if not citation_matched_to_pub:</span>
+<span class="c1">#                         continue</span>
+<span class="c1">#                     matching_key_for_citation.append(matching_pub_id)</span>
+<span class="c1">#                     break</span>
+                
+<span class="c1">#                 helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)</span>
+<span class="c1">#                 running_pubs[matching_pub_id][&quot;queried_sources&quot;].append(&quot;PubMed&quot;)</span>
+<span class="c1">#                 if citation_matched_to_pub:</span>
+<span class="c1">#                     matching_key_for_citation.append(matching_pub_id)</span>
+<span class="c1">#                     break</span>
+            
+<span class="c1">#             else:</span>
+<span class="c1">#                 if not citation_matched_to_pub:</span>
+<span class="c1">#                     continue</span>
+<span class="c1">#                 pub_dict[&quot;queried_sources&quot;] = [&quot;PubMed&quot;]</span>
+<span class="c1">#                 running_pubs[pub_id] = pub_dict</span>
+<span class="c1">#                 matching_key_for_citation.append(pub_id)</span>
+<span class="c1">#                 break</span>
+                            
+<span class="c1">#         if not citation_matched_to_pub:</span>
+<span class="c1">#             matching_key_for_citation.append(None)</span>
+<span class="c1">#         time.sleep(1)</span>
+        
+<span class="c1">#     return running_pubs, matching_key_for_citation, all_pubs</span>
+
+
+
+
+<span class="c1"># def search_references_on_Crossref(running_pubs, tokenized_citations, mailto_email, prev_query=None):</span>
+<span class="c1">#     &quot;&quot;&quot;Searhes Crossref for publications matching the citations.</span>
+    
+<span class="c1">#     For each citation in tokenized_citations Crossref is queried for the publication. </span>
+<span class="c1">#     If the publication is already in running_pubs then missing information will be </span>
+<span class="c1">#     filled in if possible.</span>
+    
+<span class="c1">#     Args:</span>
+<span class="c1">#         running_pubs (dict): dictionary of publications matching the JSON schema for publications.</span>
+<span class="c1">#         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {&quot;authors&quot;, &quot;title&quot;, &quot;DOI&quot;, &quot;PMID&quot;, &quot;reference_line&quot;, &quot;pub_dict_key&quot;}.</span>
+<span class="c1">#         mailto_email (str): used in the query to Crossref.</span>
+<span class="c1">#         prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]</span>
+        
+<span class="c1">#     Returns:</span>
+<span class="c1">#         running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
+<span class="c1">#         matching_key_for_citation (list): list of keys to the publication matching the citation at the same index</span>
+<span class="c1">#         all_pubs (list): list of lists, each index is the pubs searched through after querying until the citation was matched</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+    
+<span class="c1">#     cr = habanero.Crossref(ua_string = &quot;Academic Tracker (mailto:&quot; + mailto_email + &quot;)&quot;)</span>
+    
+<span class="c1">#     all_pubs = []</span>
+<span class="c1">#     matching_key_for_citation = []</span>
+<span class="c1">#     for i, citation in enumerate(tokenized_citations):</span>
+<span class="c1">#         all_pubs.append([])</span>
+        
+<span class="c1">#         if not prev_query:</span>
+<span class="c1">#             if citation[&quot;DOI&quot;]:</span>
+<span class="c1">#                 results = cr.works(ids = citation[&quot;DOI&quot;])</span>
+<span class="c1">#                 works = [results[&quot;message&quot;]]</span>
+<span class="c1">#             elif citation[&quot;title&quot;]:</span>
+<span class="c1">#                 results = cr.works(query_bibliographic = citation[&quot;title&quot;], filter = {&quot;type&quot;:&quot;journal-article&quot;}, limit = 10)</span>
+<span class="c1">#                 works = results[&quot;message&quot;][&quot;items&quot;]</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 matching_key_for_citation.append(None)</span>
+<span class="c1">#                 continue</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             works = prev_query[i]</span>
+                        
+<span class="c1">#         citation_matched_to_pub = False</span>
+<span class="c1">#         for work in works:</span>
+<span class="c1">#             all_pubs[i].append(work)</span>
+            
+<span class="c1">#             pub_id, pub_dict = helper_functions.create_pub_dict_for_saving_Crossref(work, prev_query)</span>
+            
+<span class="c1">#             if pub_id is None:</span>
+<span class="c1">#                 continue</span>
+            
+<span class="c1">#             if citation[&quot;DOI&quot;] == pub_dict[&quot;doi&quot;]:</span>
+<span class="c1">#                 citation_matched_to_pub = True</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 if &quot;author&quot; in work:</span>
+<span class="c1">#                     has_matching_author = helper_functions.match_pub_authors_to_citation_authors(citation[&quot;authors&quot;], pub_dict[&quot;authors&quot;])</span>
+<span class="c1">#                     if has_matching_author and helper_functions.do_strings_fuzzy_match(citation[&quot;title&quot;], pub_dict[&quot;title&quot;]):</span>
+<span class="c1">#                         citation_matched_to_pub = True</span>
+                               
+<span class="c1">#             ## If the publication is already in running_pubs then try to update missing information.</span>
+<span class="c1">#             if matching_pub_id := helper_functions.get_pub_id_in_publication_dict(pub_id, pub_dict[&quot;title&quot;], running_pubs):</span>
+<span class="c1">#                 if &quot;Crossref&quot; in running_pubs[matching_pub_id][&quot;queried_sources&quot;]:</span>
+<span class="c1">#                     if not citation_matched_to_pub:</span>
+<span class="c1">#                         continue</span>
+<span class="c1">#                     matching_key_for_citation.append(matching_pub_id)</span>
+<span class="c1">#                     break</span>
+                
+<span class="c1">#                 helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)</span>
+<span class="c1">#                 running_pubs[matching_pub_id][&quot;queried_sources&quot;].append(&quot;Crossref&quot;)</span>
+<span class="c1">#                 if citation_matched_to_pub:</span>
+<span class="c1">#                     matching_key_for_citation.append(matching_pub_id)</span>
+<span class="c1">#                     break</span>
+            
+<span class="c1">#             else:</span>
+<span class="c1">#                 if not citation_matched_to_pub:</span>
+<span class="c1">#                     continue</span>
+<span class="c1">#                 pub_dict[&quot;queried_sources&quot;] = [&quot;Crossref&quot;]</span>
+<span class="c1">#                 running_pubs[pub_id] = pub_dict</span>
+<span class="c1">#                 matching_key_for_citation.append(pub_id)</span>
+<span class="c1">#                 break</span>
+                    
+<span class="c1">#         if not citation_matched_to_pub:</span>
+<span class="c1">#             matching_key_for_citation.append(None)</span>
+<span class="c1">#         time.sleep(1)</span>
+            
+<span class="c1">#     return running_pubs, matching_key_for_citation, all_pubs</span>
+        
+
+
+
+<div class="viewcode-block" id="search_references_on_source"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_webio.search_references_on_source">[docs]</a><span class="k">def</span> <span class="nf">search_references_on_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Searhes source for publications matching the citations.</span>
 <span class="sd">    </span>
-<span class="sd">    For each citation in tokenized_citations PubMed is queried for the publication. </span>
+<span class="sd">    For each citation in tokenized_citations the source is queried for the publication. </span>
+<span class="sd">    If the publication is already in running_pubs then missing information will be </span>
+<span class="sd">    filled in if possible.</span>
+<span class="sd">    </span>
+<span class="sd">    Possible sources are &quot;Crossref&quot; or &quot;PubMed&quot;.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
+<span class="sd">        source (str): must be one of &quot;Crossref&quot; or &quot;PubMed&quot;.</span>
+<span class="sd">        running_pubs (dict): dictionary of publications matching the JSON schema for publications.</span>
 <span class="sd">        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {&quot;authors&quot;, &quot;title&quot;, &quot;DOI&quot;, &quot;PMID&quot;, &quot;reference_line&quot;, &quot;pub_dict_key&quot;}.</span>
-<span class="sd">        from_email (str): used in the query to PubMed</span>
+<span class="sd">        mailto_email (str): email provided to the source when querying.</span>
+<span class="sd">        prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
-<span class="sd">        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
+<span class="sd">        running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
+<span class="sd">        matching_key_for_citation (list): list of keys to the publication matching the citation at the same index</span>
+<span class="sd">        all_pubs (list): list of lists, each index is the pubs searched through after querying until the citation was matched</span>
 <span class="sd">    &quot;&quot;&quot;</span>
        
-    <span class="c1"># initiate PubMed API</span>
-    <span class="n">pubmed</span> <span class="o">=</span> <span class="n">pymed</span><span class="o">.</span><span class="n">PubMed</span><span class="p">(</span><span class="n">tool</span><span class="o">=</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">from_email</span><span class="p">)</span>
+    <span class="c1"># initiate API</span>
+    <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s2">&quot;PubMed&quot;</span><span class="p">:</span>
+        <span class="n">api</span> <span class="o">=</span> <span class="n">pymed</span><span class="o">.</span><span class="n">PubMed</span><span class="p">(</span><span class="n">tool</span><span class="o">=</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">mailto_email</span><span class="p">)</span>
+        <span class="n">query_function</span> <span class="o">=</span> <span class="n">_query_PubMed</span>
+        <span class="n">skip_pub_function</span> <span class="o">=</span> <span class="n">_pub_needs_skipped_PubMed</span>
+        <span class="n">pub_dict_creation_function</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">create_pub_dict_for_saving_PubMed</span>
+        <span class="n">pub_dict_creation_arguments</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pub&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s2">&quot;Crossref&quot;</span><span class="p">:</span>
+        <span class="n">api</span> <span class="o">=</span> <span class="n">habanero</span><span class="o">.</span><span class="n">Crossref</span><span class="p">(</span><span class="n">ua_string</span> <span class="o">=</span> <span class="s2">&quot;Academic Tracker (mailto:&quot;</span> <span class="o">+</span> <span class="n">mailto_email</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="n">query_function</span> <span class="o">=</span> <span class="n">_query_Crossref</span>
+        <span class="n">skip_pub_function</span> <span class="o">=</span> <span class="n">_pub_needs_skipped_Crossref</span>
+        <span class="n">pub_dict_creation_function</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">create_pub_dict_for_saving_Crossref</span>
+        <span class="n">pub_dict_creation_arguments</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pub&quot;</span><span class="p">,</span> <span class="s2">&quot;prev_query&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Error: When searching references there was an attempt to query an unknown source, &#39;&quot;</span> <span class="o">+</span> <span class="n">source</span> <span class="o">+</span> <span class="s2">&quot;&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
     
-    <span class="n">publication_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="n">titles</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_pubs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="p">[]</span>
     
-    <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">citation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
+        <span class="n">all_pubs</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
         
-        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]:</span>
-            <span class="n">query_string</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]:</span>
-            <span class="n">query_string</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
-            <span class="n">query_string</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">prev_query</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">publications</span> <span class="p">:</span><span class="o">=</span> <span class="n">query_function</span><span class="p">(</span><span class="n">api</span><span class="p">,</span> <span class="n">citation</span><span class="p">)):</span>
+                <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="k">continue</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-            <span class="k">continue</span>
+            <span class="n">publications</span> <span class="o">=</span> <span class="n">prev_query</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         
-        <span class="n">publications</span> <span class="o">=</span> <span class="n">pubmed</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query_string</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-        
-        <span class="n">citation_matched</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">citation_matched_to_pub</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">publications</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">skip_pub_function</span><span class="p">(</span><span class="n">pub</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">all_pubs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub</span><span class="p">)</span>
             
-            <span class="n">pmid</span> <span class="o">=</span> <span class="n">pub</span><span class="o">.</span><span class="n">pubmed_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">pub_id</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span> <span class="k">else</span> <span class="n">pmid</span>
+            <span class="n">locals_ref</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+            <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">pub_dict_creation_function</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">locals_ref</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">pub_dict_creation_arguments</span><span class="p">])</span>
             
-            <span class="k">if</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">is_pub_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">pub</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">pub_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
             
             <span class="c1">## Match publication to the citation.</span>
-            <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">pmid</span><span class="p">:</span>
-                <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span> <span class="ow">and</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">pub</span><span class="o">.</span><span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-                <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]:</span>
+                <span class="n">citation_matched_to_pub</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]:</span>
+                <span class="n">citation_matched_to_pub</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">has_matching_author</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastname&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">author_items</span> <span class="ow">in</span> <span class="n">pub</span><span class="o">.</span><span class="n">authors</span> <span class="k">for</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastname&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last&quot;</span><span class="p">]])</span>
-                <span class="k">if</span> <span class="n">has_matching_author</span> <span class="ow">and</span> <span class="n">fuzzywuzzy</span><span class="o">.</span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">pub</span><span class="o">.</span><span class="n">title</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
-                    <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">has_matching_author</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">match_pub_authors_to_citation_authors</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">],</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">has_matching_author</span> <span class="ow">and</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]):</span>
+                    <span class="n">citation_matched_to_pub</span> <span class="o">=</span> <span class="kc">True</span>
+            
                                
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">pub_matched</span><span class="p">:</span>
-                <span class="k">continue</span>
-                        
-            
-            <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">modify_pub_dict_for_saving</span><span class="p">(</span><span class="n">pub</span><span class="p">)</span>
-            
-            <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_dict</span>
-            <span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_id</span><span class="p">)</span>
-            <span class="n">citation_matched</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">break</span>
-                    
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">citation_matched</span><span class="p">:</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">matching_key_for_citation</span></div>
-
-
-       
-
-<div class="viewcode-block" id="search_references_on_Google_Scholar"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_webio.search_references_on_Google_Scholar">[docs]</a><span class="k">def</span> <span class="nf">search_references_on_Google_Scholar</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes Google Scholar for publications that match the citations.</span>
-<span class="sd">        </span>
-<span class="sd">    Args:</span>
-<span class="sd">        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {&quot;authors&quot;, &quot;title&quot;, &quot;DOI&quot;, &quot;PMID&quot;, &quot;reference_line&quot;, &quot;pub_dict_key&quot;}.</span>
-<span class="sd">        mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles</span>
-<span class="sd">        </span>
-<span class="sd">    Returns:</span>
-<span class="sd">        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">publication_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">titles</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">:</span>
-        
-        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="n">scholarly</span><span class="o">.</span><span class="n">scholarly</span><span class="o">.</span><span class="n">search_pubs</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-            <span class="k">continue</span>
-        
-        <span class="n">citation_matched</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">pub</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
-            
-            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
-                <span class="k">break</span>
-            
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            
-            <span class="n">title</span> <span class="o">=</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;bib&quot;</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
-            
-            <span class="c1">## authors from Google Scholar are last names and initials in a single string, each string in one list. [&#39;SA Cholewiak&#39;, &#39;RW Fleming&#39;, &#39;M Singh&#39;]</span>
-            <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">has_matching_author</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span><span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">author</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;bib&quot;</span><span class="p">][</span><span class="s2">&quot;author&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]])</span>
-            <span class="k">if</span> <span class="n">has_matching_author</span> <span class="ow">and</span> <span class="n">fuzzywuzzy</span><span class="o">.</span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">title</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
-                <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">True</span>
-                               
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">pub_matched</span><span class="p">:</span>
-                <span class="k">continue</span>
-            
-            <span class="c1">## Find the publication year and check that it is in range.</span>
-            <span class="n">publication_year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;bib&quot;</span><span class="p">][</span><span class="s2">&quot;pub_year&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;pub_year&quot;</span> <span class="ow">in</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;bib&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-        
-            
-            <span class="c1">## Determine the pub_id</span>
-            <span class="n">doi</span> <span class="o">=</span> <span class="n">webio</span><span class="o">.</span><span class="n">get_DOI_from_Crossref</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">doi</span><span class="p">:</span>
-                <span class="n">pub_id</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="n">doi</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="s2">&quot;pub_url&quot;</span> <span class="ow">in</span> <span class="n">pub</span><span class="p">:</span>
-                    <span class="n">pub_id</span> <span class="o">=</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;pub_url&quot;</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Title: &quot;</span> <span class="o">+</span> <span class="n">title</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">running_pubs</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">][</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">citation_matched_to_pub</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">matching_pub_id</span><span class="p">)</span>
+                    <span class="k">break</span>
+                
+                <span class="n">helper_functions</span><span class="o">.</span><span class="n">_merge_pub_dicts</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">],</span> <span class="n">pub_dict</span><span class="p">)</span>
+                <span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">][</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">citation_matched_to_pub</span><span class="p">:</span>
+                    <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">matching_pub_id</span><span class="p">)</span>
                     <span class="k">break</span>
             
-            
-            <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">PUBLICATION_TEMPLATE</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">doi</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doi</span>
-            <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
-            <span class="k">if</span> <span class="n">publication_year</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">publication_year</span>
-                
-            
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">is_pub_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;affiliation&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                                        <span class="s2">&quot;firstname&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                                        <span class="s2">&quot;initials&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                                        <span class="s2">&quot;lastname&quot;</span><span class="p">:</span> <span class="n">author</span><span class="p">[</span><span class="s2">&quot;last&quot;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]]</span>
-                <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_dict</span>
-                <span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">citation_matched_to_pub</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">source</span><span class="p">]</span>
+                <span class="n">running_pubs</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_dict</span>
                 <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_id</span><span class="p">)</span>
-                <span class="n">citation_matched</span> <span class="o">=</span> <span class="kc">True</span>
-            
-            <span class="k">break</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">citation_matched</span><span class="p">:</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">matching_key_for_citation</span></div>
-
-
-
-
-<div class="viewcode-block" id="search_references_on_Crossref"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_webio.search_references_on_Crossref">[docs]</a><span class="k">def</span> <span class="nf">search_references_on_Crossref</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes Crossref for publications matching the citations.</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {&quot;authors&quot;, &quot;title&quot;, &quot;DOI&quot;, &quot;PMID&quot;, &quot;reference_line&quot;, &quot;pub_dict_key&quot;}.</span>
-<span class="sd">        mailto_email (str): used in the query to Crossref</span>
-<span class="sd">        </span>
-<span class="sd">    Returns:</span>
-<span class="sd">        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">cr</span> <span class="o">=</span> <span class="n">habanero</span><span class="o">.</span><span class="n">Crossref</span><span class="p">(</span><span class="n">ua_string</span> <span class="o">=</span> <span class="s2">&quot;Academic Tracker (mailto:&quot;</span> <span class="o">+</span> <span class="n">mailto_email</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
-    
-    <span class="n">publication_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">titles</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">matching_key_for_citation</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">:</span>
-        
-        <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">works</span><span class="p">(</span><span class="n">ids</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">])</span>
-            <span class="n">works</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]]</span>
-        <span class="k">elif</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">works</span><span class="p">(</span><span class="n">query_bibliographic</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="nb">filter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;journal-article&quot;</span><span class="p">},</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
-            <span class="n">works</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-            <span class="k">continue</span>
-        
-        <span class="n">citation_matched</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">for</span> <span class="n">work</span> <span class="ow">in</span> <span class="n">works</span><span class="p">:</span>
-            
-            <span class="c1">## Look for DOI</span>
-            <span class="n">doi</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;DOI&quot;</span> <span class="ow">in</span> <span class="n">work</span> <span class="k">else</span> <span class="kc">None</span>
-             
-            <span class="c1">## Look for title    </span>
-            <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">work</span> <span class="ow">and</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
-                <span class="n">title</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">continue</span>
-            
-            <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">doi</span><span class="p">:</span>
-                <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="s2">&quot;author&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
-                    <span class="n">has_matching_author</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span><span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">author_items</span> <span class="ow">in</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;author&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;family&quot;</span> <span class="ow">in</span> <span class="n">author_items</span> <span class="ow">and</span> <span class="n">author_items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">)])</span>
-                    <span class="k">if</span> <span class="n">has_matching_author</span> <span class="ow">and</span> <span class="n">fuzzywuzzy</span><span class="o">.</span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">title</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
-                        <span class="n">pub_matched</span> <span class="o">=</span> <span class="kc">True</span>
-                               
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">pub_matched</span><span class="p">:</span>
-                <span class="k">continue</span>
-            
-            
-            <span class="c1">## Find published date</span>
-            <span class="n">date_found</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="s2">&quot;published&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
-                <span class="n">date_key</span> <span class="o">=</span> <span class="s2">&quot;published&quot;</span>
-                <span class="n">date_found</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="s2">&quot;published-online&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
-                <span class="n">date_key</span> <span class="o">=</span> <span class="s2">&quot;published-online&quot;</span>
-                <span class="n">date_found</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="s2">&quot;published-print&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
-                <span class="n">date_key</span> <span class="o">=</span> <span class="s2">&quot;published-print&quot;</span>
-                <span class="n">date_found</span> <span class="o">=</span> <span class="kc">True</span>
-            
-            <span class="k">if</span> <span class="n">date_found</span><span class="p">:</span>
-                <span class="n">date_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">])</span>
-                
-                <span class="k">if</span> <span class="n">date_length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="n">publication_year</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">publication_month</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="n">publication_day</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
-                <span class="k">elif</span> <span class="n">date_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">publication_year</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">publication_month</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="n">publication_day</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">elif</span> <span class="n">date_length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">publication_year</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="n">date_key</span><span class="p">][</span><span class="s2">&quot;date-parts&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">publication_month</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="n">publication_day</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">publication_year</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="n">publication_month</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="n">publication_day</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">publication_year</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">publication_month</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">publication_day</span> <span class="o">=</span> <span class="kc">None</span>
-            
-            
-            <span class="c1">## Change the author list to a form like PubMed&#39;s</span>
-            <span class="n">new_author_list</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">cr_author_dict</span> <span class="ow">in</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;author&quot;</span><span class="p">]:</span>
-                
-                <span class="n">temp_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lastname&quot;</span><span class="p">:</span><span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;family&quot;</span><span class="p">],</span> <span class="s2">&quot;initials&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,}</span>
-                
-                <span class="n">temp_dict</span><span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;given&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;given&quot;</span> <span class="ow">in</span> <span class="n">cr_author_dict</span> <span class="k">else</span> <span class="kc">None</span>
-                
-                <span class="k">if</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
-                    <span class="n">temp_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">temp_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-                    
-                <span class="k">if</span> <span class="s2">&quot;author_id&quot;</span> <span class="ow">in</span> <span class="n">cr_author_dict</span><span class="p">:</span>
-                    <span class="n">temp_dict</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span>
-                
-                <span class="n">new_author_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
-            
-            
-            <span class="c1">## Look for external URL</span>
-            <span class="k">if</span> <span class="s2">&quot;URL&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
-                <span class="n">external_url</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;URL&quot;</span><span class="p">]</span>
-            <span class="k">elif</span> <span class="s2">&quot;link&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
-                <span class="n">external_url</span> <span class="o">=</span> <span class="p">[</span><span class="n">link</span><span class="p">[</span><span class="s2">&quot;URL&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;link&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;URL&quot;</span> <span class="ow">in</span> <span class="n">link</span> <span class="ow">and</span> <span class="n">link</span><span class="p">[</span><span class="s2">&quot;URL&quot;</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">external_url</span><span class="p">:</span>
-                    <span class="n">external_url</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">external_url</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">break</span>
                             
-            
-            <span class="k">if</span> <span class="n">doi</span><span class="p">:</span>
-                <span class="n">pub_id</span> <span class="o">=</span> <span class="n">DOI_URL</span> <span class="o">+</span> <span class="n">doi</span>
-            <span class="k">elif</span> <span class="n">external_url</span><span class="p">:</span>
-                <span class="n">pub_id</span> <span class="o">=</span> <span class="n">external_url</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Warning: Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Title: &quot;</span> <span class="o">+</span> <span class="n">title</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                <span class="k">continue</span>
-            
-            
-            
-            <span class="k">if</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">is_pub_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
-                <span class="k">continue</span>
-            
-            
-            <span class="c1">## Look for journal</span>
-            <span class="n">journal</span> <span class="o">=</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;publisher&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;publisher&quot;</span> <span class="ow">in</span> <span class="n">work</span> <span class="k">else</span> <span class="kc">None</span>
-                
-        
-            <span class="c1">## Build the pub_dict from what we were able to collect.</span>
-            <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">PUBLICATION_TEMPLATE</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">doi</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doi</span>
-            <span class="k">if</span> <span class="n">publication_year</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">publication_year</span>
-            <span class="k">if</span> <span class="n">publication_month</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">publication_month</span>
-            <span class="k">if</span> <span class="n">publication_day</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;publication_date&quot;</span><span class="p">][</span><span class="s2">&quot;day&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">publication_day</span>
-            <span class="k">if</span> <span class="n">journal</span><span class="p">:</span>
-                <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;journal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">journal</span>
-                
-            <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_author_list</span>
-            <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
-            
-            
-            <span class="n">publication_dict</span><span class="p">[</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_dict</span>
-            <span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-            <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pub_id</span><span class="p">)</span>
-            <span class="n">citation_matched</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">break</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">citation_matched</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">citation_matched_to_pub</span><span class="p">:</span>
             <span class="n">matching_key_for_citation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            
-            
-    <span class="k">return</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">matching_key_for_citation</span></div>
         
-                
+    <span class="k">return</span> <span class="n">running_pubs</span><span class="p">,</span> <span class="n">matching_key_for_citation</span><span class="p">,</span> <span class="n">all_pubs</span></div>
+
+
+
+
+<span class="k">def</span> <span class="nf">_query_PubMed</span><span class="p">(</span><span class="n">pubmed</span><span class="p">,</span> <span class="n">citation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Query PubMed with either the PMID, DOI, or title from citation.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pubmed (pymed.api.PubMed): api object from the pymed library.</span>
+<span class="sd">        citation (dict): citation to query for.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]:</span>
+        <span class="n">query_string</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]:</span>
+        <span class="n">query_string</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
+        <span class="n">query_string</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">pubmed</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query_string</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">_query_Crossref</span><span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">citation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Query Crossref with either the PMID, DOI, or title from citation.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pubmed (habanero.crossref.crossref.Crossref): api object from the habanero library.</span>
+<span class="sd">        citation (dict): citation to query for.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">works</span><span class="p">(</span><span class="n">ids</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">])</span>
+        <span class="n">works</span> <span class="o">=</span> <span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">works</span><span class="p">(</span><span class="n">query_bibliographic</span> <span class="o">=</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="nb">filter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;journal-article&quot;</span><span class="p">},</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">works</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">works</span>
+         
+
+<span class="k">def</span> <span class="nf">_pub_needs_skipped_PubMed</span><span class="p">(</span><span class="n">pub</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine whether the queried pub from PubMed should be skipped or not.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pub (pymed.article.PubMedArticle|pymed.book.PubMedBookArticle): publication queried from PubMed book articles should be skipped.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pub</span><span class="p">,</span> <span class="n">pymed</span><span class="o">.</span><span class="n">article</span><span class="o">.</span><span class="n">PubMedArticle</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_pub_needs_skipped_Crossref</span><span class="p">(</span><span class="n">pub</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine whether the queried pub from Crossref should be skipped or not.</span>
+<span class="sd">    </span>
+<span class="sd">    This is just here to work with the function, publications from Crossref should never be skipped.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pub (dict): publication queried from Crossref.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="kc">False</span>
+
 
 
 
@@ -521,7 +528,7 @@
 
 
 
-<div class="viewcode-block" id="tokenize_reference_input"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_webio.tokenize_reference_input">[docs]</a><span class="k">def</span> <span class="nf">tokenize_reference_input</span><span class="p">(</span><span class="n">reference_input</span><span class="p">,</span> <span class="n">MEDLINE_reference</span><span class="p">):</span>
+<div class="viewcode-block" id="tokenize_reference_input"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_webio.tokenize_reference_input">[docs]</a><span class="k">def</span> <span class="nf">tokenize_reference_input</span><span class="p">(</span><span class="n">reference_input</span><span class="p">,</span> <span class="n">MEDLINE_reference</span><span class="p">,</span> <span class="n">remove_duplicates</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Tokenize the citations in reference_input.</span>
 <span class="sd">    </span>
 <span class="sd">    reference_input can be a URL or filepath. MyNCBI URLs are handled special, </span>
@@ -531,8 +538,9 @@
 <span class="sd">    by line. Citations are expected to be 1 per line otherwise.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
-<span class="sd">        reference_input (str): URL or filepath</span>
-<span class="sd">        MEDLINE_reference (bool): True if reference_input is in MEDLINE format</span>
+<span class="sd">        reference_input (str): URL or filepath.</span>
+<span class="sd">        MEDLINE_reference (bool): True if reference_input is in MEDLINE format.</span>
+<span class="sd">        remove_duplicates (bool): if True, remove duplicate entries in tokenized citations.</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        tokenized_citations (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema. </span>
@@ -580,24 +588,25 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
     
     <span class="c1">## Look for duplicates in citations.</span>
-    <span class="n">duplicate_citations</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">find_duplicate_citations</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">duplicate_citations</span><span class="p">:</span>
-        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Duplicates:&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">index_list</span> <span class="ow">in</span> <span class="n">duplicate_citations</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">index_list</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]:</span>
-                    <span class="n">pretty_print</span> <span class="o">=</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                    <span class="n">pretty_print</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pretty_print</span><span class="p">])</span>
-                    <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">pretty_print</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-        <span class="n">indexes_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">duplicate_set</span> <span class="ow">in</span> <span class="n">duplicate_citations</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">duplicate_set</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
-        
-        <span class="n">tokenized_citations</span> <span class="o">=</span> <span class="p">[</span><span class="n">citation</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">citation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">indexes_to_remove</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">remove_duplicates</span><span class="p">:</span>
+        <span class="n">duplicate_citations</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">find_duplicate_citations</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">duplicate_citations</span><span class="p">:</span>
+            <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;Duplicates:&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">index_list</span> <span class="ow">in</span> <span class="n">duplicate_citations</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">index_list</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]:</span>
+                        <span class="n">pretty_print</span> <span class="o">=</span> <span class="n">tokenized_citations</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;reference_line&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">pretty_print</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pretty_print</span><span class="p">])</span>
+                        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">pretty_print</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            
+            <span class="n">indexes_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">duplicate_set</span> <span class="ow">in</span> <span class="n">duplicate_citations</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">duplicate_set</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+            
+            <span class="n">tokenized_citations</span> <span class="o">=</span> <span class="p">[</span><span class="n">citation</span> <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">citation</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">indexes_to_remove</span><span class="p">]</span>
         
     <span class="k">return</span> <span class="n">tokenized_citations</span></div>
 

@@ -31,5 +31,7 @@ API
     :members:
 .. automodule:: academic_tracker.webio
     :members:
+.. automodule:: academic_tracker.emails_and_reports_helpers
+    :members:
 
 

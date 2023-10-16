@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TODO List &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Change Log &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -16,8 +16,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Change Log" href="changelog.html" />
-    <link rel="prev" title="License" href="license.html" /> 
+    <link rel="prev" title="TODO List" href="todo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,8 +50,16 @@
 <li class="toctree-l1"><a class="reference internal" href="tokenization.html">Tokenization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TODO List</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-2-0-0">Version 2.0.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#changes">Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enhancements">Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -69,9 +76,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">TODO List</li>
+      <li class="breadcrumb-item active">Change Log</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/todo.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/changelog.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -79,30 +86,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="todo-list">
-<h1>TODO List<a class="headerlink" href="#todo-list" title="Permalink to this headline">¶</a></h1>
-<p>Improve reference search to see if every author on the pub has the pub associated with them on ORCID.</p>
-<p>Let the authors_file for add_authors be an excel file.</p>
-<p>Add recipes for common use cases such as a trainee project to the documentation.</p>
-<p>Add PMCID and grants to pymed package.</p>
-<p>Add expanded search to orcid package or look for more up to date package to use. Expanded search was added to ORCID’s API with 3.0 release. orcid package appears to be 2.0 only.</p>
-<p>Add capability to get the citations each paper cites.</p>
-<p>Switch to a merge style from each source, so try to fill in information that wasn’t found previously.
-Keep the queries from each source, and do 2 passes with the new merge logic. This makes it so that if
-a publication was on PubMed, but an author couldn’t be matched, but an author was matched at another
-source we can merge the information with the second pass. Would need to change the logic to first look
-and see if the publication is in the list already and if it is then we don’t need to make an author match
-because an author match was made from another source. The big changes are to keep the queries, do a second
-pass, merge information, and use existence in the list as verification in addition to an author match.</p>
-<p>Save references out in “citation” format. Look at formats Google Scholar offers, example EndNote.</p>
+  <div class="section" id="change-log">
+<h1>Change Log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-2-0-0">
+<h2>Version 2.0.0<a class="headerlink" href="#version-2-0-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<p>In the 1.0.0 version each source was queried in a certain order and if later sources found the
+same publicaiton as a previous one it was simply ignored. Now a best attempt is made to try and
+merge information from the previous source with information from later sources. An additional
+“queried_sources” attribute was added to the publication object created for each publication to
+indicate all of the sources where the publication was found. It is a list field, and each source
+is appended to it as it is found.</p>
+</div>
+<div class="section" id="enhancements">
+<h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
+<p>A “references” attribute was added to the publication object for each publication and the references
+for the publication will appear there if available. It is a list of objects that have the attributes
+“citation”, “title”, “PMID”, “PMCID”, and “DOI”. Fields that can’t be determined will have a null value.</p>
+<p>More information is able to be obtained from PubMed, such as DOI author affiliations, and author ORCIDs.</p>
+<p>Collective authors can now be specified and are handled appropriately when present on information from
+queried sources.</p>
+<p>All new publication attributes were added to the reporting and the documentation updated.</p>
+<p>The raw queries from each source can now be saved using the –save-all-queries option. An “all_results.json”
+file will be saved in the output if the option is given.</p>
+<p>The –keep-duplicates option was added to reference_search. This allows the user to force the search
+not to drop what it deems as duplicates. The default is that they are still dropped automatically, but
+this option allows for an override when the program thinks, incorrectly, that 2 references are the same.</p>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<p>Crossref publication dates will now have day and month when available. A bug made it so only the year
+was captured even if month and day were available.</p>
+</div>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="license.html" class="btn btn-neutral float-left" title="License" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="changelog.html" class="btn btn-neutral float-right" title="Change Log" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="todo.html" class="btn btn-neutral float-left" title="TODO List" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

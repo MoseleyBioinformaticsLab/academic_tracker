@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reporting &mdash; Academic Tracker 1.0.6 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Reporting &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                1.0.6
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -81,6 +81,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -174,19 +175,21 @@ a default template will be used (described below).</p>
 <h2>Author Search<a class="headerlink" href="#author-search" title="Permalink to this headline">¶</a></h2>
 <p>The report for the author_search is built by looping over each project, each
 author associated with the project, each publication associated with the author,
-and each author on the publication. The template for author_search has 4 sections,
-1 for each loop (project_loop, author_loop, pub_loop, and pub_author_loop). Tags
+and each author on the publication. The template for author_search has 5 sections,
+1 for each loop (project_loop, author_loop, pub_loop, pub_author_loop, and reference_loop). Tags
 denote the beginning and end of each loop.</p>
 <p>The section determines when keywords in the template are replaced. Keywords inside
-the pub_author_loop section are replaced for each author on the publication.
+the pub_author_loop section are replaced for each author on the publication. Keywords
+inside the reference loop section are replaced for each reference on the publication.
 Keywords inside the pub_loop section are replaced for each publication associated
 with the author. Keywords inside the author_loop are replaced for each author
 associated with the project. Keywords inside the project loop section are replaced
 for each project. The sections are expected to be nested inside of each other,
-so the pub_author_loop tags should be inside the pub_loop tags, the pub_loop tags
+so the pub_author_loop and reference_loop tags should be inside the pub_loop tags, the pub_loop tags
 should be inside the author_loop tags, and the author_loop tags should be inside
-the project_loop tags. If they are not then the report will most likely not look
-as expected.</p>
+the project_loop tags. The pub_author_loop and reference_loop are on the same level
+and should not be nested within each other. Any incorrect nesting will most likely
+cause the report not to look as expected.</p>
 <p>If specifying a tabular report using the “columns” attribute the loops are determined
 by what keywords are present. If there are keywords from the pub_author_loop in
 “columns” then a new row will be created for each publication author, but if there
@@ -196,14 +199,16 @@ author.</p>
 <div class="section" id="reference-search">
 <h2>Reference Search<a class="headerlink" href="#reference-search" title="Permalink to this headline">¶</a></h2>
 <p>The report for the reference_search is built by looping over each publication matched
-in the reference, and each author on the publication. The template has 2 sections,
-1 for each loop (pub_loop and pub_author_loop). Tags denote the beginning and end
+in the reference, and each author on the publication. The template has 3 sections,
+1 for each loop (pub_loop, pub_author_loop, and reference_loop). Tags denote the beginning and end
 of each loop. The section determines when keywords in the template are replaced.
 Keywords inside the pub_author_loop section are replaced for each author on the
-publication. Keywords inside the pub_loop section are replaced for each publication.
-The sections are expected to be nested inside of each other, so the pub_author_loop
-tags should be inside the pub_loop tags. If they are not then the report will
-most likely not look as expected.</p>
+publication. Keywords inside the reference loop section are replaced
+for each reference on the publication. Keywords inside the pub_loop section are replaced for each publication.
+The sections are expected to be nested inside of each other, so the pub_author_loop and reference_loop
+tags should be inside the pub_loop tags. The pub_author_loop and reference_loop are on the same level
+and should not be nested within each other. Any incorrect nesting will most likely
+cause the report not to look as expected.</p>
 <div class="section" id="project-report">
 <h3>Project Report<a class="headerlink" href="#project-report" title="Permalink to this headline">¶</a></h3>
 <p>Project reports are only created for author_search. There is no conception of them
@@ -250,18 +255,30 @@ default.</p>
 <span class="go">&lt;last_author&gt;</span>
 <span class="go">&lt;authors&gt;              Will be replaced with a comma separated list of author names of all authors.</span>
 <span class="go">&lt;grants&gt;               Will be replaced with a comma separated list of grants associated with the publication.</span>
+<span class="go">&lt;queried_sources&gt;      Will be replaced with a comma separated list of the sources where information was found for the publication.</span>
 
 <span class="go">Pub Author Keywords - Pulled from the authors section of each publication in the publications.json file.</span>
 <span class="go">&lt;pub_author_first&gt;</span>
 <span class="go">&lt;pub_author_last&gt;</span>
 <span class="go">&lt;pub_author_initials&gt;</span>
+<span class="go">&lt;pub_author_collective&gt;        Some authors are a collective and have a special field for the name instead of first and last.</span>
 <span class="go">&lt;pub_author_affiliations&gt;</span>
+<span class="go">&lt;pub_author_ORCID&gt;</span>
+<span class="go">&lt;pub_author_id&gt;</span>
 
 <span class="go">Author Keywords - Pulled from the Authors section of the configuration JSON file.</span>
 <span class="go">&lt;author_first&gt;</span>
 <span class="go">&lt;author_last&gt;</span>
+<span class="go">&lt;author_collective&gt;        Some authors are a collective and have a special field for the name instead of first and last.</span>
 <span class="go">&lt;author_name_search&gt;</span>
 <span class="go">&lt;author_email&gt;</span>
+
+<span class="go">Publication References Keywords</span>
+<span class="go">&lt;reference_citation&gt;      The full citation for the reference if available.</span>
+<span class="go">&lt;reference_title&gt;         The reference title if available.</span>
+<span class="go">&lt;reference_PMID&gt;          The reference PMID if available.</span>
+<span class="go">&lt;reference_PMCID&gt;         The reference PMCID if available.</span>
+<span class="go">&lt;reference_DOI&gt;           The reference DOI if available.</span>
 
 <span class="go">Reference Search Specific Keywords</span>
 <span class="go">&lt;ref_line&gt;                The line from the reference file used to find the publication.</span>
@@ -451,6 +468,8 @@ author_id_collaborators.csv by default.</p>
 <span class="go">&lt;pub_author_last&gt;          -  Collaborator&#39;s last name.</span>
 <span class="go">&lt;pub_author_initials&gt;      -  Collaborator&#39;s initials.</span>
 <span class="go">&lt;pub_author_affiliations&gt;  -  Collaborator&#39;s affiliations.</span>
+<span class="go">&lt;pub_author_ORCID&gt;         -  Collaborator&#39;s ORCID.</span>
+<span class="go">&lt;pub_author_id&gt;            -  Collaborator&#39;s ID.</span>
 </pre></div>
 </div>
 </div>

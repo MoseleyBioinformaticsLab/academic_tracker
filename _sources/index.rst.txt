@@ -23,6 +23,7 @@ Documentation index:
    api
    license
    todo
+   changelog
 
 
 Indices and tables

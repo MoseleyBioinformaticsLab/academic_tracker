@@ -47,19 +47,20 @@
     ],
     "conclusions": null,
     "copyrights": null,
-    "doi": null,
+    "doi": "10.26434/chemrxiv-2022-bt3f6",
     "grants": [],
     "journal": null,
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 25,
+      "month": 7,
       "year": 2022
     },
     "pubmed_id": null,
     "queried_sources": [
-      "Google Scholar"
+      "Google Scholar",
+      "ORCID"
     ],
     "references": [],
     "results": null,
@@ -220,13 +221,14 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 4,
+      "month": 11,
       "year": 2023
     },
     "pubmed_id": null,
     "queried_sources": [
-      "Google Scholar"
+      "Google Scholar",
+      "ORCID"
     ],
     "references": [],
     "results": null,
@@ -483,19 +485,20 @@
     ],
     "conclusions": null,
     "copyrights": null,
-    "doi": null,
+    "doi": "10.1101/2022.02.24.481854",
     "grants": [],
     "journal": null,
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 28,
+      "month": 2,
       "year": 2022
     },
     "pubmed_id": null,
     "queried_sources": [
-      "Google Scholar"
+      "Google Scholar",
+      "ORCID"
     ],
     "references": [],
     "results": null,
@@ -516,19 +519,20 @@
     ],
     "conclusions": null,
     "copyrights": null,
-    "doi": null,
+    "doi": "10.1101/2022.12.08.519680",
     "grants": [],
     "journal": null,
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 12,
+      "month": 12,
       "year": 2022
     },
     "pubmed_id": null,
     "queried_sources": [
-      "Google Scholar"
+      "Google Scholar",
+      "ORCID"
     ],
     "references": [],
     "results": null,

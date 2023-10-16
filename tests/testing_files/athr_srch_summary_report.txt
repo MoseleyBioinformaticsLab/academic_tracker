@@ -11,7 +11,7 @@ Core A Administrative Core
 		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
 		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
 		Journal: Hepatology (Baltimore, Md.) 
-		DOI: https://doi.org/10.1002/hep.32467 
+		DOI: 10.1002/hep.32467 
 		PMID: 35313030 
 		PMCID: PMC9489820 
 		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
@@ -19,7 +19,7 @@ Core A Administrative Core
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026
@@ -37,7 +37,7 @@ Project 1
 		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
 		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
 		Journal: Hepatology (Baltimore, Md.) 
-		DOI: https://doi.org/10.1002/hep.32467 
+		DOI: 10.1002/hep.32467 
 		PMID: 35313030 
 		PMCID: PMC9489820 
 		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
@@ -45,7 +45,7 @@ Project 1
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026
@@ -63,7 +63,7 @@ No Project Report
 		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
 		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
 		Journal: Hepatology (Baltimore, Md.) 
-		DOI: https://doi.org/10.1002/hep.32467 
+		DOI: 10.1002/hep.32467 
 		PMID: 35313030 
 		PMCID: PMC9489820 
 		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
@@ -71,7 +71,7 @@ No Project Report
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026
@@ -89,7 +89,7 @@ No Authors
 		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
 		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
 		Journal: Hepatology (Baltimore, Md.) 
-		DOI: https://doi.org/10.1002/hep.32467 
+		DOI: 10.1002/hep.32467 
 		PMID: 35313030 
 		PMCID: PMC9489820 
 		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
@@ -97,7 +97,7 @@ No Authors
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026
@@ -106,7 +106,7 @@ No Authors
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026
@@ -124,7 +124,7 @@ No from_email
 		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
 		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
 		Journal: Hepatology (Baltimore, Md.) 
-		DOI: https://doi.org/10.1002/hep.32467 
+		DOI: 10.1002/hep.32467 
 		PMID: 35313030 
 		PMCID: PMC9489820 
 		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
@@ -132,7 +132,7 @@ No from_email
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026
@@ -141,7 +141,7 @@ No from_email
 		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
 		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
 		Journal: Scientific data 
-		DOI: https://doi.org/10.1038/s41597-023-02277-x 
+		DOI: 10.1038/s41597-023-02277-x 
 		PMID: 37328532 
 		PMCID: PMC10275912 
 		Grants: P42 ES007380, 2020026

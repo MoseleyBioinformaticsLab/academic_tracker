@@ -10,7 +10,8 @@ import requests
 
 from fixtures import  authors_dict
 from academic_tracker.webio import search_ORCID_for_ids, search_Google_Scholar_for_ids
-from academic_tracker.webio import get_DOI_from_Crossref, get_grants_from_Crossref
+from academic_tracker.webio import get_DOI_from_Crossref
+# from academic_tracker.webio import get_grants_from_Crossref
 from academic_tracker.fileio import load_json
 
 
@@ -51,7 +52,7 @@ def test_search_ORCID_for_ids_no_affiliations(ORCID_query, authors_dict, mocker)
     mocker.patch("academic_tracker.webio.orcid.PublicAPI.get_search_token_from_orcid", mock_token)
     
     del authors_dict["Andrew Morris"]["affiliations"]
-    authors_dict["Andrew Morris"]["ORCID"] == ""
+    authors_dict["Andrew Morris"]["ORCID"] = ""
     
     authors_dict_check = copy.deepcopy(authors_dict)
     
@@ -67,7 +68,7 @@ def test_search_ORCID_for_ids_not_found(ORCID_query, authors_dict, mocker):
         return "sdfg"
     mocker.patch("academic_tracker.webio.orcid.PublicAPI.get_search_token_from_orcid", mock_token)
     
-    authors_dict["Andrew Morris"]["ORCID"] == ""
+    authors_dict["Andrew Morris"]["ORCID"] = ""
     
     authors_dict_check = copy.deepcopy(authors_dict)
     
@@ -83,8 +84,8 @@ def test_search_ORCID_for_ids_found(ORCID_query, authors_dict, mocker):
         return "sdfg"
     mocker.patch("academic_tracker.webio.orcid.PublicAPI.get_search_token_from_orcid", mock_token)
     
-    authors_dict["Andrew Morris"]["ORCID"] == ""
-    authors_dict["Andrew Morris"]["affiliations"] == ["Bristol"]
+    authors_dict["Andrew Morris"]["ORCID"] = ""
+    authors_dict["Andrew Morris"]["affiliations"] = ["Bristol"]
     
     authors_dict_check = copy.deepcopy(authors_dict)
     authors_dict_check["Andrew Morris"]["ORCID"] = "0000-0003-1910-4865"
@@ -115,7 +116,7 @@ def test_search_Google_Scholar_for_ids_no_affiliations(scholarly_authors, author
     mocker.patch("academic_tracker.webio.scholarly.scholarly.search_author", mock_queried_author)
     
     del authors_dict["Andrew Morris"]["affiliations"]
-    authors_dict["Andrew Morris"]["scholar_id"] == ""
+    authors_dict["Andrew Morris"]["scholar_id"] = ""
     
     authors_dict_check = copy.deepcopy(authors_dict)
     
@@ -127,11 +128,10 @@ def test_search_Google_Scholar_for_ids_not_found(scholarly_authors, authors_dict
         return scholarly_authors
     mocker.patch("academic_tracker.webio.scholarly.scholarly.search_author", mock_queried_author)
     
-    authors_dict["Andrew Morris"]["scholar_id"] == ""
-    authors_dict["Andrew Morris"]["first_name"] == "asdf"
+    authors_dict["Andrew Morris"]["scholar_id"] = ""
+    authors_dict["Andrew Morris"]["first_name"] = "asdf"
     
     authors_dict_check = copy.deepcopy(authors_dict)
-    authors_dict_check["Andrew Morris"]["scholar_id"] == "-j7fxnEAAAAJ"
     
     assert search_Google_Scholar_for_ids(authors_dict) == authors_dict_check
     
@@ -141,9 +141,10 @@ def test_search_Google_Scholar_for_ids_found(scholarly_authors, authors_dict, mo
         return scholarly_authors
     mocker.patch("academic_tracker.webio.scholarly.scholarly.search_author", mock_queried_author)
     
-    authors_dict["Andrew Morris"]["scholar_id"] == ""
+    authors_dict["Andrew Morris"]["scholar_id"] = ""
     
     authors_dict_check = copy.deepcopy(authors_dict)
+    authors_dict_check["Andrew Morris"]["scholar_id"] = "-j7fxnEAAAAJ"
     
     assert search_Google_Scholar_for_ids(authors_dict) == authors_dict_check
     
@@ -167,20 +168,21 @@ def test_get_DOI_from_Crossref_DOI_not_found(mocker):
     assert get_DOI_from_Crossref("asdfasdf", "ptth222@uky.edu") == None
 
 
-def test_get_grants_from_Crossref_grants_found(mocker):
-    def mock_query(*args, **kwargs):
-        return load_json(os.path.join("tests", "testing_files", "Crossref_grant_query.json"))
-    mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
+## This function is unused in the actual code.
+# def test_get_grants_from_Crossref_grants_found(mocker):
+#     def mock_query(*args, **kwargs):
+#         return load_json(os.path.join("tests", "testing_files", "Crossref_grant_query.json"))
+#     mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
     
-    assert get_grants_from_Crossref("Multifunctional temperature\u2010responsive polymers as advanced biomaterials and beyond", "ptth222@uky.edu", ['P42ES007380']) == ['P42ES007380']
+#     assert get_grants_from_Crossref("Multifunctional temperature\u2010responsive polymers as advanced biomaterials and beyond", "ptth222@uky.edu", ['P42ES007380']) == ['P42ES007380']
 
 
-def test_get_grants_from_Crossref_grants_not_found(mocker):
-    def mock_query(*args, **kwargs):
-        return load_json(os.path.join("tests", "testing_files", "Crossref_grant_query.json"))
-    mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
+# def test_get_grants_from_Crossref_grants_not_found(mocker):
+#     def mock_query(*args, **kwargs):
+#         return load_json(os.path.join("tests", "testing_files", "Crossref_grant_query.json"))
+#     mocker.patch("academic_tracker.webio.habanero.Crossref.works", mock_query)
     
-    assert get_grants_from_Crossref("asdfasdf", "ptth222@uky.edu", ['P42ES007380']) == None
+#     assert get_grants_from_Crossref("asdfasdf", "ptth222@uky.edu", ['P42ES007380']) == None
 
 
 

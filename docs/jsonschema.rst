@@ -136,7 +136,11 @@ to search for goes. Every author in this section will be queried during author_s
 
 The first_name and last_name attributes are for the author's first and last names 
 respectively, and are used to validate that the author under search is the same 
-as the queried author.
+as the queried author. There is a special type of author known as collective authors. 
+These are not individuals, but are instead a collective and are published that way. 
+Use the collective_name attribute to indicate that an author is a collective. This 
+attribute takes priority, so if it is present the author will be treated as a collective 
+author even if they have first_name and last_name attributes.
 
 pubmed_name_search is used as the query string when querying sources. This is so 
 the user can specify exactly what to query rather than simply querying the first 
@@ -170,161 +174,12 @@ gen_reports_and_emails_auth
 
 Validating Schema
 -----------------
-.. code-block:: console
 
-    {
-     "$schema": "https://json-schema.org/draft/2020-12/schema",
-     "title": "Configuration JSON",
-     "description": "Input file that contains information for how the program should run.",
-    
-     "type": "object",
-     "properties": {
-             "project_descriptions" : {
-                 "type": "object",
-                 "minProperties": 1,
-                 "additionalProperties": {
-                         "type":"object",
-                         "properties":{
-                                 "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                 "cutoff_year": {"type": "integer"},
-                                 "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                 "project_report": {"type": "object",
-                                                    "properties":{
-                                                            "columns": {"type": "object",
-                                                                        "minProperties":1,
-                                                                        "additionalProperties": {"type": "string", "minLength":1}},
-                                                            "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                            "separator":{"type":"string", "maxLength":1, "minLength":1},
-                                                            "column_order":{"type":"array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                            "file_format":{"type":"string", "enum":["csv", "xlsx"]},
-                                                            "filename":{"type":"string", "minLength":1},
-                                                            "template": {"type": "string", "minLength":1},
-                                                            "from_email": {"type": "string", "format": "email"},
-                                                            "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                            "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                            "email_body": {"type": "string", "minLength":1},
-                                                            "email_subject": {"type": "string", "minLength":1},},
-                                                    "dependentRequired":{
-                                                            "from_email": ["email_body", "email_subject"],
-                                                            "to_email": ["from_email", "email_body", "email_subject"]}},
-                                 "collaborator_report": {"type": "object",
-                                                         "properties":{
-                                                                 "columns": {"type": "object",
-                                                                             "minProperties":1,
-                                                                             "additionalProperties": {"type": "string", "minLength":1}},
-                                                                 "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                                 "separator":{"type":"string", "maxLength":1, "minLength":1},
-                                                                 "column_order":{"type":"array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                                 "file_format":{"type":"string", "enum":["csv", "xlsx"]},
-                                                                 "filename":{"type":"string", "minLength":1},
-                                                                 "template": {"type": "string", "minLength":1},
-                                                                 "from_email": {"type": "string", "format": "email"},
-                                                                 "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                                 "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                                 "email_body": {"type": "string", "minLength":1},
-                                                                 "email_subject": {"type": "string", "minLength":1},},
-                                                         "dependentRequired":{
-                                                                 "from_email": ["email_body", "email_subject"],
-                                                                 "to_email": ["from_email", "email_body", "email_subject"]},},
-                                 "authors": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                 },
-                                 
-                         "required": ["grants", "affiliations"]
-                         }
-                },
-                 
-            "ORCID_search" : {"type":"object",
-                              "properties": {
-                                      "ORCID_key": {"type": "string", "minLength":1},
-                                      "ORCID_secret": {"type": "string", "minLength":1}},
-                              "required": ["ORCID_key", "ORCID_secret"]},
-            "PubMed_search" : {"type":"object",
-                              "properties": {
-                                      "PubMed_email": {"type": "string", "format":"email"}},
-                              "required":["PubMed_email"]},
-            "Crossref_search" : {"type":"object",
-                              "properties": {
-                                      "mailto_email": {"type": "string", "format":"email"}},
-                              "required":["mailto_email"]},
-            "summary_report" : {"type": "object",
-                              "properties":{
-                                      "columns": {"type": "object",
-                                                  "minProperties":1,
-                                                  "additionalProperties": {"type": "string", "minLength":1}},
-                                      "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                      "separator":{"type":"string", "maxLength":1, "minLength":1},
-                                      "column_order":{"type":"array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                      "file_format":{"type":"string", "enum":["csv", "xlsx"]},
-                                      "filename":{"type":"string", "minLength":1},
-                                      "template": {"type": "string", "minLength":1},
-                                      "from_email": {"type": "string", "format": "email"},
-                                      "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                      "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                      "email_body": {"type": "string", "minLength":1},
-                                      "email_subject": {"type": "string", "minLength":1},},
-                              "dependentRequired":{
-                                      "from_email": ["email_body", "email_subject", "to_email"]}},
-            "Authors" :  { "type": "object",
-                         "minProperties": 1,
-                         "additionalProperties": {
-                                 "type": "object",
-                                 "properties":{
-                                         "first_name": {"type": "string", "minLength":1},
-                                         "last_name":{"type": "string", "minLength":1},
-                                         "pubmed_name_search": {"type": "string", "minLength":1},
-                                         "email":{"type": "string", "format":"email"},
-                                         "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
-                                         "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                         "cutoff_year": {"type": "integer"},
-                                         "affiliations": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
-                                         "scholar_id": {"type": "string", "minLength":1},
-                                         "project_report": {"type": "object",
-                                                    "properties":{
-                                                            "columns": {"type": "object",
-                                                                        "minProperties":1,
-                                                                        "additionalProperties": {"type": "string", "minLength":1}},
-                                                            "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                            "separator":{"type":"string", "maxLength":1, "minLength":1},
-                                                            "column_order":{"type":"array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                            "file_format":{"type":"string", "enum":["csv", "xlsx"]},
-                                                            "filename":{"type":"string", "minLength":1},
-                                                            "template": {"type": "string", "minLength":1},
-                                                            "from_email": {"type": "string", "format": "email"},
-                                                            "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                            "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                            "email_body": {"type": "string", "minLength":1},
-                                                            "email_subject": {"type": "string", "minLength":1},},
-                                                    "dependentRequired":{
-                                                            "from_email": ["email_body", "email_subject"],
-                                                            "to_email": ["from_email", "email_body", "email_subject"]}},
-                                        "collaborator_report": {"type": "object",
-                                                         "properties":{
-                                                                 "columns": {"type": "object",
-                                                                             "minProperties":1,
-                                                                             "additionalProperties": {"type": "string", "minLength":1}},
-                                                                 "sort": {"type": "array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                                 "separator":{"type":"string", "maxLength":1, "minLength":1},
-                                                                 "column_order":{"type":"array", "uniqueItems":True, "items": {"type": "string", "minLength":1}, "minItems":1},
-                                                                 "file_format":{"type":"string", "enum":["csv", "xlsx"]},
-                                                                 "filename":{"type":"string", "minLength":1},
-                                                                 "template": {"type": "string", "minLength":1},
-                                                                 "from_email": {"type": "string", "format": "email"},
-                                                                 "cc_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                                 "to_email": {"type": "array",  "items": {"type": "string", "format": "email"}},
-                                                                 "email_body": {"type": "string", "minLength":1},
-                                                                 "email_subject": {"type": "string", "minLength":1},},
-                                                         "dependentRequired":{
-                                                                 "from_email": ["email_body", "email_subject"],
-                                                                 "to_email": ["from_email", "email_body", "email_subject"]},},
-                                         },
-                                 "required" : ["first_name", "last_name", "pubmed_name_search"]
-    
-                                 }
-                           }
-                                      
-         },
-     "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search", "Authors"]
-    }
+.. literalinclude:: ../src/academic_tracker/tracker_schema.py
+    :start-at: config_schema
+    :end-before: ## config_end
+    :language: none
+
 
 
 Example

@@ -31,6 +31,7 @@ simple_publication_keywords_map = {"<abstract>":"abstract",
 pub_authors_keyword_map = {"<pub_author_first>":"firstname",
                            "<pub_author_last>":"lastname",
                            "<pub_author_initials>":"initials",
+                           "<pub_author_collective>": "collectivename",
                            "<pub_author_affiliations>":"affiliation",
                            "<pub_author_ORCID>":"ORCID",
                            "<pub_author_id>":"author_id"}
@@ -47,6 +48,7 @@ publication_date_keywords_map = {"<publication_year>":"year",
 
 authors_keywords_map = {"<author_first>":"first_name",
                         "<author_last>":"last_name",
+                        "<author_collective>": "collective_name",
                         "<author_name_search>":"pubmed_name_search",
                         "<author_email>":"email"}
 
@@ -137,7 +139,7 @@ def _replace_keywords(template, publication_dict, config_dict,
         ## Pub authors keywords
         if pub_author:
             for keyword, pub_author_key in pub_authors_keyword_map.items():
-                template_copy[key] = template_copy[key].replace(keyword, str(pub_author[pub_author_key]))
+                template_copy[key] = template_copy[key].replace(keyword, str(pub_author[pub_author_key]) if pub_author_key in pub_author else "None")
         
         ## references keywords
         if reference:
@@ -251,7 +253,22 @@ def _build_pub_author_and_reference_rows(publication_dict, config_dict,
                                          row_template, 
                                          project_name="", author="", pub="", 
                                          tokenized_citation=None, is_citation_in_prev_pubs=None):
-    """
+    """Build rows for each pub_author and reference.
+    
+    Args:
+        publication_dict (dict): keys and values match the publications JSON file.
+        config_dict (dict): keys and values match the project tracking configuration JSON file.
+        has_pub_author_keywords (bool): if True, then row_template has keywords to replace that are attributes to publication authors.
+        has_reference_keywords (bool): if True, then row_template has keywords to replace that are attributes to publication references.
+        row_template (dict): keys are column names and values are what the elements of the column should be.
+        project_name (str): the name of the project to replace.
+        author (str): the key to the author in config_dict["Authors"].
+        pub (str): the key to the pub in publication_dict.
+        tokenized_citation (dict|None): a tokenized citation from the reference for the publication.
+        is_citation_in_prev_pubs (bool|None): whether this publication is in the previous publications or not. If None then it isn't applicable.
+    
+    Returns:
+        rows (list): list of dictionaries meant to eventually be turned into a pandas DataFrame.
     """
     
     rows = []

@@ -184,60 +184,6 @@ def create_tabular_report(publication_dict, config_dict, is_citation_in_prev_pub
                                                                                     tokenized_citations[tok_index], 
                                                                                     is_citation_in_prev_pubs)
             
-            
-            
-            # ## If references or authors is an empty list then you get unexpected behavior where pubs just won't show up, 
-            # ## so look for it before hand and just give it a null dictionary if it is empty.
-            # if not (references := publication_dict[pub]["references"]):
-            #     references = [{
-            #                     "PMCID": None,
-            #                     "citation": None,
-            #                     "doi": None,
-            #                     "pubmed_id": None,
-            #                     "title": None
-            #                   }]
-            # if not (pub_authors := publication_dict[pub]["authors"]):
-            #     pub_authors = [{
-            #                     "ORCID": None,
-            #                     "affiliation": None,
-            #                     "author_id": None,
-            #                     "firstname": None,
-            #                     "initials": None,
-            #                     "lastname": None
-            #                   }]
-            
-            # if has_pub_author_keywords and has_reference_keywords:
-            #     for pub_author in pub_authors:
-            #         for reference in references:
-            #             rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-            #                                                                      publication_dict, 
-            #                                                                      None,
-            #                                                                      pub=pub, 
-            #                                                                      tokenized_citation=tokenized_citations[tok_index], 
-            #                                                                      is_citation_in_prev_pubs=is_citation_in_prev_pubs, 
-            #                                                                      pub_author=pub_author,
-            #                                                                      reference=reference))
-            
-            # elif has_pub_author_keywords:
-            #     for pub_author in pub_authors:
-            #         rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-            #                                                                  publication_dict, 
-            #                                                                  None,
-            #                                                                  pub=pub, 
-            #                                                                  tokenized_citation=tokenized_citations[tok_index], 
-            #                                                                  is_citation_in_prev_pubs=is_citation_in_prev_pubs, 
-            #                                                                  pub_author=pub_author))
-            
-            # else:
-            #     for reference in references:
-            #         rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-            #                                                                  publication_dict, 
-            #                                                                  None,
-            #                                                                  pub=pub, 
-            #                                                                  tokenized_citation=tokenized_citations[tok_index], 
-            #                                                                  is_citation_in_prev_pubs=is_citation_in_prev_pubs, 
-            #                                                                  reference=reference))
-                
         else:
             rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
                                                                      publication_dict, 

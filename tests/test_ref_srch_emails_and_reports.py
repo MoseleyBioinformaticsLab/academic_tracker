@@ -124,14 +124,14 @@ def config_dict():
                                                 'Last Author': '<last_author>',
                                                 'Pub_Authors': '<pub_author_last>, <pub_author_first> <pub_author_initials> <pub_author_affiliations>',
                                                 'References': 'Citation: <reference_citation>, Title: <reference_title>, PMID: <reference_PMID>, PMCID: <reference_PMCID>, DOI: <reference_DOI>'},
-                                     "column_order":['Authors', 'Grants', 'Abstract', 'Conclusions', 'Copyrights', 'DOI', 'Journal', 'Keywords', 'Methods',
-                                                     'PMID', 'Results', 'Title', 'PMCID', 'Publication Year', 'Publication Month', 'Publication Day',
-                                                     'Tok Title', 'Tok DOI', 'Tok PMID', 'Tok Authors', 'Ref Line', 'Comparison', 'First Author', 
-                                                     'Last Author', 'Pub_Authors', 'References'],
-                                     "sort":["Authors"],
-                                     "file_format":"csv",
-                                     "filename":"test_name.csv",
-                                     "separator":"\t"}}
+                                      "column_order":['Authors', 'Grants', 'Abstract', 'Conclusions', 'Copyrights', 'DOI', 'Journal', 'Keywords', 'Methods',
+                                                      'PMID', 'Results', 'Title', 'PMCID', 'Publication Year', 'Publication Month', 'Publication Day',
+                                                      'Tok Title', 'Tok DOI', 'Tok PMID', 'Tok Authors', 'Ref Line', 'Comparison', 'First Author', 
+                                                      'Last Author', 'Pub_Authors', 'References'],
+                                      "sort":["Authors"],
+                                      "file_format":"csv",
+                                      "filename":"test_name.csv",
+                                      "separator":"\t"}}
     
     return config_dict
 
@@ -195,11 +195,10 @@ def test_create_tabular_report_excel(publication_dict, tokenized_citations, conf
     report, filename = create_tabular_report(publication_dict, config_dict, [], tokenized_citations, TESTING_DIR)
     
     actual_text = pandas.read_excel(os.path.join(TESTING_DIR, filename))
-    # actual_text.to_excel(os.path.join("tests", "testing_files", "ref_srch_report_tabular4_new.xlsx"))
+    # actual_text.to_excel(os.path.join("tests", "testing_files", "ref_srch_report_tabular4_new.xlsx"), index=False)
     
     assert expected_text.to_csv() == actual_text.to_csv()
     
-
 
 
 def test_create_tokenization_report(tokenized_citations):

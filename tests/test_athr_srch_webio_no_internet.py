@@ -231,14 +231,6 @@ def test_search_Google_Scholar_for_pubs_query_error(config_dict_Hunter_only, ori
     assert ("Warning: The \"scholar_id\" for author Hunter Moseley is probably "
             "incorrect, an error occured when trying to query Google Scholar.\n") in captured.out
     assert r'Traceback (most recent call last):' in captured.out
-    assert r'  File "C:\Python310\lib\site-packages\academic_tracker\athr_srch_webio.py", line 296, in search_Google_Scholar_for_pubs' in captured.out
-    assert r'    queried_author = scholarly.scholarly.search_author_id(authors_attributes["scholar_id"])' in captured.out
-    assert r'  File "C:\Python310\lib\unittest\mock.py", line 1104, in __call__' in captured.out
-    assert r'    return self._mock_call(*args, **kwargs)' in captured.out
-    assert r'  File "C:\Python310\lib\unittest\mock.py", line 1108, in _mock_call' in captured.out
-    assert r'    return self._execute_mock_call(*args, **kwargs)' in captured.out
-    assert r'  File "C:\Python310\lib\unittest\mock.py", line 1167, in _execute_mock_call' in captured.out
-    assert r'    raise result' in captured.out
     assert r'Exception' in captured.out
 
 

@@ -653,32 +653,89 @@
     "results": null,
     "title": "Stable isotope-labeled tracers for metabolic pathway elucidation by GC-MS and FT-MS."
   },
+  "https://doi.org/10.1186/1471-2105-15-s10-p36": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Joshua M",
+        "initials": null,
+        "lastname": "Mitchell"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Teresa W-M",
+        "initials": null,
+        "lastname": "Fan"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Andrew N",
+        "initials": null,
+        "lastname": "Lane"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Hunter NB",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1186/1471-2105-15-s10-p36",
+    "grants": [],
+    "journal": "Springer Science and Business Media LLC",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 29,
+      "month": 9,
+      "year": 2014
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Development of large-scale metabolite identification methods for metabolomics"
+  },
   "https://doi.org/10.3390/metabo3040853": {
     "PMCID": "PMC3882318",
     "abstract": "New metabolomics applications of ultra-high resolution and accuracy mass spectrometry can provide thousands of detectable isotopologues, with the number of potentially detectable isotopologues increasing exponentially with the number of stable isotopes used in newer isotope tracing methods like stable isotope-resolved metabolomics (SIRM) experiments. This huge increase in usable data requires software capable of correcting the large number of isotopologue peaks resulting from SIRM experiments in a timely manner. We describe the design of a new algorithm and software system capable of handling these high volumes of data, while including quality control methods for maintaining data quality. We validate this new algorithm against a previous single isotope correction algorithm in a two-step cross-validation. Next, we demonstrate the algorithm and correct for the effects of natural abundance for both (13)C and (15)N isotopes on a set of raw isotopologue intensities of UDP-N-acetyl-D-glucosamine derived from a (13)C/(15)N-tracing experiment. Finally, we demonstrate the algorithm on a full omics-level dataset.",
     "authors": [
       {
         "ORCID": null,
-        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA; jim.carreer@uky.edu (W.J.C.); robert.flight@uky.edu (R.M.F.).",
+        "affiliation": null,
         "author_id": null,
-        "firstname": "William J",
-        "initials": "WJ",
+        "firstname": "William",
+        "initials": null,
         "lastname": "Carreer"
       },
       {
         "ORCID": null,
-        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA; jim.carreer@uky.edu (W.J.C.); robert.flight@uky.edu (R.M.F.).",
+        "affiliation": null,
         "author_id": null,
-        "firstname": "Robert M",
-        "initials": "RM",
+        "firstname": "Robert",
+        "initials": null,
         "lastname": "Flight"
       },
       {
         "ORCID": null,
-        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA; jim.carreer@uky.edu (W.J.C.); robert.flight@uky.edu (R.M.F.).",
+        "affiliation": null,
         "author_id": null,
-        "firstname": "Hunter N B",
-        "initials": "HN",
+        "firstname": "Hunter",
+        "initials": null,
         "lastname": "Moseley"
       }
     ],
@@ -691,7 +748,7 @@
       "R01 ES022191",
       "U24 DK097215"
     ],
-    "journal": "Metabolites",
+    "journal": "MDPI AG",
     "keywords": [
       "Fourier transform mass spectrometry",
       "analytical derivation",
@@ -702,35 +759,36 @@
     ],
     "methods": null,
     "publication_date": {
-      "day": 10,
-      "month": 1,
-      "year": 2014
+      "day": 25,
+      "month": 9,
+      "year": 2013
     },
     "pubmed_id": "24404440",
     "queried_sources": [
+      "Crossref",
       "PubMed"
     ],
     "references": [
       {
         "PMCID": null,
         "citation": "Rittenberg D., Schoenheimer R. Deuterium as an indicator in the study of intermediary metabolism. J. Biol. Chem. 1937;121:235.",
-        "doi": null,
+        "doi": "10.1016/S0021-9258(18)74342-1",
         "pubmed_id": null,
-        "title": null
+        "title": "Deuterium as an indicator in the study of intermediary metabolism"
       },
       {
         "PMCID": null,
         "citation": "Schoenheimer R., Rittenberg D. The study of intermediary metabolism of animals with the aid of isotopes. Physiol. Rev. 1940;20:218.",
-        "doi": null,
+        "doi": "10.1152/physrev.1940.20.2.218",
         "pubmed_id": null,
-        "title": null
+        "title": "The study of intermediary metabolism of animals with the aid of isotopes"
       },
       {
         "PMCID": null,
         "citation": "Schoenheimer R., Rittenberg D. Deuterium as an indicator in the study of intermediary metabolism. J. Biol. Chem. 1935;111:163.",
-        "doi": null,
+        "doi": "10.1016/S0021-9258(18)75075-8",
         "pubmed_id": null,
-        "title": null
+        "title": "Deuterium as an indicator in the study of intermediary metabolism"
       },
       {
         "PMCID": null,
@@ -793,7 +851,7 @@
         "citation": "Hellerstein M.K., Neese R.A. Mass isotopomer distribution analysis at eight years: Theoretical, analytic, and experimental considerations. Am. J. Physiol.\u2014Endoc. M. 1999;276:E1146\u2013E1170.",
         "doi": null,
         "pubmed_id": "10362629",
-        "title": null
+        "title": "Mass isotopomer distribution analysis at eight years: Theoretical, analytic, and experimental considerations"
       },
       {
         "PMCID": null,
@@ -807,7 +865,7 @@
         "citation": "Snider R. Efficient calculation of exact mass isotopic distributions. JASMS. 2007;18:1511\u20131515.",
         "doi": null,
         "pubmed_id": "17583532",
-        "title": null
+        "title": "Efficient calculation of exact mass isotopic distributions"
       },
       {
         "PMCID": null,
@@ -828,12 +886,12 @@
         "citation": "Zhang X., Hines W., Adamec J., Asara J., Naylor S., Regnier F. An automated method for the analysis of stable isotope labeling data in proteomics. JASMS. 2005;16:1181\u20131191.",
         "doi": null,
         "pubmed_id": "15922621",
-        "title": null
+        "title": "An automated method for the analysis of stable isotope labeling data in proteomics"
       },
       {
         "PMCID": null,
         "citation": "Fernandez C.A., Des Rosiers C., Previs S.F., David F., Brunengraber H. Correction of 13C mass isotopomer distributions for natural stable isotope abundance. J. Mass Spectrom. 1996;31:255\u2013262. doi: 10.1002/(SICI)1096-9888(199603)31:3<255::AID-JMS290>3.0.CO;2-3.",
-        "doi": "10.1002/(sici)1096-9888(199603)31:3<255::aid-jms290>3.0.co;2-3",
+        "doi": "10.1002/(SICI)1096-9888(199603)31:3<255::AID-JMS290>3.0.CO;2-3",
         "pubmed_id": "8799277",
         "title": null
       },
@@ -842,7 +900,7 @@
         "citation": "Rockwood A.L., Haimi P. Efficient calculation of accurate masses of isotopic peaks. JASMS. 2006;17:415\u2013419.",
         "doi": null,
         "pubmed_id": "16458531",
-        "title": null
+        "title": "Efficient calculation of accurate masses of isotopic peaks"
       },
       {
         "PMCID": null,
@@ -860,7 +918,7 @@
       },
       {
         "PMCID": null,
-        "citation": "Rossum G.V. The Python Programming Language.  [(accessed on 21 July 2013)].  Available online: http://www.python.org/",
+        "citation": "The Python Programming Languagehttp://www.python.org/",
         "doi": null,
         "pubmed_id": null,
         "title": null
@@ -870,38 +928,38 @@
         "citation": "Sanner M.F. Python: A programming language for software integration and development. J. Mol. Graph. Model. 1999;17:57\u201361.",
         "doi": null,
         "pubmed_id": "10660911",
-        "title": null
+        "title": "Python: A programming language for software integration and development"
       },
       {
         "PMCID": null,
         "citation": "Oliphant T.E. A Guide to NumPy. Volume 1. Trelgol Publishing; Spanish Fork, UT, USA: 2006. pp. 1\u2013371.",
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "A Guide to NumPy"
       },
       {
         "PMCID": null,
         "citation": "Gamma E. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley Professional; Boston, MA, USA: 1995. pp. 1\u2013416.",
         "doi": null,
         "pubmed_id": null,
-        "title": null
+        "title": "Design Patterns: Elements of Reusable Object-Oriented Software"
       },
       {
         "PMCID": "PMC3647477",
         "citation": "Moseley H.N.B. Error analysis and propagation in metabolomics data analysis. Comp. Struct Biotech. J. 2013;4:e201301006.",
-        "doi": null,
+        "doi": "10.5936/csbj.201301006",
         "pubmed_id": "23667718",
-        "title": null
+        "title": "Error analysis and propagation in metabolomics data analysis"
       },
       {
         "PMCID": null,
-        "citation": "Moseley Bioinformatics Laboratory Software Repository for download.  [(accessed on 21 July 2013)].  Available online: http://bioinformatics.cesb.uky.edu/bin/view/Main/SoftwareDevelopment/",
+        "citation": "Moseley Bioinformatics Laboratory Software Repository for downloadhttp://bioinformatics.cesb.uky.edu/bin/view/Main/SoftwareDevelopment/",
         "doi": null,
         "pubmed_id": null,
         "title": null
       }
     ],
     "results": null,
-    "title": "A Computational Framework for High-Throughput Isotopic Natural Abundance Correction of Omics-Level Ultra-High Resolution FT-MS Datasets."
+    "title": "A Computational Framework for High-Throughput Isotopic Natural Abundance Correction of Omics-Level Ultra-High Resolution FT-MS Datasets"
   }
 }

@@ -124,7 +124,7 @@ and use the example there to create it initially. The add_authors command can he
 with building the Authors section if you already have a csv file with author 
 information. A good tool to help track down pesky JSON syntax errors is `here <https://csvjson.com/json_validator>`__. 
 There are also examples in the `example_configs <https://github.com/MoseleyBioinformaticsLab/academic_tracker/tree/main/example_configs>`__ 
-directory of the GitHub repo. There are also more example in the supplemental 
+directory of the GitHub repo. There are also more examples in the supplemental 
 material of the paper https://doi.org/10.6084/m9.figshare.19412165.
 
 

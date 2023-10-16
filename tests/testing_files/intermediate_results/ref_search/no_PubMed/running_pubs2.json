@@ -44,8 +44,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 29,
+      "month": 9,
       "year": 2014
     },
     "pubmed_id": null,
@@ -93,8 +93,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 25,
+      "month": 9,
       "year": 2013
     },
     "pubmed_id": null,
@@ -105,77 +105,77 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/S0021-9258(18)74342-1",
+        "doi": "10.1016/S0021-9258(18)74342-1",
         "pubmed_id": null,
         "title": "Deuterium as an indicator in the study of intermediary metabolism"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1152/physrev.1940.20.2.218",
+        "doi": "10.1152/physrev.1940.20.2.218",
         "pubmed_id": null,
         "title": "The study of intermediary metabolism of animals with the aid of isotopes"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/S0021-9258(18)75075-8",
+        "doi": "10.1016/S0021-9258(18)75075-8",
         "pubmed_id": null,
         "title": "Deuterium as an indicator in the study of intermediary metabolism"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.2174/1568009033481769",
+        "doi": "10.2174/1568009033481769",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/1476-4598-8-41",
+        "doi": "10.1186/1476-4598-8-41",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.aca.2009.08.032",
+        "doi": "10.1016/j.aca.2009.08.032",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/1471-2105-11-139",
+        "doi": "10.1186/1471-2105-11-139",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/ac061906b",
+        "doi": "10.1021/ac061906b",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/1741-7007-9-37",
+        "doi": "10.1186/1741-7007-9-37",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/bp000058h",
+        "doi": "10.1021/bp000058h",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1046/j.1432-1033.2003.03448.x",
+        "doi": "10.1046/j.1432-1033.2003.03448.x",
         "pubmed_id": null,
         "title": null
       },
@@ -189,7 +189,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1002/bms.1200200804",
+        "doi": "10.1002/bms.1200200804",
         "pubmed_id": null,
         "title": null
       },
@@ -203,14 +203,14 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1002/bit.10393",
+        "doi": "10.1002/bit.10393",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1002/bit.10909",
+        "doi": "10.1002/bit.10909",
         "pubmed_id": null,
         "title": null
       },
@@ -224,7 +224,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1002/(SICI)1096-9888(199603)31:3<255::AID-JMS290>3.0.CO;2-3",
+        "doi": "10.1002/(SICI)1096-9888(199603)31:3<255::AID-JMS290>3.0.CO;2-3",
         "pubmed_id": null,
         "title": null
       },
@@ -238,14 +238,14 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/ac951158i",
+        "doi": "10.1021/ac951158i",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/0020-7381(83)85053-0",
+        "doi": "10.1016/0020-7381(83)85053-0",
         "pubmed_id": null,
         "title": null
       },
@@ -280,7 +280,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.5936/csbj.201301006",
+        "doi": "10.5936/csbj.201301006",
         "pubmed_id": null,
         "title": "Error analysis and propagation in metabolomics data analysis"
       },

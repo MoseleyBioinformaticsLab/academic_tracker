@@ -22,7 +22,8 @@ cli_schema = {
 }
 
 
-config_schema = {
+config_schema = \
+    {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "Configuration JSON",
  "description": "Input file that contains information for how the program should run.",
@@ -186,7 +187,7 @@ config_schema = {
      },
  "required": ["project_descriptions", "ORCID_search", "PubMed_search", "Crossref_search", "Authors"]
 }
-
+## config_end Marker to denote the end of the schema for documentation.
 
 
 

@@ -52,6 +52,7 @@ def tracker_validate(instance, schema, pattern_messages={}, cls=None, *args, **k
                 message += "The required property " + required_property + " is missing."
             else:
                 message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing the required property " + required_property + "."
+        ## In an older version of JSON Schema the keyword was "dependencies" instead of "dependentRequired".
         elif e.validator == "dependencies":
             message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing a dependent property.\n"
             message += e.message

@@ -193,13 +193,16 @@ def do_strings_fuzzy_match(string1, string2, match_ratio=90):
     """Fuzzy match the 2 strings and if the ratio is greater than or equal to match_ratio, return True.
     
     Args:
-        string1 (str): a string to fuzzy match.
-        string2 (str): a string to fuzzy match.
+        string1 (str|None): a string to fuzzy match.
+        string2 (str|None): a string to fuzzy match.
         match_ratio (int): the ratio (0-100) that the match must be greater than to return True.
     
     Returns:
         (bool): True if strings match, False otherwise.
     """
+    if string1 is None or string2 is None:
+        return False
+    
     string1 = string1.lower()
     string2 = string2.lower()
     if fuzzywuzzy.fuzz.ratio(string1, string2) >= match_ratio or\
@@ -702,6 +705,7 @@ def create_pub_dict_for_saving_PubMed(pub, include_xml=False):
         include_xml (bool): if True, include the raw XML query in the key "xml".
         
     Returns:
+        pub_id (str): the ID of the publication (DOI or PMID).
         pub_dict (dict): pub converted to a dictionary. Keys are "pubmed_id", "title", "abstract", 
         "keywords", "journal", "publication_date", "authors", "methods", "conclusions", "results", "copyrights", and "doi"
     """
@@ -714,7 +718,7 @@ def create_pub_dict_for_saving_PubMed(pub, include_xml=False):
         pub_dict["pubmed_id"] = None
     
     if (doi := pub_dict["xml"].find("PubmedData/ArticleIdList/ArticleId[@IdType='doi']")) is not None:
-        pub_dict["doi"] = DOI_URL + doi.text.lower()
+        pub_dict["doi"] = doi.text.lower()
     else:
         pub_dict["doi"] = None
         
@@ -782,7 +786,7 @@ def create_pub_dict_for_saving_PubMed(pub, include_xml=False):
         
         orcid = None
         if (text := author.find("Identifier[@Source='ORCID']")) is not None:
-            orcid = regex_search_return(r"(\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X])", text.text)[0]
+            orcid = extract_ORCID_from_string(text.text)
         
         if collective_name:
             temp_dict = {"collectivename":collective_name,
@@ -811,7 +815,9 @@ def create_pub_dict_for_saving_PubMed(pub, include_xml=False):
     else:
         pub_dict["publication_date"] = {"year":None, "month":None, "day":None}
     
-    return pub_dict
+    pub_id = DOI_URL + pub_dict["doi"] if pub_dict["doi"] else pub_dict["pubmed_id"]
+    
+    return pub_id, pub_dict
 
 
 
@@ -823,8 +829,8 @@ def create_pub_dict_for_saving_Crossref(work, prev_query):
         prev_query (dict|None): a dictionary containing publications from a previous query, used for message printing.
     
     Returns:
-        pub_id (str): the ID of the publication (DOI, PMID, or URL).
-        pub_dict (dict): the standard pub_dict with values filled in from the Crossref publication.
+        pub_id (str|None): the ID of the publication (DOI, PMID, or URL). If None, an ID couldn't be determined.
+        pub_dict (dict|None): the standard pub_dict with values filled in from the Crossref publication. If None, an ID couldn't be determined.
     """
     if "title" in work:
         title = work["title"][0]
@@ -864,8 +870,7 @@ def create_pub_dict_for_saving_Crossref(work, prev_query):
             
             orcid = None
             if "ORCID" in cr_author_dict:
-                orcid = regex_search_return(r"(\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X])", 
-                                                             cr_author_dict["ORCID"])[0]
+                orcid = extract_ORCID_from_string(cr_author_dict["ORCID"])
             temp_dict["ORCID"] = orcid
             
             temp_dict["author_id"] = None
@@ -904,7 +909,7 @@ def create_pub_dict_for_saving_Crossref(work, prev_query):
         date_found = True
     
     if date_found:
-        date_length = len(work[date_key]["date-parts"])
+        date_length = len(work[date_key]["date-parts"][0])
         
         if date_length > 2:
             publication_year = work[date_key]["date-parts"][0][0]
@@ -943,7 +948,7 @@ def create_pub_dict_for_saving_Crossref(work, prev_query):
     if "reference" in work:
         for reference in work["reference"]:
             if "DOI" in reference:
-                ref_doi = DOI_URL + reference["DOI"]
+                ref_doi = reference["DOI"]
             else:
                 ref_doi = None
             
@@ -978,6 +983,28 @@ def create_pub_dict_for_saving_Crossref(work, prev_query):
     
     return pub_id, pub_dict
 
+
+
+ORCID_regex = r"(\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X])"
+alt_ORCID_regex = r"(\d{4}\d{4}\d{4}\d{3}[0,1,2,3,4,5,6,7,8,9,X])"
+def extract_ORCID_from_string(string):
+    """Extract an ORCID ID from a string.
+    
+    Args:
+        string (str): the string to extract the ID from.
+        
+    Returns:
+        (str|None): either the extracted ID as a string or None.
+    """
+    
+    if re_match := re.search(ORCID_regex, string):
+        return re_match.groups()[0]
+    elif re_match := re.search(alt_ORCID_regex, string):
+        captured_string = re_match.groups()[0]
+        new_string = captured_string[0:4] + '-' + captured_string[4:8] + '-' + captured_string[8:12] + '-' + captured_string[12:]
+        return new_string
+    else:
+        return None
 
 
 

@@ -69,8 +69,7 @@ def search_PubMed_for_pubs(running_pubs, authors_json, from_email, prev_query=No
                 continue
             all_pubs[author].append(pub)
             
-            pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub)
-            pub_id = pub_dict["doi"] if pub_dict["doi"] else pub_dict["pubmed_id"]
+            pub_id, pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub)
             
             if matching_pub_id := helper_functions.get_pub_id_in_publication_dict(pub_id, pub.title, running_pubs):
                 if "PubMed" in running_pubs[matching_pub_id]["queried_sources"]:

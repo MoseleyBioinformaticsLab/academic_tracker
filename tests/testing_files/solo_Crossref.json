@@ -59,8 +59,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 16,
+      "month": 6,
       "year": 2023
     },
     "pubmed_id": null,
@@ -78,21 +78,21 @@
       {
         "PMCID": null,
         "citation": "Da Silva, B. F., Ahmadireskety, A., Aristizabal-Henao, J. J. & Bowden, J. A. A rapid and simple method to quantify per-and polyfluoroalkyl substances (PFAS) in plasma and serum using 96-well plates. MethodsX. 7, 101111\u201310111 (2020).",
-        "doi": "https://doi.org/10.1016/j.mex.2020.101111",
+        "doi": "10.1016/j.mex.2020.101111",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Hagstrom, A. L. et al. Yale School of Public Health Symposium: an overview of the challenges and opportunities associated with per-and polyfluoroalkyl substances (PFAS). Sci. Total Envir. 778, 146192 (2021).",
-        "doi": "https://doi.org/10.1016/j.scitotenv.2021.146192",
+        "doi": "10.1016/j.scitotenv.2021.146192",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Groffen, T. et al. A rapid method for the detection and quantification of legacy and emerging per-and polyfluoroalkyl substances (PFAS) in bird feathers using UPLC-MS/MS. J. Chromatogr. B. 1172, 122653 (2021).",
-        "doi": "https://doi.org/10.1016/j.jchromb.2021.122653",
+        "doi": "10.1016/j.jchromb.2021.122653",
         "pubmed_id": null,
         "title": null
       },
@@ -106,98 +106,98 @@
       {
         "PMCID": null,
         "citation": "Rogers, R. D., Reh, C. M. & Breysse, P. Advancing per-and polyfluoroalkyl substances (PFAS) research: an overview of ATSDR and NCEH activities and recommendations. J. Exp. Sci. Envir. Epi. 31, 961\u2013971 (2021).",
-        "doi": "https://doi.org/10.1038/s41370-021-00316-6",
+        "doi": "10.1038/s41370-021-00316-6",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Hauk\u00e5s, M., Berger, U., Hop, H., Gulliksen, B. & Gabrielsen, G. W. Bioaccumulation of per-and polyfluorinated alkyl substances (PFAS) in selected species from the Barents Sea food web. Envir. Poll. 148, 360\u2013371 (2007).",
-        "doi": "https://doi.org/10.1016/j.envpol.2006.09.021",
+        "doi": "10.1016/j.envpol.2006.09.021",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Fenton, S. E. et al. Per\u2010and polyfluoroalkyl substance toxicity and human health review: Current state of knowledge and strategies for informing future research. Envir. Tox. Chem. 40, 606\u2013630 (2021).",
-        "doi": "https://doi.org/10.1002/etc.4890",
+        "doi": "10.1002/etc.4890",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Kucharzyk, K. H., Darlington, R., Benotti, M., Deeb, R. & Hawley, E. Novel treatment technologies for PFAS compounds: A critical review. J. Environ. Manage. 204, 757\u2013764 (2017).",
-        "doi": "https://doi.org/10.1016/j.jenvman.2017.08.016",
+        "doi": "10.1016/j.jenvman.2017.08.016",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "National Academies of Sciences, Engineering, and Medicine (NASEM), Guidance on PFAS Exposure, Testing, and Clinical Follow-Up. Washington, DC: The National Academies Press. https://doi.org/10.17226/26156 (2022).",
-        "doi": "https://doi.org/10.17226/26156",
+        "doi": "10.17226/26156",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Rahman, M. F., Peldszus, S. & Anderson, W. B. Behaviour and fate of perfluoroalkyl and polyfluoroalkyl substances (PFASs) in drinking water treatment: A review. Water Res. 50, 318\u2013340 (2014).",
-        "doi": "https://doi.org/10.1016/j.watres.2013.10.045",
+        "doi": "10.1016/j.watres.2013.10.045",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "De Silva, A. O. et al. PFAS exposure pathways for humans and wildlife: a synthesis of current knowledge and key gaps in understanding. Environ. Tox. Chem. 40, 631\u2013657 (2021).",
-        "doi": "https://doi.org/10.1002/etc.4935",
+        "doi": "10.1002/etc.4935",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Olsen, G. W. et al. Per-and polyfluoroalkyl substances (PFAS) in American Red Cross adult blood donors, 2000\u20132015. Environ. Res. 157, 87\u201395 (2017).",
-        "doi": "https://doi.org/10.1016/j.envres.2017.05.013",
+        "doi": "10.1016/j.envres.2017.05.013",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Domingo, J. L. & Nadal, M. Human exposure to per-and polyfluoroalkyl substances (PFAS) through drinking water: a review of the recent scientific literature. Environ. Res. 177, 108648\u2013108648 (2019).",
-        "doi": "https://doi.org/10.1016/j.envres.2019.108648",
+        "doi": "10.1016/j.envres.2019.108648",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Hepburn, E. et al. Contamination of groundwater with per-and polyfluoroalkyl substances (PFAS) from legacy landfills in an urban re-development precinct. Environ. Poll. 248, 101\u2013113 (2019).",
-        "doi": "https://doi.org/10.1016/j.envpol.2019.02.018",
+        "doi": "10.1016/j.envpol.2019.02.018",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Bai, X. & Son, Y. Perfluoroalkyl substances (PFAS) in surface water and sediments from two urban watersheds in Nevada, USA. Sci. Tot. Envir. 751, 141622\u2013141622 (2021).",
-        "doi": "https://doi.org/10.1016/j.scitotenv.2020.141622",
+        "doi": "10.1016/j.scitotenv.2020.141622",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Li, Y. et al. Formation and fate of perfluoroalkyl acids (PFAAs) in a laboratory-scale urban wastewater system. Water Res. 216, 118295\u2013118295 (2022).",
-        "doi": "https://doi.org/10.1016/j.watres.2022.118295",
+        "doi": "10.1016/j.watres.2022.118295",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Hale, S. E. et al. Sorbent amendment as a remediation strategy to reduce PFAS mobility and leaching in a contaminated sandy soil from a Norwegian firefighting training facility. Chemosphere. 171, 9\u201318 (2017).",
-        "doi": "https://doi.org/10.1016/j.chemosphere.2016.12.057",
+        "doi": "10.1016/j.chemosphere.2016.12.057",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Barber, J. L. et al. Analysis of per-and polyfluorinated alkyl substances in air samples from Northwest Europe. J. Environ. Monit. 9, 530\u2013541 (2007).",
-        "doi": "https://doi.org/10.1039/b701417a",
+        "doi": "10.1039/b701417a",
         "pubmed_id": null,
         "title": null
       },
@@ -211,28 +211,28 @@
       {
         "PMCID": null,
         "citation": "P\u00e9tr\u00e9, M. A. et al. Per-and polyfluoroalkyl substance (PFAS) transport from groundwater to streams near a PFAS manufacturing facility in North Carolina, USA. Environ. Sci. Tech. 55, 5848\u20135856 (2021).",
-        "doi": "https://doi.org/10.1021/acs.est.0c07978",
+        "doi": "10.1021/acs.est.0c07978",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Ahrens, L., Norstr\u00f6m, K., Viktor, T., Cousins, A. P. & Josefsson, S. Stockholm Arlanda Airport as a source of per-and polyfluoroalkyl substances to water, sediment and fish. Chemosphere. 129, 33\u201338 (2015).",
-        "doi": "https://doi.org/10.1016/j.chemosphere.2014.03.136",
+        "doi": "10.1016/j.chemosphere.2014.03.136",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Adamson, D. T. et al. Mass-based, field-scale demonstration of PFAS retention within AFFF-associated source areas. Environ. Sci. Tech. 54, 15768\u201315777 (2020).",
-        "doi": "https://doi.org/10.1021/acs.est.0c04472",
+        "doi": "10.1021/acs.est.0c04472",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Quinnan, J. et al. Application of PFAS\u2010mobile lab to support adaptive characterization and flux\u2010based conceptual site models at AFFF releases. Remed. J. 31, 7\u201326 (2021).",
-        "doi": "https://doi.org/10.1002/rem.21680",
+        "doi": "10.1002/rem.21680",
         "pubmed_id": null,
         "title": null
       },
@@ -246,42 +246,42 @@
       {
         "PMCID": null,
         "citation": "Hale, S. E., Canivet, B., Rundberget, T., Langberg, H. A. & Allan, I. J. Using passive samplers to track Per and Polyfluoroalkyl Substances (PFAS) emissions from the paper industry: laboratory calibration and field verification. Front. Env. Sci. 9, 621\u2013629 (2021).",
-        "doi": "https://doi.org/10.3389/fenvs.2021.796026",
+        "doi": "10.3389/fenvs.2021.796026",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Hu, X. C. et al. Detection of poly-and perfluoroalkyl substances (PFASs) in US drinking water linked to industrial sites, military fire training areas, and wastewater treatment plants. Environ. Sci. Tech. Let. 3, 344\u2013350 (2016).",
-        "doi": "https://doi.org/10.1021/acs.estlett.6b00260",
+        "doi": "10.1021/acs.estlett.6b00260",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Ojha, S. et al. A geospatial and binomial logistic regression model to prioritize sampling for per\u2010and polyfluorinated alkyl substances in public water systems. Integr. Environ. Assess. 19, 163\u2013174 (2023).",
-        "doi": "https://doi.org/10.1002/ieam.4614",
+        "doi": "10.1002/ieam.4614",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Ebert, J. C. & Altman, R. B. Robust recognition of zinc binding sites in proteins. Protein Sci. 17, 54\u201365 (2008).",
-        "doi": "https://doi.org/10.1110/ps.073138508",
+        "doi": "10.1110/ps.073138508",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Wilkinson, M. D. et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci. Data. 3, 1\u20139 (2016).",
-        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "doi": "10.1038/sdata.2016.18",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Boeckhout, M., Zielhuis, G. A. & Bredenoord, A. L. The FAIR guiding principles for data stewardship: fair enough? Eur. J. Hum. Genet. 26, 931\u2013936 (2018).",
-        "doi": "https://doi.org/10.1038/s41431-018-0160-0",
+        "doi": "10.1038/s41431-018-0160-0",
         "pubmed_id": null,
         "title": null
       },
@@ -295,21 +295,21 @@
       {
         "PMCID": null,
         "citation": "Zs\u00f3ka, \u00c1., Szer\u00e9nyi, Z. M., Sz\u00e9chy, A. & Kocsis, T. Greening due to environmental education? Environmental knowledge, attitudes, consumer behavior and everyday pro-environmental activities of Hungarian high school and university students. J. Clean. Prod. 48, 126\u2013138 (2013).",
-        "doi": "https://doi.org/10.1016/j.jclepro.2012.11.030",
+        "doi": "10.1016/j.jclepro.2012.11.030",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Guelfo, J. L. & Adamson, D. T. Evaluation of a national data set for insights into sources, composition, and concentrations of per-and polyfluoroalkyl substances (PFASs) in US drinking water. Environ, Poll. 236, 505\u2013513 (2018).",
-        "doi": "https://doi.org/10.1016/j.envpol.2018.01.066",
+        "doi": "10.1016/j.envpol.2018.01.066",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Ohja, S., Thompson, P. T., Powell, C. D., Moselet, H. N. B. & Pennell, K. P. A FAIR approach to detect and share PFAS hot-spot areas and water systems in Kentucky. Figshare https://doi.org/10.6084/m9.figshare.15218958 (2022).",
-        "doi": "https://doi.org/10.6084/m9.figshare.15218958",
+        "doi": "10.6084/m9.figshare.15218958",
         "pubmed_id": null,
         "title": null
       }
@@ -374,8 +374,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 16,
+      "month": 6,
       "year": 2023
     },
     "pubmed_id": null,
@@ -386,14 +386,14 @@
       {
         "PMCID": null,
         "citation": "Wilkinson, M. D. et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci Data 3, 160018 (2016).",
-        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "doi": "10.1038/sdata.2016.18",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Boeckhout, M. & Zielhuis, G. A.& Bredenoord, A. L. The FAIR guiding principles for data stewardship: fair enough? European journal of human genetics 26, 931\u2013936 (2018).",
-        "doi": "https://doi.org/10.1038/s41431-018-0160-0",
+        "doi": "10.1038/s41431-018-0160-0",
         "pubmed_id": null,
         "title": null
       },
@@ -421,63 +421,63 @@
       {
         "PMCID": null,
         "citation": "Protein Data Bank. the single global archive for 3D macromolecular structure data. Nucleic acids research 47, D520\u2013D528 (2019).",
-        "doi": "https://doi.org/10.1093/nar/gky949",
+        "doi": "10.1093/nar/gky949",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Clough, E. & Barrett, T. The gene expression omnibus database. Statistical genomics (pp. 93\u2013110. Humana Press, New York, NY, 2016). DOI: DOI 10, 978\u2013971.",
-        "doi": "https://doi.org/10.1007/978-1-4939-3578-9_5",
+        "doi": "10.1007/978-1-4939-3578-9_5",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Sud, M. et al. Metabolomics Workbench: An international repository for metabolomics data and metadata, metabolite standards, protocols, tutorials and training, and analysis tools. Nucleic acids research 44, D463\u2013D470 (2016).",
-        "doi": "https://doi.org/10.1093/nar/gkv1042",
+        "doi": "10.1093/nar/gkv1042",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Sarkans, U. et al. From arrayexpress to biostudies. Nucleic Acids Research 49, D1502\u2013D1506 (2021).",
-        "doi": "https://doi.org/10.1093/nar/gkaa1062",
+        "doi": "10.1093/nar/gkaa1062",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Brazma, A. et al. Minimum information about a microarray experiment (MIAME)\u2014toward standards for microarray data. Nature genetics 29, 365\u2013371 (2001).",
-        "doi": "https://doi.org/10.1038/ng1201-365",
+        "doi": "10.1038/ng1201-365",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Edgar, R. & Barrett, T. NCBI GEO standards and services for microarray data. Nature biotechnology 24, 1471\u20131472 (2006).",
-        "doi": "https://doi.org/10.1038/nbt1206-1471",
+        "doi": "10.1038/nbt1206-1471",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Smelter, A. & Moseley, H. N. A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository. Metabolomics 14, 1\u20138 (2018).",
-        "doi": "https://doi.org/10.1007/s11306-018-1356-6",
+        "doi": "10.1007/s11306-018-1356-6",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Powell, C. D. & Moseley, H. N. The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository. Metabolites 11, 163 (2021).",
-        "doi": "https://doi.org/10.3390/metabo11030163",
+        "doi": "10.3390/metabo11030163",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Powell, C. D. & Moseley, H. N. The Metabolomics Workbench File Status Website: A Metadata Repository Promoting FAIR Principles of Metabolomics Data. bioRxiv (2022).",
-        "doi": "https://doi.org/10.1101/2022.03.04.483070",
+        "doi": "10.1101/2022.03.04.483070",
         "pubmed_id": null,
         "title": null
       },
@@ -498,21 +498,21 @@
       {
         "PMCID": null,
         "citation": "Kinkade, D. & Shepherd, A. Geoscience data publication: Practices and perspectives on enabling the FAIR guiding principles. Geoscience Data Journal 9, 177\u2013186 (2022).",
-        "doi": "https://doi.org/10.1002/gdj3.120",
+        "doi": "10.1002/gdj3.120",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Pampel, H. et al. Making research data repositories visible: the re3data. org registry. PloS one 8, e78080 (2013).",
-        "doi": "https://doi.org/10.1371/journal.pone.0078080",
+        "doi": "10.1371/journal.pone.0078080",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Degbelo, A. FAIR geovisualizations: definitions, challenges, and the road ahead. International Journal of Geographical Information Science 36, 1059\u20131099 (2022).",
-        "doi": "https://doi.org/10.1080/13658816.2021.1983579",
+        "doi": "10.1080/13658816.2021.1983579",
         "pubmed_id": null,
         "title": null
       },
@@ -526,14 +526,14 @@
       {
         "PMCID": null,
         "citation": "Sicilia, M.-A., Garc\u00eda-Barriocanal, E. & S\u00e1nchez-Alonso, S. Community curation in open dataset repositories: insights from Zenodo. Procedia Computer Science 106, 54\u201360 (2017).",
-        "doi": "https://doi.org/10.1016/j.procs.2017.03.009",
+        "doi": "10.1016/j.procs.2017.03.009",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Thelwall, M. & Kousha, K. Figshare: a universal repository for academic resource sharing? Online Information Review (2016).",
-        "doi": "https://doi.org/10.1108/OIR-06-2015-0190",
+        "doi": "10.1108/OIR-06-2015-0190",
         "pubmed_id": null,
         "title": null
       },
@@ -547,7 +547,7 @@
       {
         "PMCID": null,
         "citation": "Ojha, S. et al. A geospatial and binomial logistic regression model to prioritize sampling for per\u2010and polyfluorinated alkyl substances in public water systems. Integrated environmental assessment and management 19, 163\u2013174 (2023).",
-        "doi": "https://doi.org/10.1002/ieam.4614",
+        "doi": "10.1002/ieam.4614",
         "pubmed_id": null,
         "title": null
       },
@@ -561,21 +561,21 @@
       {
         "PMCID": null,
         "citation": "Thompson, P. T., Powell, C. D. & Moseley, H. N. Academic Tracker: Software for tracking and reporting publications associated with authors and grants. PloS one 17, e0277834 (2022).",
-        "doi": "https://doi.org/10.1371/journal.pone.0277834",
+        "doi": "10.1371/journal.pone.0277834",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Reed, C. N. The open geospatial consortium and web services standards. In Geospatial Web Services: Advances in Information Interoperability, IGI Global: pp. 1\u201316 (2011).",
-        "doi": "https://doi.org/10.4018/978-1-60960-192-8.ch001",
+        "doi": "10.4018/978-1-60960-192-8.ch001",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Reichardt, M. Open geospatial consortium standards. International Encyclopedia of Geography: People, the Earth, Environment and Technology: People, the Earth, Environment and Technology 1\u20138 (2016).",
-        "doi": "https://doi.org/10.1002/9781118786352.wbieg0348",
+        "doi": "10.1002/9781118786352.wbieg0348",
         "pubmed_id": null,
         "title": null
       },
@@ -596,14 +596,14 @@
       {
         "PMCID": null,
         "citation": "Ojha, S. et al. A Geospatial and Binomial Logistic Regression Model to Prioritize Sampling for Per- and Polyfluorinated Alkyl Substances (PFAS) in Public Water Systems-Dataset. Figshare https://doi.org/10.6084/m9.figshare.16560144 (2021).",
-        "doi": "https://doi.org/10.6084/m9.figshare.16560144",
+        "doi": "10.6084/m9.figshare.16560144",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Ojha, S., Moseley, H. & Powell, C. D., Pennell, K. G. & Thompson, P. T. A FAIR approach to detect and share PFAS hot-spot areas and water systems in Kentucky. Figshare https://doi.org/10.6084/m9.figshare.15218958 (2022).",
-        "doi": "https://doi.org/10.6084/m9.figshare.15218958",
+        "doi": "10.6084/m9.figshare.15218958",
         "pubmed_id": null,
         "title": null
       },
@@ -651,8 +651,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 24,
+      "month": 7,
       "year": 2023
     },
     "pubmed_id": null,
@@ -670,35 +670,35 @@
       {
         "PMCID": null,
         "citation": "Sud M, et al. Metabolomics workbench: an international repository for metabolomics data and metadata, metabolite standards, protocols, tutorials and training, and analysis tools. Nucleic Acids Res. 2016;44(D1):D463\u201370.",
-        "doi": "https://doi.org/10.1093/nar/gkv1042",
+        "doi": "10.1093/nar/gkv1042",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Smelter A, Moseley HN. A Python library for FAIRer access and deposition to the metabolomics workbench data repository. Metabolomics. 2018;14(5):1\u20138.",
-        "doi": "https://doi.org/10.1007/s11306-018-1356-6",
+        "doi": "10.1007/s11306-018-1356-6",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Wilkinson MD, et al. The FAIR guiding principles for scientific data management and stewardship. Sci Data. 2016;3(1):1\u20139.",
-        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "doi": "10.1038/sdata.2016.18",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Boeckhout M, et al. The FAIR guiding principles for data stewardship: fair enough? Eur J Hum Genet. 2018;26(7):931\u20136.",
-        "doi": "https://doi.org/10.1038/s41431-018-0160-0",
+        "doi": "10.1038/s41431-018-0160-0",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Powell CD, Moseley HN. The mwtab python library for RESTful access and enhanced quality control, deposition, and curation of the metabolomics workbench data repository. Metabolites. 2021;11(3):163.",
-        "doi": "https://doi.org/10.3390/metabo11030163",
+        "doi": "10.3390/metabo11030163",
         "pubmed_id": null,
         "title": null
       },
@@ -740,14 +740,14 @@
       {
         "PMCID": null,
         "citation": "Metabolomics workbench mwTab and JSON formatted data files (as of Feb. 19th, 2022) Figshare repository. https://doi.org/10.6084/m9.figshare.19221159. Accessed 19 Feb 2022.",
-        "doi": "https://doi.org/10.6084/m9.figshare.19221159",
+        "doi": "10.6084/m9.figshare.19221159",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Haug K, et al. Global open data management in metabolomics. Curr Opin Chem Biol. 2017;36:58\u201363.",
-        "doi": "https://doi.org/10.1016/j.cbpa.2016.12.024",
+        "doi": "10.1016/j.cbpa.2016.12.024",
         "pubmed_id": null,
         "title": null
       },
@@ -761,7 +761,7 @@
       {
         "PMCID": null,
         "citation": "Johnson D, Batista D, Cochrane K, Davey RP, Etuk A, Gonzalez-Beltran A, Haug K, Izzo M, Larralde M, Lawson TN, Minotto A. ISA API: an open platform for interoperable life science experimental metadata. GigaScience. 2021;10(9):gia060.",
-        "doi": "https://doi.org/10.1093/gigascience/giab060",
+        "doi": "10.1093/gigascience/giab060",
         "pubmed_id": null,
         "title": null
       },
@@ -775,14 +775,14 @@
       {
         "PMCID": null,
         "citation": "Joosten RP, et al. PDB_REDO: automated re-refinement of X-ray structure models in the PDB. J Appl Crystallogr. 2009;42(3):376\u201384.",
-        "doi": "https://doi.org/10.1107/S0021889809008784",
+        "doi": "10.1107/S0021889809008784",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Berman H, et al. The worldwide protein data bank (wwPDB): ensuring a single, uniform archive of PDB data. Nucleic Acid Res. 2007;35(suppl1):D301\u20133.",
-        "doi": "https://doi.org/10.1093/nar/gkl971",
+        "doi": "10.1093/nar/gkl971",
         "pubmed_id": null,
         "title": null
       }
@@ -852,7 +852,7 @@
     "methods": null,
     "publication_date": {
       "day": null,
-      "month": null,
+      "month": 6,
       "year": 2023
     },
     "pubmed_id": null,
@@ -863,7 +863,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/533452a",
+        "doi": "10.1038/533452a",
         "pubmed_id": null,
         "title": null
       },
@@ -877,7 +877,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.17226/25116",
+        "doi": "10.17226/25116",
         "pubmed_id": null,
         "title": null
       },
@@ -905,21 +905,21 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/s41563-019-0332-5",
+        "doi": "10.1038/s41563-019-0332-5",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.cotox.2019.05.005",
+        "doi": "10.1016/j.cotox.2019.05.005",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/toxsci/kfab157",
+        "doi": "10.1093/toxsci/kfab157",
         "pubmed_id": null,
         "title": null
       },
@@ -933,28 +933,28 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1371/journal.pbio.2006930",
+        "doi": "10.1371/journal.pbio.2006930",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/agriculture12020309",
+        "doi": "10.3390/agriculture12020309",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/nbt.1411",
+        "doi": "10.1038/nbt.1411",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/ng1201-365",
+        "doi": "10.1038/ng1201-365",
         "pubmed_id": null,
         "title": null
       },
@@ -982,28 +982,28 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/ng.1054",
+        "doi": "10.1038/ng.1054",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1089/omi.2008.0019",
+        "doi": "10.1089/omi.2008.0019",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1089/omi.2006.10.164",
+        "doi": "10.1089/omi.2006.10.164",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.4056/sigs.147362",
+        "doi": "10.4056/sigs.147362",
         "pubmed_id": null,
         "title": null
       },
@@ -1017,35 +1017,35 @@
       {
         "PMCID": null,
         "citation": "Gamble M Goble C Klyne G Zhao J. 2012. MIM: A Minimum Information Model: A Minimum Information Model vocabulary and framework for Scientific Linked Data. In: 2012 IEEE 8th International Conference on E-Science. 8\u201312 October 2012. Chicago Illinois 1\u20138.",
-        "doi": "https://doi.org/10.1109/eScience.2012.6404489",
+        "doi": "10.1109/eScience.2012.6404489",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1289/EHP10092",
+        "doi": "10.1289/EHP10092",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1101/2021.09.27.461968",
+        "doi": "10.1101/2021.09.27.461968",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3389/frai.2020.00031",
+        "doi": "10.3389/frai.2020.00031",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/toxsci/kfm090",
+        "doi": "10.1093/toxsci/kfm090",
         "pubmed_id": null,
         "title": null
       },
@@ -1073,7 +1073,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.comtox.2019.100096",
+        "doi": "10.1016/j.comtox.2019.100096",
         "pubmed_id": null,
         "title": null
       },
@@ -1087,7 +1087,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/nar/gkz1019",
+        "doi": "10.1093/nar/gkz1019",
         "pubmed_id": null,
         "title": null
       },
@@ -1101,119 +1101,119 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.envint.2022.107243",
+        "doi": "10.1016/j.envint.2022.107243",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/nar/gkm755",
+        "doi": "10.1093/nar/gkm755",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.reprotox.2019.07.012",
+        "doi": "10.1016/j.reprotox.2019.07.012",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1053/j.seminoncol.2019.09.002",
+        "doi": "10.1053/j.seminoncol.2019.09.002",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1182/blood-2017-03-735654",
+        "doi": "10.1182/blood-2017-03-735654",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1002/cpt.666",
+        "doi": "10.1002/cpt.666",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1515/reveh-2019-0089",
+        "doi": "10.1515/reveh-2019-0089",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/acs.est.1c08383",
+        "doi": "10.1021/acs.est.1c08383",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/d41586-022-02820-7",
+        "doi": "10.1038/d41586-022-02820-7",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/2041-1480-4-36",
+        "doi": "10.1186/2041-1480-4-36",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Law M, Shaw DR. 2018. Mouse Genome Informatics (MGI) is the international resource for information on the laboratory mouse. In: Eukaryotic Genomic Databases: Methods and Protocols. Kollmar M, ed. New York, NY: Springer New York, 141\u2013161.",
-        "doi": "https://doi.org/10.1007/978-1-4939-7737-6_7",
+        "doi": "10.1007/978-1-4939-7737-6_7",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/s12917-020-02451-y",
+        "doi": "10.1186/s12917-020-02451-y",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/ijerph18178985",
+        "doi": "10.3390/ijerph18178985",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/toxsci/kfq355",
+        "doi": "10.1093/toxsci/kfq355",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.toxlet.2019.04.003",
+        "doi": "10.1016/j.toxlet.2019.04.003",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.26434/chemrxiv-2022-bt3f6",
+        "doi": "10.26434/chemrxiv-2022-bt3f6",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/bioinformatics/btq415",
+        "doi": "10.1093/bioinformatics/btq415",
         "pubmed_id": null,
         "title": null
       },
@@ -1227,21 +1227,21 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "doi": "10.1038/sdata.2016.18",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1101/2022.03.04.483070",
+        "doi": "10.1101/2022.03.04.483070",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/metabo11030163",
+        "doi": "10.3390/metabo11030163",
         "pubmed_id": null,
         "title": null
       },
@@ -1255,7 +1255,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.yrtph.2021.105020",
+        "doi": "10.1016/j.yrtph.2021.105020",
         "pubmed_id": null,
         "title": null
       }
@@ -1304,8 +1304,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 18,
+      "month": 11,
       "year": 2022
     },
     "pubmed_id": null,
@@ -1316,7 +1316,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1073/pnas.98.2.381",
+        "doi": "10.1073/pnas.98.2.381",
         "pubmed_id": null,
         "title": "PubMed Central: The GenBank of the published literature"
       },
@@ -1381,8 +1381,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 2,
+      "month": 6,
       "year": 2022
     },
     "pubmed_id": null,
@@ -1393,147 +1393,147 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1007/978-1-4939-1258-2_11",
+        "doi": "10.1007/978-1-4939-1258-2_11",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/1471-2105-11-139",
+        "doi": "10.1186/1471-2105-11-139",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/metabo3040853",
+        "doi": "10.3390/metabo3040853",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/s41374-021-00631-4",
+        "doi": "10.1038/s41374-021-00631-4",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/1471-2105-7-234",
+        "doi": "10.1186/1471-2105-7-234",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/acs.analchem.9b00748",
+        "doi": "10.1021/acs.analchem.9b00748",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.ymeth.2004.03.015",
+        "doi": "10.1016/j.ymeth.2004.03.015",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1002/mas.20108",
+        "doi": "10.1002/mas.20108",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.aca.2017.04.014",
+        "doi": "10.1016/j.aca.2017.04.014",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/ac3018795",
+        "doi": "10.1021/ac3018795",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/ac1011574",
+        "doi": "10.1021/ac1011574",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.pharmthera.2011.12.007",
+        "doi": "10.1016/j.pharmthera.2011.12.007",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/1741-7007-9-37",
+        "doi": "10.1186/1741-7007-9-37",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1172/JCI72873",
+        "doi": "10.1172/JCI72873",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1007/s11306-017-1250-7",
+        "doi": "10.1007/s11306-017-1250-7",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1186/s12859-019-3096-7",
+        "doi": "10.1186/s12859-019-3096-7",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/metabo10030118",
+        "doi": "10.3390/metabo10030118",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1007/s11306-018-1426-9",
+        "doi": "10.1007/s11306-018-1426-9",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/metabo10030122",
+        "doi": "10.3390/metabo10030122",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.3390/metabo11110740",
+        "doi": "10.3390/metabo11110740",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.5936/csbj.201301006",
+        "doi": "10.5936/csbj.201301006",
         "pubmed_id": null,
         "title": null
       },
@@ -1547,21 +1547,21 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/biomet/42.1-2.58",
+        "doi": "10.1093/biomet/42.1-2.58",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/ac00278a027",
+        "doi": "10.1021/ac00278a027",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1371/journal.pcbi.1003118",
+        "doi": "10.1371/journal.pcbi.1003118",
         "pubmed_id": null,
         "title": null
       },
@@ -1575,7 +1575,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1101/2022.02.24.481854",
+        "doi": "10.1101/2022.02.24.481854",
         "pubmed_id": null,
         "title": null
       },
@@ -1617,7 +1617,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.21105/joss.02959",
+        "doi": "10.21105/joss.02959",
         "pubmed_id": null,
         "title": null
       },
@@ -1645,7 +1645,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/bioinformatics/btw313",
+        "doi": "10.1093/bioinformatics/btw313",
         "pubmed_id": null,
         "title": null
       },
@@ -1666,14 +1666,14 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1021/acs.jproteome.0c00313",
+        "doi": "10.1021/acs.jproteome.0c00313",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/bioinformatics/btr645",
+        "doi": "10.1093/bioinformatics/btr645",
         "pubmed_id": null,
         "title": null
       },
@@ -1776,8 +1776,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 12,
+      "month": 7,
       "year": 2023
     },
     "pubmed_id": null,
@@ -1795,21 +1795,21 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1016/j.jbusres.2017.12.043",
+        "doi": "10.1016/j.jbusres.2017.12.043",
         "pubmed_id": null,
         "title": "Open Science now: A systematic literature review for an integrated definition"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1038/sdata.2016.18",
+        "doi": "10.1038/sdata.2016.18",
         "pubmed_id": null,
         "title": "The FAIR Guiding Principles for scientific data management and stewardship"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/nar/gkv1042",
+        "doi": "10.1093/nar/gkv1042",
         "pubmed_id": null,
         "title": "Metabolomics Workbench: An international repository for metabolomics data and metadata, metabolite standards, protocols, tutorials and training, and analysis tools"
       },
@@ -1830,35 +1830,35 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1007/s11306-007-0070-6",
+        "doi": "10.1007/s11306-007-0070-6",
         "pubmed_id": null,
         "title": "The metabolomics standards initiative (MSI)"
       },
       {
         "PMCID": null,
         "citation": "Powell, C.D., and Moseley, H.N. (2021). The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository. Metabolites, 11.",
-        "doi": "https://doi.org/10.3390/metabo11030163",
+        "doi": "10.3390/metabo11030163",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": "Powell, C.D., and Moseley, H.N. (2022). The Metabolomics Workbench File Status Website: A Metadata Repository Promoting FAIR Principles of Metabolomics Data. bioRxiv.",
-        "doi": "https://doi.org/10.1101/2022.03.04.483070",
+        "doi": "10.1101/2022.03.04.483070",
         "pubmed_id": null,
         "title": null
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/nar/gks1004",
+        "doi": "10.1093/nar/gks1004",
         "pubmed_id": null,
         "title": "MetaboLights\u2014An open-access general-purpose repository for metabolomics studies and associated meta-data"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1093/database/bat029",
+        "doi": "10.1093/database/bat029",
         "pubmed_id": null,
         "title": "The MetaboLights repository: Curation challenges in metabolomics"
       },
@@ -1872,7 +1872,7 @@
       {
         "PMCID": null,
         "citation": "Pezoa, F., Reutter, J.L., Suarez, F., Ugarte, M., and Vrgo\u010d, D. (2016, January 11\u201315). Foundations of JSON schema. Proceedings of the 25th International Conference on World Wide Web, Montreal, QC, Canada.",
-        "doi": "https://doi.org/10.1145/2872427.2883029",
+        "doi": "10.1145/2872427.2883029",
         "pubmed_id": null,
         "title": null
       },
@@ -1914,14 +1914,14 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1109/MCSE.2010.118",
+        "doi": "10.1109/MCSE.2010.118",
         "pubmed_id": null,
         "title": "Cython: The best of both worlds"
       },
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1007/s11306-018-1356-6",
+        "doi": "10.1007/s11306-018-1356-6",
         "pubmed_id": null,
         "title": "A Python library for FAIRer access and deposition to the Metabolomics Workbench Data Repository"
       },

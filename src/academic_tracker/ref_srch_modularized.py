@@ -93,32 +93,36 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_Pub
     if not no_PubMed:
         helper_functions.vprint("Searching PubMed.")
         running_pubs, PubMed_matching_key_for_citation, PubMed_publication_dict = \
-            ref_srch_webio.search_references_on_PubMed(running_pubs, 
+            ref_srch_webio.search_references_on_source("PubMed",
+                                                       running_pubs, 
                                                        tokenized_citations, 
                                                        config_dict["PubMed_search"]["PubMed_email"])
         all_queries["PubMed"] = PubMed_publication_dict
     if not no_Crossref:
         helper_functions.vprint("Searching Crossref.")
         running_pubs, Crossref_matching_key_for_citation, Crossref_publication_dict = \
-            ref_srch_webio.search_references_on_Crossref(running_pubs, 
-                                                         tokenized_citations, 
-                                                         config_dict["Crossref_search"]["mailto_email"])
+            ref_srch_webio.search_references_on_source("Crossref",
+                                                       running_pubs, 
+                                                       tokenized_citations, 
+                                                       config_dict["Crossref_search"]["mailto_email"])
         all_queries["Crossref"] = Crossref_publication_dict
     
     
     ## Do a second pass using the saved queries.
     if not no_PubMed:
         running_pubs, PubMed_matching_key_for_citation, PubMed_publication_dict = \
-            ref_srch_webio.search_references_on_PubMed(running_pubs, 
+            ref_srch_webio.search_references_on_source("PubMed",
+                                                       running_pubs, 
                                                        tokenized_citations, 
                                                        config_dict["PubMed_search"]["PubMed_email"], 
                                                        all_queries["PubMed"])
     if not no_Crossref:
         running_pubs, Crossref_matching_key_for_citation, Crossref_publication_dict = \
-            ref_srch_webio.search_references_on_Crossref(running_pubs, 
-                                                         tokenized_citations, 
-                                                         config_dict["Crossref_search"]["mailto_email"], 
-                                                         all_queries["Crossref"])
+            ref_srch_webio.search_references_on_source("Crossref",
+                                                       running_pubs, 
+                                                       tokenized_citations, 
+                                                       config_dict["Crossref_search"]["mailto_email"], 
+                                                       all_queries["Crossref"])
     
             
     matching_key_for_citation = [None] * len(tokenized_citations)
@@ -136,7 +140,8 @@ def build_publication_dict(config_dict, tokenized_citations, no_Crossref, no_Pub
         for i, pub_list in enumerate(all_queries["PubMed"]):
             new_list = []
             for pub in pub_list:
-                new_list.append(helper_functions.create_pub_dict_for_saving_PubMed(pub, True))
+                _, pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub, True)
+                new_list.append(pub_dict)
             all_queries["PubMed"][i] = new_list
             
     return running_pubs, tokenized_citations, all_queries

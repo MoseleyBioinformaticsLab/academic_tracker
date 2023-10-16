@@ -32,7 +32,7 @@ We assiduously mapped kinase pathways using 340 substrate targets, upstream bioi
 Our findings establish a comprehensive kinase atlas for liver fibrosis, which identifies analogous signaling events conserved among humans and rodents.
 Conclusions: None
 Copyrights: © 2022 The Authors. Hepatology published by Wiley Periodicals LLC on behalf of American Association for the Study of Liver Diseases.
-DOI: https://doi.org/10.1002/hep.32467
+DOI: 10.1002/hep.32467
 Journal: Hepatology (Baltimore, Md.)
 Keywords: []
 Methods: None
@@ -357,7 +357,7 @@ Grants: P42 ES007380, 2020026
 Abstract: Exposure to per- and polyfluoroalkyl substances (PFAS) in drinking water is widely recognized as a public health concern. Decision-makers who are responsible for managing PFAS drinking water risks lack the tools to acquire the information they need. In response to this need, we provide a detailed description of a Kentucky dataset that allows decision-makers to visualize potential hot-spot areas and evaluate drinking water systems that may be susceptible to PFAS contamination. The dataset includes information extracted from publicly available sources to create five different maps in ArcGIS Online and highlights potential sources of PFAS contamination in the environment in relation to drinking water systems. As datasets of PFAS drinking water sampling continue to grow as part of evolving regulatory requirements, we used this Kentucky dataset as an example to promote the reuse of this dataset and others like it. We incorporated the FAIR (Findable, Accessible, Interoperable, and Reusable) principles by creating a Figshare item that includes all data and associated metadata with these five ArcGIS maps.
 Conclusions: None
 Copyrights: © 2023. The Author(s).
-DOI: https://doi.org/10.1038/s41597-023-02277-x
+DOI: 10.1038/s41597-023-02277-x
 Journal: Scientific data
 Keywords: []
 Methods: None
@@ -395,19 +395,19 @@ Citation: Da Silva BF, Ahmadireskety A, Aristizabal-Henao JJ, Bowden JA. A rapid
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.mex.2020.101111
+DOI: 10.1016/j.mex.2020.101111
 
 Citation: Hagstrom AL, et al. Yale School of Public Health Symposium: an overview of the challenges and opportunities associated with per-and polyfluoroalkyl substances (PFAS) Sci. Total Envir. 2021;778:146192. doi: 10.1016/j.scitotenv.2021.146192.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.scitotenv.2021.146192
+DOI: 10.1016/j.scitotenv.2021.146192
 
 Citation: Groffen T, et al. A rapid method for the detection and quantification of legacy and emerging per-and polyfluoroalkyl substances (PFAS) in bird feathers using UPLC-MS/MS. J. Chromatogr. B. 2021;1172:122653. doi: 10.1016/j.jchromb.2021.122653.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.jchromb.2021.122653
+DOI: 10.1016/j.jchromb.2021.122653
 
 Citation: Glüge J, et al. An overview of the uses of per-and polyfluoroalkyl substances (PFAS) Envir. Sci.-Proc. Imp. 2020;22:2345–2373.
 Title: None
@@ -419,85 +419,85 @@ Citation: Rogers RD, Reh CM, Breysse P. Advancing per-and polyfluoroalkyl substa
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1038/s41370-021-00316-6
+DOI: 10.1038/s41370-021-00316-6
 
 Citation: Haukås M, Berger U, Hop H, Gulliksen B, Gabrielsen GW. Bioaccumulation of per-and polyfluorinated alkyl substances (PFAS) in selected species from the Barents Sea food web. Envir. Poll. 2007;148:360–371. doi: 10.1016/j.envpol.2006.09.021.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.envpol.2006.09.021
+DOI: 10.1016/j.envpol.2006.09.021
 
 Citation: Fenton SE, et al. Per‐and polyfluoroalkyl substance toxicity and human health review: Current state of knowledge and strategies for informing future research. Envir. Tox. Chem. 2021;40:606–630. doi: 10.1002/etc.4890.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1002/etc.4890
+DOI: 10.1002/etc.4890
 
 Citation: Kucharzyk KH, Darlington R, Benotti M, Deeb R, Hawley E. Novel treatment technologies for PFAS compounds: A critical review. J. Environ. Manage. 2017;204:757–764. doi: 10.1016/j.jenvman.2017.08.016.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.jenvman.2017.08.016
+DOI: 10.1016/j.jenvman.2017.08.016
 
 Citation: National Academies of Sciences, Engineering, and Medicine (NASEM), Guidance on PFAS Exposure, Testing, and Clinical Follow-Up. Washington, DC: The National Academies Press. 10.17226/26156 (2022).
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.17226/26156
+DOI: 10.17226/26156
 
 Citation: Rahman MF, Peldszus S, Anderson WB. Behaviour and fate of perfluoroalkyl and polyfluoroalkyl substances (PFASs) in drinking water treatment: A review. Water Res. 2014;50:318–340. doi: 10.1016/j.watres.2013.10.045.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.watres.2013.10.045
+DOI: 10.1016/j.watres.2013.10.045
 
 Citation: De Silva AO, et al. PFAS exposure pathways for humans and wildlife: a synthesis of current knowledge and key gaps in understanding. Environ. Tox. Chem. 2021;40:631–657. doi: 10.1002/etc.4935.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1002/etc.4935
+DOI: 10.1002/etc.4935
 
 Citation: Olsen GW, et al. Per-and polyfluoroalkyl substances (PFAS) in American Red Cross adult blood donors, 2000–2015. Environ. Res. 2017;157:87–95. doi: 10.1016/j.envres.2017.05.013.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.envres.2017.05.013
+DOI: 10.1016/j.envres.2017.05.013
 
 Citation: Domingo JL, Nadal M. Human exposure to per-and polyfluoroalkyl substances (PFAS) through drinking water: a review of the recent scientific literature. Environ. Res. 2019;177:108648–108648. doi: 10.1016/j.envres.2019.108648.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.envres.2019.108648
+DOI: 10.1016/j.envres.2019.108648
 
 Citation: Hepburn E, et al. Contamination of groundwater with per-and polyfluoroalkyl substances (PFAS) from legacy landfills in an urban re-development precinct. Environ. Poll. 2019;248:101–113. doi: 10.1016/j.envpol.2019.02.018.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.envpol.2019.02.018
+DOI: 10.1016/j.envpol.2019.02.018
 
 Citation: Bai X, Son Y. Perfluoroalkyl substances (PFAS) in surface water and sediments from two urban watersheds in Nevada, USA. Sci. Tot. Envir. 2021;751:141622–141622. doi: 10.1016/j.scitotenv.2020.141622.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.scitotenv.2020.141622
+DOI: 10.1016/j.scitotenv.2020.141622
 
 Citation: Li Y, et al. Formation and fate of perfluoroalkyl acids (PFAAs) in a laboratory-scale urban wastewater system. Water Res. 2022;216:118295–118295. doi: 10.1016/j.watres.2022.118295.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.watres.2022.118295
+DOI: 10.1016/j.watres.2022.118295
 
 Citation: Hale SE, et al. Sorbent amendment as a remediation strategy to reduce PFAS mobility and leaching in a contaminated sandy soil from a Norwegian firefighting training facility. Chemosphere. 2017;171:9–18. doi: 10.1016/j.chemosphere.2016.12.057.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.chemosphere.2016.12.057
+DOI: 10.1016/j.chemosphere.2016.12.057
 
 Citation: Barber JL, et al. Analysis of per-and polyfluorinated alkyl substances in air samples from Northwest Europe. J. Environ. Monit. 2007;9:530–541. doi: 10.1039/b701417a.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1039/b701417a
+DOI: 10.1039/b701417a
 
 Citation: Koch A, et al. Point source characterization of per-and polyfluoroalkyl substances (PFASs) and extractable organofluorine (EOF) in freshwater and aquatic invertebrates. Environ. Sci.-Proc. Imp. 2019;21:1887–1898.
 Title: None
@@ -509,25 +509,25 @@ Citation: Pétré MA, et al. Per-and polyfluoroalkyl substance (PFAS) transport 
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1021/acs.est.0c07978
+DOI: 10.1021/acs.est.0c07978
 
 Citation: Ahrens L, Norström K, Viktor T, Cousins AP, Josefsson S. Stockholm Arlanda Airport as a source of per-and polyfluoroalkyl substances to water, sediment and fish. Chemosphere. 2015;129:33–38. doi: 10.1016/j.chemosphere.2014.03.136.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.chemosphere.2014.03.136
+DOI: 10.1016/j.chemosphere.2014.03.136
 
 Citation: Adamson DT, et al. Mass-based, field-scale demonstration of PFAS retention within AFFF-associated source areas. Environ. Sci. Tech. 2020;54:15768–15777. doi: 10.1021/acs.est.0c04472.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1021/acs.est.0c04472
+DOI: 10.1021/acs.est.0c04472
 
 Citation: Quinnan J, et al. Application of PFAS‐mobile lab to support adaptive characterization and flux‐based conceptual site models at AFFF releases. Remed. J. 2021;31:7–26. doi: 10.1002/rem.21680.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1002/rem.21680
+DOI: 10.1002/rem.21680
 
 Citation: Schroeder T, Bond D, Foley J. PFAS soil and groundwater contamination via industrial airborne emission and land deposition in SW Vermont and Eastern New York State, USA. Environ. Sci.-Proc. Imp. 2021;23:291–301.
 Title: None
@@ -539,37 +539,37 @@ Citation: Hale SE, Canivet B, Rundberget T, Langberg HA, Allan IJ. Using passive
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.3389/fenvs.2021.796026
+DOI: 10.3389/fenvs.2021.796026
 
 Citation: Hu XC, et al. Detection of poly-and perfluoroalkyl substances (PFASs) in US drinking water linked to industrial sites, military fire training areas, and wastewater treatment plants. Environ. Sci. Tech. Let. 2016;3:344–350. doi: 10.1021/acs.estlett.6b00260.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1021/acs.estlett.6b00260
+DOI: 10.1021/acs.estlett.6b00260
 
 Citation: Ojha S, et al. A geospatial and binomial logistic regression model to prioritize sampling for per‐and polyfluorinated alkyl substances in public water systems. Integr. Environ. Assess. 2023;19:163–174. doi: 10.1002/ieam.4614.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1002/ieam.4614
+DOI: 10.1002/ieam.4614
 
 Citation: Ebert JC, Altman RB. Robust recognition of zinc binding sites in proteins. Protein Sci. 2008;17:54–65. doi: 10.1110/ps.073138508.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1110/ps.073138508
+DOI: 10.1110/ps.073138508
 
 Citation: Wilkinson MD, et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci. Data. 2016;3:1–9. doi: 10.1038/sdata.2016.18.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1038/sdata.2016.18
+DOI: 10.1038/sdata.2016.18
 
 Citation: Boeckhout M, Zielhuis GA, Bredenoord AL. The FAIR guiding principles for data stewardship: fair enough? Eur. J. Hum. Genet. 2018;26:931–936. doi: 10.1038/s41431-018-0160-0.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1038/s41431-018-0160-0
+DOI: 10.1038/s41431-018-0160-0
 
 Citation: Thompson P. T., Ojha S., Powell C. D., Pennell K. G. & Moseley H. N. B. A proposed FAIR approach for disseminating geospatial information system maps. Accepted Sci. Data (2023).
 Title: None
@@ -581,17 +581,17 @@ Citation: Zsóka Á, Szerényi ZM, Széchy A, Kocsis T. Greening due to environm
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.jclepro.2012.11.030
+DOI: 10.1016/j.jclepro.2012.11.030
 
 Citation: Guelfo JL, Adamson DT. Evaluation of a national data set for insights into sources, composition, and concentrations of per-and polyfluoroalkyl substances (PFASs) in US drinking water. Environ, Poll. 2018;236:505–513. doi: 10.1016/j.envpol.2018.01.066.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.1016/j.envpol.2018.01.066
+DOI: 10.1016/j.envpol.2018.01.066
 
 Citation: Ohja S, Thompson PT, Powell CD, Moselet HNB, Pennell KP. 2022. A FAIR approach to detect and share PFAS hot-spot areas and water systems in Kentucky. Figshare.
 Title: None
 PMID: None
 PMCID: None
-DOI: https://doi.org/10.6084/m9.figshare.15218958
+DOI: 10.6084/m9.figshare.15218958
 

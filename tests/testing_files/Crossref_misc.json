@@ -40,8 +40,8 @@
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 18,
+      "month": 11,
       "year": 2022
     },
     "pubmed_id": null,
@@ -52,7 +52,7 @@
       {
         "PMCID": null,
         "citation": null,
-        "doi": "https://doi.org/10.1073/pnas.98.2.381",
+        "doi": "10.1073/pnas.98.2.381",
         "pubmed_id": null,
         "title": "PubMed Central: The GenBank of the published literature"
       },

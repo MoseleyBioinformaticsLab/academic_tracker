@@ -350,7 +350,7 @@ def create_tabular_collaborator_report(publication_dict, config_dict, author, pu
             temp_dict = {}
             for column_name, value in columns.items():
                 for keyword, pub_author_key in pub_authors_keyword_map.items():
-                    value = value.replace(keyword, str(pub_author[pub_author_key]))
+                    value = value.replace(keyword, str(pub_author[pub_author_key]) if pub_author_key in pub_author else "None")
                 temp_dict[column_name] = value
                 
             collaborators.append(temp_dict)
@@ -400,7 +400,7 @@ def create_collaborator_report(publication_dict, template, author, pubs, filenam
             pub_author_template_copy = pub_author_template
             
             for keyword, pub_author_key in pub_authors_keyword_map.items():
-                pub_author_template_copy = pub_author_template_copy.replace(keyword, str(pub_author[pub_author_key]))
+                pub_author_template_copy = pub_author_template_copy.replace(keyword, str(pub_author[pub_author_key]) if pub_author_key in pub_author else "None")
                 
             report += pub_author_template_copy
             
@@ -644,70 +644,7 @@ def _build_report_rows(publication_dict, config_dict, authors_by_project_dict, p
                                                                                         pub, 
                                                                                         None, 
                                                                                         None)
-                
-                
-                # ## If references or authors is an empty list then you get unexpected behavior where pubs just won't show up, 
-                # ## so look for it before hand and just give it a null dictionary if it is empty.
-                # if not (references := publication_dict[pub]["references"]):
-                #     references = [{
-                #                     "PMCID": None,
-                #                     "citation": None,
-                #                     "doi": None,
-                #                     "pubmed_id": None,
-                #                     "title": None
-                #                   }]
-                # ## There should always be at least 1 author since this is specific to author search, but the code is here for completeness.
-                # if not (pub_authors := publication_dict[pub]["authors"]):
-                #     pub_authors = [{
-                #                     "ORCID": None,
-                #                     "affiliation": None,
-                #                     "author_id": None,
-                #                     "firstname": None,
-                #                     "initials": None,
-                #                     "lastname": None
-                #                   }]
-                
-                # if has_pub_author_keywords and has_reference_keywords:
-                #     for pub_author in pub_authors:
-                #         for reference in references:
-                #             rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-                #                                                                      publication_dict, 
-                #                                                                      config_dict, 
-                #                                                                      project_name, 
-                #                                                                      author,
-                #                                                                      pub, 
-                #                                                                      pub_author, 
-                #                                                                      reference))
-                
-                # elif has_pub_author_keywords:
-                #     for pub_author in pub_authors:
-                #         rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-                #                                                                  publication_dict, 
-                #                                                                  config_dict, 
-                #                                                                  project_name, 
-                #                                                                  author, 
-                #                                                                  pub, 
-                #                                                                  pub_author))
-                
-                # elif has_reference_keywords:
-                #     for reference in references:
-                #         rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-                #                                                                  publication_dict, 
-                #                                                                  config_dict, 
-                #                                                                  project_name, 
-                #                                                                  author, 
-                #                                                                  pub, 
-                #                                                                  {}, 
-                #                                                                  reference))
-                        
-                # else:
-                #     rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
-                #                                                              publication_dict, 
-                #                                                              config_dict, 
-                #                                                              project_name, 
-                #                                                              author, 
-                #                                                              pub))
-                    
+                                    
         else:
             rows.append(emails_and_reports_helpers._replace_keywords(row_template, 
                                                                      publication_dict, 

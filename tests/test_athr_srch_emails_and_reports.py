@@ -88,6 +88,8 @@ def authors_by_project_dict_tabular():
     
     
 def test_create_project_reports_and_emails_tabular(publication_dict, config_dict_tabular, authors_by_project_dict_tabular):
+    ## Add a filename to a project report to test that it will create it correctly.
+    authors_by_project_dict_tabular["Core A Administrative Core"]["Hunter Moseley"]["project_report"]["filename"] = "asdf.csv"
     ## Add Travis to a publication so we can test that multiple authors are sent emails.
     publication_dict["https://doi.org/10.1038/s41597-023-02277-x"]["authors"][1]["author_id"] = "Travis Thompson"
             
@@ -108,6 +110,7 @@ def test_create_project_reports_and_emails_tabular(publication_dict, config_dict
     
     number_of_excel_files = len([name for name in dir_contents if ".xlsx" in name])
     
+    assert "asdf.csv" in dir_contents
     assert expected_emails == actual_emails
     assert number_of_excel_files == 1
     assert "no_from_email_report.csv" in dir_contents

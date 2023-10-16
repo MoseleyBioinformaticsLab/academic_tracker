@@ -13,7 +13,7 @@ import pymed
 
 from academic_tracker.ref_srch_modularized import input_reading_and_checking, build_publication_dict, save_and_send_reports_and_emails
 from academic_tracker.fileio import load_json, read_text_from_txt
-from academic_tracker.ref_srch_webio import search_references_on_PubMed, search_references_on_Crossref
+from academic_tracker.ref_srch_webio import search_references_on_source
 
 
 @pytest.fixture(autouse=True)
@@ -115,11 +115,11 @@ def test_input_reading_and_checking_noPubMed(config_dict):
 def test_build_publication_dict_with_Crossref(mocker, config_dict_Hunter_only, original_queries, tokenized_citations):
     
     # running_pubs = {}
-    # running_pubs1, matching_key_for_citation1, all_pubs = search_references_on_PubMed(running_pubs, tokenized_citations, "asdf", original_queries["PubMed"])
-    # running_pubs2, matching_key_for_citation2, all_pubs = search_references_on_Crossref(copy.deepcopy(running_pubs1), tokenized_citations, "asdf", original_queries["Crossref"])
+    # running_pubs1, matching_key_for_citation1, all_pubs = search_references_on_source("PubMed", running_pubs, tokenized_citations, "asdf", original_queries["PubMed"])
+    # running_pubs2, matching_key_for_citation2, all_pubs = search_references_on_source("Crossref", copy.deepcopy(running_pubs1), tokenized_citations, "asdf", original_queries["Crossref"])
     
-    # running_pubs3, matching_key_for_citation3, all_pubs = search_references_on_PubMed(copy.deepcopy(running_pubs2), tokenized_citations, "asdf", original_queries["PubMed"])
-    # running_pubs4, matching_key_for_citation4, all_pubs = search_references_on_Crossref(copy.deepcopy(running_pubs3), tokenized_citations, "asdf", original_queries["Crossref"])
+    # running_pubs3, matching_key_for_citation3, all_pubs = search_references_on_source("PubMed", copy.deepcopy(running_pubs2), tokenized_citations, "asdf", original_queries["PubMed"])
+    # running_pubs4, matching_key_for_citation4, all_pubs = search_references_on_source("Crossref", copy.deepcopy(running_pubs3), tokenized_citations, "asdf", original_queries["Crossref"])
 
     
     # with open(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "all", "running_pubs1.json"),'w') as jsonFile:
@@ -150,14 +150,11 @@ def test_build_publication_dict_with_Crossref(mocker, config_dict_Hunter_only, o
     matching_key_for_citation3 = load_json(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "all", "matching_key_for_citation3.json"))
     matching_key_for_citation4 = load_json(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "all", "matching_key_for_citation4.json"))
     
-    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_PubMed", 
+    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_source", 
                   side_effect=[(running_pubs1, matching_key_for_citation1, original_queries["PubMed"]), 
-                                (running_pubs3, matching_key_for_citation3, original_queries["PubMed"])])
-    
-    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_Crossref", 
-                  side_effect=[(running_pubs2, matching_key_for_citation2, original_queries["Crossref"]), 
-                                (running_pubs4, matching_key_for_citation4, original_queries["Crossref"])])
-    
+                                (running_pubs2, matching_key_for_citation2, original_queries["Crossref"]),
+                                (running_pubs3, matching_key_for_citation3, original_queries["PubMed"]),
+                                (running_pubs4, matching_key_for_citation4, original_queries["Crossref"])])    
     
     actual_publication_dict, actual_tokenized_citations, _ = build_publication_dict(config_dict_Hunter_only, tokenized_citations, False, False)
     
@@ -181,9 +178,9 @@ def test_build_publication_dict_with_Crossref(mocker, config_dict_Hunter_only, o
 def test_build_publication_dict_no_Crossref(mocker, config_dict_Hunter_only, original_queries, tokenized_citations):
     
     # running_pubs = {}
-    # running_pubs1, matching_key_for_citation1, all_pubs = search_references_on_PubMed(running_pubs, tokenized_citations, "asdf", original_queries["PubMed"])
+    # running_pubs1, matching_key_for_citation1, all_pubs = search_references_on_source("PubMed", running_pubs, tokenized_citations, "asdf", original_queries["PubMed"])
     
-    # running_pubs2, matching_key_for_citation2, all_pubs = search_references_on_PubMed(copy.deepcopy(running_pubs1), tokenized_citations, "asdf", original_queries["PubMed"])
+    # running_pubs2, matching_key_for_citation2, all_pubs = search_references_on_source("PubMed", copy.deepcopy(running_pubs1), tokenized_citations, "asdf", original_queries["PubMed"])
 
     
     # with open(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "no_Crossref", "running_pubs1.json"),'w') as jsonFile:
@@ -202,7 +199,7 @@ def test_build_publication_dict_no_Crossref(mocker, config_dict_Hunter_only, ori
     matching_key_for_citation1 = load_json(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "no_Crossref", "matching_key_for_citation1.json"))
     matching_key_for_citation2 = load_json(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "no_Crossref", "matching_key_for_citation2.json"))
     
-    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_PubMed", 
+    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_source", 
                   side_effect=[(running_pubs1, matching_key_for_citation1, original_queries["PubMed"]), 
                                 (running_pubs2, matching_key_for_citation2, original_queries["PubMed"])])
         
@@ -230,9 +227,9 @@ def test_build_publication_dict_no_Crossref(mocker, config_dict_Hunter_only, ori
 def test_build_publication_dict_no_PubMed(mocker, config_dict_Hunter_only, original_queries, tokenized_citations):
     
     # running_pubs = {}
-    # running_pubs1, matching_key_for_citation1, all_pubs = search_references_on_Crossref(running_pubs, tokenized_citations, "asdf", original_queries["Crossref"])
+    # running_pubs1, matching_key_for_citation1, all_pubs = search_references_on_source("Crossref", running_pubs, tokenized_citations, "asdf", original_queries["Crossref"])
     
-    # running_pubs2, matching_key_for_citation2, all_pubs = search_references_on_Crossref(copy.deepcopy(running_pubs1), tokenized_citations, "asdf", original_queries["Crossref"])
+    # running_pubs2, matching_key_for_citation2, all_pubs = search_references_on_source("Crossref", copy.deepcopy(running_pubs1), tokenized_citations, "asdf", original_queries["Crossref"])
 
     
     # with open(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "no_PubMed", "running_pubs1.json"),'w') as jsonFile:
@@ -251,7 +248,7 @@ def test_build_publication_dict_no_PubMed(mocker, config_dict_Hunter_only, origi
     matching_key_for_citation1 = load_json(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "no_PubMed", "matching_key_for_citation1.json"))
     matching_key_for_citation2 = load_json(os.path.join("tests", "testing_files", "intermediate_results", "ref_search", "no_PubMed", "matching_key_for_citation2.json"))
         
-    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_Crossref", 
+    mocker.patch("academic_tracker.ref_srch_modularized.ref_srch_webio.search_references_on_source", 
                   side_effect=[(running_pubs1, matching_key_for_citation1, original_queries["Crossref"]), 
                                 (running_pubs2, matching_key_for_citation2, original_queries["Crossref"])])
     

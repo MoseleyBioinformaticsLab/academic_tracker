@@ -39,4 +39,4 @@ This package has the following modules:
     This module contains general functions for interfacing with the internet.
 
 """
-__version__ = "1.0.6"
+__version__ = "2.0.0"

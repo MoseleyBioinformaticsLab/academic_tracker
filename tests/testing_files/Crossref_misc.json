@@ -1,0 +1,77 @@
+{
+  "https://doi.org/10.1371/journal.pone.0277834": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "P. Travis",
+        "initials": null,
+        "lastname": "Thompson"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Christian D.",
+        "initials": null,
+        "lastname": "Powell"
+      },
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": null,
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter N. B.",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1371/journal.pone.0277834",
+    "grants": [
+      "2020026",
+      "P42 ES007380",
+      "U54 TR001998-05A1"
+    ],
+    "journal": "Public Library of Science (PLoS)",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 18,
+      "month": 11,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1073/pnas.98.2.381",
+        "pubmed_id": null,
+        "title": "PubMed Central: The GenBank of the published literature"
+      },
+      {
+        "PMCID": null,
+        "citation": "Consolidated Appropriations Act, 2014, H.R. 3547, Editor. 2013: Congressional Record.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "CrossRef text and data mining services"
+      }
+    ],
+    "results": null,
+    "title": "Academic Tracker: Software for tracking and reporting publications associated with authors and grants"
+  }
+}

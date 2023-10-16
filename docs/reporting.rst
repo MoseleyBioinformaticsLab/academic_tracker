@@ -78,20 +78,22 @@ Author Search
 -------------
 The report for the author_search is built by looping over each project, each 
 author associated with the project, each publication associated with the author, 
-and each author on the publication. The template for author_search has 4 sections, 
-1 for each loop (project_loop, author_loop, pub_loop, and pub_author_loop). Tags 
+and each author on the publication. The template for author_search has 5 sections, 
+1 for each loop (project_loop, author_loop, pub_loop, pub_author_loop, and reference_loop). Tags 
 denote the beginning and end of each loop.
  
 The section determines when keywords in the template are replaced. Keywords inside
-the pub_author_loop section are replaced for each author on the publication. 
+the pub_author_loop section are replaced for each author on the publication. Keywords 
+inside the reference loop section are replaced for each reference on the publication. 
 Keywords inside the pub_loop section are replaced for each publication associated 
 with the author. Keywords inside the author_loop are replaced for each author 
 associated with the project. Keywords inside the project loop section are replaced 
 for each project. The sections are expected to be nested inside of each other, 
-so the pub_author_loop tags should be inside the pub_loop tags, the pub_loop tags 
+so the pub_author_loop and reference_loop tags should be inside the pub_loop tags, the pub_loop tags 
 should be inside the author_loop tags, and the author_loop tags should be inside 
-the project_loop tags. If they are not then the report will most likely not look 
-as expected.
+the project_loop tags. The pub_author_loop and reference_loop are on the same level 
+and should not be nested within each other. Any incorrect nesting will most likely 
+cause the report not to look as expected.
 
 If specifying a tabular report using the "columns" attribute the loops are determined 
 by what keywords are present. If there are keywords from the pub_author_loop in 
@@ -103,14 +105,16 @@ author.
 Reference Search
 ----------------
 The report for the reference_search is built by looping over each publication matched 
-in the reference, and each author on the publication. The template has 2 sections, 
-1 for each loop (pub_loop and pub_author_loop). Tags denote the beginning and end 
+in the reference, and each author on the publication. The template has 3 sections, 
+1 for each loop (pub_loop, pub_author_loop, and reference_loop). Tags denote the beginning and end 
 of each loop. The section determines when keywords in the template are replaced. 
 Keywords inside the pub_author_loop section are replaced for each author on the 
-publication. Keywords inside the pub_loop section are replaced for each publication. 
-The sections are expected to be nested inside of each other, so the pub_author_loop 
-tags should be inside the pub_loop tags. If they are not then the report will 
-most likely not look as expected.
+publication. Keywords inside the reference loop section are replaced 
+for each reference on the publication. Keywords inside the pub_loop section are replaced for each publication. 
+The sections are expected to be nested inside of each other, so the pub_author_loop and reference_loop 
+tags should be inside the pub_loop tags. The pub_author_loop and reference_loop are on the same level 
+and should not be nested within each other. Any incorrect nesting will most likely 
+cause the report not to look as expected.
 
 
 Project Report
@@ -164,18 +168,30 @@ Keywords
     <last_author>
     <authors>              Will be replaced with a comma separated list of author names of all authors.
     <grants>               Will be replaced with a comma separated list of grants associated with the publication.
+    <queried_sources>      Will be replaced with a comma separated list of the sources where information was found for the publication.
     
     Pub Author Keywords - Pulled from the authors section of each publication in the publications.json file.
     <pub_author_first>
     <pub_author_last>
     <pub_author_initials>
+    <pub_author_collective>        Some authors are a collective and have a special field for the name instead of first and last.
     <pub_author_affiliations>
+    <pub_author_ORCID>
+    <pub_author_id>
     
     Author Keywords - Pulled from the Authors section of the configuration JSON file.
     <author_first>
     <author_last>
+    <author_collective>        Some authors are a collective and have a special field for the name instead of first and last.
     <author_name_search>
     <author_email>
+    
+    Publication References Keywords
+    <reference_citation>      The full citation for the reference if available.
+    <reference_title>         The reference title if available.
+    <reference_PMID>          The reference PMID if available.
+    <reference_PMCID>         The reference PMCID if available.
+    <reference_DOI>           The reference DOI if available.
     
     Reference Search Specific Keywords
     <ref_line>                The line from the reference file used to find the publication.
@@ -184,8 +200,8 @@ Keywords
     <tok_PMID>                The PMID parsed (tokenized) from the reference line.
     <tok_authors>             The authors parsed (tokenized) from the reference line. Will be a comma separated list.
     <is_in_comparison_file>   If the publication is in the comparison file True otherwise False.
-
-
+    
+    
 
 Examples
 ~~~~~~~~
@@ -377,6 +393,8 @@ Keywords
     <pub_author_last>          -  Collaborator's last name.
     <pub_author_initials>      -  Collaborator's initials.
     <pub_author_affiliations>  -  Collaborator's affiliations.
+    <pub_author_ORCID>         -  Collaborator's ORCID.
+    <pub_author_id>            -  Collaborator's ID.
     
 
 Examples

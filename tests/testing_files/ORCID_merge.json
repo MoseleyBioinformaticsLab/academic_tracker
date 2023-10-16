@@ -1,0 +1,541 @@
+{
+  "https://aacrjournals.org/cancerres/article/83/7_Supplement/3673/719740": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": null,
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Plk1 phosphorylation of PHGDH to regulate serine metabolism"
+  },
+  "https://chemrxiv.org/engage/chemrxiv/article-details/62da093f13e3659590e0d5eb": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.26434/chemrxiv-2022-bt3f6",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 25,
+      "month": 7,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "A FAIR approach for detecting and sharing PFAS hot-spot areas and water systems"
+  },
+  "https://doi.org/10.1002/hep.32467": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1002/hep.32467",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Hepatic kinome atlas: an in\u2010depth identification of kinase pathways in liver fibrosis of humans and rodents"
+  },
+  "https://doi.org/10.1038/s41467-023-35784-x": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1038/s41467-023-35784-x",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Polycomb deficiency drives a FOXP2-high aggressive state targetable by epigenetic inhibitors"
+  },
+  "https://doi.org/10.1038/s41597-023-02277-x": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1038/s41597-023-02277-x",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 16,
+      "month": 6,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water"
+  },
+  "https://doi.org/10.1038/s41597-023-02281-1": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1038/s41597-023-02281-1",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 16,
+      "month": 6,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "A proposed FAIR approach for disseminating geospatial information system maps"
+  },
+  "https://doi.org/10.1186/s12859-023-05208-0": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1186/s12859-023-05208-0",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 4,
+      "month": 11,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "kegg_pull: a software package for the RESTful access and pulling from the Kyoto Encyclopedia of Gene and Genomes"
+  },
+  "https://doi.org/10.1186/s12859-023-05423-9": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1186/s12859-023-05423-9",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 24,
+      "month": 7,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "The metabolomics workbench file status website: a metadata repository promoting FAIR principles of metabolomics data"
+  },
+  "https://doi.org/10.1289/ehp11484": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1289/ehp11484",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
+    "results": null,
+    "title": "A Case for Accelerating Standards to Achieve the FAIR Principles of Environmental Health Research Experimental Data"
+  },
+  "https://doi.org/10.1371/journal.pone.0277834": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1371/journal.pone.0277834",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 18,
+      "month": 11,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Academic Tracker: Software for tracking and reporting publications associated with authors and grants"
+  },
+  "https://doi.org/10.3390/metabo12060515": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo12060515",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 2,
+      "month": 6,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Scan-Centric, Frequency-Based Method for Characterizing Peaks from Direct Injection Fourier Transform Mass Spectrometry Experiments"
+  },
+  "https://doi.org/10.3390/metabo13020215": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo13020215",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 1,
+      "month": 2,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Bilirubin nanoparticle treatment in obese mice inhibits hepatic ceramide production and remodels liver fat content"
+  },
+  "https://doi.org/10.3390/metabo13070842": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo13070842",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 12,
+      "month": 7,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "MESSES: Software for Transforming Messy Research Datasets into Clean Submissions to Metabolomics Workbench for Public Sharing"
+  },
+  "https://www.academia.edu/download/99372714/pdf.pdf": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": null,
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Bilirubin Nanoparticle Treatment in Obese Mice Inhibits Hepatic Ceramide Production and Remodels Liver Fat Content. Metabolites 2023, 13, 215"
+  },
+  "https://www.biorxiv.org/content/10.1101/2022.02.24.481854.abstract": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1101/2022.02.24.481854",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 28,
+      "month": 2,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Information-content-informed kendall-tau correlation: Utilizing missing values"
+  },
+  "https://www.biorxiv.org/content/10.1101/2022.12.08.519680.abstract": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1101/2022.12.08.519680",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 12,
+      "month": 12,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar",
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "md_harmonize: a Python package for atom-level harmonization of public metabolic data-bases"
+  }
+}

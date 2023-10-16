@@ -1,0 +1,298 @@
+{
+  "https://doi.org/10.1186/1471-2105-15-s10-p36": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Joshua M",
+        "initials": null,
+        "lastname": "Mitchell"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Teresa W-M",
+        "initials": null,
+        "lastname": "Fan"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Andrew N",
+        "initials": null,
+        "lastname": "Lane"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Hunter NB",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1186/1471-2105-15-s10-p36",
+    "grants": [],
+    "journal": "Springer Science and Business Media LLC",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 29,
+      "month": 9,
+      "year": 2014
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Development of large-scale metabolite identification methods for metabolomics"
+  },
+  "https://doi.org/10.3390/metabo3040853": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "William",
+        "initials": null,
+        "lastname": "Carreer"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Robert",
+        "initials": null,
+        "lastname": "Flight"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo3040853",
+    "grants": [],
+    "journal": "MDPI AG",
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 25,
+      "month": 9,
+      "year": 2013
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1016/S0021-9258(18)74342-1",
+        "pubmed_id": null,
+        "title": "Deuterium as an indicator in the study of intermediary metabolism"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1152/physrev.1940.20.2.218",
+        "pubmed_id": null,
+        "title": "The study of intermediary metabolism of animals with the aid of isotopes"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1016/S0021-9258(18)75075-8",
+        "pubmed_id": null,
+        "title": "Deuterium as an indicator in the study of intermediary metabolism"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.2174/1568009033481769",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1476-4598-8-41",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1016/j.aca.2009.08.032",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1471-2105-11-139",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ac061906b",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1741-7007-9-37",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/bp000058h",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1046/j.1432-1033.2003.03448.x",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Mass isotopomer distribution analysis at eight years: Theoretical, analytic, and experimental considerations"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1002/bms.1200200804",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Efficient calculation of exact mass isotopic distributions"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1002/bit.10393",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1002/bit.10909",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "An automated method for the analysis of stable isotope labeling data in proteomics"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1002/(SICI)1096-9888(199603)31:3<255::AID-JMS290>3.0.CO;2-3",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Efficient calculation of accurate masses of isotopic peaks"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ac951158i",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1016/0020-7381(83)85053-0",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "The Python Programming Languagehttp://www.python.org/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Python: A programming language for software integration and development"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "A Guide to NumPy"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Design Patterns: Elements of Reusable Object-Oriented Software"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.5936/csbj.201301006",
+        "pubmed_id": null,
+        "title": "Error analysis and propagation in metabolomics data analysis"
+      },
+      {
+        "PMCID": null,
+        "citation": "Moseley Bioinformatics Laboratory Software Repository for downloadhttp://bioinformatics.cesb.uky.edu/bin/view/Main/SoftwareDevelopment/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
+    "results": null,
+    "title": "A Computational Framework for High-Throughput Isotopic Natural Abundance Correction of Omics-Level Ultra-High Resolution FT-MS Datasets"
+  }
+}

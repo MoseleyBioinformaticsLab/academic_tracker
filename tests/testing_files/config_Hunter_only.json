@@ -1,0 +1,83 @@
+{
+  "project_descriptions": {
+    "Core C DMAC": {
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Hunter Moseley"
+      ],
+      "project_report": {
+        "columns": {
+          "Author Searched": "<author_name_search>",
+          "First Author": "<first_author>",
+          "Last Author": "<last_author>",
+          "All Authors": "<authors>",
+          "Article Title": "<title>",
+          "Journal Name": "<journal>",
+          "Journal Publication Date": "<publication_month>-<publication_day>-<publication_year>",
+          "PubMed PMID #": "<PMID>",
+          "PubMed Central PMCID #": "<PMCID>",
+          "DOI #": "<DOI>"
+        },
+        "sort": [
+          "Author Searched"
+        ],
+        "file_format": "xlsx"
+      },
+      "cutoff_year": 2022,
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ]
+    }
+  },
+  "ORCID_search": {
+    "ORCID_key": "APP-JE4OT4MYTV4KNQXO",
+    "ORCID_secret": "fec1c999-5a62-41e1-ae69-a09ffa00a7e2"
+  },
+  "PubMed_search": {
+    "PubMed_email": "ptth222@uky.edu"
+  },
+  "Crossref_search": {
+    "mailto_email": "ptth222@uky.edu"
+  },
+  "summary_report": {
+    "columns": {
+      "Project": "<project_name>",
+      "Author Searched": "<author_name_search>",
+      "First Author": "<first_author>",
+      "Last Author": "<last_author>",
+      "All Authors": "<authors>",
+      "Article Title": "<title>",
+      "Journal Name": "<journal>",
+      "Journal Publication Date": "<publication_month>-<publication_day>-<publication_year>",
+      "PubMed PMID #": "<PMID>",
+      "PubMed Central PMCID #": "<PMCID>",
+      "DOI #": "<DOI>"
+    },
+    "sort": [
+      "Project",
+      "Author Searched"
+    ],
+      "file_format": "xlsx"
+  },
+  "Authors": {
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
+      "affiliations": [
+        "kentucky"
+      ],
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
+      "last_name": "Moseley",
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "cutoff_year": 2022
+    }
+  }
+}

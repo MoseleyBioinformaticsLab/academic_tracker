@@ -71,6 +71,7 @@ def test_tokenize_MLA_or_Chicago_authors(authors_string, authors):
 
 @pytest.mark.parametrize("authors_string, authors", [
         ("last_name, A.B.", [{"last":"last_name", "initials":"A.B."}]),
+        (", A.B.", [{"last":"", "initials":"A.B."}]),
         ("last_name, A.B. et al.", [{"last":"last_name", "initials":"A.B."}]),
         ("last_name1, A.B., last_name2, C.D.", [{"last":"last_name1", "initials":"A.B."},
                                                 {"last":"last_name2", "initials":"C.D."}]),

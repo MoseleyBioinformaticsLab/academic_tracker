@@ -3,6 +3,7 @@
 import os
 import requests
 import copy
+import json
 import re
 
 import pytest
@@ -70,7 +71,7 @@ def test_main_PMID_reference(mocker, capsys):
 def test_author_search(mocker, capsys):
     def mock_call(*args, **kwargs):
         publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-        return publication_dict
+        return publication_dict, {}
     mocker.patch("academic_tracker.__main__.athr_srch_modularized.build_publication_dict", mock_call)
     
     args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"), 
@@ -80,12 +81,14 @@ def test_author_search(mocker, capsys):
             "--no_Crossref":False,
             "--no_GoogleScholar":False,
             "--no_PubMed":False,
-            "--test":True}
+            "--test":True,
+            "--save-all-queries":True}
     
     author_search(args["<config_json_file>"], args["--no_ORCID"], 
                       args["--no_GoogleScholar"], args["--no_Crossref"], 
                       args["--no_PubMed"],
-                      args["--test"], args["--prev_pub"])
+                      args["--test"], args["--prev_pub"],
+                      args["--save-all-queries"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -93,6 +96,7 @@ def test_author_search(mocker, capsys):
     assert not os.path.exists(os.path.join(save_dir, "summary_report.txt"))
     assert os.path.exists(os.path.join(save_dir, "emails.json"))
     assert os.path.exists(os.path.join(save_dir, "publications.json"))
+    assert os.path.exists(os.path.join(save_dir, "all_results.json"))
 
 
 
@@ -100,7 +104,7 @@ def test_reference_search(mocker, capsys):
     def mock_call(*args, **kwargs):
         publication_dict = load_json(os.path.join("tests", "testing_files", "ref_srch_Crossref_pub_dict.json"))
         tokenized_citations = load_json(os.path.join("tests", "testing_files", "tokenized_citations_for_report_test.json"))
-        return publication_dict, tokenized_citations
+        return publication_dict, tokenized_citations, {}
     mocker.patch("academic_tracker.__main__.ref_srch_modularized.build_publication_dict", mock_call)
     
     args = {"<config_json_file>":os.path.join("tests", "testing_files", "config_truncated.json"),
@@ -112,12 +116,16 @@ def test_reference_search(mocker, capsys):
             "--no_Crossref":False,
             "--no_GoogleScholar":False,
             "--no_PubMed":False,
-            "--test":True}
+            "--test":True,
+            "--save-all-queries":True,
+            "--keep-duplicates":False}
     
     reference_search(args["<config_json_file>"], args["<references_file_or_URL>"], 
-                             args["--MEDLINE_reference"], args["--no_Crossref"], 
-                             args["--no_PubMed"],
-                             args["--test"], args["--prev_pub"])
+                              args["--MEDLINE_reference"], args["--no_Crossref"], 
+                              args["--no_PubMed"],
+                              args["--test"], args["--prev_pub"],
+                              args["--save-all-queries"],
+                              not args["--keep-duplicates"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -125,6 +133,7 @@ def test_reference_search(mocker, capsys):
     assert not os.path.exists(os.path.join(save_dir, "summary_report.txt"))
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
     assert os.path.exists(os.path.join(save_dir, "publications.json"))
+    assert os.path.exists(os.path.join(save_dir, "all_results.json"))
 
 
 
@@ -140,10 +149,12 @@ def test_reference_search(mocker, capsys):
 def test_PMID_reference(reference_file, mocker, capsys):
     def mock_call(*args, **kwargs):
         publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-        publication_dict["34811960"] = publication_dict["https://doi.org/10.1002/adhm.202101820"]
-        publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/advs.202101999"]
-        del publication_dict["https://doi.org/10.1002/adhm.202101820"]
-        del publication_dict["https://doi.org/10.1002/advs.202101999"]
+        publication_dict["32095784"] = publication_dict["https://doi.org/10.1038/s41597-023-02277-x"]
+        publication_dict["34811960"] = publication_dict["https://aacrjournals.org/cancerres/article/83/7_Supplement/3673/719740"]
+        publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/hep.32467"]
+        del publication_dict["https://aacrjournals.org/cancerres/article/83/7_Supplement/3673/719740"]
+        del publication_dict["https://doi.org/10.1002/hep.32467"]
+        del publication_dict["https://doi.org/10.1038/s41597-023-02277-x"]
         return publication_dict
     mocker.patch("academic_tracker.__main__.ref_srch_webio.build_pub_dict_from_PMID", mock_call)
     
@@ -177,10 +188,12 @@ def test_PMID_reference(reference_file, mocker, capsys):
 def test_PMID_reference_errors(error_file, error_message, mocker, capsys):
     def mock_call(*args, **kwargs):
         publication_dict = load_json(os.path.join("tests", "testing_files", "publication_dict_truncated.json"))
-        publication_dict["34811960"] = publication_dict["https://doi.org/10.1002/adhm.202101820"]
-        publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/advs.202101999"]
-        del publication_dict["https://doi.org/10.1002/adhm.202101820"]
-        del publication_dict["https://doi.org/10.1002/advs.202101999"]
+        publication_dict["32095784"] = publication_dict["https://doi.org/10.1038/s41597-023-02277-x"]
+        publication_dict["34811960"] = publication_dict["https://aacrjournals.org/cancerres/article/83/7_Supplement/3673/719740"]
+        publication_dict["34622577"] = publication_dict["https://doi.org/10.1002/hep.32467"]
+        del publication_dict["https://aacrjournals.org/cancerres/article/83/7_Supplement/3673/719740"]
+        del publication_dict["https://doi.org/10.1002/hep.32467"]
+        del publication_dict["https://doi.org/10.1038/s41597-023-02277-x"]
         return publication_dict
     mocker.patch("academic_tracker.__main__.ref_srch_webio.build_pub_dict_from_PMID", mock_call)
     
@@ -315,16 +328,16 @@ def test_add_authors(capsys):
     
     expected_config = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
     expected_config["Authors"]["Name McNamerson"] = {"first_name":"Name",
-                                                     "last_name":"McNamerson",
-                                                     "pubmed_name_search":"Name McNamerson",
-                                                     "email":"ptth222@uky.edu",
-                                                     "affiliations":["kentucky","asdf","qwr"]}
+                                                      "last_name":"McNamerson",
+                                                      "pubmed_name_search":"Name McNamerson",
+                                                      "email":"ptth222@uky.edu",
+                                                      "affiliations":["kentucky","asdf","qwr"]}
     
     add_authors(args["<config_json_file>"], args["<authors_file>"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
-    
+        
     assert expected_config == load_json(os.path.join(save_dir, "configuration.json"))
     
 
@@ -332,8 +345,14 @@ def test_add_authors(capsys):
 @pytest.mark.parametrize("error_file, error_message", [
         
         ("empty_file.txt", "Unknown file type for author file."),
-        ("add_authors_missing_column.csv", "Error: The following columns are required but are missing:\nlast_name"),
-        ("add_authors_missing_value.csv", "Error: The following columns have null values:\nlast_name"),
+        ("add_authors_missing_column.csv", "Error: The following columns are required but are missing:\npubmed_name_search"),
+        ("add_authors_missing_value.csv", "Error: The following columns have null values:\npubmed_name_search"),
+        ("add_authors_missing_all_names.csv", "Error: The following rows have incomplete name columns:\n3\nEach row must have values in either the 'collective_name' column or the 'first_name' and 'last_name' columns."),
+        ("add_authors_missing_last_name_column.csv", "Error: There is a 'first_name' column without a matching 'last_name' column."),
+        ("add_authors_missing_first_name_column.csv", "Error: There is a 'last_name' column without a matching 'first_name' column."),
+        ("add_authors_missing_all_name_columns.csv", "Error: There must be either a 'collective_name' column or 'first_name' and 'last_name' columns."),
+        ("add_authors_missing_first_and_last_names.csv", "Error: The following rows have incomplete name columns:\n2\nEach row must have values in either the 'collective_name' column or the 'first_name' and 'last_name' columns."),
+        ("add_authors_missing_collective_name.csv", "Error: The following rows have incomplete name columns:\n1\nEach row must have values in either the 'collective_name' column or the 'first_name' and 'last_name' columns."),
         ])
 
 
@@ -349,10 +368,10 @@ def test_add_authors_errors(error_file, error_message, capsys):
     
     expected_config = load_json(os.path.join("tests", "testing_files", "config_truncated.json"))
     expected_config["Authors"]["Name McNamerson"] = {"first_name":"Name",
-                                                     "last_name":"McNamerson",
-                                                     "pubmed_name_search":"Name McNamerson",
-                                                     "email":"ptth222@uky.edu",
-                                                     "affiliations":["kentucky","asdf","qwr"]}
+                                                      "last_name":"McNamerson",
+                                                      "pubmed_name_search":"Name McNamerson",
+                                                      "email":"ptth222@uky.edu",
+                                                      "affiliations":["kentucky","asdf","qwr"]}
     
     with pytest.raises(SystemExit):
         add_authors(args["<config_json_file>"], args["<authors_file>"])
@@ -377,11 +396,12 @@ def test_tokenize_reference(mocker, capsys):
             "--no_ORCID":False,
             "--no_Crossref":False,
             "--no_GoogleScholar":False,
-            "--test":True}
+            "--test":True,
+            "--keep-duplicates":False}
     
     expected_text = read_text_from_txt(os.path.join("tests", "testing_files", "tokenization_report.txt"))
     
-    tokenize_reference(args["<references_file_or_URL>"], args["--MEDLINE_reference"])
+    tokenize_reference(args["<references_file_or_URL>"], args["--MEDLINE_reference"], not args["--keep-duplicates"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -424,11 +444,12 @@ def test_gen_reports_and_emails_ref(mocker, capsys):
             "--no_ORCID":False,
             "--no_Crossref":False,
             "--no_GoogleScholar":False,
-            "--test":True}
+            "--test":True,
+            "--keep-duplicates":False}
     
     gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
-                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
-                                   args["--test"], args["--prev_pub"])
+                                    args["<publication_json_file>"], args["--MEDLINE_reference"], 
+                                    args["--test"], args["--prev_pub"], not args["--keep-duplicates"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
@@ -448,16 +469,19 @@ def test_gen_reports_and_emails_ref_no_pub_dict_keys(mocker, capsys):
             "--no_ORCID":False,
             "--no_Crossref":False,
             "--no_GoogleScholar":False,
-            "--test":True}
+            "--test":True,
+            "--keep-duplicates":True}
     
     expected_report = read_text_from_txt(os.path.join("tests", "testing_files", "gen_reports_ref_summary_report.txt"))
     
     gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
-                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
-                                   args["--test"], args["--prev_pub"])
+                                    args["<publication_json_file>"], args["--MEDLINE_reference"], 
+                                    args["--test"], args["--prev_pub"], not args["--keep-duplicates"])
     
     captured = capsys.readouterr()
     save_dir = captured.out.strip().split(" ")[-1]
+    # with open(os.path.join("tests", "testing_files", "gen_reports_ref_summary_report_new.txt"), 'wb') as outFile:
+    #     outFile.write(read_text_from_txt(os.path.join(save_dir, "summary_report.txt")).encode("utf-8"))
     
     assert not os.path.exists(os.path.join(save_dir, "emails.json"))
     assert os.path.exists(os.path.join(save_dir, "summary_report.txt"))
@@ -475,12 +499,13 @@ def test_gen_reports_and_emails_ref_no_matches(mocker, capsys):
             "--no_ORCID":False,
             "--no_Crossref":False,
             "--no_GoogleScholar":False,
-            "--test":True}
+            "--test":True,
+            "--keep-duplicates":False}
     
     with pytest.raises(SystemExit):    
         gen_reports_and_emails_ref(args["<config_json_file>"], args["<references_file_or_URL>"], 
-                                   args["<publication_json_file>"], args["--MEDLINE_reference"], 
-                                   args["--test"], args["--prev_pub"])
+                                    args["<publication_json_file>"], args["--MEDLINE_reference"], 
+                                    args["--test"], args["--prev_pub"], not args["--keep-duplicates"])
     
     captured = capsys.readouterr()
     assert captured.out == "Error: No entries in the publication JSON matched any reference in the provided reference." + "\n"

@@ -1,20 +1,10 @@
 {
-  "creation_date": "2022-02-16 12:42",
+  "creation_date": "2023-10-02 20:03",
   "emails": [
     {
-      "attachment": "Name,Affiliations\n\"Brewer, Dawn\",University of Kentucky Department of Dietetics and Human Nutrition.\n\"Christian, W Jay\",University of Kentucky College of Public Health.\n\"Evans, Steven\",Kentucky Water Resources Research Institute.\n\"Koempel, Annie\",University of Kentucky Department of Dietetics and Human Nutrition.\n\"McAlister, Malissa\",Kentucky Water Resources Research Institute.\n\"Ormsbee, Lindell E\",University of Kentucky College of Engineering.\n\"Pennell, Kelly G\",University of Kentucky College of Engineering.\n\"Tumlin, Kimberly I\",University of Kentucky College of Public Health.\n",
-      "attachment_filename": "Anna Hoover_collaborators.csv",
-      "author": "Anna Hoover",
-      "body": "asdf",
-      "cc": "",
-      "from": "ptth222@uky.edu",
-      "subject": "asdf",
-      "to": "Anna.Hoover@uky.edu"
-    },
-    {
-      "attachment": "Col1\nAnna G, Hoover, AG, University of Kentucky College of Public Health.\nAnnie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\nW Jay, Christian, WJ, University of Kentucky College of Public Health.\nKimberly I, Tumlin, KI, University of Kentucky College of Public Health.\nSteven, Evans, S, Kentucky Water Resources Research Institute.\nMalissa, McAlister, M, Kentucky Water Resources Research Institute.\nLindell E, Ormsbee, LE, University of Kentucky College of Engineering.\nDawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\n",
-      "attachment_filename": "Kelly Pennell_collaborators.csv",
-      "author": "Kelly Pennell",
+      "attachment": "Col1\n\"Ali S, Imami, AS, Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.\"\n\"Atta M, Nawabi, AM, Division of Transplant and Hepatobiliary, Department of Surgery, The University of Kansas Medical Center, Kansas City, Kansas, USA.\"\n\"Christian D, Powell, CD, University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Computer Science (Data Science Program), Lexington, Kentucky, USA.\"\n\"Genesee J, Martinez, GJ, Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\"\n\"Jennifer A, Hipp, JA, Strata Oncology, Ann Arbor, Michigan, USA.\"\n\"Justin F, Creeden, JF, Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.\"\n\"Kelly G, Pennell, KG, University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA. kellypennell@uky.edu.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA. kellypennell@uky.edu.\"\n\"Khaled, Alganem, K, Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.\"\n\"Laura E, Nagy, LE, Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.\nDepartment of Gastroenterology and Hepatology, Center for Liver Disease Research, Cleveland Clinic, Cleveland, Ohio, USA.\nDepartment of Molecular Medicine, Case Western Reserve University, Cleveland, Ohio, USA.\"\n\"Megan R, McMullen, MR, Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.\"\n\"Mei, Xu, M, Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\"\n\"P Travis, Thompson, PT, University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\"\n\"Robert M, Flight, RM, Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, Kentucky, USA.\"\n\"Robert, McCullumsmith, R, Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.\nNeurosciences Institute, ProMedica, Toledo, Ohio, USA.\"\n\"Samir, Softic, S, Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\nDepartment of Pediatrics, University of Kentucky, Lexington, Kentucky, USA.\"\n\"Sanjoy, Roychowdhury, S, Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.\"\n\"Steven A, Weinman, SA, Department of Internal Medicine and Liver Center, University of Kansas Medical Center, Kansas City, Kansas, USA.\"\n\"Sweta, Ojha, S, University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\"\n\"Terry D, Hinds, TD, Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nBarnstable Brown Diabetes Center, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\"\n\"Wang-Hsin, Lee, WH, Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\"\n\"Zachary A, Kipp, ZA, Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\"\n",
+      "attachment_filename": "Hunter Moseley_collaborators.csv",
+      "author": "Hunter Moseley",
       "body": "asdf",
       "cc": "",
       "from": "ptth222@uky.edu",
@@ -22,9 +12,19 @@
       "to": "ptth222@uky.edu"
     },
     {
-      "attachment": "Col1\n\"Anna G, Hoover, AG, University of Kentucky College of Public Health.\"\n\"Annie, Koempel, A, University of Kentucky Department of Dietetics and Human Nutrition.\"\n\"Dawn, Brewer, D, University of Kentucky Department of Dietetics and Human Nutrition.\"\n\"Kelly G, Pennell, KG, University of Kentucky College of Engineering.\"\n\"Kimberly I, Tumlin, KI, University of Kentucky College of Public Health.\"\n\"Malissa, McAlister, M, Kentucky Water Resources Research Institute.\"\n\"Steven, Evans, S, Kentucky Water Resources Research Institute.\"\n\"W Jay, Christian, WJ, University of Kentucky College of Public Health.\"\n",
-      "attachment_filename": "Lindell Ormsbee_collaborators.csv",
-      "author": "Lindell Ormsbee",
+      "attachment": "Name,Affiliations\n\"Moseley, Hunter N B\",\"University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Molecular and Cellular Biochemistry, Lexington, Kentucky, USA.\"\n\"Pennell, Kelly G\",\"University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA. kellypennell@uky.edu.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA. kellypennell@uky.edu.\"\n\"Powell, Christian D\",\"University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Computer Science (Data Science Program), Lexington, Kentucky, USA.\"\n\"Thompson, P Travis\",\"University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\"\n",
+      "attachment_filename": "Sweta Ojha_collaborators.csv",
+      "author": "Sweta Ojha",
+      "body": "asdf",
+      "cc": "",
+      "from": "ptth222@uky.edu",
+      "subject": "asdf",
+      "to": "sweta.ojha@uky.edu"
+    },
+    {
+      "attachment": "Col1\n\"Sweta, Ojha, S, University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\"\n\"Christian D, Powell, CD, University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Computer Science (Data Science Program), Lexington, Kentucky, USA.\"\n\"Hunter N B, Moseley, HNB, University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Molecular and Cellular Biochemistry, Lexington, Kentucky, USA.\"\n\"Kelly G, Pennell, KG, University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA. kellypennell@uky.edu.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA. kellypennell@uky.edu.\"\n",
+      "attachment_filename": "Travis Thompson_collaborators.csv",
+      "author": "Travis Thompson",
       "body": "asdf",
       "cc": "",
       "from": "ptth222@uky.edu",

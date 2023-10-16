@@ -1,0 +1,288 @@
+{
+  "PMCID": null,
+  "abstract": "Peripheral artery disease (PAD) affects >200 million people worldwide and is associated with high mortality and morbidity. We sought to identify genomic variants associated with PAD overall and in the contexts of diabetes and smoking status.\nWe identified genetic variants associated with PAD and then meta-analyzed with published summary statistics from the Million Veterans Program and UK Biobank to replicate their findings. Next, we ran stratified genome-wide association analysis in ever smokers, never smokers, individuals with diabetes, and individuals with no history of diabetes and corresponding interaction analyses, to identify variants that modify the risk of PAD by diabetic or smoking status.\nWe identified 5 genome-wide significant (\nOur analyses confirm the published genetic associations with PAD and identify novel variants that may influence susceptibility to PAD in the context of diabetes or smoking status.",
+  "authors": [
+    {
+      "ORCID": "0000-0002-9809-1398",
+      "affiliation": "Department of Immunology, Genetics and Pathology, Science for Life Laboratory, Uppsala University, Sweden (N.R.v.Z.).\nWellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.\nOxford Centre for Diabetes, Endocrinology and Metabolism, Radcliffe Department of Medicine (N.R.v.Z., A.M., N.R.R., N.W.R., M.I.M.), University of Oxford, United Kingdom.",
+      "author_id": null,
+      "firstname": "Natalie R",
+      "initials": "NR",
+      "lastname": "van Zuydam"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Clinical Trial Service Unit and Epidemiological Studies Unit, Nuffield Department of Population Health (A.S., J.C.H.), University of Oxford, United Kingdom.",
+      "author_id": null,
+      "firstname": "Alexander",
+      "initials": "A",
+      "lastname": "Stiby"
+    },
+    {
+      "ORCID": "0000-0002-2481-9753",
+      "affiliation": "Wellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.",
+      "author_id": null,
+      "firstname": "Moustafa",
+      "initials": "M",
+      "lastname": "Abdalla"
+    },
+    {
+      "ORCID": "0000-0002-2709-8699",
+      "affiliation": "Department of Cardiovascular Medicine and the Gonda Vascular Center, Mayo Clinic, Rochester, MN (E. Austin, M.d.A., I.J.K.).",
+      "author_id": null,
+      "firstname": "Erin",
+      "initials": "E",
+      "lastname": "Austin"
+    },
+    {
+      "ORCID": "0000-0002-9809-1398",
+      "affiliation": "Folkh\u00e4lsan Institute of Genetics, Folkh\u00e4lsan Research Center, Helsinki, Finland (E.H.D., N.S., C.F., P.-H.G.).\nAbdominal Center, Nephrology (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.\nHelsinki University Hospital, Research Program for Clinical and Molecular Metabolism, Faculty of Medicine (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.",
+      "author_id": null,
+      "firstname": "Emma H",
+      "initials": "EH",
+      "lastname": "Dahlstr\u00f6m"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Usher Institute of Population Health Sciences and Informatics, The University of Edinburgh, United Kingdom (S.M., E.W., J.P.).",
+      "author_id": null,
+      "firstname": "Stela",
+      "initials": "S",
+      "lastname": "McLachlan"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Department of Medicine, Helsinki University Central Hospital (E.V.), University of Helsinki, Finland.",
+      "author_id": null,
+      "firstname": "Efthymia",
+      "initials": "E",
+      "lastname": "Vlachopoulou"
+    },
+    {
+      "ORCID": "0000-0002-6513-2384",
+      "affiliation": "Genomics, Diabetes and Endocrinology, Lund University Diabetes Centre, Malm\u00f6, Sweden (E. Ahlqvist, E.L., L.G.).",
+      "author_id": null,
+      "firstname": "Emma",
+      "initials": "E",
+      "lastname": "Ahlqvist"
+    },
+    {
+      "ORCID": "0000-0001-9469-205X",
+      "affiliation": "Dalla Lana School of Public Health, University of Toronto, ON, Canada (C.D.L., A.P.).\nGenetics & Genome Biology, SickKids, Toronto, ON, Canada (C.D.L., A.P.).",
+      "author_id": null,
+      "firstname": "Chen",
+      "initials": "C",
+      "lastname": "Di Liao"
+    },
+    {
+      "ORCID": "0000-0003-4322-6942",
+      "affiliation": "Folkh\u00e4lsan Institute of Genetics, Folkh\u00e4lsan Research Center, Helsinki, Finland (E.H.D., N.S., C.F., P.-H.G.).\nAbdominal Center, Nephrology (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.\nHelsinki University Hospital, Research Program for Clinical and Molecular Metabolism, Faculty of Medicine (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.",
+      "author_id": null,
+      "firstname": "Niina",
+      "initials": "N",
+      "lastname": "Sandholm"
+    },
+    {
+      "ORCID": "0000-0002-3354-7454",
+      "affiliation": "Folkh\u00e4lsan Institute of Genetics, Folkh\u00e4lsan Research Center, Helsinki, Finland (E.H.D., N.S., C.F., P.-H.G.).\nAbdominal Center, Nephrology (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.\nHelsinki University Hospital, Research Program for Clinical and Molecular Metabolism, Faculty of Medicine (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.",
+      "author_id": null,
+      "firstname": "Carol",
+      "initials": "C",
+      "lastname": "Forsblom"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Wellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.\nOxford Centre for Diabetes, Endocrinology and Metabolism, Radcliffe Department of Medicine (N.R.v.Z., A.M., N.R.R., N.W.R., M.I.M.), University of Oxford, United Kingdom.\nNow with Genentech, South San Francisco, CA (A.M., M.I.M.).",
+      "author_id": null,
+      "firstname": "Anubha",
+      "initials": "A",
+      "lastname": "Mahajan"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Wellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.\nOxford Centre for Diabetes, Endocrinology and Metabolism, Radcliffe Department of Medicine (N.R.v.Z., A.M., N.R.R., N.W.R., M.I.M.), University of Oxford, United Kingdom.",
+      "author_id": null,
+      "firstname": "Neil R",
+      "initials": "NR",
+      "lastname": "Robertson"
+    },
+    {
+      "ORCID": "0000-0003-0510-4792",
+      "affiliation": "Wellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.\nOxford Centre for Diabetes, Endocrinology and Metabolism, Radcliffe Department of Medicine (N.R.v.Z., A.M., N.R.R., N.W.R., M.I.M.), University of Oxford, United Kingdom.\nDepartment of Human Genetics, Wellcome Trust Sanger Institute, Hinxton, Cambridgeshire, United Kingdom (N.W.R.).",
+      "author_id": null,
+      "firstname": "N William",
+      "initials": "NW",
+      "lastname": "Rayner"
+    },
+    {
+      "ORCID": "0000-0002-8869-681X",
+      "affiliation": "Genomics, Diabetes and Endocrinology, Lund University Diabetes Centre, Malm\u00f6, Sweden (E. Ahlqvist, E.L., L.G.).",
+      "author_id": null,
+      "firstname": "Eero",
+      "initials": "E",
+      "lastname": "Lindholm"
+    },
+    {
+      "ORCID": "0000-0002-0169-5137",
+      "affiliation": "Heart and Lung Center (J.S.), University of Helsinki, Finland.",
+      "author_id": null,
+      "firstname": "Juha",
+      "initials": "J",
+      "lastname": "Sinisalo"
+    },
+    {
+      "ORCID": "0000-0003-4842-1667",
+      "affiliation": "Institute for Molecular Medicine Finland (FIMM) (M.P., L.G.), University of Helsinki, Finland.\nFinnish Institute for Health and Welfare, Helsinki, Finland (M.P., V.S.).",
+      "author_id": null,
+      "firstname": "Markus",
+      "initials": "M",
+      "lastname": "Perola"
+    },
+    {
+      "ORCID": "0000-0001-7215-5202",
+      "affiliation": "Vascular Surgery, Abdominal Center (M.K.), University of Helsinki, Finland.",
+      "author_id": null,
+      "firstname": "Milla",
+      "initials": "M",
+      "lastname": "Kallio"
+    },
+    {
+      "ORCID": "0000-0001-9903-7222",
+      "affiliation": "Usher Institute of Population Health Sciences and Informatics, The University of Edinburgh, United Kingdom (S.M., E.W., J.P.).",
+      "author_id": null,
+      "firstname": "Emily",
+      "initials": "E",
+      "lastname": "Weiss"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Usher Institute of Population Health Sciences and Informatics, The University of Edinburgh, United Kingdom (S.M., E.W., J.P.).",
+      "author_id": null,
+      "firstname": "Jackie",
+      "initials": "J",
+      "lastname": "Price"
+    },
+    {
+      "ORCID": "0000-0002-9169-118X",
+      "affiliation": "Dalla Lana School of Public Health, University of Toronto, ON, Canada (C.D.L., A.P.).\nGenetics & Genome Biology, SickKids, Toronto, ON, Canada (C.D.L., A.P.).",
+      "author_id": null,
+      "firstname": "Andrew",
+      "initials": "A",
+      "lastname": "Paterson"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Ocular Epidemiology Research Group, University of Wisconsin-Madison (B.K.).",
+      "author_id": null,
+      "firstname": "Barbara",
+      "initials": "B",
+      "lastname": "Klein"
+    },
+    {
+      "ORCID": "0000-0001-7563-5324",
+      "affiliation": "Finnish Institute for Health and Welfare, Helsinki, Finland (M.P., V.S.).",
+      "author_id": null,
+      "firstname": "Veikko",
+      "initials": "V",
+      "lastname": "Salomaa"
+    },
+    {
+      "ORCID": "0000-0002-6415-6560",
+      "affiliation": "Pat Macpherson Centre for Pharmacogenetics and Pharmacogenomics, Ninewells Hospital and Medical School, University of Dundee, United Kingdom (C.N.A.P.).",
+      "author_id": null,
+      "firstname": "Colin N A",
+      "initials": "CNA",
+      "lastname": "Palmer"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Folkh\u00e4lsan Institute of Genetics, Folkh\u00e4lsan Research Center, Helsinki, Finland (E.H.D., N.S., C.F., P.-H.G.).\nAbdominal Center, Nephrology (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.\nHelsinki University Hospital, Research Program for Clinical and Molecular Metabolism, Faculty of Medicine (E.H.D., N.S., C.F., P.-H.G.), University of Helsinki, Finland.\nDepartment of Medicine, Central Clinical School, Monash University, Melbourne, Victoria, Australia (P.-H.G.).",
+      "author_id": null,
+      "firstname": "Per-Henrik",
+      "initials": "PH",
+      "lastname": "Groop"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Institute for Molecular Medicine Finland (FIMM) (M.P., L.G.), University of Helsinki, Finland.\nGenomics, Diabetes and Endocrinology, Lund University Diabetes Centre, Malm\u00f6, Sweden (E. Ahlqvist, E.L., L.G.).",
+      "author_id": null,
+      "firstname": "Leif",
+      "initials": "L",
+      "lastname": "Groop"
+    },
+    {
+      "ORCID": "0000-0002-4393-0510",
+      "affiliation": "Wellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.\nOxford Centre for Diabetes, Endocrinology and Metabolism, Radcliffe Department of Medicine (N.R.v.Z., A.M., N.R.R., N.W.R., M.I.M.), University of Oxford, United Kingdom.\nOxford NIHR Biomedical Research Centre, Oxford University Hospitals Trust, United Kingdom (M.I.M.).\nNow with Genentech, South San Francisco, CA (A.M., M.I.M.).",
+      "author_id": null,
+      "firstname": "Mark I",
+      "initials": "MI",
+      "lastname": "McCarthy"
+    },
+    {
+      "ORCID": "0000-0003-2329-2686",
+      "affiliation": "Department of Cardiovascular Medicine and the Gonda Vascular Center, Mayo Clinic, Rochester, MN (E. Austin, M.d.A., I.J.K.).",
+      "author_id": null,
+      "firstname": "Mariza",
+      "initials": "M",
+      "lastname": "de Andrade"
+    },
+    {
+      "ORCID": null,
+      "affiliation": "Wellcome Centre for Human Genetics, Nuffield Department of Medicine (N.R.v.Z., M.A., A.M., N.R.R., N.W.R., M.I.M., A.P.M.), University of Oxford, United Kingdom.\nDepartment of Biostatistics, University of Liverpool, United Kingdom (A.P.M.).\nCentre for Genetics and Genomics Versus Arthritis, Centre for Musculoskeletal Research, The University of Manchester, United Kingdom (A.P.M.).",
+      "author_id": null,
+      "firstname": "Andrew P",
+      "initials": "AP",
+      "lastname": "Morris"
+    },
+    {
+      "ORCID": "0000-0002-3870-8018",
+      "affiliation": "Clinical Trial Service Unit and Epidemiological Studies Unit, Nuffield Department of Population Health (A.S., J.C.H.), University of Oxford, United Kingdom.",
+      "author_id": null,
+      "firstname": "Jemma C",
+      "initials": "JC",
+      "lastname": "Hopewell"
+    },
+    {
+      "ORCID": "0000-0002-8345-3288",
+      "affiliation": "Institute of Genetics and Molecular Medicine, University of Edinburgh, Western General Hospital Campus, United Kingdom (H.M.C.).",
+      "author_id": null,
+      "firstname": "Helen M",
+      "initials": "HM",
+      "lastname": "Colhoun"
+    },
+    {
+      "ORCID": "0000-0002-6524-3471",
+      "affiliation": "Department of Cardiovascular Medicine and the Gonda Vascular Center, Mayo Clinic, Rochester, MN (E. Austin, M.d.A., I.J.K.).",
+      "author_id": null,
+      "firstname": "Iftikhar J",
+      "initials": "IJ",
+      "lastname": "Kullo"
+    },
+    {
+      "ORCID": null,
+      "author_id": null,
+      "collectivename": "GoLEAD Consortium, SUMMIT Consortium\u2020"
+    }
+  ],
+  "conclusions": null,
+  "copyrights": null,
+  "doi": "10.1161/circgen.119.002862",
+  "grants": [],
+  "journal": "Circulation. Genomic and precision medicine",
+  "keywords": [
+    "diabetes",
+    "genome-wide association study",
+    "peripheral vascular disease",
+    "smoking"
+  ],
+  "methods": null,
+  "publication_date": {
+    "day": 5,
+    "month": 10,
+    "year": 2021
+  },
+  "pubmed_id": "34601942",
+  "references": [],
+  "results": "We identified 5 genome-wide significant (",
+  "title": "Genome-Wide Association Study of Peripheral Artery Disease."
+}

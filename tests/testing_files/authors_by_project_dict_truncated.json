@@ -1,242 +1,118 @@
 {
   "Core A Administrative Core": {
-    "Kelly Pennell": {
-      "ORCID": "0000-0003-3423-9610",
+    "Angela Gutierrez": {
+      "ORCID": "0000-0002-8458-487X",
       "affiliations": [
         "kentucky"
       ],
-      "cutoff_year": 2020,
-      "email": "kellypennell@uky.edu",
-      "first_name": "Kelly",
-      "last_name": "Pennell",
-      "pubmed_name_search": "Kelly Pennell",
-      "scholar_id": "bgO9hAsAAAAJ",
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
+      "cutoff_year": 2020,
+      "email": "amgu232@g.uky.edu",
+      "first_name": "Angela",
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Gutierrez",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Angela Gutierrez"
     },
     "Bernhard Hennig": {
       "ORCID": "0000-0002-7200-302X",
       "affiliations": [
         "kentucky"
       ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
       "cutoff_year": 2020,
       "email": "bhennig@uky.edu",
       "first_name": "Bernhard",
-      "last_name": "Hennig",
-      "pubmed_name_search": "Bernhard Hennig",
-      "authors": [
-        "Kelly Pennell",
-        "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hennig",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Bernhard Hennig"
     },
-    "Angela Gutierrez": {
-      "ORCID": "0000-0002-8458-487X",
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
       "affiliations": [
         "kentucky"
       ],
-      "cutoff_year": 2020,
-      "email": "amgu232@g.uky.edu",
-      "first_name": "Angela",
-      "last_name": "Gutierrez",
-      "pubmed_name_search": "Angela Gutierrez",
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
+      "cutoff_year": 2020,
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
-    }
-  },
-  "Project 1": {
+      ],
+      "last_name": "Moseley",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
+    },
     "Kelly Pennell": {
       "ORCID": "0000-0003-3423-9610",
       "affiliations": [
         "kentucky"
       ],
-      "cutoff_year": 2020,
-      "email": "kellypennell@uky.edu",
-      "first_name": "Kelly",
-      "last_name": "Pennell",
-      "pubmed_name_search": "Kelly Pennell",
-      "scholar_id": "bgO9hAsAAAAJ",
       "authors": [
         "Kelly Pennell",
         "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": [],
-        "to_email": [
-          "ptth222@uky.edu"
-        ]
-      },
-      "grants": [
-        "P42ES007380",
-        "P42 ES007380"
-      ]
-    },
-    "Bernhard Hennig": {
-      "ORCID": "0000-0002-7200-302X",
-      "affiliations": [
-        "kentucky"
-      ],
-      "cutoff_year": 2020,
-      "email": "bhennig@uky.edu",
-      "first_name": "Bernhard",
-      "last_name": "Hennig",
-      "pubmed_name_search": "Bernhard Hennig",
-      "authors": [
-        "Kelly Pennell",
-        "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": [],
-        "to_email": [
-          "ptth222@uky.edu"
-        ]
-      },
-      "grants": [
-        "P42ES007380",
-        "P42 ES007380"
-      ]
-    },
-    "Angela Gutierrez": {
-      "ORCID": "0000-0002-8458-487X",
-      "affiliations": [
-        "kentucky"
-      ],
-      "cutoff_year": 2020,
-      "email": "amgu232@g.uky.edu",
-      "first_name": "Angela",
-      "last_name": "Gutierrez",
-      "pubmed_name_search": "Angela Gutierrez",
-      "authors": [
-        "Kelly Pennell",
-        "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": [],
-        "to_email": [
-          "ptth222@uky.edu"
-        ]
-      },
-      "grants": [
-        "P42ES007380",
-        "P42 ES007380"
-      ]
-    }
-  },
-  "No Project Report": {
-    "Kelly Pennell": {
-      "ORCID": "0000-0003-3423-9610",
-      "affiliations": [
-        "kentucky"
+        "Angela Gutierrez",
+        "Hunter Moseley"
       ],
       "cutoff_year": 2020,
       "email": "kellypennell@uky.edu",
       "first_name": "Kelly",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
       "last_name": "Pennell",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Core A Administractive Core.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
       "pubmed_name_search": "Kelly Pennell",
-      "scholar_id": "bgO9hAsAAAAJ",
-      "authors": [
-        "Kelly Pennell",
-        "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "grants": [
-        "P42ES007380",
-        "P42 ES007380"
-      ]
-    },
-    "Bernhard Hennig": {
-      "ORCID": "0000-0002-7200-302X",
-      "affiliations": [
-        "kentucky"
-      ],
-      "cutoff_year": 2020,
-      "email": "bhennig@uky.edu",
-      "first_name": "Bernhard",
-      "last_name": "Hennig",
-      "pubmed_name_search": "Bernhard Hennig",
-      "authors": [
-        "Kelly Pennell",
-        "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "grants": [
-        "P42ES007380",
-        "P42 ES007380"
-      ]
-    },
-    "Angela Gutierrez": {
-      "ORCID": "0000-0002-8458-487X",
-      "affiliations": [
-        "kentucky"
-      ],
-      "cutoff_year": 2020,
-      "email": "amgu232@g.uky.edu",
-      "first_name": "Angela",
-      "last_name": "Gutierrez",
-      "pubmed_name_search": "Angela Gutierrez",
-      "authors": [
-        "Kelly Pennell",
-        "Bernhard Hennig",
-        "Angela Gutierrez"
-      ],
-      "grants": [
-        "P42ES007380",
-        "P42 ES007380"
-      ]
+      "scholar_id": "bgO9hAsAAAAJ"
     }
   },
   "No Authors": {
@@ -248,20 +124,20 @@
       "cutoff_year": 2020,
       "email": "a.j.morris@uky.edu",
       "first_name": "Andrew",
-      "last_name": "Morris",
-      "pubmed_name_search": "Andrew Morris",
-      "scholar_id": "-j7fxnEAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Morris",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Andrew Morris",
+      "scholar_id": "-j7fxnEAAAAJ"
     },
     "Angela Gutierrez": {
       "ORCID": "0000-0002-8458-487X",
@@ -271,19 +147,19 @@
       "cutoff_year": 2020,
       "email": "amgu232@g.uky.edu",
       "first_name": "Angela",
-      "last_name": "Gutierrez",
-      "pubmed_name_search": "Angela Gutierrez",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Gutierrez",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Angela Gutierrez"
     },
     "Ann Koempel": {
       "ORCID": "0000-0002-4046-2029",
@@ -293,19 +169,19 @@
       "cutoff_year": 2020,
       "email": "ann.koempel@uky.edu",
       "first_name": "Ann",
-      "last_name": "Koempel",
-      "pubmed_name_search": "Ann Koempel",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Koempel",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Ann Koempel"
     },
     "Anna Hoover": {
       "ORCID": "0000-0002-3996-3571",
@@ -315,20 +191,20 @@
       "cutoff_year": 2020,
       "email": "Anna.Hoover@uky.edu",
       "first_name": "Anna",
-      "last_name": "Hoover",
-      "pubmed_name_search": "Anna Hoover",
-      "scholar_id": "LuDkuroAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hoover",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Anna Hoover",
+      "scholar_id": "LuDkuroAAAAJ"
     },
     "Ariel Robinson": {
       "ORCID": "0000-0002-5441-7798",
@@ -338,19 +214,19 @@
       "cutoff_year": 2020,
       "email": "ariel.robinson19@uky.edu",
       "first_name": "Ariel",
-      "last_name": "Robinson",
-      "pubmed_name_search": "Ariel Robinson",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Robinson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Ariel Robinson"
     },
     "Bernhard Hennig": {
       "ORCID": "0000-0002-7200-302X",
@@ -360,19 +236,19 @@
       "cutoff_year": 2020,
       "email": "bhennig@uky.edu",
       "first_name": "Bernhard",
-      "last_name": "Hennig",
-      "pubmed_name_search": "Bernhard Hennig",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hennig",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Bernhard Hennig"
     },
     "Brittany Rice": {
       "ORCID": "0000-0003-4429-9203",
@@ -382,19 +258,19 @@
       "cutoff_year": 2020,
       "email": "b.rice@uky.edu",
       "first_name": "Brittany",
-      "last_name": "Rice",
-      "pubmed_name_search": "Brittany Rice",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Rice",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Brittany Rice"
     },
     "Christian Powell": {
       "ORCID": "0000-0002-4242-080X",
@@ -404,19 +280,19 @@
       "cutoff_year": 2020,
       "email": "christian.powell@uky.edu",
       "first_name": "Christian",
-      "last_name": "Powell",
-      "pubmed_name_search": "Christian Powell",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Powell",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Christian Powell"
     },
     "Dawn Brewer": {
       "ORCID": "0000-0003-4219-0298",
@@ -426,19 +302,19 @@
       "cutoff_year": 2020,
       "email": "dawn.brewer@uky.edu",
       "first_name": "Dawn",
-      "last_name": "Brewer",
-      "pubmed_name_search": "Dawn Brewer",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Brewer",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Dawn Brewer"
     },
     "Dibakar Bhattacharyya": {
       "ORCID": "0000-0001-9948-9085",
@@ -448,19 +324,19 @@
       "cutoff_year": 2020,
       "email": "db@uky.edu",
       "first_name": "Dibakar",
-      "last_name": "Bhattacharyya",
-      "pubmed_name_search": "Dibakar Bhattacharyya",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Bhattacharyya",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Dibakar Bhattacharyya"
     },
     "Erin Haynes": {
       "ORCID": "0000-0001-9110-0477",
@@ -470,19 +346,19 @@
       "cutoff_year": 2020,
       "email": "erin.haynes@uky.edu",
       "first_name": "Erin",
-      "last_name": "Haynes",
-      "pubmed_name_search": "Erin Haynes",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Haynes",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Erin Haynes"
     },
     "Francisco Leniz": {
       "ORCID": "0000-0003-4635-7139",
@@ -492,20 +368,20 @@
       "cutoff_year": 2020,
       "email": "francisco.leniz@uky.edu",
       "first_name": "Francisco",
-      "last_name": "Leniz",
-      "pubmed_name_search": "Francisco Leniz",
-      "scholar_id": "GrUaVhsAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Leniz",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Francisco Leniz",
+      "scholar_id": "GrUaVhsAAAAJ"
     },
     "Gia Mudd-Martin": {
       "ORCID": "0000-0003-2585-5534",
@@ -515,20 +391,20 @@
       "cutoff_year": 2020,
       "email": "gia.mudd@uky.edu",
       "first_name": "Gia",
-      "last_name": "Mudd-Martin",
-      "pubmed_name_search": "Gia Mudd-Martin",
-      "scholar_id": "FOyc5_cAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Mudd-Martin",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Gia Mudd-Martin",
+      "scholar_id": "FOyc5_cAAAAJ"
     },
     "Heather Bush": {
       "affiliations": [
@@ -537,20 +413,20 @@
       "cutoff_year": 2020,
       "email": "heather.bush@uky.edu",
       "first_name": "Heather",
-      "last_name": "Bush",
-      "pubmed_name_search": "Heather Bush",
-      "scholar_id": "L35ZUHYAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Bush",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Heather Bush",
+      "scholar_id": "L35ZUHYAAAAJ"
     },
     "Hollie Swanson": {
       "ORCID": "0000-0002-3725-5504",
@@ -560,20 +436,20 @@
       "cutoff_year": 2020,
       "email": "hswan@uky.edu",
       "first_name": "Hollie",
-      "last_name": "Swanson",
-      "pubmed_name_search": "Hollie Swanson",
-      "scholar_id": "cYTT2xsAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Swanson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hollie Swanson",
+      "scholar_id": "cYTT2xsAAAAJ"
     },
     "Hong Cheng Tay": {
       "ORCID": "0000-0002-7503-2176",
@@ -583,19 +459,19 @@
       "cutoff_year": 2020,
       "email": "hermantay9675@uky.edu",
       "first_name": "Hong",
-      "last_name": "Tay",
-      "pubmed_name_search": "Hong Cheng Tay",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Tay",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hong Cheng Tay"
     },
     "Hunter Moseley": {
       "ORCID": "0000-0003-3995-5368",
@@ -605,20 +481,20 @@
       "cutoff_year": 2020,
       "email": "hunter.moseley@gmail.com",
       "first_name": "Hunter",
-      "last_name": "Moseley",
-      "pubmed_name_search": "Hunter Moseley",
-      "scholar_id": "ctE_FZMAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Moseley",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
     },
     "Isabel Escobar": {
       "ORCID": "0000-0001-9269-5927",
@@ -628,20 +504,20 @@
       "cutoff_year": 2020,
       "email": "isabel.escobar@uky.edu",
       "first_name": "Isabel",
-      "last_name": "Escobar",
-      "pubmed_name_search": "Isabel Escobar",
-      "scholar_id": "RfB5L8kAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Escobar",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Isabel Escobar",
+      "scholar_id": "RfB5L8kAAAAJ"
     },
     "Jianzhong Chen": {
       "ORCID": "0000-0003-2454-6967",
@@ -651,20 +527,20 @@
       "cutoff_year": 2020,
       "email": "chenjz1977@uky.edu",
       "first_name": "Jianzhong",
-      "last_name": "Chen",
-      "pubmed_name_search": "Jianzhong Chen",
-      "scholar_id": "pv7lLagAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Chen",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Jianzhong Chen",
+      "scholar_id": "pv7lLagAAAAJ"
     },
     "Kelly Pennell": {
       "ORCID": "0000-0003-3423-9610",
@@ -674,20 +550,20 @@
       "cutoff_year": 2020,
       "email": "kellypennell@uky.edu",
       "first_name": "Kelly",
-      "last_name": "Pennell",
-      "pubmed_name_search": "Kelly Pennell",
-      "scholar_id": "bgO9hAsAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Pennell",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Kelly Pennell",
+      "scholar_id": "bgO9hAsAAAAJ"
     },
     "Kevin Baldridge": {
       "ORCID": "0000-0003-1829-7714",
@@ -697,20 +573,20 @@
       "cutoff_year": 2020,
       "email": "k.b@uky.edu",
       "first_name": "Kevin",
-      "last_name": "Baldridge",
-      "pubmed_name_search": "Kevin Baldridge",
-      "scholar_id": "SWifbusAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Baldridge",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Kevin Baldridge",
+      "scholar_id": "SWifbusAAAAJ"
     },
     "Kevin Pearson": {
       "ORCID": "0000-0001-6542-6617",
@@ -720,20 +596,20 @@
       "cutoff_year": 2020,
       "email": "kevin.pearson@uky.edu",
       "first_name": "Kevin",
-      "last_name": "Pearson",
-      "pubmed_name_search": "Kevin Pearson",
-      "scholar_id": "0sxqymgAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Pearson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Kevin Pearson",
+      "scholar_id": "0sxqymgAAAAJ"
     },
     "Lindell Ormsbee": {
       "ORCID": "0000-0001-6762-5847",
@@ -743,20 +619,20 @@
       "cutoff_year": 2020,
       "email": "lindell.ormsbee@uky.edu",
       "first_name": "Lindell",
-      "last_name": "Ormsbee",
-      "pubmed_name_search": "Lindell Ormsbee",
-      "scholar_id": "D9hPszMAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Ormsbee",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Lindell Ormsbee",
+      "scholar_id": "D9hPszMAAAAJ"
     },
     "M Abdul Mottaleb": {
       "ORCID": "0000-0002-2431-5942",
@@ -766,19 +642,19 @@
       "cutoff_year": 2020,
       "email": "m.a.mottaleb@uky.edu",
       "first_name": "Abdul",
-      "last_name": "Mottaleb",
-      "pubmed_name_search": "M Abdul Mottaleb",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Mottaleb",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "M Abdul Mottaleb"
     },
     "Molly Frazar": {
       "ORCID": "0000-0002-0778-8924",
@@ -788,19 +664,19 @@
       "cutoff_year": 2020,
       "email": "molly.frazar@uky.edu",
       "first_name": "Molly",
-      "last_name": "Frazar",
-      "pubmed_name_search": "Molly Frazar",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Frazar",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Molly Frazar"
     },
     "Nader Rezaei": {
       "ORCID": "0000-0002-5655-2985",
@@ -810,20 +686,20 @@
       "cutoff_year": 2020,
       "email": "naderrezaei@uky.edu",
       "first_name": "Nader",
-      "last_name": "Rezaei",
-      "pubmed_name_search": "Nader Rezaei",
-      "scholar_id": "eSQaQDoAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Rezaei",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Nader Rezaei",
+      "scholar_id": "eSQaQDoAAAAJ"
     },
     "Pan Deng": {
       "ORCID": "0000-0003-2974-7389",
@@ -833,20 +709,20 @@
       "cutoff_year": 2020,
       "email": "panda4177@gmail.com",
       "first_name": "Pan",
-      "last_name": "Deng",
-      "pubmed_name_search": "Pan Deng",
-      "scholar_id": "y74csvcAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Deng",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Pan Deng",
+      "scholar_id": "y74csvcAAAAJ"
     },
     "Pranto Paul": {
       "affiliations": [
@@ -855,19 +731,19 @@
       "cutoff_year": 2020,
       "email": "ppa322@uky.edu",
       "first_name": "Pranto",
-      "last_name": "Paul",
-      "pubmed_name_search": "Pranto Paul",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Paul",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Pranto Paul"
     },
     "Rollie Mills": {
       "ORCID": "0000-0003-1816-2510",
@@ -877,19 +753,19 @@
       "cutoff_year": 2020,
       "email": "rolliegmills@uky.edu",
       "first_name": "Rollie",
-      "last_name": "Mills",
-      "pubmed_name_search": "Rollie Mills",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Mills",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Rollie Mills"
     },
     "Shahriar Rahman": {
       "ORCID": "0000-0002-4608-1972",
@@ -899,19 +775,19 @@
       "cutoff_year": 2020,
       "email": "shahriar.rahman@uky.edu",
       "first_name": "Shahriar",
-      "last_name": "Rahman",
-      "pubmed_name_search": "Shahriar Rahman",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Rahman",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Shahriar Rahman"
     },
     "Sweta Ojha": {
       "ORCID": "0000-0002-3671-1483",
@@ -921,19 +797,19 @@
       "cutoff_year": 2020,
       "email": "sweta.ojha@uky.edu",
       "first_name": "Sweta",
-      "last_name": "Ojha",
-      "pubmed_name_search": "Sweta Ojha",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Ojha",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Sweta Ojha"
     },
     "T John Balk": {
       "ORCID": "0000-0002-1831-4951",
@@ -943,20 +819,20 @@
       "cutoff_year": 2020,
       "email": "john.balk@uky.edu",
       "first_name": "T John",
-      "last_name": "Balk",
-      "pubmed_name_search": "T John Balk",
-      "scholar_id": "Mjky-YQAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Balk",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "T John Balk",
+      "scholar_id": "Mjky-YQAAAAJ"
     },
     "Tahiya Tarannum": {
       "ORCID": "0000-0003-3374-3313",
@@ -966,19 +842,19 @@
       "cutoff_year": 2020,
       "email": "t.tarannum@uky.edu",
       "first_name": "Tahiya",
-      "last_name": "Tarannum",
-      "pubmed_name_search": "Tahiya Tarannum",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Tarannum",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Tahiya Tarannum"
     },
     "Tom Dziubla": {
       "ORCID": "0000-0003-2518-3926",
@@ -988,42 +864,42 @@
       "cutoff_year": 2020,
       "email": "thomas.dziubla@uky.edu",
       "first_name": "Tom",
-      "last_name": "Dziubla",
-      "pubmed_name_search": "Tom Dziubla",
-      "scholar_id": "CtlR3UYAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Dziubla",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Tom Dziubla",
+      "scholar_id": "CtlR3UYAAAAJ"
     },
     "Travis Thompson": {
       "ORCID": "0000-0002-8198-1327",
       "affiliations": [
         "kentucky"
       ],
+      "cutoff_year": 2020,
       "email": "ptth222@uky.edu",
       "first_name": "Travis",
-      "last_name": "Thompson",
-      "pubmed_name_search": "Travis Thompson",
-      "cutoff_year": 2020,
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Thompson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Travis Thompson"
     },
     "Victoria Klaus": {
       "ORCID": "0000-0002-7989-4865",
@@ -1033,19 +909,19 @@
       "cutoff_year": 2020,
       "email": "mxklaus@uky.edu",
       "first_name": "Victoria",
-      "last_name": "Klaus",
-      "pubmed_name_search": "Victoria Klaus",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Klaus",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Victoria Klaus"
     },
     "Ying Li": {
       "ORCID": "0000-0003-4258-5521",
@@ -1055,19 +931,19 @@
       "cutoff_year": 2020,
       "email": "ying.li@uky.edu",
       "first_name": "Ying",
-      "last_name": "Li",
-      "pubmed_name_search": "Ying Li",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Li",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Ying Li"
     },
     "Yu Li": {
       "ORCID": "0000-0003-2759-1886",
@@ -1077,19 +953,19 @@
       "cutoff_year": 2020,
       "email": "yuli1120@uky.edu",
       "first_name": "Yu",
-      "last_name": "Li",
-      "pubmed_name_search": "Yu Li",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Li",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Yu Li"
     },
     "Yuxia Ji": {
       "ORCID": "0000-0002-4866-4856",
@@ -1099,19 +975,19 @@
       "cutoff_year": 2020,
       "email": "yuxia.ji@uky.edu",
       "first_name": "Yuxia",
-      "last_name": "Ji",
-      "pubmed_name_search": "Yuxia Ji",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Ji",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Yuxia Ji"
     },
     "Zach Hilt": {
       "ORCID": "0000-0001-5780-6847",
@@ -1121,20 +997,108 @@
       "cutoff_year": 2020,
       "email": "zach.hilt@uky.edu",
       "first_name": "Zach",
-      "last_name": "Hilt",
-      "pubmed_name_search": "Zach Hilt",
-      "scholar_id": "0goExQoAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "from_email": "ptth222@uky.edu",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hilt",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Zach Hilt",
+      "scholar_id": "0goExQoAAAAJ"
+    }
+  },
+  "No Project Report": {
+    "Angela Gutierrez": {
+      "ORCID": "0000-0002-8458-487X",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "amgu232@g.uky.edu",
+      "first_name": "Angela",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Gutierrez",
+      "pubmed_name_search": "Angela Gutierrez"
+    },
+    "Bernhard Hennig": {
+      "ORCID": "0000-0002-7200-302X",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "bhennig@uky.edu",
+      "first_name": "Bernhard",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Hennig",
+      "pubmed_name_search": "Bernhard Hennig"
+    },
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Moseley",
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
+    },
+    "Kelly Pennell": {
+      "ORCID": "0000-0003-3423-9610",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "kellypennell@uky.edu",
+      "first_name": "Kelly",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Pennell",
+      "pubmed_name_search": "Kelly Pennell",
+      "scholar_id": "bgO9hAsAAAAJ"
     }
   },
   "No from_email": {
@@ -1146,19 +1110,19 @@
       "cutoff_year": 2020,
       "email": "a.j.morris@uky.edu",
       "first_name": "Andrew",
-      "last_name": "Morris",
-      "pubmed_name_search": "Andrew Morris",
-      "scholar_id": "-j7fxnEAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Morris",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Andrew Morris",
+      "scholar_id": "-j7fxnEAAAAJ"
     },
     "Angela Gutierrez": {
       "ORCID": "0000-0002-8458-487X",
@@ -1168,18 +1132,18 @@
       "cutoff_year": 2020,
       "email": "amgu232@g.uky.edu",
       "first_name": "Angela",
-      "last_name": "Gutierrez",
-      "pubmed_name_search": "Angela Gutierrez",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Gutierrez",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Angela Gutierrez"
     },
     "Ann Koempel": {
       "ORCID": "0000-0002-4046-2029",
@@ -1189,18 +1153,18 @@
       "cutoff_year": 2020,
       "email": "ann.koempel@uky.edu",
       "first_name": "Ann",
-      "last_name": "Koempel",
-      "pubmed_name_search": "Ann Koempel",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Koempel",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Ann Koempel"
     },
     "Anna Hoover": {
       "ORCID": "0000-0002-3996-3571",
@@ -1210,19 +1174,19 @@
       "cutoff_year": 2020,
       "email": "Anna.Hoover@uky.edu",
       "first_name": "Anna",
-      "last_name": "Hoover",
-      "pubmed_name_search": "Anna Hoover",
-      "scholar_id": "LuDkuroAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hoover",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Anna Hoover",
+      "scholar_id": "LuDkuroAAAAJ"
     },
     "Ariel Robinson": {
       "ORCID": "0000-0002-5441-7798",
@@ -1232,18 +1196,18 @@
       "cutoff_year": 2020,
       "email": "ariel.robinson19@uky.edu",
       "first_name": "Ariel",
-      "last_name": "Robinson",
-      "pubmed_name_search": "Ariel Robinson",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Robinson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Ariel Robinson"
     },
     "Bernhard Hennig": {
       "ORCID": "0000-0002-7200-302X",
@@ -1253,18 +1217,18 @@
       "cutoff_year": 2020,
       "email": "bhennig@uky.edu",
       "first_name": "Bernhard",
-      "last_name": "Hennig",
-      "pubmed_name_search": "Bernhard Hennig",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hennig",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Bernhard Hennig"
     },
     "Brittany Rice": {
       "ORCID": "0000-0003-4429-9203",
@@ -1274,18 +1238,18 @@
       "cutoff_year": 2020,
       "email": "b.rice@uky.edu",
       "first_name": "Brittany",
-      "last_name": "Rice",
-      "pubmed_name_search": "Brittany Rice",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Rice",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Brittany Rice"
     },
     "Christian Powell": {
       "ORCID": "0000-0002-4242-080X",
@@ -1295,18 +1259,18 @@
       "cutoff_year": 2020,
       "email": "christian.powell@uky.edu",
       "first_name": "Christian",
-      "last_name": "Powell",
-      "pubmed_name_search": "Christian Powell",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Powell",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Christian Powell"
     },
     "Dawn Brewer": {
       "ORCID": "0000-0003-4219-0298",
@@ -1316,18 +1280,18 @@
       "cutoff_year": 2020,
       "email": "dawn.brewer@uky.edu",
       "first_name": "Dawn",
-      "last_name": "Brewer",
-      "pubmed_name_search": "Dawn Brewer",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Brewer",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Dawn Brewer"
     },
     "Dibakar Bhattacharyya": {
       "ORCID": "0000-0001-9948-9085",
@@ -1337,18 +1301,18 @@
       "cutoff_year": 2020,
       "email": "db@uky.edu",
       "first_name": "Dibakar",
-      "last_name": "Bhattacharyya",
-      "pubmed_name_search": "Dibakar Bhattacharyya",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Bhattacharyya",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Dibakar Bhattacharyya"
     },
     "Erin Haynes": {
       "ORCID": "0000-0001-9110-0477",
@@ -1358,18 +1322,18 @@
       "cutoff_year": 2020,
       "email": "erin.haynes@uky.edu",
       "first_name": "Erin",
-      "last_name": "Haynes",
-      "pubmed_name_search": "Erin Haynes",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Haynes",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Erin Haynes"
     },
     "Francisco Leniz": {
       "ORCID": "0000-0003-4635-7139",
@@ -1379,19 +1343,19 @@
       "cutoff_year": 2020,
       "email": "francisco.leniz@uky.edu",
       "first_name": "Francisco",
-      "last_name": "Leniz",
-      "pubmed_name_search": "Francisco Leniz",
-      "scholar_id": "GrUaVhsAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Leniz",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Francisco Leniz",
+      "scholar_id": "GrUaVhsAAAAJ"
     },
     "Gia Mudd-Martin": {
       "ORCID": "0000-0003-2585-5534",
@@ -1401,19 +1365,19 @@
       "cutoff_year": 2020,
       "email": "gia.mudd@uky.edu",
       "first_name": "Gia",
-      "last_name": "Mudd-Martin",
-      "pubmed_name_search": "Gia Mudd-Martin",
-      "scholar_id": "FOyc5_cAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Mudd-Martin",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Gia Mudd-Martin",
+      "scholar_id": "FOyc5_cAAAAJ"
     },
     "Heather Bush": {
       "affiliations": [
@@ -1422,19 +1386,19 @@
       "cutoff_year": 2020,
       "email": "heather.bush@uky.edu",
       "first_name": "Heather",
-      "last_name": "Bush",
-      "pubmed_name_search": "Heather Bush",
-      "scholar_id": "L35ZUHYAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Bush",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Heather Bush",
+      "scholar_id": "L35ZUHYAAAAJ"
     },
     "Hollie Swanson": {
       "ORCID": "0000-0002-3725-5504",
@@ -1444,19 +1408,19 @@
       "cutoff_year": 2020,
       "email": "hswan@uky.edu",
       "first_name": "Hollie",
-      "last_name": "Swanson",
-      "pubmed_name_search": "Hollie Swanson",
-      "scholar_id": "cYTT2xsAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Swanson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hollie Swanson",
+      "scholar_id": "cYTT2xsAAAAJ"
     },
     "Hong Cheng Tay": {
       "ORCID": "0000-0002-7503-2176",
@@ -1466,18 +1430,18 @@
       "cutoff_year": 2020,
       "email": "hermantay9675@uky.edu",
       "first_name": "Hong",
-      "last_name": "Tay",
-      "pubmed_name_search": "Hong Cheng Tay",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Tay",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hong Cheng Tay"
     },
     "Hunter Moseley": {
       "ORCID": "0000-0003-3995-5368",
@@ -1487,19 +1451,19 @@
       "cutoff_year": 2020,
       "email": "hunter.moseley@gmail.com",
       "first_name": "Hunter",
-      "last_name": "Moseley",
-      "pubmed_name_search": "Hunter Moseley",
-      "scholar_id": "ctE_FZMAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Moseley",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
     },
     "Isabel Escobar": {
       "ORCID": "0000-0001-9269-5927",
@@ -1509,19 +1473,19 @@
       "cutoff_year": 2020,
       "email": "isabel.escobar@uky.edu",
       "first_name": "Isabel",
-      "last_name": "Escobar",
-      "pubmed_name_search": "Isabel Escobar",
-      "scholar_id": "RfB5L8kAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Escobar",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Isabel Escobar",
+      "scholar_id": "RfB5L8kAAAAJ"
     },
     "Jianzhong Chen": {
       "ORCID": "0000-0003-2454-6967",
@@ -1531,19 +1495,19 @@
       "cutoff_year": 2020,
       "email": "chenjz1977@uky.edu",
       "first_name": "Jianzhong",
-      "last_name": "Chen",
-      "pubmed_name_search": "Jianzhong Chen",
-      "scholar_id": "pv7lLagAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Chen",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Jianzhong Chen",
+      "scholar_id": "pv7lLagAAAAJ"
     },
     "Kelly Pennell": {
       "ORCID": "0000-0003-3423-9610",
@@ -1553,19 +1517,19 @@
       "cutoff_year": 2020,
       "email": "kellypennell@uky.edu",
       "first_name": "Kelly",
-      "last_name": "Pennell",
-      "pubmed_name_search": "Kelly Pennell",
-      "scholar_id": "bgO9hAsAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Pennell",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Kelly Pennell",
+      "scholar_id": "bgO9hAsAAAAJ"
     },
     "Kevin Baldridge": {
       "ORCID": "0000-0003-1829-7714",
@@ -1575,19 +1539,19 @@
       "cutoff_year": 2020,
       "email": "k.b@uky.edu",
       "first_name": "Kevin",
-      "last_name": "Baldridge",
-      "pubmed_name_search": "Kevin Baldridge",
-      "scholar_id": "SWifbusAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Baldridge",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Kevin Baldridge",
+      "scholar_id": "SWifbusAAAAJ"
     },
     "Kevin Pearson": {
       "ORCID": "0000-0001-6542-6617",
@@ -1597,19 +1561,19 @@
       "cutoff_year": 2020,
       "email": "kevin.pearson@uky.edu",
       "first_name": "Kevin",
-      "last_name": "Pearson",
-      "pubmed_name_search": "Kevin Pearson",
-      "scholar_id": "0sxqymgAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Pearson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Kevin Pearson",
+      "scholar_id": "0sxqymgAAAAJ"
     },
     "Lindell Ormsbee": {
       "ORCID": "0000-0001-6762-5847",
@@ -1619,19 +1583,19 @@
       "cutoff_year": 2020,
       "email": "lindell.ormsbee@uky.edu",
       "first_name": "Lindell",
-      "last_name": "Ormsbee",
-      "pubmed_name_search": "Lindell Ormsbee",
-      "scholar_id": "D9hPszMAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Ormsbee",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Lindell Ormsbee",
+      "scholar_id": "D9hPszMAAAAJ"
     },
     "M Abdul Mottaleb": {
       "ORCID": "0000-0002-2431-5942",
@@ -1641,18 +1605,18 @@
       "cutoff_year": 2020,
       "email": "m.a.mottaleb@uky.edu",
       "first_name": "Abdul",
-      "last_name": "Mottaleb",
-      "pubmed_name_search": "M Abdul Mottaleb",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Mottaleb",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "M Abdul Mottaleb"
     },
     "Molly Frazar": {
       "ORCID": "0000-0002-0778-8924",
@@ -1662,18 +1626,18 @@
       "cutoff_year": 2020,
       "email": "molly.frazar@uky.edu",
       "first_name": "Molly",
-      "last_name": "Frazar",
-      "pubmed_name_search": "Molly Frazar",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Frazar",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Molly Frazar"
     },
     "Nader Rezaei": {
       "ORCID": "0000-0002-5655-2985",
@@ -1683,19 +1647,19 @@
       "cutoff_year": 2020,
       "email": "naderrezaei@uky.edu",
       "first_name": "Nader",
-      "last_name": "Rezaei",
-      "pubmed_name_search": "Nader Rezaei",
-      "scholar_id": "eSQaQDoAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Rezaei",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Nader Rezaei",
+      "scholar_id": "eSQaQDoAAAAJ"
     },
     "Pan Deng": {
       "ORCID": "0000-0003-2974-7389",
@@ -1705,19 +1669,19 @@
       "cutoff_year": 2020,
       "email": "panda4177@gmail.com",
       "first_name": "Pan",
-      "last_name": "Deng",
-      "pubmed_name_search": "Pan Deng",
-      "scholar_id": "y74csvcAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Deng",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Pan Deng",
+      "scholar_id": "y74csvcAAAAJ"
     },
     "Pranto Paul": {
       "affiliations": [
@@ -1726,18 +1690,18 @@
       "cutoff_year": 2020,
       "email": "ppa322@uky.edu",
       "first_name": "Pranto",
-      "last_name": "Paul",
-      "pubmed_name_search": "Pranto Paul",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Paul",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Pranto Paul"
     },
     "Rollie Mills": {
       "ORCID": "0000-0003-1816-2510",
@@ -1747,18 +1711,18 @@
       "cutoff_year": 2020,
       "email": "rolliegmills@uky.edu",
       "first_name": "Rollie",
-      "last_name": "Mills",
-      "pubmed_name_search": "Rollie Mills",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Mills",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Rollie Mills"
     },
     "Shahriar Rahman": {
       "ORCID": "0000-0002-4608-1972",
@@ -1768,18 +1732,18 @@
       "cutoff_year": 2020,
       "email": "shahriar.rahman@uky.edu",
       "first_name": "Shahriar",
-      "last_name": "Rahman",
-      "pubmed_name_search": "Shahriar Rahman",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Rahman",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Shahriar Rahman"
     },
     "Sweta Ojha": {
       "ORCID": "0000-0002-3671-1483",
@@ -1789,18 +1753,18 @@
       "cutoff_year": 2020,
       "email": "sweta.ojha@uky.edu",
       "first_name": "Sweta",
-      "last_name": "Ojha",
-      "pubmed_name_search": "Sweta Ojha",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Ojha",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Sweta Ojha"
     },
     "T John Balk": {
       "ORCID": "0000-0002-1831-4951",
@@ -1810,19 +1774,19 @@
       "cutoff_year": 2020,
       "email": "john.balk@uky.edu",
       "first_name": "T John",
-      "last_name": "Balk",
-      "pubmed_name_search": "T John Balk",
-      "scholar_id": "Mjky-YQAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Balk",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "T John Balk",
+      "scholar_id": "Mjky-YQAAAAJ"
     },
     "Tahiya Tarannum": {
       "ORCID": "0000-0003-3374-3313",
@@ -1832,18 +1796,18 @@
       "cutoff_year": 2020,
       "email": "t.tarannum@uky.edu",
       "first_name": "Tahiya",
-      "last_name": "Tarannum",
-      "pubmed_name_search": "Tahiya Tarannum",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Tarannum",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Tahiya Tarannum"
     },
     "Tom Dziubla": {
       "ORCID": "0000-0003-2518-3926",
@@ -1853,40 +1817,40 @@
       "cutoff_year": 2020,
       "email": "thomas.dziubla@uky.edu",
       "first_name": "Tom",
-      "last_name": "Dziubla",
-      "pubmed_name_search": "Tom Dziubla",
-      "scholar_id": "CtlR3UYAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Dziubla",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Tom Dziubla",
+      "scholar_id": "CtlR3UYAAAAJ"
     },
     "Travis Thompson": {
       "ORCID": "0000-0002-8198-1327",
       "affiliations": [
         "kentucky"
       ],
+      "cutoff_year": 2020,
       "email": "ptth222@uky.edu",
       "first_name": "Travis",
-      "last_name": "Thompson",
-      "pubmed_name_search": "Travis Thompson",
-      "cutoff_year": 2020,
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Thompson",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Travis Thompson"
     },
     "Victoria Klaus": {
       "ORCID": "0000-0002-7989-4865",
@@ -1896,18 +1860,18 @@
       "cutoff_year": 2020,
       "email": "mxklaus@uky.edu",
       "first_name": "Victoria",
-      "last_name": "Klaus",
-      "pubmed_name_search": "Victoria Klaus",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Klaus",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Victoria Klaus"
     },
     "Ying Li": {
       "ORCID": "0000-0003-4258-5521",
@@ -1917,18 +1881,18 @@
       "cutoff_year": 2020,
       "email": "ying.li@uky.edu",
       "first_name": "Ying",
-      "last_name": "Li",
-      "pubmed_name_search": "Ying Li",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Li",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Ying Li"
     },
     "Yu Li": {
       "ORCID": "0000-0003-2759-1886",
@@ -1938,18 +1902,18 @@
       "cutoff_year": 2020,
       "email": "yuli1120@uky.edu",
       "first_name": "Yu",
-      "last_name": "Li",
-      "pubmed_name_search": "Yu Li",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Li",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Yu Li"
     },
     "Yuxia Ji": {
       "ORCID": "0000-0002-4866-4856",
@@ -1959,18 +1923,18 @@
       "cutoff_year": 2020,
       "email": "yuxia.ji@uky.edu",
       "first_name": "Yuxia",
-      "last_name": "Ji",
-      "pubmed_name_search": "Yuxia Ji",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Ji",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Yuxia Ji"
     },
     "Zach Hilt": {
       "ORCID": "0000-0001-5780-6847",
@@ -1980,19 +1944,147 @@
       "cutoff_year": 2020,
       "email": "zach.hilt@uky.edu",
       "first_name": "Zach",
-      "last_name": "Hilt",
-      "pubmed_name_search": "Zach Hilt",
-      "scholar_id": "0goExQoAAAAJ",
-      "project_report": {
-        "email_subject": "New PubMed Publications",
-        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
-        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
-        "cc_email": []
-      },
       "grants": [
         "P42ES007380",
         "P42 ES007380"
-      ]
+      ],
+      "last_name": "Hilt",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for all authors.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>"
+      },
+      "pubmed_name_search": "Zach Hilt",
+      "scholar_id": "0goExQoAAAAJ"
+    }
+  },
+  "Project 1": {
+    "Angela Gutierrez": {
+      "ORCID": "0000-0002-8458-487X",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "amgu232@g.uky.edu",
+      "first_name": "Angela",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Gutierrez",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+        "to_email": [
+          "ptth222@uky.edu"
+        ]
+      },
+      "pubmed_name_search": "Angela Gutierrez"
+    },
+    "Bernhard Hennig": {
+      "ORCID": "0000-0002-7200-302X",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "bhennig@uky.edu",
+      "first_name": "Bernhard",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Hennig",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+        "to_email": [
+          "ptth222@uky.edu"
+        ]
+      },
+      "pubmed_name_search": "Bernhard Hennig"
+    },
+    "Hunter Moseley": {
+      "ORCID": "0000-0003-3995-5368",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "hunter.moseley@gmail.com",
+      "first_name": "Hunter",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Moseley",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+        "to_email": [
+          "ptth222@uky.edu"
+        ]
+      },
+      "pubmed_name_search": "Hunter Moseley",
+      "scholar_id": "ctE_FZMAAAAJ"
+    },
+    "Kelly Pennell": {
+      "ORCID": "0000-0003-3423-9610",
+      "affiliations": [
+        "kentucky"
+      ],
+      "authors": [
+        "Kelly Pennell",
+        "Bernhard Hennig",
+        "Angela Gutierrez",
+        "Hunter Moseley"
+      ],
+      "cutoff_year": 2020,
+      "email": "kellypennell@uky.edu",
+      "first_name": "Kelly",
+      "grants": [
+        "P42ES007380",
+        "P42 ES007380"
+      ],
+      "last_name": "Pennell",
+      "project_report": {
+        "cc_email": [],
+        "email_body": "Attached is the project report for publications found for Project 1.\n\nKind regards,\n\nThis email was sent by an automated service. If you have any questions or concerns please email my creator ptth222@uky.edu",
+        "email_subject": "New PubMed Publications",
+        "from_email": "ptth222@uky.edu",
+        "template": "<author_loop><author_first> <author_last>:\n<pub_loop>\t<title> <authors> <grants>\n</pub_loop></author_loop>",
+        "to_email": [
+          "ptth222@uky.edu"
+        ]
+      },
+      "pubmed_name_search": "Kelly Pennell",
+      "scholar_id": "bgO9hAsAAAAJ"
     }
   }
 }

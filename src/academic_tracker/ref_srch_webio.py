@@ -16,7 +16,6 @@ import pymed
 import scholarly
 import habanero
 import bs4
-import fuzzywuzzy.fuzz
 
 from . import helper_functions
 from . import citation_parsing
@@ -51,11 +50,10 @@ def build_pub_dict_from_PMID(PMID_list, from_email):
         publications = pubmed.query(PMID_to_search, max_results=10)
         
         for pub in publications:
+            pub_id, pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub)
             
-            pmid = pub.pubmed_id.split("\n")[0]
-            pub_id = DOI_URL + pub.doi.lower() if pub.doi else pmid
-            if pmid == PMID_to_search:
-                publication_dict[pub_id] = helper_functions.modify_pub_dict_for_saving(pub)
+            if pub_dict["pubmed_id"] == PMID_to_search:
+                publication_dict[pub_id] = pub_dict
                 break
                 
         time.sleep(1)
@@ -64,338 +62,346 @@ def build_pub_dict_from_PMID(PMID_list, from_email):
 
 
 
-def search_references_on_PubMed(tokenized_citations, from_email):
-    """Searhes PubMed for publications matching the citations.
+# def search_references_on_PubMed(running_pubs, tokenized_citations, from_email, prev_query=None):
+#     """Searhes PubMed for publications matching the citations.
     
-    For each citation in tokenized_citations PubMed is queried for the publication. 
+#     For each citation in tokenized_citations PubMed is queried for the publication. 
+#     If the publication is already in running_pubs then missing information will be 
+#     filled in if possible.
+    
+#     Args:
+#         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
+#         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
+#         from_email (str): used in the query to PubMed.
+#         prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]
+        
+#     Returns:
+#         running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes
+#         matching_key_for_citation (list): list of keys to the publication matching the citation at the same index
+#         all_pubs (list): list of lists, each index is the pubs searched through after querying until the citation was matched
+#     """
+       
+#     # initiate PubMed API
+#     pubmed = pymed.PubMed(tool=TOOL, email=from_email)
+    
+#     all_pubs = []
+#     matching_key_for_citation = []
+    
+#     for i, citation in enumerate(tokenized_citations):
+#         all_pubs.append([])
+        
+#         if citation["PMID"]:
+#             query_string = citation["PMID"]
+#         elif citation["DOI"]:
+#             query_string = citation["DOI"]
+#         elif citation["title"]:
+#             query_string = citation["title"]
+#         else:
+#             matching_key_for_citation.append(None)
+#             continue
+#         publications = pubmed.query(query_string, max_results=10) if not prev_query else prev_query[i]
+        
+#         citation_matched_to_pub = False
+#         for pub in publications:
+#             if not isinstance(pub, pymed.article.PubMedArticle):
+#                 continue
+#             all_pubs[i].append(pub)
+            
+#             pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub)
+#             pub_id = pub_dict["doi"] if pub_dict["doi"] else pub_dict["pubmed_id"]
+            
+#             ## Match publication to the citation.
+#             if citation["PMID"] == pub_dict["pubmed_id"]:
+#                 citation_matched_to_pub = True
+#             elif pub.doi and citation["DOI"] and citation["DOI"].lower() == pub.doi.lower():
+#                 citation_matched_to_pub = True
+#             else:
+#                 has_matching_author = helper_functions.match_pub_authors_to_citation_authors(citation["authors"], pub_dict["authors"])
+#                 if has_matching_author and helper_functions.do_strings_fuzzy_match(citation["title"], pub_dict["title"]):
+#                     citation_matched_to_pub = True
+                               
+#             if matching_pub_id := helper_functions.get_pub_id_in_publication_dict(pub_id, pub.title, running_pubs):
+#                 if "PubMed" in running_pubs[matching_pub_id]["queried_sources"]:
+#                     if not citation_matched_to_pub:
+#                         continue
+#                     matching_key_for_citation.append(matching_pub_id)
+#                     break
+                
+#                 helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
+#                 running_pubs[matching_pub_id]["queried_sources"].append("PubMed")
+#                 if citation_matched_to_pub:
+#                     matching_key_for_citation.append(matching_pub_id)
+#                     break
+            
+#             else:
+#                 if not citation_matched_to_pub:
+#                     continue
+#                 pub_dict["queried_sources"] = ["PubMed"]
+#                 running_pubs[pub_id] = pub_dict
+#                 matching_key_for_citation.append(pub_id)
+#                 break
+                            
+#         if not citation_matched_to_pub:
+#             matching_key_for_citation.append(None)
+#         time.sleep(1)
+        
+#     return running_pubs, matching_key_for_citation, all_pubs
+
+
+
+
+# def search_references_on_Crossref(running_pubs, tokenized_citations, mailto_email, prev_query=None):
+#     """Searhes Crossref for publications matching the citations.
+    
+#     For each citation in tokenized_citations Crossref is queried for the publication. 
+#     If the publication is already in running_pubs then missing information will be 
+#     filled in if possible.
+    
+#     Args:
+#         running_pubs (dict): dictionary of publications matching the JSON schema for publications.
+#         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
+#         mailto_email (str): used in the query to Crossref.
+#         prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]
+        
+#     Returns:
+#         running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes
+#         matching_key_for_citation (list): list of keys to the publication matching the citation at the same index
+#         all_pubs (list): list of lists, each index is the pubs searched through after querying until the citation was matched
+#     """
+    
+#     cr = habanero.Crossref(ua_string = "Academic Tracker (mailto:" + mailto_email + ")")
+    
+#     all_pubs = []
+#     matching_key_for_citation = []
+#     for i, citation in enumerate(tokenized_citations):
+#         all_pubs.append([])
+        
+#         if not prev_query:
+#             if citation["DOI"]:
+#                 results = cr.works(ids = citation["DOI"])
+#                 works = [results["message"]]
+#             elif citation["title"]:
+#                 results = cr.works(query_bibliographic = citation["title"], filter = {"type":"journal-article"}, limit = 10)
+#                 works = results["message"]["items"]
+#             else:
+#                 matching_key_for_citation.append(None)
+#                 continue
+#         else:
+#             works = prev_query[i]
+                        
+#         citation_matched_to_pub = False
+#         for work in works:
+#             all_pubs[i].append(work)
+            
+#             pub_id, pub_dict = helper_functions.create_pub_dict_for_saving_Crossref(work, prev_query)
+            
+#             if pub_id is None:
+#                 continue
+            
+#             if citation["DOI"] == pub_dict["doi"]:
+#                 citation_matched_to_pub = True
+#             else:
+#                 if "author" in work:
+#                     has_matching_author = helper_functions.match_pub_authors_to_citation_authors(citation["authors"], pub_dict["authors"])
+#                     if has_matching_author and helper_functions.do_strings_fuzzy_match(citation["title"], pub_dict["title"]):
+#                         citation_matched_to_pub = True
+                               
+#             ## If the publication is already in running_pubs then try to update missing information.
+#             if matching_pub_id := helper_functions.get_pub_id_in_publication_dict(pub_id, pub_dict["title"], running_pubs):
+#                 if "Crossref" in running_pubs[matching_pub_id]["queried_sources"]:
+#                     if not citation_matched_to_pub:
+#                         continue
+#                     matching_key_for_citation.append(matching_pub_id)
+#                     break
+                
+#                 helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
+#                 running_pubs[matching_pub_id]["queried_sources"].append("Crossref")
+#                 if citation_matched_to_pub:
+#                     matching_key_for_citation.append(matching_pub_id)
+#                     break
+            
+#             else:
+#                 if not citation_matched_to_pub:
+#                     continue
+#                 pub_dict["queried_sources"] = ["Crossref"]
+#                 running_pubs[pub_id] = pub_dict
+#                 matching_key_for_citation.append(pub_id)
+#                 break
+                    
+#         if not citation_matched_to_pub:
+#             matching_key_for_citation.append(None)
+#         time.sleep(1)
+            
+#     return running_pubs, matching_key_for_citation, all_pubs
+        
+
+
+
+def search_references_on_source(source, running_pubs, tokenized_citations, mailto_email, prev_query=None):
+    """Searhes source for publications matching the citations.
+    
+    For each citation in tokenized_citations the source is queried for the publication. 
+    If the publication is already in running_pubs then missing information will be 
+    filled in if possible.
+    
+    Possible sources are "Crossref" or "PubMed".
     
     Args:
+        source (str): must be one of "Crossref" or "PubMed".
+        running_pubs (dict): dictionary of publications matching the JSON schema for publications.
         tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
-        from_email (str): used in the query to PubMed
+        mailto_email (str): email provided to the source when querying.
+        prev_query (list|None): a list of lists containing publications from a previous call to this function. [[pub1, ...], [pub1, ...], ...]
         
     Returns:
-        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
+        running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes
+        matching_key_for_citation (list): list of keys to the publication matching the citation at the same index
+        all_pubs (list): list of lists, each index is the pubs searched through after querying until the citation was matched
     """
        
-    # initiate PubMed API
-    pubmed = pymed.PubMed(tool=TOOL, email=from_email)
+    # initiate API
+    if source == "PubMed":
+        api = pymed.PubMed(tool=TOOL, email=mailto_email)
+        query_function = _query_PubMed
+        skip_pub_function = _pub_needs_skipped_PubMed
+        pub_dict_creation_function = helper_functions.create_pub_dict_for_saving_PubMed
+        pub_dict_creation_arguments = ["pub"]
+    elif source == "Crossref":
+        api = habanero.Crossref(ua_string = "Academic Tracker (mailto:" + mailto_email + ")")
+        query_function = _query_Crossref
+        skip_pub_function = _pub_needs_skipped_Crossref
+        pub_dict_creation_function = helper_functions.create_pub_dict_for_saving_Crossref
+        pub_dict_creation_arguments = ["pub", "prev_query"]
+    else:
+        helper_functions.vprint("Error: When searching references there was an attempt to query an unknown source, '" + source + "'.")
+        sys.exit()
     
-    publication_dict = dict()
-    titles = []
+    all_pubs = []
     matching_key_for_citation = []
     
-    for citation in tokenized_citations:
+    for i, citation in enumerate(tokenized_citations):
+        all_pubs.append([])
         
-        if citation["PMID"]:
-            query_string = citation["PMID"]
-        elif citation["DOI"]:
-            query_string = citation["DOI"]
-        elif citation["title"]:
-            query_string = citation["title"]
+        if not prev_query:
+            if not (publications := query_function(api, citation)):
+                matching_key_for_citation.append(None)
+                continue
         else:
-            matching_key_for_citation.append(None)
-            continue
+            publications = prev_query[i]
         
-        publications = pubmed.query(query_string, max_results=10)
-        
-        citation_matched = False
+        citation_matched_to_pub = False
         for pub in publications:
+            if skip_pub_function(pub):
+                continue
+            all_pubs[i].append(pub)
             
-            pmid = pub.pubmed_id.split("\n")[0]
-            pub_id = DOI_URL + pub.doi.lower() if pub.doi else pmid
+            locals_ref = locals()
+            pub_id, pub_dict = pub_dict_creation_function(*[locals_ref[arg] for arg in pub_dict_creation_arguments])
             
-            if helper_functions.is_pub_in_publication_dict(pub_id, pub.title, publication_dict, titles):
+            if pub_id is None:
                 continue
             
             ## Match publication to the citation.
-            pub_matched = False
-            if citation["PMID"] == pmid:
-                pub_matched = True
-            elif pub.doi and citation["DOI"] == pub.doi.lower():
-                pub_matched = True
+            if pub_dict["pubmed_id"] and citation["PMID"] and pub_dict["pubmed_id"] == citation["PMID"]:
+                citation_matched_to_pub = True
+            elif pub_dict["doi"] and citation["DOI"] and citation["DOI"].lower() == pub_dict["doi"]:
+                citation_matched_to_pub = True
             else:
-                has_matching_author = any([author_items.get("lastname").lower() == author_attributes["last"].lower() for author_items in pub.authors for author_attributes in citation["authors"] if author_items.get("lastname") and author_attributes["last"]])
-                if has_matching_author and fuzzywuzzy.fuzz.ratio(citation["title"], pub.title) >= 90:
-                    pub_matched = True
+                has_matching_author = helper_functions.match_pub_authors_to_citation_authors(citation["authors"], pub_dict["authors"])
+                if has_matching_author and helper_functions.do_strings_fuzzy_match(citation["title"], pub_dict["title"]):
+                    citation_matched_to_pub = True
+            
                                
-            if not pub_matched:
-                continue
-                        
-            
-            pub_dict = helper_functions.modify_pub_dict_for_saving(pub)
-            
-            publication_dict[pub_id] = pub_dict
-            titles.append(pub_dict["title"])
-            matching_key_for_citation.append(pub_id)
-            citation_matched = True
-            break
-                    
-        if not citation_matched:
-            matching_key_for_citation.append(None)
-        time.sleep(1)
-        
-    return publication_dict, matching_key_for_citation
-
-
-       
-
-def search_references_on_Google_Scholar(tokenized_citations, mailto_email):
-    """Searhes Google Scholar for publications that match the citations.
-        
-    Args:
-        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
-        mailto_email (str): used in the query to Crossref when trying to find DOIs for the articles
-        
-    Returns:
-        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
-    """
-    
-    publication_dict = {}
-    titles = []
-    matching_key_for_citation = []
-    for citation in tokenized_citations:
-        
-        if citation["title"]:
-            query = scholarly.scholarly.search_pubs(citation["title"])
-        else:
-            matching_key_for_citation.append(None)
-            continue
-        
-        citation_matched = False
-        for count, pub in enumerate(query):
-            
-            if count > 50:
-                break
-            
-            time.sleep(1)
-            
-            title = pub["bib"]["title"]
-            
-            ## authors from Google Scholar are last names and initials in a single string, each string in one list. ['SA Cholewiak', 'RW Fleming', 'M Singh']
-            pub_matched = False
-            has_matching_author = any([author_attributes["last"].lower() in author.lower() for author in pub["bib"]["author"] for author_attributes in citation["authors"]])
-            if has_matching_author and fuzzywuzzy.fuzz.ratio(citation["title"], title) >= 90:
-                pub_matched = True
-                               
-            if not pub_matched:
-                continue
-            
-            ## Find the publication year and check that it is in range.
-            publication_year = int(pub["bib"]["pub_year"]) if "pub_year" in pub["bib"] else None
-        
-            
-            ## Determine the pub_id
-            doi = webio.get_DOI_from_Crossref(title, mailto_email)
-            if doi:
-                pub_id = DOI_URL + doi
-            else:
-                if "pub_url" in pub:
-                    pub_id = pub["pub_url"]
-                else:
-                    helper_functions.vprint("Warning: Could not find a DOI, URL, or PMID for a publication when searching Google Scholar. It will not be in the publications.", verbosity=1)
-                    helper_functions.vprint("Title: " + title, verbosity=1)
+            if matching_pub_id := helper_functions.get_pub_id_in_publication_dict(pub_id, pub_dict["title"], running_pubs):
+                if source in running_pubs[matching_pub_id]["queried_sources"]:
+                    if not citation_matched_to_pub:
+                        continue
+                    matching_key_for_citation.append(matching_pub_id)
+                    break
+                
+                helper_functions._merge_pub_dicts(running_pubs[matching_pub_id], pub_dict)
+                running_pubs[matching_pub_id]["queried_sources"].append(source)
+                if citation_matched_to_pub:
+                    matching_key_for_citation.append(matching_pub_id)
                     break
             
-            
-            pub_dict = copy.deepcopy(PUBLICATION_TEMPLATE)
-            if doi:
-                pub_dict["doi"] = doi
-            if title:
-                pub_dict["title"] = title
-            if publication_year:
-                pub_dict["publication_date"]["year"] = publication_year
-                
-            
-            if not helper_functions.is_pub_in_publication_dict(pub_id, title, publication_dict, titles):
-                pub_dict["authors"] = [{"affiliation": None,
-                                        "firstname": None,
-                                        "initials": None,
-                                        "lastname": author["last"]} for author in citation["authors"]]
-                publication_dict[pub_id] = pub_dict
-                titles.append(title)
+            else:
+                if not citation_matched_to_pub:
+                    continue
+                pub_dict["queried_sources"] = [source]
+                running_pubs[pub_id] = pub_dict
                 matching_key_for_citation.append(pub_id)
-                citation_matched = True
-            
-            break
-        
-        if not citation_matched:
-            matching_key_for_citation.append(None)
-        
-    return publication_dict, matching_key_for_citation
-
-
-
-
-def search_references_on_Crossref(tokenized_citations, mailto_email):
-    """Searhes Crossref for publications matching the citations.
-    
-    Args:
-        tokenized_citations (list): list of citations parsed from a source. Each citation is a dict {"authors", "title", "DOI", "PMID", "reference_line", "pub_dict_key"}.
-        mailto_email (str): used in the query to Crossref
-        
-    Returns:
-        publication_dict (dict): keys are pulication ids and values are a dictionary with publication attributes
-    """
-    
-    cr = habanero.Crossref(ua_string = "Academic Tracker (mailto:" + mailto_email + ")")
-    
-    publication_dict = {}
-    titles = []
-    matching_key_for_citation = []
-    for citation in tokenized_citations:
-        
-        if citation["DOI"]:
-            results = cr.works(ids = citation["DOI"])
-            works = [results["message"]]
-        elif citation["title"]:
-            results = cr.works(query_bibliographic = citation["title"], filter = {"type":"journal-article"}, limit = 10)
-            works = results["message"]["items"]
-        else:
-            matching_key_for_citation.append(None)
-            continue
-        
-        citation_matched = False
-        for work in works:
-            
-            ## Look for DOI
-            doi = work["DOI"].lower() if "DOI" in work else None
-             
-            ## Look for title    
-            if "title" in work and work["title"]:
-                title = work["title"][0]
-            else:
-                continue
-            
-            pub_matched = False
-            if citation["DOI"] == doi:
-                pub_matched = True
-            else:
-                if "author" in work:
-                    has_matching_author = any([author_items.get("family").lower() == author_attributes["last"].lower() for author_items in work["author"] for author_attributes in citation["authors"] if "family" in author_items and author_items.get("family")])
-                    if has_matching_author and fuzzywuzzy.fuzz.ratio(citation["title"], title) >= 90:
-                        pub_matched = True
-                               
-            if not pub_matched:
-                continue
-            
-            
-            ## Find published date
-            date_found = False
-            if "published" in work:
-                date_key = "published"
-                date_found = True
-            elif "published-online" in work:
-                date_key = "published-online"
-                date_found = True
-            elif "published-print" in work:
-                date_key = "published-print"
-                date_found = True
-            
-            if date_found:
-                date_length = len(work[date_key]["date-parts"])
-                
-                if date_length > 2:
-                    publication_year = work[date_key]["date-parts"][0][0]
-                    publication_month = work[date_key]["date-parts"][0][1]
-                    publication_day = work[date_key]["date-parts"][0][2]
-                elif date_length > 1:
-                    publication_year = work[date_key]["date-parts"][0][0]
-                    publication_month = work[date_key]["date-parts"][0][1]
-                    publication_day = None
-                elif date_length > 0:
-                    publication_year = work[date_key]["date-parts"][0][0]
-                    publication_month = None
-                    publication_day = None
-                else:
-                    publication_year = None
-                    publication_month = None
-                    publication_day = None
-            else:
-                publication_year = None
-                publication_month = None
-                publication_day = None
-            
-            
-            ## Change the author list to a form like PubMed's
-            new_author_list = []
-            for cr_author_dict in work["author"]:
-                
-                temp_dict = {"lastname":cr_author_dict["family"], "initials":None,}
-                
-                temp_dict["firstname"] = cr_author_dict["given"] if "given" in cr_author_dict else None
-                
-                if cr_author_dict["affiliation"] and "name" in cr_author_dict["affiliation"][0]:
-                    temp_dict["affiliation"] = cr_author_dict["affiliation"][0]["name"]
-                else:
-                    temp_dict["affiliation"] = None
-                    
-                if "author_id" in cr_author_dict:
-                    temp_dict["author_id"] = cr_author_dict["author_id"]
-                
-                new_author_list.append(temp_dict)
-            
-            
-            ## Look for external URL
-            if "URL" in work:
-                external_url = work["URL"]
-            elif "link" in work:
-                external_url = [link["URL"] for link in work["link"] if "URL" in link and link["URL"]][0]
-                if not external_url:
-                    external_url = None
-            else:
-                external_url = None
+                break
                             
-            
-            if doi:
-                pub_id = DOI_URL + doi
-            elif external_url:
-                pub_id = external_url
-            else:
-                helper_functions.vprint("Warning: Could not find a DOI or external URL for a publication when searching Crossref. It will not be in the publications.", verbosity=1)
-                helper_functions.vprint("Title: " + title, verbosity=1)
-                continue
-            
-            
-            
-            if helper_functions.is_pub_in_publication_dict(pub_id, title, publication_dict, titles):
-                continue
-            
-            
-            ## Look for journal
-            journal = work["publisher"] if "publisher" in work else None
-                
-        
-            ## Build the pub_dict from what we were able to collect.
-            pub_dict = copy.deepcopy(PUBLICATION_TEMPLATE)
-            if doi:
-                pub_dict["doi"] = doi
-            if publication_year:
-                pub_dict["publication_date"]["year"] = publication_year
-            if publication_month:
-                pub_dict["publication_date"]["month"] = publication_month
-            if publication_day:
-                pub_dict["publication_date"]["day"] = publication_day
-            if journal:
-                pub_dict["journal"] = journal
-                
-            pub_dict["authors"] = new_author_list
-            pub_dict["title"] = title
-            
-            
-            publication_dict[pub_id] = pub_dict
-            titles.append(title)
-            matching_key_for_citation.append(pub_id)
-            citation_matched = True
-            break
-        
-        if not citation_matched:
+        if not citation_matched_to_pub:
             matching_key_for_citation.append(None)
         time.sleep(1)
-            
-            
-    return publication_dict, matching_key_for_citation
         
-                
+    return running_pubs, matching_key_for_citation, all_pubs
+
+
+
+
+def _query_PubMed(pubmed, citation):
+    """Query PubMed with either the PMID, DOI, or title from citation.
+    
+    Args:
+        pubmed (pymed.api.PubMed): api object from the pymed library.
+        citation (dict): citation to query for.
+    """
+    
+    if citation["PMID"]:
+        query_string = citation["PMID"]
+    elif citation["DOI"]:
+        query_string = citation["DOI"]
+    elif citation["title"]:
+        query_string = citation["title"]
+    else:
+        return None
+    return pubmed.query(query_string, max_results=10)
+
+
+
+def _query_Crossref(cr, citation):
+    """Query Crossref with either the PMID, DOI, or title from citation.
+    
+    Args:
+        pubmed (habanero.crossref.crossref.Crossref): api object from the habanero library.
+        citation (dict): citation to query for.
+    """
+    
+    if citation["DOI"]:
+        results = cr.works(ids = citation["DOI"])
+        works = [results["message"]]
+    elif citation["title"]:
+        results = cr.works(query_bibliographic = citation["title"], filter = {"type":"journal-article"}, limit = 10)
+        works = results["message"]["items"]
+    else:
+        return None
+    return works
+         
+
+def _pub_needs_skipped_PubMed(pub):
+    """Determine whether the queried pub from PubMed should be skipped or not.
+    
+    Args:
+        pub (pymed.article.PubMedArticle|pymed.book.PubMedBookArticle): publication queried from PubMed book articles should be skipped.
+    """
+    
+    return not isinstance(pub, pymed.article.PubMedArticle)
+
+
+def _pub_needs_skipped_Crossref(pub):
+    """Determine whether the queried pub from Crossref should be skipped or not.
+    
+    This is just here to work with the function, publications from Crossref should never be skipped.
+    
+    Args:
+        pub (dict): publication queried from Crossref.
+    """
+    
+    return False
+
 
 
 
@@ -442,7 +448,7 @@ def parse_myncbi_citations(url):
 
 
 
-def tokenize_reference_input(reference_input, MEDLINE_reference):
+def tokenize_reference_input(reference_input, MEDLINE_reference, remove_duplicates=True):
     """Tokenize the citations in reference_input.
     
     reference_input can be a URL or filepath. MyNCBI URLs are handled special, 
@@ -452,8 +458,9 @@ def tokenize_reference_input(reference_input, MEDLINE_reference):
     by line. Citations are expected to be 1 per line otherwise.
     
     Args:
-        reference_input (str): URL or filepath
-        MEDLINE_reference (bool): True if reference_input is in MEDLINE format
+        reference_input (str): URL or filepath.
+        MEDLINE_reference (bool): True if reference_input is in MEDLINE format.
+        remove_duplicates (bool): if True, remove duplicate entries in tokenized citations.
         
     Returns:
         tokenized_citations (dict): the citations tokenized in a dictionary matching the tokenized citations JSON schema. 
@@ -501,24 +508,25 @@ def tokenize_reference_input(reference_input, MEDLINE_reference):
         sys.exit()
     
     ## Look for duplicates in citations.
-    duplicate_citations = helper_functions.find_duplicate_citations(tokenized_citations)
-    if duplicate_citations:
-        helper_functions.vprint("Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.", verbosity=1)
-        helper_functions.vprint("Duplicates:", verbosity=1)
-        for index_list in duplicate_citations:
-            for index in index_list:
-                if tokenized_citations[index]["reference_line"]:
-                    pretty_print = tokenized_citations[index]["reference_line"].split("\n")
-                    pretty_print = " ".join([line.strip() for line in pretty_print])
-                    helper_functions.vprint(pretty_print, verbosity=1)
-                else:
-                    helper_functions.vprint(tokenized_citations[index]["title"], verbosity=1)
-                helper_functions.vprint("", verbosity=1)
-            helper_functions.vprint("\n", verbosity=1)
-        
-        indexes_to_remove = [index for duplicate_set in duplicate_citations for index in duplicate_set[1:]]
-        
-        tokenized_citations = [citation for count, citation in enumerate(tokenized_citations) if not count in indexes_to_remove]
+    if remove_duplicates:
+        duplicate_citations = helper_functions.find_duplicate_citations(tokenized_citations)
+        if duplicate_citations:
+            helper_functions.vprint("Warning: The following citations in the reference file or URL appear to be duplicates based on identical DOI, PMID, or similar titles. They will only appear once in any outputs.", verbosity=1)
+            helper_functions.vprint("Duplicates:", verbosity=1)
+            for index_list in duplicate_citations:
+                for index in index_list:
+                    if tokenized_citations[index]["reference_line"]:
+                        pretty_print = tokenized_citations[index]["reference_line"].split("\n")
+                        pretty_print = " ".join([line.strip() for line in pretty_print])
+                        helper_functions.vprint(pretty_print, verbosity=1)
+                    else:
+                        helper_functions.vprint(tokenized_citations[index]["title"], verbosity=1)
+                    helper_functions.vprint("", verbosity=1)
+                helper_functions.vprint("\n", verbosity=1)
+            
+            indexes_to_remove = [index for duplicate_set in duplicate_citations for index in duplicate_set[1:]]
+            
+            tokenized_citations = [citation for count, citation in enumerate(tokenized_citations) if not count in indexes_to_remove]
         
     return tokenized_citations
 

@@ -3,6 +3,7 @@
 
 import re
 import os
+import json
 
 import pymed
 import pytest
@@ -11,8 +12,8 @@ import xml.etree.ElementTree as ET
 from academic_tracker.fileio import load_json
 from academic_tracker import __main__
 from academic_tracker.helper_functions import vprint, regex_match_return, regex_group_return, regex_search_return
-from academic_tracker.helper_functions import match_authors_in_pub_PubMed, match_authors_in_pub_Crossref
-from academic_tracker.helper_functions import modify_pub_dict_for_saving, is_fuzzy_match_to_list, fuzzy_matches_to_list, is_pub_in_publication_dict 
+from academic_tracker.helper_functions import match_pub_authors_to_config_authors, match_pub_authors_to_citation_authors
+from academic_tracker.helper_functions import create_pub_dict_for_saving_PubMed, is_fuzzy_match_to_list, fuzzy_matches_to_list, is_pub_in_publication_dict 
 from academic_tracker.helper_functions import create_authors_by_project_dict, adjust_author_attributes, find_duplicate_citations, are_citations_in_pub_dict
 from fixtures import publication_dict, pub_with_grants, pub_with_matching_author, passing_config, authors_by_project_dict
 
@@ -91,7 +92,20 @@ def test_regex_search_return(regex, string_to_match, return_value):
 
 @pytest.fixture
 def authors_json_file():
-    return {"Hunter Moseley": {
+    return {
+        "Isabel Escobar": {
+              "ORCID": "0000-0001-9269-5927",
+              "affiliations": [
+                "kentucky"
+              ],
+              "cutoff_year": 2020,
+              "email": "isabel.escobar@uky.edu",
+              "first_name": "Isabel",
+              "last_name": "Escobar",
+              "pubmed_name_search": "Isabel Escobar",
+              "scholar_id": "RfB5L8kAAAAJ"
+            },
+        "Hunter Moseley": {
             "ORCID": "0000-0003-3995-5368",
             "affiliations": [
               "kentucky"
@@ -102,89 +116,138 @@ def authors_json_file():
             "last_name": "Moseley",
             "pubmed_name_search": "Hunter Moseley",
             "scholar_id": "ctE_FZMAAAAJ"
-          },
-          "Isabel Escobar": {
-            "ORCID": "0000-0001-9269-5927",
-            "affiliations": [
-              "kentucky"
-            ],
-            "cutoff_year": 2020,
-            "email": "isabel.escobar@uky.edu",
-            "first_name": "Isabel",
-            "last_name": "Escobar",
-            "pubmed_name_search": "Isabel Escobar",
-            "scholar_id": "RfB5L8kAAAAJ"
-          },}
+          }}
     
     
 @pytest.mark.parametrize("PM_author_list, returned_PM_author_list", [
         
         ([{ 'affiliation': 'Department of Neurology, University Medical Center, Johannes Gutenberg-University, Mainz, Germany.',
-         'firstname': 'Carine',
-         'initials': 'C',
-         'lastname': 'Thalman'},
-       { 'affiliation': 'Department of Biostats, Kentucky',
-         'firstname': 'Hunter',
-         'initials': 'HM',
-         'lastname': 'Moseley'},],
+          'firstname': 'Carine',
+          'initials': 'C',
+          'lastname': 'Thalman',
+          'ORCID':None},
+        { 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'Hunter',
+          'initials': 'HM',
+          'lastname': 'Moseley',
+          'ORCID':None},],
         [{ 'affiliation': 'Department of Neurology, University Medical Center, Johannes Gutenberg-University, Mainz, Germany.',
-         'firstname': 'Carine',
-         'initials': 'C',
-         'lastname': 'Thalman'},
-       { 'affiliation': 'Department of Biostats, Kentucky',
-         'firstname': 'Hunter',
-         'initials': 'HM',
-         'lastname': 'Moseley',
-         'author_id': 'Hunter Moseley'},]),
+          'firstname': 'Carine',
+          'initials': 'C',
+          'lastname': 'Thalman',
+          'ORCID':None},
+        { 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'Hunter',
+          'initials': 'HM',
+          'lastname': 'Moseley',
+          'author_id': 'Hunter Moseley',
+          'ORCID':"0000-0003-3995-5368"},]),
            
         ([{ 'affiliation': 'Department of Neurology, University Medical Center, Johannes Gutenberg-University, Mainz, Germany.',
-         'firstname': 'Carine',
-         'initials': 'C',
-         'lastname': 'Thalman'}], 
-           []),
+          'firstname': 'Carine',
+          'initials': 'C',
+          'lastname': 'Thalman',
+          'ORCID':None}], 
+            []),
+        
+        ([{ 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'Hunter N. B.',
+          'initials': 'HM',
+          'lastname': 'Moseley',
+          'ORCID':None},],
+        [{ 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'Hunter N. B.',
+          'initials': 'HM',
+          'lastname': 'Moseley',
+          'author_id': 'Hunter Moseley',
+          'ORCID':"0000-0003-3995-5368"},]),
+        
+        ([{ 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'X Hunter',
+          'initials': 'HM',
+          'lastname': 'Moseley',
+          'ORCID':None},],
+        [{ 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'X Hunter',
+          'initials': 'HM',
+          'lastname': 'Moseley',
+          'author_id': 'Hunter Moseley',
+          'ORCID':"0000-0003-3995-5368"},]),
+        
+        ([{ 'collectivename': 'some name',
+          'ORCID':None},],
+        [{ 'collectivename': 'some name',
+          'author_id': 'Hunter Moseley',
+          'ORCID':"0000-0003-3995-5368"},]),
+        
+        ([{ 'affiliation': 'Department of Biostats, Kentucky',
+          'firstname': 'Hunter N. B.',
+          'initials': 'HM',
+          'lastname': None,
+          'ORCID':None},],
+        []),
         ])
         
         
         
-def test_match_authors_in_pub_PubMed(authors_json_file, PM_author_list, returned_PM_author_list):
+def test_match_pub_authors_to_config_authors(authors_json_file, PM_author_list, returned_PM_author_list):
+    if "collectivename" in PM_author_list[0]:
+        authors_json_file["Hunter Moseley"]["collective_name"] = "some name"
     
-    assert match_authors_in_pub_PubMed(authors_json_file, PM_author_list) == returned_PM_author_list
+    assert match_pub_authors_to_config_authors(authors_json_file, PM_author_list) == returned_PM_author_list
 
 
 
-@pytest.mark.parametrize("CR_author_list, returned_CR_author_list", [
-        
-        ([{'given': 'Li',
-           'family': 'Xiao',
-           'sequence': 'first',
-           'affiliation': [{'name': 'Department of Chemical and Materials\rEngineering and &Dagger;Department of Civil Engineering, University of Kentucky, Lexington, Kentucky 40506, United States'}]},
-       {'given': 'Hunter',
-       'family': 'Moseley',
-       'sequence': 'additional',
-       'affiliation': [{'name': 'Department of Chemical and Materials\rEngineering and &Dagger;Department of Civil Engineering, University of Kentucky, Lexington, Kentucky 40506, United States'}],
-       'ORCID':'0000-0003-3995-5368'},],
-        [{'given': 'Li',
-           'family': 'Xiao',
-           'sequence': 'first',
-           'affiliation': [{'name': 'Department of Chemical and Materials\rEngineering and &Dagger;Department of Civil Engineering, University of Kentucky, Lexington, Kentucky 40506, United States'}]},
-       {'given': 'Hunter',
-       'family': 'Moseley',
-       'sequence': 'additional',
-       'affiliation': [{'name': 'Department of Chemical and Materials\rEngineering and &Dagger;Department of Civil Engineering, University of Kentucky, Lexington, Kentucky 40506, United States'}],
-       'ORCID':'0000-0003-3995-5368',
-       'author_id':'Hunter Moseley'},]),
-           
-        ([{'given': 'Li',
-           'family': 'Xiao',
-           'sequence': 'first',
-           'affiliation': [{'name': 'Department of Chemical and Materials\rEngineering and &Dagger;Department of Civil Engineering, University of Kentucky, Lexington, Kentucky 40506, United States'}]}], 
-           []),
-        ]) 
-        
-def test_match_authors_in_pub_Crossref(CR_author_list, returned_CR_author_list, authors_json_file):
+def test_match_authors_in_pub_PubMed_collective_names():
     
-    assert match_authors_in_pub_Crossref(authors_json_file, CR_author_list) == returned_CR_author_list
-
+    citation_authors = [
+                      {
+                        "initials": "J",
+                        "last": "Mitchell"
+                      },
+                      {"collective_name": "some name"},
+                      {
+                        "initials": "R",
+                        "last": "Flight"
+                      },
+                      {
+                        "initials": "H",
+                        "last": "Moseley"
+                      }
+                    ]
+    
+    publication_authors = [
+        {"collectivename": "some name",
+          "ORCID": None}
+        ]
+    
+    assert match_pub_authors_to_citation_authors(citation_authors, publication_authors) == True
+    
+    
+def test_match_authors_in_pub_PubMed_ORCID():
+    
+    citation_authors = [
+                      {
+                        "initials": "J",
+                        "last": "Mitchell"
+                      },
+                      {"ORCID": "asdf"},
+                      {
+                        "initials": "R",
+                        "last": "Flight"
+                      },
+                      {
+                        "initials": "H",
+                        "last": "Moseley"
+                      }
+                    ]
+    
+    publication_authors = [
+        {"ORCID": "asdf",
+          "lastname": "qwer"}
+        ]
+    
+    assert match_pub_authors_to_citation_authors(citation_authors, publication_authors) == True
 
 
 @pytest.fixture
@@ -195,25 +258,12 @@ def pub_no_PMCID():
 
 
 def test_modify_pub_dict_for_saving_no_PMCID(pub_no_PMCID):
-    modified_pub = {'pubmed_id': '34601942',
-                     'title': 'Genome-Wide Association Study of Peripheral Artery Disease.',
-                     'abstract': 'Peripheral artery disease (PAD) affects >200 million people worldwide and is associated with high mortality and morbidity. We sought to identify genomic variants associated with PAD overall and in the contexts of diabetes and smoking status.\nWe identified genetic variants associated with PAD and then meta-analyzed with published summary statistics from the Million Veterans Program and UK Biobank to replicate their findings. Next, we ran stratified genome-wide association analysis in ever smokers, never smokers, individuals with diabetes, and individuals with no history of diabetes and corresponding interaction analyses, to identify variants that modify the risk of PAD by diabetic or smoking status.\nWe identified 5 genome-wide significant (\nOur analyses confirm the published genetic associations with PAD and identify novel variants that may influence susceptibility to PAD in the context of diabetes or smoking status.',
-                     'keywords': ['diabetes',
-                      'genome-wide association study',
-                      'peripheral vascular disease',
-                      'smoking'],
-                     'journal': 'Circulation. Genomic and precision medicine',
-                     'publication_date': {'year': 2021, 'month': 10, 'day': 5},
-                     'methods': None,
-                     'conclusions': None,
-                     'results': 'We identified 5 genome-wide significant (',
-                     'copyrights': None,
-                     'doi': '10.1161/CIRCGEN.119.002862',
-                     'grants': [],
-                     'PMCID': None}
+    modified_pub = load_json(os.path.join("tests", "testing_files", "PubMed_modified_to_save_no_PMCID.json"))
             
-    pub_to_check = modify_pub_dict_for_saving(pub_no_PMCID)
-    del pub_to_check["authors"]
+    _, pub_to_check = create_pub_dict_for_saving_PubMed(pub_no_PMCID)
+    
+    # with open(os.path.join("tests", "testing_files", "PubMed_modified_to_save_no_PMCID_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(pub_to_check, indent=2, sort_keys=True))
     
     assert pub_to_check == modified_pub
 
@@ -227,29 +277,33 @@ def pub_with_PMCID():
 
 
 def test_modify_pub_dict_for_saving_with_PMCID(pub_with_PMCID):
-    modified_pub = {'pubmed_id': '33001857',
-                     'title': 'Balancing incomplete COVID-19 evidence and local priorities: risk communication and stakeholder engagement strategies for school re-opening.',
-                     'abstract': 'In the midst of the COVID-19 pandemic, United States (U.S.) educational institutions must weigh incomplete scientific evidence to inform decisions about how best to re-open schools without sacrificing public health. While many communities face surging case numbers, others are experiencing case plateaus or even decreasing numbers. Simultaneously, some U.S. school systems face immense infrastructure challenges and resource constraints, while others are better positioned to resume face-to-face instruction. In this review, we first examine potential engineering controls to reduce SARS-CoV-2 exposures; we then present processes whereby local decision-makers can identify and partner with scientists, faculty, students, parents, public health officials, and others to determine the controls most appropriate for their communities. While no solution completely eliminates risks of SARS-CoV-2 exposure and illness, this mini-review discusses engaged decision and communication processes that incorporate current scientific knowledge, school district constraints, local tolerance for health risk, and community priorities to help guide schools in selecting and implementing re-opening strategies that are acceptable, feasible, and context-specific.',
-                     'keywords': ['COVID-19',
-                      'airborne transmission',
-                      'children health',
-                      'indoor air',
-                      'stakeholder engagement'],
-                     'journal': 'Reviews on environmental health',
-                     'publication_date': {'year': 2020, 'month': 10, 'day': 2},
-                     'methods': None,
-                     'conclusions': None,
-                     'results': None,
-                     'copyrights': '© 2020 Walter de Gruyter GmbH, Berlin/Boston.',
-                     'doi': '10.1515/reveh-2020-0092',
-                     'grants': ['G08 LM013185', 'P30 ES026529', 'P42 ES007380', 'P42 ES007381'],
-                     'PMCID': 'PMC7933073'}
+    modified_pub = load_json(os.path.join("tests", "testing_files", "PubMed_modified_to_save_with_PMCID.json"))
             
-    pub_to_check = modify_pub_dict_for_saving(pub_with_PMCID)
-    del pub_to_check["authors"]
+    _, pub_to_check = create_pub_dict_for_saving_PubMed(pub_with_PMCID, True)
+    
+    # with open(os.path.join("tests", "testing_files", "PubMed_modified_to_save_with_PMCID_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(pub_to_check, indent=2, sort_keys=True))
     
     assert pub_to_check == modified_pub
 
+
+
+@pytest.fixture
+def modified_PubMed_XML():
+    xml_path = os.path.join("tests", "testing_files", "modified_PubMed_XML.xml")
+    tree = ET.parse(xml_path)
+    return pymed.article.PubMedArticle(xml_element=tree.getroot())
+
+
+def test_modify_pub_dict_for_saving_with_PMCID(modified_PubMed_XML):
+    modified_pub = load_json(os.path.join("tests", "testing_files", "PubMed_rare_cases.json"))
+            
+    _, pub_to_check = create_pub_dict_for_saving_PubMed(modified_PubMed_XML, True)
+    
+    # with open(os.path.join("tests", "testing_files", "PubMed_rare_cases_new.json"),'w') as jsonFile:
+    #     jsonFile.write(json.dumps(pub_to_check, indent=2, sort_keys=True))
+    
+    assert pub_to_check == modified_pub
 
 
 
@@ -273,12 +327,11 @@ def test_fuzzy_matches_to_list(str_to_match, list_to_matched, matches):
     assert fuzzy_matches_to_list(str_to_match, list_to_matched) == matches
 
 
-
 @pytest.mark.parametrize("pub_id, title, titles, is_in_pub_dict", [
         
         ("https://doi.org/10.1016/j.chroma.2021.462426", "asdf", [], True),
         ("asdf", "Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.", 
-         ["Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.",          
+          ["Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry.",          
           "Untargeted Stable Isotope Probing of the Gut Microbiota Metabolome Using 13C-Labeled Dietary Fibers."], True),
         ("asdf", "qwer", [], False)
         ]) 
@@ -369,10 +422,10 @@ def publication_json():
 
 def test_are_citations_in_pub_dict(publication_json):
     
-    tokenized_citations = [{"PMID":"32095784", "DOI":"", "title":""},
-                           {"PMID":"", "DOI":"10.1002/adhm.202101820", "title":""},
-                           {"PMID":"", "DOI":"", "title":"Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy."},
-                           {"PMID":"1234", "DOI":"", "title":""}]
+    tokenized_citations = [{"PMID":"35313030", "DOI":"", "title":""},
+                            {"PMID":"", "DOI":"10.1038/s41467-023-35784-x", "title":""},
+                            {"PMID":"", "DOI":"", "title":"kegg_pull: a software package for the RESTful access and pulling from the Kyoto Encyclopedia of Gene and Genomes."},
+                            {"PMID":"1234", "DOI":"", "title":""}]
     
     is_citation_in_pubs_check = [True, True, True, False]
     

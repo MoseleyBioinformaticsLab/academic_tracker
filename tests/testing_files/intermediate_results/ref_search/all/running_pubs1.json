@@ -1,0 +1,907 @@
+{
+  "https://doi.org/10.1007/978-1-4939-1258-2_11": {
+    "PMCID": "PMC4337027",
+    "abstract": "Advances in analytical methodologies, principally nuclear magnetic resonance spectroscopy (NMR) and mass spectrometry (MS), over the last decade have made large-scale analysis of the human metabolome a reality. This is leading to the reawakening of the importance of metabolism in human diseases, particularly widespread metabolic diseases such as cancer, diabetes, and obesity. Emerging NMR and MS atom-tracking technologies and informatics are poised to revolutionize metabolomics-based research because they deliver the high information throughput (HIT) that is needed for deciphering systems biochemistry. In particular, stable isotope-resolved metabolomics (SIRM) enables unambiguous tracking of individual atoms through compartmentalized metabolic networks in a wide range of experimental systems, including human subjects. MS offers a wide range of instrumental capabilities involving different levels of initial capital outlay and operating costs, ranging from gas-chromatography (GC) MS that is affordable by many individual laboratories to the HIT-supporting Fourier-transform (FT) class of MS that rivals NMR in cost and infrastructure support. This chapter focuses on sample preparation, instrument, and data processing procedures for these two extremes of MS instrumentation used in SIRM.",
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": "Graduate Center of Toxicology, University of Kentucky, Biopharm Complex, 789 S. Limestone St., Lexington, KY, 40536, USA, rick.higashi@uky.edu.",
+        "author_id": null,
+        "firstname": "Richard M",
+        "initials": "RM",
+        "lastname": "Higashi"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Teresa W-M",
+        "initials": "TW",
+        "lastname": "Fan"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Pawel K",
+        "initials": "PK",
+        "lastname": "Lorkiewicz"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Hunter N B",
+        "initials": "HN",
+        "lastname": "Moseley"
+      },
+      {
+        "ORCID": null,
+        "affiliation": null,
+        "author_id": null,
+        "firstname": "Andrew N",
+        "initials": "AN",
+        "lastname": "Lane"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1007/978-1-4939-1258-2_11",
+    "grants": [
+      "1R01CA118434-01A2",
+      "5P20RR018733",
+      "R21 CA133668",
+      "P20 RR018733",
+      "R01ES-022191-01",
+      "P01CA163223-01A1",
+      "P01 CA163223",
+      "1R01CA101199-01",
+      "R01 ES022191",
+      "R01 CA118434",
+      "3R01CA118434-02S1",
+      "R21CA133-668-02",
+      "R01 CA101199"
+    ],
+    "journal": "Methods in molecular biology (Clifton, N.J.)",
+    "keywords": [],
+    "methods": null,
+    "publication_date": {
+      "day": 2,
+      "month": 10,
+      "year": 2014
+    },
+    "pubmed_id": "25270929",
+    "queried_sources": [
+      "PubMed"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "Schlotterbeck G, Ross A, Dieterle F, Senn H. Metabolic profiling technologies for biomarker discovery in biomedicine and drug development. Pharmacogenomics. 2006;7:1055\u20131075.",
+        "doi": null,
+        "pubmed_id": "17054416",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Oresic M, Vidal-Puig A, Hanninen V. Metabolomic approaches to phenotype characterization and applications to complex diseases. Expert Review of Molecular Diagnostics. 2006;6:575\u2013585.",
+        "doi": null,
+        "pubmed_id": "16824031",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Dunn W, Broadhurst D, Deepak S, Buch M, McDowell G, Spasic I, Ellis D, Brooks N, Kell D, Neyses L. Serum metabolomics reveals many novel metabolic markers of heart failure, including pseudouridine and 2-oxoglutarate. Metabolomics. 2007;3:413\u2013426.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC2724746",
+        "citation": "Sreekumar A, Poisson LM, Rajendiran TM, Khan AP, Cao Q, Yu J, Laxman B, Mehra R, Lonigro RJ, Li Y, Nyati MK, Ahsan A, Kalyana-Sundaram S, Han B, Cao X, Byun J, Omenn GS, Ghosh D, Pennathur S, Alexander DC, Berger A, Shuster JR, Wei JT, Varambally S, Beecher C, Chinnaiyan AM. Metabolomic profiles delineate potential role for sarcosine in prostate cancer progression. Nature. 2009;457:910\u2013914.",
+        "doi": null,
+        "pubmed_id": "19212411",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Griffiths William J., T. K., Wang Yuqin, Kohl Matthias, Enot David P., Deigner H-P. Targeted Metabolomics for Biomarker Discovery. Angew. Chem. Int. Ed. 2010;49:5426\u20135446.",
+        "doi": null,
+        "pubmed_id": "20629054",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Theodoridis G, Gika HG, Wilson ID. Mass spectrometry-based holistic analytical approaches for metabolite profiling in systems biology studies. Mass Spectrom. Rev. 2011",
+        "doi": null,
+        "pubmed_id": "21384411",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Want EJ, Smith CA, Qin CA, VanHorne KC, Siuzdak G. Phospholipid capture combined with non-linear chromatographic correction for improved serum metabolite profiling. Metabolomics. 2006;2:145\u2013154.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Andrew Clayton T, Lindon JC, Cloarec O, Antti H, Charuel C, Hanton G, Provost J-P, Le Net J-L\u00d8, Baker D, Walley RJ, Everett JR, Nicholson JK. Pharmaco-metabonomic phenotyping and personalized drug treatment. Nature. 2006;440:1073\u20131077.",
+        "doi": null,
+        "pubmed_id": "16625200",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Harrigan GG, Brackett DJ, Boros LG. Medicinal chemistry, metabolic profiling and drug target discovery: A role for metabolic profiling in reverse pharmacology and chemical genetics. Mini-Reviews in Medicinal Chemistry. 2005;5:13\u201320.",
+        "doi": null,
+        "pubmed_id": "15638788",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Boros LG. Metabolic targeted therapy of cancer: current tracer technologies and future drug design strategies in the old metabolic network. Metabolomics. 2005;1:11\u201315.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TWM, Higashi RM, Lane AN. Integrating metabolomics and transcriptomics for probing Se anticancer mechanisms. Drug Metab. Rev. 2006;38:707\u2013732.",
+        "doi": null,
+        "pubmed_id": "17145697",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Robertson DG. Metabonomics in toxicology: A review. Toxicological Sciences. 2005;85:809\u2013822.",
+        "doi": null,
+        "pubmed_id": "15689416",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Griffin JL, Bollard ME. Metabonomics: Its potential as a tool in toxicology for safety assessment and data integration. Current Drug Metabolism. 2004;5:389\u2013398.",
+        "doi": null,
+        "pubmed_id": "15544433",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2140249",
+        "citation": "Chen C, Gonzalez FJ, Idle JR. LC-MS-based metabolomics in drug metabolism. Drug Metab. Rev. 2007;39:581\u2013597.",
+        "doi": null,
+        "pubmed_id": "17786640",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3471671",
+        "citation": "Fan TWM, Lorkiewicz P, Sellers K, Moseley HNB, Higashi RM, Lane AN. Stable isotope-resolved metabolomics and applications for drug development. Pharmacology & Therapeutics. 2012;133:366\u2013391.",
+        "doi": null,
+        "pubmed_id": "22212615",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lane AN, Fan TW, Higashi RM. Isotopomer-based metabolomic analysis by NMR and mass spectrometry. Methods Cell Biol. 2008;84:541\u2013588.",
+        "doi": null,
+        "pubmed_id": "17964943",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2717907",
+        "citation": "Fan TW, Lane AN, Higashi RM, Farag MA, Gao H, Bousamra M, Miller DM. Altered regulation of metabolic pathways in human lung cancer discerned by (13)C stable isotope-resolved metabolomics (SIRM) Mol Cancer. 2009;8:41.",
+        "doi": null,
+        "pubmed_id": "19558692",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2903070",
+        "citation": "Fan TW-M, Yuan P, Lane AN, Higashi RM, Wang Y, Hamidi A, Zhou R, Guitart X, Chen G, Manji HKM, Kaddurah-Daouk R. Stable Isotope-Resolved Metabolomic Analysis of Lithium Effects on Glial-Neuronal Metabolism and Interactions. Metabolomics. 2010;6:165\u2013179.",
+        "doi": null,
+        "pubmed_id": "20631920",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Zamboni N, Fendt SM, Ruhl M, Sauer U. (13)C-based metabolic flux analysis. Nat Protoc. 2009;4:878\u2013892.",
+        "doi": null,
+        "pubmed_id": "19478804",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3109995",
+        "citation": "Fan T, Lane A, Higashi R, Yan J. Stable isotope resolved metabolomics of lung cancer in a SCID mouse model. Metabolomics. 2011;7:257\u2013269.",
+        "doi": null,
+        "pubmed_id": "21666826",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3126751",
+        "citation": "Moseley H, Lane A, Belshoff A, Higashi R, Fan T. A novel deconvolution method for modeling UDP-GlcNAc biosynthetic pathways based on 13C mass isotopologue profiles under non steady-state conditions. BMC Biology. 2011;9:37.",
+        "doi": null,
+        "pubmed_id": "21627825",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hiller K, Metallo C, Stephanopoulos G. Elucidation of Cellular Metabolism via Metabolomics and Stable-Isotope Assisted Metabolomics. Current pharmaceutical biotechnology. 2011;12:1075\u20131086.",
+        "doi": null,
+        "pubmed_id": "21466455",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3087304",
+        "citation": "Fan TW, Lane AN. NMR-based stable isotope resolved metabolomics in systems biochemistry. Journal of biomolecular NMR. 2011;49:267\u2013280.",
+        "doi": null,
+        "pubmed_id": "21350847",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3477816",
+        "citation": "Lorkiewicz PK, Higashii RM, Lane AN, Fan TW-M. High information throughput analysis of nucleotides and their isotopically enriched isotopologues by direct-infusion FTICR-MS. Metabolomics. 2011",
+        "doi": null,
+        "pubmed_id": "23101002",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3345194",
+        "citation": "Le A, Lane AN, Hamaker M, Bose S, Gouw A, Barbi J, Tsukamoto T, Rojas CJ, Slusher BS, Zhang H, Zimmerman LJ, Liebler DC, Slebos RJC, Lorkiewicz PK, Higashi RM, Fan TWM, Dang CV. Glucose-Independent Glutamine Metabolism via TCA Cycling for Proliferation and Survival in B Cells. Cell metabolism. 2012;15:110\u2013121.",
+        "doi": null,
+        "pubmed_id": "22225880",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Boros LG, Lerner MR, Morgan DL, Taylor SL, Smith BJ, Postier RG, Brackett DJ. [1,2-C-13(2)]-D-glucose profiles of the serum, liver, pancreas, and DMBA-induced pancreatic tumors of rats. Pancreas. 2005;31:337\u2013343.",
+        "doi": null,
+        "pubmed_id": "16258367",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bian F, Kasumov T, Thomas KR, Jobbins KA, David F, Minkler PE, Hoppel CL, Brunengraber H. Peroxisomal and mitochondrial oxidation of fatty acids in the heart, assessed from the C-13 labeling of malonyl-CoA and the acetyl moiety of citrate. Journal of Biological Chemistry. 2005;280:9265\u20139271.",
+        "doi": null,
+        "pubmed_id": "15611129",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2917841",
+        "citation": "Olszewski KL, Mather MW, Morrisey JM, Garcia BA, Vaidya AB, Rabinowitz JD, Llinas M. Branched tricarboxylic acid metabolism in Plasmodium falciparum. Nature. 2010;466:774\u2013778.",
+        "doi": null,
+        "pubmed_id": "20686576",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TW-M, Lane AN, Higashi RM. The Promise of Metabolomics in Cancer Molecular Therapeutics. Current Opnion in Molecular Therapeutics. 2004;6:584\u2013592.",
+        "doi": null,
+        "pubmed_id": "15663322",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Arita M. Personal Communication from metabolome database download",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC3345194",
+        "citation": "Le A, Lane AN, Hamaker M, Bose S, Gouw A, Barbi J, Tsukamoto T, Rojas CJ, Shusher BS, Zhang H, Zimmerman LJ, Liebler DC, Slebos RJC, Lorkiewicz PK, Higashi RM, Fan Teresa W.M., Dang CV. Glucose-Independent Glutamine Metabolism via TCA Cycling for Proliferation and Survival in B Cells. Cell metabolism. 2012;15:110\u2013121.",
+        "doi": null,
+        "pubmed_id": "22225880",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2717907",
+        "citation": "Fan TW, Lane AN, Higashi RM, Farag MA, Gao H, Bousamra M, Miller DM. Altered Regulation of Metabolic Pathways in Human Lung Cancer Discerned by 13C Stable Isotope-Resolved Metabolomics (SIRM)) Molecular Cancer. 2009;8:41.",
+        "doi": null,
+        "pubmed_id": "19558692",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3647477",
+        "citation": "Moseley HNB. Error Analysis and Propagation in Metabolomics Data Analysis. Comp Struct Biotech J. 2013;4:e201301006.",
+        "doi": null,
+        "pubmed_id": "23667718",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TWM, Higashi RM, Lane AN, Jardetzky O. Combined use of proton NMR and gas chromatography-mass spectra for metabolite monitoring and in vivo proton NMR assignments. Biochimica et Biophysica Acta. 1986;882:154\u2013167.",
+        "doi": null,
+        "pubmed_id": "3011112",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fiehn O, Kopka J, Dormann P, Altmann T, Trethewey RN, Willmitzer L. Metabolite profiling for plant functional genomics. Nat Biotechnol. 2000;18:1157\u20131161.",
+        "doi": null,
+        "pubmed_id": "11062433",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3746802",
+        "citation": "Kind T, Meissen JK, Yang D, Nocito F, Vaniya A, Cheng YS, Vandergheynst JS, Fiehn O. Qualitative analysis of algal secretions with multiple mass spectrometric platforms. J Chromatogr A. 2012;1244:139\u2013147.",
+        "doi": null,
+        "pubmed_id": "22608776",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3430598",
+        "citation": "Budczies J, Denkert C, Muller BM, Brockmoller SF, Klauschen F, Gyorffy B, Dietel M, Richter-Ehrenstein C, Marten U, Salek RM, Griffin JL, Hilvo M, Oresic M, Wohlgemuth G, Fiehn O. Remodeling of central metabolism in invasive breast cancer compared to normal breast tissue - a GC-TOFMS based metabolomics study. BMC Genomics. 2012;13:334.",
+        "doi": null,
+        "pubmed_id": "22823888",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3384197",
+        "citation": "Liu W, Le A, Hancock C, Lane AN, Dang CV, Fan TW, Phang JM. Reprogramming of proline and glutamine metabolism contributes to the proliferative and metabolic responses regulated by oncogenic transcription factor c-MYC. Proc Natl Acad Sci U S A. 2012;109:8983\u20138988.",
+        "doi": null,
+        "pubmed_id": "22615405",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3703516",
+        "citation": "Dong C, Yuan T, Wu Y, Wang Y, Fan TW, Miriyala S, Lin Y, Yao J, Shi J, Kang T, Lorkiewicz P, St Clair D, Hung MC, Evers BM, Zhou BP. Loss of FBP1 by Snail-mediated repression provides metabolic advantages in basal-like breast cancer. Cancer Cell. 2013;23:316\u2013331.",
+        "doi": null,
+        "pubmed_id": "23453623",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2903070",
+        "citation": "Fan TWM, Yuan PX, Lane AN, Higashi RM, Wang Y, Hamidi AB, Zhou RL, Guitart X, Chen G, Manji HK, Kaddurah-Daouk R. Stable isotope-resolved metabolomic analysis of lithium effects on glial-neuronal metabolism and interactions. Metabolomics. 2010;6:165\u2013179.",
+        "doi": null,
+        "pubmed_id": "20631920",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2475696",
+        "citation": "Yoo H, Antoniewicz MR, Stephanopoulos G, Kelleher JK. Quantifying reductive carboxylation flux of glutamine to lipid in a brown adipocyte cell line. Journal of Biological Chemistry. 2008;283:20621\u201320627.",
+        "doi": null,
+        "pubmed_id": "18364355",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Vizan P, Boros LG, Figueras A, Capella G, Mangues R, Bassilian S, Lim S, Lee WN, Cascante M. K-ras codon-specific mutations produce distinctive metabolic phenotypes in NIH3T3 mice [corrected] fibroblasts. Cancer Res. 2005;65:5512\u20135515.",
+        "doi": null,
+        "pubmed_id": "15994921",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lee WN, Boros LG, Puigjaner J, Bassilian S, Lim S, Cascante M. Mass isotopomer study of the nonoxidative pathways of the pentose cycle with [1,2-13.C2]glucose. Am J Physiol. 1998;274:E843\u2013851.",
+        "doi": null,
+        "pubmed_id": "9612242",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lee WN, Go VL. Nutrient-gene interaction: tracer-based metabolomics. J Nutr. 2005;135:3027S\u20133032S.",
+        "doi": null,
+        "pubmed_id": "16317166",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3109995",
+        "citation": "Fan TWM, Lane AN, Higashi RM, Yan J. Stable isotope resolved metabolomics of lung cancer in a SCID mouse model. Metabolomics. 2011;7:257\u2013269.",
+        "doi": null,
+        "pubmed_id": "21666826",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Yang TH, Wittmann C, Heinzle E. Respirometric 13C flux analysis--Part II: in vivo flux estimation of lysine-producing Corynebacterium glutamicum. Metab Eng. 2006;8:432\u2013446.",
+        "doi": null,
+        "pubmed_id": "16750927",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2952699",
+        "citation": "Paul Lee W-N, P. N. W., Xuc Jun, Liang Go Vay. Tracer-based Metabolomics: Concepts and Practices. Clinical Biochemistry. 2010;43:1269\u20131277.",
+        "doi": null,
+        "pubmed_id": "20713038",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TWM, Higashi RM, Frenkiel TA, Lane AN. Anaerobic nitrate and ammonium metabolism in flood-tolerant rice coleoptiles. Journal of Experimental Botany. 1997;48:1655\u20131666.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TW-M, Lane AN, Higashi RM. The Handbook of Metabolomics. Vol. 17. Springer; 2012.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC3471671",
+        "citation": "Fan TW, Lorkiewicz P, Sellers K, Moseley HN, Higashi RM, Lane AN. Stable isotope-resolved metabolomics and applications for drug development. Pharmacol Ther. 2012;133:366\u2013391.",
+        "doi": null,
+        "pubmed_id": "22212615",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3126751",
+        "citation": "Moseley HN, Lane AN, Belshoff AC, Higashi RM, Fan TW. A novel deconvolution method for modeling UDP-N-acetyl-D-glucosamine biosynthetic pathways based on (13)C mass isotopologue profiles under non-steady-state conditions. BMC Biol. 2011;9:37.",
+        "doi": null,
+        "pubmed_id": "21627825",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2848236",
+        "citation": "Moseley H. Correcting for the effects of natural abundance in stable isotope resolved metabolomics experiments involving ultra-high resolution mass spectrometry. BMC Bioinformatics. 2010;11:139.",
+        "doi": null,
+        "pubmed_id": "20236542",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TWM, Colmer TD, Lane AN, Higashi RM. Determination of Metabolites by Proton Nmr and Gc Analysis for Organic Osmolytes in Crude Tissue Extracts. Analytical Biochemistry. 1993;214:260\u2013271.",
+        "doi": null,
+        "pubmed_id": "8250233",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Gradwell MJ, Fan TWM, Lane AN. Analysis of phosphorylated metabolites in crayfish extracts by two-dimensional 1H-31P NMR heteronuclear total correlation spectroscopy (hetero TOCSY) Analytical Biochemistry. 1998;263:139\u2013149.",
+        "doi": null,
+        "pubmed_id": "9799525",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan T, Bandura L, Higashi R, Lane A. Metabolomics-edited transcriptomics analysis of Se anticancer action in human lung cancer cells. Metabolomics. 2005;1:325\u2013339.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lane AN, Fan TW-M. Quantification and identification of isotopomer distributions of metabolites in crude cell extracts using 1H TOCSY. Metabolomics. 2007;3:79\u201386.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TW-M, editor. Metabolomics-Edited Transcriptomics Analysis (Meta) Vol. 2. Academic Press; Oxford: 2010.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC4486296",
+        "citation": "Fan TW-M, Tan JL, McKinney MM, Lane AN. Stable Isotope Resolved Metabolomics Analysis of Ribonucleotide and RNA Metabolism in Human Lung Cancer Cells. Metabolomics. 2012;8:517\u2013527.",
+        "doi": null,
+        "pubmed_id": "26146495",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3282107",
+        "citation": "Yuneva MO, Fan TW-M, Higashi RM, Allen TA, Balakrishnan A, Goga A, Ferraris DV, Tsukamoto T, Wang C, Seo Y, Chen X, Bishop JM. The Metabolic Profile of Tumors Depends on Both the Responsible Genetic Lesion and Tissue Type Cell Metab. 2012;15:157\u2013170.",
+        "doi": null,
+        "pubmed_id": "22326218",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TW-M. Sample Preparation for Metabolomics Investigation, in The Handbook of Metabolomics: Pathway and Flux Analysis. In: Fan TW-M, Lane AN, Higashi RM, editors. Methods in Pharmacology and Toxicology. Springer Science; New York: 2012. pp. 7\u201327. DOI 10.1007/978-1-61779-618-0_11.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC2847149",
+        "citation": "Allwood JW, Erban A, de Koning S, Dunn WB, Luedemann A, Lommen A, Kay L, Loscher R, Kopka J, Goodacre R. Inter-laboratory reproducibility of fast gas chromatography-electron impact-time of flight mass spectrometry (GC-EI TOF/MS) based plant metabolomics. Metabolomics. 2009;5:479\u2013496.",
+        "doi": null,
+        "pubmed_id": "20376177",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TW-M. Metabolomics-Edited Transcriptomics Analysis (Meta) In: McQueen CA, editor. Comprehensive Toxicology. Academic Press; Oxford: 2010. pp. 685\u2013706.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Want EJ, O'Maille G, Smith CA, Brandon TR, Uritboonthai W, Qin C, Trauger SA, Siuzdak G. Solvent-dependent metabolite distribution, clustering, and protein extraction for serum profiling with mass spectrometry. Analytical Chemistry. 2006;78:743\u2013752.",
+        "doi": null,
+        "pubmed_id": "16448047",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Villas-Boas SG, Hojer-Pedersen J, Akesson M, Smedsgaard J, Nielsen J. Global metabolite analysis of yeast: evaluation of sample preparation methods. Yeast. 2005;22:1155\u20131169.",
+        "doi": null,
+        "pubmed_id": "16240456",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Winder CL, Dunn WB, Schuler S, Broadhurst D, Jarvis R, Stephens GM, Goodacre R. Global Metabolic Profiling of Escherichia coli Cultures: an Evaluation of Methods for Quenching and Extraction of Intracellular Metabolites. Anal. Chem. 2008;80:2939\u20132948.",
+        "doi": null,
+        "pubmed_id": "18331064",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Sellick CA, Hansen R, Maqsood AR, Dunn WB, Stephens GM, Goodacre R, Dickson AJ. Effective Quenching Processes for Physiologically Valid Metabolite Profiling of Suspension Cultured Mammalian Cells. Analytical Chemistry. 2009;81:174\u2013183.",
+        "doi": null,
+        "pubmed_id": "19061395",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bolten CJ, Kiefer P, Letisse F, Portais JC, Wittmann C. Sampling for metabolome analysis of microorganisms. Anal Chem. 2007;79:3843\u20133849.",
+        "doi": null,
+        "pubmed_id": "17411014",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "de Koning W, van Dam K. A method for the determination of changes of glycolytic metabolites in yeast on a subsecond time scale using extraction at neutral pH. Anal Biochem. 1992;204:118\u2013123.",
+        "doi": null,
+        "pubmed_id": "1514678",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Buchholz A, Hurlebaus J, Wandrey C, Takors R. Metabolomics: quantification of intracellular metabolite dynamics. Biomolecular Engineering. 2002;19:5\u201315.",
+        "doi": null,
+        "pubmed_id": "12103361",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Daykin CA, Foxall PJD, Connor SC, Lindon JC, Nicholson JK. The comparison of plasma deproteinization methods for the detection of low-molecular-weight metabolites by H-1 nuclear magnetic resonance spectroscopy. Analytical Biochemistry. 2002;304:220\u2013230.",
+        "doi": null,
+        "pubmed_id": "12009699",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Rabinowitz JD, Kimball E. Acidic acetonitrile for cellular metabolome extraction from Escherichia coli. Anal Chem. 2007;79:6167\u20136173.",
+        "doi": null,
+        "pubmed_id": "17630720",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3477816",
+        "citation": "Lorkiewicz PK, Higashi RM, Lane AN, Fan TW-M. High information throughput analysis of nucleotides and their isotopically enriched isotopologues by direct-infusion FTICR-MS. Metabolomics. 2012 in press.",
+        "doi": null,
+        "pubmed_id": "23101002",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3501132",
+        "citation": "Mattingly SJ, Xu T, Nantz MH, Higashi RM, Fan TW-M. A Carbonyl Capture Approach for Profiling Oxidized Metabolites in Cell Extracts. Metabolomics. 2012 In press.",
+        "doi": null,
+        "pubmed_id": "23175637",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3345194",
+        "citation": "Le A, Lane AN, Hamaker M, Bose S, Gouw A, Barbi J, Tsukamoto T, Rojas CJ, Slusher BS, Zhang H, Zimmerman LJ, Liebler DC, Slebos RJ, Lorkiewicz PK, Higashi RM, Fan TW, Dang CV. Glucose-Independent Glutamine Metabolism via TCA Cycling for Proliferation and Survival in B Cells. Cell metabolism. 2012;15:110\u2013121.",
+        "doi": null,
+        "pubmed_id": "22225880",
+        "title": null
+      },
+      {
+        "PMCID": "PMC4486296",
+        "citation": "Fan TW-M, Tan JL, McKinney MM, Lane AN. Stable Isotope Resolved Metabolomics Analysis of Ribonucleotide and RNA Metabolism in Human Lung Cancer Cells. Metabolomics. 2012;8:517\u2013527.",
+        "doi": null,
+        "pubmed_id": "26146495",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fan TWM, Bandura LL, Higashi RM, Lane AN. Metabolomics-edited transcriptomics analysis of Se anticancer action in human lung cancer cells. Metabolomics. 2005;1:325\u2013339.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC2757635",
+        "citation": "Lane AN, Fan TW-M, Xie X, Moseley HN, Higashi RM. Stable isotope analysis of lipid biosynthesis by high resolution mass spectrometry and NMR Anal. Chim. Acta. 2009;651:201\u2013208.",
+        "doi": null,
+        "pubmed_id": "19782812",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3477816",
+        "citation": "Lorkiewicz P, Higashi RM, Lane AN, Fan TWM. High information throughput analysis of nucleotides and their isotopically enriched isotopologues by direct-infusion FTICR-MS. Metabolomics. 2012;8:930\u2013939.",
+        "doi": null,
+        "pubmed_id": "23101002",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lane AN, Fan TW, Higashi RM. Isotopomer-based metabolomic analysis by NMR and mass spectrometry. Biophysical Tools for Biologists. 2008;84:541\u2013588.",
+        "doi": null,
+        "pubmed_id": "17964943",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Stadtman TC. Selenocysteine. Annual Review of Biochemistry. 1996;65:83\u2013100.",
+        "doi": null,
+        "pubmed_id": "8811175",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Stadtman TC. Reactive Oxygen Species: From Radiation to Molecular Biology. NEW YORK ACAD SCIENCES; New York: 2000. Selenium biochemistry - Mammalian selenoenzymes; pp. 399\u2013402.",
+        "doi": null,
+        "pubmed_id": "10863556",
+        "title": null
+      },
+      {
+        "PMCID": "PMC1794290",
+        "citation": "Duarte NC, Becker SA, Jamshidi N, Thiele I, Mo ML, Vo TD, Srivas R, Palsson BO. Global reconstruction of the human metabolic network based on genomic and bibliomic data. Proc Natl Acad Sci U S A. 2007;104:1777\u20131782.",
+        "doi": null,
+        "pubmed_id": "17267599",
+        "title": null
+      }
+    ],
+    "results": null,
+    "title": "Stable isotope-labeled tracers for metabolic pathway elucidation by GC-MS and FT-MS."
+  },
+  "https://doi.org/10.3390/metabo3040853": {
+    "PMCID": "PMC3882318",
+    "abstract": "New metabolomics applications of ultra-high resolution and accuracy mass spectrometry can provide thousands of detectable isotopologues, with the number of potentially detectable isotopologues increasing exponentially with the number of stable isotopes used in newer isotope tracing methods like stable isotope-resolved metabolomics (SIRM) experiments. This huge increase in usable data requires software capable of correcting the large number of isotopologue peaks resulting from SIRM experiments in a timely manner. We describe the design of a new algorithm and software system capable of handling these high volumes of data, while including quality control methods for maintaining data quality. We validate this new algorithm against a previous single isotope correction algorithm in a two-step cross-validation. Next, we demonstrate the algorithm and correct for the effects of natural abundance for both (13)C and (15)N isotopes on a set of raw isotopologue intensities of UDP-N-acetyl-D-glucosamine derived from a (13)C/(15)N-tracing experiment. Finally, we demonstrate the algorithm on a full omics-level dataset.",
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA; jim.carreer@uky.edu (W.J.C.); robert.flight@uky.edu (R.M.F.).",
+        "author_id": null,
+        "firstname": "William J",
+        "initials": "WJ",
+        "lastname": "Carreer"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA; jim.carreer@uky.edu (W.J.C.); robert.flight@uky.edu (R.M.F.).",
+        "author_id": null,
+        "firstname": "Robert M",
+        "initials": "RM",
+        "lastname": "Flight"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA; jim.carreer@uky.edu (W.J.C.); robert.flight@uky.edu (R.M.F.).",
+        "author_id": null,
+        "firstname": "Hunter N B",
+        "initials": "HN",
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo3040853",
+    "grants": [
+      "P20 GM103436",
+      "P20 RR016481",
+      "R01 ES022191",
+      "U24 DK097215"
+    ],
+    "journal": "Metabolites",
+    "keywords": [
+      "Fourier transform mass spectrometry",
+      "analytical derivation",
+      "multi-isotope natural abundance correction",
+      "parallelization",
+      "stable isotope tracing",
+      "stable isotope-resolved metabolomics"
+    ],
+    "methods": null,
+    "publication_date": {
+      "day": 10,
+      "month": 1,
+      "year": 2014
+    },
+    "pubmed_id": "24404440",
+    "queried_sources": [
+      "PubMed"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "Rittenberg D., Schoenheimer R. Deuterium as an indicator in the study of intermediary metabolism. J. Biol. Chem. 1937;121:235.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Schoenheimer R., Rittenberg D. The study of intermediary metabolism of animals with the aid of isotopes. Physiol. Rev. 1940;20:218.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Schoenheimer R., Rittenberg D. Deuterium as an indicator in the study of intermediary metabolism. J. Biol. Chem. 1935;111:163.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Boros L.G., Brackett D.J., Harrigan G.G. Metabolic biomarker and kinase drug target discovery in cancer using stable isotope-based dynamic metabolic profiling (SIDMAP) Curr. Cancer Drug Tar. 2003;3:445\u2013453. doi: 10.2174/1568009033481769.",
+        "doi": "10.2174/1568009033481769",
+        "pubmed_id": "14683502",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2717907",
+        "citation": "Fan T.W., Lane A.N., Higashi R.M., Farag M.A., Gao H., Bousamra M., Miller D.M. Altered regulation of metabolic pathways in human lung cancer discerned by (13)C stable isotope-resolved metabolomics (SIRM) Mol. Cancer. 2009;8:41. doi: 10.1186/1476-4598-8-41.",
+        "doi": "10.1186/1476-4598-8-41",
+        "pubmed_id": "19558692",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2757635",
+        "citation": "Lane A.N., Fan T.W.M., Xie Z., Moseley H.N.B., Higashi R.M. Isotopomer analysis of lipid biosynthesis by high resolution mass spectrometry and NMR. Anal. Chim. Acta. 2009;651:201\u2013208. doi: 10.1016/j.aca.2009.08.032.",
+        "doi": "10.1016/j.aca.2009.08.032",
+        "pubmed_id": "19782812",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2848236",
+        "citation": "Moseley H.N. Correcting for the effects of natural abundance in stable isotope resolved metabolomics experiments involving ultra-high resolution mass spectrometry. BMC Bioinformatics. 2010;11:139. doi: 10.1186/1471-2105-11-139.",
+        "doi": "10.1186/1471-2105-11-139",
+        "pubmed_id": "20236542",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Pingitore F., Tang Y.J., Kruppa G.H., Keasling J.D. Analysis of amino acid isotopomers using FT-ICR MS. Anal. Chem. 2007;79:2483\u20132490. doi: 10.1021/ac061906b.",
+        "doi": "10.1021/ac061906b",
+        "pubmed_id": "17305312",
+        "title": null
+      },
+      {
+        "PMCID": "PMC3126751",
+        "citation": "Moseley H.N., Lane A.N., Belshoff A.C., Higashi R.M., Fan T.W. A novel deconvolution method for modeling UDP-N-acetyl-D-glucosamine biosynthetic pathways based on (13)C mass isotopologue profiles under non-steady-state conditions. BMC Biol. 2011;9:37. doi: 10.1186/1741-7007-9-37.",
+        "doi": "10.1186/1741-7007-9-37",
+        "pubmed_id": "21627825",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Dauner M., Sauer U. GC-MS Analysis of amino acids rapidly provides rich information for isotopomer balancing. Biotechnol. Progr. 2000;16:642\u2013649. doi: 10.1021/bp000058h.",
+        "doi": "10.1021/bp000058h",
+        "pubmed_id": "10933840",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fischer E., Sauer U. Metabolic flux profiling of Escherichia coli mutants in central carbon metabolism using GC-MS. Eur. J. Biochem. 2003;270:880\u2013891. doi: 10.1046/j.1432-1033.2003.03448.x.",
+        "doi": "10.1046/j.1432-1033.2003.03448.x",
+        "pubmed_id": "12603321",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hellerstein M.K., Neese R.A. Mass isotopomer distribution analysis at eight years: Theoretical, analytic, and experimental considerations. Am. J. Physiol.\u2014Endoc. M. 1999;276:E1146\u2013E1170.",
+        "doi": null,
+        "pubmed_id": "10362629",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lee W.N.P., Byerley L.O., Bergner E.A., Edmond J. Mass isotopomer analysis: Theoretical and practical considerations. Biol. Mass Spectrom. 1991;20:451\u2013458. doi: 10.1002/bms.1200200804.",
+        "doi": "10.1002/bms.1200200804",
+        "pubmed_id": "1768701",
+        "title": null
+      },
+      {
+        "PMCID": "PMC2041839",
+        "citation": "Snider R. Efficient calculation of exact mass isotopic distributions. JASMS. 2007;18:1511\u20131515.",
+        "doi": null,
+        "pubmed_id": "17583532",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Van Winden W., Wittmann C., Heinzle E., Heijnen J. Correcting mass isotopomer distributions for naturally occurring isotopes. Biotechnol. Bioeng. 2002;80:477\u2013479. doi: 10.1002/bit.10393.",
+        "doi": "10.1002/bit.10393",
+        "pubmed_id": "12325156",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Wahl S.A., Dauner M., Wiechert W. New tools for mass isotopomer data evaluation in 13C flux analysis: Mass isotope correction, data consistency checking, and precursor relationships. Biotechnol. Bioeng. 2004;85:259\u2013268. doi: 10.1002/bit.10909.",
+        "doi": "10.1002/bit.10909",
+        "pubmed_id": "14748080",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Zhang X., Hines W., Adamec J., Asara J., Naylor S., Regnier F. An automated method for the analysis of stable isotope labeling data in proteomics. JASMS. 2005;16:1181\u20131191.",
+        "doi": null,
+        "pubmed_id": "15922621",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fernandez C.A., Des Rosiers C., Previs S.F., David F., Brunengraber H. Correction of 13C mass isotopomer distributions for natural stable isotope abundance. J. Mass Spectrom. 1996;31:255\u2013262. doi: 10.1002/(SICI)1096-9888(199603)31:3<255::AID-JMS290>3.0.CO;2-3.",
+        "doi": "10.1002/(sici)1096-9888(199603)31:3<255::aid-jms290>3.0.co;2-3",
+        "pubmed_id": "8799277",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Rockwood A.L., Haimi P. Efficient calculation of accurate masses of isotopic peaks. JASMS. 2006;17:415\u2013419.",
+        "doi": null,
+        "pubmed_id": "16458531",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Rockwood A.L., van Orden S.L. Ultrahigh-speed calculation of isotope distributions. Anal. Chem. 1996;68:2027\u20132030. doi: 10.1021/ac951158i.",
+        "doi": "10.1021/ac951158i",
+        "pubmed_id": "21619291",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Yergey J.A. A general approach to calculating isotopic distributions for mass spectrometry. Int. J. Mass Spectrom. Ion Phys. 1983;52:337\u2013349. doi: 10.1016/0020-7381(83)85053-0.",
+        "doi": "10.1016/0020-7381(83)85053-0",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Rossum G.V. The Python Programming Language.  [(accessed on 21 July 2013)].  Available online: http://www.python.org/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Sanner M.F. Python: A programming language for software integration and development. J. Mol. Graph. Model. 1999;17:57\u201361.",
+        "doi": null,
+        "pubmed_id": "10660911",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Oliphant T.E. A Guide to NumPy. Volume 1. Trelgol Publishing; Spanish Fork, UT, USA: 2006. pp. 1\u2013371.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Gamma E. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley Professional; Boston, MA, USA: 1995. pp. 1\u2013416.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": "PMC3647477",
+        "citation": "Moseley H.N.B. Error analysis and propagation in metabolomics data analysis. Comp. Struct Biotech. J. 2013;4:e201301006.",
+        "doi": null,
+        "pubmed_id": "23667718",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Moseley Bioinformatics Laboratory Software Repository for download.  [(accessed on 21 July 2013)].  Available online: http://bioinformatics.cesb.uky.edu/bin/view/Main/SoftwareDevelopment/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
+    "results": null,
+    "title": "A Computational Framework for High-Throughput Isotopic Natural Abundance Correction of Omics-Level Ultra-High Resolution FT-MS Datasets."
+  }
+}

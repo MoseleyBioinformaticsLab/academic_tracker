@@ -1,255 +1,845 @@
 {
-  "32095784": {
-    "PMCID": "PMC7039621",
+"https://aacrjournals.org/cancerres/article/83/7_Supplement/3673/719740": {
+    "PMCID": null,
     "abstract": null,
     "authors": [
       {
-        "affiliation": "University of Kentucky College of Public Health.",
-        "author_id": "Anna Hoover",
-        "firstname": "Anna G",
-        "initials": "AG",
-        "lastname": "Hoover"
-      },
-      {
-        "affiliation": "University of Kentucky Department of Dietetics and Human Nutrition.",
-        "author_id": "Ann Koempel",
-        "firstname": "Annie",
-        "initials": "A",
-        "lastname": "Koempel"
-      },
-      {
-        "affiliation": "University of Kentucky College of Public Health.",
-        "firstname": "W Jay",
-        "initials": "WJ",
-        "lastname": "Christian"
-      },
-      {
-        "affiliation": "University of Kentucky College of Public Health.",
-        "firstname": "Kimberly I",
-        "initials": "KI",
-        "lastname": "Tumlin"
-      },
-      {
-        "affiliation": "University of Kentucky College of Engineering.",
-        "author_id": "Kelly Pennell",
-        "firstname": "Kelly G",
-        "initials": "KG",
-        "lastname": "Pennell"
-      },
-      {
-        "affiliation": "Kentucky Water Resources Research Institute.",
-        "firstname": "Steven",
-        "initials": "S",
-        "lastname": "Evans"
-      },
-      {
-        "affiliation": "Kentucky Water Resources Research Institute.",
-        "firstname": "Malissa",
-        "initials": "M",
-        "lastname": "McAlister"
-      },
-      {
-        "affiliation": "University of Kentucky College of Engineering.",
-        "author_id": "Lindell Ormsbee",
-        "firstname": "Lindell E",
-        "initials": "LE",
-        "lastname": "Ormsbee"
-      },
-      {
-        "affiliation": "University of Kentucky Department of Dietetics and Human Nutrition.",
-        "author_id": "Dawn Brewer",
-        "firstname": "Dawn",
-        "initials": "D",
-        "lastname": "Brewer"
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
       }
     ],
     "conclusions": null,
     "copyrights": null,
     "doi": null,
-    "grants": [
-      "G08 LM013185",
-      "P30 ES026529",
-      "P42 ES007380",
-      "R01 ES032396"
-    ],
-    "journal": "Journal of Appalachian health",
-    "keywords": [],
-    "methods": null,
-    "publication_date": {
-      "day": 26,
-      "month": 2,
-      "year": 2020
-    },
-    "pubmed_id": "32095784",
-    "results": null,
-    "title": "Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health."
-  },
-  "https://doi.org/10.1002/adhm.202101820": {
-    "PMCID": null,
-    "abstract": "Humans are constantly exposed to exogenous chemicals throughout their life, which can lead to a multitude of negative health impacts. Advanced materials can play a key role in preventing or mitigating these impacts through a wide variety of applications. The tunable properties of hydrogels and hydrogel nanocomposites (e.g., swelling behavior, biocompatibility, stimuli responsiveness, functionality, etc.) have deemed them ideal platforms for removal of environmental contaminants, detoxification and reduction of body burden from exogenous chemical exposures for prevention of disease initiation, and advanced treatment of chronic diseases, including cancer, diabetes, and cardiovascular disease. In this review, three main junctures where the use of hydrogel and hydrogel nanocomposite materials can intervene to positively impact human health are highlighted: (1) preventing exposures to environmental contaminants; (2) prophylactic treatments to prevent chronic disease initiation; (3) treating chronic diseases after they have developed. This article is protected by copyright. All rights reserved.",
-    "authors": [
-      {
-        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
-        "author_id": "Angela Gutierrez",
-        "firstname": "Angela M",
-        "initials": "AM",
-        "lastname": "Gutierrez"
-      },
-      {
-        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
-        "firstname": "E Molly",
-        "initials": "EM",
-        "lastname": "Frazar"
-      },
-      {
-        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
-        "author_id": "Victoria Klaus",
-        "firstname": "Victoria",
-        "initials": "V",
-        "lastname": "Klaus"
-      },
-      {
-        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
-        "author_id": "Pranto Paul",
-        "firstname": "Pranto",
-        "initials": "P",
-        "lastname": "Paul"
-      },
-      {
-        "affiliation": "Department of Chemical and Materials Engineering, University of Kentucky, 177 F Paul Anderson Tower, Lexington, KY, 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY, 40506, USA.",
-        "firstname": "J Z",
-        "initials": "JZ",
-        "lastname": "Hilt"
-      }
-    ],
-    "conclusions": null,
-    "copyrights": "This article is protected by copyright. All rights reserved.",
-    "doi": "10.1002/adhm.202101820",
     "grants": [],
-    "journal": "Advanced healthcare materials",
-    "keywords": [
-      "chronic diseases",
-      "hydrogel nanocomposites",
-      "hydrogels",
-      "remediations",
-      "therapeutics"
-    ],
+    "journal": null,
+    "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": 24,
-      "month": 11,
-      "year": 2021
+      "day": null,
+      "month": null,
+      "year": 2023
     },
-    "pubmed_id": "34811960",
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
     "results": null,
-    "title": "Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment."
+    "title": "Plk1 phosphorylation of PHGDH to regulate serine metabolism"
   },
-  "https://doi.org/10.1002/advs.202101999": {
-    "PMCID": null,
-    "abstract": "Targeting the epidermal growth factor receptor (EGFR) with tyrosine kinase inhibitors (TKIs) is one of the major precision medicine treatment options for lung adenocarcinoma. Due to common development of drug resistance to first- and second-generation TKIs, third-generation inhibitors, including osimertinib and rociletinib, have been developed. A model of EGFR-driven lung cancer and a method to develop tumors of distinct epigenetic states through 3D organotypic cultures are described here. It is discovered that activation of the EGFR T790M/L858R mutation in lung epithelial cells can drive lung cancers with alveolar or bronchiolar features, which can originate from alveolar type 2 (AT2) cells or bronchioalveolar stem cells, but not basal cells or club cells of the trachea. It is also demonstrated that these clones are able to retain their epigenetic differences through passaging orthotopically in mice and crucially that they have distinct drug vulnerabilities. This work serves as a blueprint for exploring how epigenetics can be used to stratify patients for precision medicine decisions.",
+  "https://doi.org/10.1002/hep.32467": {
+    "PMCID": "PMC9489820",
+    "abstract": "Resolution of pathways that converge to induce deleterious effects in hepatic diseases, such as in the later stages, have potential antifibrotic effects that may improve outcomes. We aimed to explore whether humans and rodents display similar fibrotic signaling networks.\nWe assiduously mapped kinase pathways using 340 substrate targets, upstream bioinformatic analysis of kinase pathways, and over 2000 random sampling iterations using the PamGene PamStation kinome microarray chip technology. Using this technology, we characterized a large number of kinases with altered activity in liver fibrosis of both species. Gene expression and immunostaining analyses validated many of these kinases as bona fide signaling events. Surprisingly, the insulin receptor emerged as a considerable protein tyrosine kinase that is hyperactive in fibrotic liver disease in humans and rodents. Discoidin domain receptor tyrosine kinase, activated by collagen that increases during fibrosis, was another hyperactive protein tyrosine kinase in humans and rodents with fibrosis. The serine/threonine kinases found to be the most active in fibrosis were dystrophy type 1 protein kinase and members of the protein kinase family of kinases. We compared the fibrotic events over four models: humans with cirrhosis and three murine models with differing levels of fibrosis, including two models of fatty liver disease with emerging fibrosis. The data demonstrate a high concordance between human and rodent hepatic kinome signaling that focalizes, as shown by our network analysis of detrimental pathways.\nOur findings establish a comprehensive kinase atlas for liver fibrosis, which identifies analogous signaling events conserved among humans and rodents.",
     "authors": [
       {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Fan",
-        "initials": "F",
-        "lastname": "Chen"
+        "ORCID": "0000-0003-3123-8401",
+        "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Justin F",
+        "initials": "JF",
+        "lastname": "Creeden"
       },
       {
-        "affiliation": "Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Jinpeng",
-        "initials": "J",
-        "lastname": "Liu"
+        "ORCID": null,
+        "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Zachary A",
+        "initials": "ZA",
+        "lastname": "Kipp"
       },
       {
-        "affiliation": "Department of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "ORCID": null,
+        "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Mei",
+        "initials": "M",
+        "lastname": "Xu"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, Kentucky, USA.",
+        "author_id": null,
         "firstname": "Robert M",
         "initials": "RM",
         "lastname": "Flight"
       },
       {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Kassandra J",
-        "initials": "KJ",
-        "lastname": "Naughton"
-      },
-      {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Alexsandr",
-        "initials": "A",
-        "lastname": "Lukyanchuk"
-      },
-      {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Abigail R",
-        "initials": "AR",
-        "lastname": "Edgin"
-      },
-      {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Xiulong",
-        "initials": "X",
-        "lastname": "Song"
-      },
-      {
-        "affiliation": "DNAtrix, 10355 Science Center Drive, Suite 110, San Diego, CA, 92121, USA.",
-        "firstname": "Haikuo",
-        "initials": "H",
-        "lastname": "Zhang"
-      },
-      {
-        "affiliation": "Laura and Isaac Perlmutter Cancer Center, NYU Langone Medical Center, New York University, New York, NY, 10016, USA.",
-        "firstname": "Kwok-Kin",
-        "initials": "KK",
-        "lastname": "Wong"
-      },
-      {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, Kentucky, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, Kentucky, USA.\nCenter for Clinical and Translational Science, University of Kentucky, Lexington, Kentucky, USA.",
         "author_id": "Hunter Moseley",
         "firstname": "Hunter N B",
         "initials": "HNB",
         "lastname": "Moseley"
       },
       {
-        "affiliation": "Department of Internal Medicine, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Chi",
-        "initials": "C",
-        "lastname": "Wang"
+        "ORCID": null,
+        "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Genesee J",
+        "initials": "GJ",
+        "lastname": "Martinez"
       },
       {
-        "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY, 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY, 40536, USA.",
-        "firstname": "Christine F",
-        "initials": "CF",
-        "lastname": "Brainson"
+        "ORCID": null,
+        "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Wang-Hsin",
+        "initials": "WH",
+        "lastname": "Lee"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Khaled",
+        "initials": "K",
+        "lastname": "Alganem"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Ali S",
+        "initials": "AS",
+        "lastname": "Imami"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Megan R",
+        "initials": "MR",
+        "lastname": "McMullen"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Sanjoy",
+        "initials": "S",
+        "lastname": "Roychowdhury"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Division of Transplant and Hepatobiliary, Department of Surgery, The University of Kansas Medical Center, Kansas City, Kansas, USA.",
+        "author_id": null,
+        "firstname": "Atta M",
+        "initials": "AM",
+        "lastname": "Nawabi"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Strata Oncology, Ann Arbor, Michigan, USA.",
+        "author_id": null,
+        "firstname": "Jennifer A",
+        "initials": "JA",
+        "lastname": "Hipp"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\nDepartment of Pediatrics, University of Kentucky, Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Samir",
+        "initials": "S",
+        "lastname": "Softic"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Internal Medicine and Liver Center, University of Kansas Medical Center, Kansas City, Kansas, USA.",
+        "author_id": null,
+        "firstname": "Steven A",
+        "initials": "SA",
+        "lastname": "Weinman"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Neurosciences, University of Toledo College of Medicine and Life Sciences, Toledo, Ohio, USA.\nNeurosciences Institute, ProMedica, Toledo, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Robert",
+        "initials": "R",
+        "lastname": "McCullumsmith"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Inflammation and Immunity, Cleveland Clinic, Cleveland, Ohio, USA.\nDepartment of Gastroenterology and Hepatology, Center for Liver Disease Research, Cleveland Clinic, Cleveland, Ohio, USA.\nDepartment of Molecular Medicine, Case Western Reserve University, Cleveland, Ohio, USA.",
+        "author_id": null,
+        "firstname": "Laura E",
+        "initials": "LE",
+        "lastname": "Nagy"
+      },
+      {
+        "ORCID": "0000-0002-7599-1529",
+        "affiliation": "Department of Pharmacology and Nutritional Sciences, University of Kentucky College of Medicine, Lexington, Kentucky, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, Kentucky, USA.\nBarnstable Brown Diabetes Center, University of Kentucky College of Medicine, Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Terry D",
+        "initials": "TD",
+        "lastname": "Hinds"
       }
     ],
     "conclusions": null,
-    "copyrights": "\u00a9 2021 The Authors. Advanced Science published by Wiley-VCH GmbH.",
-    "doi": "10.1002/advs.202101999",
+    "copyrights": "\u00a9 2022 The Authors. Hepatology published by Wiley Periodicals LLC on behalf of American Association for the Study of Liver Diseases.",
+    "doi": "10.1002/hep.32467",
     "grants": [
-      "NCI K22 CA201036",
-      "IRG-85-001-25",
-      "NCI R01 CA237643",
-      "133123-RSG-19-081-01-TBG",
-      "NIGMS P20 GM121327-03",
-      "P30CA177558",
-      "NIGMS P20 GM121327-03"
+      "R01 MH121102",
+      "R01 AG057598",
+      "R01 DK121797",
+      "R01 MH107487",
+      "P30 CA177558",
+      "P50 AA024333"
     ],
-    "journal": "Advanced science (Weinheim, Baden-Wurttemberg, Germany)",
-    "keywords": [
-      "EGFR",
-      "alveolar",
-      "bronchiolar",
-      "lung cancer",
-      "organoids"
-    ],
+    "journal": "Hepatology (Baltimore, Md.)",
+    "keywords": [],
     "methods": null,
     "publication_date": {
-      "day": 9,
-      "month": 10,
-      "year": 2021
+      "day": 22,
+      "month": 3,
+      "year": 2022
     },
-    "pubmed_id": "34622577",
+    "pubmed_id": "35313030",
+    "queried_sources": [
+      "PubMed",
+      "Google Scholar"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "Roehlen N, Crouchet E, Baumert TF. Liver fibrosis: mechanistic concepts and therapeutic perspectives. Cells. 2020;9:875.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Schuppan D, Ashfaq\u2010Khan M, Yang AT, Kim YO. Liver fibrosis: direct antifibrotic agents and targeted therapies. Matrix Biol. 2018;68\u201369:435\u201351.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Lee UE, Friedman SL. Mechanisms of hepatic fibrogenesis. Best Pract Res Clin Gastroenterol. 2011;25:195\u2013206.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Friedman SL. Mechanisms of hepatic fibrogenesis. Gastroenterology. 2008;134:1655\u201369.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Eslam M, Sanyal AJ, George J, International Consensus P . MAFLD: a consensus\u2010driven proposed nomenclature for metabolic associated fatty liver disease. Gastroenterology. 2020;158:1999\u20132014 e1991.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Stec DE, Gordon DM, Hipp JA, Hong S, Mitchell ZL, Franco NR, et al. Loss of hepatic PPARalpha promotes inflammation and serum hyperlipidemia in diet\u2010induced obesity. Am J Physiol Regul Integr Comp Physiol. 2019;317:R733\u2013R745.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hinds TD Jr, Creeden JF, Gordon DM, Stec DF, Donald MC, Stec DE. Bilirubin nanoparticles reduce diet\u2010induced hepatic steatosis, improve fat utilization, and increase plasma beta\u2010hydroxybutyrate. Front Pharmacol. 2020;11:594574.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Stec DE, Hinds TD Jr. Natural product heme oxygenase inducers as treatment for nonalcoholic fatty liver disease. Int J Mol Sci. 2020;21:9493.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hamoud AR, Weaver L, Stec DE, Hinds TD Jr. Bilirubin in the liver\u2010gut signaling axis. Trends Endocrinol Metab. 2018;29:140\u201350.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hinds TD Jr, Hosick PA, Hankins MW, Nestor\u2010Kalinoski A, Stec DE. Mice with hyperbilirubinemia due to Gilbert's Syndrome polymorphism are resistant to hepatic steatosis by decreased serine 73 phosphorylation of PPARalpha. Am J Physiol Endocrinol Metab. 2017;312:E244\u2013E252.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hinds TD, Sodhi K, Meadows C, Fedorova L, Puri N, Kim DH, et al. Increased HO\u20101 levels ameliorate fatty liver development through a reduction of heme and recruitment of FGF21. Obesity (Silver Spring). 2014;22:705\u201312.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Weaver L, Hamoud AR, Stec DE, Hinds TD Jr. Biliverdin reductase and bilirubin in hepatic disease. Am J Physiol Gastrointest Liver Physiol. 2018;314:G668\u2013G676.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Constandinou C, Henderson N, Iredale JP. Modeling liver fibrosis in rodents. Methods Mol Med. 2005;117:237\u201350.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Pritchard MT, Nagy LE. Hepatic fibrosis is enhanced and accompanied by robust oval cell activation after chronic carbon tetrachloride administration to Egr\u20101\u2010deficient mice. Am J Pathol. 2010;176:2743\u201352.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Benjamini Y, Hochberg Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. J Roy Stat Soc: Ser B (Methodol). 1995;57:289\u2013300.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Frangogiannis N. Transforming growth factor\u2010beta in tissue fibrosis. J Exp Med. 2020;217:e20190103.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Cai X, Li Z, Zhang Q, Qu Y, Xu M, Wan X, et al. CXCL6\u2010EGFR\u2010induced Kupffer cells secrete TGF\u2010beta1 promoting hepatic stellate cell activation via the SMAD2/BRD4/C\u2010MYC/EZH2 pathway in liver fibrosis. J Cell Mol Med. 2018;22:5050\u201361.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Li H\u2010G, You P\u2010T, Xia YU, Cai YU, Tu Y\u2010J, Wang M\u2010H, et al. Yu Gan long ameliorates hepatic fibrosis by inhibiting PI3K/AKT, Ras/ERK and JAK1/STAT3 signaling pathways in CCl4\u2010induced liver fibrosis rats. Curr Med Sci. 2020;40:539\u201347.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Carpino G, Morini S, Ginannicorradini S, Franchitto A, Merli M, Siciliano M, et al. Alpha\u2010SMA expression in hepatic stellate cells and quantitative analysis of hepatic fibrosis in cirrhosis and in recurrent chronic hepatitis after liver transplantation. Dig Liver Dis. 2005;37:349\u201356.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Borza CM, Pozzi A. Discoidin domain receptors in disease. Matrix Biol. 2014;34:185\u201392.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Moll S, Desmouli\u00e8re A, Moeller MJ, Pache J\u2010C, Badi L, Arcadu F, et al. DDR1 role in fibrosis and its pharmacological targeting. Biochim Biophys Acta Mol Cell Res. 2019;1866:118474.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Creeden JF, Alganem K, Imami AS, Henkel ND, Brunicardi FC, Liu S\u2010H, et al. Emerging kinase therapeutic targets in pancreatic ductal adenocarcinoma and pancreatic cancer desmoplasia. Int J Mol Sci. 2020;21:8823.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Svegliati\u2010Baroni G, Ridolfi F, Di Sario A, Casini A, Marucci L, Gaggiotti G, et al. Insulin and insulin\u2010like growth factor\u20101 stimulate proliferation and type I collagen accumulation by human hepatic stellate cells: differential effects on signal transduction pathways. Hepatology. 1999;29:1743\u201351.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Peterson SW, Angelico M, Masella R, Foster K, Gandin C, Cantafora A. Altered insulin receptor processing and membrane lipid composition in erythrocytes of cirrhotic patients. Ital J Gastroenterol. 1992;24:65\u201371.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Okada Y. Increased insulin binding to erythrocytes in chronic liver disease. Acta Med Okayama. 1981;35:155\u201364.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Petrides AS, Passlack W, Reinauer H, Stremmel W, Strohmeyer G. Insulin binding to erythrocytes in hyperinsulinemic patients with precirrhotic hemochromatosis and cirrhosis. Klin Wochenschr. 1987;65:873\u20138.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Teng CS, Ho PW, Yeung RT. Down\u2010regulation of insulin receptors in postnecrotic cirrhosis of liver. J Clin Endocrinol Metab. 1982;55:524\u201330.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Greco AV, Bertoli A, Ghirlanda G, Manna R, Altomonte L, Rebuzzi AG. Insulin resistance in liver cirrhosis: decreased insulin binding to circulating monocytes. Horm Metab Res. 1980;12:577\u201381.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Harewood MS, Proietto J, Dudley F, Alford FP. Insulin action and cirrhosis: insulin binding and lipogenesis in isolated adipocytes. Metabolism. 1982;31:1241\u20136.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Ferguson D, Finck BN. Emerging therapeutic approaches for the treatment of NAFLD and type 2 diabetes mellitus. Nat Rev Endocrinol. 2021;17:484\u201395.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Yen FS, Lai JN, Wei JC, Chiu LT, Hsu CC, Hou MC, et al. Is insulin the preferred treatment in persons with type 2 diabetes and liver cirrhosis? BMC Gastroenterol. 2021;21:263.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Dongiovanni P, Meroni M, Baselli G, Bassani G, Rametta R, Pietrelli A, et al. Insulin resistance promotes Lysyl oxidase like 2 induction and fibrosis accumulation in non\u2010alcoholic fatty liver disease. Clin Sci (Lond). 2017;131:1301\u201315.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Dongiovanni P, Valenti L, Rametta R, Daly AK, Nobili V, Mozzi E, et al. Genetic variants regulating insulin receptor signalling are associated with the severity of liver damage in patients with non\u2010alcoholic fatty liver disease. Gut. 2010;59:267\u201373.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Stechschulte LA, Wuescher L, Marino JS, Hill JW, Eng C, Hinds TD Jr. Glucocorticoid receptor beta stimulates Akt1 growth pathway by attenuation of PTEN. J Biol Chem. 2014;289:17885\u201394.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Smedlund KB, Sanchez ER, Hinds TD Jr. FKBP51 and the molecular chaperoning of metabolism. Trends Endocrinol Metab. 2021;32:862\u201374.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Stec DE, Gordon DM, Nestor\u2010Kalinoski AL, Donald MC, Mitchell ZL, Creeden JF, et al. Biliverdin reductase A (BVRA) knockout in adipocytes induces hypertrophy and reduces mitochondria in white fat of obese mice. Biomolecules. 2020;10:387.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hinds TD Jr, Burns KA, Hosick PA, McBeth L, Nestor\u2010Kalinoski A, Drummond HA, et al. Biliverdin reductase A attenuates hepatic steatosis by inhibition of glycogen synthase kinase (GSK) 3beta phosphorylation of serine 73 of peroxisome proliferator\u2010activated receptor (PPAR) alpha. J Biol Chem. 2016;291:25179\u201391.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "O'Brien L, Hosick PA, John K, Stec DE, Hinds TD Jr. Biliverdin reductase isozymes in metabolism. Trends Endocrinol Metab. 2015;26:212\u201320.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Cai CX, Buddha H, Castelino\u2010Prabhu S, Zhang Z, Britton RS, Bacon BR, et al. Activation of insulin\u2010PI3K/Akt\u2010p70S6K pathway in hepatic stellate cells contributes to fibrosis in nonalcoholic steatohepatitis. Dig Dis Sci. 2017;62:968\u201378.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Zhang F, Zhang Z, Kong D, Zhang X, Chen LI, Zhu X, et al. Tetramethylpyrazine reduces glucose and insulin\u2010induced activation of hepatic stellate cells by inhibiting insulin receptor\u2010mediated PI3K/AKT and ERK pathways. Mol Cell Endocrinol. 2014;382:197\u2013204.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Mateus T, Martins F, Nunes A, Herdeiro MT, Rebelo S. Metabolic alterations in myotonic dystrophy type 1 and their correlation with lipin. Int J Environ Res Public Health. 2021;18:1794.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Llagostera E, Catalucci D, Marti L, Liesa M, Camps M, Ciaraldi TP, et al. Role of myotonic dystrophy protein kinase (DMPK) in glucose homeostasis and muscle insulin action. PLoS One. 2007;2:e1134.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bhardwaj RR, Duchini A. Non\u2010alcoholic steatohepatitis in myotonic dystrophy: DMPK gene mutation, insulin resistance and development of steatohepatitis. Case Rep Gastroenterol. 2010;4:100\u20133.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Wahlang B, McClain C, Barve S, Gobejishvili L. Role of cAMP and phosphodiesterase signaling in liver health and disease. Cell Signal. 2018;49:105\u201315.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Yang J, Zhang X, Yi L, Yang L, Wang WE, Zeng C, et al. Hepatic PKA inhibition accelerates the lipid accumulation in liver. Nutr Metab (Lond). 2019;16:69.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
     "results": null,
-    "title": "Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy."
+    "title": "Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents."
+  },
+  "https://doi.org/10.1038/s41597-023-02277-x": {
+    "PMCID": "PMC10275912",
+    "abstract": "Exposure to per- and polyfluoroalkyl substances (PFAS) in drinking water is widely recognized as a public health concern. Decision-makers who are responsible for managing PFAS drinking water risks lack the tools to acquire the information they need. In response to this need, we provide a detailed description of a Kentucky dataset that allows decision-makers to visualize potential hot-spot areas and evaluate drinking water systems that may be susceptible to PFAS contamination. The dataset includes information extracted from publicly available sources to create five different maps in ArcGIS Online and highlights potential sources of PFAS contamination in the environment in relation to drinking water systems. As datasets of PFAS drinking water sampling continue to grow as part of evolving regulatory requirements, we used this Kentucky dataset as an example to promote the reuse of this dataset and others like it. We incorporated the FAIR (Findable, Accessible, Interoperable, and Reusable) principles by creating a Figshare item that includes all data and associated metadata with these five ArcGIS maps.",
+    "authors": [
+      {
+        "ORCID": "0000-0003-3423-9610",
+        "affiliation": "University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Sweta",
+        "initials": "S",
+        "lastname": "Ojha"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "P Travis",
+        "initials": "PT",
+        "lastname": "Thompson"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Computer Science (Data Science Program), Lexington, Kentucky, USA.",
+        "author_id": null,
+        "firstname": "Christian D",
+        "initials": "CD",
+        "lastname": "Powell"
+      },
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "University of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA.\nUniversity of Kentucky, Department of Molecular and Cellular Biochemistry, Lexington, Kentucky, USA.",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter N B",
+        "initials": "HNB",
+        "lastname": "Moseley"
+      },
+      {
+        "ORCID": "0000-0003-3423-9610",
+        "affiliation": "University of Kentucky, College of Engineering, Department of Civil Engineering, Lexington, Kentucky, USA. kellypennell@uky.edu.\nUniversity of Kentucky Superfund Research Center (UKSRC), Lexington, Kentucky, USA. kellypennell@uky.edu.",
+        "author_id": null,
+        "firstname": "Kelly G",
+        "initials": "KG",
+        "lastname": "Pennell"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": "\u00a9 2023. The Author(s).",
+    "doi": "10.1038/s41597-023-02277-x",
+    "grants": [
+      "P42 ES007380",
+      "2020026"
+    ],
+    "journal": "Scientific data",
+    "keywords": [],
+    "methods": null,
+    "publication_date": {
+      "day": 17,
+      "month": 6,
+      "year": 2023
+    },
+    "pubmed_id": "37328532",
+    "queried_sources": [
+      "PubMed",
+      "ORCID",
+      "Google Scholar",
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "Environmental Protection Agency (EPA), PFAS Strategic Roadmap: EPA\u2019s Commitments to Action 2021\u20132024. https://www.epa.gov/system/files/documents/2021-10/pfas-roadmap_final-508.pdf (2021).",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Da Silva BF, Ahmadireskety A, Aristizabal-Henao JJ, Bowden JA. A rapid and simple method to quantify per-and polyfluoroalkyl substances (PFAS) in plasma and serum using 96-well plates. MethodsX. 2020;7:101111\u201310111. doi: 10.1016/j.mex.2020.101111.",
+        "doi": "10.1016/j.mex.2020.101111",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hagstrom AL, et al. Yale School of Public Health Symposium: an overview of the challenges and opportunities associated with per-and polyfluoroalkyl substances (PFAS) Sci. Total Envir. 2021;778:146192. doi: 10.1016/j.scitotenv.2021.146192.",
+        "doi": "10.1016/j.scitotenv.2021.146192",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Groffen T, et al. A rapid method for the detection and quantification of legacy and emerging per-and polyfluoroalkyl substances (PFAS) in bird feathers using UPLC-MS/MS. J. Chromatogr. B. 2021;1172:122653. doi: 10.1016/j.jchromb.2021.122653.",
+        "doi": "10.1016/j.jchromb.2021.122653",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Gl\u00fcge J, et al. An overview of the uses of per-and polyfluoroalkyl substances (PFAS) Envir. Sci.-Proc. Imp. 2020;22:2345\u20132373.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Rogers RD, Reh CM, Breysse P. Advancing per-and polyfluoroalkyl substances (PFAS) research: an overview of ATSDR and NCEH activities and recommendations. J. Exp. Sci. Envir. Epi. 2021;31:961\u2013971. doi: 10.1038/s41370-021-00316-6.",
+        "doi": "10.1038/s41370-021-00316-6",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hauk\u00e5s M, Berger U, Hop H, Gulliksen B, Gabrielsen GW. Bioaccumulation of per-and polyfluorinated alkyl substances (PFAS) in selected species from the Barents Sea food web. Envir. Poll. 2007;148:360\u2013371. doi: 10.1016/j.envpol.2006.09.021.",
+        "doi": "10.1016/j.envpol.2006.09.021",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Fenton SE, et al. Per\u2010and polyfluoroalkyl substance toxicity and human health review: Current state of knowledge and strategies for informing future research. Envir. Tox. Chem. 2021;40:606\u2013630. doi: 10.1002/etc.4890.",
+        "doi": "10.1002/etc.4890",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Kucharzyk KH, Darlington R, Benotti M, Deeb R, Hawley E. Novel treatment technologies for PFAS compounds: A critical review. J. Environ. Manage. 2017;204:757\u2013764. doi: 10.1016/j.jenvman.2017.08.016.",
+        "doi": "10.1016/j.jenvman.2017.08.016",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "National Academies of Sciences, Engineering, and Medicine (NASEM), Guidance on PFAS Exposure, Testing, and Clinical Follow-Up. Washington, DC: The National Academies Press. 10.17226/26156 (2022).",
+        "doi": "10.17226/26156",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Rahman MF, Peldszus S, Anderson WB. Behaviour and fate of perfluoroalkyl and polyfluoroalkyl substances (PFASs) in drinking water treatment: A review. Water Res. 2014;50:318\u2013340. doi: 10.1016/j.watres.2013.10.045.",
+        "doi": "10.1016/j.watres.2013.10.045",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "De Silva AO, et al. PFAS exposure pathways for humans and wildlife: a synthesis of current knowledge and key gaps in understanding. Environ. Tox. Chem. 2021;40:631\u2013657. doi: 10.1002/etc.4935.",
+        "doi": "10.1002/etc.4935",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Olsen GW, et al. Per-and polyfluoroalkyl substances (PFAS) in American Red Cross adult blood donors, 2000\u20132015. Environ. Res. 2017;157:87\u201395. doi: 10.1016/j.envres.2017.05.013.",
+        "doi": "10.1016/j.envres.2017.05.013",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Domingo JL, Nadal M. Human exposure to per-and polyfluoroalkyl substances (PFAS) through drinking water: a review of the recent scientific literature. Environ. Res. 2019;177:108648\u2013108648. doi: 10.1016/j.envres.2019.108648.",
+        "doi": "10.1016/j.envres.2019.108648",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hepburn E, et al. Contamination of groundwater with per-and polyfluoroalkyl substances (PFAS) from legacy landfills in an urban re-development precinct. Environ. Poll. 2019;248:101\u2013113. doi: 10.1016/j.envpol.2019.02.018.",
+        "doi": "10.1016/j.envpol.2019.02.018",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bai X, Son Y. Perfluoroalkyl substances (PFAS) in surface water and sediments from two urban watersheds in Nevada, USA. Sci. Tot. Envir. 2021;751:141622\u2013141622. doi: 10.1016/j.scitotenv.2020.141622.",
+        "doi": "10.1016/j.scitotenv.2020.141622",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Li Y, et al. Formation and fate of perfluoroalkyl acids (PFAAs) in a laboratory-scale urban wastewater system. Water Res. 2022;216:118295\u2013118295. doi: 10.1016/j.watres.2022.118295.",
+        "doi": "10.1016/j.watres.2022.118295",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hale SE, et al. Sorbent amendment as a remediation strategy to reduce PFAS mobility and leaching in a contaminated sandy soil from a Norwegian firefighting training facility. Chemosphere. 2017;171:9\u201318. doi: 10.1016/j.chemosphere.2016.12.057.",
+        "doi": "10.1016/j.chemosphere.2016.12.057",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Barber JL, et al. Analysis of per-and polyfluorinated alkyl substances in air samples from Northwest Europe. J. Environ. Monit. 2007;9:530\u2013541. doi: 10.1039/b701417a.",
+        "doi": "10.1039/b701417a",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Koch A, et al. Point source characterization of per-and polyfluoroalkyl substances (PFASs) and extractable organofluorine (EOF) in freshwater and aquatic invertebrates. Environ. Sci.-Proc. Imp. 2019;21:1887\u20131898.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "P\u00e9tr\u00e9 MA, et al. Per-and polyfluoroalkyl substance (PFAS) transport from groundwater to streams near a PFAS manufacturing facility in North Carolina, USA. Environ. Sci. Tech. 2021;55:5848\u20135856. doi: 10.1021/acs.est.0c07978.",
+        "doi": "10.1021/acs.est.0c07978",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Ahrens L, Norstr\u00f6m K, Viktor T, Cousins AP, Josefsson S. Stockholm Arlanda Airport as a source of per-and polyfluoroalkyl substances to water, sediment and fish. Chemosphere. 2015;129:33\u201338. doi: 10.1016/j.chemosphere.2014.03.136.",
+        "doi": "10.1016/j.chemosphere.2014.03.136",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Adamson DT, et al. Mass-based, field-scale demonstration of PFAS retention within AFFF-associated source areas. Environ. Sci. Tech. 2020;54:15768\u201315777. doi: 10.1021/acs.est.0c04472.",
+        "doi": "10.1021/acs.est.0c04472",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Quinnan J, et al. Application of PFAS\u2010mobile lab to support adaptive characterization and flux\u2010based conceptual site models at AFFF releases. Remed. J. 2021;31:7\u201326. doi: 10.1002/rem.21680.",
+        "doi": "10.1002/rem.21680",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Schroeder T, Bond D, Foley J. PFAS soil and groundwater contamination via industrial airborne emission and land deposition in SW Vermont and Eastern New York State, USA. Environ. Sci.-Proc. Imp. 2021;23:291\u2013301.",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hale SE, Canivet B, Rundberget T, Langberg HA, Allan IJ. Using passive samplers to track Per and Polyfluoroalkyl Substances (PFAS) emissions from the paper industry: laboratory calibration and field verification. Front. Env. Sci. 2021;9:621\u2013629. doi: 10.3389/fenvs.2021.796026.",
+        "doi": "10.3389/fenvs.2021.796026",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Hu XC, et al. Detection of poly-and perfluoroalkyl substances (PFASs) in US drinking water linked to industrial sites, military fire training areas, and wastewater treatment plants. Environ. Sci. Tech. Let. 2016;3:344\u2013350. doi: 10.1021/acs.estlett.6b00260.",
+        "doi": "10.1021/acs.estlett.6b00260",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Ojha S, et al. A geospatial and binomial logistic regression model to prioritize sampling for per\u2010and polyfluorinated alkyl substances in public water systems. Integr. Environ. Assess. 2023;19:163\u2013174. doi: 10.1002/ieam.4614.",
+        "doi": "10.1002/ieam.4614",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Ebert JC, Altman RB. Robust recognition of zinc binding sites in proteins. Protein Sci. 2008;17:54\u201365. doi: 10.1110/ps.073138508.",
+        "doi": "10.1110/ps.073138508",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Wilkinson MD, et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci. Data. 2016;3:1\u20139. doi: 10.1038/sdata.2016.18.",
+        "doi": "10.1038/sdata.2016.18",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Boeckhout M, Zielhuis GA, Bredenoord AL. The FAIR guiding principles for data stewardship: fair enough? Eur. J. Hum. Genet. 2018;26:931\u2013936. doi: 10.1038/s41431-018-0160-0.",
+        "doi": "10.1038/s41431-018-0160-0",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Thompson P. T., Ojha S., Powell C. D., Pennell K. G. & Moseley H. N. B. A proposed FAIR approach for disseminating geospatial information system maps. Accepted Sci. Data (2023).",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Zs\u00f3ka \u00c1, Szer\u00e9nyi ZM, Sz\u00e9chy A, Kocsis T. Greening due to environmental education? Environmental knowledge, attitudes, consumer behavior and everyday pro-environmental activities of Hungarian high school and university students. J. Clean. Prod. 2013;48:126\u2013138. doi: 10.1016/j.jclepro.2012.11.030.",
+        "doi": "10.1016/j.jclepro.2012.11.030",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Guelfo JL, Adamson DT. Evaluation of a national data set for insights into sources, composition, and concentrations of per-and polyfluoroalkyl substances (PFASs) in US drinking water. Environ, Poll. 2018;236:505\u2013513. doi: 10.1016/j.envpol.2018.01.066.",
+        "doi": "10.1016/j.envpol.2018.01.066",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Ohja S, Thompson PT, Powell CD, Moselet HNB, Pennell KP. 2022. A FAIR approach to detect and share PFAS hot-spot areas and water systems in Kentucky. Figshare.",
+        "doi": "10.6084/m9.figshare.15218958",
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
+    "results": null,
+    "title": "Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water."
   }
 }

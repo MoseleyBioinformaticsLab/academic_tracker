@@ -1,221 +1,148 @@
 Core A Administrative Core
-	Kelly Pennell:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
+	Hunter Moseley:
+		Title: Plk1 phosphorylation of PHGDH to regulate serine metabolism 
+		Authors: Hunter Moseley 
+		Journal: None 
 		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Angela Gutierrez:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
+		PMID: None 
 		PMCID: None 
 		Grants: None Found
+
+		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
+		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
+		Journal: Hepatology (Baltimore, Md.) 
+		DOI: 10.1002/hep.32467 
+		PMID: 35313030 
+		PMCID: PMC9489820 
+		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
+
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
 
 Project 1
-	Kelly Pennell:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
+	Hunter Moseley:
+		Title: Plk1 phosphorylation of PHGDH to regulate serine metabolism 
+		Authors: Hunter Moseley 
+		Journal: None 
 		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Angela Gutierrez:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
+		PMID: None 
 		PMCID: None 
 		Grants: None Found
+
+		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
+		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
+		Journal: Hepatology (Baltimore, Md.) 
+		DOI: 10.1002/hep.32467 
+		PMID: 35313030 
+		PMCID: PMC9489820 
+		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
+
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
 
 No Project Report
-	Kelly Pennell:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
+	Hunter Moseley:
+		Title: Plk1 phosphorylation of PHGDH to regulate serine metabolism 
+		Authors: Hunter Moseley 
+		Journal: None 
 		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Angela Gutierrez:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
+		PMID: None 
 		PMCID: None 
 		Grants: None Found
+
+		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
+		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
+		Journal: Hepatology (Baltimore, Md.) 
+		DOI: 10.1002/hep.32467 
+		PMID: 35313030 
+		PMCID: PMC9489820 
+		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
+
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
 
 No Authors
-	Angela Gutierrez:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
-		PMCID: None 
-		Grants: None Found
-
-	Ann Koempel:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Anna Hoover:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Dawn Brewer:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
 	Hunter Moseley:
-		Title: Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy. 
-		Authors: Fan Chen, Jinpeng Liu, Robert M Flight, Kassandra J Naughton, Alexsandr Lukyanchuk, Abigail R Edgin, Xiulong Song, Haikuo Zhang, Kwok-Kin Wong, Hunter N B Moseley, Chi Wang, Christine F Brainson 
-		Journal: Advanced science (Weinheim, Baden-Wurttemberg, Germany) 
-		DOI: 10.1002/advs.202101999 
-		PMID: 34622577 
-		PMCID: None 
-		Grants: NCI K22 CA201036, IRG-85-001-25, NCI R01 CA237643, 133123-RSG-19-081-01-TBG, NIGMS P20 GM121327-03, P30CA177558, NIGMS P20 GM121327-03
-
-	Kelly Pennell:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
+		Title: Plk1 phosphorylation of PHGDH to regulate serine metabolism 
+		Authors: Hunter Moseley 
+		Journal: None 
 		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Lindell Ormsbee:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Pranto Paul:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
+		PMID: None 
 		PMCID: None 
 		Grants: None Found
 
-	Victoria Klaus:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
-		PMCID: None 
-		Grants: None Found
+		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
+		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
+		Journal: Hepatology (Baltimore, Md.) 
+		DOI: 10.1002/hep.32467 
+		PMID: 35313030 
+		PMCID: PMC9489820 
+		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
+
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
+
+	Travis Thompson:
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
 
 No from_email
-	Angela Gutierrez:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
-		PMCID: None 
-		Grants: None Found
-
-	Ann Koempel:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Anna Hoover:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Dawn Brewer:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
 	Hunter Moseley:
-		Title: Cellular Origins of EGFR-Driven Lung Cancer Cells Determine Sensitivity to Therapy. 
-		Authors: Fan Chen, Jinpeng Liu, Robert M Flight, Kassandra J Naughton, Alexsandr Lukyanchuk, Abigail R Edgin, Xiulong Song, Haikuo Zhang, Kwok-Kin Wong, Hunter N B Moseley, Chi Wang, Christine F Brainson 
-		Journal: Advanced science (Weinheim, Baden-Wurttemberg, Germany) 
-		DOI: 10.1002/advs.202101999 
-		PMID: 34622577 
-		PMCID: None 
-		Grants: NCI K22 CA201036, IRG-85-001-25, NCI R01 CA237643, 133123-RSG-19-081-01-TBG, NIGMS P20 GM121327-03, P30CA177558, NIGMS P20 GM121327-03
-
-	Kelly Pennell:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
+		Title: Plk1 phosphorylation of PHGDH to regulate serine metabolism 
+		Authors: Hunter Moseley 
+		Journal: None 
 		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Lindell Ormsbee:
-		Title: Appalachian Environmental Health Literacy: Building Knowledge and Skills to Protect Health. 
-		Authors: Anna G Hoover, Annie Koempel, W Jay Christian, Kimberly I Tumlin, Kelly G Pennell, Steven Evans, Malissa McAlister, Lindell E Ormsbee, Dawn Brewer 
-		Journal: Journal of Appalachian health 
-		DOI: None 
-		PMID: 32095784 
-		PMCID: PMC7039621 
-		Grants: G08 LM013185, P30 ES026529, P42 ES007380, R01 ES032396
-
-	Pranto Paul:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
+		PMID: None 
 		PMCID: None 
 		Grants: None Found
 
-	Victoria Klaus:
-		Title: Hydrogels and Hydrogel Nanocomposites: Enhancing Healthcare Through Human and Environmental Treatment. 
-		Authors: Angela M Gutierrez, E Molly Frazar, Victoria Klaus, Pranto Paul, J Z Hilt 
-		Journal: Advanced healthcare materials 
-		DOI: 10.1002/adhm.202101820 
-		PMID: 34811960 
-		PMCID: None 
-		Grants: None Found
+		Title: Hepatic kinome atlas: An in-depth identification of kinase pathways in liver fibrosis of humans and rodents. 
+		Authors: Justin F Creeden, Zachary A Kipp, Mei Xu, Robert M Flight, Hunter N B Moseley, Genesee J Martinez, Wang-Hsin Lee, Khaled Alganem, Ali S Imami, Megan R McMullen, Sanjoy Roychowdhury, Atta M Nawabi, Jennifer A Hipp, Samir Softic, Steven A Weinman, Robert McCullumsmith, Laura E Nagy, Terry D Hinds 
+		Journal: Hepatology (Baltimore, Md.) 
+		DOI: 10.1002/hep.32467 
+		PMID: 35313030 
+		PMCID: PMC9489820 
+		Grants: R01 MH121102, R01 AG057598, R01 DK121797, R01 MH107487, P30 CA177558, P50 AA024333
+
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
+
+	Travis Thompson:
+		Title: Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water. 
+		Authors: Sweta Ojha, P Travis Thompson, Christian D Powell, Hunter N B Moseley, Kelly G Pennell 
+		Journal: Scientific data 
+		DOI: 10.1038/s41597-023-02277-x 
+		PMID: 37328532 
+		PMCID: PMC10275912 
+		Grants: P42 ES007380, 2020026
 

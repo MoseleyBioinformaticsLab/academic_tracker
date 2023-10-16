@@ -32,8 +32,7 @@ def input_reading_and_checking(config_json_filepath, no_ORCID, no_GoogleScholar,
         
     Returns:
         config_dict (dict): Matches the Configuration file JSON schema.
-    """
-    
+    """    
     ## read in config file
     config_dict = fileio.load_json(config_json_filepath)
     
@@ -98,59 +97,60 @@ def build_publication_dict(config_dict, prev_pubs, no_ORCID, no_GoogleScholar, n
         no_PubMed (bool): If True search PubMed else don't.
         
     Returns:
-        publication_dict (dict): The dictionary matching the publication JSON schema.
-        prev_pubs (dict): Same as input, but updated with the new publications found.
+        running_pubs (dict): The dictionary matching the publication JSON schema.
+        all_queries (dict): The pubs searched for each source and each author. {"PubMed":{"author1":[pub1, ...], ...}, "ORCID":{"author1":[pub1, ...], ...}, "Google Scholar":{"author1":[pub1, ...], ...}, "Crossref":{"author1":[pub1, ...], ...}}
     """
     
     ## Get publications from PubMed 
     helper_functions.vprint("Finding author's publications. This could take a while.")
-    current_pubs = {}
+    running_pubs = {}
+    all_queries = {}
     if not no_PubMed:
         helper_functions.vprint("Searching PubMed.")
-        PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(current_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
-        current_pubs.update(PubMed_publication_dict)
+        running_pubs, PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(running_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"])
+        all_queries["PubMed"] = PubMed_publication_dict
     if not no_ORCID:
         helper_functions.vprint("Searching ORCID.")
-        ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(current_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
-        current_pubs.update(ORCID_publication_dict)
+        running_pubs, ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(running_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"])
+        all_queries["ORCID"] = ORCID_publication_dict
     if not no_GoogleScholar:
         helper_functions.vprint("Searching Google Scholar.")
-        Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(current_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
-        current_pubs.update(Google_Scholar_publication_dict)
+        running_pubs, Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
+        all_queries["Google Scholar"] = Google_Scholar_publication_dict
     if not no_Crossref:
         helper_functions.vprint("Searching Crossref.")
-        Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(current_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
-        current_pubs.update(Crossref_publication_dict)
+        running_pubs, Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"])
+        all_queries["Crossref"] = Crossref_publication_dict
     
-    publication_dict = {}
+    ## Do a second pass using the saved queries.
     if not no_PubMed:
-        for key, value in PubMed_publication_dict.items():
-            if not key in publication_dict:
-                publication_dict[key] = value
+        running_pubs, PubMed_publication_dict = athr_srch_webio.search_PubMed_for_pubs(running_pubs, config_dict["Authors"], config_dict["PubMed_search"]["PubMed_email"], all_queries["PubMed"])
     if not no_ORCID:
-        for key, value in ORCID_publication_dict.items():
-            if not key in publication_dict:
-                publication_dict[key] = value
+        running_pubs, ORCID_publication_dict = athr_srch_webio.search_ORCID_for_pubs(running_pubs, config_dict["ORCID_search"]["ORCID_key"], config_dict["ORCID_search"]["ORCID_secret"], config_dict["Authors"], all_queries["ORCID"])
     if not no_GoogleScholar:
-        for key, value in Google_Scholar_publication_dict.items():
-            if not key in publication_dict:
-                publication_dict[key] = value
+        running_pubs, Google_Scholar_publication_dict = athr_srch_webio.search_Google_Scholar_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], all_queries["Google Scholar"])
     if not no_Crossref:
-        for key, value in Crossref_publication_dict.items():
-            if not key in publication_dict:
-                publication_dict[key] = value
-    
+        running_pubs, Crossref_publication_dict = athr_srch_webio.search_Crossref_for_pubs(running_pubs, config_dict["Authors"], config_dict["Crossref_search"]["mailto_email"], all_queries["Crossref"])
+        
     ## Compare current pubs with previous and only keep those that are new or updated.
     for pub_id, pub_values in prev_pubs.items():
-        if pub_id in publication_dict and not deepdiff.DeepDiff(publication_dict[pub_id], pub_values, ignore_order=True, report_repetition=True):
-            del publication_dict[pub_id]
+        if pub_id in running_pubs and not deepdiff.DeepDiff(running_pubs[pub_id], pub_values, ignore_order=True, report_repetition=True):
+            del running_pubs[pub_id]
         
-        
-    if len(publication_dict) == 0:
+    if len(running_pubs) == 0:
         helper_functions.vprint("No new publications found.")
         sys.exit()
         
-    return publication_dict
+    ## Convert PubMed articles class to dicts so they can be saved as JSON.
+    if not no_PubMed:
+        for author, pub_list in all_queries["PubMed"].items():
+            new_list = []
+            for pub in pub_list:
+                _, pub_dict = helper_functions.create_pub_dict_for_saving_PubMed(pub, True)
+                new_list.append(pub_dict)
+            all_queries["PubMed"][author] = new_list
+        
+    return running_pubs, all_queries
 
 
 

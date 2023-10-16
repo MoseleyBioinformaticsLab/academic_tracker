@@ -4,19 +4,25 @@
     "abstract": "Metabolic flux analysis requires both a reliable metabolic model and reliable metabolic profiles in characterizing metabolic reprogramming. Advances in analytic methodologies enable production of high-quality metabolomics datasets capturing isotopic flux. However, useful metabolic models can be difficult to derive due to the lack of relatively complete atom-resolved metabolic networks for a variety of organisms, including human. Here, we developed a neighborhood-specific graph coloring method that creates unique identifiers for each atom in a compound facilitating construction of an atom-resolved metabolic network. What is more, this method is guaranteed to generate the same identifier for symmetric atoms, enabling automatic identification of possible additional mappings caused by molecular symmetry. Furthermore, a compound coloring identifier derived from the corresponding atom coloring identifiers can be used for compound harmonization across various metabolic network databases, which is an essential first step in network integration. With the compound coloring identifiers, 8865 correspondences between KEGG (Kyoto Encyclopedia of Genes and Genomes) and MetaCyc compounds are detected, with 5451 of them confirmed by other identifiers provided by the two databases. In addition, we found that the Enzyme Commission numbers (EC) of reactions can be used to validate possible correspondence pairs, with 1848 unconfirmed pairs validated by commonality in reaction ECs. Moreover, we were able to detect various issues and errors with compound representation in KEGG and MetaCyc databases by compound coloring identifiers, demonstrating the usefulness of this methodology for database curation.",
     "authors": [
       {
+        "ORCID": null,
         "affiliation": "Department of Toxicology and Cancer Biology, University of Kentucky, Lexington, KY 40536, USA.",
+        "author_id": null,
         "firstname": "Huan",
         "initials": "H",
         "lastname": "Jin"
       },
       {
+        "ORCID": null,
         "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, KY 40536, USA.",
+        "author_id": null,
         "firstname": "Joshua M",
         "initials": "JM",
         "lastname": "Mitchell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Department of Molecular & Cellular Biochemistry, University of Kentucky, Lexington, KY 40536, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40536, USA.\nResource Center for Stable Isotope Resolved Metabolomics, University of Kentucky, Lexington, KY 40536, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY 40536, USA.",
+        "author_id": null,
         "firstname": "Hunter N B",
         "initials": "HNB",
         "lastname": "Moseley"
@@ -45,6 +51,186 @@
       "year": 2020
     },
     "pubmed_id": "32933023",
+    "queried_sources": [
+      "PubMed"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "BMC Bioinformatics. 2019 Oct 28;20(1):524",
+        "doi": null,
+        "pubmed_id": "31660850",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bioanalysis. 2014 Feb;6(4):511-24",
+        "doi": null,
+        "pubmed_id": "24568354",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Chem Inf Model. 2015 Oct 26;55(10):2111-20",
+        "doi": null,
+        "pubmed_id": "26441310",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Metabolites. 2020 Mar 21;10(3):",
+        "doi": null,
+        "pubmed_id": "32245221",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bioinformatics. 2014 May 1;30(9):1333-5",
+        "doi": null,
+        "pubmed_id": "24413674",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Chem Inf Model. 2012 Nov 26;52(11):2970-82",
+        "doi": null,
+        "pubmed_id": "22963657",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bioinformatics. 2010 Jun 15;26(12):1548-55",
+        "doi": null,
+        "pubmed_id": "20421197",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Bioinformatics. 2014 Jul 15;30(14):2043-50",
+        "doi": null,
+        "pubmed_id": "24642060",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Front Genet. 2014 Jul 28;5:237",
+        "doi": null,
+        "pubmed_id": "25120557",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Sci Data. 2017 May 23;4:170073",
+        "doi": null,
+        "pubmed_id": "28534867",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Am Chem Soc. 2003 Oct 1;125(39):11853-65",
+        "doi": null,
+        "pubmed_id": "14505407",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "BMC Biol. 2011 May 31;9:37",
+        "doi": null,
+        "pubmed_id": "21627825",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Cheminform. 2017 Jun 6;9(1):33",
+        "doi": null,
+        "pubmed_id": "29086040",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Pharmacol Ther. 2012 Mar;133(3):366-91",
+        "doi": null,
+        "pubmed_id": "22212615",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Ind Microbiol Biotechnol. 2015 Mar;42(3):317-25",
+        "doi": null,
+        "pubmed_id": "25613286",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Brief Bioinform. 2006 Sep;7(3):243-55",
+        "doi": null,
+        "pubmed_id": "16880171",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Cheminform. 2013 Jan 24;5(1):7",
+        "doi": null,
+        "pubmed_id": "23343401",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "BMC Bioinformatics. 2013 Mar 27;14:112",
+        "doi": null,
+        "pubmed_id": "23530693",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2009 Jan;37(Database issue):D593-7",
+        "doi": null,
+        "pubmed_id": "18776214",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Biotechnol J. 2017 Jan;12(1):",
+        "doi": null,
+        "pubmed_id": "27897385",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Anal Chem. 2012 Oct 16;84(20):8442-7",
+        "doi": null,
+        "pubmed_id": "22946681",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Sci Data. 2019 Feb 19;6:190023",
+        "doi": null,
+        "pubmed_id": "30778259",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "BMC Syst Biol. 2009 Oct 29;3:103",
+        "doi": null,
+        "pubmed_id": "19874610",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Cheminform. 2011 Oct 07;3:33",
+        "doi": null,
+        "pubmed_id": "21982300",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Genome Res. 2003 Nov;13(11):2455-66",
+        "doi": null,
+        "pubmed_id": "14559781",
+        "title": null
+      }
+    ],
     "results": null,
     "title": "Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases."
   },
@@ -53,13 +239,17 @@
     "abstract": "The Metabolomics Workbench (MW) is a public scientific data repository consisting of experimental data and metadata from metabolomics studies collected with mass spectroscopy (MS) and nuclear magnetic resonance (NMR) analyses. MW has been constantly evolving; updating its 'mwTab' text file format, adding a JavaScript Object Notation (JSON) file format, implementing a REpresentational State Transfer (REST) interface, and nearly quadrupling the number of datasets hosted on the repository within the last three years. In order to keep up with the quickly evolving state of the MW repository, the 'mwtab' Python library and package have been continuously updated to mirror the changes in the 'mwTab' and JSONized formats and contain many new enhancements including methods for interacting with the MW REST interface, enhanced format validation features, and advanced features for parsing and searching for specific metabolite data and metadata. We used the enhanced format validation features to evaluate all available datasets in MW to facilitate improved curation and FAIRness of the repository. The 'mwtab' Python package is now officially released as version 1.0.1 and is freely available on GitHub and the Python Package Index (PyPI) under a Clear Berkeley Software Distribution (BSD) license with documentation available on ReadTheDocs.",
     "authors": [
       {
+        "ORCID": "0000-0002-4242-080X",
         "affiliation": "Department of Computer Science (Data Science Program), University of Kentucky, Lexington, KY 40506, USA.\nMarkey Cancer Center, University of Kentucky, Lexington, KY 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY 40506, USA.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40506, USA.",
+        "author_id": null,
         "firstname": "Christian D",
         "initials": "CD",
         "lastname": "Powell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": "Markey Cancer Center, University of Kentucky, Lexington, KY 40506, USA.\nSuperfund Research Center, University of Kentucky, Lexington, KY 40506, USA.\nDepartment of Molecular and Cellular Biochemistry, University of Kentucky, Lexington, KY 40506, USA.\nInstitute for Biomedical Informatics, University of Kentucky, Lexington, KY 40506, USA.",
+        "author_id": null,
         "firstname": "Hunter N B",
         "initials": "HNB",
         "lastname": "Moseley"
@@ -88,6 +278,109 @@
       "year": 2021
     },
     "pubmed_id": "33808985",
+    "queried_sources": [
+      "PubMed"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": "Sci Data. 2017 Sep 26;4:170138",
+        "doi": null,
+        "pubmed_id": "29989594",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2008 Jan;36(Database issue):D402-8",
+        "doi": null,
+        "pubmed_id": "17984079",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Curr Protoc Bioinformatics. 2015 Jun 19;50:1.27.1-1.27.10",
+        "doi": null,
+        "pubmed_id": "26088053",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Metabolomics. 2018;14(5):64",
+        "doi": null,
+        "pubmed_id": "29706851",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2018 Jan 4;46(D1):D608-D617",
+        "doi": null,
+        "pubmed_id": "29140435",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2016 Jan 4;44(D1):D463-70",
+        "doi": null,
+        "pubmed_id": "26467476",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2008 Jan;36(Database issue):D480-4",
+        "doi": null,
+        "pubmed_id": "18077471",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "J Cheminform. 2015 May 30;7:23",
+        "doi": null,
+        "pubmed_id": "26136848",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Metabolomics. 2016;12:14",
+        "doi": null,
+        "pubmed_id": "26612985",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2019 Jan 8;47(D1):D1102-D1109",
+        "doi": null,
+        "pubmed_id": "30371825",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Nucleic Acids Res. 2000 Jan 1;28(1):235-42",
+        "doi": null,
+        "pubmed_id": "10592235",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Sci Data. 2016 Mar 15;3:160018",
+        "doi": null,
+        "pubmed_id": "26978244",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Eur J Hum Genet. 2018 Jul;26(7):931-936",
+        "doi": null,
+        "pubmed_id": "29777206",
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Metabolomics. 2015;11(6):1587-1597",
+        "doi": null,
+        "pubmed_id": "26491418",
+        "title": null
+      }
+    ],
     "results": null,
     "title": "The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository."
   }

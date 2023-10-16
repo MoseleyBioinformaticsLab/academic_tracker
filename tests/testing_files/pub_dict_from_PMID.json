@@ -1,0 +1,72 @@
+{
+  "https://doi.org/10.1016/j.chroma.2021.462426": {
+    "PMCID": null,
+    "abstract": "We developed and validated a method for direct determination of per- and polyfluoroalkylated substances (PFASs) in environmental water samples without prior sample concentration. Samples are centrifuged and supernatants passed through an Acrodisc Filter (GXF/GHP 0.2\u00a0\u00a0um, 25\u00a0\u00a0mm diameter). After addition of ammonium acetate, samples are analyzed by UPLC-MS/MS using an AB Sciex 6500 plus Q-Trap mass spectrometer operated in negative multiple reaction-monitoring (MRM) mode. The instrument system incorporates a delay column between the pumps and autosampler to mitigate interference from background PFAS. The method monitors eight short-/long-chain PFAS which are identified by monitoring specific precursor product ion pairs and by their retention times and quantified using isotope mass-labeled internal standard based calibration plots. Average spiked recoveries (n\u00a0=\u00a08) of target analytes ranged from 84 to 110% with 4-9% relative standard deviation (RSD). The mean spiked recoveries (n\u00a0=\u00a08) of four surrogates were 94-106% with 3-8% RSD. For continuous calibration verification (CCV), average spiked recoveries (n\u00a0=\u00a08) for target analytes ranged from 88 to 114% with 4-11% RSD and for surrogates ranged from 104-112% with 3-11% RSD. The recoveries (n\u00a0=\u00a06) of matrix spike (MX), matrix spike duplicate (MXD), and field reagent blank (FRB) met our acceptance criteria. The limit of detection for the target analytes was between 0.007 and 0.04\u00a0ng/mL. The method was used to measure PFAS in tap water and surface water.",
+    "authors": [
+      {
+        "ORCID": null,
+        "affiliation": "Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Division of Cardiovascular, Medicine, College of Medicine, University of Kentucky and Lexington VA Medical Center, Lexington, KY, 40536, United States. a.j.morris@uky.edu; Pressent address: Institute of Drug & Biotherapeutic Innovation, DRC, 1100 South Grand Blvd, Saint Louis University, Saint Louis, MO 63104 United States. Electronic address: m.a.mottaleb@uky.edu.",
+        "author_id": null,
+        "firstname": "M Abdul",
+        "initials": "MA",
+        "lastname": "Mottaleb"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Department of Biology, College of Arts and Sciences, Kent State University, Kent, OH, 44242, United States. Electronic address: qding@kent.edu.",
+        "author_id": null,
+        "firstname": "Qunxing X",
+        "initials": "QX",
+        "lastname": "Ding"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Department of Civil Engineering, College of Engineering, University of Kentucky, Lexington KY, 40506, United States. Electronic address: kellypennell@uky.edu.",
+        "author_id": null,
+        "firstname": "Kelly G",
+        "initials": "KG",
+        "lastname": "Pennell"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Department of Epidemiology, College of Public Health, University of Kentucky, Lexington KY, 40536, United States. Electronic address: erin.haynes@uky.edu.",
+        "author_id": null,
+        "firstname": "Erin N",
+        "initials": "EN",
+        "lastname": "Haynes"
+      },
+      {
+        "ORCID": null,
+        "affiliation": "Superfund Research Center, University of Kentucky, Lexington KY, 40506, United States; Center for Appalachian Research in Environmental Sciences, University of Kentucky, Lexington KY, 40506, United States; Division of Cardiovascular, Medicine, College of Medicine, University of Kentucky and Lexington VA Medical Center, Lexington, KY, 40536, United States. a.j.morris@uky.edu; Pressent address: Institute of Drug & Biotherapeutic Innovation, DRC, 1100 South Grand Blvd, Saint Louis University, Saint Louis, MO 63104 United States. Electronic address: a.j.morris@uky.edu.",
+        "author_id": null,
+        "firstname": "Andrew J",
+        "initials": "AJ",
+        "lastname": "Morris"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": "Copyright \u00a9 2021. Published by Elsevier B.V.",
+    "doi": "10.1016/j.chroma.2021.462426",
+    "grants": [
+      "P30 ES026529"
+    ],
+    "journal": "Journal of chromatography. A",
+    "keywords": [
+      "Acrodisc filtration",
+      "Direct injection",
+      "Drinking and surface water",
+      "PFAS",
+      "UPLC-MS/MS"
+    ],
+    "methods": null,
+    "publication_date": {
+      "day": 6,
+      "month": 8,
+      "year": 2021
+    },
+    "pubmed_id": "34352431",
+    "references": [],
+    "results": null,
+    "title": "Direct injection analysis of per and polyfluoroalkyl substances in surface and drinking water by sample filtration and liquid chromatography-tandem mass spectrometry."
+  }
+}

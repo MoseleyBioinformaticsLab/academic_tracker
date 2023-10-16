@@ -1,0 +1,32 @@
+{
+  "https://doi.org/10.1016/s0959-440x(99)00019-6": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "author_id": "Hunter Moseley",
+        "collectivename": "Some Collective"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1016/s0959-440x(99)00019-6",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": null,
+      "month": null,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "Google Scholar"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Automated analysis of NMR assignments and structures for proteins"
+  }
+}

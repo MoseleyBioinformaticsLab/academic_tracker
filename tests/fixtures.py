@@ -4,8 +4,11 @@ import pytest
 import xml.etree.ElementTree as ET
 import os
 import pymed
-from academic_tracker.helper_functions import modify_pub_dict_for_saving
+from academic_tracker.helper_functions import create_pub_dict_for_saving_PubMed
 from academic_tracker.fileio import load_json
+from academic_tracker import webio
+
+DOI_URL = webio.DOI_URL
 
 
 @pytest.fixture
@@ -46,11 +49,11 @@ def pub_with_grants():
 def publication_dict(pub_with_grants, pub_with_matching_author):
     publication_dict = {}
     
-    pub_dict = modify_pub_dict_for_saving(pub_with_grants)
-    publication_dict["https://doi.org/" + pub_dict["doi"]] = pub_dict
+    _, pub_dict = create_pub_dict_for_saving_PubMed(pub_with_grants)
+    publication_dict[DOI_URL + pub_dict["doi"]] = pub_dict
     
-    pub_dict = modify_pub_dict_for_saving(pub_with_matching_author)
-    publication_dict["https://doi.org/" + pub_dict["doi"]] = pub_dict
+    _, pub_dict = create_pub_dict_for_saving_PubMed(pub_with_matching_author)
+    publication_dict[DOI_URL + pub_dict["doi"]] = pub_dict
     
     return publication_dict
 

@@ -1,0 +1,233 @@
+{
+  "https://doi.org/10.1038/s41597-023-02277-x": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1038/s41597-023-02277-x",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 16,
+      "month": 6,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Identifying and sharing per-and polyfluoroalkyl substances hot-spot areas and exposures in drinking water"
+  },
+  "https://doi.org/10.1038/s41597-023-02281-1": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1038/s41597-023-02281-1",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 16,
+      "month": 6,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "A proposed FAIR approach for disseminating geospatial information system maps"
+  },
+  "https://doi.org/10.1186/s12859-023-05423-9": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1186/s12859-023-05423-9",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 24,
+      "month": 7,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "The metabolomics workbench file status website: a metadata repository promoting FAIR principles of metabolomics data"
+  },
+  "https://doi.org/10.1371/journal.pone.0277834": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.1371/journal.pone.0277834",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 18,
+      "month": 11,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Academic Tracker: Software for tracking and reporting publications associated with authors and grants"
+  },
+  "https://doi.org/10.3390/metabo12060515": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo12060515",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 2,
+      "month": 6,
+      "year": 2022
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Scan-Centric, Frequency-Based Method for Characterizing Peaks from Direct Injection Fourier Transform Mass Spectrometry Experiments"
+  },
+  "https://doi.org/10.3390/metabo13020215": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo13020215",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 1,
+      "month": 2,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "Bilirubin Nanoparticle Treatment in Obese Mice Inhibits Hepatic Ceramide Production and Remodels Liver Fat Content"
+  },
+  "https://doi.org/10.3390/metabo13070842": {
+    "PMCID": null,
+    "abstract": null,
+    "authors": [
+      {
+        "ORCID": "0000-0003-3995-5368",
+        "affiliation": "kentucky",
+        "author_id": "Hunter Moseley",
+        "firstname": "Hunter",
+        "initials": null,
+        "lastname": "Moseley"
+      }
+    ],
+    "conclusions": null,
+    "copyrights": null,
+    "doi": "10.3390/metabo13070842",
+    "grants": [],
+    "journal": null,
+    "keywords": null,
+    "methods": null,
+    "publication_date": {
+      "day": 12,
+      "month": 7,
+      "year": 2023
+    },
+    "pubmed_id": null,
+    "queried_sources": [
+      "ORCID"
+    ],
+    "references": [],
+    "results": null,
+    "title": "MESSES: Software for Transforming Messy Research Datasets into Clean Submissions to Metabolomics Workbench for Public Sharing"
+  }
+}

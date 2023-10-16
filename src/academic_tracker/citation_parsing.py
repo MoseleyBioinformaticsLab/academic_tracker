@@ -49,7 +49,7 @@ def parse_text_for_citations(text):
             groups = helper_functions.regex_match_return(regex, line)
             if groups:
                 authors = groups[0].strip()
-                ## Sanity check to make sure we are looking at author names separated by commas and not a sentence with a comman in it.
+                ## Sanity check to make sure we are looking at author names separated by commas and not a sentence with a comma in it.
                 ## Assuming names won't be more than 4 words.
                 temp_authors = authors.replace(" and ", ",")
                 sanity_check = any([len(author.strip().split(" ")) > 4 for author in temp_authors.split(",")])
@@ -225,7 +225,7 @@ def tokenize_myncbi_citations(html):
     parsed_pubs = []
     
     citations = soup.find_all("div", class_ = "ncbi-docsum")
-    for citation in citations:
+    for i, citation in enumerate(citations):
         
         authors_str = citation.find("span", class_ = "authors")
         authors_str = authors_str.text if authors_str else list(citation.children)[1].text
@@ -244,12 +244,17 @@ def tokenize_myncbi_citations(html):
         
         ## If there is not a span with the class title then the title should be a 
         ## hyperlink that is the 3rd child. 
-        title = citation.find("span", class_ = "title")
-        if title:
-            title = title.text.strip()
+        ## If the reference is a book then the "title" will likely be the book title, and "chaptertitle" will be the actual reference.
+        chapter_title = citation.find("span", class_ = "chaptertitle")
+        if chapter_title:
+            title = chapter_title.text.strip()
         else:
-            children = list(citation.children)
-            title = "" if children[2].name == "span" else children[2].text.strip()
+            title = citation.find("span", class_ = "title")
+            if title:
+                title = title.text.strip()
+            else:
+                children = list(citation.children)
+                title = "" if children[2].name == "span" else children[2].text.strip()
             
         doi = citation.find("span", class_ = "doi")
         if doi:
@@ -268,6 +273,7 @@ def tokenize_myncbi_citations(html):
         parsed_pubs.append({"authors":authors, "title":title, "PMID":pmid, "DOI":doi, "reference_line":citation.text.strip(), "pub_dict_key":""})
         
     return parsed_pubs
+
 
 
 

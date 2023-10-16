@@ -27,7 +27,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker author_search <config_json_file> [--test --prev-pub=<file-path> --no-GoogleScholar --no-ORCID --no-Crossref --no-PubMed --verbose --silent]
+    academic_tracker author_search <config_json_file> [--test --prev-pub=<file-path> --save-all-queries --no-GoogleScholar --no-ORCID --no-Crossref --no-PubMed --verbose --silent]
 
 
 Description
@@ -51,7 +51,7 @@ The description of everything author_search does with the previous publications
 may seem arbitrary and confusing. The idea is that users will make an initial 
 list of authors to keep track of and then run author_search every so often to 
 look for new publications for them. To make this as easy as possible it is 
-neceessary to both have author_search look for previous publications automatically 
+necessary to both have author_search look for previous publications automatically 
 and for the output to be cumulative so that the same publications are not reported 
 multiple times.
 
@@ -77,31 +77,37 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 Specifies a publications.json file to use as a list of publications to ignore 
 when searching for new publications. Set to "ignore" to prevent author_search 
 from automatically looking for a publications.json file in tracker directories.
+
+--save-all-queries:
+
+If used, all of the raw data returned from each source for each author will be saved 
+in a file called "all_results.json". The structure is {"source_name":{"author_id_1":[pub_dict_1, pub_dict_2, ...], ...}, ...}
+Ex. {"PubMed":{"Hunter Moseley":[{}, ...]}, "Crossref":{"Hunter Moseley":[{}, ...]}, ...}
             
 --no-GoogleScholar: 
 
-If used author_search will not search Google Scholar for publications.
+If used, author_search will not search Google Scholar for publications.
 
 --no-ORCID: 
 
-If used author_search will not search ORCID for publications.
+If used, author_search will not search ORCID for publications.
 
 --no-Crossref: 
 
-If used author_search will not search Crossref for publications.
+If used, author_search will not search Crossref for publications.
 
 --no-PubMed: 
 
-If used author_search will not search PubMed for publications. This option is 
+If used, author_search will not search PubMed for publications. This option is 
 assumed if the PubMed_search section of the configuration JSON file is missing.
 
 --verbose: 
 
-If used HTML errors and other warnings will be printed to the screen.
+If used, HTML errors and other warnings will be printed to the screen.
 
 --silent:
 
-If used nothing will be printed to the screen.
+If used, nothing will be printed to the screen.
 
 
 Outputs
@@ -126,11 +132,14 @@ from_email is given then a file is created for every author that had new publica
 
 Details about reports can be found in the :doc:`reporting` section.
 
+An all_results.json file will be output if the --save-all-queries option is given.
+
 publications.json
 emails.json
 summary_report.txt
 projectname_project_report.txt
 projectname_authorname_project_report.txt
+all_results.json
 
 
 Examples
@@ -361,7 +370,7 @@ Command Line Signature
 ----------------------
 .. code-block:: console
 
-    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev-pub=<file-path> --PMID-reference --MEDLINE-reference --no-Crossref --no-PubMed --verbose --silent]
+    academic_tracker reference_search <config_json_file> <references_file_or_URL> [--test --prev-pub=<file-path> --save-all-queries --PMID-reference --MEDLINE-reference --no-Crossref --no-PubMed --verbose --silent]
 
 
 Description
@@ -414,6 +423,13 @@ to tracker-test-YYMMDDHHMM and prevents any emails from being sent.
 
 Specifies a publications.json file to use as a list of publications to compare 
 with when generating the summary report.
+
+--save-all-queries:
+
+If used, all of the raw data returned from each source for each author will be saved 
+in a file called "all_results.json". The structure is {"source_name":[[pub_dict_1, pub_dict_2, ...]], ...}
+Ex. {"PubMed":[[{}, ...]], "Crossref":[[{}, ...]]} The index of each list in the source 
+lines up with the index in the tokenized_reference.
             
 --PMID-reference: 
 
@@ -460,10 +476,13 @@ If --PMID-reference is used no reports or emails are generated.
 
 Details about reports can be found in the :doc:`reporting` section.
 
+An all_results.json file will be output if the --save-all-queries option is given.
+
 publications.json
 tokenized_reference.json
 emails.json
 summary_report.txt
+all_results.json
 
 
 Examples

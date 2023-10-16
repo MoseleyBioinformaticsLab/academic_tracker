@@ -27,18 +27,22 @@ def change_cwd():
     os.chdir(cwd)
 
 @pytest.fixture(autouse=True)
-def delete_folder():
-    paths = [os.path.abspath(name) for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
-    for path in paths:
-        path = pathlib.Path(path)
-        shutil.rmtree(path)
-        time_to_wait=10
-        time_counter = 0
-        while path.exists():
-            time.sleep(1)
-            time_counter += 1
-            if time_counter > time_to_wait:
-                raise FileExistsError(path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+def delete_folder(request):
+    def delete_tracker_dir():
+        paths = [os.path.abspath(name) for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
+        for path in paths:
+            path = pathlib.Path(path)
+            shutil.rmtree(path)
+            time_to_wait=10
+            time_counter = 0
+            while path.exists():
+                time.sleep(1)
+                time_counter += 1
+                if time_counter > time_to_wait:
+                    raise FileExistsError(path + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+    delete_tracker_dir()
+    request.addfinalizer(delete_tracker_dir)
+    
 
 
 
@@ -308,10 +312,4 @@ def test_prev_pub_underscore_gen_reports_emails_ref():
     assert "Success" in output
 
 
-
-
-
-
-
-
-
+    

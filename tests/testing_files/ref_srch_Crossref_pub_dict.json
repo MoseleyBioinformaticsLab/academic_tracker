@@ -4,19 +4,25 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": null,
         "affiliation": null,
+        "author_id": null,
         "firstname": "Huan",
         "initials": null,
         "lastname": "Jin"
       },
       {
+        "ORCID": null,
         "affiliation": null,
+        "author_id": null,
         "firstname": "Joshua M.",
         "initials": null,
         "lastname": "Mitchell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": null,
+        "author_id": null,
         "firstname": "Hunter N. B.",
         "initials": null,
         "lastname": "Moseley"
@@ -25,16 +31,303 @@
     "conclusions": null,
     "copyrights": null,
     "doi": "10.3390/metabo10090368",
-    "grants": null,
+    "grants": [
+      "1419282"
+    ],
     "journal": "MDPI AG",
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 11,
+      "month": 9,
       "year": 2020
     },
     "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/bioinformatics/btu015",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s10295-015-1585-x",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1741-7007-9-37",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/s12859-019-3096-7",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.3390/metabo10030118",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s11306-015-0882-8",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1016/j.pharmthera.2011.12.007",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ac3018795",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/bib/bbl022",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1101/gr.1212003",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/3-540-29782-0_10",
+        "pubmed_id": null,
+        "title": "Map Editor for the Atomic Reconstruction of Metabolism (ARM)"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.4155/bio.13.348",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1002/biot.201600464",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ci00007a012",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "RPAIR: A reactant-pair database representing chemical changes in enzymatic reactions"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ci3002217",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1752-0509-3-103",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/bioinformatics/btq223",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/bioinformatics/btu150",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1471-2105-14-112",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1038/sdata.2017.73",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/s13321-017-0220-4",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1758-2946-3-33",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/1758-2946-5-7",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1038/sdata.2019.23",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.3389/fgene.2014.00237",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.2140/iig.2013.13.135",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1137/14099721X",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Indigo Toolkithttps://lifescience.opensource.epam.com/indigo/index.html",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1016/0300-9084(93)90117-B",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/gkn582",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s00214-015-1635-5",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ci990322q",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Algebraic Combinatorics in Mathematical Chemistry. Methods and Algorithms. III, Graph Invariants and Stabilization Methods (Preliminary Version)"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/acs.jcim.5b00543",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Ctfilehttps://github.com/MoseleyBioinformaticsLab/ctfile",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "The JavaScript Object Notation (JSON) Data Interchange Formathttps://www.rfc-editor.org/info/rfc7159",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1021/ja036030u",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Automated Identification and Classification of Stereochemistry: Chirality and Double Bond Stereoisomerismhttps://arxiv.org/abs/1303.1724",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Introduction to Algorithms"
+      }
+    ],
     "results": null,
     "title": "Atom Identifiers Generated by a Neighborhood-Specific Graph Coloring Method Enable Compound Harmonization across Metabolic Databases"
   },
@@ -43,13 +336,17 @@
     "abstract": null,
     "authors": [
       {
+        "ORCID": "0000-0002-4242-080X",
         "affiliation": null,
+        "author_id": null,
         "firstname": "Christian D.",
         "initials": null,
         "lastname": "Powell"
       },
       {
+        "ORCID": "0000-0003-3995-5368",
         "affiliation": null,
+        "author_id": null,
         "firstname": "Hunter N.B.",
         "initials": null,
         "lastname": "Moseley"
@@ -58,16 +355,180 @@
     "conclusions": null,
     "copyrights": null,
     "doi": "10.3390/metabo11030163",
-    "grants": null,
+    "grants": [
+      "P42ES007380",
+      "R03OD030603",
+      "1419282",
+      "2020026"
+    ],
     "journal": "MDPI AG",
     "keywords": null,
     "methods": null,
     "publication_date": {
-      "day": null,
-      "month": null,
+      "day": 12,
+      "month": 3,
       "year": 2021
     },
     "pubmed_id": null,
+    "queried_sources": [
+      "Crossref"
+    ],
+    "references": [
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/gkv1042",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "The Javascript Object Notation (Json) Data Interchange Format (No. RFC 8259)https://tools.ietf.org/html/rfc8259",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": null,
+        "pubmed_id": null,
+        "title": "Javascript Object Notation, RFC 4627"
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s11306-018-1356-6",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1038/sdata.2016.18",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1038/s41431-018-0160-0",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Python Package Indexhttps://pypi.org/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "GitHubhttps://github.com/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s11306-007-0070-6",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s11306-015-0810-y",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1038/sdata.2017.138",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1007/s11306-015-0879-3",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/28.1.235",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/gkm957",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "UniProt Annotation Scorehttps://www.uniprot.org/help/annotation_score",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1002/0471250953.bi0127s50",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "ReadTheDocshttps://readthedocs.org/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/gkx1089",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1186/s13321-015-0068-4",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/gkm882",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": null,
+        "doi": "10.1093/nar/gky1033",
+        "pubmed_id": null,
+        "title": null
+      },
+      {
+        "PMCID": null,
+        "citation": "Sphinx: Python Documentation Generatorhttps://www.sphinx-doc.org/en/master/",
+        "doi": null,
+        "pubmed_id": null,
+        "title": null
+      }
+    ],
     "results": null,
     "title": "The mwtab Python Library for RESTful Access and Enhanced Quality Control, Deposition, and Curation of the Metabolomics Workbench Data Repository"
   }

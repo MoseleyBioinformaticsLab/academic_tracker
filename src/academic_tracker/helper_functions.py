@@ -672,7 +672,7 @@ def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_re
         ((int, int)|None): if either citation is None, then return None, else the percentage of common to uncommon phrase length for each citation.
     """
     if prev_citation and new_citation:
-        citation_strip_regex = "|".join([f"\{char}" for char in characters_to_remove])
+        citation_strip_regex = "|".join([f"\\{char}" for char in characters_to_remove])
         # citation_strip_regex = r"\.|,|;|\(|\)|\[|\]|\{|\}"
         stripped_prev_citation = re.sub(citation_strip_regex, "", prev_citation.lower())
         stripped_new_citation = re.sub(citation_strip_regex, "", new_citation.lower())
@@ -685,8 +685,17 @@ def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_re
             prev_citation_common_phrases_removed = prev_citation_common_phrases_removed.replace(phrase.strip(), "")
             new_citation_common_phrases_removed = new_citation_common_phrases_removed.replace(phrase.strip(), "")
         common_base_string = "".join(common_subphrases)
-        prev_common_percentage = len(common_base_string) / len(common_base_string + prev_citation_common_phrases_removed.strip()) * 100
-        new_common_percentage = len(common_base_string) / len(common_base_string + new_citation_common_phrases_removed.strip()) * 100
+
+        prev_common_denom = len(common_base_string + prev_citation_common_phrases_removed.strip())
+        new_common_denom = len(common_base_string + new_citation_common_phrases_removed.strip())
+
+        if prev_common_denom == 0 or new_common_denom == 0:
+            print(f"WARN: {prev_citation} vs. {new_citation} similarity divide by zero")
+            print(f"\treturning None")
+            return None
+
+        prev_common_percentage = len(common_base_string) / prev_common_denom * 100
+        new_common_percentage = len(common_base_string) / new_common_denom * 100
         
         return prev_common_percentage, new_common_percentage
     else:

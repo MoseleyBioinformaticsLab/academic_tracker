@@ -673,7 +673,7 @@ def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_re
     """
     if prev_citation and new_citation:
         citation_strip_regex = "|".join([f"\{char}" for char in characters_to_remove])
-        # citation_strip_regex_old = r"\.|,|;|\(|\)|\[|\]|\{|\}"
+        # citation_strip_regex = r"\.|,|;|\(|\)|\[|\]|\{|\}"
         stripped_prev_citation = re.sub(citation_strip_regex, "", prev_citation.lower())
         stripped_new_citation = re.sub(citation_strip_regex, "", new_citation.lower())
         

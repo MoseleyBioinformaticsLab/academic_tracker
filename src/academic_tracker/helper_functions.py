@@ -669,7 +669,7 @@ def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_re
         min_len (int): the minimum length of a subphrase.
     
     Returns:
-        ((int, int)|None): if either citation is None, then return None, else the percentage of common to uncommon phrase length for each citation.
+        ((int, int)|None): if either citation is None or empty after character removal and stripping, then return None, else the percentage of common to uncommon phrase length for each citation.
     """
     if prev_citation and new_citation:
         citation_strip_regex = "|".join([f"\{char}" for char in characters_to_remove])

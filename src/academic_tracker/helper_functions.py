@@ -685,17 +685,10 @@ def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_re
             prev_citation_common_phrases_removed = prev_citation_common_phrases_removed.replace(phrase.strip(), "")
             new_citation_common_phrases_removed = new_citation_common_phrases_removed.replace(phrase.strip(), "")
         common_base_string = "".join(common_subphrases)
-
         prev_common_denom = len(common_base_string + prev_citation_common_phrases_removed.strip())
         new_common_denom = len(common_base_string + new_citation_common_phrases_removed.strip())
-
-        if prev_common_denom == 0 or new_common_denom == 0:
-            print(f"WARN: similarity divide by zero")
-            print(f"{prev_citation = }")
-            print(f"{new_citation = }")
-            print(f"\treturning None")
+        if prev_common_denom == 0 or new_common_denom == 0: 
             return None
-
         prev_common_percentage = len(common_base_string) / prev_common_denom * 100
         new_common_percentage = len(common_base_string) / new_common_denom * 100
         

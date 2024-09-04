@@ -190,7 +190,7 @@ def test_pmid_reference_underscore_ref_search():
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
-
+    
     assert [name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
                 
     assert "Success" in output

@@ -1,0 +1,16 @@
+name: Pull request
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  pull-request:
+      uses: ./.github/workflows/tests.yml
+      with:
+        install_command: "python3 -m pip install -e ."

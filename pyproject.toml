@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "academic_tracker"
+description = "Find publications on PubMed, Crossref, ORCID, and Google Scholar for given authors or references."
+readme = "README.rst"
+requires-python = ">=3.8"
+keywords = ["PubMed", "publications", "citations", "Crossref", "ORCID", "Google Scholar"]
+license = {file = "LICENSE"}
+classifiers = [
+	'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: BSD License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+]
+dynamic = ["version", "dependencies"]
+
+[project.urls]
+"Homepage" = "https://github.com/MoseleyBioinformaticsLab/academic_tracker"
+"Documentation" = "https://moseleybioinformaticslab.github.io/academic_tracker/"
+"GitHub" = "https://github.com/MoseleyBioinformaticsLab/academic_tracker"
+"Issues" = "https://github.com/MoseleyBioinformaticsLab/academic_tracker/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
+[project.scripts]
+academic_tracker = "academic_tracker.__main__:main"
+
+[tool.setuptools_scm]
+write_to = "src/academic_tracker/_version.py"

@@ -122,7 +122,7 @@ config_schema = \
                              "properties":{
                                      "pubmed_name_search": {"type": "string", "minLength":1},
                                      "email":{"type": "string", "format":"email"},
-                                     "ORCID":{"type": "string", "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
+                                     "ORCID":{"type": "string", "pattern":r"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"},
                                      "grants": {"type": "array", "minItems":1, "items": {"type": "string", "minLength": 1}},
                                      "cutoff_year": {"type": "integer", "minimum":1000, "maximum":9999},
                                      "scholar_id": {"type": "string", "minLength":1},
@@ -239,7 +239,7 @@ publications_schema={
                 "authors": {"type":"array", 
                             "minItems":1, 
                             "items": {"type": "object", 
-                                      "properties": {"ORCID": {"type": ["string", "null"], "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"}},
+                                      "properties": {"ORCID": {"type": ["string", "null"], "pattern":r"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"}},
                                       "if": {
                                           "properties":{"collectivename":{"type":["string", "null"]}},
                                           "required":["collectivename"]
@@ -292,7 +292,7 @@ tok_schema = {
            "minItems":1,
            "properties": {"authors": {"type": "array",
                                       "items": {"type": "object",
-                                                "properties": {"ORCID": {"type": ["string", "null"], "pattern":"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"}},
+                                                "properties": {"ORCID": {"type": ["string", "null"], "pattern":r"^\d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]$"}},
                                                 "if": {
                                                     "properties":{"collective_name":{"type":["string", "null"]}},
                                                     "required":["collective_name"]

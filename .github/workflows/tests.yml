@@ -1,0 +1,40 @@
+name: Run Tests
+
+on:
+  workflow_call:
+    inputs:
+      install_command:
+        description: The command for installing the package to test.
+        required: true
+        type: string
+
+jobs:
+  run-tests:
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+    runs-on: ${{matrix.os}}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install testing environment
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install pytest pytest-mock pytest-cov
+    - name: Install package
+      uses: Wandalen/wretry.action@master
+      with:
+        command: ${{ inputs.install_command }}
+        attempt_limit: 10
+        attempt_delay: 10000
+    - name: Run tests on package
+      run: pytest --cov-branch --cov-report=term-missing --cov=academic_tracker tests/
+    # - name: Debug with tmate on failure
+    #   if: ${{ failure() }}
+    #   uses: mxschmitt/action-tmate@v3
+    #   with:
+    #     limit-access-to-actor: true

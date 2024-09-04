@@ -27,18 +27,18 @@ jobs:
     uses: ./.github/workflows/tests.yml
     with:
       install_command: "python3 -m pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple academic_tracker==${{ needs.release-version.outputs.version }}"
-  # publish-pypi:
-  #   needs: test-test-pypi
-  #   uses: ./.github/workflows/pypi.yml
-  #   with:
-  #     repository_url: https://upload.pypi.org/legacy/
-  #   secrets:
-  #     API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-  # test-pypi:
-  #   needs: [release-version, publish-pypi]
-  #   uses: ./.github/workflows/tests.yml
-  #   with:
-  #     install_command: "python3 -m pip install academic_tracker==${{ needs.release-version.outputs.version }}"
-  # publish-documentation:
-  #   needs: test-pypi
-  #   uses: ./.github/workflows/documentation.yml
+  publish-pypi:
+    needs: test-test-pypi
+    uses: ./.github/workflows/pypi.yml
+    with:
+      repository_url: https://upload.pypi.org/legacy/
+    secrets:
+      API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+  test-pypi:
+    needs: [release-version, publish-pypi]
+    uses: ./.github/workflows/tests.yml
+    with:
+      install_command: "python3 -m pip install academic_tracker==${{ needs.release-version.outputs.version }}"
+  publish-documentation:
+    needs: test-pypi
+    uses: ./.github/workflows/documentation.yml

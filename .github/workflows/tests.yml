@@ -32,7 +32,7 @@ jobs:
         attempt_limit: 10
         attempt_delay: 10000
     - name: Run tests on package
-      run: pytest --cov-branch --cov-report=term-missing --cov=academic_tracker -rP -k test_pmid_reference_underscore_ref_search tests/
+      run: pytest --cov-branch --cov-report=term-missing --cov=academic_tracker -rP tests/
     # - name: Debug with tmate on failure
     #   if: ${{ failure() }}
     #   uses: mxschmitt/action-tmate@v3

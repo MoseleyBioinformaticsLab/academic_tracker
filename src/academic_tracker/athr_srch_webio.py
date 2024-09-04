@@ -280,7 +280,6 @@ def search_Google_Scholar_for_pubs(running_pubs, authors_json, mailto_email, pre
         running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes
         all_pubs (dict): a dictionary where the keys are the authors in authors_json and the values are a list of the publications queried for them.
     """
-    
     all_pubs = {}
     for author, authors_attributes in authors_json.items():
         all_pubs[author] = []

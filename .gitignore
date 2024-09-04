@@ -15,3 +15,4 @@ htmlcov/
 README_old.rst
 testing_scratch/
 tests/testing_files/new_intermediate_results/
+src/academic_tracker/_version.py

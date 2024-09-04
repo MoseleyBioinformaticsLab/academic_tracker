@@ -9,9 +9,10 @@ Academic Tracker
    :target: https://pypi.org/project/academic_tracker
    :alt: Supported Python versions
 
-.. image:: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml/badge.svg
-   :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml
-   :alt: Build status
+..
+    .. image:: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml/badge.svg
+       :target: https://github.com/MoseleyBioinformaticsLab/academic_tracker/actions/workflows/build.yml
+       :alt: Build status
 
 .. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker/branch/main/graphs/badge.svg?branch=main
    :target: https://codecov.io/gh/MoseleyBioinformaticsLab/academic_tracker

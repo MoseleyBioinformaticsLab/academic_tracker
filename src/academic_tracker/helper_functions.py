@@ -360,18 +360,25 @@ def match_pub_authors_to_citation_authors(citation_authors, author_list):
             if author_items["ORCID"] and "ORCID" in author_attributes and author_items["ORCID"] == author_attributes["ORCID"]:
                 return True
             
+            citation_is_collective_author = False
+            citation_has_collective_name = False
+            if "collective_name" in author_attributes:
+                citation_is_collective_author = True
+                if author_attributes["collective_name"] is not None:
+                    citation_has_collective_name = True
+                    citation_author_collective_name = author_attributes["collective_name"]
+            
             ## If it is a collective author then match on collectivename, else match on first and last.
             if is_collective_author:
                 if not has_collective_name or \
-                   "collective_name" not in author_attributes:
+                   not citation_is_collective_author or \
+                   not citation_has_collective_name:
                     continue
-                
-                citation_author_collective_name = author_attributes["collective_name"]
                 
                 if do_strings_fuzzy_match(citation_author_collective_name, author_items_collective_name):
                        return True
             
-            else:
+            elif not citation_is_collective_author:
                 citation_author_last_name = author_attributes["last"].replace(".","").lower()
             
                 if can_name_match and citation_author_last_name == author_items_last_name:
@@ -429,21 +436,28 @@ def match_pub_authors_to_config_authors(authors_json, author_list):
                 author_items["author_id"] = author
                 break
             
-            ## If it is a collective author then match on collectivename, else match on first and last.
+            author_json_is_collective_author = False
+            author_json_has_collective_name = False
+            if "collective_name" in author_attributes:
+                author_json_is_collective_author = True
+                if author_attributes["collective_name"] is not None:
+                    author_json_has_collective_name = True
+                    author_json_collective_name = author_attributes["collective_name"]
+            
+            ## If it is a collective author then match on collective_name, else match on first and last.
             if is_collective_author:
                 if not has_collective_name or \
-                   "collective_name" not in author_attributes:
+                   not author_json_is_collective_author or \
+                   not author_json_has_collective_name:
                     continue
-                
-                author_json_collective_name = author_attributes["collective_name"]
-                
+                                
                 if do_strings_fuzzy_match(author_json_collective_name, author_items_collective_name):
                        publication_has_affiliated_author = True
                        author_items["author_id"] = author
                        author_items["ORCID"] = author_attributes["ORCID"] if "ORCID" in author_attributes and author_items["ORCID"] is None else author_items["ORCID"]
                        break
             
-            else:
+            elif not author_json_is_collective_author:
                 author_json_first_name = author_attributes["first_name"].replace(".","").lower()
                 author_json_last_name = author_attributes["last_name"].replace(".","").lower()
             
@@ -532,14 +546,20 @@ def match_authors_in_prev_pub(prev_author_list, new_author_list):
                     combined_author_list[i]["author_id"] = author_id
                 break
             
+            prev_is_collective_author = False
+            prev_has_collective_name = False
+            if "collectivename" in prev_author_attributes:
+                prev_is_collective_author = True
+                if prev_author_attributes["collectivename"] is not None:
+                    prev_has_collective_name = True
+                    prev_collective_name = prev_author_attributes["collectivename"]
+            
             ## If it is a collective author then match on collectivename, else match on first and last.
             if is_collective_author:
                 if not has_collective_name or \
-                   "collectivename" not in prev_author_attributes or \
-                   prev_author_attributes["collectivename"] is None:
+                   not prev_is_collective_author or \
+                   not prev_has_collective_name:
                     continue
-                
-                prev_collective_name = prev_author_attributes["collectivename"]
                 
                 if do_strings_fuzzy_match(prev_collective_name, new_collective_name):
                         new_author_matched = True
@@ -549,7 +569,7 @@ def match_authors_in_prev_pub(prev_author_list, new_author_list):
                             combined_author_list[i]["ORCID"] = new_author_attributes["ORCID"]
                         break
             
-            else:
+            elif not prev_is_collective_author:
                 ## If the first and last names are missing for either author then they can't be matched.
                 if prev_author_attributes["firstname"] is None or \
                    prev_author_attributes["lastname"] is None or \

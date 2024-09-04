@@ -1,0 +1,32 @@
+name: Publish package
+
+on:
+  workflow_call:
+    inputs:
+      repository_url:
+        description: The URL of the PyPi distribution
+        required: true
+        type: string
+    secrets:
+      API_TOKEN:
+        required: true
+
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install build
+      - name: Build package
+        run: python3 -m build
+      - name: Publish package to a PyPi distribution
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.API_TOKEN }}
+          repository-url: ${{ inputs.repository_url }}

@@ -114,13 +114,33 @@ def _replace_keywords(template, publication_dict, config_dict,
                 
             ## build first and last author
             if publication_dict[pub]["authors"]:
-                first_author = str(publication_dict[pub]["authors"][0]["lastname"]) + ", " + str(publication_dict[pub]["authors"][0]["firstname"])
+                first_author_attributes = publication_dict[pub]["authors"][0]
+                if "collectivename" in first_author_attributes:
+                    first_author = first_author_attributes["collectivename"]
+                else:
+                    first_author = str(first_author_attributes["lastname"]) + ", " + str(first_author_attributes["firstname"])
+                
+                last_author_attributes = publication_dict[pub]["authors"][-1]
+                if "collectivename" in last_author_attributes:
+                    last_author = last_author_attributes["collectivename"]
+                else:
+                    last_author = str(last_author_attributes["lastname"]) + ", " + str(last_author_attributes["firstname"])
+                
+                # first_author = str(publication_dict[pub]["authors"][0]["lastname"]) + ", " + str(publication_dict[pub]["authors"][0]["firstname"])
                 template_copy[key] = template_copy[key].replace("<first_author>", first_author)
                 
-                last_author = str(publication_dict[pub]["authors"][-1]["lastname"]) + ", " + str(publication_dict[pub]["authors"][-1]["firstname"])
+                # last_author = str(publication_dict[pub]["authors"][-1]["lastname"]) + ", " + str(publication_dict[pub]["authors"][-1]["firstname"])
                 template_copy[key] = template_copy[key].replace("<last_author>", last_author)
+                
+                authors = []
+                for author_attributes in publication_dict[pub]["authors"]:
+                    if "collectivename" in author_attributes:
+                        authors.append(author_attributes["collectivename"])
+                    else:
+                        authors.append(str(author_attributes["firstname"]) + " " + str(author_attributes["lastname"]))
+                authors = ", ".join(authors)
             
-                authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
+                # authors = ", ".join([str(author["firstname"]) + " " + str(author["lastname"]) for author in publication_dict[pub]["authors"]])
                 template_copy[key] = template_copy[key].replace("<authors>", authors)
             else:
                 first_author = "No Authors"

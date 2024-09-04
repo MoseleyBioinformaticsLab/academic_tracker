@@ -4,6 +4,7 @@
 import re
 import os
 import json
+import copy
 
 import pymed
 import pytest
@@ -12,7 +13,7 @@ import xml.etree.ElementTree as ET
 from academic_tracker.fileio import load_json
 from academic_tracker import __main__
 from academic_tracker.helper_functions import vprint, regex_match_return, regex_group_return, regex_search_return
-from academic_tracker.helper_functions import match_pub_authors_to_config_authors, match_pub_authors_to_citation_authors
+from academic_tracker.helper_functions import match_pub_authors_to_config_authors, match_pub_authors_to_citation_authors, match_authors_in_prev_pub
 from academic_tracker.helper_functions import create_pub_dict_for_saving_PubMed, is_fuzzy_match_to_list, fuzzy_matches_to_list, is_pub_in_publication_dict 
 from academic_tracker.helper_functions import create_authors_by_project_dict, adjust_author_attributes, find_duplicate_citations, are_citations_in_pub_dict
 from fixtures import publication_dict, pub_with_grants, pub_with_matching_author, passing_config, authors_by_project_dict
@@ -295,7 +296,7 @@ def modified_PubMed_XML():
     return pymed.article.PubMedArticle(xml_element=tree.getroot())
 
 
-def test_modify_pub_dict_for_saving_with_PMCID(modified_PubMed_XML):
+def test_modify_pub_dict_for_saving_rare_cases(modified_PubMed_XML):
     modified_pub = load_json(os.path.join("tests", "testing_files", "PubMed_rare_cases.json"))
             
     _, pub_to_check = create_pub_dict_for_saving_PubMed(modified_PubMed_XML, True)
@@ -304,6 +305,37 @@ def test_modify_pub_dict_for_saving_with_PMCID(modified_PubMed_XML):
     #     jsonFile.write(json.dumps(pub_to_check, indent=2, sort_keys=True))
     
     assert pub_to_check == modified_pub
+
+
+
+@pytest.fixture
+def collective_author_XML():
+    xml_path = os.path.join("tests", "testing_files", "collective_author_XML.xml")
+    tree = ET.parse(xml_path)
+    return pymed.article.PubMedArticle(xml_element=tree.getroot())
+
+
+def test_match_authors_in_prev_pub(collective_author_XML):
+    _, pub_to_check = create_pub_dict_for_saving_PubMed(collective_author_XML, True)
+    new_author_list = copy.deepcopy(pub_to_check['authors'])
+    final_list = copy.deepcopy(pub_to_check['authors'])
+    for author in new_author_list[0:-1]:
+        author['author_id'] = ''
+    
+    pub_to_check['authors'].append({'author_id':None, 'firstname':None, 'lastname':None, 'ORCID':'some id'})
+    new_author_list.append({'author_id':123, 'firstname':None, 'lastname':None, 'ORCID':'some id'})
+    final_list.append({'author_id':123, 'firstname':None, 'lastname':None, 'ORCID':'some id'})
+    
+    new_author_list.append({'author_id':456, 'firstname':'name', 'lastname':'last', 'ORCID':'some id2'})
+    final_list.append({'author_id':456, 'firstname':'name', 'lastname':'last', 'ORCID':'some id2'})
+    
+    pub_to_check['authors'].append({'author_id':None, 'collectivename':'some name', 'ORCID':None})
+    new_author_list.append({'author_id':None, 'collectivename':'some name', 'ORCID':None})
+    final_list.append({'author_id':None, 'collectivename':'some name', 'ORCID':None})
+        
+    combined_author_list = match_authors_in_prev_pub(pub_to_check['authors'], new_author_list)    
+        
+    assert [item in final_list for item in combined_author_list]
 
 
 

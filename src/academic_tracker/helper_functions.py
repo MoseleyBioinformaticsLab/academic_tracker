@@ -692,7 +692,7 @@ def _compute_common_phrase_percent(prev_citation, new_citation, characters_to_re
         ((int, int)|None): if either citation is None, then return None, else the percentage of common to uncommon phrase length for each citation.
     """
     if prev_citation and new_citation:
-        citation_strip_regex = "|".join([f"\{char}" for char in characters_to_remove])
+        citation_strip_regex = "|".join([f"\\{char}" for char in characters_to_remove])
         # citation_strip_regex = r"\.|,|;|\(|\)|\[|\]|\{|\}"
         stripped_prev_citation = re.sub(citation_strip_regex, "", prev_citation.lower())
         stripped_new_citation = re.sub(citation_strip_regex, "", new_citation.lower())

@@ -152,7 +152,7 @@ def config_file_check(config_json, no_ORCID, no_GoogleScholar, no_Crossref, no_P
         del schema["properties"]["PubMed_search"]
         schema["required"].remove("PubMed_search")
     
-    pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \d{4}-\d{4}-\d{4}-\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
+    pattern_messages = {"ORCID":" is not a valid ORCID. It must match the regex \\d{4}-\\d{4}-\\d{4}-\\d{3}[0,1,2,3,4,5,6,7,8,9,X]"}
     tracker_validate(instance=config_json, schema=schema, pattern_messages=pattern_messages, format_checker=jsonschema.FormatChecker())
 
 

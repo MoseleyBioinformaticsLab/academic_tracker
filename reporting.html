@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reporting &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Reporting &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,7 +37,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,7 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -108,8 +113,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="reporting">
-<h1>Reporting<a class="headerlink" href="#reporting" title="Permalink to this headline">¶</a></h1>
+  <section id="reporting">
+<h1>Reporting<a class="headerlink" href="#reporting" title="Link to this heading"></a></h1>
 <p>To allow users some flexibility in report creation a unique system for specifying
 how to build reports was created. This system is described here. The key framework
 to keep in mind is that there are 3 different reports and 2 ways to build each one.
@@ -137,8 +142,8 @@ is “xlsx” and the filename extension is not xlsx then “.xlsx” will be ad
 the filename.</p>
 <p>To email a report as an attachment simply include the email related attributes
 in the report section. If the email attributes are missing then no email is sent.</p>
-<div class="section" id="example-config-json-excerpt">
-<h2>Example Config JSON Excerpt<a class="headerlink" href="#example-config-json-excerpt" title="Permalink to this headline">¶</a></h2>
+<section id="example-config-json-excerpt">
+<h2>Example Config JSON Excerpt<a class="headerlink" href="#example-config-json-excerpt" title="Link to this heading"></a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&quot;summary_report&quot; : {&quot;template&quot;:&quot;This is a header\n&lt;project_loop&gt;&lt;project_name&gt;:\n&lt;author_loop&gt;&lt;author_first&gt;:\n&lt;pub_loop&gt;&lt;title&gt;&lt;/pub_loop&gt;&lt;/author_loop&gt;&lt;/project_loop&gt;&quot;,</span>
 
 <span class="go">                    &quot;columns&quot;:{&quot;Project&quot;:&quot;&lt;project_name&gt;&quot;, &quot;Author&quot;:&quot;&lt;author_first&gt;; &lt;author_last&gt;&quot;, &quot;Publication&quot;:&quot;&lt;title&gt;&quot;},</span>
@@ -158,8 +163,8 @@ in the report section. If the email attributes are missing then no email is sent
 <span class="go">Note that &quot;template&quot; takes precedent over &quot;columns&quot; so if both are specified &quot;template&quot; is used. This example is just trying to give a full example.</span>
 </pre></div>
 </div>
-<div class="section" id="summary-report">
-<h3>Summary Report<a class="headerlink" href="#summary-report" title="Permalink to this headline">¶</a></h3>
+<section id="summary-report">
+<h3>Summary Report<a class="headerlink" href="#summary-report" title="Link to this heading"></a></h3>
 <p>Using the summary_report section of the configuration JSON a custom summary report
 can be created. Academic Tracker will read the template or columns attribute of
 this section and certain keywords (described below) will be replaced with information
@@ -169,10 +174,10 @@ built differs between author_search and reference_search.</p>
 If the template and columns attributes are not in the summary_report section then
 a default template will be used (described below).</p>
 <p>Summary reports are saved in the tracker directory under summary_report.txt by default.</p>
-</div>
-</div>
-<div class="section" id="author-search">
-<h2>Author Search<a class="headerlink" href="#author-search" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="author-search">
+<h2>Author Search<a class="headerlink" href="#author-search" title="Link to this heading"></a></h2>
 <p>The report for the author_search is built by looping over each project, each
 author associated with the project, each publication associated with the author,
 and each author on the publication. The template for author_search has 5 sections,
@@ -195,9 +200,9 @@ by what keywords are present. If there are keywords from the pub_author_loop in
 “columns” then a new row will be created for each publication author, but if there
 are only keywords from the author_loop then a new row will be created for each
 author.</p>
-</div>
-<div class="section" id="reference-search">
-<h2>Reference Search<a class="headerlink" href="#reference-search" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reference-search">
+<h2>Reference Search<a class="headerlink" href="#reference-search" title="Link to this heading"></a></h2>
 <p>The report for the reference_search is built by looping over each publication matched
 in the reference, and each author on the publication. The template has 3 sections,
 1 for each loop (pub_loop, pub_author_loop, and reference_loop). Tags denote the beginning and end
@@ -209,8 +214,8 @@ The sections are expected to be nested inside of each other, so the pub_author_l
 tags should be inside the pub_loop tags. The pub_author_loop and reference_loop are on the same level
 and should not be nested within each other. Any incorrect nesting will most likely
 cause the report not to look as expected.</p>
-<div class="section" id="project-report">
-<h3>Project Report<a class="headerlink" href="#project-report" title="Permalink to this headline">¶</a></h3>
+<section id="project-report">
+<h3>Project Report<a class="headerlink" href="#project-report" title="Link to this heading"></a></h3>
 <p>Project reports are only created for author_search. There is no conception of them
 in reference_search. To create project reports for a project include the project_report
 attribute for the project in the config JSON. The project report works similar
@@ -225,9 +230,9 @@ for each author individually and emailed to each author.</p>
 <p>Project reports are saved in the tracker directory under
 projectname_project_report.txt or projectname_authorname_project_report.txt by
 default.</p>
-</div>
-<div class="section" id="keywords">
-<h3>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="keywords">
+<h3>Keywords<a class="headerlink" href="#keywords" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;project_loop&gt; &lt;/project_loop&gt;         - Denotes the beginning and end of the project_loop section.</span>
 <span class="go">&lt;author_loop&gt; &lt;/author_loop&gt;           - Denotes the beginning and end of the author_loop section.</span>
 <span class="go">&lt;pub_loop&gt; &lt;/pub_loop&gt;                 - Denotes the beginning and end of the pub_loop section.</span>
@@ -289,9 +294,9 @@ default.</p>
 <span class="go">&lt;is_in_comparison_file&gt;   If the publication is in the comparison file True otherwise False.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Summary Report Author Search Example:</span>
 <span class="go">&lt;project_loop&gt;&lt;project_name&gt;</span>
 <span class="go">&lt;author_loop&gt;        &lt;author_first&gt; &lt;author_last&gt;:</span>
@@ -401,39 +406,39 @@ default.</p>
 <span class="go">Pan Deng         MEScan: a powerful statistical framework for genome-scale mutual exclusivity analysis of cancer mutations</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="default-template-strings">
-<h2>Default Template Strings<a class="headerlink" href="#default-template-strings" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>Author Search<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="summary">
-<h4>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="default-template-strings">
+<h2>Default Template Strings<a class="headerlink" href="#default-template-strings" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Author Search<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="summary">
+<h4>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;project_loop&gt;&lt;project_name&gt;\n&lt;author_loop&gt;\t&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\t\tTitle: &lt;title&gt; \n\t\tAuthors: &lt;authors&gt; \n\t\tJournal: &lt;journal&gt; \n\t\tDOI: &lt;DOI&gt; \n\t\tPMID: &lt;PMID&gt; \n\t\tPMCID: &lt;PMCID&gt; \n\t\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;&lt;/project_loop&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="project">
-<h4>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="project">
+<h4>Project<a class="headerlink" href="#project" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\tTitle: &lt;title&gt; \n\tAuthors: &lt;authors&gt; \n\tJournal: &lt;journal&gt; \n\tDOI: &lt;DOI&gt; \n\tPMID: &lt;PMID&gt; \n\tPMCID: &lt;PMCID&gt; \n\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="author">
-<h4>Author<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="author">
+<h4>Author<a class="headerlink" href="#author" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;author_loop&gt;&lt;author_first&gt; &lt;author_last&gt;:&lt;pub_loop&gt;\n\tTitle: &lt;title&gt; \n\tAuthors: &lt;authors&gt; \n\tJournal: &lt;journal&gt; \n\tDOI: &lt;DOI&gt; \n\tPMID: &lt;PMID&gt; \n\tPMCID: &lt;PMCID&gt; \n\tGrants: &lt;grants&gt;\n&lt;/pub_loop&gt;\n&lt;/author_loop&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>Reference Search<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="id2">
+<h2>Reference Search<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;pub_loop&gt;Reference Line:\n\t&lt;ref_line&gt;\nTokenized Reference:\n\tAuthors: &lt;tok_authors&gt;\n\tTitle: &lt;tok_title&gt;\n\tPMID: &lt;tok_PMID&gt;\n\tDOI: &lt;tok_DOI&gt;\nQueried Information:\n\tDOI: &lt;DOI&gt;\n\tPMID: &lt;PMID&gt;\n\tPMCID: &lt;PMCID&gt;\n\tGrants: &lt;grants&gt;\n\n&lt;/pub_loop&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="collaborator-report">
-<h3>Collaborator Report<a class="headerlink" href="#collaborator-report" title="Permalink to this headline">¶</a></h3>
+<section id="collaborator-report">
+<h3>Collaborator Report<a class="headerlink" href="#collaborator-report" title="Link to this heading"></a></h3>
 <p>Creating a collaborator report for an author is actually a unique use case from
 a typical author_search run, but since all of the steps are the same it is included
 as a report in author_search rather than being its own command. The idea is to
@@ -461,9 +466,9 @@ provided then the report is sent to the to_email address, otherwise it is sent
 to the author’s email.</p>
 <p>Collaborator reports are saved in the tracker directory under
 author_id_collaborators.csv by default.</p>
-</div>
-<div class="section" id="id3">
-<h3>Keywords<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id3">
+<h3>Keywords<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;pub_author_first&gt;         -  Collaborator&#39;s first name.</span>
 <span class="go">&lt;pub_author_last&gt;          -  Collaborator&#39;s last name.</span>
 <span class="go">&lt;pub_author_initials&gt;      -  Collaborator&#39;s initials.</span>
@@ -472,9 +477,9 @@ author_id_collaborators.csv by default.</p>
 <span class="go">&lt;pub_author_id&gt;            -  Collaborator&#39;s ID.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id4">
-<h3>Examples<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Collaborator Report Attributes:</span>
 <span class="go">columns = [&quot;Name&quot;, &quot;Affiliations&quot;]</span>
 <span class="go">values = [&quot;&lt;last_name&gt;, &lt;first_name&gt;&quot;, &quot;&lt;affiliations&gt;&quot;]</span>
@@ -487,18 +492,18 @@ author_id_collaborators.csv by default.</p>
 <span class="go">Evans, Steven          Kentucky Water Resources Research Institute.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="default-values">
-<h3>Default Values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="default-values">
+<h3>Default Values<a class="headerlink" href="#default-values" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">columns : {&quot;Name&quot;:&quot;&lt;last_name&gt;, &lt;first_name&gt;&quot;, &quot;Affiliations&quot;:&quot;&lt;affiliations&gt;&quot;}</span>
 <span class="go">column_order : [&quot;Name&quot;, &quot;Affiliations&quot;]</span>
 <span class="go">sort : [&quot;Name&quot;]</span>
 <span class="go">separator : &quot;,&quot;</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

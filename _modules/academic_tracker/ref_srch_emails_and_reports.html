@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.ref_srch_emails_and_reports &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>academic_tracker.ref_srch_emails_and_reports &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -30,7 +34,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -110,8 +114,10 @@
 <span class="n">tokenized_keywords_map</span> <span class="o">=</span> <span class="n">emails_and_reports_helpers</span><span class="o">.</span><span class="n">tokenized_keywords_map</span>
 
 
-<div class="viewcode-block" id="convert_tokenized_authors_to_str"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str">[docs]</a><span class="k">def</span> <span class="nf">convert_tokenized_authors_to_str</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Combine authors into a comma separated string.</span>
+<div class="viewcode-block" id="convert_tokenized_authors_to_str">
+<a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.convert_tokenized_authors_to_str">[docs]</a>
+<span class="k">def</span> <span class="nf">convert_tokenized_authors_to_str</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combine authors into a comma separated string.</span>
 <span class="sd">    </span>
 <span class="sd">    Try to do first_name last_name for each author, but if first name isn&#39;t there</span>
 <span class="sd">    then last_name initials. ex. first_name1 last_name1, last_name2 initials2</span>
@@ -147,9 +153,12 @@
 
 
 
+
     
-<div class="viewcode-block" id="create_report_from_template"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_report_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_report_from_template</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">template_string</span> <span class="o">=</span> <span class="n">DEFAULT_SUMMARY_TEMPLATE</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create project report based on template_string.</span>
+<div class="viewcode-block" id="create_report_from_template">
+<a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_report_from_template">[docs]</a>
+<span class="k">def</span> <span class="nf">create_report_from_template</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">template_string</span> <span class="o">=</span> <span class="n">DEFAULT_SUMMARY_TEMPLATE</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create project report based on template_string.</span>
 <span class="sd">    </span>
 <span class="sd">    Loop over each publication in publication_dict and build a report based on </span>
 <span class="sd">    the tags in the template_string. Details about reports are in the documentation.</span>
@@ -198,8 +207,11 @@
 
 
 
-<div class="viewcode-block" id="create_tabular_report"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_tabular_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
+
+<div class="viewcode-block" id="create_tabular_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_tabular_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_tabular_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">is_citation_in_prev_pubs_list</span><span class="p">,</span> <span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
@@ -285,6 +297,7 @@
 
 
 
+
 <span class="c1"># def replace_keywords(template, publication_dict, pub, tokenized_citation, is_citation_in_prev_pubs, pub_author={}):</span>
 <span class="c1">#     &quot;&quot;&quot;Replace keywords in the values of the template dictionary.</span>
     
@@ -355,8 +368,10 @@
 
 
 
-<div class="viewcode-block" id="create_tokenization_report"><a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_tokenization_report">[docs]</a><span class="k">def</span> <span class="nf">create_tokenization_report</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a report that details all the information about how a reference was tokenized.</span>
+<div class="viewcode-block" id="create_tokenization_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.ref_srch_emails_and_reports.create_tokenization_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_tokenization_report</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a report that details all the information about how a reference was tokenized.</span>
 <span class="sd">    </span>
 <span class="sd">    Intended as a troubleshooting report.</span>
 <span class="sd">    </span>
@@ -383,6 +398,7 @@
         <span class="n">report_string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
         
     <span class="k">return</span> <span class="n">report_string</span></div>
+
 
 
 

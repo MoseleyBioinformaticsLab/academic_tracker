@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.athr_srch_webio &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>academic_tracker.athr_srch_webio &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -30,7 +34,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -108,8 +112,10 @@
 
 
 <span class="c1">## TODO get with pymed and add grants and pmcid to PubMedArticle class.</span>
-<div class="viewcode-block" id="search_PubMed_for_pubs"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_PubMed_for_pubs">[docs]</a><span class="k">def</span> <span class="nf">search_PubMed_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">from_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes PubMed for publications by each author.</span>
+<div class="viewcode-block" id="search_PubMed_for_pubs">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_PubMed_for_pubs">[docs]</a>
+<span class="k">def</span> <span class="nf">search_PubMed_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">from_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Searhes PubMed for publications by each author.</span>
 <span class="sd">    </span>
 <span class="sd">    For each author in authors_json PubMed is queried for the publications. The list of publications is then filtered </span>
 <span class="sd">    by affiliations and cutoff_year. If the publication is in the of running_pubs then it tries to fill in missing </span>
@@ -151,7 +157,7 @@
             
             <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">create_pub_dict_for_saving_PubMed</span><span class="p">(</span><span class="n">pub</span><span class="p">)</span>
             
-            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">pub</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="o">:=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">pub</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">):</span>
                 <span class="k">if</span> <span class="s2">&quot;PubMed&quot;</span> <span class="ow">in</span> <span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">][</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]:</span>
                     <span class="k">continue</span>
                 
@@ -185,11 +191,14 @@
     <span class="k">return</span> <span class="n">running_pubs</span><span class="p">,</span> <span class="n">all_pubs</span></div>
 
 
+
        
         
         
-<div class="viewcode-block" id="search_ORCID_for_pubs"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_ORCID_for_pubs">[docs]</a><span class="k">def</span> <span class="nf">search_ORCID_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">ORCID_key</span><span class="p">,</span> <span class="n">ORCID_secret</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes ORCID for publications by each author.</span>
+<div class="viewcode-block" id="search_ORCID_for_pubs">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_ORCID_for_pubs">[docs]</a>
+<span class="k">def</span> <span class="nf">search_ORCID_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">ORCID_key</span><span class="p">,</span> <span class="n">ORCID_secret</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Searhes ORCID for publications by each author.</span>
 <span class="sd">    </span>
 <span class="sd">    For each author in authors_json ORCID is queried for the publications. The list of publications is then filtered </span>
 <span class="sd">    by affiliations and cutoff_year. If the author doesn&#39;t have at least one matching affiliation, then the publication </span>
@@ -320,7 +329,7 @@
            
             
             <span class="c1">## If the publication is already in running_pubs then try to update missing information.</span>
-            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="o">:=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">):</span>
                 <span class="k">if</span> <span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">][</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]:</span>
                     <span class="k">continue</span>
                 
@@ -342,8 +351,11 @@
 
 
 
-<div class="viewcode-block" id="search_Google_Scholar_for_pubs"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_Google_Scholar_for_pubs">[docs]</a><span class="k">def</span> <span class="nf">search_Google_Scholar_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes Google Scholar for publications by each author.</span>
+
+<div class="viewcode-block" id="search_Google_Scholar_for_pubs">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_Google_Scholar_for_pubs">[docs]</a>
+<span class="k">def</span> <span class="nf">search_Google_Scholar_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Searhes Google Scholar for publications by each author.</span>
 <span class="sd">    </span>
 <span class="sd">    For each author in authors_json Google Scholar is queried for the publications. The list of publications is then filtered </span>
 <span class="sd">    by affiliations and cutoff_year. If the author doesn&#39;t have at least one matching affiliation, then the publication is </span>
@@ -360,7 +372,6 @@
 <span class="sd">        running_pubs (dict): keys are pulication ids and values are a dictionary with publication attributes</span>
 <span class="sd">        all_pubs (dict): a dictionary where the keys are the authors in authors_json and the values are a list of the publications queried for them.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
     <span class="n">all_pubs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">author</span><span class="p">,</span> <span class="n">authors_attributes</span> <span class="ow">in</span> <span class="n">authors_json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">all_pubs</span><span class="p">[</span><span class="n">author</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -437,7 +448,7 @@
             
             
             <span class="c1">## If the publication is already in running_pubs then try to update missing information.</span>
-            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="o">:=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">running_pubs</span><span class="p">):</span>
                 <span class="k">if</span> <span class="s2">&quot;Google Scholar&quot;</span> <span class="ow">in</span> <span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">][</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]:</span>
                     <span class="k">continue</span>
                 
@@ -461,8 +472,11 @@
 
 
 
-<div class="viewcode-block" id="search_Crossref_for_pubs"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_Crossref_for_pubs">[docs]</a><span class="k">def</span> <span class="nf">search_Crossref_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Searhes Crossref for publications by each author.</span>
+
+<div class="viewcode-block" id="search_Crossref_for_pubs">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_webio.search_Crossref_for_pubs">[docs]</a>
+<span class="k">def</span> <span class="nf">search_Crossref_for_pubs</span><span class="p">(</span><span class="n">running_pubs</span><span class="p">,</span> <span class="n">authors_json</span><span class="p">,</span> <span class="n">mailto_email</span><span class="p">,</span> <span class="n">prev_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Searhes Crossref for publications by each author.</span>
 <span class="sd">    </span>
 <span class="sd">    For each author in authors_json Crossref is queried for the publications. The list of publications is then filtered </span>
 <span class="sd">    by affiliations and cutoff_year. If the author doesn&#39;t have at least one matching affiliation, then the publication </span>
@@ -507,7 +521,7 @@
             
             
             <span class="c1">## If the publication is already in running_pubs then try to update missing information.</span>
-            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">running_pubs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matching_pub_id</span> <span class="o">:=</span> <span class="n">helper_functions</span><span class="o">.</span><span class="n">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">running_pubs</span><span class="p">):</span>
                 <span class="k">if</span> <span class="s2">&quot;Crossref&quot;</span> <span class="ow">in</span> <span class="n">running_pubs</span><span class="p">[</span><span class="n">matching_pub_id</span><span class="p">][</span><span class="s2">&quot;queried_sources&quot;</span><span class="p">]:</span>
                     <span class="k">continue</span>
                 
@@ -532,6 +546,7 @@
             
             
     <span class="k">return</span> <span class="n">running_pubs</span><span class="p">,</span> <span class="n">all_pubs</span></div>
+
 </pre></div>
 
            </div>

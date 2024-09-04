@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.athr_srch_emails_and_reports &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>academic_tracker.athr_srch_emails_and_reports &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -30,7 +34,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -116,8 +120,10 @@
 
 
 
-<div class="viewcode-block" id="create_pubs_by_author_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict">[docs]</a><span class="k">def</span> <span class="nf">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a dictionary with authors as the keys and values as the pub_ids and grants</span>
+<div class="viewcode-block" id="create_pubs_by_author_dict">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_pubs_by_author_dict">[docs]</a>
+<span class="k">def</span> <span class="nf">create_pubs_by_author_dict</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a dictionary with authors as the keys and values as the pub_ids and grants</span>
 <span class="sd">    </span>
 <span class="sd">    Organizes the publication information in an author focused way so other operations are easier.</span>
 <span class="sd">    </span>
@@ -131,7 +137,7 @@
     <span class="n">pubs_by_author_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">pub_id</span><span class="p">,</span> <span class="n">pub_attributes</span> <span class="ow">in</span> <span class="n">publication_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">author_attributes</span> <span class="ow">in</span> <span class="n">pub_attributes</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">author_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">author_id</span> <span class="o">:=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]:</span>
                 <span class="k">if</span> <span class="n">author_id</span> <span class="ow">in</span> <span class="n">pubs_by_author_dict</span><span class="p">:</span>
                     <span class="n">pubs_by_author_dict</span><span class="p">[</span><span class="n">author_id</span><span class="p">][</span><span class="n">pub_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pub_attributes</span><span class="p">[</span><span class="s2">&quot;grants&quot;</span><span class="p">]</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -141,8 +147,11 @@
 
 
 
-<div class="viewcode-block" id="create_project_reports_and_emails"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails">[docs]</a><span class="k">def</span> <span class="nf">create_project_reports_and_emails</span><span class="p">(</span><span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create project reports and emails for each project.</span>
+
+<div class="viewcode-block" id="create_project_reports_and_emails">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_project_reports_and_emails">[docs]</a>
+<span class="k">def</span> <span class="nf">create_project_reports_and_emails</span><span class="p">(</span><span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create project reports and emails for each project.</span>
 <span class="sd">    </span>
 <span class="sd">    For each project in config_dict create a report and optional email.</span>
 <span class="sd">    Reports are saved in save_dir_name as they are created.</span>
@@ -252,8 +261,11 @@
 
 
 
-<div class="viewcode-block" id="create_project_report"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_project_report">[docs]</a><span class="k">def</span> <span class="nf">create_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="o">=</span><span class="n">DEFAULT_PROJECT_TEMPLATE</span><span class="p">,</span> <span class="n">author_first</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">author_last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create the project report for the project.</span>
+
+<div class="viewcode-block" id="create_project_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_project_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="o">=</span><span class="n">DEFAULT_PROJECT_TEMPLATE</span><span class="p">,</span> <span class="n">author_first</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">author_last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the project report for the project.</span>
 <span class="sd">    </span>
 <span class="sd">    The details of creating project reports are outlined in the documentation.</span>
 <span class="sd">    Use the information in the config_dict, publication_dict, and authors_by_project_dict </span>
@@ -285,8 +297,11 @@
 
 
 
-<div class="viewcode-block" id="create_summary_report"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_summary_report">[docs]</a><span class="k">def</span> <span class="nf">create_summary_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">template_string</span><span class="o">=</span><span class="n">DEFAULT_SUMMARY_TEMPLATE</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create the summary report for the run.</span>
+
+<div class="viewcode-block" id="create_summary_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_summary_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_summary_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">template_string</span><span class="o">=</span><span class="n">DEFAULT_SUMMARY_TEMPLATE</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the summary report for the run.</span>
 <span class="sd">    </span>
 <span class="sd">    The details of creating summary reports are outlined in the documentation.</span>
 <span class="sd">    Use the information in the config_dict, publication_dict, and authors_by_project_dict </span>
@@ -322,8 +337,11 @@
 
 
 
-<div class="viewcode-block" id="build_author_loop"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.build_author_loop">[docs]</a><span class="k">def</span> <span class="nf">build_author_loop</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Replace tags in template_string with the appropriate information.</span>
+
+<div class="viewcode-block" id="build_author_loop">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.build_author_loop">[docs]</a>
+<span class="k">def</span> <span class="nf">build_author_loop</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">template_string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace tags in template_string with the appropriate information.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
@@ -374,8 +392,11 @@
 
 
 
-<div class="viewcode-block" id="create_tabular_collaborator_report"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">file_format</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a table for a collaborator report and save as either csv or xlsx.</span>
+
+<div class="viewcode-block" id="create_tabular_collaborator_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_tabular_collaborator_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_tabular_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">file_format</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a table for a collaborator report and save as either csv or xlsx.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
@@ -446,12 +467,15 @@
                                                                      <span class="n">save_dir_name</span><span class="p">)</span>           
         
     <span class="k">return</span> <span class="n">report</span><span class="p">,</span> <span class="n">filename</span></div>
+
     
 
 
 
-<div class="viewcode-block" id="create_collaborator_report"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_collaborator_report">[docs]</a><span class="k">def</span> <span class="nf">create_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a collaborator report from a formatted string.</span>
+<div class="viewcode-block" id="create_collaborator_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_collaborator_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_collaborator_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">pubs</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a collaborator report from a formatted string.</span>
 <span class="sd">    </span>
 <span class="sd">    Loop over all of the author&#39;s publications and create a </span>
 <span class="sd">    </span>
@@ -496,8 +520,11 @@
 
 
 
-<div class="viewcode-block" id="create_collaborators_reports_and_emails"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails">[docs]</a><span class="k">def</span> <span class="nf">create_collaborators_reports_and_emails</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a report of collaborators for authors in publication_dict.</span>
+
+<div class="viewcode-block" id="create_collaborators_reports_and_emails">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_collaborators_reports_and_emails">[docs]</a>
+<span class="k">def</span> <span class="nf">create_collaborators_reports_and_emails</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a report of collaborators for authors in publication_dict.</span>
 <span class="sd">    </span>
 <span class="sd">    For each author in publication_dict with an author_id create a csv file with </span>
 <span class="sd">    the other authors on their publicaitons.</span>
@@ -572,12 +599,15 @@
                                                      <span class="s2">&quot;author&quot;</span><span class="p">:</span><span class="n">author</span><span class="p">})</span>
         
     <span class="k">return</span> <span class="n">email_messages</span></div>
+
         
 
 
 
-<div class="viewcode-block" id="create_tabular_summary_report"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_summary_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
+<div class="viewcode-block" id="create_tabular_summary_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_tabular_summary_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_tabular_summary_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
@@ -636,8 +666,11 @@
 
 
 
-<div class="viewcode-block" id="create_tabular_project_report"><a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report">[docs]</a><span class="k">def</span> <span class="nf">create_tabular_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">pubs_by_author_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">report_attributes</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
+
+<div class="viewcode-block" id="create_tabular_project_report">
+<a class="viewcode-back" href="../../api.html#academic_tracker.athr_srch_emails_and_reports.create_tabular_project_report">[docs]</a>
+<span class="k">def</span> <span class="nf">create_tabular_project_report</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">pubs_by_author_dict</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">report_attributes</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a pandas DataFrame and save it as Excel or CSV.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>
@@ -676,11 +709,12 @@
                                                                      <span class="n">save_dir_name</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">report</span><span class="p">,</span> <span class="n">filename</span></div>
+
                                 
 
 
 <span class="k">def</span> <span class="nf">_build_report_rows</span><span class="p">(</span><span class="n">publication_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">,</span> <span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">pubs_by_author_dict</span><span class="p">,</span> <span class="n">row_template</span><span class="p">,</span> <span class="n">project_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Build the rows for a tabular report.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build the rows for a tabular report.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        publication_dict (dict): keys and values match the publications JSON file.</span>

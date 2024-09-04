@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>User Guide &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,7 +37,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,7 +47,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
@@ -93,10 +98,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+  <section id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>Academic Tracker was created to automate the process of making sure that federally
 funded publications get listed on PubMed and that the grant funding source for
 them is cited.</p>
@@ -108,70 +113,70 @@ information if emails were sent, and text files of summary information.</p>
 <p>A secondary use case of searching by author names is to create a report of the
 collaborators they have worked with. This can be done by specifying the creation
 of that report in the configuration file. Details on reports are in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/academic_tracker/reporting.html">documentation</a>.</p>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>The Academic Tracker package runs under Python 3.7+. Use <a class="reference external" href="https://pip.pypa.io/">pip</a> to install.
 Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io/">pip</a> is included by default.</p>
-<div class="section" id="install-on-linux-mac-os-x">
-<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker
+<section id="install-on-linux-mac-os-x">
+<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>academic_tracker
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-on-windows">
-<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install academic_tracker
+</section>
+<section id="install-on-windows">
+<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>academic_tracker
 </pre></div>
 </div>
-</div>
-<div class="section" id="upgrade-on-linux-mac-os-x">
-<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install academic_tracker --upgrade
+</section>
+<section id="upgrade-on-linux-mac-os-x">
+<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>academic_tracker<span class="w"> </span>--upgrade
 </pre></div>
 </div>
-</div>
-<div class="section" id="upgrade-on-windows">
-<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install academic_tracker --upgrade
+</section>
+<section id="upgrade-on-windows">
+<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>academic_tracker<span class="w"> </span>--upgrade
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-inside-virtualenv">
-<h3>Install inside virtualenv<a class="headerlink" href="#install-inside-virtualenv" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="install-inside-virtualenv">
+<h3>Install inside virtualenv<a class="headerlink" href="#install-inside-virtualenv" title="Link to this heading"></a></h3>
 <p>For an isolated install, you can run the same inside a <a class="reference external" href="https://virtualenv.pypa.io/">virtualenv</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv -p /usr/bin/python3 venv            <span class="c1"># create virtual environment, use python3 interpreter</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>virtualenv<span class="w"> </span>-p<span class="w"> </span>/usr/bin/python3<span class="w"> </span>venv<span class="w">            </span><span class="c1"># create virtual environment, use python3 interpreter</span>
 
-$ <span class="nb">source</span> venv/bin/activate                       <span class="c1"># activate virtual environment</span>
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">                       </span><span class="c1"># activate virtual environment</span>
 
-$ python3 -m pip install academic_tracker        <span class="c1"># install academic_tracker as usual</span>
+$<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>academic_tracker<span class="w">        </span><span class="c1"># install academic_tracker as usual</span>
 
-$ deactivate                                     <span class="c1"># if you are done working in the virtual environment</span>
+$<span class="w"> </span>deactivate<span class="w">                                     </span><span class="c1"># if you are done working in the virtual environment</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="get-the-source-code">
-<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="get-the-source-code">
+<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Link to this heading"></a></h2>
 <p>Code is available on GitHub: <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/academic_tracker">https://github.com/MoseleyBioinformaticsLab/academic_tracker</a></p>
 <p>You can either clone the public repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ https://github.com/MoseleyBioinformaticsLab/academic_tracker.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/academic_tracker.git
 </pre></div>
 </div>
 <p>Or, download the tarball and/or zipball:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/tarball/main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-OL<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/academic_tracker/tarball/main
 
-$ curl -OL https://github.com/MoseleyBioinformaticsLab/academic_tracker/zipball/main
+$<span class="w"> </span>curl<span class="w"> </span>-OL<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/academic_tracker/zipball/main
 </pre></div>
 </div>
 <p>Once you have a copy of the source, you can embed it in your own Python package,
 or install it into your system site-packages easily:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 setup.py install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
-</div>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
 <p>The Academic Tracker package depends on several Python libraries. The <code class="docutils literal notranslate"><span class="pre">pip</span></code> command
 will install all dependencies automatically, but if you wish to install them manually,
 run the following commands:</p>
@@ -180,8 +185,8 @@ run the following commands:</p>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> for creating the command-line interface.</dt><dd><ul>
 <li><p>To install <a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install docopt  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install docopt    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docopt<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docopt<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -192,8 +197,8 @@ py -3 -m pip install docopt    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/pymed/">pymed</a> for querying PubMed.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/pymed/">pymed</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install pymed  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install pymed    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pymed<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pymed<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -204,8 +209,8 @@ py -3 -m pip install pymed    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> for validating JSON.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install jsonschema  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install jsonschema    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jsonschema<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jsonschema<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -216,8 +221,8 @@ py -3 -m pip install jsonschema    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/habanero/">habanero</a> for querying Crossref.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/habanero/">habanero</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install habanero  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install habanero    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>habanero<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>habanero<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -228,8 +233,8 @@ py -3 -m pip install habanero    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/orcid/">orcid</a> for quering ORCID.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/orcid/">orcid</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install orcid  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install orcid    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>orcid<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>orcid<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -240,8 +245,8 @@ py -3 -m pip install orcid    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/scholarly/">scholarly</a> for querying Google Scholar.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/scholarly/">scholarly</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install scholarly  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install scholarly    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>scholarly<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>scholarly<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -252,8 +257,8 @@ py -3 -m pip install scholarly    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a> for parsing webpages.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install beautifulsoup4  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install beautifulsoup4    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>beautifulsoup4<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>beautifulsoup4<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -264,8 +269,8 @@ py -3 -m pip install beautifulsoup4    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/fuzzywuzzy/">fuzzywuzzy</a> for fuzzy matching publication titles.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/fuzzywuzzy/">fuzzywuzzy</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install fuzzywuzzy  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install fuzzywuzzy    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fuzzywuzzy<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fuzzywuzzy<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -276,8 +281,8 @@ py -3 -m pip install fuzzywuzzy    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/python-docx/">python-docx</a> for reading docx files.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/python-docx/">python-docx</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install python-docx  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install python-docx    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>python-docx<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>python-docx<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -288,8 +293,8 @@ py -3 -m pip install python-docx    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> for easy data manipulation.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install pandas  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install pandas    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -300,8 +305,8 @@ py -3 -m pip install pandas    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> for saving Excel files in pandas.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install openpyxl  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install openpyxl    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -312,8 +317,8 @@ py -3 -m pip install openpyxl    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/requests/">requests</a> for making internet requests.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/requests/">requests</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install requests  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install requests    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -324,8 +329,8 @@ py -3 -m pip install requests    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/deepdiff/">deepdiff</a> for comparing publication data.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/deepdiff/">deepdiff</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install deepdiff  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install deepdiff    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>deepdiff<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>deepdiff<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -335,9 +340,9 @@ py -3 -m pip install deepdiff    <span class="c1"># On Windows</span>
 </li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="basic-usage">
-<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
 <p>Academic Tracker expects at least a configuration JSON file, and possibly more
 depending on the usage. The 2 main use cases are author_search and reference_search,
 with the other usages mostly included to support those. author_search searches
@@ -405,8 +410,8 @@ Search Options:
     --no_PubMed                       Deprecated. Use --no-PubMed instead.
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

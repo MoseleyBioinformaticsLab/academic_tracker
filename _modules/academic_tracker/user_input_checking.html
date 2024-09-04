@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.user_input_checking &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>academic_tracker.user_input_checking &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -30,7 +34,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -100,8 +104,10 @@
 
 
 
-<div class="viewcode-block" id="tracker_validate"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.tracker_validate">[docs]</a><span class="k">def</span> <span class="nf">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">pattern_messages</span><span class="o">=</span><span class="p">{},</span> <span class="bp">cls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Wrapper around jsonchema.validate to give better error messages.</span>
+<div class="viewcode-block" id="tracker_validate">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.tracker_validate">[docs]</a>
+<span class="k">def</span> <span class="nf">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">pattern_messages</span><span class="o">=</span><span class="p">{},</span> <span class="bp">cls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper around jsonchema.validate to give better error messages.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        instance (dict): JSON as a dict to validate</span>
@@ -176,8 +182,11 @@
 
 
 
-<div class="viewcode-block" id="cli_inputs_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.cli_inputs_check">[docs]</a><span class="k">def</span> <span class="nf">cli_inputs_check</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run input checking on the CLI inputs.</span>
+
+<div class="viewcode-block" id="cli_inputs_check">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.cli_inputs_check">[docs]</a>
+<span class="k">def</span> <span class="nf">cli_inputs_check</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run input checking on the CLI inputs.</span>
 <span class="sd">    </span>
 <span class="sd">    Uses jsonschema to validate the inputs.</span>
 <span class="sd">            </span>
@@ -208,8 +217,11 @@
 
 
 
-<div class="viewcode-block" id="config_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.config_file_check">[docs]</a><span class="k">def</span> <span class="nf">config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_ORCID</span><span class="p">,</span> <span class="n">no_GoogleScholar</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check that the configuration JSON file is as expected.</span>
+
+<div class="viewcode-block" id="config_file_check">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.config_file_check">[docs]</a>
+<span class="k">def</span> <span class="nf">config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_ORCID</span><span class="p">,</span> <span class="n">no_GoogleScholar</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the configuration JSON file is as expected.</span>
 <span class="sd">    </span>
 <span class="sd">    The validational jsonschema is in the tracker_schema module. </span>
 <span class="sd">    </span>
@@ -232,14 +244,17 @@
         <span class="k">del</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">]</span>
         <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;PubMed_search&quot;</span><span class="p">)</span>
     
-    <span class="n">pattern_messages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ORCID&quot;</span><span class="p">:</span><span class="s2">&quot; is not a valid ORCID. It must match the regex \d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{3}</span><span class="s2">[0,1,2,3,4,5,6,7,8,9,X]&quot;</span><span class="p">}</span>
+    <span class="n">pattern_messages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ORCID&quot;</span><span class="p">:</span><span class="s2">&quot; is not a valid ORCID. It must match the regex </span><span class="se">\\</span><span class="s2">d</span><span class="si">{4}</span><span class="s2">-</span><span class="se">\\</span><span class="s2">d</span><span class="si">{4}</span><span class="s2">-</span><span class="se">\\</span><span class="s2">d</span><span class="si">{4}</span><span class="s2">-</span><span class="se">\\</span><span class="s2">d</span><span class="si">{3}</span><span class="s2">[0,1,2,3,4,5,6,7,8,9,X]&quot;</span><span class="p">}</span>
     <span class="n">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">config_json</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">pattern_messages</span><span class="o">=</span><span class="n">pattern_messages</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="p">())</span></div>
+
 
 
             
 
-<div class="viewcode-block" id="ref_config_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.ref_config_file_check">[docs]</a><span class="k">def</span> <span class="nf">ref_config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check that the configuration JSON file is as expected.</span>
+<div class="viewcode-block" id="ref_config_file_check">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.ref_config_file_check">[docs]</a>
+<span class="k">def</span> <span class="nf">ref_config_file_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">,</span> <span class="n">no_Crossref</span><span class="p">,</span> <span class="n">no_PubMed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the configuration JSON file is as expected.</span>
 <span class="sd">    </span>
 <span class="sd">    The validational jsonschema is in the tracker_schema module.    </span>
 <span class="sd">    </span>
@@ -261,8 +276,11 @@
 
 
 
-<div class="viewcode-block" id="config_report_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.config_report_check">[docs]</a><span class="k">def</span> <span class="nf">config_report_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check that the report attributes don&#39;t have conflicts.</span>
+
+<div class="viewcode-block" id="config_report_check">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.config_report_check">[docs]</a>
+<span class="k">def</span> <span class="nf">config_report_check</span><span class="p">(</span><span class="n">config_json</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the report attributes don&#39;t have conflicts.</span>
 <span class="sd">    </span>
 <span class="sd">    Make sure that the values in sort and column_order are in columns, </span>
 <span class="sd">    and that every column is in column_order.</span>
@@ -322,8 +340,11 @@
 
 
 
-<div class="viewcode-block" id="prev_pubs_file_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.prev_pubs_file_check">[docs]</a><span class="k">def</span> <span class="nf">prev_pubs_file_check</span><span class="p">(</span><span class="n">prev_pubs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run input checking on prev_pubs dict.</span>
+
+<div class="viewcode-block" id="prev_pubs_file_check">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.prev_pubs_file_check">[docs]</a>
+<span class="k">def</span> <span class="nf">prev_pubs_file_check</span><span class="p">(</span><span class="n">prev_pubs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run input checking on prev_pubs dict.</span>
 <span class="sd">    </span>
 <span class="sd">    The validational jsonschema is in the tracker_schema module. </span>
 <span class="sd">    </span>
@@ -332,11 +353,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">prev_pubs</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">tracker_schema</span><span class="o">.</span><span class="n">publications_schema</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="p">())</span></div>
+
     
 
 
-<div class="viewcode-block" id="tok_reference_check"><a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.tok_reference_check">[docs]</a><span class="k">def</span> <span class="nf">tok_reference_check</span><span class="p">(</span><span class="n">tok_ref</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run input checking on tok_ref dict.</span>
+<div class="viewcode-block" id="tok_reference_check">
+<a class="viewcode-back" href="../../api.html#academic_tracker.user_input_checking.tok_reference_check">[docs]</a>
+<span class="k">def</span> <span class="nf">tok_reference_check</span><span class="p">(</span><span class="n">tok_ref</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run input checking on tok_ref dict.</span>
 <span class="sd">    </span>
 <span class="sd">    The validational jsonschema is in the tracker_schema module. </span>
 <span class="sd">            </span>
@@ -345,6 +369,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">tracker_validate</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">tok_ref</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">tracker_schema</span><span class="o">.</span><span class="n">tok_schema</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="p">())</span></div>
+
 
 </pre></div>
 

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.fileio &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>academic_tracker.fileio &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -30,7 +34,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -98,8 +102,10 @@
 
 
 
-<div class="viewcode-block" id="load_json"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.load_json">[docs]</a><span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Adds error checking around loading a json file.</span>
+<div class="viewcode-block" id="load_json">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.load_json">[docs]</a>
+<span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds error checking around loading a json file.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        filepath (str): filepath to the json file</span>
@@ -125,8 +131,11 @@
 
 
 
-<div class="viewcode-block" id="read_previous_publications"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_previous_publications">[docs]</a><span class="k">def</span> <span class="nf">read_previous_publications</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read in the previous publication json file.</span>
+
+<div class="viewcode-block" id="read_previous_publications">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_previous_publications">[docs]</a>
+<span class="k">def</span> <span class="nf">read_previous_publications</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read in the previous publication json file.</span>
 <span class="sd">    </span>
 <span class="sd">    If the prev_pub option was given by the user then that filepath is used to read in the file</span>
 <span class="sd">    and it is checked to make sure the json is a list and each value is a string. If the prev_pub</span>
@@ -170,13 +179,16 @@
     
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">has_previous_pubs</span><span class="p">,</span> <span class="p">{}</span></div>
+
     
     
     
     
 
-<div class="viewcode-block" id="save_emails_to_file"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_emails_to_file">[docs]</a><span class="k">def</span> <span class="nf">save_emails_to_file</span><span class="p">(</span><span class="n">email_messages</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save email_messages to &quot;emails.json&quot; in save_dir_name in the current working directory.</span>
+<div class="viewcode-block" id="save_emails_to_file">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_emails_to_file">[docs]</a>
+<span class="k">def</span> <span class="nf">save_emails_to_file</span><span class="p">(</span><span class="n">email_messages</span><span class="p">,</span> <span class="n">save_dir_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save email_messages to &quot;emails.json&quot; in save_dir_name in the current working directory.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        email_messages (dict): keys are author names and values are the of the email</span>
@@ -187,12 +199,15 @@
     
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">email_save_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outFile</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">email_messages</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">outFile</span><span class="p">)</span></div>
+
         
             
 
 
-<div class="viewcode-block" id="save_publications_to_file"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_publications_to_file">[docs]</a><span class="k">def</span> <span class="nf">save_publications_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">prev_pubs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Saves the publication_dict to &quot;publications.json&quot; in save_dir_name in the current working directory.</span>
+<div class="viewcode-block" id="save_publications_to_file">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_publications_to_file">[docs]</a>
+<span class="k">def</span> <span class="nf">save_publications_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">prev_pubs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Saves the publication_dict to &quot;publications.json&quot; in save_dir_name in the current working directory.</span>
 <span class="sd">    </span>
 <span class="sd">    prev_pubs and publication_dict will be combined before saving.</span>
 <span class="sd">    </span>
@@ -208,11 +223,14 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">publications_save_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outFile</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">prev_pubs</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">outFile</span><span class="p">)</span></div>
 
+
         
         
 
-<div class="viewcode-block" id="read_text_from_docx"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_text_from_docx">[docs]</a><span class="k">def</span> <span class="nf">read_text_from_docx</span><span class="p">(</span><span class="n">doc_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Open docx file at doc_path and read contents into a string.</span>
+<div class="viewcode-block" id="read_text_from_docx">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_text_from_docx">[docs]</a>
+<span class="k">def</span> <span class="nf">read_text_from_docx</span><span class="p">(</span><span class="n">doc_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Open docx file at doc_path and read contents into a string.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        doc_path (str): path to docx file.</span>
@@ -237,8 +255,11 @@
 
 
 
-<div class="viewcode-block" id="read_text_from_txt"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_text_from_txt">[docs]</a><span class="k">def</span> <span class="nf">read_text_from_txt</span><span class="p">(</span><span class="n">doc_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Open txt or csv file at doc_path and read contents into a string.</span>
+
+<div class="viewcode-block" id="read_text_from_txt">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_text_from_txt">[docs]</a>
+<span class="k">def</span> <span class="nf">read_text_from_txt</span><span class="p">(</span><span class="n">doc_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Open txt or csv file at doc_path and read contents into a string.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        doc_path (str): path to txt or csv file.</span>
@@ -261,10 +282,13 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;No such file: &quot;</span> <span class="o">+</span> <span class="n">doc_path</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
     
 
-<div class="viewcode-block" id="read_csv"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_csv">[docs]</a><span class="k">def</span> <span class="nf">read_csv</span><span class="p">(</span><span class="n">doc_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read csv into a pandas dataframe.</span>
+<div class="viewcode-block" id="read_csv">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.read_csv">[docs]</a>
+<span class="k">def</span> <span class="nf">read_csv</span><span class="p">(</span><span class="n">doc_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read csv into a pandas dataframe.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        doc_path (str): path to the csv file to read in.</span>
@@ -287,11 +311,14 @@
         <span class="n">helper_functions</span><span class="o">.</span><span class="n">vprint</span><span class="p">(</span><span class="s2">&quot;No such file: &quot;</span> <span class="o">+</span> <span class="n">doc_path</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
 
+
          
     
 
-<div class="viewcode-block" id="save_string_to_file"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_string_to_file">[docs]</a><span class="k">def</span> <span class="nf">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">text_to_save</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Save a string to file.</span>
+<div class="viewcode-block" id="save_string_to_file">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_string_to_file">[docs]</a>
+<span class="k">def</span> <span class="nf">save_string_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">text_to_save</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a string to file.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        save_dir_name (str): directory in the current working directory to save the string to.</span>
@@ -303,11 +330,14 @@
     
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outFile</span><span class="p">:</span>
         <span class="n">outFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text_to_save</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span></div>
+
     
     
 
-<div class="viewcode-block" id="save_json_to_file"><a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_json_to_file">[docs]</a><span class="k">def</span> <span class="nf">save_json_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">json_dict</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Saves the json_dict to file_name in save_dir_name in the current working directory.</span>
+<div class="viewcode-block" id="save_json_to_file">
+<a class="viewcode-back" href="../../api.html#academic_tracker.fileio.save_json_to_file">[docs]</a>
+<span class="k">def</span> <span class="nf">save_json_to_file</span><span class="p">(</span><span class="n">save_dir_name</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">json_dict</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Saves the json_dict to file_name in save_dir_name in the current working directory.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        save_dir_name (str): directory name to append to the current working directory to save the json_dict in.</span>
@@ -320,6 +350,7 @@
     
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outFile</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="n">sort_keys</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">outFile</span><span class="p">)</span></div>
+
 
 </pre></div>
 

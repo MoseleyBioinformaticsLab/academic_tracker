@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>academic_tracker.helper_functions &mdash; Academic Tracker 2.0.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <title>academic_tracker.helper_functions &mdash; Academic Tracker 2.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f5cff4aa"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -30,7 +34,7 @@
             Academic Tracker
           </a>
               <div class="version">
-                2.0.0
+                2.0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -100,8 +104,10 @@
 <span class="n">PUBLICATION_TEMPLATE</span> <span class="o">=</span> <span class="n">webio</span><span class="o">.</span><span class="n">PUBLICATION_TEMPLATE</span>
 
 
-<div class="viewcode-block" id="vprint"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.vprint">[docs]</a><span class="k">def</span> <span class="nf">vprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print depending on the state of VERBOSE, SILENT, and verbosity.</span>
+<div class="viewcode-block" id="vprint">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.vprint">[docs]</a>
+<span class="k">def</span> <span class="nf">vprint</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print depending on the state of VERBOSE, SILENT, and verbosity.</span>
 <span class="sd">    </span>
 <span class="sd">    If the global SILENT is True don&#39;t print anything. If verbosity is 0 then </span>
 <span class="sd">    print. If verbosity is 1 then VERBOSE must be True to print.</span>
@@ -123,8 +129,11 @@
 
 
 
-<div class="viewcode-block" id="create_authors_by_project_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_authors_by_project_dict">[docs]</a><span class="k">def</span> <span class="nf">create_authors_by_project_dict</span><span class="p">(</span><span class="n">config_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create the authors_by_project_dict dict from the config_dict.</span>
+
+<div class="viewcode-block" id="create_authors_by_project_dict">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_authors_by_project_dict">[docs]</a>
+<span class="k">def</span> <span class="nf">create_authors_by_project_dict</span><span class="p">(</span><span class="n">config_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the authors_by_project_dict dict from the config_dict.</span>
 <span class="sd">    </span>
 <span class="sd">    Creates a dict where the keys are the projects in the config_dict and the values</span>
 <span class="sd">    are the authors associated with that project from config_dict[&quot;Authors&quot;].</span>
@@ -154,8 +163,11 @@
     <span class="k">return</span> <span class="n">authors_by_project_dict</span></div>
 
 
-<div class="viewcode-block" id="adjust_author_attributes"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.adjust_author_attributes">[docs]</a><span class="k">def</span> <span class="nf">adjust_author_attributes</span><span class="p">(</span><span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Modifies config_dict with values from authors_by_project_dict</span>
+
+<div class="viewcode-block" id="adjust_author_attributes">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.adjust_author_attributes">[docs]</a>
+<span class="k">def</span> <span class="nf">adjust_author_attributes</span><span class="p">(</span><span class="n">authors_by_project_dict</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Modifies config_dict with values from authors_by_project_dict</span>
 <span class="sd">    </span>
 <span class="sd">    Go through the authors in authors_by_project_dict and find the lowest cutoff_year.</span>
 <span class="sd">    Also find affiliations and grants and create a union of them across projects.</span>
@@ -202,9 +214,12 @@
 
 
 
+
     
-<div class="viewcode-block" id="regex_match_return"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_match_return">[docs]</a><span class="k">def</span> <span class="nf">regex_match_return</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_match</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the groups matched in the regex if the regex matches.</span>
+<div class="viewcode-block" id="regex_match_return">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_match_return">[docs]</a>
+<span class="k">def</span> <span class="nf">regex_match_return</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_match</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the groups matched in the regex if the regex matches.</span>
 <span class="sd">    </span>
 <span class="sd">    regex is delivered to re.match() with string_to_match, and if there is a match </span>
 <span class="sd">    the match.groups() is returned, otherwise an empty tuple is returned.</span>
@@ -222,8 +237,11 @@
 
 
 
-<div class="viewcode-block" id="regex_group_return"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_group_return">[docs]</a><span class="k">def</span> <span class="nf">regex_group_return</span><span class="p">(</span><span class="n">regex_groups</span><span class="p">,</span> <span class="n">group_index</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the group in the regex_groups indicated by group_index if it exists, else return empty string.</span>
+
+<div class="viewcode-block" id="regex_group_return">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_group_return">[docs]</a>
+<span class="k">def</span> <span class="nf">regex_group_return</span><span class="p">(</span><span class="n">regex_groups</span><span class="p">,</span> <span class="n">group_index</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the group in the regex_groups indicated by group_index if it exists, else return empty string.</span>
 <span class="sd">    </span>
 <span class="sd">    If group_index is out of range of the regex_groups an empty string is retruned.</span>
 <span class="sd">    </span>
@@ -239,8 +257,11 @@
 
 
 
-<div class="viewcode-block" id="regex_search_return"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_search_return">[docs]</a><span class="k">def</span> <span class="nf">regex_search_return</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_search</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the groups matched in the regex if the regex matches.</span>
+
+<div class="viewcode-block" id="regex_search_return">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.regex_search_return">[docs]</a>
+<span class="k">def</span> <span class="nf">regex_search_return</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">string_to_search</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the groups matched in the regex if the regex matches.</span>
 <span class="sd">    </span>
 <span class="sd">    regex is delivered to re.search() with string_to_search, and if there is a match </span>
 <span class="sd">    the match.groups() is returned, otherwise an empty tuple is returned.</span>
@@ -257,8 +278,9 @@
     <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="p">()</span></div>
 
 
+
 <span class="k">def</span> <span class="nf">_generate_first_name_match_regex</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate a regular expression to match the given first name.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a regular expression to match the given first name.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        name (str): first name to generate regex for.</span>
@@ -269,8 +291,10 @@
     <span class="k">return</span> <span class="s2">&quot;.* &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; .*|&quot;</span> <span class="o">+</span> <span class="n">name</span>
 
 
-<div class="viewcode-block" id="do_strings_fuzzy_match"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.do_strings_fuzzy_match">[docs]</a><span class="k">def</span> <span class="nf">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">,</span> <span class="n">match_ratio</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fuzzy match the 2 strings and if the ratio is greater than or equal to match_ratio, return True.</span>
+<div class="viewcode-block" id="do_strings_fuzzy_match">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.do_strings_fuzzy_match">[docs]</a>
+<span class="k">def</span> <span class="nf">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">string1</span><span class="p">,</span> <span class="n">string2</span><span class="p">,</span> <span class="n">match_ratio</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fuzzy match the 2 strings and if the ratio is greater than or equal to match_ratio, return True.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        string1 (str|None): a string to fuzzy match.</span>
@@ -289,6 +313,7 @@
        <span class="n">fuzzywuzzy</span><span class="o">.</span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">string2</span><span class="p">,</span> <span class="n">string1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">match_ratio</span><span class="p">:</span>
            <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span></div>
+
 
 
 
@@ -406,8 +431,10 @@
 
 
 
-<div class="viewcode-block" id="match_pub_authors_to_citation_authors"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_pub_authors_to_citation_authors">[docs]</a><span class="k">def</span> <span class="nf">match_pub_authors_to_citation_authors</span><span class="p">(</span><span class="n">citation_authors</span><span class="p">,</span> <span class="n">author_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Try to match authors in pub data to authors in citation data.</span>
+<div class="viewcode-block" id="match_pub_authors_to_citation_authors">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_pub_authors_to_citation_authors">[docs]</a>
+<span class="k">def</span> <span class="nf">match_pub_authors_to_citation_authors</span><span class="p">(</span><span class="n">citation_authors</span><span class="p">,</span> <span class="n">author_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Try to match authors in pub data to authors in citation data.</span>
 <span class="sd">    </span>
 <span class="sd">    Goes through the author_list from a publication and tries matching to an author in </span>
 <span class="sd">    citation_authors using last name or ORCID if ORCID is present.</span>
@@ -440,18 +467,25 @@
             <span class="k">if</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span> <span class="ow">and</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]:</span>
                 <span class="k">return</span> <span class="kc">True</span>
             
+            <span class="n">citation_is_collective_author</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">citation_has_collective_name</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="s2">&quot;collective_name&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+                <span class="n">citation_is_collective_author</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;collective_name&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">citation_has_collective_name</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">citation_author_collective_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;collective_name&quot;</span><span class="p">]</span>
+            
             <span class="c1">## If it is a collective author then match on collectivename, else match on first and last.</span>
             <span class="k">if</span> <span class="n">is_collective_author</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">has_collective_name</span> <span class="ow">or</span> \
-                   <span class="s2">&quot;collective_name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+                   <span class="ow">not</span> <span class="n">citation_is_collective_author</span> <span class="ow">or</span> \
+                   <span class="ow">not</span> <span class="n">citation_has_collective_name</span><span class="p">:</span>
                     <span class="k">continue</span>
-                
-                <span class="n">citation_author_collective_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;collective_name&quot;</span><span class="p">]</span>
                 
                 <span class="k">if</span> <span class="n">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">citation_author_collective_name</span><span class="p">,</span> <span class="n">author_items_collective_name</span><span class="p">):</span>
                        <span class="k">return</span> <span class="kc">True</span>
             
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">citation_is_collective_author</span><span class="p">:</span>
                 <span class="n">citation_author_last_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             
                 <span class="k">if</span> <span class="n">can_name_match</span> <span class="ow">and</span> <span class="n">citation_author_last_name</span> <span class="o">==</span> <span class="n">author_items_last_name</span><span class="p">:</span>
@@ -461,8 +495,11 @@
 
 
 
-<div class="viewcode-block" id="match_pub_authors_to_config_authors"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_pub_authors_to_config_authors">[docs]</a><span class="k">def</span> <span class="nf">match_pub_authors_to_config_authors</span><span class="p">(</span><span class="n">authors_json</span><span class="p">,</span> <span class="n">author_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Try to match authors in pub data to authors in config data.</span>
+
+<div class="viewcode-block" id="match_pub_authors_to_config_authors">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_pub_authors_to_config_authors">[docs]</a>
+<span class="k">def</span> <span class="nf">match_pub_authors_to_config_authors</span><span class="p">(</span><span class="n">authors_json</span><span class="p">,</span> <span class="n">author_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Try to match authors in pub data to authors in config data.</span>
 <span class="sd">    </span>
 <span class="sd">    Goes through the author_list from a publication and tries matching to an author in </span>
 <span class="sd">    authors_json using firstname, lastname, and affiliations, or ORCID if ORCID</span>
@@ -509,21 +546,28 @@
                 <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span>
                 <span class="k">break</span>
             
-            <span class="c1">## If it is a collective author then match on collectivename, else match on first and last.</span>
+            <span class="n">author_json_is_collective_author</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">author_json_has_collective_name</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="s2">&quot;collective_name&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+                <span class="n">author_json_is_collective_author</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;collective_name&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">author_json_has_collective_name</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">author_json_collective_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;collective_name&quot;</span><span class="p">]</span>
+            
+            <span class="c1">## If it is a collective author then match on collective_name, else match on first and last.</span>
             <span class="k">if</span> <span class="n">is_collective_author</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">has_collective_name</span> <span class="ow">or</span> \
-                   <span class="s2">&quot;collective_name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">author_attributes</span><span class="p">:</span>
+                   <span class="ow">not</span> <span class="n">author_json_is_collective_author</span> <span class="ow">or</span> \
+                   <span class="ow">not</span> <span class="n">author_json_has_collective_name</span><span class="p">:</span>
                     <span class="k">continue</span>
-                
-                <span class="n">author_json_collective_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;collective_name&quot;</span><span class="p">]</span>
-                
+                                
                 <span class="k">if</span> <span class="n">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">author_json_collective_name</span><span class="p">,</span> <span class="n">author_items_collective_name</span><span class="p">):</span>
                        <span class="n">publication_has_affiliated_author</span> <span class="o">=</span> <span class="kc">True</span>
                        <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author</span>
                        <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;ORCID&quot;</span> <span class="ow">in</span> <span class="n">author_attributes</span> <span class="ow">and</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">author_items</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span>
                        <span class="k">break</span>
             
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">author_json_is_collective_author</span><span class="p">:</span>
                 <span class="n">author_json_first_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
                 <span class="n">author_json_last_name</span> <span class="o">=</span> <span class="n">author_attributes</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             
@@ -547,8 +591,11 @@
 
 
 
-<div class="viewcode-block" id="match_authors_in_prev_pub"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_authors_in_prev_pub">[docs]</a><span class="k">def</span> <span class="nf">match_authors_in_prev_pub</span><span class="p">(</span><span class="n">prev_author_list</span><span class="p">,</span> <span class="n">new_author_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Look for matching authors in previous pub data.</span>
+
+<div class="viewcode-block" id="match_authors_in_prev_pub">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.match_authors_in_prev_pub">[docs]</a>
+<span class="k">def</span> <span class="nf">match_authors_in_prev_pub</span><span class="p">(</span><span class="n">prev_author_list</span><span class="p">,</span> <span class="n">new_author_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Look for matching authors in previous pub data.</span>
 <span class="sd">    </span>
 <span class="sd">    Goes through the new_author_list and tries to find a match for each author </span>
 <span class="sd">    in the prev_author_list. Any authors that aren&#39;t matched are added to a </span>
@@ -608,28 +655,34 @@
             <span class="c1">## Try to match with ORCID.</span>
             <span class="k">if</span> <span class="n">new_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">new_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]:</span>
                 <span class="n">new_author_matched</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">author_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">new_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prev_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">author_id</span> <span class="o">:=</span> <span class="n">new_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prev_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">):</span>
                     <span class="n">combined_author_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author_id</span>
                 <span class="k">break</span>
+            
+            <span class="n">prev_is_collective_author</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">prev_has_collective_name</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="s2">&quot;collectivename&quot;</span> <span class="ow">in</span> <span class="n">prev_author_attributes</span><span class="p">:</span>
+                <span class="n">prev_is_collective_author</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;collectivename&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">prev_has_collective_name</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">prev_collective_name</span> <span class="o">=</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;collectivename&quot;</span><span class="p">]</span>
             
             <span class="c1">## If it is a collective author then match on collectivename, else match on first and last.</span>
             <span class="k">if</span> <span class="n">is_collective_author</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">has_collective_name</span> <span class="ow">or</span> \
-                   <span class="s2">&quot;collectivename&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prev_author_attributes</span> <span class="ow">or</span> \
-                   <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;collectivename&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                   <span class="ow">not</span> <span class="n">prev_is_collective_author</span> <span class="ow">or</span> \
+                   <span class="ow">not</span> <span class="n">prev_has_collective_name</span><span class="p">:</span>
                     <span class="k">continue</span>
-                
-                <span class="n">prev_collective_name</span> <span class="o">=</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;collectivename&quot;</span><span class="p">]</span>
                 
                 <span class="k">if</span> <span class="n">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">prev_collective_name</span><span class="p">,</span> <span class="n">new_collective_name</span><span class="p">):</span>
                         <span class="n">new_author_matched</span> <span class="o">=</span> <span class="kc">True</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">author_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">new_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prev_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">author_id</span> <span class="o">:=</span> <span class="n">new_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prev_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">):</span>
                             <span class="n">combined_author_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author_id</span>
                         <span class="k">if</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="n">combined_author_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span>
                         <span class="k">break</span>
             
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">prev_is_collective_author</span><span class="p">:</span>
                 <span class="c1">## If the first and last names are missing for either author then they can&#39;t be matched.</span>
                 <span class="k">if</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> \
                    <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;lastname&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> \
@@ -642,7 +695,7 @@
                 <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">_generate_first_name_match_regex</span><span class="p">(</span><span class="n">new_firstname_adjusted</span><span class="p">),</span> <span class="n">prev_firstname_adjusted</span><span class="p">)</span> <span class="ow">and</span> \
                    <span class="n">new_lastname_adjusted</span> <span class="o">==</span> <span class="n">prev_lastname_adjusted</span><span class="p">:</span>
                         <span class="n">new_author_matched</span> <span class="o">=</span> <span class="kc">True</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">author_id</span> <span class="p">:</span><span class="o">=</span> <span class="n">new_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prev_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">author_id</span> <span class="o">:=</span> <span class="n">new_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">prev_author_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;author_id&quot;</span><span class="p">):</span>
                             <span class="n">combined_author_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">author_id</span>
                         <span class="k">if</span> <span class="n">prev_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="n">combined_author_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_author_attributes</span><span class="p">[</span><span class="s2">&quot;ORCID&quot;</span><span class="p">]</span>
@@ -655,8 +708,9 @@
 
 
 
+
 <span class="k">def</span> <span class="nf">_match_references_in_prev_pub</span><span class="p">(</span><span class="n">prev_reference_list</span><span class="p">,</span> <span class="n">new_reference_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Look for matching references in previous pub data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Look for matching references in previous pub data.</span>
 <span class="sd">    </span>
 <span class="sd">    Goes through the new_reference_list and tries to find a match for each reference </span>
 <span class="sd">    in the prev_reference_list. Any references that aren&#39;t matched are added to a </span>
@@ -707,7 +761,7 @@
                <span class="p">(</span><span class="n">do_strings_fuzzy_match</span><span class="p">(</span><span class="n">new_title</span><span class="p">,</span> <span class="n">prev_title</span><span class="p">)))</span> <span class="ow">or</span>\
                <span class="p">(</span><span class="n">new_title</span> <span class="ow">and</span> <span class="n">prev_citation</span> <span class="ow">and</span> <span class="n">new_title</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">prev_citation</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="ow">or</span>\
                <span class="p">(</span><span class="n">new_citation</span> <span class="ow">and</span> <span class="n">prev_title</span> <span class="ow">and</span> <span class="n">prev_title</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">new_citation</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="ow">or</span>\
-               <span class="p">((</span><span class="n">percentages</span> <span class="p">:</span><span class="o">=</span> <span class="n">_compute_common_phrase_percent</span><span class="p">(</span><span class="n">prev_citation</span><span class="p">,</span> <span class="n">new_citation</span><span class="p">,</span> <span class="n">characters_to_remove</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="ow">and</span>\
+               <span class="p">((</span><span class="n">percentages</span> <span class="o">:=</span> <span class="n">_compute_common_phrase_percent</span><span class="p">(</span><span class="n">prev_citation</span><span class="p">,</span> <span class="n">new_citation</span><span class="p">,</span> <span class="n">characters_to_remove</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="ow">and</span>\
                 <span class="p">(</span><span class="n">percentages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">85</span> <span class="ow">or</span> <span class="n">percentages</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">85</span><span class="p">)):</span>
                 <span class="n">_update</span><span class="p">(</span><span class="n">combined_reference_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">new_reference_attributes</span><span class="p">)</span>
                 <span class="n">new_reference_matched</span> <span class="o">=</span> <span class="kc">True</span>
@@ -722,7 +776,7 @@
 
 
 <span class="k">def</span> <span class="nf">_compute_common_phrase_percent</span><span class="p">(</span><span class="n">prev_citation</span><span class="p">,</span> <span class="n">new_citation</span><span class="p">,</span> <span class="n">characters_to_remove</span><span class="p">,</span> <span class="n">min_len</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find common phrases between prev_citation and new_citation and return percentage.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find common phrases between prev_citation and new_citation and return percentage.</span>
 <span class="sd">    </span>
 <span class="sd">    Determine the common subphrases between the citations and then divide the length of the </span>
 <span class="sd">    common subphrases with the length of the common subphrases plus the uncommon subphrases </span>
@@ -749,10 +803,10 @@
 <span class="sd">        min_len (int): the minimum length of a subphrase.</span>
 <span class="sd">    </span>
 <span class="sd">    Returns:</span>
-<span class="sd">        ((int, int)|None): if either citation is None, then return None, else the percentage of common to uncommon phrase length for each citation.</span>
+<span class="sd">        ((int, int)|None): if either citation is None or empty after character removal and stripping, then return None, else the percentage of common to uncommon phrase length for each citation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">prev_citation</span> <span class="ow">and</span> <span class="n">new_citation</span><span class="p">:</span>
-        <span class="n">citation_strip_regex</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;\</span><span class="si">{char}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">characters_to_remove</span><span class="p">])</span>
+        <span class="n">citation_strip_regex</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="si">{</span><span class="n">char</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">characters_to_remove</span><span class="p">])</span>
         <span class="c1"># citation_strip_regex = r&quot;\.|,|;|\(|\)|\[|\]|\{|\}&quot;</span>
         <span class="n">stripped_prev_citation</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">citation_strip_regex</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">prev_citation</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
         <span class="n">stripped_new_citation</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">citation_strip_regex</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">new_citation</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
@@ -765,8 +819,12 @@
             <span class="n">prev_citation_common_phrases_removed</span> <span class="o">=</span> <span class="n">prev_citation_common_phrases_removed</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">phrase</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="n">new_citation_common_phrases_removed</span> <span class="o">=</span> <span class="n">new_citation_common_phrases_removed</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">phrase</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">common_base_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">common_subphrases</span><span class="p">)</span>
-        <span class="n">prev_common_percentage</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span> <span class="o">+</span> <span class="n">prev_citation_common_phrases_removed</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="n">new_common_percentage</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span> <span class="o">+</span> <span class="n">new_citation_common_phrases_removed</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">prev_common_denom</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span> <span class="o">+</span> <span class="n">prev_citation_common_phrases_removed</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">new_common_denom</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span> <span class="o">+</span> <span class="n">new_citation_common_phrases_removed</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">prev_common_denom</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">new_common_denom</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">prev_common_percentage</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span><span class="p">)</span> <span class="o">/</span> <span class="n">prev_common_denom</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">new_common_percentage</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_base_string</span><span class="p">)</span> <span class="o">/</span> <span class="n">new_common_denom</span> <span class="o">*</span> <span class="mi">100</span>
         
         <span class="k">return</span> <span class="n">prev_common_percentage</span><span class="p">,</span> <span class="n">new_common_percentage</span>
     <span class="k">else</span><span class="p">:</span>
@@ -774,8 +832,10 @@
 
 
 
-<div class="viewcode-block" id="create_pub_dict_for_saving_PubMed"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_pub_dict_for_saving_PubMed">[docs]</a><span class="k">def</span> <span class="nf">create_pub_dict_for_saving_PubMed</span><span class="p">(</span><span class="n">pub</span><span class="p">,</span> <span class="n">include_xml</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert pymed.PubMedArticle to a dictionary and modify it for saving.</span>
+<div class="viewcode-block" id="create_pub_dict_for_saving_PubMed">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_pub_dict_for_saving_PubMed">[docs]</a>
+<span class="k">def</span> <span class="nf">create_pub_dict_for_saving_PubMed</span><span class="p">(</span><span class="n">pub</span><span class="p">,</span> <span class="n">include_xml</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert pymed.PubMedArticle to a dictionary and modify it for saving.</span>
 <span class="sd">    </span>
 <span class="sd">    Converts a pymed.PubMedArticle to a dictionary, deletes the &quot;xml&quot; key if include_xml is False, and </span>
 <span class="sd">    converts the &quot;publication_date&quot; key to a string.</span>
@@ -792,17 +852,17 @@
     
     <span class="n">pub_dict</span> <span class="o">=</span> <span class="n">pub</span><span class="o">.</span><span class="n">toDict</span><span class="p">()</span>
         
-    <span class="k">if</span> <span class="p">(</span><span class="n">pmid</span> <span class="p">:</span><span class="o">=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PubmedData/ArticleIdList/ArticleId[@IdType=&#39;pubmed&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pmid</span> <span class="o">:=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PubmedData/ArticleIdList/ArticleId[@IdType=&#39;pubmed&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmid</span><span class="o">.</span><span class="n">text</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     
-    <span class="k">if</span> <span class="p">(</span><span class="n">doi</span> <span class="p">:</span><span class="o">=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PubmedData/ArticleIdList/ArticleId[@IdType=&#39;doi&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">doi</span> <span class="o">:=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PubmedData/ArticleIdList/ArticleId[@IdType=&#39;doi&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doi</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         
-    <span class="k">if</span> <span class="p">(</span><span class="n">pmc</span> <span class="p">:</span><span class="o">=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PubmedData/ArticleIdList/ArticleId[@IdType=&#39;pmc&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pmc</span> <span class="o">:=</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PubmedData/ArticleIdList/ArticleId[@IdType=&#39;pmc&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;PMCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmc</span><span class="o">.</span><span class="n">text</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;PMCID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -811,22 +871,22 @@
     
     <span class="n">references</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">reference</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//Reference&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Citation&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Citation&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">citation</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">citation</span> <span class="o">=</span> <span class="kc">None</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ArticleIdList/ArticleId[@IdType=&#39;pmc&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ArticleIdList/ArticleId[@IdType=&#39;pmc&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ref_pmc</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ref_pmc</span> <span class="o">=</span> <span class="kc">None</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ArticleIdList/ArticleId[@IdType=&#39;pubmed&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ArticleIdList/ArticleId[@IdType=&#39;pubmed&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ref_pmid</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ref_pmid</span> <span class="o">=</span> <span class="kc">None</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ArticleIdList/ArticleId[@IdType=&#39;doi&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">reference</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ArticleIdList/ArticleId[@IdType=&#39;doi&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ref_doi</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ref_doi</span> <span class="o">=</span> <span class="kc">None</span>
@@ -845,27 +905,27 @@
     <span class="n">authors</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="p">[</span><span class="s2">&quot;xml&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//Author&quot;</span><span class="p">):</span>
         <span class="n">last_name</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;LastName&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;LastName&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">last_name</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         
         <span class="n">collective_name</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;CollectiveName&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;CollectiveName&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">collective_name</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         
         <span class="n">first_name</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ForeName&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ForeName&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">first_name</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         
         <span class="n">initials</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Initials&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Initials&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">initials</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">text</span>
         
         <span class="n">affiliation</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">affiliations</span> <span class="p">:</span><span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;AffiliationInfo/Affiliation&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">affiliations</span> <span class="o">:=</span> <span class="n">author</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;AffiliationInfo/Affiliation&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">affiliation</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">text</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">affiliations</span><span class="p">])</span> <span class="k">if</span> <span class="n">affiliations</span> <span class="k">else</span> <span class="kc">None</span>
         
         <span class="n">orcid</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span><span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Identifier[@Source=&#39;ORCID&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="o">:=</span> <span class="n">author</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;Identifier[@Source=&#39;ORCID&#39;]&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">orcid</span> <span class="o">=</span> <span class="n">extract_ORCID_from_string</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="n">collective_name</span><span class="p">:</span>
@@ -901,8 +961,11 @@
 
 
 
-<div class="viewcode-block" id="create_pub_dict_for_saving_Crossref"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_pub_dict_for_saving_Crossref">[docs]</a><span class="k">def</span> <span class="nf">create_pub_dict_for_saving_Crossref</span><span class="p">(</span><span class="n">work</span><span class="p">,</span> <span class="n">prev_query</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create the standard pub_dict from a Crossref query work dict.</span>
+
+<div class="viewcode-block" id="create_pub_dict_for_saving_Crossref">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.create_pub_dict_for_saving_Crossref">[docs]</a>
+<span class="k">def</span> <span class="nf">create_pub_dict_for_saving_Crossref</span><span class="p">(</span><span class="n">work</span><span class="p">,</span> <span class="n">prev_query</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the standard pub_dict from a Crossref query work dict.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        work (dict): the dictionary for a publication returned in a Crossref query.</span>
@@ -967,7 +1030,7 @@
                 <span class="n">affiliations</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">if</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]:</span>
                     <span class="k">for</span> <span class="n">affiliation</span> <span class="ow">in</span> <span class="n">cr_author_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]:</span>
-                        <span class="k">if</span> <span class="n">aff_text</span> <span class="p">:</span><span class="o">=</span> <span class="n">affiliation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">aff_text</span> <span class="o">:=</span> <span class="n">affiliation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">):</span>
                             <span class="n">affiliations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aff_text</span><span class="p">)</span>
                 <span class="n">temp_dict</span><span class="p">[</span><span class="s2">&quot;affiliation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">affiliations</span><span class="p">)</span> <span class="k">if</span> <span class="n">affiliations</span> <span class="k">else</span> <span class="kc">None</span>
             
@@ -1017,7 +1080,7 @@
     <span class="n">found_grants</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="s2">&quot;funder&quot;</span> <span class="ow">in</span> <span class="n">work</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">funder</span> <span class="ow">in</span> <span class="n">work</span><span class="p">[</span><span class="s2">&quot;funder&quot;</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">awards</span> <span class="p">:</span><span class="o">=</span> <span class="n">funder</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;award&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">awards</span> <span class="o">:=</span> <span class="n">funder</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;award&quot;</span><span class="p">):</span>
                 <span class="n">found_grants</span> <span class="o">+=</span> <span class="n">awards</span>
         
     <span class="c1">## Look for journal</span>
@@ -1032,7 +1095,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">ref_doi</span> <span class="o">=</span> <span class="kc">None</span>
             
-            <span class="k">if</span> <span class="n">ref_title</span> <span class="p">:</span><span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;article-title&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">ref_title</span> <span class="o">:=</span> <span class="n">reference</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;article-title&quot;</span><span class="p">):</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">ref_title</span> <span class="o">=</span> <span class="n">reference</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;series-title&quot;</span><span class="p">)</span>
@@ -1065,10 +1128,13 @@
 
 
 
+
 <span class="n">ORCID_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">-\d</span><span class="si">{3}</span><span class="s2">[0,1,2,3,4,5,6,7,8,9,X])&quot;</span>
 <span class="n">alt_ORCID_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">\d</span><span class="si">{4}</span><span class="s2">\d</span><span class="si">{4}</span><span class="s2">\d</span><span class="si">{3}</span><span class="s2">[0,1,2,3,4,5,6,7,8,9,X])&quot;</span>
-<div class="viewcode-block" id="extract_ORCID_from_string"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.extract_ORCID_from_string">[docs]</a><span class="k">def</span> <span class="nf">extract_ORCID_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Extract an ORCID ID from a string.</span>
+<div class="viewcode-block" id="extract_ORCID_from_string">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.extract_ORCID_from_string">[docs]</a>
+<span class="k">def</span> <span class="nf">extract_ORCID_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract an ORCID ID from a string.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        string (str): the string to extract the ID from.</span>
@@ -1077,9 +1143,9 @@
 <span class="sd">        (str|None): either the extracted ID as a string or None.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="k">if</span> <span class="n">re_match</span> <span class="p">:</span><span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">ORCID_regex</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">re_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">ORCID_regex</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">re_match</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">re_match</span> <span class="p">:</span><span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">alt_ORCID_regex</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="n">re_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">alt_ORCID_regex</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
         <span class="n">captured_string</span> <span class="o">=</span> <span class="n">re_match</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">new_string</span> <span class="o">=</span> <span class="n">captured_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">captured_string</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">captured_string</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">captured_string</span><span class="p">[</span><span class="mi">12</span><span class="p">:]</span>
         <span class="k">return</span> <span class="n">new_string</span>
@@ -1088,8 +1154,11 @@
 
 
 
-<div class="viewcode-block" id="is_fuzzy_match_to_list"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.is_fuzzy_match_to_list">[docs]</a><span class="k">def</span> <span class="nf">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_to_match</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;True if string is a 90 or higher ratio match to any string in list, False otherwise.</span>
+
+<div class="viewcode-block" id="is_fuzzy_match_to_list">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.is_fuzzy_match_to_list">[docs]</a>
+<span class="k">def</span> <span class="nf">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_to_match</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;True if string is a 90 or higher ratio match to any string in list, False otherwise.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        str_to_match (str): string to compare with list</span>
@@ -1105,8 +1174,11 @@
 
 
 
-<div class="viewcode-block" id="fuzzy_matches_to_list"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.fuzzy_matches_to_list">[docs]</a><span class="k">def</span> <span class="nf">fuzzy_matches_to_list</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_to_match</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return strings and indexes for strings with match ratio that is 90 or higher.</span>
+
+<div class="viewcode-block" id="fuzzy_matches_to_list">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.fuzzy_matches_to_list">[docs]</a>
+<span class="k">def</span> <span class="nf">fuzzy_matches_to_list</span><span class="p">(</span><span class="n">str_to_match</span><span class="p">,</span> <span class="n">list_to_match</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return strings and indexes for strings with match ratio that is 90 or higher.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        str_to_match (str): string to compare with list</span>
@@ -1122,8 +1194,11 @@
 
 
 
-<div class="viewcode-block" id="is_pub_in_publication_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.is_pub_in_publication_dict">[docs]</a><span class="k">def</span> <span class="nf">is_pub_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">titles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;True if pub_id is in publication_dict or title is a fuzzy match to titles in titles.</span>
+
+<div class="viewcode-block" id="is_pub_in_publication_dict">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.is_pub_in_publication_dict">[docs]</a>
+<span class="k">def</span> <span class="nf">is_pub_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">,</span> <span class="n">titles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;True if pub_id is in publication_dict or title is a fuzzy match to titles in titles.</span>
 <span class="sd">    </span>
 <span class="sd">    Check whether the pub_id is in publication_dict. If it isn&#39;t then see if there is </span>
 <span class="sd">    a fuzzy match in titles. If titles is not provided then get a list of titles </span>
@@ -1149,8 +1224,11 @@
 
 
 
-<div class="viewcode-block" id="get_pub_id_in_publication_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.get_pub_id_in_publication_dict">[docs]</a><span class="k">def</span> <span class="nf">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the pub_id in publication_dict for the publication that matches the given pub_id or fuzzy matches a title.</span>
+
+<div class="viewcode-block" id="get_pub_id_in_publication_dict">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.get_pub_id_in_publication_dict">[docs]</a>
+<span class="k">def</span> <span class="nf">get_pub_id_in_publication_dict</span><span class="p">(</span><span class="n">pub_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publication_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the pub_id in publication_dict for the publication that matches the given pub_id or fuzzy matches a title.</span>
 <span class="sd">    </span>
 <span class="sd">    Check whether the pub_id is in publication_dict. If it isn&#39;t then see if there is </span>
 <span class="sd">    a fuzzy match in titles. It is assumed every dictionary in publication_dict will </span>
@@ -1176,8 +1254,11 @@
 
 
 
-<div class="viewcode-block" id="find_duplicate_citations"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.find_duplicate_citations">[docs]</a><span class="k">def</span> <span class="nf">find_duplicate_citations</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find citations that are duplicates of each other in tokenized_citations.</span>
+
+<div class="viewcode-block" id="find_duplicate_citations">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.find_duplicate_citations">[docs]</a>
+<span class="k">def</span> <span class="nf">find_duplicate_citations</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find citations that are duplicates of each other in tokenized_citations.</span>
 <span class="sd">    </span>
 <span class="sd">    Citations can be duplicates in 3 ways. Same PMID, same DOI, or similar enough titles.</span>
 <span class="sd">    The function goes through each citation and looks for matches on these criteria.</span>
@@ -1263,11 +1344,14 @@
         <span class="n">duplicate_set</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
     
     <span class="k">return</span> <span class="n">unique_duplicate_sets</span></div>
+
     
     
 
-<div class="viewcode-block" id="are_citations_in_pub_dict"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.are_citations_in_pub_dict">[docs]</a><span class="k">def</span> <span class="nf">are_citations_in_pub_dict</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">pub_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Determine which citations in tokenized_citations are in pub_dict.</span>
+<div class="viewcode-block" id="are_citations_in_pub_dict">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.are_citations_in_pub_dict">[docs]</a>
+<span class="k">def</span> <span class="nf">are_citations_in_pub_dict</span><span class="p">(</span><span class="n">tokenized_citations</span><span class="p">,</span> <span class="n">pub_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine which citations in tokenized_citations are in pub_dict.</span>
 <span class="sd">    </span>
 <span class="sd">    For each citation in tokenized_citations see if it is in pub_dict. Will be </span>
 <span class="sd">    True for a citation if the PMID matches, DOI matches, or the title is similar </span>
@@ -1282,20 +1366,24 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">pub_titles</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]]</span>
-    <span class="n">pub_dois</span> <span class="o">=</span> <span class="p">[</span><span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">doi</span> <span class="p">:</span><span class="o">=</span> <span class="n">normalize_DOI</span><span class="p">(</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]))]</span>
+    <span class="n">pub_dois</span> <span class="o">=</span> <span class="p">[</span><span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">doi</span> <span class="o">:=</span> <span class="n">normalize_DOI</span><span class="p">(</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;doi&quot;</span><span class="p">]))]</span>
     <span class="n">pub_pmids</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">pub_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">pub</span><span class="p">[</span><span class="s2">&quot;pubmed_id&quot;</span><span class="p">]]</span>
     
-    <span class="k">return</span> <span class="p">[</span><span class="kc">True</span> <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">pub_pmids</span> <span class="ow">or</span> <span class="p">((</span><span class="n">doi</span> <span class="p">:</span><span class="o">=</span> <span class="n">normalize_DOI</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]))</span> <span class="ow">and</span> <span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="ow">in</span> <span class="n">pub_dois</span> <span class="ow">or</span> <span class="n">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">pub_titles</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="kc">True</span> <span class="k">if</span> <span class="n">citation</span><span class="p">[</span><span class="s2">&quot;PMID&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">pub_pmids</span> <span class="ow">or</span> <span class="p">((</span><span class="n">doi</span> <span class="o">:=</span> <span class="n">normalize_DOI</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;DOI&quot;</span><span class="p">]))</span> <span class="ow">and</span> <span class="n">doi</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="ow">in</span> <span class="n">pub_dois</span> <span class="ow">or</span> <span class="n">is_fuzzy_match_to_list</span><span class="p">(</span><span class="n">citation</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">pub_titles</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">citation</span> <span class="ow">in</span> <span class="n">tokenized_citations</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="normalize_DOI"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.normalize_DOI">[docs]</a><span class="k">def</span> <span class="nf">normalize_DOI</span><span class="p">(</span><span class="n">doi_string</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="normalize_DOI">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.normalize_DOI">[docs]</a>
+<span class="k">def</span> <span class="nf">normalize_DOI</span><span class="p">(</span><span class="n">doi_string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">doi_string</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">doi_match</span> <span class="p">:</span><span class="o">=</span> <span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;https?://doi.org/(.*)&#39;</span><span class="p">,</span> <span class="n">doi_string</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">doi_match</span> <span class="o">:=</span> <span class="n">regex_match_return</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;https?://doi.org/(.*)&#39;</span><span class="p">,</span> <span class="n">doi_string</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">doi_match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">doi_string</span>
     <span class="k">return</span> <span class="kc">None</span></div>
+
 
 
 
@@ -1324,7 +1412,7 @@
 
 
 <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="n">original_dict</span><span class="p">,</span> <span class="n">upgrade_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Update a dictionary in a nested fashion.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update a dictionary in a nested fashion.</span>
 <span class="sd">    </span>
 <span class="sd">    Only updates original_dict if original_dict has a None value for a key, or </span>
 <span class="sd">    if the key does not already exist in original_dict.</span>
@@ -1351,7 +1439,7 @@
 
 
 <span class="k">def</span> <span class="nf">_merge_pub_dicts</span><span class="p">(</span><span class="n">prev_dict</span><span class="p">,</span> <span class="n">new_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Merge information from 2 unified pub_dicts.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge information from 2 unified pub_dicts.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        prev_dict (dict): the dictionary whose values will be updated.</span>
@@ -1370,8 +1458,10 @@
 
 
 
-<div class="viewcode-block" id="find_common_subphrases"><a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.find_common_subphrases">[docs]</a><span class="k">def</span> <span class="nf">find_common_subphrases</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">,</span> <span class="n">min_len</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find all common subphrases between str1 and str2 longer than min_len.</span>
+<div class="viewcode-block" id="find_common_subphrases">
+<a class="viewcode-back" href="../../api.html#academic_tracker.helper_functions.find_common_subphrases">[docs]</a>
+<span class="k">def</span> <span class="nf">find_common_subphrases</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">,</span> <span class="n">min_len</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find all common subphrases between str1 and str2 longer than min_len.</span>
 <span class="sd">    </span>
 <span class="sd">    Modified from https://stackoverflow.com/a/63337541/19957088.</span>
 <span class="sd">    Find all common subphrases between the 2 strings, but filer out common subphrases </span>
@@ -1422,6 +1512,7 @@
                     <span class="n">cs_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_string</span><span class="p">)</span>
                     <span class="n">cs_array_index</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">end_index</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">cs_array</span></div>
+
 
 <span class="c1">## Good test phrases to understand how the function works.</span>
 <span class="c1"># find_common_subphrases(&#39;sandc cand&#39;,&#39;sandb asdf and&#39;, 2)</span>

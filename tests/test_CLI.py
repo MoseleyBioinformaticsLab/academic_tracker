@@ -183,6 +183,7 @@ def test_pmid_reference_hyphen_ref_search():
 
 def test_pmid_reference_underscore_ref_search():
     """Test that the underscore version of the PMID_reference option works for reference_search."""
+    print([name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)])
     
     test_file = "config_truncated.json"
     
@@ -190,6 +191,8 @@ def test_pmid_reference_underscore_ref_search():
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
+    
+    print(output)
 
     assert [name for name in os.listdir(".") if os.path.isdir(name) and re.match(r"tracker-.*", name)]
                 
